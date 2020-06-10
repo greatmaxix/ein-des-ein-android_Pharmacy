@@ -1,0 +1,39 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    apply from: "versions.gradle"
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
+    }
+
+    dependencies {
+        classpath deps.gradle_plugin
+        classpath deps.kotlin_plugin
+        classpath deps.navigation_plugin
+        classpath deps.google_plugin
+        classpath deps.fabric_plugin
+        classpath deps.koin_plugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    minSdk = 26
+    targetSdk = 29
+    compileSdk = 29
+    versionCode = 1
+    versionName = "1.0.0"
+}

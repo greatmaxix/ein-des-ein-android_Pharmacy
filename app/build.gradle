@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.pharmacy.myapp"
+        minSdkVersion 26
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+buildscript {
+
+    def kotlin = [:]
+    kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:$rootProject.ext.deps.versions.kotlin"
+    kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$rootProject.ext.deps.versions.kotlin"
+    kotlin.coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.ext.deps.versions.coroutines"
+    kotlin.coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.ext.deps.versions.coroutines"
+    ext.kotlin = kotlin
+
+    def navigation = [:]
+    navigation.ui = "androidx.navigation:navigation-ui-ktx:$rootProject.ext.deps.versions.navigation"
+    navigation.runtime = "androidx.navigation:navigation-runtime-ktx:$rootProject.ext.deps.versions.navigation"
+    navigation.fragment = "androidx.navigation:navigation-fragment-ktx:$rootProject.ext.deps.versions.navigation"
+    ext.navigation = navigation
+
+    def koin = [:]
+    koin.scope = "org.koin:koin-androidx-scope:$rootProject.ext.deps.versions.koin"
+    koin.fragment = "org.koin:koin-androidx-fragment:$rootProject.ext.deps.versions.koin"
+    koin.viewmodel = "org.koin:koin-androidx-viewmodel:$rootProject.ext.deps.versions.koin"
+    ext.koin = koin
+
+    def flow = [:]
+    flow.binding = "io.github.reactivecircus.flowbinding:flowbinding-android:$rootProject.ext.deps.versions.flowbinding"
+    ext.flow = flow
+
+    def rx = [:]
+    rx.rxjava = "io.reactivex.rxjava2:rxjava:$rootProject.ext.deps.versions.rxjava"
+    rx.rxandroid = "io.reactivex.rxjava2:rxandroid:$rootProject.ext.deps.versions.rxandroid"
+    rx.rxbinding = "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.deps.versions.rxbinding"
+    ext.rx = rx
+
+    def rest = [:]
+    rest.retrofit = "com.squareup.retrofit2:retrofit:$rootProject.ext.deps.versions.retrofit"
+    rest.gson = "com.squareup.retrofit2:converter-gson:$rootProject.ext.deps.versions.retrofit"
+    rest.rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.deps.versions.retrofit"
+    rest.okhttp = "com.squareup.okhttp3:okhttp:$rootProject.ext.deps.versions.okhttp"
+    rest.logginginterceptor = "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.deps.versions.okhttp"
+    ext.rest = rest
+
+    def androidx = [:]
+    androidx.core = "androidx.core:core-ktx:$rootProject.ext.deps.versions.core"
+    androidx.browser = "androidx.browser:browser:$rootProject.ext.deps.versions.browser"
+    androidx.cardview = "androidx.cardview:cardview:$rootProject.ext.deps.versions.card"
+    androidx.activity = "androidx.activity:activity-ktx:$rootProject.ext.deps.versions.activity"
+    androidx.fragment = "androidx.fragment:fragment-ktx:$rootProject.ext.deps.versions.fragment"
+    androidx.appcompat = "androidx.appcompat:appcompat:$rootProject.ext.deps.versions.appcompat"
+    ext.androidx = androidx
+
+    def lifecycle = [:]
+    lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$rootProject.ext.deps.versions.lifecycle"
+    lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$rootProject.ext.deps.versions.lifecycle"
+    lifecycle.livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.ext.deps.versions.lifecycle"
+    lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$rootProject.ext.deps.versions.lifecycle"
+    lifecycle.viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.ext.deps.versions.lifecycle"
+    ext.lifecycle = lifecycle
+}
+
+dependencies {
+    api fileTree(dir: "libs", include: ["*.jar"])
+
+    rx.each { entry -> api("$entry.value") }
+    flow.each { entry -> api("$entry.value") }
+    rest.each { entry -> api("$entry.value") }
+    koin.each { entry -> api("$entry.value") }
+    kotlin.each { entry -> api("$entry.value") }
+    androidx.each { entry -> api("$entry.value") }
+    lifecycle.each { entry -> api("$entry.value") }
+    navigation.each { entry -> api("$entry.value") }
+
+    api "com.opencsv:opencsv:5.0"
+    api "com.jakewharton.timber:timber:4.7.1"
+    api "com.intuit.sdp:sdp-android:$rootProject.ext.deps.versions.sdp"
+    api "com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp"
+    api "com.google.android.material:material:$rootProject.ext.deps.versions.material"
+}

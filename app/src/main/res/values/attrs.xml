@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LoaderView">
+        <attr name="android:tint" />
+        <attr name="instantStart" format="boolean" />
+    </declare-styleable>
+
+</resources>
