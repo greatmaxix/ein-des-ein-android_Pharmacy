@@ -111,4 +111,6 @@ dependencies {
     api "com.intuit.sdp:sdp-android:$rootProject.ext.deps.versions.sdp"
     api "com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp"
     api "com.google.android.material:material:$rootProject.ext.deps.versions.material"
+
+    implementation(rootProject.ext.deps.constraintlayout)
 }

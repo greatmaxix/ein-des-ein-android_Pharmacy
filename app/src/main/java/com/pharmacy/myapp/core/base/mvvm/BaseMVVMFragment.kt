@@ -6,15 +6,9 @@ import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.pharmacy.myapp.core.base.fragment.BaseFragment
-import org.koin.androidx.viewmodel.ext.android.getViewModel
-import kotlin.reflect.KClass
 
-@Deprecated("Use BaseMVVMFragment2 with Koin FragmentFactory")
-abstract class BaseMVVMFragment<out VM : ViewModel>(@LayoutRes layoutResourceId: Int, viewModelClass: KClass<VM>) : BaseFragment(layoutResourceId) {
-
-    protected open val viewModel by lazy { getViewModel<VM>(viewModelClass) }
+abstract class BaseMVVMFragment(@LayoutRes layoutResourceId: Int) : BaseFragment(layoutResourceId) {
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,6 +48,12 @@ abstract class BaseMVVMFragment<out VM : ViewModel>(@LayoutRes layoutResourceId:
     protected fun <T> LiveData<T>.observeExt(onChanged: (T) -> Unit) {
         observe(viewLifecycleOwner, Observer {
             it?.let(onChanged)
+        })
+    }
+
+    protected fun <T> LiveData<T>.observeNullableExt(onChanged: (T?) -> Unit) {
+        observe(viewLifecycleOwner, Observer {
+            onChanged(it)
         })
     }
 }

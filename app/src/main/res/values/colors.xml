@@ -3,4 +3,19 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorMainStart">#36b38e</color>
+    <color name="colorLinkActive">@color/colorMainStart</color>
+
+    <color name="colorBackground">#2b2c38</color>
+    <color name="colorGlobalWhite">#ffffffff</color>
+    <color name="colorGlobalBlack">#ff000000</color>
+    <color name="colorGlobalDisable">#3f4048</color>
+    <color name="colorTransparent">#00000000</color>
+
+    <color name="colorPinNormal">#20ffffff</color>
+    <color name="colorPinPrimary">@color/colorGlobalWhite</color>
+
+    <color name="colorBackgroundInputTextPrimaryDisable">#42424d</color>
+
 </resources>
