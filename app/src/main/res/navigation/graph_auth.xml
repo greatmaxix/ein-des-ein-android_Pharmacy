@@ -17,6 +17,13 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+        <action
+            android:id="@+id/actionFromSignInToSignUp"
+            app:destination="@id/nav_sign_up"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
     </fragment>
 
     <fragment
@@ -24,5 +31,11 @@
         android:name="com.pharmacy.myapp.auth.PinFragment"
         android:label="@null"
         tools:layout="@layout/fragment_pin" />
+
+    <fragment
+        android:id="@+id/nav_sign_up"
+        android:name="com.pharmacy.myapp.auth.SignUpFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_sign_up" />
 
 </navigation>

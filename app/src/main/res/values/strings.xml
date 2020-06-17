@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Pharamacy</string>
+
+    <string name="MinLengthIsCharacters">Min length is 13 characters</string>
+    <string name="nameErrorMessageAuth">Имя должно содержать от 2 до 12 букв</string>
+    <string name="phoneErrorMessageAuth">Телефон введен не верно</string>
+    <string name="emailErrorMessageAuth">Ой: Кажется это не похоже на имейл адрес</string>
+    <string name="dontHaveAnAccountAuth">Еще нет аккаунта?</string>
+    <string name="registrationAuth">Зарегистрируйтесь</string>
+    <string name="proceedAuth">Далее</string>
+    <string name="welcomeBackAuth">С возвращением!</string>
+    <string name="pleaseAuth">Пожалуйста, авторизируйтесь удобным для вас способом</string>
+    <string name="phoneHintAuth">+3(•••) •••-••-••</string>
+    <string name="accountCreationAuth">Создание аккаунта</string>
+    <string name="yourNameAuth">Ваше имя*</string>
+    <string name="emailHintAuth">Email для рассылок</string>
+    <string name="orSignInWithAuth">Или войдите с помощью</string>
+
 </resources>

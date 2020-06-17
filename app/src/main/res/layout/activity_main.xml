@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="?attr/colorBackground"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/graph_main" />
+        app:navGraph="@navigation/graph_auth" />
 
     <include layout="@layout/layout_progress" />
 

@@ -7,15 +7,26 @@
     <color name="colorMainStart">#36b38e</color>
     <color name="colorLinkActive">@color/colorMainStart</color>
 
-    <color name="colorBackground">#2b2c38</color>
+    <color name="colorBackground">#F1F1F1</color>
     <color name="colorGlobalWhite">#ffffffff</color>
     <color name="colorGlobalBlack">#ff000000</color>
     <color name="colorGlobalDisable">#3f4048</color>
     <color name="colorTransparent">#00000000</color>
 
+    <color name="colorProgressBackground">#a0000000</color>
+
     <color name="colorPinNormal">#20ffffff</color>
     <color name="colorPinPrimary">@color/colorGlobalWhite</color>
 
+    <color name="acceptTextFieldAuth">#35E85C</color>
+    <color name="titleTextColorAuth">#20272C</color>
+    <color name="colorTextAuth">#202020</color>
+
+    <color name="colorButtonPrimary">@color/colorMainStart</color>
+    <color name="colorButtonPrimaryDisable">@color/colorGlobalDisable</color>
+    <color name="colorTextInputTextPrimary">@color/colorTextAuth</color>
+    <color name="colorTextInputTextPrimaryDisable">#5d5d65</color>
+    <color name="colorBackgroundInputTextPrimary">@color/colorGlobalWhite</color>
     <color name="colorBackgroundInputTextPrimaryDisable">#42424d</color>
 
 </resources>

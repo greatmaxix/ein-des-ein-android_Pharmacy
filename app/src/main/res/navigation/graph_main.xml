@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/nav_splash"
-        android:name="com.pharmacy.myapp.auth.PinFragment"
+        android:name="com.pharmacy.myapp.auth.SignInFragment"
         android:label="@null"
         tools:layout="@layout/fragment_pin">
         <action

@@ -1,23 +1,26 @@
 package com.pharmacy.myapp.auth
 
 import android.os.Bundle
-import android.telephony.PhoneNumberFormattingTextWatcher
-import android.telephony.PhoneNumberUtils
 import android.view.View
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToSignUp
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
+import com.pharmacy.myapp.core.extensions.onClick
+import com.pharmacy.myapp.ui.text.isPhoneNumberValid
+import com.pharmacy.myapp.utils.extension.onDoneImeAction
 import kotlinx.android.synthetic.main.fragment_sign_in.*
-
 
 class SignInFragment : BaseMVVMFragment(R.layout.fragment_sign_in) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        PhoneNumberUtils.formatNumber(etPhone.text.toString())
-        etPhone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
-        etPhone.setOnEditorActionListener { v, actionId, event ->
-            true
+        etPhoneSignIn.onDoneImeAction { mbNextSignIn.performClick() }
+        mbNextSignIn.onClick {
+            if (tilPhoneSignIn.isPhoneNumberValid(getString(R.string.phoneErrorMessageAuth))) {
+                // todo make http request
+            }
         }
+        mbCreateAccount.onClick { navController.navigate(actionFromSignInToSignUp()) }
     }
 
 }
