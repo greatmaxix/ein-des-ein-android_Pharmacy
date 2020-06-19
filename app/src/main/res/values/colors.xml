@@ -7,7 +7,7 @@
     <color name="colorMainStart">#36b38e</color>
     <color name="colorLinkActive">@color/colorMainStart</color>
 
-    <color name="colorBackground">#F1F1F1</color>
+    <color name="colorBackground">#F2F2F2</color>
     <color name="colorGlobalWhite">#ffffffff</color>
     <color name="colorGlobalBlack">#ff000000</color>
     <color name="colorGlobalDisable">#3f4048</color>
@@ -28,5 +28,7 @@
     <color name="colorTextInputTextPrimaryDisable">#5d5d65</color>
     <color name="colorBackgroundInputTextPrimary">@color/colorGlobalWhite</color>
     <color name="colorBackgroundInputTextPrimaryDisable">#42424d</color>
+
+    <color name="profileButtonGreyTint">#C7C7CC</color>
 
 </resources>

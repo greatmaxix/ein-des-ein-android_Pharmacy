@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pharamacy</string>
+    <string name="app_name">Pharmacy</string>
 
     <string name="MinLengthIsCharacters">Min length is 13 characters</string>
     <string name="nameErrorMessageAuth">Имя должно содержать от 2 до 12 букв</string>
