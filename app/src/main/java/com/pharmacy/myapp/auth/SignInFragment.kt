@@ -7,7 +7,7 @@ import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSign
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.ui.text.isPhoneNumberValid
-import com.pharmacy.myapp.utils.extension.onDoneImeAction
+import com.pharmacy.myapp.core.extensions.onDoneImeAction
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 class SignInFragment : BaseMVVMFragment(R.layout.fragment_sign_in) {

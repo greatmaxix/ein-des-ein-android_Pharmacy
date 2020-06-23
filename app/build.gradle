@@ -63,16 +63,9 @@ buildscript {
     flow.binding = "io.github.reactivecircus.flowbinding:flowbinding-android:$rootProject.ext.deps.versions.flowbinding"
     ext.flow = flow
 
-    def rx = [:]
-    rx.rxjava = "io.reactivex.rxjava2:rxjava:$rootProject.ext.deps.versions.rxjava"
-    rx.rxandroid = "io.reactivex.rxjava2:rxandroid:$rootProject.ext.deps.versions.rxandroid"
-    rx.rxbinding = "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.deps.versions.rxbinding"
-    ext.rx = rx
-
     def rest = [:]
     rest.retrofit = "com.squareup.retrofit2:retrofit:$rootProject.ext.deps.versions.retrofit"
     rest.gson = "com.squareup.retrofit2:converter-gson:$rootProject.ext.deps.versions.retrofit"
-    rest.rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.deps.versions.retrofit"
     rest.okhttp = "com.squareup.okhttp3:okhttp:$rootProject.ext.deps.versions.okhttp"
     rest.logginginterceptor = "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.deps.versions.okhttp"
     ext.rest = rest
@@ -98,7 +91,6 @@ buildscript {
 dependencies {
     api fileTree(dir: "libs", include: ["*.jar"])
 
-    rx.each { entry -> api("$entry.value") }
     flow.each { entry -> api("$entry.value") }
     rest.each { entry -> api("$entry.value") }
     koin.each { entry -> api("$entry.value") }

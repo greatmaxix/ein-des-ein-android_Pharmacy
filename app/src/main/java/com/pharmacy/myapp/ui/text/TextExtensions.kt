@@ -15,7 +15,7 @@ import android.widget.EditText
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.pharmacy.myapp.utils.extension.inputTextBackground
 import com.pharmacy.myapp.utils.extension.inputTextColor
-import com.pharmacy.myapp.utils.extension.onDoneImeAction
+import com.pharmacy.myapp.core.extensions.onDoneImeAction
 import com.google.android.material.textfield.TextInputLayout
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.*

@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.utils.extension
+package com.pharmacy.myapp.core.extensions
 
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
@@ -6,7 +6,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.PrecomputedTextCompat
 import androidx.core.widget.TextViewCompat
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.core.extensions.enableOrDisable
 
 fun TextView.onDoneImeAction(clearFocus: Boolean = false, action: () -> Unit) {
     setOnEditorActionListener { v, actionId, _ ->

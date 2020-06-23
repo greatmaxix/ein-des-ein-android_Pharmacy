@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.utils.extension
+package com.pharmacy.myapp.core.extensions
 
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter

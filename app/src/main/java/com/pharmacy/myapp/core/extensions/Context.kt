@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Point
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_DIP

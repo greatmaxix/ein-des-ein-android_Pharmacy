@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.utils.extension
+package com.pharmacy.myapp.core.extensions
 
 import org.apache.commons.lang3.time.DateUtils
 import java.text.SimpleDateFormat

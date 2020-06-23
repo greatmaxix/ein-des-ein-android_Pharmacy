@@ -7,10 +7,9 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.ui.text.checkEmail
-import com.pharmacy.myapp.ui.text.checkGeneral
 import com.pharmacy.myapp.ui.text.checkLength
 import com.pharmacy.myapp.ui.text.isPhoneNumberValid
-import com.pharmacy.myapp.utils.extension.onDoneImeAction
+import com.pharmacy.myapp.core.extensions.onDoneImeAction
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 class SignUpFragment : BaseMVVMFragment(R.layout.fragment_sign_up) {

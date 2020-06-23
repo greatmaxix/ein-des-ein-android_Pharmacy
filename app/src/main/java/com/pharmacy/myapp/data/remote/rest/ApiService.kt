@@ -5,7 +5,7 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @POST("$API_PATH$CUSTOMER_PATH/registration")
+    @POST("$API_PATH/registration")
     suspend fun registration(
         @Query("username") name: String,
         @Query("email") email: String,
@@ -13,11 +13,10 @@ interface ApiService {
     ): String/*BaseResponse<RegistrationResponse>*/
 
 
-    @POST("$API_PATH$CUSTOMER_PATH/auth")
+    @POST("$API_PATH/auth")
     suspend fun phone(@Query("phone") phone: String): String/*BaseResponse<AuthResponse>*/
 
     companion object {
-        private const val API_PATH = "/api/v1"
-        private const val CUSTOMER_PATH = "/customer"
+        private const val API_PATH = "/api/v1/customer"
     }
 }

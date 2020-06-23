@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.utils.extension
+package com.pharmacy.myapp.core.extensions
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pharmacy.myapp.R
