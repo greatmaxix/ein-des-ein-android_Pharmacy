@@ -11,15 +11,14 @@ import android.view.inputmethod.InputMethodManager.SHOW_FORCED
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
-import androidx.annotation.ColorRes
-import androidx.annotation.DimenRes
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import androidx.annotation.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.commit
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.BaseActivity
 import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogData
@@ -32,6 +31,11 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
+import org.koin.android.ext.android.getKoin
+import org.koin.androidx.viewmodel.ViewModelParameter
+import org.koin.androidx.viewmodel.koin.getViewModel
+import org.koin.core.parameter.ParametersDefinition
+import org.koin.core.qualifier.Qualifier
 import timber.log.Timber
 import java.util.*
 import kotlin.reflect.KSuspendFunction0
@@ -254,3 +258,12 @@ val Fragment.currentTopFragment
         Timber.e("No fragments in childFragmentManager: $e")
         null
     }
+
+inline fun <reified VM : ViewModel> Fragment.sharedGraphViewModel(
+    @IdRes navGraphId: Int,
+    qualifier: Qualifier? = null,
+    noinline parameters: ParametersDefinition? = null
+) = lazy {
+    val store = findNavController().getViewModelStoreOwner(navGraphId).viewModelStore
+    getKoin().getViewModel(ViewModelParameter(VM::class, qualifier, parameters, null, store, null))
+}

@@ -1,16 +1,20 @@
 <resources>
     <string name="app_name">Pharmacy</string>
 
-    <string name="MinLengthIsCharacters">Min length is 13 characters</string>
-    <string name="nameErrorMessageAuth">Имя должно содержать от 2 до 12 букв</string>
-    <string name="phoneErrorMessageAuth">Телефон введен не верно</string>
-    <string name="emailErrorMessageAuth">Ой: Кажется это не похоже на имейл адрес</string>
+    <string name="error_networkErrorMessage">Ошибка соединения</string>
+    <string name="error_errorGettingData">Ошибка получения данных</string>
+    <string name="error_serverNotResponding">Сервер не отвечает</string>
+
+    <string name="MinLengthIsCharacters">Минимальная длина номера 11 цифр</string>
+    <string name="nameErrorAuth">Имя должно содержать от 2 до 12 букв</string>
+    <string name="phoneErrorAuth">Телефон введен не верно</string>
+    <string name="emailErrorAuth">Ой: Кажется это не похоже на имейл адрес</string>
     <string name="dontHaveAnAccountAuth">Еще нет аккаунта?</string>
     <string name="registrationAuth">Зарегистрируйтесь</string>
     <string name="proceedAuth">Далее</string>
     <string name="welcomeBackAuth">С возвращением!</string>
     <string name="pleaseAuth">Пожалуйста, авторизируйтесь удобным для вас способом</string>
-    <string name="phoneHintAuth">+3(•••) •••-••-••</string>
+    <string name="phoneHintAuth">+7(•••) •••-••-••</string>
     <string name="accountCreationAuth">Создание аккаунта</string>
     <string name="yourNameAuth">Ваше имя*</string>
     <string name="emailHintAuth">Email для рассылок</string>

@@ -99,7 +99,7 @@ dependencies {
     lifecycle.each { entry -> api("$entry.value") }
     navigation.each { entry -> api("$entry.value") }
 
-    api "com.opencsv:opencsv:5.0"
+    api 'org.apache.commons:commons-lang3:3.9' // for Date extensions only
     api "com.jakewharton.timber:timber:4.7.1"
     api "com.intuit.sdp:sdp-android:$rootProject.ext.deps.versions.sdp"
     api "com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp"

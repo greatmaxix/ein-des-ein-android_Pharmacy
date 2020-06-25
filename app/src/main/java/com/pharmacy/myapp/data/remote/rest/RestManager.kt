@@ -67,4 +67,8 @@ class RestManager {
         return interceptors
     }
 
+    suspend fun signUp(name: String, phone: String, email: String) = api.signUp(
+        mapOf("username" to name, "email" to email, "phone" to phone)
+    )
+
 }

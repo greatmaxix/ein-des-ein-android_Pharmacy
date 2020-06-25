@@ -3,26 +3,21 @@ package com.pharmacy.myapp.ui.text
 import android.animation.AnimatorSet
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
-import android.text.InputFilter
-import android.text.InputType
+import android.text.*
 import android.text.InputType.TYPE_CLASS_NUMBER
-import android.text.Spanned
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import com.pharmacy.myapp.utils.extension.inputTextBackground
-import com.pharmacy.myapp.utils.extension.inputTextColor
-import com.pharmacy.myapp.core.extensions.onDoneImeAction
 import com.google.android.material.textfield.TextInputLayout
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.*
 import java.math.BigDecimal
 
-private const val MIN_PHONE_LENGTH = 13
-private const val MAX_PHONE_LENGTH = 18
+private const val MIN_PHONE_LENGTH = 11
+private const val MAX_PHONE_LENGTH = 16
 
 fun EditText.generalRule() {
     inputType = InputType.TYPE_CLASS_TEXT
@@ -206,4 +201,18 @@ fun TextInputLayout.animateEnableOrDisable(enable: Boolean) {
     enableOrDisable(enable)
 }
 
+fun EditText.addAfterTextWatcher(doAfter: (String)-> Unit): TextWatcher {
+    val value = object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            doAfter(s.toString())
+        }
 
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+    }
+    addTextChangedListener(value)
+    return value
+}

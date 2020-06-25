@@ -1,17 +1,14 @@
 package com.pharmacy.myapp.data.remote.rest
 
+import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiService {
 
     @POST("$API_PATH/registration")
-    suspend fun registration(
-        @Query("username") name: String,
-        @Query("email") email: String,
-        @Query("phone") phone: String
-    ): String/*BaseResponse<RegistrationResponse>*/
-
+    suspend fun signUp(@Body arguments: Map<String, String>): Response<String>
 
     @POST("$API_PATH/auth")
     suspend fun phone(@Query("phone") phone: String): String/*BaseResponse<AuthResponse>*/

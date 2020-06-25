@@ -16,7 +16,7 @@ class SignInFragment : BaseMVVMFragment(R.layout.fragment_sign_in) {
         super.onViewCreated(view, savedInstanceState)
         etPhoneSignIn.onDoneImeAction { mbNextSignIn.performClick() }
         mbNextSignIn.onClick {
-            if (tilPhoneSignIn.isPhoneNumberValid(getString(R.string.phoneErrorMessageAuth))) {
+            if (tilPhoneSignIn.isPhoneNumberValid(getString(R.string.phoneErrorAuth))) {
                 // todo make http request
             }
         }
