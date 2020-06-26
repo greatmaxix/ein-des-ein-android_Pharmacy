@@ -17,13 +17,14 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+        <action
+            android:id="@+id/actionFromSignInToCode"
+            app:destination="@id/nav_code"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
     </fragment>
-
-    <fragment
-        android:id="@+id/nav_pin"
-        android:name="com.pharmacy.myapp.auth.PinFragment"
-        android:label="@null"
-        tools:layout="@layout/fragment_pin" />
 
     <fragment
         android:id="@+id/nav_sign_up"
@@ -32,12 +33,34 @@
         tools:layout="@layout/fragment_sign_up">
 
         <action
-            android:id="@+id/actionFromSignUpToPin"
-            app:destination="@id/nav_pin"
+            android:id="@+id/actionFromSignUpToCode"
+            app:destination="@id/nav_code"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_code"
+        android:name="com.pharmacy.myapp.auth.CodeFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_code">
+
+        <action
+            android:id="@+id/actionFromCodeToProfile"
+            app:destination="@id/nav_profile"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+    </fragment>
+
+    <!--todo temporary-->
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.pharmacy.myapp.profile.ProfileFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>

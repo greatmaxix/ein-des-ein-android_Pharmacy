@@ -75,6 +75,42 @@ fun EditText.setTextWithCursorToEnd(text: String): String {
     return ""
 }
 
+fun EditText.addAfterTextWatcher(doAfter: (String)-> Unit): TextWatcher {
+    val value = object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            doAfter(s.toString())
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+    }
+    addTextChangedListener(value)
+    return value
+}
+
+fun EditText.addCountryCodePrefix() {
+    var watcher: TextWatcher? = null
+    setOnFocusChangeListener { _, hasFocus ->
+        // material design 1.2.0 has "app:prefix" for TextInputLayout
+        if (hasFocus && text.toString().isEmpty()) {
+            setText("+7")
+            watcher = addAfterTextWatcher {
+                if (!it.startsWith("+7")) {
+                    setText("+7")
+                    setSelection(2)
+                }
+            }
+        }
+        if (!hasFocus && text.toString() == "+7") {
+            removeTextChangedListener(watcher)
+            setText("")
+        }
+    }
+}
+
 /* TextInputLayout */
 
 fun TextInputLayout.cursorToEnd(): TextInputLayout {
@@ -199,20 +235,4 @@ fun TextInputLayout.animateEnableOrDisable(enable: Boolean) {
         start()
     }
     enableOrDisable(enable)
-}
-
-fun EditText.addAfterTextWatcher(doAfter: (String)-> Unit): TextWatcher {
-    val value = object : TextWatcher {
-        override fun afterTextChanged(s: Editable?) {
-            doAfter(s.toString())
-        }
-
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-        }
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        }
-    }
-    addTextChangedListener(value)
-    return value
 }

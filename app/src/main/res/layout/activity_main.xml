@@ -13,7 +13,7 @@
         android:background="?attr/colorBackground"
         app:defaultNavHost="true"
         app:navGraph="@navigation/graph_auth" />
-
+<!--todo edit to main graph-->
     <include layout="@layout/layout_progress" />
 
 </FrameLayout>

@@ -23,22 +23,7 @@ class SignUpFragment : BaseMVVMFragment(R.layout.fragment_sign_up) {
         super.onViewCreated(view, savedInstanceState)
         etEmailSignUp.onDoneImeAction { mbNextSignUp.performClick() }
         tilPhoneSignUp.setPhoneRule()
-        etPhoneSignUp.setOnFocusChangeListener { _, hasFocus ->
-            // material design 1.2.0 has "app:prefix" for TextInputLayout
-            if (hasFocus && etPhoneSignUp.text.toString().isEmpty()) {
-                etPhoneSignUp.setText("+7")
-                phoneWatcher = etPhoneSignUp.addAfterTextWatcher {
-                    if (!it.startsWith("+7")) {
-                        etPhoneSignUp.setText("+7")
-                        etPhoneSignUp.setSelection(2)
-                    }
-                }
-            }
-            if (!hasFocus && etPhoneSignUp.text.toString() == "+7") {
-                etPhoneSignUp.removeTextChangedListener(phoneWatcher)
-                etPhoneSignUp.setText("")
-            }
-        }
+        etPhoneSignUp.addCountryCodePrefix()
         mbNextSignUp.onClick {
             val isNameValid = tilNameSignUp.checkLength(getString(R.string.nameErrorAuth))
             val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))

@@ -19,5 +19,7 @@
     <string name="yourNameAuth">Ваше имя*</string>
     <string name="emailHintAuth">Email для рассылок</string>
     <string name="orSignInWithAuth">Или войдите с помощью</string>
+    <string name="enterTheCode">Введите код</string>
+    <string name="tokenIsEmpty">Ошибка запроса</string>
 
 </resources>

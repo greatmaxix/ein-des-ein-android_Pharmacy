@@ -10,4 +10,8 @@ class AuthRepository(private val spManager: SPManager, private val rm: RestManag
     suspend fun signUp(name: String, phone: String, email: String) =
         safeApiCall(Dispatchers.IO) { rm.signUp(name, phone, email) }
 
+    suspend fun auth(phone: String) = safeApiCall(Dispatchers.IO) { rm.auth(phone) }
+
+    suspend fun login(phone: String, code: String) = safeApiCall(Dispatchers.IO) { rm.login(phone, code) }
+
 }

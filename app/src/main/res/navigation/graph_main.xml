@@ -6,12 +6,13 @@
     app:startDestination="@id/nav_splash">
 
     <include app:graph="@navigation/graph_auth" />
+    <include app:graph="@navigation/graph_profile" />
 
     <fragment
         android:id="@+id/nav_splash"
         android:name="com.pharmacy.myapp.auth.SignInFragment"
         android:label="@null"
-        tools:layout="@layout/fragment_pin">
+        tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/fromSplashToAuth"
             app:destination="@id/auth_graph"
