@@ -3,6 +3,8 @@ package com.pharmacy.myapp.core.network
 import com.pharmacy.myapp.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
@@ -17,7 +19,7 @@ suspend fun <T> safeApiCall(
     return withContext(dispatcher) {
         try {
             ResponseWrapper.Success(apiCall.invoke())
-        } catch (throwable: Throwable) {
+        } catch (throwable: Exception) {
             Timber.e(throwable)
             when (throwable) {
                 is SocketException,
@@ -29,7 +31,7 @@ suspend fun <T> safeApiCall(
 //                    Crashlytics.log(Log.WARN, "ErrorHandler", errorResponse?.errorMessage)
                     ResponseWrapper.Error(
                         R.string.error_networkErrorMessage,
-                        throwable.message(),
+                        getErrorMessage(throwable.response()?.errorBody()),
                         code
                     )
                 }
@@ -37,4 +39,15 @@ suspend fun <T> safeApiCall(
             }
         }
     }
+}
+
+fun getErrorMessage(responseBody: ResponseBody?): String = try {
+    val jsonObject = JSONObject(responseBody!!.string())
+    when {
+        jsonObject.has("details") -> jsonObject.getString("details")
+        jsonObject.has("type") -> jsonObject.getString("type")
+        else -> "Something wrong happened"
+    }
+} catch (e: Exception) {
+    "Something wrong happened"
 }

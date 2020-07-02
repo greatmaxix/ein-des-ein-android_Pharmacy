@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.hideKeyboard
+import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.sharedGraphViewModel
 import kotlinx.android.synthetic.main.fragment_code.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -34,7 +35,7 @@ class CodeFragment : BaseMVVMFragment(R.layout.fragment_code) {
             .filter { etCode.isCodeLength && it.actionId == EditorInfo.IME_ACTION_DONE }
             .onEach { checkSmsCode() }
             .launchIn(viewLifecycleOwner.lifecycleScope)
-
+        btnBackCode.onClick { navigationBack() }
     }
 
     override fun onBindLiveData() {
@@ -42,6 +43,7 @@ class CodeFragment : BaseMVVMFragment(R.layout.fragment_code) {
         viewModel.directionLiveData.observeExt(navController::navigate)
         observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        observe(viewModel.userPhoneLiveData) { mtvPhoneCode.text = it }
     }
 
     private fun checkSmsCode() {

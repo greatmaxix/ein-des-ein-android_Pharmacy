@@ -14,10 +14,11 @@ import java.net.HttpURLConnection.HTTP_OK
 
 class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
-    val errorLiveData by lazy { MutableLiveData<String>() }
+    val errorLiveData by lazy { SingleLiveEvent<String>() }
     val progressLiveData by lazy { SingleLiveEvent<Boolean>() }
     val directionLiveData by lazy { SingleLiveEvent<NavDirections>() }/*todo так легально?*/
-    var userPhone: String = ""
+    val userPhoneLiveData by lazy { MutableLiveData<String>() }
+    private var userPhone: String = ""
 
     fun signUp(name: String, phone: String, email: String) = launchIO {
         progressLiveData.postValue(true)
@@ -26,7 +27,7 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         when (response) {
             is Success -> {
                 if (response.value.code() == HTTP_CREATED) {
-                    userPhone = phone
+                    setUserPhone(phone)
                     directionLiveData.postValue(actionFromSignUpToCode())
                 } else {
                     errorLiveData.postValue(response.value.message())
@@ -43,7 +44,7 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         when (response) {
             is Success -> {
                 if (response.value.code() == HTTP_OK) {
-                    userPhone = phone
+                    setUserPhone(phone)
                     directionLiveData.postValue(actionFromSignInToCode())
                 } else {
                     errorLiveData.postValue(response.value.message())
@@ -61,6 +62,12 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
             is Success -> directionLiveData.postValue(actionFromCodeToProfile())
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
+    }
+
+    private fun setUserPhone(phone: String) {
+        userPhone = phone
+        val pattern = "(\\D\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
+        userPhoneLiveData.postValue(phone.replaceFirst(Regex(pattern), "$1 ($2) $3-$4-$5"))
     }
 
 }

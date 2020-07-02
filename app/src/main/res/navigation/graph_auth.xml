@@ -12,6 +12,7 @@
         tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/actionFromSignInToSignUp"
+            app:popUpTo="@id/nav_sign_in"
             app:destination="@id/nav_sign_up"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"

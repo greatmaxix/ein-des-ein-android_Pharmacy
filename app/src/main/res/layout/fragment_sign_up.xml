@@ -7,14 +7,46 @@
     android:background="?attr/colorBackground"
     tools:context=".main.MainActivity">
 
+    <ImageButton
+        android:id="@+id/btnBackSignUp"
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
+        android:layout_margin="@dimen/_8sdp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_back"
+        android:tint="@color/primaryBlue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivLogoSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:src="@drawable/oval"
+        app:layout_constraintBottom_toTopOf="@id/tvTitleSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="лого"
+        android:textColor="@color/colorGlobalWhite"
+        app:layout_constraintBottom_toBottomOf="@id/ivLogoSignUp"
+        app:layout_constraintEnd_toEndOf="@id/ivLogoSignUp"
+        app:layout_constraintStart_toStartOf="@id/ivLogoSignUp"
+        app:layout_constraintTop_toTopOf="@id/ivLogoSignUp" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTitleSignUp"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_12sdp"
+        android:gravity="center"
         android:text="@string/accountCreationAuth"
-        android:textColor="@color/titleTextColorAuth"
+        android:textColor="@color/darkBlue"
         app:layout_constraintBottom_toTopOf="@id/tvSubTitleSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -27,166 +59,225 @@
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
         android:layout_marginBottom="@dimen/_24sdp"
+        android:gravity="center"
         android:text="@string/pleaseAuth"
-        android:textColor="@color/titleTextColorAuth"
-        app:layout_constraintBottom_toTopOf="@id/mcwName"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintBottom_toTopOf="@id/tilNameSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcwName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_12sdp"
-        android:foregroundTint="@color/colorGlobalWhite"
-        app:cardCornerRadius="@dimen/_4sdp"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@id/mcwPhone"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNameSignUp"
+        style="@style/TextInputAuthStyle"
+        app:endIconDrawable="@drawable/ic_facebook"
+        app:errorEnabled="true"
+        app:errorTextColor="@android:color/holo_red_light"
+        app:layout_constraintBottom_toTopOf="@id/tilPhoneSignUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="@color/colorTransparent"
-        app:strokeWidth="@dimen/_1sdp"
-        tools:strokeColor="@color/acceptTextFieldAuth">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilNameSignUp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNameSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/_6sdp"
-            android:paddingTop="@dimen/_4sdp"
-            android:paddingEnd="@dimen/_6sdp"
-            app:errorEnabled="true"
-            app:errorTextColor="@android:color/holo_red_light">
+            android:hint="@string/yourNameAuth"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNameSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="@string/yourNameAuth"
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName"
-                android:lines="1"
-                android:maxLines="1"
-                android:paddingTop="@dimen/_2sdp"
-                android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcwPhone"
-        android:layout_width="0dp"
+    <ImageButton
+        android:id="@+id/ibClearNameSignUp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:foregroundTint="@color/colorGlobalWhite"
-        app:cardCornerRadius="@dimen/_4sdp"
-        app:cardElevation="0dp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/_4sdp"
+        android:src="@drawable/ic_clear"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/tilNameSignUp"
+        app:layout_constraintEnd_toEndOf="@id/tilNameSignUp"
+        app:layout_constraintTop_toTopOf="@id/tilNameSignUp"
+        tools:visibility="visible" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPhoneSignUp"
+        style="@style/TextInputAuthStyle"
+        app:errorEnabled="true"
+        app:errorTextColor="@android:color/holo_red_light"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/colorTransparent"
-        app:strokeWidth="@dimen/_1sdp"
-        tools:strokeColor="@color/acceptTextFieldAuth">
+        app:layout_constraintVertical_bias=".53">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPhoneSignUp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPhoneSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_4sdp"
-            android:layout_marginEnd="@dimen/_4sdp"
-            android:paddingTop="@dimen/_8sdp"
-            app:errorEnabled="true"
-            app:errorTextColor="@android:color/holo_red_light"
-            app:hintAnimationEnabled="false"
-            app:hintEnabled="false">
+            android:digits="0123456789+"
+            android:hint="@string/phoneHintAuth"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPhoneSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:digits="0123456789+"
-                android:hint="@string/phoneHintAuth"
-                android:imeOptions="actionNext"
-                android:inputType="phone"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcwEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:foregroundTint="@color/colorGlobalWhite"
-        app:cardCornerRadius="@dimen/_4sdp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mcwPhone"
-        app:strokeColor="@color/colorTransparent"
-        app:strokeWidth="@dimen/_1sdp"
-        tools:strokeColor="@color/acceptTextFieldAuth">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmailSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_4sdp"
-            android:layout_marginEnd="@dimen/_4sdp"
-            android:paddingTop="@dimen/_4sdp"
-            app:layout_constraintVertical_chainStyle="packed">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmailSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="@string/emailHintAuth"
-                android:imeOptions="actionDone"
-                android:inputType="textWebEmailAddress"
-                android:lines="1"
-                android:maxLines="1"
-                android:paddingBottom="@dimen/_10sdp"
-                android:singleLine="true" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/mbNextSignUp"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_42sdp"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:text="@string/proceedAuth"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mcwEmail" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/mtvDontHaveAnAccount"
+    <ImageButton
+        android:id="@+id/ibClearPhoneSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/orSignInWithAuth"
-        android:textColor="@color/colorGlobalBlack"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/_4sdp"
+        android:src="@drawable/ic_clear"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/tilPhoneSignUp"
+        app:layout_constraintEnd_toEndOf="@id/tilPhoneSignUp"
+        app:layout_constraintTop_toTopOf="@id/tilPhoneSignUp"
+        tools:visibility="visible" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmailSignUp"
+        style="@style/TextInputAuthStyle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilPhoneSignUp"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmailSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/emailHintAuth"
+            android:imeOptions="actionDone"
+            android:inputType="textWebEmailAddress"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/ibClearEmailSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/_4sdp"
+        android:src="@drawable/ic_clear"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/tilEmailSignUp"
+        app:layout_constraintEnd_toEndOf="@id/tilEmailSignUp"
+        app:layout_constraintTop_toTopOf="@id/tilEmailSignUp"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/llButtonContainerSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilEmailSignUp">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:text="@string/signUp"
+            android:textColor="@color/darkBlue"
+            android:textStyle="bold" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:backgroundTint="@color/primaryBlue"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_back" />
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvToss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llButtonContainerSignUp" />
+
+    <View
+        android:layout_width="@dimen/_18sdp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:background="@color/darkBlue"
+        app:layout_constraintBottom_toBottomOf="@id/mtvSignInViaTitle"
+        app:layout_constraintEnd_toStartOf="@id/mtvSignInViaTitle"
+        app:layout_constraintTop_toTopOf="@id/mtvSignInViaTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvSignInViaTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:text="@string/orSignInVia"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mtvToss" />
+
+    <View
+        android:layout_width="@dimen/_18sdp"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:background="@color/darkBlue"
+        app:layout_constraintBottom_toBottomOf="@id/mtvSignInViaTitle"
+        app:layout_constraintStart_toEndOf="@id/mtvSignInViaTitle"
+        app:layout_constraintTop_toTopOf="@id/mtvSignInViaTitle" />
+
+    <ImageView
+        android:id="@+id/ivFacebookSignIn"
+        android:layout_width="@dimen/_48sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_facebook"
+        app:layout_constraintEnd_toStartOf="@id/ivGoogleSignIn"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mbNextSignUp" />
+        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle" />
 
+    <ImageView
+        android:id="@+id/ivGoogleSignIn"
+        android:layout_width="@dimen/_48sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_google"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivFacebookSignIn"
+        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,13 +13,20 @@
     <string name="registrationAuth">Зарегистрируйтесь</string>
     <string name="proceedAuth">Далее</string>
     <string name="welcomeBackAuth">С возвращением!</string>
-    <string name="pleaseAuth">Пожалуйста, авторизируйтесь удобным для вас способом</string>
+    <string name="pleaseAuth">Для создания аккаунта, укажите Ваше имя, номер телефона и имейл ( по желанию )</string>
     <string name="phoneHintAuth">+7(•••) •••-••-••</string>
-    <string name="accountCreationAuth">Создание аккаунта</string>
+    <string name="accountCreationAuth">Давайте начнем !</string>
     <string name="yourNameAuth">Ваше имя*</string>
     <string name="emailHintAuth">Email для рассылок</string>
     <string name="orSignInWithAuth">Или войдите с помощью</string>
     <string name="enterTheCode">Введите код</string>
     <string name="tokenIsEmpty">Ошибка запроса</string>
+    <string name="signIn">Войти</string>
+    <string name="signUp">Регистрация</string>
+    <string name="orSignInVia">Или войти с помощью</string>
+    <string name="enterCode">Пожалуйста, введите проверочный код, который мы отправили на</string>
+    <string name="codeConfirmation">Подтверждение номера</string>
+
+    <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
 
 </resources>

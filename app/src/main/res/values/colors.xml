@@ -2,12 +2,12 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#29D986</color>
 
     <color name="colorMainStart">#36b38e</color>
     <color name="colorLinkActive">@color/colorMainStart</color>
 
-    <color name="colorBackground">#F2F2F2</color>
+    <color name="colorBackground">#FFFFFF</color>
     <color name="colorGlobalWhite">#ffffffff</color>
     <color name="colorGlobalBlack">#ff000000</color>
     <color name="colorGlobalDisable">#3f4048</color>
@@ -30,5 +30,16 @@
     <color name="colorBackgroundInputTextPrimaryDisable">#42424d</color>
 
     <color name="profileButtonGreyTint">#C7C7CC</color>
+
+    <!--colors from figma-->
+    <color name="darkBlue">#000A63</color>
+    <color name="primaryBlue">#2566F9</color>
+    <color name="greyText">#64738C</color>
+    <color name="grey">#A5B4CC</color>
+    <color name="mediumGrey">#DBE1EB</color>
+    <color name="lightGrey">#F6F8FA</color>
+    <color name="green">#29D986</color>
+    <color name="purple">#6E7DF1</color>
+    <color name="orange">#FD8A02</color>
 
 </resources>
