@@ -68,6 +68,11 @@ fun String.getAllNumbers() = replace("\\D+".toRegex(), "")
 
 fun String.withPad() = padStart(length + 1)
 
+fun String.formatPhone(): String {
+    val pattern = "(\\D\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
+    return replaceFirst(Regex(pattern), "$1 ($2) $3-$4-$5")
+}
+
 val Float.isPositive get() = this > 0
 
 fun Float.toSymbol(needMinus: Boolean = false) = if (isPositive) "+" else if (needMinus) "-" else ""

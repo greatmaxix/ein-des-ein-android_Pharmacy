@@ -6,6 +6,7 @@ import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeTo
 import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToCode
 import com.pharmacy.myapp.auth.SignUpFragmentDirections.Companion.actionFromSignUpToCode
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
+import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
@@ -16,7 +17,7 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
     val errorLiveData by lazy { SingleLiveEvent<String>() }
     val progressLiveData by lazy { SingleLiveEvent<Boolean>() }
-    val directionLiveData by lazy { SingleLiveEvent<NavDirections>() }/*todo так легально?*/
+    val directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     val userPhoneLiveData by lazy { MutableLiveData<String>() }
     private var userPhone: String = ""
 
@@ -59,15 +60,19 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         val response = repository.login(userPhone.substring(1), code)
         progressLiveData.postValue(false)
         when (response) {
-            is Success -> directionLiveData.postValue(actionFromCodeToProfile())
+            is Success -> {
+                response.value.body()?.customer?.let {
+                    repository.saveUserData(it, response.value.body()?.token?:"")
+                } ?: run { errorLiveData.postValue("User data is null") }
+                directionLiveData.postValue(actionFromCodeToProfile())
+            }
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
     }
 
     private fun setUserPhone(phone: String) {
         userPhone = phone
-        val pattern = "(\\D\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
-        userPhoneLiveData.postValue(phone.replaceFirst(Regex(pattern), "$1 ($2) $3-$4-$5"))
+        userPhoneLiveData.postValue(phone.formatPhone())
     }
 
 }

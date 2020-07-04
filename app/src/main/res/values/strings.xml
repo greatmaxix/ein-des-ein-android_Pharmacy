@@ -28,5 +28,15 @@
     <string name="codeConfirmation">Подтверждение номера</string>
 
     <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
+    <string name="profileImageDescription">Profile image</string>
+    <string name="favoriteImageDescriptionProfile">Favorite image description</string>
+    <string name="favoriteProfile">Избранное</string>
+    <string name="orderImageProfile">Order image</string>
+    <string name="orderProfile">Заказы</string>
+    <string name="analysesImageProfile">Analyses image</string>
+    <string name="analysesProfile">Анализы</string>
+    <string name="recipesImageProfile">Recipes image</string>
+    <string name="recipesProfile">Рецепты</string>
+    <string name="profileImage">Profile image</string>
 
 </resources>

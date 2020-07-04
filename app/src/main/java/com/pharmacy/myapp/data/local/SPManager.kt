@@ -12,11 +12,28 @@ class SPManager(val context: Context) : SharedPreferenceContext {
     override val sp: SharedPreferences =
         context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
 
-
     var token: String?
         get() = get(Keys.TOKEN)
         set(value) {
             put(Keys.TOKEN, value)
+        }
+
+    var email: String?
+        get() = get(Keys.EMAIL)
+        set(value) {
+            put(Keys.EMAIL, value)
+        }
+
+    var phone: String?
+        get() = get(Keys.PHONE)
+        set(value) {
+            put(Keys.PHONE, value)
+        }
+
+    var username: String?
+        get() = get(Keys.USERNAME)
+        set(value) {
+            put(Keys.USERNAME, value)
         }
 
     fun clear() = sp.edit {
@@ -27,6 +44,6 @@ class SPManager(val context: Context) : SharedPreferenceContext {
 
 
     private enum class Keys {
-        TOKEN
+        TOKEN, EMAIL, PHONE, USERNAME
     }
 }
