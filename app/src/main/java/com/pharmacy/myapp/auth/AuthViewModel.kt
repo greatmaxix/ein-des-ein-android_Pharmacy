@@ -2,10 +2,12 @@ package com.pharmacy.myapp.auth
 
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
+import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeToProfile
 import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToCode
 import com.pharmacy.myapp.auth.SignUpFragmentDirections.Companion.actionFromSignUpToCode
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
+import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
@@ -65,9 +67,10 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
     }
 
     private fun setUserPhone(phone: String) {
+        var newPhone = phone
         userPhone = phone
-        val pattern = "(\\D\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
-        userPhoneLiveData.postValue(phone.replaceFirst(Regex(pattern), "$1 ($2) $3-$4-$5"))
+        if (BuildConfig.DEBUG) if (!phone.contains("+")) newPhone = "+${phone.substring(1)}"
+        userPhoneLiveData.postValue(newPhone.formatPhone())
     }
 
 }
