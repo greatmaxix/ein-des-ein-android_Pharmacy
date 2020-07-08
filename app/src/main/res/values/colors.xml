@@ -11,6 +11,7 @@
     <color name="colorGlobalWhite">#ffffffff</color>
     <color name="colorGlobalBlack">#ff000000</color>
     <color name="colorGlobalDisable">#3f4048</color>
+    <color name="colorGlobalHint">#9b9b9b</color>
     <color name="colorTransparent">#00000000</color>
 
     <color name="colorProgressBackground">#a0000000</color>
@@ -21,6 +22,7 @@
     <color name="acceptTextFieldAuth">#35E85C</color>
     <color name="titleTextColorAuth">#20272C</color>
     <color name="colorTextAuth">#202020</color>
+    <color name="colorTextPrimary">@color/colorGlobalBlack</color>
 
     <color name="colorButtonPrimary">@color/colorMainStart</color>
     <color name="colorButtonPrimaryDisable">@color/colorGlobalDisable</color>

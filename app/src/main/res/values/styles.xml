@@ -10,6 +10,9 @@
         <item name="progressContainerStyle">@style/ProgressContainer</item>
         <item name="colorControlHighlight">@color/primaryBlue</item>
 
+        <item name="android:fontFamily">@font/font_family</item>
+        <item name="android:includeFontPadding">false</item>
+
     </style>
 
     <style name="ProgressContainer">
@@ -38,6 +41,31 @@
         <item name="android:adjustViewBounds">true</item>
         <item name="srcCompat">@drawable/main_icon</item>
         <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="AppToolbarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:fontFamily">@font/font_family</item>
+    </style>
+
+    <style name="Text" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textDirection">locale</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">@font/font_family</item>
+    </style>
+
+    <style name="Text.Tiny">
+        <item name="android:textSize">@dimen/_8ssp</item>
+    </style>
+
+    <style name="Text.Tiny.Hint">
+        <item name="android:textColor">@color/colorGlobalHint</item>
+    </style>
+
+    <style name="Text.Small">
+        <item name="android:textSize">@dimen/_10ssp</item>
     </style>
 
 </resources>
