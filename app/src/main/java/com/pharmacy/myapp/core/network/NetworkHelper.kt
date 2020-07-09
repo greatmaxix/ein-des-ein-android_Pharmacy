@@ -15,22 +15,11 @@ import java.net.UnknownHostException
 
 suspend fun <T> safeApiCall(
     dispatcher: CoroutineDispatcher,
-    apiCall: suspend () -> Response<T>
-): ResponseWrapper<Response<T>> {
+    apiCall: suspend () -> T
+): ResponseWrapper<T> {
     return withContext(dispatcher) {
         try {
-            val value = apiCall.invoke()
-            // тут как будешь смотреть, позвони я тебе расскажу, все идет к тому что хочется использовать эту либу, чтобы все это руками не писать
-            // https://github.com/haroldadmin/NetworkResponseAdapter
-            // временно сделал так
-            if (!value.isSuccessful) {
-                return@withContext ResponseWrapper.Error(
-                    R.string.error_networkErrorMessage,
-                    getErrorMessage(value.errorBody()),
-                    value.code()
-                )
-            }
-            return@withContext ResponseWrapper.Success(value)
+            ResponseWrapper.Success(apiCall.invoke())
         } catch (throwable: Exception) {
             Timber.e(throwable)
             when (throwable) {

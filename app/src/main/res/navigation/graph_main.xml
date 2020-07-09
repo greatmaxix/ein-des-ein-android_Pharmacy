@@ -5,6 +5,33 @@
     android:id="@+id/main_graph"
     app:startDestination="@id/nav_splash">
 
+    <fragment
+        android:id="@+id/nav_splash"
+        android:name="com.pharmacy.myapp.splash.SplashFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/fromSplashToProfile"
+            app:destination="@id/profile_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_splash"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/fromSplashToAuth"
+            app:destination="@id/auth_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_splash"
+            app:popUpToInclusive="true" />
+    </fragment>
+
     <navigation
         android:id="@+id/auth_graph"
         app:startDestination="@id/nav_sign_in">
@@ -58,7 +85,9 @@
                 app:enterAnim="@anim/nav_enter_anim"
                 app:exitAnim="@anim/nav_exit_anim"
                 app:popEnterAnim="@anim/nav_enter_pop_anim"
-                app:popExitAnim="@anim/nav_exit_pop_anim" />
+                app:popExitAnim="@anim/nav_exit_pop_anim"
+                app:popUpTo="@id/main_graph"
+                app:popUpToInclusive="true" />
         </fragment>
 
     </navigation>
@@ -71,35 +100,25 @@
             android:id="@+id/nav_profile"
             android:name="com.pharmacy.myapp.profile.ProfileFragment"
             android:label="@null"
-            tools:layout="@layout/fragment_profile" />
+            tools:layout="@layout/fragment_profile">
+
+            <action
+                android:id="@+id/actionFromProfileToEdit"
+                app:destination="@id/nav_profile_edit"
+                app:enterAnim="@anim/nav_enter_anim"
+                app:exitAnim="@anim/nav_exit_anim"
+                app:popEnterAnim="@anim/nav_enter_pop_anim"
+                app:popExitAnim="@anim/nav_exit_pop_anim"
+                app:popUpTo="@id/nav_profile" />
+
+        </fragment>
+
+        <fragment
+            android:id="@+id/nav_profile_edit"
+            android:name="com.pharmacy.myapp.profile.edit.EditProfileFragment"
+            android:label="@string/editProfileTitle"
+            tools:layout="@layout/fragment_profile_edit" />
 
     </navigation>
-
-    <fragment
-        android:id="@+id/nav_splash"
-        android:name="com.pharmacy.myapp.splash.SplashFragment"
-        android:label="@null"
-        tools:layout="@layout/fragment_splash">
-
-        <action
-            android:id="@+id/fromSplashToProfile"
-            app:destination="@id/profile_graph"
-            app:enterAnim="@anim/nav_enter_anim"
-            app:exitAnim="@anim/nav_exit_anim"
-            app:popEnterAnim="@anim/nav_enter_pop_anim"
-            app:popExitAnim="@anim/nav_exit_pop_anim"
-            app:popUpTo="@id/nav_splash"
-            app:popUpToInclusive="true" />
-
-        <action
-            android:id="@+id/fromSplashToAuth"
-            app:destination="@id/auth_graph"
-            app:enterAnim="@anim/nav_enter_anim"
-            app:exitAnim="@anim/nav_exit_anim"
-            app:popEnterAnim="@anim/nav_enter_pop_anim"
-            app:popExitAnim="@anim/nav_exit_pop_anim"
-            app:popUpTo="@id/nav_splash"
-            app:popUpToInclusive="true" />
-    </fragment>
 
 </navigation>

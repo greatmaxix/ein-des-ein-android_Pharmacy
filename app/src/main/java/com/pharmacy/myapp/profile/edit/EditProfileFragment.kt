@@ -27,7 +27,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
             val isPhoneValid = tilPhoneEditProfile.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
             val isEmailValid = if (tilEmailEditProfile.text().isNotEmpty()) tilEmailEditProfile.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
-//                viewModel.updateUserData(tilNameEditProfile.text(), tilPhoneEditProfile.text(), tilEmailEditProfile.text()) todo
+                viewModel.updateCustomerData(tilNameEditProfile.text(), tilEmailEditProfile.text())
             }
         }
     }
@@ -39,6 +39,8 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
             etPhoneEditProfile.setText(it.second?.addPlusSignIfNeeded())
             etNameEditProfile.setText(it.third)
         }
-    }
+        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        }
 
 }

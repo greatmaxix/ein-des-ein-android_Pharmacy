@@ -55,7 +55,7 @@ class RestManager: KoinComponent {
             val original = it.request()
             val token = spManager.token
             if (!token.isNullOrEmpty()) {
-                it.proceed(original.newBuilder().header("Authorization", "Bearer: $token").build())
+                it.proceed(original.newBuilder().header("Authorization", "Bearer $token").build())
             } else {
                 it.proceed(original)
             }
@@ -74,5 +74,8 @@ class RestManager: KoinComponent {
 
     suspend fun login(phone: String, code: String) =
         api.login(mapOf("phone" to phone, "code" to code))
+
+    suspend fun updateCustomerData(name: String, email: String) =
+        api.updateCustomerData(mapOf("username" to name, "email" to email))
 
 }

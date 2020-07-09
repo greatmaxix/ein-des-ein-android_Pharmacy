@@ -3,11 +3,11 @@ package com.pharmacy.myapp.profile
 import android.os.Bundle
 import android.view.View
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeToProfile
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.sharedGraphViewModel
+import com.pharmacy.myapp.profile.ProfileFragmentDirections.Companion.actionFromProfileToEdit
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
@@ -16,8 +16,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getUserData()
-        ivEditProfile.onClick { doNav(actionFromCodeToProfile()) }
+        ivEditProfile.onClick { doNav(actionFromProfileToEdit()) }
     }
 
     override fun onBindLiveData() {
@@ -26,6 +25,11 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
             mtvNameProfile.text = it.third
             mtvPhoneProfile.text = "+${it.second}".formatPhone()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getUserData()
     }
 
 }
