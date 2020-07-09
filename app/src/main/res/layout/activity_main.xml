@@ -10,7 +10,7 @@
         android:name="com.pharmacy.myapp.main.MainNavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorBackground"
+        android:background="@color/colorBackground"
         app:defaultNavHost="true"
         app:navGraph="@navigation/graph_auth" />
 <!--todo edit to main graph-->
