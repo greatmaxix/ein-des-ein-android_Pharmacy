@@ -73,4 +73,20 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         userPhoneLiveData.postValue(newPhone.formatPhone())
     }
 
+    fun resendCode()  = launchIO {
+        progressLiveData.postValue(true)
+        val response = repository.auth(userPhone)
+        progressLiveData.postValue(false)
+        when (response) {
+            is Success -> {
+                if (response.value.code() == HTTP_OK) {
+                    // todo snackbar
+                } else {
+                    errorLiveData.postValue(response.value.message())
+                }
+            }
+            is Error -> errorLiveData.postValue(response.errorMessage)
+        }
+    }
+
 }

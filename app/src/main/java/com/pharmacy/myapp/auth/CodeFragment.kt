@@ -9,6 +9,7 @@ import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.hideKeyboard
 import com.pharmacy.myapp.core.extensions.onClick
+import com.pharmacy.myapp.core.extensions.underlineSpan
 import kotlinx.android.synthetic.main.fragment_code.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filter
@@ -34,6 +35,8 @@ class CodeFragment : AuthBaseFragment(R.layout.fragment_code) {
             .launchIn(viewLifecycleOwner.lifecycleScope)
         btnBackCode.onClick { navigationBack() }
         if (BuildConfig.DEBUG) etCode.setText("11111")
+        btnSendCodeAgain.underlineSpan()
+        btnSendCodeAgain.onClick { viewModel.resendCode() }
     }
 
     override fun onBindLiveData() {
