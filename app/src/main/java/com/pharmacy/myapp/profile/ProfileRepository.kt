@@ -18,4 +18,12 @@ class ProfileRepository(private val spManager: SPManager, private val rm: RestMa
         spManager.email = dataResponse.email
         spManager.username = dataResponse.username
     }
+
+    suspend fun logout() = safeApiCall(Dispatchers.IO) {
+        if (spManager.refreshToken.isNullOrEmpty()) throw Exception("Refresh token is empty")
+        rm.logout(spManager.refreshToken ?: "")
+    }
+
+    fun clearCustomerData() = spManager.clear()
+
 }

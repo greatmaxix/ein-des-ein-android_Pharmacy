@@ -17,6 +17,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ivEditProfile.onClick { doNav(actionFromProfileToEdit()) }
+        itemLogoutProfile.setOnClick { viewModel.logout() }
     }
 
     override fun onBindLiveData() {
@@ -25,6 +26,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
             mtvNameProfile.text = it.third
             mtvPhoneProfile.text = "+${it.second}".formatPhone()
         }
+        viewModel.directionLiveData.observeExt(navController::navigate)
     }
 
     override fun onResume() {

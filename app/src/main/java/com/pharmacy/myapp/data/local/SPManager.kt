@@ -18,6 +18,12 @@ class SPManager(val context: Context) : SharedPreferenceContext {
             put(Keys.TOKEN, value)
         }
 
+    var refreshToken: String?
+        get() = get(Keys.REFRESH_TOKEN)
+        set(value) {
+            put(Keys.REFRESH_TOKEN, value)
+        }
+
     var email: String?
         get() = get(Keys.EMAIL)
         set(value) {
@@ -44,6 +50,6 @@ class SPManager(val context: Context) : SharedPreferenceContext {
 
 
     private enum class Keys {
-        TOKEN, EMAIL, PHONE, USERNAME
+        TOKEN, EMAIL, PHONE, USERNAME, REFRESH_TOKEN
     }
 }

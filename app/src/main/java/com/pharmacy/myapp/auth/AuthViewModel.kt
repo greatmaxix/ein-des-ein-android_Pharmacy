@@ -61,7 +61,7 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         progressLiveData.postValue(false)
         when (response) {
             is Success -> {
-                repository.saveUserData(response.value.customer, response.value.token)
+                repository.saveUserData(response.value.customer, response.value.token, response.value.refresh_token)
                 directionLiveData.postValue(actionFromCodeToProfile())
             }
             is Error -> errorLiveData.postValue(response.errorMessage)

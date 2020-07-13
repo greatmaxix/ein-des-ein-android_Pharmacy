@@ -25,7 +25,7 @@ class SignInFragment : BaseMVVMFragment(R.layout.fragment_sign_in) {
         tilPhoneSignIn.setPhoneRule()
         etPhoneSignIn.onDoneImeAction { llButtonContainer.performClick() }
         mbCreateAccount.onClick { viewModel.directionLiveData.postValue(actionFromSignInToSignUp()) }
-        etPhoneSignIn.addCountryCodePrefix()
+//        etPhoneSignIn.addCountryCodePrefix()
         llButtonContainer.onClick {
             if (tilPhoneSignIn.isPhoneNumberValid(getString(R.string.phoneErrorAuth))) {
                 viewModel.signIn(etPhoneSignIn.text.toString())

@@ -43,5 +43,7 @@
     <color name="green">#29D986</color>
     <color name="purple">#6E7DF1</color>
     <color name="orange">#FD8A02</color>
+    <color name="red">#FF0000</color>
 
+    <color name="primaryBlueRipple">#492566F9</color>
 </resources>

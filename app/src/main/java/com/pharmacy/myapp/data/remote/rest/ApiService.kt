@@ -22,6 +22,9 @@ interface ApiService {
     @PATCH("$API_PATH/customer")
     suspend fun updateCustomerData(@Body arguments: Map<String, String>): UserDataResponse
 
+    @POST("$API_PATH/logout")
+    suspend fun logout(@Body arguments: Map<String, String>): Response<JSONObject>
+
     companion object {
         private const val API_PATH = "/api/v1/customer"
     }

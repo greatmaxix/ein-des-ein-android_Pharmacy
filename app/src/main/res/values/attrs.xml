@@ -11,4 +11,13 @@
 
     </declare-styleable>
 
+    <declare-styleable name="ProfileItemView">
+        <attr name="iconProfile" format="reference" />
+        <attr name="titleProfile" format="string" />
+        <attr name="detailTextProfile" format="string" />
+        <attr name="arrowVisibilityProfile" format="boolean" />
+        <attr name="mainColorProfile" format="reference" />
+    </declare-styleable>
+
+
 </resources>

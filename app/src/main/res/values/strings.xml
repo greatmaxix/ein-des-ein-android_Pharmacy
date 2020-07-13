@@ -41,5 +41,7 @@
     <string name="profileImage">Profile image</string>
     <string name="editProfileTitle">Настройки</string>
     <string name="save">Сохранить</string>
+    <string name="logoutProfile">Выйти из аккаунта</string>
+    <string name="profileTitle">Профиль</string>
 
 </resources>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileItemContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/colorGlobalWhite"
+    app:cardCornerRadius="@dimen/_7sdp"
+    app:cardElevation="1dp"
+    app:cardMaxElevation="0dp"
+    app:cardUseCompatPadding="true"
+    app:rippleColor="@color/primaryBlueRipple">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivIconProfileItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:tint="@color/darkBlue"
+            tools:src="@drawable/ic_logout" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtvTitleProfileItem"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/darkBlue"
+            tools:text="Выйти из аккаунта" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtvDetailProfileItem"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:gravity="center_vertical"
+            android:textColor="@color/primaryBlue"
+            tools:text="Москва и МО" />
+
+        <ImageView
+            android:id="@+id/ivArrowProfileItem"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_next" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

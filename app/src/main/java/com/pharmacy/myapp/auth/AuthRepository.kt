@@ -15,11 +15,12 @@ class AuthRepository(private val spManager: SPManager, private val rm: RestManag
 
     suspend fun login(phone: String, code: String) = safeApiCall(Dispatchers.IO) { rm.login(phone, code) }
 
-    fun saveUserData(customer: Customer, token: String) {
+    fun saveUserData(customer: Customer, token: String, refreshToken: String) {
         spManager.email = customer.email
         spManager.phone = customer.phone
         spManager.username = customer.username
         spManager.token = token
+        spManager.refreshToken = refreshToken
     }
 
 }
