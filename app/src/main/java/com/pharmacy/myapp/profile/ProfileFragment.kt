@@ -27,6 +27,8 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
             mtvPhoneProfile.text = "+${it.second}".formatPhone()
         }
         viewModel.directionLiveData.observeExt(navController::navigate)
+        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
     }
 
     override fun onResume() {
