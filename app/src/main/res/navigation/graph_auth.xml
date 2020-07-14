@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_graph"
+    app:startDestination="@id/nav_sign_in">
+
+    <fragment
+        android:id="@+id/nav_sign_in"
+        android:name="com.pharmacy.myapp.auth.SignInFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/actionFromSignInToSignUp"
+            app:popUpTo="@id/nav_sign_in"
+            app:destination="@id/nav_sign_up"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+        <action
+            android:id="@+id/actionFromSignInToCode"
+            app:destination="@id/nav_code"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_sign_up"
+        android:name="com.pharmacy.myapp.auth.SignUpFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_sign_up">
+
+        <action
+            android:id="@+id/actionFromSignUpToCode"
+            app:destination="@id/nav_code"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_code"
+        android:name="com.pharmacy.myapp.auth.CodeFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_code">
+
+        <action
+            android:id="@+id/actionFromCodeToProfile"
+            app:destination="@id/nav_profile"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+    </fragment>
+
+    <!--todo temporary-->
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.pharmacy.myapp.profile.ProfileFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>

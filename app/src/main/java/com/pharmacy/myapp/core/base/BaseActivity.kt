@@ -18,8 +18,6 @@ import com.pharmacy.myapp.core.extensions.getCompatColor
 import com.pharmacy.myapp.core.extensions.mixColorWith
 import com.pharmacy.myapp.core.extensions.setMenu
 import com.pharmacy.myapp.core.general.behavior.IBehavior
-import com.pharmacy.myapp.core.general.interfaces.ILocaleHelper
-import org.koin.android.ext.android.get
 
 abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivity(layoutResourceId) {
 
@@ -40,8 +38,6 @@ abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivit
             throw IllegalArgumentException("${this::class.java.simpleName} does not use navController\"")
         }
     }
-
-    override fun attachBaseContext(newBase: Context) = super.attachBaseContext(get<ILocaleHelper>().createLocalisedContext(newBase))
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {

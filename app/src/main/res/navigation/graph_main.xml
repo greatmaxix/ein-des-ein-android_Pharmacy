@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/nav_splash">
+
+    <include app:graph="@navigation/graph_auth" />
+    <include app:graph="@navigation/graph_profile" />
+
+    <fragment
+        android:id="@+id/nav_splash"
+        android:name="com.pharmacy.myapp.auth.SignInFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/fromSplashToAuth"
+            app:destination="@id/auth_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_splash"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>

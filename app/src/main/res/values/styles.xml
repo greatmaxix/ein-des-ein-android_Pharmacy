@@ -1,10 +1,33 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorControlHighlight">@color/primaryBlue</item>
+
+    </style>
+
+    <style name="ProgressContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:elevation">@dimen/_100sdp</item>
+        <item name="android:background">@color/colorProgressBackground</item>
+    </style>
+
+
+    <style name="TextInputAuthStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/_16sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_16sdp</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/_20sdp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/_20sdp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/_20sdp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/_20sdp</item>
+        <item name="boxStrokeColor">@color/primaryBlue</item>
     </style>
 
 </resources>

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 29
@@ -62,16 +63,9 @@ buildscript {
     flow.binding = "io.github.reactivecircus.flowbinding:flowbinding-android:$rootProject.ext.deps.versions.flowbinding"
     ext.flow = flow
 
-    def rx = [:]
-    rx.rxjava = "io.reactivex.rxjava2:rxjava:$rootProject.ext.deps.versions.rxjava"
-    rx.rxandroid = "io.reactivex.rxjava2:rxandroid:$rootProject.ext.deps.versions.rxandroid"
-    rx.rxbinding = "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.deps.versions.rxbinding"
-    ext.rx = rx
-
     def rest = [:]
     rest.retrofit = "com.squareup.retrofit2:retrofit:$rootProject.ext.deps.versions.retrofit"
     rest.gson = "com.squareup.retrofit2:converter-gson:$rootProject.ext.deps.versions.retrofit"
-    rest.rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.deps.versions.retrofit"
     rest.okhttp = "com.squareup.okhttp3:okhttp:$rootProject.ext.deps.versions.okhttp"
     rest.logginginterceptor = "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.deps.versions.okhttp"
     ext.rest = rest
@@ -97,7 +91,6 @@ buildscript {
 dependencies {
     api fileTree(dir: "libs", include: ["*.jar"])
 
-    rx.each { entry -> api("$entry.value") }
     flow.each { entry -> api("$entry.value") }
     rest.each { entry -> api("$entry.value") }
     koin.each { entry -> api("$entry.value") }
@@ -106,9 +99,11 @@ dependencies {
     lifecycle.each { entry -> api("$entry.value") }
     navigation.each { entry -> api("$entry.value") }
 
-    api "com.opencsv:opencsv:5.0"
+    api 'org.apache.commons:commons-lang3:3.9' // for Date extensions only
     api "com.jakewharton.timber:timber:4.7.1"
     api "com.intuit.sdp:sdp-android:$rootProject.ext.deps.versions.sdp"
     api "com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp"
     api "com.google.android.material:material:$rootProject.ext.deps.versions.material"
+
+    implementation(rootProject.ext.deps.constraintlayout)
 }

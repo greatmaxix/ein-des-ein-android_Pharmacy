@@ -1,8 +1,6 @@
 package com.pharmacy.myapp.core.extensions
 
-import android.animation.Animator
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
+import android.animation.*
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -248,6 +246,21 @@ fun View.distanceTo(view: View): Int {
     return Math.abs(b - t)
 }
 
+fun View.animateRotate() {
+    AnimatorInflater.loadAnimator(context, R.animator.animator_rotate).apply {
+        setTarget(this@animateRotate)
+        start()
+    }
+}
+
+fun View.colorValueAnimator(from: Int, to: Int, duration: Long, onUpdate: (Int) -> Unit): View {
+    ValueAnimator.ofObject(ArgbEvaluator(), from, to).apply {
+        addUpdateListener { onUpdate(it.animatedValue as Int) }
+        this.duration = duration
+        start()
+    }
+    return this
+}
 val View.toTransitionGroup
     get() = this to transitionName
 

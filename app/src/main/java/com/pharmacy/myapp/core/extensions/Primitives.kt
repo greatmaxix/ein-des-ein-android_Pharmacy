@@ -10,6 +10,7 @@ import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import androidx.annotation.ColorInt
+import com.pharmacy.myapp.R
 import java.math.BigDecimal
 import java.math.BigDecimal.ZERO
 import java.math.RoundingMode
@@ -20,6 +21,12 @@ import kotlin.math.abs
 
 
 fun Boolean?.falseIfNull() = this ?: false
+
+val Boolean.inputTextBackground
+    get() = if (this) R.color.colorBackgroundInputTextPrimary else R.color.colorBackgroundInputTextPrimaryDisable
+
+val Boolean.inputTextColor
+    get() = if (this) R.color.colorTextInputTextPrimary else R.color.colorTextInputTextPrimaryDisable
 
 fun String.setColor(@ColorInt color: Int) = SpannableString(this).apply {
     setSpan(ForegroundColorSpan(color), 0, this.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -60,6 +67,11 @@ val String.firstNumber: String get() = Pattern.compile("\\d+").matcher(this).app
 fun String.getAllNumbers() = replace("\\D+".toRegex(), "")
 
 fun String.withPad() = padStart(length + 1)
+
+fun String.formatPhone(): String {
+    val pattern = "(\\D\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
+    return replaceFirst(Regex(pattern), "$1 ($2) $3-$4-$5")
+}
 
 val Float.isPositive get() = this > 0
 

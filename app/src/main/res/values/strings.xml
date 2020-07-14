@@ -1,3 +1,43 @@
 <resources>
-    <string name="app_name">Phramacy</string>
+    <string name="app_name">Pharmacy</string>
+
+    <string name="error_networkErrorMessage">Ошибка соединения</string>
+    <string name="error_errorGettingData">Ошибка получения данных</string>
+    <string name="error_serverNotResponding">Сервер не отвечает</string>
+
+    <string name="MinLengthIsCharacters">Минимальная длина номера 11 цифр</string>
+    <string name="nameErrorAuth">Имя должно содержать от 2 до 12 букв</string>
+    <string name="phoneErrorAuth">Телефон введен не верно</string>
+    <string name="emailErrorAuth">Ой: Кажется это не похоже на имейл адрес</string>
+    <string name="dontHaveAnAccountAuth">Еще нет аккаунта?</string>
+    <string name="registrationAuth">Зарегистрируйтесь</string>
+    <string name="proceedAuth">Далее</string>
+    <string name="welcomeBackAuth">С возвращением!</string>
+    <string name="pleaseAuth">Для создания аккаунта, укажите Ваше имя, номер телефона и имейл ( по желанию )</string>
+    <string name="phoneHintAuth">+7(•••) •••-••-••</string>
+    <string name="accountCreationAuth">Давайте начнем !</string>
+    <string name="yourNameAuth">Ваше имя*</string>
+    <string name="emailHintAuth">Email для рассылок</string>
+    <string name="orSignInWithAuth">Или войдите с помощью</string>
+    <string name="enterTheCode">Введите код</string>
+    <string name="tokenIsEmpty">Ошибка запроса</string>
+    <string name="signIn">Войти</string>
+    <string name="signUp">Регистрация</string>
+    <string name="orSignInVia">Или войти с помощью</string>
+    <string name="enterCode">Пожалуйста, введите проверочный код, который мы отправили на</string>
+    <string name="codeConfirmation">Подтверждение номера</string>
+    <string name="imageTextLogo">лого</string>
+
+    <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
+
+    <!--Image content descriptions-->
+    <string name="back_button">Back button</string>
+    <string name="logo">Logo</string>
+    <string name="clearName">Clear name</string>
+    <string name="clearPhone">Clear phone</string>
+    <string name="clearEmail">Clear email</string>
+    <string name="facebookSignIn">Sign in via facebook</string>
+    <string name="googleSignIn">Sign in via Google</string>
+    <string name="sendCodeAgain">Отправить снова</string>
+
 </resources>

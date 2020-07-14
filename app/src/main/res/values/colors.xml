@@ -2,5 +2,43 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#29D986</color>
+
+    <color name="colorMainStart">#36b38e</color>
+
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorGlobalWhite">#ffffffff</color>
+    <color name="colorGlobalBlack">#ff000000</color>
+    <color name="colorGlobalDisable">#3f4048</color>
+    <color name="colorTransparent">#00000000</color>
+
+    <color name="colorProgressBackground">#a0000000</color>
+
+    <color name="colorPinNormal">#20ffffff</color>
+    <color name="colorPinPrimary">@color/colorGlobalWhite</color>
+
+    <color name="acceptTextFieldAuth">#35E85C</color>
+    <color name="titleTextColorAuth">#20272C</color>
+    <color name="colorTextAuth">#202020</color>
+
+    <color name="colorButtonPrimary">@color/colorMainStart</color>
+    <color name="colorButtonPrimaryDisable">@color/colorGlobalDisable</color>
+    <color name="colorTextInputTextPrimary">@color/colorTextAuth</color>
+    <color name="colorTextInputTextPrimaryDisable">#5d5d65</color>
+    <color name="colorBackgroundInputTextPrimary">#F6F8FA</color>
+    <color name="colorBackgroundInputTextPrimaryDisable">#42424d</color>
+
+    <color name="profileButtonGreyTint">#C7C7CC</color>
+
+    <!--colors from figma-->
+    <color name="darkBlue">#000A63</color>
+    <color name="primaryBlue">#2566F9</color>
+    <color name="greyText">#64738C</color>
+    <color name="grey">#A5B4CC</color>
+    <color name="mediumGrey">#DBE1EB</color>
+    <color name="lightGrey">#F6F8FA</color>
+    <color name="green">#29D986</color>
+    <color name="purple">#6E7DF1</color>
+    <color name="orange">#FD8A02</color>
+
 </resources>
