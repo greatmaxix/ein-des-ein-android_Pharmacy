@@ -26,8 +26,6 @@ class SignInFragment : AuthBaseFragment(R.layout.fragment_sign_in) {
                 viewModel.signIn(etPhoneSignIn.text.toString())
             }
         }
-        etPhoneSignIn.addAfterTextWatcher { ibClearPhoneSignIn.visibleOrInvisible(it.isNotEmpty() && it != "+7") }
-        ibClearPhoneSignIn.onClick { etPhoneSignIn.setText("") }
     }
 
 }

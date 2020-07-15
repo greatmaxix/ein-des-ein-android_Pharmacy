@@ -45,12 +45,8 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         progressLiveData.postValue(false)
         when (response) {
             is Success -> {
-                if (response.value.code() == HTTP_OK) {
-                    setUserPhone(phone)
-                    directionLiveData.postValue(actionFromSignInToCode())
-                } else {
-                    errorLiveData.postValue(response.value.message())
-                }
+                setUserPhone(phone)
+                directionLiveData.postValue(actionFromSignInToCode())
             }
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
@@ -76,18 +72,12 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         userPhoneLiveData.postValue(newPhone.formatPhone())
     }
 
-    fun resendCode()  = launchIO {
+    fun resendCode() = launchIO {
         progressLiveData.postValue(true)
         val response = repository.auth(userPhone)
         progressLiveData.postValue(false)
         when (response) {
-            is Success -> {
-                if (response.value.code() == HTTP_OK) {
-                    // todo snackbar
-                } else {
-                    errorLiveData.postValue(response.value.message())
-                }
-            }
+            is Success -> {/*todo snackbar*/}
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
     }

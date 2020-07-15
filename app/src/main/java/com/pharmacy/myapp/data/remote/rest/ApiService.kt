@@ -14,7 +14,7 @@ interface ApiService {
     suspend fun signUp(@Body arguments: Map<String, String>): Response<JSONObject>
 
     @POST("$API_PATH/auth")
-    suspend fun auth(@Body arguments: Map<String, String>): Response<JSONObject>
+    suspend fun auth(@Body arguments: Map<String, String>): JSONObject
 
     @POST("$API_PATH/login")
     suspend fun login(@Body arguments: Map<String, String>): LoginResponse
