@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackground"
+    android:background="@color/colorBackground"
     tools:context=".main.MainActivity">
 
     <ImageButton
@@ -16,7 +16,8 @@
         android:src="@drawable/ic_arrow_back"
         android:tint="@color/primaryBlue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/back_button" />
 
     <ImageView
         android:id="@+id/ivLogoSignUp"
@@ -26,12 +27,13 @@
         android:src="@drawable/oval"
         app:layout_constraintBottom_toTopOf="@id/tvTitleSignUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/logo" />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="лого"
+        android:text="@string/imageTextLogo"
         android:textColor="@color/colorGlobalWhite"
         app:layout_constraintBottom_toBottomOf="@id/ivLogoSignUp"
         app:layout_constraintEnd_toEndOf="@id/ivLogoSignUp"
@@ -69,7 +71,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilNameSignUp"
         style="@style/TextInputAuthStyle"
-        app:endIconDrawable="@drawable/ic_facebook"
         app:errorEnabled="true"
         app:errorTextColor="@android:color/holo_red_light"
         app:layout_constraintBottom_toTopOf="@id/tilPhoneSignUp"
@@ -102,7 +103,8 @@
         app:layout_constraintBottom_toBottomOf="@id/tilNameSignUp"
         app:layout_constraintEnd_toEndOf="@id/tilNameSignUp"
         app:layout_constraintTop_toTopOf="@id/tilNameSignUp"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:contentDescription="@string/clearName" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPhoneSignUp"
@@ -144,7 +146,8 @@
         app:layout_constraintBottom_toBottomOf="@id/tilPhoneSignUp"
         app:layout_constraintEnd_toEndOf="@id/tilPhoneSignUp"
         app:layout_constraintTop_toTopOf="@id/tilPhoneSignUp"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:contentDescription="@string/clearPhone" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmailSignUp"
@@ -181,7 +184,8 @@
         app:layout_constraintBottom_toBottomOf="@id/tilEmailSignUp"
         app:layout_constraintEnd_toEndOf="@id/tilEmailSignUp"
         app:layout_constraintTop_toTopOf="@id/tilEmailSignUp"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:contentDescription="@string/clearEmail" />
 
     <LinearLayout
         android:id="@+id/llButtonContainerSignUp"
@@ -267,7 +271,8 @@
         app:layout_constraintEnd_toStartOf="@id/ivGoogleSignIn"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle" />
+        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle"
+        android:contentDescription="@string/facebookSignIn" />
 
     <ImageView
         android:id="@+id/ivGoogleSignIn"
@@ -278,6 +283,7 @@
         android:src="@drawable/ic_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivFacebookSignIn"
-        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle" />
+        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle"
+        android:contentDescription="@string/googleSignIn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

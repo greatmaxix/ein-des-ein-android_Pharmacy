@@ -26,8 +26,19 @@
     <string name="orSignInVia">Или войти с помощью</string>
     <string name="enterCode">Пожалуйста, введите проверочный код, который мы отправили на</string>
     <string name="codeConfirmation">Подтверждение номера</string>
+    <string name="imageTextLogo">лого</string>
 
     <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
+
+    <!--Image content descriptions-->
+    <string name="back_button">Back button</string>
+    <string name="logo">Logo</string>
+    <string name="clearName">Clear name</string>
+    <string name="clearPhone">Clear phone</string>
+    <string name="clearEmail">Clear email</string>
+    <string name="facebookSignIn">Sign in via facebook</string>
+    <string name="googleSignIn">Sign in via Google</string>
+    <string name="sendCodeAgain">Отправить снова</string>
 
     <string name="profileImageDescription">Profile image</string>
     <string name="favoriteImageDescriptionProfile">Favorite image description</string>

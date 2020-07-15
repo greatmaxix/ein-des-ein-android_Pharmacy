@@ -1,8 +1,6 @@
 package com.pharmacy.myapp.main
 
-import android.os.Bundle
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.AuthViewModel
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMActivity
 import com.pharmacy.myapp.core.general.behavior.DialogMessagesBehavior
 import com.pharmacy.myapp.core.general.behavior.ProgressViewBehavior
@@ -10,7 +8,7 @@ import com.pharmacy.myapp.core.general.interfaces.MessagesCallback
 import com.pharmacy.myapp.core.general.interfaces.ProgressCallback
 import kotlinx.android.synthetic.main.layout_progress.*
 
-class MainActivity : BaseMVVMActivity<AuthViewModel>(R.layout.activity_main, AuthViewModel::class),
+class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, MainViewModel::class),
     ProgressCallback, MessagesCallback {
 
     private val progressBehavior by lazy { attachBehavior(ProgressViewBehavior(progressRoot)) }

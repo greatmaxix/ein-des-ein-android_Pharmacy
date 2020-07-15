@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackground"
+    android:background="@color/colorBackground"
     tools:context=".main.MainActivity">
 
     <ImageView
@@ -150,11 +150,13 @@
             android:textColor="@color/darkBlue"
             android:textStyle="bold" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="@dimen/_42sdp"
+            android:layout_height="@dimen/_42sdp"
             android:layout_marginEnd="@dimen/_12sdp"
+            android:background="@drawable/oval"
             android:backgroundTint="@color/primaryBlue"
+            android:padding="@dimen/_12sdp"
             android:rotation="180"
             android:src="@drawable/ic_arrow_back" />
     </LinearLayout>
@@ -191,11 +193,14 @@
 
     <ImageView
         android:id="@+id/ivFacebookSignIn"
-        android:layout_width="@dimen/_48sdp"
+        android:layout_width="@dimen/_36sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:adjustViewBounds="true"
+        android:background="@drawable/oval"
+        android:backgroundTint="@color/colorGlobalWhite"
+        android:elevation="@dimen/_4sdp"
         android:src="@drawable/ic_facebook"
         app:layout_constraintEnd_toStartOf="@id/ivGoogleSignIn"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -204,10 +209,14 @@
 
     <ImageView
         android:id="@+id/ivGoogleSignIn"
-        android:layout_width="@dimen/_48sdp"
+        android:layout_width="@dimen/_36sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:adjustViewBounds="true"
+        android:background="@drawable/oval"
+        android:backgroundTint="@color/colorGlobalWhite"
+        android:elevation="@dimen/_4sdp"
+        android:padding="@dimen/_6sdp"
         android:src="@drawable/ic_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivFacebookSignIn"

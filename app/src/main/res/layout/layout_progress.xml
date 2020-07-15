@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/progressRoot"
-        style="?attr/progressContainerStyle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true"
-        android:visibility="gone"
-        tools:visibility="visible">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/progressRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:visibility="gone"
+    tools:visibility="visible">
 
-    <com.pharmacy.myapp.ui.LoaderViewImpl
-            android:id="@+id/loaderView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <!--
+    <com.google.android.material.progressindicator.ProgressIndicator
+        android:id="@+id/progressIndicator"
+        style="@style/Widget.MaterialComponents.ProgressIndicator.Circular.Indeterminate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:circularRadius="@dimen/_24sdp"
+        app:indicatorColor="@color/colorAccent"
+        app:trackColor="@color/colorTransparent" />
+
+        versions.material = "1.3.0"-->
 
 </FrameLayout>

@@ -7,14 +7,11 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.ui.text.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
-class SignUpFragment : BaseMVVMFragment(R.layout.fragment_sign_up) {
-
-    private val viewModel: AuthViewModel by sharedGraphViewModel(R.id.auth_graph)
+class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,6 +24,10 @@ class SignUpFragment : BaseMVVMFragment(R.layout.fragment_sign_up) {
             val isEmailValid = if(tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
                 viewModel.signUp(tilNameSignUp.text(), tilPhoneSignUp.text(), tilEmailSignUp.text())
+            } else {
+                ibClearNameSignUp.invisible()
+                ibClearPhoneSignUp.invisible()
+                ibClearEmailSignUp.invisible()
             }
         }
         val clearError: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit =
@@ -62,13 +63,6 @@ class SignUpFragment : BaseMVVMFragment(R.layout.fragment_sign_up) {
         etNameSignUp.addAfterTextWatcher { ibClearNameSignUp.visibleOrInvisible(it.isNotEmpty()) }
         etPhoneSignUp.addAfterTextWatcher { ibClearPhoneSignUp.visibleOrInvisible(it.isNotEmpty() && it != "+7") }
         etEmailSignUp.addAfterTextWatcher { ibClearEmailSignUp.visibleOrInvisible(it.isNotEmpty()) }
-    }
-
-    override fun onBindLiveData() {
-        super.onBindLiveData()
-        viewModel.directionLiveData.observeExt(navController::navigate)
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
     }
 
 }

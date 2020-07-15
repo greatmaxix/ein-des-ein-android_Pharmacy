@@ -5,11 +5,11 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
+import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.hideKeyboard
 import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.sharedGraphViewModel
+import com.pharmacy.myapp.core.extensions.underlineSpan
 import kotlinx.android.synthetic.main.fragment_code.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filter
@@ -18,9 +18,7 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.widget.editorActionEvents
 import reactivecircus.flowbinding.android.widget.textChanges
 
-class CodeFragment : BaseMVVMFragment(R.layout.fragment_code) {
-
-    private val viewModel: AuthViewModel by sharedGraphViewModel(R.id.auth_graph)
+class CodeFragment : AuthBaseFragment(R.layout.fragment_code) {
 
     @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,13 +34,13 @@ class CodeFragment : BaseMVVMFragment(R.layout.fragment_code) {
             .onEach { checkSmsCode() }
             .launchIn(viewLifecycleOwner.lifecycleScope)
         btnBackCode.onClick { navigationBack() }
+        if (BuildConfig.DEBUG) etCode.setText("11111")
+        btnSendCodeAgain.underlineSpan()
+        btnSendCodeAgain.onClick { viewModel.resendCode() }
     }
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-        viewModel.directionLiveData.observeExt(navController::navigate)
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
         observe(viewModel.userPhoneLiveData) { mtvPhoneCode.text = it }
     }
 

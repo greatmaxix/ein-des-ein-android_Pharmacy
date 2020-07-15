@@ -4,8 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#29D986</color>
 
-    <color name="colorMainStart">@color/colorAccent</color>
-    <color name="colorLinkActive">@color/colorAccent</color>
+    <color name="colorMainStart">#36b38e</color>
 
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorGlobalWhite">#ffffffff</color>

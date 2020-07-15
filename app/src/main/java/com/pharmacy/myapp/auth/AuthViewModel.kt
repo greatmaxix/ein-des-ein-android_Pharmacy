@@ -2,6 +2,7 @@ package com.pharmacy.myapp.auth
 
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
+import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeToProfile
 import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToCode
 import com.pharmacy.myapp.auth.SignUpFragmentDirections.Companion.actionFromSignUpToCode
@@ -69,8 +70,26 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
     }
 
     private fun setUserPhone(phone: String) {
+        var newPhone = phone
         userPhone = phone
-        userPhoneLiveData.postValue(phone.formatPhone())
+        if (BuildConfig.DEBUG) if (!phone.contains("+")) newPhone = "+${phone.substring(1)}"
+        userPhoneLiveData.postValue(newPhone.formatPhone())
+    }
+
+    fun resendCode()  = launchIO {
+        progressLiveData.postValue(true)
+        val response = repository.auth(userPhone)
+        progressLiveData.postValue(false)
+        when (response) {
+            is Success -> {
+                if (response.value.code() == HTTP_OK) {
+                    // todo snackbar
+                } else {
+                    errorLiveData.postValue(response.value.message())
+                }
+            }
+            is Error -> errorLiveData.postValue(response.errorMessage)
+        }
     }
 
 }
