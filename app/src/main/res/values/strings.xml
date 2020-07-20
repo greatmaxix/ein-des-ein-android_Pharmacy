@@ -27,6 +27,9 @@
     <string name="enterCode">Пожалуйста, введите проверочный код, который мы отправили на</string>
     <string name="codeConfirmation">Подтверждение номера</string>
     <string name="imageTextLogo">лого</string>
+    <string name="googleContentDescriptionSignUp">Sign in via Google account</string>
+    <string name="registerButtonContentDescriptionSignUp">Register image button</string>
+    <string name="facebookContentDescriptionSignUp">Sign in via Facebook</string>
 
     <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
 

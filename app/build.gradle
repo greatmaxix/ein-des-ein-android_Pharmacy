@@ -77,6 +77,10 @@ buildscript {
     androidx.activity = "androidx.activity:activity-ktx:$rootProject.ext.deps.versions.activity"
     androidx.fragment = "androidx.fragment:fragment-ktx:$rootProject.ext.deps.versions.fragment"
     androidx.appcompat = "androidx.appcompat:appcompat:$rootProject.ext.deps.versions.appcompat"
+    androidx.constraintlayout = "androidx.constraintlayout:constraintlayout:$rootProject.ext.deps.versions.constraint"
+    androidx.collection = "androidx.collection:collection-ktx:$rootProject.ext.deps.versions.collection"
+    androidx.viewpager = "androidx.viewpager2:viewpager2:$rootProject.ext.deps.versions.viewpager"
+    androidx.paging = "androidx.paging:paging-runtime-ktx:$rootProject.ext.deps.versions.paging"
     ext.androidx = androidx
 
     def lifecycle = [:]
@@ -91,19 +95,17 @@ buildscript {
 dependencies {
     api fileTree(dir: "libs", include: ["*.jar"])
 
-    flow.each { entry -> api("$entry.value") }
-    rest.each { entry -> api("$entry.value") }
-    koin.each { entry -> api("$entry.value") }
-    kotlin.each { entry -> api("$entry.value") }
-    androidx.each { entry -> api("$entry.value") }
-    lifecycle.each { entry -> api("$entry.value") }
-    navigation.each { entry -> api("$entry.value") }
+    flow.each { entry -> implementation("$entry.value") }
+    rest.each { entry -> implementation("$entry.value") }
+    koin.each { entry -> implementation("$entry.value") }
+    kotlin.each { entry -> implementation("$entry.value") }
+    androidx.each { entry -> implementation("$entry.value") }
+    lifecycle.each { entry -> implementation("$entry.value") }
+    navigation.each { entry -> implementation("$entry.value") }
 
-    api 'org.apache.commons:commons-lang3:3.9' // for Date extensions only
-    api "com.jakewharton.timber:timber:4.7.1"
-    api "com.intuit.sdp:sdp-android:$rootProject.ext.deps.versions.sdp"
-    api "com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp"
-    api "com.google.android.material:material:$rootProject.ext.deps.versions.material"
-
-    implementation(rootProject.ext.deps.constraintlayout)
+    implementation 'org.apache.commons:commons-lang3:3.9' // for Date extensions only
+    implementation "com.jakewharton.timber:timber:4.7.1"
+    implementation "com.intuit.sdp:sdp-android:$rootProject.ext.deps.versions.sdp"
+    implementation "com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp"
+    implementation "com.google.android.material:material:$rootProject.ext.deps.versions.material"
 }
