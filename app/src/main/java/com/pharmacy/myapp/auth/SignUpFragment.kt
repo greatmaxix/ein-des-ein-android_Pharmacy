@@ -24,10 +24,6 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
             val isEmailValid = if(tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
                 viewModel.signUp(tilNameSignUp.text(), tilPhoneSignUp.text(), tilEmailSignUp.text())
-            } else {
-                ibClearNameSignUp.invisible()
-                ibClearPhoneSignUp.invisible()
-                ibClearEmailSignUp.invisible()
             }
         }
         val clearError: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit =
@@ -57,12 +53,6 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
 */
         }
         btnBackSignUp.onClick { navigationBack() }
-        ibClearNameSignUp.onClick { etNameSignUp.setText("") }
-        ibClearPhoneSignUp.onClick { etPhoneSignUp.setText("") }
-        ibClearEmailSignUp.onClick { etEmailSignUp.setText("") }
-        etNameSignUp.addAfterTextWatcher { ibClearNameSignUp.visibleOrInvisible(it.isNotEmpty()) }
-        etPhoneSignUp.addAfterTextWatcher { ibClearPhoneSignUp.visibleOrInvisible(it.isNotEmpty() && it != "+7") }
-        etEmailSignUp.addAfterTextWatcher { ibClearEmailSignUp.visibleOrInvisible(it.isNotEmpty()) }
     }
 
 }

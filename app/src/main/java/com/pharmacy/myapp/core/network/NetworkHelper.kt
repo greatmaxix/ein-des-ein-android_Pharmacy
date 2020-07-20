@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.HttpException
+import retrofit2.Response
 import timber.log.Timber
 import java.io.IOException
 import java.net.SocketException
@@ -44,7 +45,7 @@ suspend fun <T> safeApiCall(
 fun getErrorMessage(responseBody: ResponseBody?): String = try {
     val jsonObject = JSONObject(responseBody!!.string())
     when {
-        jsonObject.has("details") -> jsonObject.getString("details")
+        jsonObject.has("message") -> jsonObject.getString("message")
         jsonObject.has("type") -> jsonObject.getString("type")
         else -> "Something wrong happened"
     }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LoaderView">
+        <attr name="android:tint" />
+        <attr name="instantStart" format="boolean" />
+
+        <!-- <attr name="loaderStyle" format="reference"/>-->
+        <attr name="progressContainerStyle" format="reference" />
+        <attr name="colorBackground" format="reference" />
+
+    </declare-styleable>
+
+    <declare-styleable name="ProfileItemView">
+        <attr name="iconProfile" format="reference" />
+        <attr name="titleProfile" format="string" />
+        <attr name="detailTextProfile" format="string" />
+        <attr name="arrowVisibilityProfile" format="boolean" />
+        <attr name="mainColorProfile" format="reference" />
+    </declare-styleable>
+
+
+</resources>

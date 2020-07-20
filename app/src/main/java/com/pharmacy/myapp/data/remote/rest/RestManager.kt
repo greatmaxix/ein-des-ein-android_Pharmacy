@@ -5,6 +5,11 @@ import com.google.gson.GsonBuilder
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.core.utils.HttpLogger
 import com.pharmacy.myapp.data.local.SPManager
+import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.CODE
+import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.EMAIL
+import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.PHONE
+import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REFRESH_TOKEN
+import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.USERNAME
 import okhttp3.OkHttpClient
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -12,12 +17,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class RestManager: KoinComponent {
+class RestManager : KoinComponent {
 
     private val spManager: SPManager by inject()
 
     companion object {
-        private val IS_DEBUG = BuildConfig.DEBUG
         private const val BASE_URL = "https://api.pharmacies.fmc-dev.com"
         private const val READ_TIMEOUT = 30L
         private const val CONNECT_TIMEOUT = 60L
@@ -55,7 +59,7 @@ class RestManager: KoinComponent {
             val original = it.request()
             val token = spManager.token
             if (!token.isNullOrEmpty()) {
-                it.proceed(original.newBuilder().header("Authorization", "Bearer: $token").build())
+                it.proceed(original.newBuilder().header("Authorization", "Bearer $token").build())
             } else {
                 it.proceed(original)
             }
@@ -68,11 +72,16 @@ class RestManager: KoinComponent {
     }.build()
 
     suspend fun signUp(name: String, phone: String, email: String) =
-        api.signUp(mapOf("username" to name, "email" to email, "phone" to phone))
+        api.signUp(mapOf(USERNAME to name, EMAIL to email, PHONE to phone))
 
-    suspend fun auth(phone: String) = api.auth(mapOf("phone" to phone))
+    suspend fun auth(phone: String) = api.auth(mapOf(PHONE to phone))
 
     suspend fun login(phone: String, code: String) =
-        api.login(mapOf("phone" to phone, "code" to code))
+        api.login(mapOf(PHONE to phone, CODE to code))
+
+    suspend fun updateCustomerData(name: String, email: String) =
+        api.updateCustomerData(mapOf(USERNAME to name, EMAIL to email))
+
+    suspend fun logout(refreshToken: String) = api.logout(mapOf(REFRESH_TOKEN to refreshToken))
 
 }

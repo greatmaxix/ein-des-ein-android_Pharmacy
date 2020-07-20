@@ -65,6 +65,7 @@
         app:errorEnabled="true"
         app:errorTextColor="@android:color/holo_red_light"
         app:hintAnimationEnabled="false"
+        app:endIconMode="clear_text"
         app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,21 +85,6 @@
             android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <ImageButton
-        android:id="@+id/ibClearPhoneSignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_4sdp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:padding="@dimen/_4sdp"
-        android:src="@drawable/ic_clear"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/tilPhoneSignIn"
-        app:layout_constraintEnd_toEndOf="@id/tilPhoneSignIn"
-        app:layout_constraintTop_toTopOf="@id/tilPhoneSignIn"
-        tools:visibility="visible" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/mtvDontHaveAnAccount"

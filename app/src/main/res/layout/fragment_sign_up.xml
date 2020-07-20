@@ -13,22 +13,22 @@
         android:layout_height="@dimen/_36sdp"
         android:layout_margin="@dimen/_8sdp"
         android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_button"
         android:src="@drawable/ic_arrow_back"
         android:tint="@color/primaryBlue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/back_button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ivLogoSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_16sdp"
+        android:contentDescription="@string/logo"
         android:src="@drawable/oval"
         app:layout_constraintBottom_toTopOf="@id/tvTitleSignUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/logo" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
@@ -71,6 +71,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilNameSignUp"
         style="@style/TextInputAuthStyle"
+        app:endIconMode="clear_text"
         app:errorEnabled="true"
         app:errorTextColor="@android:color/holo_red_light"
         app:layout_constraintBottom_toTopOf="@id/tilPhoneSignUp"
@@ -90,25 +91,10 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageButton
-        android:id="@+id/ibClearNameSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:padding="@dimen/_4sdp"
-        android:src="@drawable/ic_clear"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/tilNameSignUp"
-        app:layout_constraintEnd_toEndOf="@id/tilNameSignUp"
-        app:layout_constraintTop_toTopOf="@id/tilNameSignUp"
-        tools:visibility="visible"
-        android:contentDescription="@string/clearName" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPhoneSignUp"
         style="@style/TextInputAuthStyle"
+        app:endIconMode="clear_text"
         app:errorEnabled="true"
         app:errorTextColor="@android:color/holo_red_light"
         app:hintAnimationEnabled="false"
@@ -133,25 +119,10 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageButton
-        android:id="@+id/ibClearPhoneSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:padding="@dimen/_4sdp"
-        android:src="@drawable/ic_clear"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/tilPhoneSignUp"
-        app:layout_constraintEnd_toEndOf="@id/tilPhoneSignUp"
-        app:layout_constraintTop_toTopOf="@id/tilPhoneSignUp"
-        tools:visibility="visible"
-        android:contentDescription="@string/clearPhone" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmailSignUp"
         style="@style/TextInputAuthStyle"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilPhoneSignUp"
@@ -170,22 +141,6 @@
             android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <ImageButton
-        android:id="@+id/ibClearEmailSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:padding="@dimen/_4sdp"
-        android:src="@drawable/ic_clear"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/tilEmailSignUp"
-        app:layout_constraintEnd_toEndOf="@id/tilEmailSignUp"
-        app:layout_constraintTop_toTopOf="@id/tilEmailSignUp"
-        tools:visibility="visible"
-        android:contentDescription="@string/clearEmail" />
 
     <LinearLayout
         android:id="@+id/llButtonContainerSignUp"
@@ -267,12 +222,12 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/facebookSignIn"
         android:src="@drawable/ic_facebook"
         app:layout_constraintEnd_toStartOf="@id/ivGoogleSignIn"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle"
-        android:contentDescription="@string/facebookSignIn" />
+        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle" />
 
     <ImageView
         android:id="@+id/ivGoogleSignIn"
@@ -280,10 +235,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/googleSignIn"
         android:src="@drawable/ic_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivFacebookSignIn"
-        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle"
-        android:contentDescription="@string/googleSignIn" />
+        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

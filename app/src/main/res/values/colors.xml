@@ -10,6 +10,7 @@
     <color name="colorGlobalWhite">#ffffffff</color>
     <color name="colorGlobalBlack">#ff000000</color>
     <color name="colorGlobalDisable">#3f4048</color>
+    <color name="colorGlobalHint">#9b9b9b</color>
     <color name="colorTransparent">#00000000</color>
 
     <color name="colorProgressBackground">#a0000000</color>
@@ -20,6 +21,7 @@
     <color name="acceptTextFieldAuth">#35E85C</color>
     <color name="titleTextColorAuth">#20272C</color>
     <color name="colorTextAuth">#202020</color>
+    <color name="colorTextPrimary">@color/colorGlobalBlack</color>
 
     <color name="colorButtonPrimary">@color/colorMainStart</color>
     <color name="colorButtonPrimaryDisable">@color/colorGlobalDisable</color>
@@ -40,5 +42,7 @@
     <color name="green">#29D986</color>
     <color name="purple">#6E7DF1</color>
     <color name="orange">#FD8A02</color>
+    <color name="red">#FF0000</color>
 
+    <color name="primaryBlueRipple">#492566F9</color>
 </resources>

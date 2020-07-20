@@ -40,4 +40,19 @@
     <string name="googleSignIn">Sign in via Google</string>
     <string name="sendCodeAgain">Отправить снова</string>
 
+    <string name="profileImageDescription">Profile image</string>
+    <string name="favoriteImageDescriptionProfile">Favorite image description</string>
+    <string name="favoriteProfile">Избранное</string>
+    <string name="orderImageProfile">Order image</string>
+    <string name="orderProfile">Заказы</string>
+    <string name="analysesImageProfile">Analyses image</string>
+    <string name="analysesProfile">Анализы</string>
+    <string name="recipesImageProfile">Recipes image</string>
+    <string name="recipesProfile">Рецепты</string>
+    <string name="profileImage">Profile image</string>
+    <string name="editProfileTitle">Настройки</string>
+    <string name="save">Сохранить</string>
+    <string name="logoutProfile">Выйти из аккаунта</string>
+    <string name="profileTitle">Профиль</string>
+
 </resources>

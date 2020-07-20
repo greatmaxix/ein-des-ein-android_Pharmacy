@@ -18,7 +18,7 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
     val errorLiveData by lazy { SingleLiveEvent<String>() }
     val progressLiveData by lazy { SingleLiveEvent<Boolean>() }
-    val directionLiveData by lazy { SingleLiveEvent<NavDirections>() }/*todo так легально?*/
+    val directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     val userPhoneLiveData by lazy { MutableLiveData<String>() }
     private var userPhone: String = ""
 
@@ -45,12 +45,8 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         progressLiveData.postValue(false)
         when (response) {
             is Success -> {
-                if (response.value.code() == HTTP_OK) {
-                    setUserPhone(phone)
-                    directionLiveData.postValue(actionFromSignInToCode())
-                } else {
-                    errorLiveData.postValue(response.value.message())
-                }
+                setUserPhone(phone)
+                directionLiveData.postValue(actionFromSignInToCode())
             }
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
@@ -61,7 +57,10 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         val response = repository.login(userPhone.substring(1), code)
         progressLiveData.postValue(false)
         when (response) {
-            is Success -> directionLiveData.postValue(actionFromCodeToProfile())
+            is Success -> {
+                repository.saveUserData(response.value.customer, response.value.token, response.value.refresh_token)
+                directionLiveData.postValue(actionFromCodeToProfile())
+            }
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
     }
@@ -73,18 +72,12 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         userPhoneLiveData.postValue(newPhone.formatPhone())
     }
 
-    fun resendCode()  = launchIO {
+    fun resendCode() = launchIO {
         progressLiveData.postValue(true)
         val response = repository.auth(userPhone)
         progressLiveData.postValue(false)
         when (response) {
-            is Success -> {
-                if (response.value.code() == HTTP_OK) {
-                    // todo snackbar
-                } else {
-                    errorLiveData.postValue(response.value.message())
-                }
-            }
+            is Success -> {/*todo snackbar*/}
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
     }

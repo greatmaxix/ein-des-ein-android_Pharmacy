@@ -73,6 +73,8 @@ fun String.formatPhone(): String {
     return replaceFirst(Regex(pattern), "$1 ($2) $3-$4-$5")
 }
 
+fun String.addPlusSignIfNeeded() = if (contains("+")) this else "+".plus(this)
+
 val Float.isPositive get() = this > 0
 
 fun Float.toSymbol(needMinus: Boolean = false) = if (isPositive) "+" else if (needMinus) "-" else ""

@@ -10,9 +10,20 @@
 
     <fragment
         android:id="@+id/nav_splash"
-        android:name="com.pharmacy.myapp.auth.SignInFragment"
+        android:name="com.pharmacy.myapp.splash.SplashFragment"
         android:label="@null"
-        tools:layout="@layout/fragment_sign_in">
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/fromSplashToProfile"
+            app:destination="@id/profile_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_splash"
+            app:popUpToInclusive="true" />
+
         <action
             android:id="@+id/fromSplashToAuth"
             app:destination="@id/auth_graph"
