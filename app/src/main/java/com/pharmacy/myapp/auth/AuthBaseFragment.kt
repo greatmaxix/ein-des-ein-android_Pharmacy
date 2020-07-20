@@ -12,8 +12,8 @@ abstract class AuthBaseFragment(@LayoutRes layoutResourceId: Int) : BaseMVVMFrag
     override fun onBindLiveData() {
         super.onBindLiveData()
         viewModel.directionLiveData.observeExt(navController::navigate)
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
+        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
     }
 
 }

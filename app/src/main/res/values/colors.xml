@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#2566F9</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#29D986</color>
 
-    <color name="colorMainStart">#36b38e</color>
+    <color name="colorMainStart">@color/colorAccent</color>
 
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorGlobalWhite">#ffffffff</color>
@@ -12,6 +12,7 @@
     <color name="colorGlobalDisable">#3f4048</color>
     <color name="colorGlobalHint">#9b9b9b</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="mainMenuColor">#A5B4CC</color>
 
     <color name="colorProgressBackground">#a0000000</color>
 
@@ -45,4 +46,7 @@
     <color name="red">#FF0000</color>
 
     <color name="primaryBlueRipple">#492566F9</color>
+    <color name="primaryLightRipple">#50FFFFFF</color>
+
+    <color name="askCardViewBackgroundHome">#02AEF8</color>
 </resources>

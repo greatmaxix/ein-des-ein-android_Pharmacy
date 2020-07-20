@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home_graph"
+        android:icon="@drawable/ic_home"
+        android:title="Главная"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_search"
+        android:iconTint="@color/mainMenuColor"
+        android:title="Поиск"
+        app:showAsAction="ifRoom" />
+    <!--<item
+        android:id="@+id/nav_catalog"
+        android:title="Каталог"
+        app:showAsAction="ifRoom" />-->
+
+    <!--<item
+        android:id="@+id/nav_cart"
+        android:title="Корзина"
+        app:showAsAction="ifRoom" />-->
+
+    <item
+        android:id="@+id/profile_graph"
+        android:icon="@drawable/ic_box"
+        android:iconTint="@color/mainMenuColor"
+        android:title="Профиль"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -1,319 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="wrap_content"
+    android:background="@color/lightGrey"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layoutDirection="locale"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lightGrey">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize"
+        android:fillViewport="true">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            android:layoutDirection="locale"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="@dimen/_56sdp"
-            android:layout_height="@dimen/_56sdp"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/profileImage"
-            android:src="@drawable/main_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvNameProfile"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:textColor="@color/darkBlue"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/mtvPhoneProfile"
-            app:layout_constraintStart_toEndOf="@id/ivProfile"
-            app:layout_constraintTop_toTopOf="@id/ivProfile"
-            tools:text="Евгения Леонидовна" />
+            android:background="@color/lightGrey">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvPhoneProfile"
-            style="@style/TextAppearance.AppCompat.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:textColor="@color/colorGlobalBlack"
-            app:layout_constraintBottom_toBottomOf="@id/ivProfile"
-            app:layout_constraintStart_toEndOf="@id/ivProfile"
-            app:layout_constraintTop_toBottomOf="@id/mtvNameProfile"
-            tools:text="+3809994824231" />
+            <ImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="@dimen/_56sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/profileImage"
+                android:src="@drawable/main_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivEditProfile"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:layout_margin="@dimen/_16sdp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/oval"
-            android:backgroundTint="@color/colorGlobalWhite"
-            android:contentDescription="@string/profileImageDescription"
-            android:elevation="@dimen/_4sdp"
-            android:padding="@dimen/_4sdp"
-            android:src="@drawable/ic_edit"
-            android:tint="@color/profileButtonGreyTint"
-            app:layout_constraintBottom_toBottomOf="@id/ivProfile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ivProfile" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvNameProfile"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textColor="@color/darkBlue"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/mtvPhoneProfile"
+                app:layout_constraintStart_toEndOf="@id/ivProfile"
+                app:layout_constraintTop_toTopOf="@id/ivProfile"
+                tools:text="Евгения Леонидовна" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/tcvMenuProfile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_16sdp"
-            app:cardBackgroundColor="@color/colorGlobalWhite"
-            app:cardCornerRadius="@dimen/_8sdp"
-            app:cardElevation="@dimen/_4sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivProfile">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvPhoneProfile"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:textColor="@color/colorGlobalBlack"
+                app:layout_constraintBottom_toBottomOf="@id/ivProfile"
+                app:layout_constraintStart_toEndOf="@id/ivProfile"
+                app:layout_constraintTop_toBottomOf="@id/mtvNameProfile"
+                tools:text="+3809994824231" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabEditProfile"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/profileImageDescription"
+                android:src="@drawable/ic_edit"
+                android:tint="@color/profileButtonGreyTint"
+                app:backgroundTint="@color/colorGlobalWhite"
+                app:fabCustomSize="@dimen/_32sdp"
+                app:layout_constraintBottom_toBottomOf="@id/ivProfile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivProfile" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/tcvMenuProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                app:cardBackgroundColor="@color/colorGlobalWhite"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="@dimen/_4sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivProfile">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:id="@+id/llFavoriteProfile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".9"
+                        android:foreground="?selectableItemBackgroundBorderless"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginBottom="@dimen/_6sdp"
+                            app:cardBackgroundColor="#E4E1FD"
+                            app:cardCornerRadius="@dimen/_6sdp">
+
+                            <ImageView
+                                android:layout_width="@dimen/_32sdp"
+                                android:layout_height="@dimen/_32sdp"
+                                android:contentDescription="@string/favoriteImageDescriptionProfile"
+                                android:padding="@dimen/_4sdp"
+                                android:src="@drawable/ic_favorite" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:text="@string/favoriteProfile"
+                            android:textColor="@color/darkBlue"
+                            android:textSize="@dimen/_10ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llFavoriteProfile1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".8"
+                        android:foreground="?selectableItemBackgroundBorderless"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginBottom="@dimen/_6sdp"
+                            app:cardBackgroundColor="#CCFCE7"
+                            app:cardCornerRadius="@dimen/_6sdp">
+
+                            <ImageView
+                                android:layout_width="@dimen/_32sdp"
+                                android:layout_height="@dimen/_32sdp"
+                                android:contentDescription="@string/orderImageProfile"
+                                android:padding="@dimen/_4sdp"
+                                android:src="@drawable/ic_box" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:text="@string/orderProfile"
+                            android:textColor="@color/darkBlue"
+                            android:textSize="@dimen/_10ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llFavoriteProfile2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".8"
+                        android:foreground="?selectableItemBackgroundBorderless"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginBottom="@dimen/_6sdp"
+                            app:cardBackgroundColor="#D5DBFF"
+                            app:cardCornerRadius="@dimen/_6sdp">
+
+                            <ImageView
+                                android:layout_width="@dimen/_32sdp"
+                                android:layout_height="@dimen/_32sdp"
+                                android:contentDescription="@string/analysesImageProfile"
+                                android:padding="@dimen/_4sdp"
+                                android:src="@drawable/ic_vector" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:text="@string/analysesProfile"
+                            android:textColor="@color/darkBlue"
+                            android:textSize="@dimen/_10ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llFavoriteProfile3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".9"
+                        android:foreground="?selectableItemBackgroundBorderless"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginBottom="@dimen/_6sdp"
+                            app:cardBackgroundColor="#FFEBCA"
+                            app:cardCornerRadius="@dimen/_6sdp">
+
+                            <ImageView
+                                android:layout_width="@dimen/_32sdp"
+                                android:layout_height="@dimen/_32sdp"
+                                android:contentDescription="@string/recipesImageProfile"
+                                android:padding="@dimen/_4sdp"
+                                android:src="@drawable/ic_recipes" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:text="@string/recipesProfile"
+                            android:textColor="@color/darkBlue"
+                            android:textSize="@dimen/_10ssp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false">
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tcvMenuProfile"
+                app:layout_constraintVertical_bias="0">
 
-                <LinearLayout
-                    android:id="@+id/llFavoriteProfile"
-                    android:layout_width="0dp"
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemLocationProfile"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:foreground="?selectableItemBackgroundBorderless"
-                    android:orientation="vertical">
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="true"
+                    app:iconProfile="@drawable/ic_location"
+                    app:titleProfile="Мой регион" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:layout_marginBottom="@dimen/_6sdp"
-                        app:cardBackgroundColor="#E4E1FD"
-                        app:cardCornerRadius="@dimen/_6sdp">
-
-                        <ImageView
-                            android:layout_width="@dimen/_32sdp"
-                            android:layout_height="@dimen/_32sdp"
-                            android:contentDescription="@string/favoriteImageDescriptionProfile"
-                            android:padding="@dimen/_4sdp"
-                            android:src="@drawable/ic_favorite" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="@string/favoriteProfile"
-                        android:textColor="@color/darkBlue" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llFavoriteProfile1"
-                    android:layout_width="0dp"
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemPaymentProfile"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:foreground="?selectableItemBackgroundBorderless"
-                    android:orientation="vertical">
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="true"
+                    app:iconProfile="@drawable/ic_credit_card"
+                    app:titleProfile="Оплата и бонусы" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:layout_marginBottom="@dimen/_6sdp"
-                        app:cardBackgroundColor="#CCFCE7"
-                        app:cardCornerRadius="@dimen/_6sdp">
-
-                        <ImageView
-                            android:layout_width="@dimen/_32sdp"
-                            android:layout_height="@dimen/_32sdp"
-                            android:contentDescription="@string/orderImageProfile"
-                            android:padding="@dimen/_4sdp"
-                            android:src="@drawable/ic_box" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="@string/orderProfile"
-                        android:textColor="@color/darkBlue" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llFavoriteProfile2"
-                    android:layout_width="0dp"
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemAddressProfile"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:foreground="?selectableItemBackgroundBorderless"
-                    android:orientation="vertical">
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="true"
+                    app:iconProfile="@drawable/ic_truck"
+                    app:titleProfile="Адрес доставки" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:layout_marginBottom="@dimen/_6sdp"
-                        app:cardBackgroundColor="#D5DBFF"
-                        app:cardCornerRadius="@dimen/_6sdp">
-
-                        <ImageView
-                            android:layout_width="@dimen/_32sdp"
-                            android:layout_height="@dimen/_32sdp"
-                            android:contentDescription="@string/analysesImageProfile"
-                            android:padding="@dimen/_4sdp"
-                            android:src="@drawable/ic_vector" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="@string/analysesProfile"
-                        android:textColor="@color/darkBlue" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llFavoriteProfile3"
-                    android:layout_width="0dp"
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemNotificationProfile"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:foreground="?selectableItemBackgroundBorderless"
-                    android:orientation="vertical">
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="true"
+                    app:iconProfile="@drawable/ic_notification"
+                    app:titleProfile="Уведомления" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:layout_marginBottom="@dimen/_6sdp"
-                        app:cardBackgroundColor="#FFEBCA"
-                        app:cardCornerRadius="@dimen/_6sdp">
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemAboutProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="true"
+                    app:iconProfile="@drawable/ic_about"
+                    app:titleProfile="О приложении" />
 
-                        <ImageView
-                            android:layout_width="@dimen/_32sdp"
-                            android:layout_height="@dimen/_32sdp"
-                            android:contentDescription="@string/recipesImageProfile"
-                            android:padding="@dimen/_4sdp"
-                            android:src="@drawable/ic_recipes" />
-                    </com.google.android.material.card.MaterialCardView>
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemHelpProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="true"
+                    app:iconProfile="@drawable/ic_question"
+                    app:titleProfile="Нужна помощь" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="@string/recipesProfile"
-                        android:textColor="@color/darkBlue" />
-                </LinearLayout>
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemLogoutProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="false"
+                    app:iconProfile="@drawable/ic_logout"
+                    app:mainColorProfile="@color/red"
+                    app:titleProfile="@string/logoutProfile" />
+
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tcvMenuProfile"
-            app:layout_constraintVertical_bias="0">
-
-            <com.pharmacy.myapp.ui.ProfileItemView
-                android:id="@+id/itemLocationProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                app:arrowVisibilityProfile="true"
-                app:iconProfile="@drawable/ic_map"
-                app:titleProfile="Мой регион" />
-
-            <com.pharmacy.myapp.ui.ProfileItemView
-                android:id="@+id/itemPaymentProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                app:arrowVisibilityProfile="true"
-                app:iconProfile="@drawable/ic_credit_card"
-                app:titleProfile="Оплата и бонусы" />
-
-            <com.pharmacy.myapp.ui.ProfileItemView
-                android:id="@+id/itemAddressProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                app:arrowVisibilityProfile="true"
-                app:iconProfile="@drawable/ic_truck"
-                app:titleProfile="Адрес доставки" />
-
-            <com.pharmacy.myapp.ui.ProfileItemView
-                android:id="@+id/itemNotificationProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                app:arrowVisibilityProfile="true"
-                app:iconProfile="@drawable/ic_notification"
-                app:titleProfile="Уведомления" />
-
-            <com.pharmacy.myapp.ui.ProfileItemView
-                android:id="@+id/itemAboutProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                app:arrowVisibilityProfile="true"
-                app:iconProfile="@drawable/ic_about"
-                app:titleProfile="О приложении" />
-
-            <com.pharmacy.myapp.ui.ProfileItemView
-                android:id="@+id/itemHelpProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                app:arrowVisibilityProfile="true"
-                app:iconProfile="@drawable/ic_question"
-                app:titleProfile="Нужна помощь" />
-
-            <com.pharmacy.myapp.ui.ProfileItemView
-                android:id="@+id/itemLogoutProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                app:arrowVisibilityProfile="false"
-                app:iconProfile="@drawable/ic_logout"
-                app:mainColorProfile="@color/red"
-                app:titleProfile="@string/logoutProfile" />
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

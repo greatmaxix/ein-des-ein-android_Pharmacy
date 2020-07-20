@@ -16,7 +16,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ivEditProfile.onClick { doNav(actionFromProfileToEdit()) }
+        fabEditProfile.onClick { doNav(actionFromProfileToEdit()) }
         itemLogoutProfile.setOnClick { viewModel.logout() }
     }
 
@@ -27,8 +27,8 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
             mtvPhoneProfile.text = "+${it.second}".formatPhone()
         }
         viewModel.directionLiveData.observeExt(navController::navigate)
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
+        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
     }
 
     override fun onResume() {

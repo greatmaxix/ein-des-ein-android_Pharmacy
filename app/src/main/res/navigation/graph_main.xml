@@ -7,6 +7,7 @@
 
     <include app:graph="@navigation/graph_auth" />
     <include app:graph="@navigation/graph_profile" />
+    <include app:graph="@navigation/graph_home" />
 
     <fragment
         android:id="@+id/nav_splash"

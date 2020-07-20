@@ -27,6 +27,9 @@
     <string name="enterCode">Пожалуйста, введите проверочный код, который мы отправили на</string>
     <string name="codeConfirmation">Подтверждение номера</string>
     <string name="imageTextLogo">лого</string>
+    <string name="googleContentDescriptionSignUp">Sign in via Google account</string>
+    <string name="registerButtonContentDescriptionSignUp">Register image button</string>
+    <string name="facebookContentDescriptionSignUp">Sign in via Facebook</string>
 
     <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
 
@@ -54,5 +57,21 @@
     <string name="save">Сохранить</string>
     <string name="logoutProfile">Выйти из аккаунта</string>
     <string name="profileTitle">Профиль</string>
+
+    <string name="startSearching">Начните поиск</string>
+    <string name="searchHintHome">Ношпа</string>
+    <string name="orderSubtitleHome">Вы можете использовать их при заказе доставки или самовывоз</string>
+    <string name="askTitleHome">Спроси фармацевта</string>
+    <string name="analyzeTitleHome">Анализы и диагностика</string>
+    <string name="mapTitleHome">Карта\nаптек</string>
+    <string name="categoriesTitleHome">Категории</string>
+    <string name="seeAllCategoriesHome">Смотреть все</string>
+    <string name="uploadRecipesHome">Загрузить рецепт</string>
+    <string name="scanDrugsContentDescriptionHome">Сканировать товар</string>
+    <string name="orderLogoContentDescriptionHome">Лого заказа</string>
+    <string name="orderSmallIconContentDescriptionHome">Иконка заказа</string>
+    <string name="askTileContentDescriptionHome">Спроси фармацевта</string>
+    <string name="analyzeTitleContentDescriptionHome">Анализы и диагностика</string>
+    <string name="mapIconContentDescriptionHome">Карта аптек</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.pharmacy.myapp.auth
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeToProfile
@@ -11,8 +12,8 @@ import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
-import java.net.HttpURLConnection.HTTP_CREATED
-import java.net.HttpURLConnection.HTTP_OK
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
@@ -22,20 +23,18 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
     val userPhoneLiveData by lazy { MutableLiveData<String>() }
     private var userPhone: String = ""
 
-    fun signUp(name: String, phone: String, email: String) = launchIO {
-        progressLiveData.postValue(true)
-        val response = repository.signUp(name, phone.substring(1), email)
-        progressLiveData.postValue(false)
-        when (response) {
-            is Success -> {
-                if (response.value.code() == HTTP_CREATED) {
+    fun signUp(name: String, phone: String, email: String) {
+        launchIO {
+            progressLiveData.postValue(true)
+            val response = repository.signUp(name, phone.substring(1), email)
+            progressLiveData.postValue(false)
+            when (response) {
+                is Success -> {
                     setUserPhone(phone)
                     directionLiveData.postValue(actionFromSignUpToCode())
-                } else {
-                    errorLiveData.postValue(response.value.message())
                 }
+                is Error -> errorLiveData.postValue(response.errorMessage)
             }
-            is Error -> errorLiveData.postValue(response.errorMessage)
         }
     }
 
