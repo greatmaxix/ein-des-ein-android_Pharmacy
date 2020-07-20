@@ -17,7 +17,7 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
         super.onViewCreated(view, savedInstanceState)
         etEmailSignUp.onDoneImeAction { llButtonContainerSignUp.performClick() }
         tilPhoneSignUp.setPhoneRule()
-        etPhoneSignUp.addCountryCodePrefix()
+//        etPhoneSignUp.addCountryCodePrefix()
         llButtonContainerSignUp.onClick {
             val isNameValid = tilNameSignUp.checkLength(getString(R.string.nameErrorAuth))
             val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))

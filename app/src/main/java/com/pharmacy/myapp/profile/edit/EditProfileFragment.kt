@@ -39,8 +39,8 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
             etPhoneEditProfile.setText(it.second?.addPlusSignIfNeeded())
             etNameEditProfile.setText(it.third)
         }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
+        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
         }
 
 }

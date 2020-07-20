@@ -4,16 +4,24 @@ import com.pharmacy.myapp.core.network.safeApiCall
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
 import com.pharmacy.myapp.data.remote.rest.response.Customer
-import kotlinx.coroutines.Dispatchers
+import retrofit2.HttpException
+import java.net.HttpURLConnection.HTTP_CREATED
 
 class AuthRepository(private val spManager: SPManager, private val rm: RestManager) {
 
     suspend fun signUp(name: String, phone: String, email: String) =
-        safeApiCall(Dispatchers.IO) { rm.signUp(name, phone, email) }
+        safeApiCall {
+            val response = rm.signUp(name, phone, email)
+            if (response.isSuccessful && response.code() == HTTP_CREATED) {
+                response.body()
+            } else {
+                throw HttpException(response)
+            }
+        }
 
-    suspend fun auth(phone: String) = safeApiCall(Dispatchers.IO) { rm.auth(phone) }
+    suspend fun auth(phone: String) = safeApiCall { rm.auth(phone) }
 
-    suspend fun login(phone: String, code: String) = safeApiCall(Dispatchers.IO) { rm.login(phone, code) }
+    suspend fun login(phone: String, code: String) = safeApiCall { rm.login(phone, code) }
 
     fun saveUserData(customer: Customer, token: String, refreshToken: String) {
         spManager.email = customer.email

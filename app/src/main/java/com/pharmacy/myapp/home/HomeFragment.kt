@@ -24,8 +24,8 @@ class HomeFragment : BaseMVVMFragment(R.layout.fragment_home) {
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
+        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
     }
 
 }

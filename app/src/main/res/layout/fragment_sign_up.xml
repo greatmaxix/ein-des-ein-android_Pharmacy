@@ -146,8 +146,9 @@
         android:id="@+id/llButtonContainerSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_16sdp"
-        android:background="?attr/selectableItemBackground"
+        android:background="@drawable/background_default_ripple_selector_rect"
         android:orientation="horizontal"
         android:paddingTop="@dimen/_8sdp"
         android:paddingBottom="@dimen/_8sdp"
@@ -176,26 +177,27 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/mtvToss"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llButtonContainerSignUp" />
+        app:layout_constraintTop_toBottomOf="@id/llButtonContainerSignUp"
+        tools:text="Регистрируясь я принимаю Условия обслуживания и Политику конфиденциальности" />
 
     <View
         android:layout_width="@dimen/_18sdp"
         android:layout_height="1dp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:background="@color/darkBlue"
-        app:layout_constraintBottom_toBottomOf="@id/mtvSignInViaTitle"
-        app:layout_constraintEnd_toStartOf="@id/mtvSignInViaTitle"
-        app:layout_constraintTop_toTopOf="@id/mtvSignInViaTitle" />
+        app:layout_constraintBottom_toBottomOf="@id/mtvSignUpViaTitle"
+        app:layout_constraintEnd_toStartOf="@id/mtvSignUpViaTitle"
+        app:layout_constraintTop_toTopOf="@id/mtvSignUpViaTitle" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/mtvSignInViaTitle"
+        android:id="@+id/mtvSignUpViaTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_12sdp"
@@ -211,34 +213,40 @@
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/_8sdp"
         android:background="@color/darkBlue"
-        app:layout_constraintBottom_toBottomOf="@id/mtvSignInViaTitle"
-        app:layout_constraintStart_toEndOf="@id/mtvSignInViaTitle"
-        app:layout_constraintTop_toTopOf="@id/mtvSignInViaTitle" />
+        app:layout_constraintBottom_toBottomOf="@id/mtvSignUpViaTitle"
+        app:layout_constraintStart_toEndOf="@id/mtvSignUpViaTitle"
+        app:layout_constraintTop_toTopOf="@id/mtvSignUpViaTitle" />
 
     <ImageView
-        android:id="@+id/ivFacebookSignIn"
-        android:layout_width="@dimen/_48sdp"
+        android:id="@+id/ivFacebookSignUp"
+        android:layout_width="@dimen/_36sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/facebookSignIn"
+        android:background="@drawable/oval"
+        android:backgroundTint="@color/colorGlobalWhite"
+        android:elevation="@dimen/_4sdp"
         android:src="@drawable/ic_facebook"
-        app:layout_constraintEnd_toStartOf="@id/ivGoogleSignIn"
+        app:layout_constraintEnd_toStartOf="@id/ivGoogleSignUp"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle" />
+        app:layout_constraintTop_toBottomOf="@id/mtvSignUpViaTitle" />
 
     <ImageView
-        android:id="@+id/ivGoogleSignIn"
-        android:layout_width="@dimen/_48sdp"
+        android:id="@+id/ivGoogleSignUp"
+        android:layout_width="@dimen/_36sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/googleSignIn"
+        android:background="@drawable/oval"
+        android:backgroundTint="@color/colorGlobalWhite"
+        android:elevation="@dimen/_4sdp"
+        android:padding="@dimen/_6sdp"
         android:src="@drawable/ic_google"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivFacebookSignIn"
-        app:layout_constraintTop_toBottomOf="@id/mtvSignInViaTitle" />
+        app:layout_constraintStart_toEndOf="@id/ivFacebookSignUp"
+        app:layout_constraintTop_toBottomOf="@id/mtvSignUpViaTitle" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

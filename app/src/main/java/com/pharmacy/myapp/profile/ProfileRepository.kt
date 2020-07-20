@@ -10,7 +10,7 @@ class ProfileRepository(private val spManager: SPManager, private val rm: RestMa
 
     fun getUserData() = Triple(spManager.email, spManager.phone, spManager.username)
 
-    suspend fun updateCustomerData(name: String, email: String) = safeApiCall(Dispatchers.IO) {
+    suspend fun updateCustomerData(name: String, email: String) = safeApiCall {
         rm.updateCustomerData(name, email)
     }
 
@@ -19,7 +19,7 @@ class ProfileRepository(private val spManager: SPManager, private val rm: RestMa
         spManager.username = dataResponse.username
     }
 
-    suspend fun logout() = safeApiCall(Dispatchers.IO) {
+    suspend fun logout() = safeApiCall {
         if (spManager.refreshToken.isNullOrEmpty()) throw Exception("Refresh token is empty")
         rm.logout(spManager.refreshToken ?: "")
     }

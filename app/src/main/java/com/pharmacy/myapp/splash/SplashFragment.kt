@@ -17,5 +17,5 @@ class SplashFragment(private val viewModel: SplashViewModel) : BaseMVVMFragment(
         ivLogo.animateVisible(duration)
     }
 
-    override fun onBindLiveData() = observe(viewModel.authenticatedLiveData, navController::navigate)
+    override fun onBindLiveData() = viewModel.authenticatedLiveData.observeExt(navController::navigate)
 }

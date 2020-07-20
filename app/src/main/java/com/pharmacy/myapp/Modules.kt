@@ -5,7 +5,7 @@ import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
 import com.pharmacy.myapp.home.homeModule
 import com.pharmacy.myapp.profile.profileModule
-import com.pharmacy.myapp.splash.SplashModule.splashModule
+import com.pharmacy.myapp.splash.splashModule
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 

@@ -3,6 +3,7 @@ package com.pharmacy.myapp.data.local
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.SharedPreferenceContext
 import com.pharmacy.myapp.core.extensions.get
 import com.pharmacy.myapp.core.extensions.put
@@ -10,7 +11,7 @@ import com.pharmacy.myapp.core.extensions.put
 class SPManager(val context: Context) : SharedPreferenceContext {
 
     override val sp: SharedPreferences =
-        context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        context.getSharedPreferences("${context.getString(R.string.app_name)}_sp", Context.MODE_PRIVATE)
 
     var token: String?
         get() = get(Keys.TOKEN)

@@ -30,12 +30,6 @@ abstract class BaseMVVMFragment(@LayoutRes layoutResourceId: Int) : BaseFragment
         })
     }
 
-    protected fun <T, LD : LiveData<T>> observe(liveData: LD, onChanged: (T) -> Unit) {
-        liveData.observe(viewLifecycleOwner, Observer {
-            it?.let(onChanged)
-        })
-    }
-
     protected fun <T> LiveData<T>.observeSingle(onChanged: (T?) -> Unit) {
         observe(viewLifecycleOwner, object : Observer<T> {
             override fun onChanged(t: T?) {
