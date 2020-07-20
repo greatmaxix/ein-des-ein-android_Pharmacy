@@ -108,4 +108,5 @@ dependencies {
     implementation "com.intuit.sdp:sdp-android:$rootProject.ext.deps.versions.sdp"
     implementation "com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp"
     implementation "com.google.android.material:material:$rootProject.ext.deps.versions.material"
+    implementation "com.github.fondesa:kpermissions:$rootProject.ext.deps.versions.kPermissions"
 }
