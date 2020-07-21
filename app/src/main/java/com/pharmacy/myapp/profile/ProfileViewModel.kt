@@ -21,13 +21,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import timber.log.Timber
 import java.io.File
 
-class ProfileViewModel(private val context: Context,
-                       private val repository: ProfileRepository) : BaseViewModel() {
+
+class ProfileViewModel(
+    private val context: Context,
+    private val repository: ProfileRepository
+) : BaseViewModel() {
 
     val errorLiveData by lazy { SingleLiveEvent<String>() }
     val progressLiveData by lazy { SingleLiveEvent<Boolean>() }
@@ -70,28 +72,15 @@ class ProfileViewModel(private val context: Context,
                 withContext(Dispatchers.IO) {
                     ImageFileUtil.saveImageByUriToFile(context, avatarFile, imageUri)
                     ImageFileUtil.compressImage(context, avatarFile, imageUri)
-                    /*val contentType = context.contentResolver.getType(imageUri)?.toMediaTypeOrNull()
-                    val asRequestBody = avatarFile.asRequestBody(contentType)
-                    val createFormData = MultipartBody.Part.createFormData("image", avatarFile.name, asRequestBody)
-                    val uploadImageResponse = repository.uploadImage(createFormData)
-//
-                    when (uploadImageResponse) {
-                        is Success -> Timber.d(uploadImageResponse.value.toString())
-                        is Error -> Timber.d(uploadImageResponse.errorMessage)
-                    }*/
-                    val partMap = HashMap<String, RequestBody>()
 
                     val fileExtension = MimeTypeMap.getFileExtensionFromUrl(avatarFile.absolutePath)
-                    val fileType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension)?:""
+                    val fileType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension) ?: ""
+                    val partMap = hashMapOf("file\"; filename=\"${avatarFile.name}\"" to avatarFile.asRequestBody(fileType.toMediaTypeOrNull()))
 
-                    partMap["image\"; filename=\"${avatarFile.name}\""] =
-                        avatarFile.asRequestBody(fileType.toMediaTypeOrNull())
-                    val uploadImage = repository.uploadImage(partMap)
-                    when (uploadImage) {
+                    when (val uploadImage = repository.uploadImage(partMap)) {
                         is Success -> Timber.d(uploadImage.value.toString())
                         is Error -> Timber.d(uploadImage.errorMessage)
                     }
-
                 }
                 _avatarLiveData.value = avatarFile.absolutePath
                 progressLiveData.postValue(false)

@@ -107,8 +107,5 @@ class RestManager : KoinComponent {
 
     suspend fun logout(refreshToken: String) = api.logout(mapOf(REFRESH_TOKEN to refreshToken))
 
-    suspend fun uploadImage(createFormData: MultipartBody.Part) = api.uploadImage(createFormData)
-
     suspend fun uploadImage(map: HashMap<String, RequestBody>) = api.uploadImage(map)
-
 }
