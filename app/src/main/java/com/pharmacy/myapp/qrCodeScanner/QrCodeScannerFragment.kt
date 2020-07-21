@@ -95,7 +95,7 @@ class QrCodeScannerFragment : BaseMVVMFragment(R.layout.fragment_qr_code_scanner
         viewModel.searchResultItem.observeExt {
             SearchResultBottomSheet.newInstance {
                 codeScanner?.startPreview()
-            }.show(childFragmentManager, SearchResultBottomSheet.TAG)
+            }.show(childFragmentManager)
         }
     }
 
