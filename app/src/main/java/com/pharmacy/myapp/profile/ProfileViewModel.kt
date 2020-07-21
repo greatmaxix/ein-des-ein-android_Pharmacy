@@ -21,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import timber.log.Timber
 import java.io.File
@@ -74,10 +75,11 @@ class ProfileViewModel(
                     ImageFileUtil.compressImage(context, avatarFile, imageUri)
 
                     val fileExtension = MimeTypeMap.getFileExtensionFromUrl(avatarFile.absolutePath)
-                    val fileType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension) ?: ""
-                    val partMap = hashMapOf("file\"; filename=\"${avatarFile.name}\"" to avatarFile.asRequestBody(fileType.toMediaTypeOrNull()))
+                    val fileType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension)
+                    val fileRequestBody = avatarFile.asRequestBody(fileType?.toMediaTypeOrNull())
+                    val partBody = MultipartBody.Part.createFormData("file", avatarFile.name, fileRequestBody)
 
-                    when (val uploadImage = repository.uploadImage(partMap)) {
+                    when (val uploadImage = repository.uploadImage(partBody)) {
                         is Success -> Timber.d(uploadImage.value.toString())
                         is Error -> Timber.d(uploadImage.errorMessage)
                     }

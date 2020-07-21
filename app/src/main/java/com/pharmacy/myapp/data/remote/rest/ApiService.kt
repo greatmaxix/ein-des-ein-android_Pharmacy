@@ -4,7 +4,7 @@ import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
 import com.pharmacy.myapp.data.remote.rest.response.LoginResponse
 import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
 import com.pharmacy.myapp.data.remote.rest.response.UserDataResponse
-import okhttp3.RequestBody
+import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.*
@@ -31,7 +31,7 @@ interface ApiService {
 
     @Multipart
     @POST("$API_PATH/image")
-    suspend fun uploadImage(@PartMap params: Map<String, @JvmSuppressWildcards RequestBody>): Response<JSONObject>
+    suspend fun uploadImage(@Part file: MultipartBody.Part): Response<JSONObject>
 
     companion object {
         private const val API_PATH = "/api/v1"
