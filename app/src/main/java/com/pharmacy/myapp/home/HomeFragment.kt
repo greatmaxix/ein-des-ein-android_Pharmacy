@@ -19,13 +19,13 @@ class HomeFragment : BaseMVVMFragment(R.layout.fragment_home) {
         mcvAnalyzeHome.onClick { }
         mcvOrderContainer.onClick { }
         mcvSearchHome.onClick { }
-        mcvScanHome.onClick { }
+        mcvScanHome.onClick { viewModel.navToScanner() }
     }
 
     override fun onBindLiveData() {
         super.onBindLiveData()
+        viewModel.directionLiveData.observeExt(navController::navigate)
         viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
         viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
     }
-
 }

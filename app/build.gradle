@@ -109,4 +109,5 @@ dependencies {
     implementation "com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp"
     implementation "com.google.android.material:material:$rootProject.ext.deps.versions.material"
     implementation "com.github.fondesa:kpermissions:$rootProject.ext.deps.versions.kPermissions"
+    implementation "com.budiyev.android:code-scanner:$rootProject.ext.deps.versions.qr_code_scanner_version"
 }
