@@ -10,8 +10,8 @@ import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.EMAIL
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.PHONE
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REFRESH_TOKEN
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.USERNAME
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
-import okhttp3.RequestBody
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.Retrofit
@@ -85,5 +85,5 @@ class RestManager : KoinComponent {
 
     suspend fun logout(refreshToken: String) = api.logout(mapOf(REFRESH_TOKEN to refreshToken))
 
-    suspend fun uploadImage(map: HashMap<String, RequestBody>) = api.uploadImage(map)
+    suspend fun uploadImage(partBody: MultipartBody.Part) = api.uploadImage(partBody)
 }
