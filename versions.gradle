@@ -20,6 +20,8 @@ versions.appcompat = "1.1.0"
 versions.navigation = "2.2.2"
 versions.fragment = "1.2.4"
 versions.activity = "1.1.0"
+versions.apacheCommons = "3.9"
+versions.timber = "4.7.1"
 
 versions.room = "2.2.5"
 versions.paging = "2.1.2"
