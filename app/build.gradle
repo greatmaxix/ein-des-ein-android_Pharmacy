@@ -81,6 +81,7 @@ buildscript {
     androidx.collection = "androidx.collection:collection-ktx:$rootProject.ext.deps.versions.collection"
     androidx.viewpager = "androidx.viewpager2:viewpager2:$rootProject.ext.deps.versions.viewpager"
     androidx.paging = "androidx.paging:paging-runtime-ktx:$rootProject.ext.deps.versions.paging"
+    androidx.exifinterface = "androidx.exifinterface:exifinterface:$rootProject.ext.deps.versions.exifinterface"
     ext.androidx = androidx
 
     def lifecycle = [:]
@@ -109,4 +110,6 @@ dependencies {
     implementation "com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp"
     implementation "com.google.android.material:material:$rootProject.ext.deps.versions.material"
     implementation "com.github.fondesa:kpermissions:$rootProject.ext.deps.versions.kPermissions"
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.deps.versions.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.deps.versions.glide"
 }
