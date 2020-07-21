@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.myapp.R
 import com.google.android.material.textfield.TextInputLayout
+import com.pharmacy.myapp.ui.DebouncedOnClickListener
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -263,6 +264,22 @@ fun View.colorValueAnimator(from: Int, to: Int, duration: Long, onUpdate: (Int) 
 }
 val View.toTransitionGroup
     get() = this to transitionName
+
+fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.OnClickListener?) {
+    setOnClickListener(object : DebouncedOnClickListener(interval) {
+        override fun onDebouncedClick(v: View) {
+            listener?.onClick(v)
+        }
+    })
+}
+
+fun View.setDebounceOnClickListener(interval: Long = 400, listener: ((View) -> Unit)?) {
+    setOnClickListener(object : DebouncedOnClickListener(interval) {
+        override fun onDebouncedClick(v: View) {
+            listener?.invoke(v)
+        }
+    })
+}
 
 fun TextView.hideKeyboardOnEditorAction() {
     setOnEditorActionListener { _, _, _ ->

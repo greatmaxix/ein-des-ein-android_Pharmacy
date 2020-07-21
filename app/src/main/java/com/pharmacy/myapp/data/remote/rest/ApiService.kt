@@ -4,11 +4,11 @@ import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
 import com.pharmacy.myapp.data.remote.rest.response.LoginResponse
 import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
 import com.pharmacy.myapp.data.remote.rest.response.UserDataResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.PATCH
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -29,6 +29,21 @@ interface ApiService {
 
     @POST("$API_PATH_CUSTOMER/logout")
     suspend fun logout(@Body arguments: Map<String, String>): Response<JSONObject>
+
+    @Headers("Content-Type: multipart/form-data")
+    @Multipart
+    @POST("$API_PATH/image")
+    suspend fun uploadImage(@Part file: MultipartBody.Part): JSONObject
+
+    @Headers("Content-Type: multipart/form-data")
+    @Multipart
+    @POST("$API_PATH/image")
+    suspend fun uploadImage(@Part("file") file: RequestBody): JSONObject
+
+    @Headers("Content-Type: multipart/form-data")
+    @Multipart
+    @POST("$API_PATH/image")
+    suspend fun uploadImage(@PartMap params: Map<String, @JvmSuppressWildcards RequestBody>): Response<JSONObject>
 
     companion object {
         private const val API_PATH = "/api/v1"
