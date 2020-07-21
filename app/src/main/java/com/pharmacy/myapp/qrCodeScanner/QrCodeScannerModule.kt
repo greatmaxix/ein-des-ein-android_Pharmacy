@@ -10,5 +10,5 @@ val qrCodeScannerModule = module {
 
     viewModel { QrCodeScannerViewModel(get()) }
 
-    fragment { QrCodeScannerFragment() }
+    fragment { QrCodeScannerFragment(get()) }
 }
