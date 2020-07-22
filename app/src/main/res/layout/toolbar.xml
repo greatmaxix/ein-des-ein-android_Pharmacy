@@ -3,5 +3,5 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/primaryBlue"
+    android:background="@drawable/background_toolbar_corner"
     android:theme="@style/AppToolbarStyle" />

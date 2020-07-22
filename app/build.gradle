@@ -103,10 +103,11 @@ dependencies {
     lifecycle.each { entry -> implementation("$entry.value") }
     navigation.each { entry -> implementation("$entry.value") }
 
-    implementation 'org.apache.commons:commons-lang3:3.9' // for Date extensions only
-    implementation "com.jakewharton.timber:timber:4.7.1"
+    implementation "org.apache.commons:commons-lang3:$rootProject.ext.deps.versions.apacheCommons" // for Date extensions only
+    implementation "com.jakewharton.timber:timber:$rootProject.ext.deps.versions.timber"
     implementation "com.intuit.sdp:sdp-android:$rootProject.ext.deps.versions.sdp"
     implementation "com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp"
     implementation "com.google.android.material:material:$rootProject.ext.deps.versions.material"
     implementation "com.github.fondesa:kpermissions:$rootProject.ext.deps.versions.kPermissions"
+    implementation "com.budiyev.android:code-scanner:$rootProject.ext.deps.versions.qr_code_scanner_version"
 }
