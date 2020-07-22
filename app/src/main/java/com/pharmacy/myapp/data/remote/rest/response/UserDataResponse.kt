@@ -1,10 +1,12 @@
 package com.pharmacy.myapp.data.remote.rest.response
 
+import com.google.gson.annotations.SerializedName
+
 data class UserDataResponse(
-    val id: String,
-    val username: String,
-    val email: String,
-    val uuid: String,
-    val createdAt: String,
-    val phone: String
+    @SerializedName("id") val id: String,
+    @SerializedName("username") val username: String,
+    @SerializedName("email") val email: String,
+    @SerializedName("uuid") val uuid: String,
+    @SerializedName("createdAt") val createdAt: String,
+    @SerializedName("phone") val phone: String
 )

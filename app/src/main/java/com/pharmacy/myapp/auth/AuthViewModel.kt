@@ -1,7 +1,6 @@
 package com.pharmacy.myapp.auth
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeToProfile
@@ -12,8 +11,6 @@ import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
@@ -57,7 +54,7 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         progressLiveData.postValue(false)
         when (response) {
             is Success -> {
-                repository.saveUserData(response.value.customer, response.value.token, response.value.refresh_token)
+                repository.saveUserData(response.value.customer, response.value.token, response.value.refreshToken)
                 directionLiveData.postValue(actionFromCodeToProfile())
             }
             is Error -> errorLiveData.postValue(response.errorMessage)
