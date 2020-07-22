@@ -33,6 +33,23 @@
 
     <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
 
+    <!--QrCodeScanner-->
+    <string name="qrCodeLabel">Штрих код</string>
+    <string name="cameraPermissionRationaleMessage">Разрешение на доступ к камере необходимо для сканирования QR кода</string>
+    <string name="grantPermissionButton">Разрешить</string>
+    <string name="closeButton">Закрыть</string>
+    <string name="cameraPermissionPermanentlyDenied">Доступ к камере запрещен. Пожалуйста, перейдите в настройки в раздел Разрешения и предоставьте приложению доступ к камере</string>
+    <string name="permissionDialogSettingsButton">Настройки</string>
+    <string name="permissionDialogCancel">Отмена</string>
+    <string name="cameraPermissionDenied">Доступ к камере запрещен</string>
+    <string name="cameraPermissionNoCameraOnDevice">На устройстве отсутствует камера</string>
+    <string name="qrCodeDescription">Наведите камеру на штрих-код, что бы найти его в приложении</string>
+    <string name="understandScan">Понятно! Сканировать</string>
+    <string name="pointToBarcode">Наведите на штрих код</string>
+    <string name="qrCodeDescriptionTop">Наведите камеру на штрих-код так, что бы он оказалася внутри прямоугольной области.</string>
+    <string name="qrCodeDescriptionBottom">Сканер автоматически считает штрих-код и найдет товар, если он присутсвует в нашей сети.</string>
+    <string name="qrCodeScannerError">Произошла ошибка сканирования кода</string>
+
     <!--Image content descriptions-->
     <string name="back_button">Back button</string>
     <string name="logo">Logo</string>
@@ -73,5 +90,6 @@
     <string name="askTileContentDescriptionHome">Спроси фармацевта</string>
     <string name="analyzeTitleContentDescriptionHome">Анализы и диагностика</string>
     <string name="mapIconContentDescriptionHome">Карта аптек</string>
+    <string name="cameraIconContentDescription">Иконка камеры</string>
 
 </resources>
