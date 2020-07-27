@@ -10,7 +10,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.bumptech.glide.Glide
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
-import com.pharmacy.myapp.core.extensions.getMultipartBody
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
@@ -24,7 +23,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
-class ProfileViewModel(private val context: Context, private val repository: ProfileRepository) :
+
+class ProfileViewModel(
+    private val context: Context,
+    private val context: Context, private val repository: ProfileRepository
+) :
     BaseViewModel() {
 
     val errorLiveData by lazy { SingleLiveEvent<String>() }

@@ -27,6 +27,7 @@ import com.pharmacy.myapp.profile.ProfileViewModel
 import com.pharmacy.myapp.ui.text.*
 import com.pharmacy.myapp.util.BlurTransformation
 import kotlinx.android.synthetic.main.fragment_profile_edit.*
+import timber.log.Timber
 
 class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
 
