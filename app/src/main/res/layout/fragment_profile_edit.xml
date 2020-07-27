@@ -18,12 +18,23 @@
         android:layout_height="@dimen/_72sdp"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_24sdp"
-        android:adjustViewBounds="true"
         android:contentDescription="@string/profileImage"
         android:src="@drawable/main_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <ImageView
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:adjustViewBounds="true"
+        android:focusable="false"
+        android:src="@drawable/ic_camera"
+        android:tint="@color/colorGlobalWhite"
+        app:layout_constraintBottom_toBottomOf="@id/ivProfileEdit"
+        app:layout_constraintEnd_toEndOf="@id/ivProfileEdit"
+        app:layout_constraintStart_toStartOf="@id/ivProfileEdit"
+        app:layout_constraintTop_toTopOf="@id/ivProfileEdit" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilNameEditProfile"

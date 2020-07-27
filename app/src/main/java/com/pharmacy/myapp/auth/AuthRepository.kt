@@ -25,11 +25,13 @@ class AuthRepository(private val spManager: SPManager, private val rm: RestManag
     suspend fun login(phone: String, code: String) =
         safeApiCall(rm.tokenRefreshCall) { rm.login(phone, code) }
 
-    fun saveUserData(customer: Customer, token: String, refreshToken: String) {
+    fun saveCustomerData(customer: Customer, token: String, refreshToken: String) {
         spManager.email = customer.email
         spManager.phone = customer.phone
-        spManager.username = customer.username
+        spManager.name = customer.name
         spManager.token = token
         spManager.refreshToken = refreshToken
+        spManager.avatarUuid = customer.avatarUuid
+//        spManager.avatarUrl = customer.avatarUrl // todo нужно также получать url
     }
 }

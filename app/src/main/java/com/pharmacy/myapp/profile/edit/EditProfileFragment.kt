@@ -10,7 +10,8 @@ import android.provider.Settings
 import android.view.View
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.fondesa.kpermissions.allGranted
 import com.fondesa.kpermissions.anyDenied
@@ -24,8 +25,8 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.profile.ProfileViewModel
 import com.pharmacy.myapp.ui.text.*
+import com.pharmacy.myapp.util.BlurTransformation
 import kotlinx.android.synthetic.main.fragment_profile_edit.*
-import timber.log.Timber
 
 class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
 
@@ -33,7 +34,6 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getUserData()
         tilPhoneEditProfile.setPhoneRule()
         showBackButton(R.drawable.ic_arrow_back) { navController.popBackStack() }
         etPhoneEditProfile.addCountryCodePrefix()
@@ -50,21 +50,19 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-        viewModel.userDataLiveData.observeExt {
-            etEmailEditProfile.setText(it.first)
-            etPhoneEditProfile.setText(it.second?.addPlusSignIfNeeded())
-            etNameEditProfile.setText(it.third)
+        viewModel.customerInfoLiveData.observeExt {
+            etEmailEditProfile.setText(it.email)
+            etPhoneEditProfile.setText(it.phone?.addPlusSignIfNeeded())
+            etNameEditProfile.setText(it.name)
         }
         viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
         viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
         viewModel.avatarLiveData.observeNullableExt {
             Glide.with(this)
                 .load(it)
-                .placeholder(R.drawable.main_icon)
-                .apply(RequestOptions.circleCropTransform())
-                .transition(DrawableTransitionOptions.withCrossFade())
+                .placeholder(R.drawable.ic_avatar)
+                .apply(RequestOptions().transform(MultiTransformation(BlurTransformation(requireContext()), CircleCrop())))
                 .into(ivProfileEdit)
-
         }
     }
 
@@ -110,7 +108,6 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
                     }
                     result.anyDenied() -> messageCallback?.showError(getString(R.string.whoAreYou_cameraPermissionDenied))
                     result.allGranted() -> {
-                        Timber.d(viewModel.avatarFile.toString())
                         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                         val uri = FileProvider.getUriForFile(
                             requireContext(),

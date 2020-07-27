@@ -17,8 +17,8 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
     val errorLiveData by lazy { SingleLiveEvent<String>() }
     val progressLiveData by lazy { SingleLiveEvent<Boolean>() }
     val directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
-    val userPhoneLiveData by lazy { MutableLiveData<String>() }
-    private var userPhone: String = ""
+    val customerPhoneLiveData by lazy { MutableLiveData<String>() }
+    private var customerPhone: String = ""
 
     fun signUp(name: String, phone: String, email: String) {
         launchIO {
@@ -50,11 +50,11 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
     fun login(code: String) = launchIO {
         progressLiveData.postValue(true)
-        val response = repository.login(userPhone.substring(1), code)
+        val response = repository.login(customerPhone.substring(1), code)
         progressLiveData.postValue(false)
         when (response) {
             is Success -> {
-                repository.saveUserData(response.value.customer, response.value.token, response.value.refreshToken)
+                repository.saveCustomerData(response.value.customer, response.value.token, response.value.refreshToken)
                 directionLiveData.postValue(actionFromCodeToProfile())
             }
             is Error -> errorLiveData.postValue(response.errorMessage)
@@ -63,14 +63,14 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
     private fun setUserPhone(phone: String) {
         var newPhone = phone
-        userPhone = phone
+        customerPhone = phone
         if (BuildConfig.DEBUG) if (!phone.contains("+")) newPhone = "+${phone.substring(1)}"
-        userPhoneLiveData.postValue(newPhone.formatPhone())
+        customerPhoneLiveData.postValue(newPhone.formatPhone())
     }
 
     fun resendCode() = launchIO {
         progressLiveData.postValue(true)
-        val response = repository.auth(userPhone)
+        val response = repository.auth(customerPhone)
         progressLiveData.postValue(false)
         when (response) {
             is Success -> {/*todo snackbar*/}

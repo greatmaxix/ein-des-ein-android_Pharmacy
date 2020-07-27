@@ -3,7 +3,9 @@ package com.pharmacy.myapp.data.remote.rest
 import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
 import com.pharmacy.myapp.data.remote.rest.response.LoginResponse
 import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
-import com.pharmacy.myapp.data.remote.rest.response.UserDataResponse
+import com.pharmacy.myapp.data.remote.rest.response.UploadImageResponse
+import com.pharmacy.myapp.model.BaseDataResponse
+import com.pharmacy.myapp.model.CustomerResponse
 import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Response
@@ -24,14 +26,17 @@ interface ApiService {
     suspend fun login(@Body arguments: Map<String, String>): LoginResponse
 
     @PATCH("$API_PATH_CUSTOMER/customer")
-    suspend fun updateCustomerData(@Body arguments: Map<String, String>): UserDataResponse
+    suspend fun updateCustomerInfo(@Body arguments: Map<String, String>): BaseDataResponse<CustomerResponse>
 
     @POST("$API_PATH_CUSTOMER/logout")
     suspend fun logout(@Body arguments: Map<String, String>): Response<JSONObject>
 
     @Multipart
-    @POST("$API_PATH/image")
-    suspend fun uploadImage(@Part file: MultipartBody.Part): Response<JSONObject>
+    @POST("$API_PATH_CUSTOMER/image")
+    suspend fun uploadImage(@Part file: MultipartBody.Part): UploadImageResponse
+
+    @GET("$API_PATH_CUSTOMER/customer")
+    suspend fun fetchCustomerInfo(): BaseDataResponse<CustomerResponse>
 
     companion object {
         private const val API_PATH = "/api/v1"

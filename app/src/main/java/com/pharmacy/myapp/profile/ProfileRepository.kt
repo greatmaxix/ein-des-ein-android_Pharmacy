@@ -3,21 +3,25 @@ package com.pharmacy.myapp.profile
 import com.pharmacy.myapp.core.network.safeApiCall
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
-import com.pharmacy.myapp.data.remote.rest.response.UserDataResponse
+import com.pharmacy.myapp.model.CustomerInfo
+import com.pharmacy.myapp.model.CustomerResponse
 import okhttp3.MultipartBody
 
 class ProfileRepository(private val spManager: SPManager, private val rm: RestManager) {
 
-    fun getUserData() = Triple(spManager.email, spManager.phone, spManager.username)
+    fun getCustomerInfo() =
+        CustomerInfo(spManager.email, spManager.name, spManager.phone, spManager.avatarUuid)
 
-    suspend fun updateCustomerData(name: String, email: String) =
+    suspend fun updateCustomerInfo(name: String, email: String, avatarUuid: String) =
         safeApiCall(rm.tokenRefreshCall) {
-            rm.updateCustomerData(name, email)
+            saveCustomerInfo(rm.updateCustomerInfo(name, email, avatarUuid).data)
         }
 
-    fun saveNewUserData(dataResponse: UserDataResponse) {
-        spManager.email = dataResponse.email
-        spManager.username = dataResponse.username
+    private fun saveCustomerInfo(response: CustomerResponse) {
+        spManager.email = response.email
+        spManager.name = response.name
+        spManager.avatarUuid = response.avatarInfo.uuid
+        spManager.avatarUrl = response.avatarInfo.url
     }
 
     suspend fun logout() =
@@ -29,5 +33,5 @@ class ProfileRepository(private val spManager: SPManager, private val rm: RestMa
     fun clearCustomerData() = spManager.clear()
 
     suspend fun uploadImage(partBody: MultipartBody.Part) =
-        safeApiCall { rm.uploadImage(partBody) }
+        safeApiCall(rm.tokenRefreshCall) { rm.uploadImage(partBody) }
 }

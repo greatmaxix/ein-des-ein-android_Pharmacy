@@ -33,7 +33,7 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/profileImage"
-                android:src="@drawable/main_icon"
+                android:src="@drawable/ic_avatar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

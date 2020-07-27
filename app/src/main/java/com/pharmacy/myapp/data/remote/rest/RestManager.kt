@@ -8,6 +8,7 @@ import com.pharmacy.myapp.core.network.ResponseWrapper
 import com.pharmacy.myapp.core.network.safeApiCall
 import com.pharmacy.myapp.core.utils.HttpLogger
 import com.pharmacy.myapp.data.local.SPManager
+import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.AVATAR_UUID
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.CODE
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.EMAIL
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.PHONE
@@ -101,10 +102,12 @@ class RestManager : KoinComponent {
     suspend fun login(phone: String, code: String) =
         api.login(mapOf(PHONE to phone, CODE to code))
 
-    suspend fun updateCustomerData(name: String, email: String) =
-        api.updateCustomerData(mapOf(USERNAME to name, EMAIL to email))
+    suspend fun updateCustomerInfo(name: String, email: String, avatarUuid: String) =
+        api.updateCustomerInfo(mapOf(USERNAME to name, EMAIL to email, AVATAR_UUID to avatarUuid))
 
     suspend fun logout(refreshToken: String) = api.logout(mapOf(REFRESH_TOKEN to refreshToken))
 
     suspend fun uploadImage(partBody: MultipartBody.Part) = api.uploadImage(partBody)
+
+    suspend fun fetchCustomerInfo() = api.fetchCustomerInfo()
 }

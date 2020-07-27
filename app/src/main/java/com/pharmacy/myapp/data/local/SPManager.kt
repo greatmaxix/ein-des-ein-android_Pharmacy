@@ -37,10 +37,23 @@ class SPManager(val context: Context) : SharedPreferenceContext {
             put(Keys.PHONE, value)
         }
 
-    var username: String?
+    var name: String?
         get() = get(Keys.USERNAME)
         set(value) {
             put(Keys.USERNAME, value)
+        }
+
+    var avatarUuid: String?
+        get() = get(Keys.AVATAR_UUID)
+        set(value) {
+            put(Keys.AVATAR_UUID, value)
+        }
+
+
+    var avatarUrl: String?
+        get() = get(Keys.AVATAR_URL)
+        set(value) {
+            put(Keys.AVATAR_URL, value)
         }
 
     fun clear() = sp.edit {
@@ -51,6 +64,6 @@ class SPManager(val context: Context) : SharedPreferenceContext {
 
 
     private enum class Keys {
-        TOKEN, EMAIL, PHONE, USERNAME, REFRESH_TOKEN
+        TOKEN, EMAIL, PHONE, USERNAME, REFRESH_TOKEN, AVATAR_UUID, AVATAR_URL
     }
 }

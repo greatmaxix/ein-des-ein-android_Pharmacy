@@ -1,5 +1,6 @@
 package com.pharmacy.myapp
 
+import androidx.work.WorkManager
 import com.pharmacy.myapp.auth.authModule
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
@@ -22,6 +23,6 @@ object Modules {
     private val managerModule = module(true) {
         single { SPManager(androidApplication()) }
         single { RestManager() }
-//        single { DBManager(androidApplication(), get()) }
+        single { WorkManager.getInstance(androidApplication()) }
     }
 }

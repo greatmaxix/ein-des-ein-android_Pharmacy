@@ -4,50 +4,48 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.webkit.MimeTypeMap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.pharmacy.myapp.R
+import com.bumptech.glide.Glide
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
+import com.pharmacy.myapp.core.extensions.getMultipartBody
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
+import com.pharmacy.myapp.model.CustomerInfo
 import com.pharmacy.myapp.profile.ProfileFragmentDirections.Companion.actionFromProfileToSplash
 import com.pharmacy.myapp.profile.edit.EditProfileFragment.Companion.TAKE_PHOTO_REQUEST_CODE
+import com.pharmacy.myapp.util.Constants.Companion.AVATAR_FILE_NAME
 import com.pharmacy.myapp.util.ImageFileUtil
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import timber.log.Timber
 import java.io.File
 
-
-class ProfileViewModel(
-    private val context: Context,
-    private val repository: ProfileRepository
-) : BaseViewModel() {
+class ProfileViewModel(private val context: Context, private val repository: ProfileRepository) :
+    BaseViewModel() {
 
     val errorLiveData by lazy { SingleLiveEvent<String>() }
     val progressLiveData by lazy { SingleLiveEvent<Boolean>() }
-    val userDataLiveData by lazy { SingleLiveEvent<Triple<String?, String?, String?>>() }
+    private val _customerInfoLiveData  = MutableLiveData<CustomerInfo>(repository.getCustomerInfo())
+    val customerInfoLiveData :LiveData<CustomerInfo> = _customerInfoLiveData
     val directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     var avatarFile = File(context.externalCacheDir, AVATAR_FILE_NAME)
     private val _avatarLiveData = MutableLiveData<String?>(avatarFile.absolutePath)
     val avatarLiveData: LiveData<String?> = _avatarLiveData
 
-    fun getUserData() = userDataLiveData.postValue(repository.getUserData())
-
-    fun updateCustomerData(name: String, email: String) = launchIO {
+    fun updateCustomerData(
+        name: String = repository.getCustomerInfo().name.orEmpty(),
+        email: String = repository.getCustomerInfo().email.orEmpty(),
+        avatarUuid: String = repository.getCustomerInfo().avatarUuid.orEmpty()
+    ) = launchIO {
         progressLiveData.postValue(true)
-        val response = repository.updateCustomerData(name, email)
+        val response = repository.updateCustomerInfo(name, email, avatarUuid)
         progressLiveData.postValue(false)
         when (response) {
-            is Success -> repository.saveNewUserData(response.value)
+            is Success -> _customerInfoLiveData.postValue(repository.getCustomerInfo())
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
     }
@@ -59,6 +57,7 @@ class ProfileViewModel(
         when (response) {
             is Success -> {
                 repository.clearCustomerData()
+                deleteAvatarPhoto()
                 directionLiveData.postValue(actionFromProfileToSplash())
             }
             is Error -> errorLiveData.postValue(response.errorMessage)
@@ -70,26 +69,21 @@ class ProfileViewModel(
         if (resultCode == Activity.RESULT_OK && imageUri != null) {
             progressLiveData.postValue(true)
             viewModelScope.launch {
-                withContext(Dispatchers.IO) {
+                withContext(IO) {
                     ImageFileUtil.saveImageByUriToFile(context, avatarFile, imageUri)
                     ImageFileUtil.compressImage(context, avatarFile, imageUri)
 
-                    val fileExtension = MimeTypeMap.getFileExtensionFromUrl(avatarFile.absolutePath)
-                    val fileType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension)
-                    val fileRequestBody = avatarFile.asRequestBody(fileType?.toMediaTypeOrNull())
-                    val partBody = MultipartBody.Part.createFormData("file", avatarFile.name, fileRequestBody)
-
-                    when (val uploadImage = repository.uploadImage(partBody)) {
-                        is Success -> Timber.d(uploadImage.value.toString())
-                        is Error -> Timber.d(uploadImage.errorMessage)
+                    when (val uploadImage = repository.uploadImage(avatarFile.getMultipartBody())) {
+                        is Success -> {
+                            updateCustomerData(avatarUuid = uploadImage.value.data.uuid)
+                            Glide.get(context).clearDiskCache()
+                            _avatarLiveData.postValue(avatarFile.absolutePath)
+                        }
+                        is Error -> errorLiveData.postValue(uploadImage.errorMessage)
                     }
                 }
-                _avatarLiveData.value = avatarFile.absolutePath
                 progressLiveData.postValue(false)
             }
-        } else {
-            _avatarLiveData.value = null
-            errorLiveData.postValue(context.getString(R.string.whoAreYou_errorSavingAvatar))
         }
     }
 
@@ -100,7 +94,4 @@ class ProfileViewModel(
         }
     }
 
-    companion object {
-        private const val AVATAR_FILE_NAME = "user_avatar.jpg"
-    }
 }
