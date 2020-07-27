@@ -5,6 +5,7 @@ import android.view.View
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
+import com.pharmacy.myapp.home.HomeFragmentDirections.Companion.globalToQrCodeScanner
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,7 +20,7 @@ class HomeFragment : BaseMVVMFragment(R.layout.fragment_home) {
         mcvAnalyzeHome.onClick { }
         mcvOrderContainer.onClick { }
         mcvSearchHome.onClick { }
-        mcvScanHome.onClick { }
+        mcvScanHome.onClick { navController.navigate(globalToQrCodeScanner()) }
     }
 
     override fun onBindLiveData() {
@@ -27,5 +28,4 @@ class HomeFragment : BaseMVVMFragment(R.layout.fragment_home) {
         viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
         viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
     }
-
 }

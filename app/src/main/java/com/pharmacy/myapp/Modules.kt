@@ -6,6 +6,7 @@ import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
 import com.pharmacy.myapp.home.homeModule
 import com.pharmacy.myapp.profile.profileModule
+import com.pharmacy.myapp.qrCodeScanner.qrCodeScannerModule
 import com.pharmacy.myapp.splash.splashModule
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
@@ -17,7 +18,8 @@ object Modules {
         splashModule,
         profileModule,
         homeModule,
-        authModule
+        authModule,
+        qrCodeScannerModule
     )
 
     private val managerModule = module(true) {

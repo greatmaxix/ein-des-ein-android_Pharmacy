@@ -49,12 +49,15 @@ class SPManager(val context: Context) : SharedPreferenceContext {
             put(Keys.AVATAR_UUID, value)
         }
 
-
     var avatarUrl: String?
         get() = get(Keys.AVATAR_URL)
         set(value) {
             put(Keys.AVATAR_URL, value)
         }
+
+    var qrCodeDescriptionShown: Boolean?
+        get() = get(Keys.QR_CODE_DESCRIPTION_SHOWN)
+        set(value) = put(Keys.QR_CODE_DESCRIPTION_SHOWN, value)
 
     fun clear() = sp.edit {
         sp.all.forEach {
@@ -62,8 +65,7 @@ class SPManager(val context: Context) : SharedPreferenceContext {
         }
     }
 
-
     private enum class Keys {
-        TOKEN, EMAIL, PHONE, USERNAME, REFRESH_TOKEN, AVATAR_UUID, AVATAR_URL
+        TOKEN, EMAIL, PHONE, USERNAME, REFRESH_TOKEN, AVATAR_UUID, AVATAR_URL, QR_CODE_DESCRIPTION_SHOWN
     }
 }

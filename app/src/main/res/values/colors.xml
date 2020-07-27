@@ -49,4 +49,9 @@
     <color name="primaryLightRipple">#50FFFFFF</color>
 
     <color name="askCardViewBackgroundHome">#02AEF8</color>
+
+    <color name="qrCodeDescriptionBackground">#8492B7</color>
+    <color name="qrCodeScannerMask">#668492B7</color>
+    <color name="commonNavShape">#FFD1D3D4</color>
+
 </resources>
