@@ -89,4 +89,9 @@
         <item name="android:background">@drawable/background_bottom_sheet_corners</item>
     </style>
 
+    <style name="TagChipText">
+        <item name="android:textColor">@color/primaryBlue</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
 </resources>

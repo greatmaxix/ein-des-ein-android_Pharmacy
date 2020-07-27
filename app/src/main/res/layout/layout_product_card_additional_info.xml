@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:clipToPadding="false"
+    android:paddingStart="@dimen/_12sdp"
+    android:paddingEnd="@dimen/_12sdp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tagsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tags"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/tagsGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagsTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/descriptionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:text="@string/productDescription"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tagsGroup" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/descriptionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/descriptionTitle"
+        tools:text="Таблетки покрытые пленочной оболочкой от светло-серого до темно-серого цвета, капсуловидной формы, сгравировкой PRENATAL с одной стороны и FORTE с другой стороны, со специфическим запахом" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/instructionContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        app:cardBackgroundColor="@color/colorGlobalWhite"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:contentPadding="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionText">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/instructionName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_file_text"
+                android:drawablePadding="@dimen/_8sdp"
+                android:text="@string/instruction"
+                android:textColor="@color/darkBlue"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productShortDescription" />
+
+            <ImageView
+                android:id="@+id/instructionArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="180"
+                android:src="@drawable/ic_up_arrow_blue"
+                app:layout_constraintBottom_toBottomOf="@+id/releaseFormsTitle"
+                app:layout_constraintEnd_toEndOf="@+id/releaseFormsTitle"
+                app:layout_constraintTop_toTopOf="@+id/releaseFormsTitle" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/instructionWarningContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:elevation="0dp"
+        app:cardBackgroundColor="@color/mediumGrey"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:contentPadding="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@+id/instructionContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/instructionWarningText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_attention"
+            android:drawablePadding="@dimen/_8sdp"
+            android:text="@string/instructionAttention"
+            android:textColor="@color/darkBlue"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productShortDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/questionsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_marginTop="@dimen/_24sdp"
+        app:cardBackgroundColor="@color/darkBlue"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardElevation="0dp"
+        app:contentPadding="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/instructionWarningContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/questionsHaveQuestions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remainQuestions"
+                    android:textColor="@color/colorGlobalWhite"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productShortDescription" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/questionsAskPharmacist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/askPharmacist"
+                    android:textColor="@color/colorGlobalWhite"
+                    android:textSize="@dimen/_15ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productShortDescription" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_question_white" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recommendedTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:text="@string/recommendedForYou"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/questionsContainer" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recommendedList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recommendedTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/seeAllRecommended"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:background="@drawable/background_default_ripple_selector_rect"
+        android:drawableEnd="@drawable/ic_right_arrow_white"
+        android:drawableTint="@color/primaryBlue"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/_4sdp"
+        android:textColor="@color/primaryBlue"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recommendedList"
+        tools:text="Смотреть все (23)" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

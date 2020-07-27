@@ -12,7 +12,7 @@ versions.rxbinding = "2.2.0"
 versions.flowbinding = "0.11.1"
 versions.rxandroid = "2.1.1"
 versions.core = "1.2.0"
-versions.gradle = '4.0.0'
+versions.gradle = '4.0.1'
 versions.coroutines = "1.3.5"
 versions.collection = "1.1.0"
 versions.material = "1.1.0"
@@ -29,6 +29,7 @@ versions.viewpager = "1.0.0"
 versions.constraint = "2.0.0-beta6"
 versions.kPermissions = "3.1.2"
 versions.qr_code_scanner_version = "2.1.0"
+versions.glide = "4.11.0"
 
 ext.deps.versions = versions
 
