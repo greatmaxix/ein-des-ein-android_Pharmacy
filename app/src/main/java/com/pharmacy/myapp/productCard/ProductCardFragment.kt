@@ -20,7 +20,6 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.alphaVisibleOrGone
 import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.setMenu
 import com.pharmacy.myapp.core.extensions.toast
 import com.pharmacy.myapp.data.DummyData
 import com.pharmacy.myapp.productCard.adapter.ProductCardImageAdapter
@@ -33,16 +32,15 @@ import kotlinx.android.synthetic.main.layout_product_card_main_info.*
 
 class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVVMFragment(R.layout.fragment_product_card) {
 
-    private lateinit var imageAdapter: ProductCardImageAdapter
-    private lateinit var releaseFormsAdapter: ReleaseFormAdapter
-    private lateinit var recommendedAdapter: RecommendedAdapter
+    private val imageAdapter = ProductCardImageAdapter()
+    private val releaseFormsAdapter = ReleaseFormAdapter()
+    private val recommendedAdapter = RecommendedAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         showBackButton(R.drawable.ic_arrow_back) { navController.popBackStack() }
-        toolbar?.setMenu(R.menu.share, Toolbar.OnMenuItemClickListener {
+        initMenu(R.menu.share, Toolbar.OnMenuItemClickListener {
             if (it.itemId == R.id.menu_share) {
                 // TODO share func
                 requireContext().toast("TODO: Share")
@@ -117,8 +115,8 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
 
     private fun initImagePager() {
         val items = DummyData.getProductImages()
-        imageAdapter = ProductCardImageAdapter(items) // TODO insert data to adapter
         productImagePager.adapter = imageAdapter
+        imageAdapter.setList(items)
         TabLayoutMediator(productImagePagerIndicator, productImagePager) { _, _ ->
             // no op
         }.attach()
@@ -126,10 +124,9 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
 
     private fun initReleaseForms() {
         val items = DummyData.getReleaseForms()
-        releaseFormsAdapter = ReleaseFormAdapter(items) // TODO insert data to adapter
         releaseFormsList.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         releaseFormsList.adapter = releaseFormsAdapter
-
+        releaseFormsAdapter.setList(items)
         releaseFormsTitleArrow.rotation = if (releaseFormsList.isVisible) 0f else 180f
         releaseFormsTitle.onClick {
             releaseFormsTitleArrow.rotation = if (!releaseFormsList.isVisible) 0f else 180f
@@ -139,9 +136,9 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
 
     private fun initRecommended() {
         val items = DummyData.getRecommended()
-        recommendedAdapter = RecommendedAdapter(items) // TODO insert data to adapter
         recommendedList.setHasFixedSize(true)
         recommendedList.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         recommendedList.adapter = recommendedAdapter
+        recommendedAdapter.setList(items)
     }
 }

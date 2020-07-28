@@ -11,15 +11,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
 
-class ProductCardImageAdapter(items: List<String>) : BaseRecyclerAdapter<String, ProductCardImageAdapter.ImageViewHolder>(items) {
+class ProductCardImageAdapter : BaseRecyclerAdapter<String, ProductCardImageAdapter.ImageViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder =
-        ImageViewHolder(
-            ImageView(parent.context)
-                .apply {
-                    layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-                }
-        )
+    fun setList(list: MutableList<String>) {
+        items = list
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder = ImageViewHolder.newInstance(parent)
 
     class ImageViewHolder(view: View) : BaseViewHolder<String>(view) {
 
@@ -34,6 +32,16 @@ class ProductCardImageAdapter(items: List<String>) : BaseRecyclerAdapter<String,
                 .applyDefaultRequestOptions(options)
                 .load(item)
                 .into(itemView as ImageView)
+        }
+
+        companion object {
+
+            fun newInstance(parent: ViewGroup) = ImageViewHolder(
+                ImageView(parent.context)
+                    .apply {
+                        layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+                    }
+            )
         }
     }
 }
