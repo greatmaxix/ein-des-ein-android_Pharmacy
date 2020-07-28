@@ -3,6 +3,9 @@ package com.pharmacy.myapp.data.remote.rest
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.pharmacy.myapp.BuildConfig
+import com.pharmacy.myapp.R
+import com.pharmacy.myapp.core.network.ResponseWrapper
+import com.pharmacy.myapp.core.network.safeApiCall
 import com.pharmacy.myapp.core.utils.HttpLogger
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.CODE
@@ -10,6 +13,7 @@ import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.EMAIL
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.PHONE
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REFRESH_TOKEN
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.USERNAME
+import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
 import okhttp3.OkHttpClient
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -30,6 +34,23 @@ class RestManager : KoinComponent {
 
     private lateinit var api: ApiService
     private lateinit var gson: Gson
+
+    val tokenRefreshCall: suspend () -> ResponseWrapper<Any> = {
+        safeApiCall({
+            ResponseWrapper.Error(
+                R.string.error_networkErrorMessage,
+                "Token refresh error due to recursive refresh call"
+            ) // TODO check this case
+        }) {
+            spManager.token = ""
+            val refreshToken = spManager.refreshToken
+            if (refreshToken.isNullOrBlank()) throw IllegalArgumentException("refreshToken is empty")
+            val response = api.tokenRefresh(TokenRefreshRequest(refreshToken))
+            spManager.token = response.token
+            spManager.refreshToken = response.refreshToken
+            Any()
+        }
+    }
 
     init {
         initServices(createRetrofit())
@@ -83,5 +104,4 @@ class RestManager : KoinComponent {
         api.updateCustomerData(mapOf(USERNAME to name, EMAIL to email))
 
     suspend fun logout(refreshToken: String) = api.logout(mapOf(REFRESH_TOKEN to refreshToken))
-
 }

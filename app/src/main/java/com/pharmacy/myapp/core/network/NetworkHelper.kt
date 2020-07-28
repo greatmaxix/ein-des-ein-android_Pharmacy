@@ -6,13 +6,15 @@ import org.json.JSONObject
 import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
+import java.net.HttpURLConnection
 import java.net.SocketException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 suspend fun <T> safeApiCall(
+    tokenRefreshCall: suspend () -> ResponseWrapper<Any>,
     apiCall: suspend () -> T
-) =
+): ResponseWrapper<T> =
     try {
         ResponseWrapper.Success(apiCall.invoke())
     } catch (throwable: Exception) {
@@ -24,12 +26,19 @@ suspend fun <T> safeApiCall(
             is IOException -> ResponseWrapper.Error(R.string.error_networkErrorMessage)
             is HttpException -> {
                 val code = throwable.code()
-//                    Crashlytics.log(Log.WARN, "ErrorHandler", errorResponse?.errorMessage)
-                ResponseWrapper.Error(
-                    R.string.error_networkErrorMessage,
-                    getErrorMessage(throwable.response()?.errorBody()),
-                    code
-                )
+                if (code == HttpURLConnection.HTTP_UNAUTHORIZED) {
+                    if (tokenRefreshCall.invoke() is ResponseWrapper.Success) {
+                        safeApiCall(tokenRefreshCall, apiCall)
+                    } else {
+                        ResponseWrapper.Error(R.string.error_networkErrorMessage)
+                    }
+                } else {
+                    ResponseWrapper.Error(
+                        R.string.error_networkErrorMessage,
+                        getErrorMessage(throwable.response()?.errorBody()),
+                        code
+                    )
+                }
             }
             else -> ResponseWrapper.Error(R.string.error_errorGettingData)
         }

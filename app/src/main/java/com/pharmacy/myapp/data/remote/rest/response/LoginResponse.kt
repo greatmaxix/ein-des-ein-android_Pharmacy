@@ -1,5 +1,16 @@
 package com.pharmacy.myapp.data.remote.rest.response
 
-data class LoginResponse(val customer: Customer, val refresh_token: String, val token: String)
+import com.google.gson.annotations.SerializedName
 
-data class Customer(val email: String, val phone: String, val username: String, val uuid: String)
+data class LoginResponse(
+    @SerializedName("customer") val customer: Customer,
+    @SerializedName("refresh_token") val refreshToken: String,
+    @SerializedName("token") val token: String
+)
+
+data class Customer(
+    @SerializedName("email") val email: String,
+    @SerializedName("phone") val phone: String,
+    @SerializedName("username") val username: String,
+    @SerializedName("uuid") val uuid: String
+)

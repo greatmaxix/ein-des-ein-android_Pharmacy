@@ -10,7 +10,7 @@ import java.net.HttpURLConnection.HTTP_CREATED
 class AuthRepository(private val spManager: SPManager, private val rm: RestManager) {
 
     suspend fun signUp(name: String, phone: String, email: String) =
-        safeApiCall {
+        safeApiCall(rm.tokenRefreshCall) {
             val response = rm.signUp(name, phone, email)
             if (response.isSuccessful && response.code() == HTTP_CREATED) {
                 response.body()
@@ -19,9 +19,11 @@ class AuthRepository(private val spManager: SPManager, private val rm: RestManag
             }
         }
 
-    suspend fun auth(phone: String) = safeApiCall { rm.auth(phone) }
+    suspend fun auth(phone: String) =
+        safeApiCall(rm.tokenRefreshCall) { rm.auth(phone) }
 
-    suspend fun login(phone: String, code: String) = safeApiCall { rm.login(phone, code) }
+    suspend fun login(phone: String, code: String) =
+        safeApiCall(rm.tokenRefreshCall) { rm.login(phone, code) }
 
     fun saveUserData(customer: Customer, token: String, refreshToken: String) {
         spManager.email = customer.email
@@ -30,5 +32,4 @@ class AuthRepository(private val spManager: SPManager, private val rm: RestManag
         spManager.token = token
         spManager.refreshToken = refreshToken
     }
-
 }
