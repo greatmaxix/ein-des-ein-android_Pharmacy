@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.View
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
+import com.pharmacy.myapp.core.extensions.debug
 import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.home.HomeFragmentDirections.Companion.globalToQrCodeScanner
+import com.pharmacy.myapp.home.HomeFragmentDirections.Companion.globalToDevTools
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,7 +21,14 @@ class HomeFragment : BaseMVVMFragment(R.layout.fragment_home) {
         mcvAnalyzeHome.onClick { }
         mcvOrderContainer.onClick { }
         mcvSearchHome.onClick { }
-        mcvScanHome.onClick { navController.navigate(globalToQrCodeScanner()) }
+
+        // Developers screen for convenient features access
+        debug {
+            mcvToolbarHome.setOnLongClickListener {
+                navController.navigate(globalToDevTools())
+                true
+            }
+        }
     }
 
     override fun onBindLiveData() {

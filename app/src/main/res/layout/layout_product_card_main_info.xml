@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:clipToPadding="false"
+    android:paddingStart="@dimen/_12sdp"
+    android:paddingEnd="@dimen/_12sdp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/_19ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="АЛЛОПУРИНОЛ-ЭГИС, 40 мг" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productShortDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productTitle"
+        tools:text="Таблетки шипучие, 24 шт" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productIssuer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/greyText"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productShortDescription"
+        tools:text="Chinoin Pharmaceutical and Chemical Works Co.  Венгрия" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:paddingEnd="@dimen/_8sdp"
+        android:textColor="@color/primaryBlue"
+        android:textSize="@dimen/_19ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/productBonus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productIssuer"
+        tools:text="от 568 ₽ - 985₽" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productBonus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_plus_green"
+        android:drawablePadding="@dimen/_4sdp"
+        android:textColor="@color/green"
+        android:textSize="@dimen/_10ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/productPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/productPrice"
+        tools:text="🤑50 БОНСУОВ" />
+
+    <include
+        android:id="@+id/productMainDivider"
+        layout="@layout/view_product_card_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productPrice" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/productAnalogContainer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:cardBackgroundColor="@color/purple"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardElevation="0dp"
+        app:contentPadding="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/productMainDivider">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/analogTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGlobalWhite"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productShortDescription"
+                    tools:text="Аналоги и основное действующее вещетсво" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/analogName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:textColor="@color/colorGlobalWhite"
+                    android:textSize="@dimen/_15ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productShortDescription"
+                    tools:text="Дротаверин" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_right_arrow_white" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/categoryContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:cardBackgroundColor="@color/colorGlobalWhite"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:contentPadding="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@+id/productAnalogContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/categoryIcon"
+                android:layout_width="@dimen/_48sdp"
+                android:layout_height="@dimen/_48sdp"
+                tools:src="@drawable/ic_vaccine" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/categoryTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/productCategory"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productShortDescription" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/categoryName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:textColor="@color/primaryBlue"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productShortDescription"
+                    tools:text="Противогрибковый" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/releaseFormsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:text="@string/releaseForms"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoryContainer" />
+
+    <ImageView
+        android:id="@+id/releaseFormsTitleArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_up_arrow_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/releaseFormsTitle"
+        app:layout_constraintEnd_toEndOf="@+id/releaseFormsTitle"
+        app:layout_constraintTop_toTopOf="@+id/releaseFormsTitle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/releaseFormsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/releaseFormsTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

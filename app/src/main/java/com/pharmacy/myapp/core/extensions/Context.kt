@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Point
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_DIP
@@ -18,7 +17,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
-
+import com.pharmacy.myapp.BuildConfig
 
 @ColorInt
 fun Context.getCompatColor(@ColorRes colorRes: Int): Int = ContextCompat.getColor(this, colorRes)
@@ -88,3 +87,9 @@ fun Context.dimenByNameAsPixel(name: String) = resources.getDimensionPixelSize(d
 fun Context.dimenByName(name: String, defType: String = "dimen", defPackage: String = "android") = resources.getIdentifier(name, defType, defPackage)
 
 fun Context.stringByName(name: String) = resources.getIdentifier(name, "string", packageName)
+
+inline fun Context.debug(code: () -> Unit) {
+    if (BuildConfig.DEBUG) {
+        code()
+    }
+}
