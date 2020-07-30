@@ -28,7 +28,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         super.onBindLiveData()
         viewModel.customerInfoLiveData.observeExt {
             mtvNameProfile.text = it.name
-            mtvPhoneProfile.text = it.phone?.addPlusSignIfNeeded()?.formatPhone()
+            mtvPhoneProfile.text = it.phone.addPlusSignIfNeeded().formatPhone()
         }
         viewModel.directionLiveData.observeExt(navController::navigate)
         viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
@@ -36,6 +36,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         viewModel.avatarLiveData.observeNullableExt {
             Glide.with(this)
                 .load(it)
+                .placeholder(R.drawable.ic_avatar)
                 .apply(RequestOptions.circleCropTransform())
                 .skipMemoryCache(true)
                 .transition(DrawableTransitionOptions.withCrossFade())

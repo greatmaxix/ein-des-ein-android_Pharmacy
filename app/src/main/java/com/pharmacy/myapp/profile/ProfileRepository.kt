@@ -3,26 +3,20 @@ package com.pharmacy.myapp.profile
 import com.pharmacy.myapp.core.network.safeApiCall
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
-import com.pharmacy.myapp.model.CustomerInfo
-import com.pharmacy.myapp.model.CustomerResponse
+import com.pharmacy.myapp.model.customerInfo.CustomerDAO
+import com.pharmacy.myapp.model.customerInfo.CustomerInfo
 import okhttp3.MultipartBody
 
-class ProfileRepository(private val spManager: SPManager, private val rm: RestManager) {
+class ProfileRepository(private val spManager: SPManager, private val rm: RestManager, private val dao: CustomerDAO) {
 
-    fun getCustomerInfo() =
-        CustomerInfo(spManager.email, spManager.name, spManager.phone, spManager.avatarUuid)
+    fun getCustomerInfo() = dao.get()
 
     suspend fun updateCustomerInfo(name: String, email: String, avatarUuid: String) =
         safeApiCall(rm.tokenRefreshCall) {
             saveCustomerInfo(rm.updateCustomerInfo(name, email, avatarUuid).data)
         }
 
-    private fun saveCustomerInfo(response: CustomerResponse) {
-        spManager.email = response.email
-        spManager.name = response.name
-        spManager.avatarUuid = response.avatarInfo.uuid
-        spManager.avatarUrl = response.avatarInfo.url
-    }
+    private suspend fun saveCustomerInfo(customer: CustomerInfo) = dao.update(customer)
 
     suspend fun logout() =
         safeApiCall(rm.tokenRefreshCall) {

@@ -105,5 +105,7 @@
     <string name="whoAreYou_cameraPermissionNoCameraOnDevice">На устройстве нет камеры</string>
     <string name="whoAreYou_cameraPermissionRationaleMessage">Требуется разрешение камеры</string>
     <string name="whoAreYou_errorSavingAvatar">Ошибка при сохранении изображения</string>
+    <string name="chooseAvatarError">Произошла ошибка выбора аватара</string>
+    <string name="avatarSavingError">Ошибка во время сохранения аватара</string>
 
 </resources>

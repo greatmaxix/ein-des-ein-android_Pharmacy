@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 29
@@ -91,6 +92,12 @@ buildscript {
     lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$rootProject.ext.deps.versions.lifecycle"
     lifecycle.viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.ext.deps.versions.lifecycle"
     ext.lifecycle = lifecycle
+
+    def room = [:]
+    room.runtime = "androidx.room:room-runtime:$rootProject.ext.deps.versions.room"
+    room.compiler = "androidx.room:room-compiler:$rootProject.ext.deps.versions.room"
+    room.ktx = "androidx.room:room-ktx:$rootProject.ext.deps.versions.room"
+    ext.room = room
 }
 
 dependencies {
@@ -114,4 +121,8 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.deps.versions.glide"
     implementation "androidx.work:work-runtime-ktx:$rootProject.ext.deps.versions.workmanager"
     implementation "com.budiyev.android:code-scanner:$rootProject.ext.deps.versions.qr_code_scanner_version"
+
+    implementation "$room.runtime"
+    implementation "$room.ktx"
+    kapt(room.compiler)
 }

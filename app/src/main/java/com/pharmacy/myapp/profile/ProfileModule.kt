@@ -1,5 +1,6 @@
 package com.pharmacy.myapp.profile
 
+import com.pharmacy.myapp.data.local.DBManager
 import com.pharmacy.myapp.profile.edit.EditProfileFragment
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.fragment.dsl.fragment
@@ -8,7 +9,7 @@ import org.koin.dsl.module
 
 val profileModule = module {
 
-    single { ProfileRepository(get(), get()) }
+    single { ProfileRepository(get(), get(), get<DBManager>().getCustomerDAO()) }
 
     viewModel { ProfileViewModel(androidApplication(), get()) }
 

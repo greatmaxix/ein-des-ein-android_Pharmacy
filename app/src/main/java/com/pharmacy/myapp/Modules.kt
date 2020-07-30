@@ -2,6 +2,7 @@ package com.pharmacy.myapp
 
 import androidx.work.WorkManager
 import com.pharmacy.myapp.auth.authModule
+import com.pharmacy.myapp.data.local.DBManager
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
 import com.pharmacy.myapp.home.homeModule
@@ -26,5 +27,6 @@ object Modules {
         single { SPManager(androidApplication()) }
         single { RestManager() }
         single { WorkManager.getInstance(androidApplication()) }
+        single { DBManager(androidApplication()) }
     }
 }

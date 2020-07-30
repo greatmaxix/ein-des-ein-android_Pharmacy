@@ -3,6 +3,7 @@ package com.pharmacy.myapp.splash
 import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
+import com.pharmacy.myapp.data.local.DBManager
 import com.pharmacy.myapp.splash.SplashViewModel.Companion.UPDATE_CUSTOMER_INFO
 import com.pharmacy.myapp.splash.worker.UpdateCustomerInfoWorker
 import org.koin.androidx.fragment.dsl.fragment
@@ -14,7 +15,7 @@ val splashModule = module {
     viewModel { SplashViewModel(get(), get()) }
     fragment { SplashFragment(get()) }
 
-    single { SplashRepository(get(), get()) }
+    single { SplashRepository(get(), get<DBManager>().getCustomerDAO()) }
 
     factory(named(UPDATE_CUSTOMER_INFO)) {
         OneTimeWorkRequestBuilder<UpdateCustomerInfoWorker>().setConstraints(

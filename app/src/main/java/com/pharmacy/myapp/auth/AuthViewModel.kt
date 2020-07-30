@@ -1,8 +1,10 @@
 package com.pharmacy.myapp.auth
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
 import com.pharmacy.myapp.BuildConfig
+import com.pharmacy.myapp.R
 import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeToProfile
 import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToCode
 import com.pharmacy.myapp.auth.SignUpFragmentDirections.Companion.actionFromSignUpToCode
@@ -11,8 +13,9 @@ import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
+import com.pharmacy.myapp.util.AvatarUtil
 
-class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
+class AuthViewModel(private val context: Context, private val repository: AuthRepository) : BaseViewModel() {
 
     val errorLiveData by lazy { SingleLiveEvent<String>() }
     val progressLiveData by lazy { SingleLiveEvent<Boolean>() }
@@ -54,8 +57,20 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         progressLiveData.postValue(false)
         when (response) {
             is Success -> {
-                repository.saveCustomerData(response.value.customer, response.value.token, response.value.refreshToken)
-                directionLiveData.postValue(actionFromCodeToProfile())
+                repository.saveToken(response.value.token, response.value.refreshToken)
+                when (val updateResponse = repository.updateCustomerInfo()) {
+                    is Success -> {
+                        if (!updateResponse.value.isNullOrEmpty()) {
+                            AvatarUtil.saveAvatarToFile(context, updateResponse.value) {
+                                directionLiveData.postValue(actionFromCodeToProfile())
+                            }
+                        } else {
+                            errorLiveData.postValue(context.getString(R.string.avatarSavingError))
+                            directionLiveData.postValue(actionFromCodeToProfile())
+                        }
+                    }
+                    is Error -> errorLiveData.postValue(updateResponse.errorMessage)
+                }
             }
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
