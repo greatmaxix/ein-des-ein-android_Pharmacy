@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingStart="@dimen/_15sdp"
+    android:paddingEnd="@dimen/_15sdp"
+    android:paddingBottom="@dimen/_3sdp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvBuyerDeliveryAddressTitleCheckout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/deliveryAddress"
+        android:textAppearance="@style/Text.BlockHeader"
+        app:layout_constraintEnd_toStartOf="@+id/tvBuyerDeliveryAddressEditCheckout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvBuyerDeliveryAddressEditCheckout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:background="@drawable/background_default_ripple_selector_rect"
+        android:padding="@dimen/_4sdp"
+        android:text="@string/editCheckout"
+        android:textAppearance="@style/Text.CheckoutEdit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvBuyerDeliveryAddressTitleCheckout"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilCityCheckout"
+        style="@style/TextInputStyle"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBuyerDeliveryAddressTitleCheckout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cityHint"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilStreetCheckout"
+        style="@style/TextInputStyle"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilCityCheckout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/streetHint"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:lines="1"
+            android:maxLines="1"
+            android:paddingEnd="@dimen/_40sdp"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/ivStreetMapCheckout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:background="@drawable/background_default_ripple_selector_circle"
+        android:padding="@dimen/_4sdp"
+        android:src="@drawable/ic_map"
+        android:tint="@color/grey"
+        app:layout_constraintBottom_toBottomOf="@+id/tilStreetCheckout"
+        app:layout_constraintEnd_toEndOf="@+id/tilStreetCheckout"
+        app:layout_constraintTop_toTopOf="@+id/tilStreetCheckout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilHouseNoCheckout"
+        style="@style/TextInputStyle"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@+id/tilApartmentNoCheckout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilStreetCheckout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/houseNoHint"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilApartmentNoCheckout"
+        style="@style/TextInputStyle"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tilHouseNoCheckout"
+        app:layout_constraintTop_toBottomOf="@+id/tilStreetCheckout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/apartmentNoHint"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupInputFieldsCheckout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="tilCityCheckout,tilStreetCheckout,ivStreetMapCheckout,tilHouseNoCheckout,tilApartmentNoCheckout" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardBuyerDeliveryAddressFilledCheckout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:cardBackgroundColor="@color/colorGlobalWhite"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_1sdp"
+        app:contentPadding="@dimen/_16sdp"
+        android:animateLayoutChanges="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBuyerDeliveryAddressTitleCheckout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivFilledAddressMapCheckout"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:background="@drawable/background_map_button"
+                android:foreground="@drawable/background_default_ripple_selector_circle"
+                android:padding="@dimen/_8sdp"
+                android:src="@drawable/ic_map"
+                android:tint="@color/primaryBlue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivPharmacyLogoCheckout"
+                android:layout_width="@dimen/_48sdp"
+                android:layout_height="@dimen/_48sdp"
+                android:padding="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_vaccine" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvProductAvailabilityCheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toTopOf="@+id/tvPharmacyNameCheckout"
+                app:layout_constraintStart_toStartOf="@+id/tvPharmacyNameCheckout"
+                tools:text="Some User Name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvPharmacyNameCheckout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkBlue"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/ivFilledAddressMapCheckout"
+                app:layout_constraintStart_toEndOf="@+id/ivPharmacyLogoCheckout"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Some User Name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvPharmacyAddressCheckout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Text.CheckoutFilled"
+                app:layout_constraintEnd_toStartOf="@+id/ivFilledAddressMapCheckout"
+                app:layout_constraintStart_toEndOf="@+id/ivPharmacyLogoCheckout"
+                app:layout_constraintTop_toBottomOf="@+id/tvPharmacyNameCheckout"
+                tools:text="Some User Name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvBuyerCityStreetCheckout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Text.CheckoutFilled"
+                app:layout_constraintEnd_toStartOf="@+id/ivFilledAddressMapCheckout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivPharmacyLogoCheckout"
+                tools:text="Some User Name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCommonInfoLineCheckout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textAppearance="@style/Text.CheckoutFilled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvBuyerCityStreetCheckout"
+                tools:text="+78 012 345 678 90" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvBuyerTimingCheckout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textAppearance="@style/Text.CheckoutFilled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCommonInfoLineCheckout"
+                tools:text="some@user.email" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupFilledDeliveryAddressCheckout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="tvBuyerDeliveryAddressEditCheckout,cardBuyerDeliveryAddressFilledCheckout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
