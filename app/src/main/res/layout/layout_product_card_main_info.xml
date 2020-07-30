@@ -90,7 +90,8 @@
         app:cardCornerRadius="@dimen/_8sdp"
         app:cardElevation="0dp"
         app:contentPadding="@dimen/_12sdp"
-        app:layout_constraintTop_toBottomOf="@+id/productMainDivider">
+        app:layout_constraintTop_toBottomOf="@+id/productMainDivider"
+        app:rippleColor="@color/primaryBlueRipple">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -146,7 +147,8 @@
         app:cardBackgroundColor="@color/colorGlobalWhite"
         app:cardCornerRadius="@dimen/_8sdp"
         app:contentPadding="@dimen/_8sdp"
-        app:layout_constraintTop_toBottomOf="@+id/productAnalogContainer">
+        app:layout_constraintTop_toBottomOf="@+id/productAnalogContainer"
+        app:rippleColor="@color/primaryBlueRipple">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -202,9 +204,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_32sdp"
         android:text="@string/releaseForms"
-        android:textColor="@color/darkBlue"
-        android:textSize="@dimen/_16ssp"
-        android:textStyle="bold"
+        android:textAppearance="@style/Text.BlockHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/categoryContainer" />
