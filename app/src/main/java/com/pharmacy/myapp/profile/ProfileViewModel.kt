@@ -6,7 +6,6 @@ import android.net.Uri
 import androidx.activity.result.ActivityResult
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.bumptech.glide.Glide
@@ -16,13 +15,11 @@ import com.pharmacy.myapp.core.extensions.getMultipartBody
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
-import com.pharmacy.myapp.model.customerInfo.CustomerInfo
 import com.pharmacy.myapp.profile.ProfileFragmentDirections.Companion.actionFromProfileToSplash
 import com.pharmacy.myapp.util.Constants.Companion.AVATAR_FILE_NAME
 import com.pharmacy.myapp.util.ImageFileUtil
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.File
 
 
@@ -76,22 +73,20 @@ class ProfileViewModel(private val context: Context, private val repository: Pro
 
     fun onActivityResult(imageUri: Uri) {
         progressLiveData.postValue(true)
-        viewModelScope.launch {
-            withContext(IO) {
-                ImageFileUtil.saveImageByUriToFile(context, avatarFile, imageUri)
-                ImageFileUtil.compressImage(context, avatarFile, imageUri)
+        viewModelScope.launch(IO) {
+            ImageFileUtil.saveImageByUriToFile(context, avatarFile, imageUri)
+            ImageFileUtil.compressImage(context, avatarFile, imageUri)
 
-                when (val uploadImage = repository.uploadImage(avatarFile.getMultipartBody())) {
-                    is Success -> {
-                        updateCustomerData(avatarUuid = uploadImage.value.data.uuid)
-                        Glide.get(context).clearDiskCache()
-                        _avatarLiveData.postValue(avatarFile.absolutePath)
-                    }
-                    is Error -> errorLiveData.postValue(uploadImage.errorMessage)
+            when (val uploadImage = repository.uploadImage(avatarFile.getMultipartBody("file"))) {
+                is Success -> {
+                    updateCustomerData(avatarUuid = uploadImage.value.data.uuid)
+                    Glide.get(context).clearDiskCache()
+                    _avatarLiveData.postValue(avatarFile.absolutePath)
                 }
+                is Error -> errorLiveData.postValue(uploadImage.errorMessage)
             }
-            progressLiveData.postValue(false)
         }
+        progressLiveData.postValue(false)
     }
 
     fun deleteAvatarPhoto() {

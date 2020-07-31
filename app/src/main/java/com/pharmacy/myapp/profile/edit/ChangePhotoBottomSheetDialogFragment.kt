@@ -18,11 +18,11 @@ class ChangePhotoBottomSheetDialogFragment : BottomSheetDialogFragment() {
         val view = inflater.inflate(R.layout.view_change_photo_bottom_sheet, container, false)
 
         view.change_photo_bottom_sheet_gallery.setDebounceOnClickListener {
-            setFragmentResult(CHANGE_PHOTO_KEY, bundleOf(CHANGE_PHOTO_BUNDLE_KEY to Button.GALLERY.name))
+            setFragmentResult(CHANGE_PHOTO_KEY, bundleOf(RESULT_BUTTON_EXTRA_KEY to Button.GALLERY.name))
             dismiss()
         }
         view.change_photo_bottom_sheet_camera.setDebounceOnClickListener {
-            setFragmentResult(CHANGE_PHOTO_KEY, bundleOf(CHANGE_PHOTO_BUNDLE_KEY to Button.CAMERA.name))
+            setFragmentResult(CHANGE_PHOTO_KEY, bundleOf(RESULT_BUTTON_EXTRA_KEY to Button.CAMERA.name))
             dismiss()
         }
         if (arguments?.getBoolean(IS_NEED_DELETE_ARGS_KEY) != true) {
@@ -30,7 +30,7 @@ class ChangePhotoBottomSheetDialogFragment : BottomSheetDialogFragment() {
             view.change_photo_bottom_sheet_delete.gone()
         } else {
             view.change_photo_bottom_sheet_delete.setDebounceOnClickListener {
-                setFragmentResult(CHANGE_PHOTO_KEY, bundleOf(CHANGE_PHOTO_BUNDLE_KEY to Button.DELETE.name))
+                setFragmentResult(CHANGE_PHOTO_KEY, bundleOf(RESULT_BUTTON_EXTRA_KEY to Button.DELETE.name))
                 dismiss()
             }
         }
@@ -45,7 +45,7 @@ class ChangePhotoBottomSheetDialogFragment : BottomSheetDialogFragment() {
     companion object {
 
         const val CHANGE_PHOTO_KEY = "CHANGE_PHOTO_KEY"
-        const val CHANGE_PHOTO_BUNDLE_KEY = "CHANGE_PHOTO_BUNDLE_KEY"
+        const val RESULT_BUTTON_EXTRA_KEY = "CHANGE_PHOTO_BUNDLE_KEY"
         const val IS_NEED_DELETE_ARGS_KEY = "isNeedDelete"
     }
 }

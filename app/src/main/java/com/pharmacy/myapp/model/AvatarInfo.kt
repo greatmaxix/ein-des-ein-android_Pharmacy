@@ -1,14 +1,11 @@
 package com.pharmacy.myapp.model
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
 @Entity
-@Parcelize
 data class AvatarInfo(
     @ColumnInfo(name = "createdAtAvatar")
     @SerializedName("createdAt") val createdAt: String,
@@ -22,4 +19,4 @@ data class AvatarInfo(
     @PrimaryKey
     @ColumnInfo(name = "uuidAvatar")
     @SerializedName("uuid") val uuid: String
-): Parcelable
+)

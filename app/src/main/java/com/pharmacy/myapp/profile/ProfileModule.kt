@@ -1,6 +1,7 @@
 package com.pharmacy.myapp.profile
 
 import com.pharmacy.myapp.data.local.DBManager
+import com.pharmacy.myapp.profile.edit.ChangePhotoBottomSheetDialogFragment
 import com.pharmacy.myapp.profile.edit.EditProfileFragment
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.fragment.dsl.fragment
@@ -15,5 +16,6 @@ val profileModule = module {
 
     fragment { ProfileFragment() }
     fragment { EditProfileFragment() }
+    fragment { ChangePhotoBottomSheetDialogFragment() }
 
 }

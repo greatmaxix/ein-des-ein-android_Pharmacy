@@ -13,13 +13,9 @@ class DBManager(context: Context) {
         private const val VERSION = 1
     }
 
-    private val db: InMemoryDB
-
-    init {
-        db = Room.inMemoryDatabaseBuilder(context.applicationContext, InMemoryDB::class.java).apply {
-            fallbackToDestructiveMigration()
-        }.build()
-    }
+    private val db = Room.inMemoryDatabaseBuilder(context.applicationContext, InMemoryDB::class.java).apply {
+        fallbackToDestructiveMigration()
+    }.build()
 
     @Database(
         entities = [CustomerInfo::class],

@@ -11,7 +11,6 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.fragment.app.setFragmentResultListener
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
@@ -27,8 +26,8 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.profile.ProfileViewModel
 import com.pharmacy.myapp.profile.edit.ChangePhotoBottomSheetDialogFragment.Button
-import com.pharmacy.myapp.profile.edit.ChangePhotoBottomSheetDialogFragment.Companion.CHANGE_PHOTO_BUNDLE_KEY
 import com.pharmacy.myapp.profile.edit.ChangePhotoBottomSheetDialogFragment.Companion.CHANGE_PHOTO_KEY
+import com.pharmacy.myapp.profile.edit.ChangePhotoBottomSheetDialogFragment.Companion.RESULT_BUTTON_EXTRA_KEY
 import com.pharmacy.myapp.profile.edit.EditProfileFragmentDirections.Companion.actionFromProfileEditToChangePhoto
 import com.pharmacy.myapp.ui.text.*
 import com.pharmacy.myapp.util.BlurTransformation
@@ -72,12 +71,11 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
         viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
         viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
         viewModel.avatarLiveData.observeNullableExt {
-            Glide.with(this)
-                .load(it)
-                .placeholder(R.drawable.ic_avatar)
-                .skipMemoryCache(true)
-                .apply(RequestOptions().transform(MultiTransformation(BlurTransformation(requireContext()), CircleCrop())))
-                .into(ivProfileEdit)
+            ivProfileEdit.loadGlide(it) {
+                placeholder(R.drawable.ic_avatar)
+                skipMemoryCache(true)
+                apply(RequestOptions().transform(MultiTransformation(BlurTransformation(requireContext()), CircleCrop())))
+            }
         }
     }
 
@@ -85,7 +83,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
         doNav(actionFromProfileEditToChangePhoto(viewModel.avatarLiveData.value != null))
 
     private fun handleChangePhotoAction(bundle: Bundle) {
-        when (bundle.getString(CHANGE_PHOTO_BUNDLE_KEY)) {
+        when (bundle.getString(RESULT_BUTTON_EXTRA_KEY)) {
             Button.GALLERY.name -> requestPickPhoto()
             Button.CAMERA.name -> requestTakePhoto()
             Button.DELETE.name -> viewModel.deleteAvatarPhoto()
