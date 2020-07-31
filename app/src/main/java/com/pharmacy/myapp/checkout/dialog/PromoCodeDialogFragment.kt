@@ -3,13 +3,13 @@ package com.pharmacy.myapp.checkout.dialog
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
-import android.widget.EditText
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.fragment.dialog.BaseDialogFragment
 import com.pharmacy.myapp.core.extensions.hideKeyboard
+import kotlinx.android.synthetic.main.dialog_promo_code.view.*
 
 class PromoCodeDialogFragment : BaseDialogFragment() {
 
@@ -24,7 +24,7 @@ class PromoCodeDialogFragment : BaseDialogFragment() {
             setView(customView)
             setPositiveButton(R.string.promoCodeApply) { _, _ ->
                 hideKeyboard()
-                val code = customView.findViewById<EditText>(R.id.etPromoCode).text?.toString()?.trim().orEmpty()
+                val code = customView.etPromoCode.text?.toString()?.trim().orEmpty()
                 setFragmentResult(PROMO_CODE_REQUEST_KEY, bundleOf(PROMO_CODE_EXTRA_KEY to code))
             }
             setNegativeButton(R.string.promoCodeCancel) { _, _ -> dismiss() }

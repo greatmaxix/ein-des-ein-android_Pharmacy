@@ -30,7 +30,7 @@ class BuyerDeliveryAddress @JvmOverloads constructor(
             groupFilledDeliveryAddressCheckout.animateVisibleOrGone(!value)
         }
 
-    var deliveryAddress: TempDeliveryAddress = TempDeliveryAddress.empty()
+    var deliveryAddress: TempDeliveryAddress = TempDeliveryAddress.newInstance()
         private set
     var pharmacyAddress: TempPharmacyAddress? = null
         private set
