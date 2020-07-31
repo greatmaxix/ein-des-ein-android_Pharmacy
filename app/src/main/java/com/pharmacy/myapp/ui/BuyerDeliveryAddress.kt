@@ -60,7 +60,6 @@ class BuyerDeliveryAddress @JvmOverloads constructor(
         }
     }
 
-    // TODO deliveryAddress: TempDeliveryAddress?,
     fun setData(deliveryAddress: TempDeliveryAddress? = null, pharmacyAddress: TempPharmacyAddress? = null) {
         if (deliveryAddress != null) {
             this.deliveryAddress = deliveryAddress
