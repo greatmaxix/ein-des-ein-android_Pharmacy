@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/layout_product_card_image_pager" />
+
+            <include layout="@layout/view_product_card_divider" />
+
+            <include layout="@layout/layout_product_card_main_info" />
+
+            <include layout="@layout/view_product_card_divider" />
+
+            <include layout="@layout/layout_product_card_additional_info" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layoutDirection="locale" />
+
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_24sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/favoriteFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_heart"
+            app:backgroundTint="@color/colorGlobalWhite" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addToCartBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_weight="1"
+            android:background="@color/primaryBlue"
+            android:gravity="center"
+            android:textColor="@color/colorGlobalWhite"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/_20sdp"
+            tools:text="В корзину от 568 ₽ -985 ₽" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,6 +32,7 @@ versions.kPermissions = "3.1.2"
 versions.glide = "4.11.0"
 versions.workmanager = "2.4.0"
 versions.qr_code_scanner_version = "2.1.0"
+versions.glide = "4.11.0"
 
 ext.deps.versions = versions
 

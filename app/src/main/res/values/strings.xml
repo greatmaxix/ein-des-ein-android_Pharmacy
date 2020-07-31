@@ -53,6 +53,22 @@
     <string name="qrCodeDescriptionBottom">Сканер автоматически считает штрих-код и найдет товар, если он присутсвует в нашей сети.</string>
     <string name="qrCodeScannerError">Произошла ошибка сканирования кода</string>
 
+    <!-- Product card -->
+    <string name="productImageDiffDescription">Внешний вид упаковки может отличаться от фотографии</string>
+    <string name="menu_share">Share</string>
+    <string name="productCategory">Категория</string>
+    <string name="releaseForms">Формы выпуска :</string>
+    <string name="tags">Теги :</string>
+    <string name="productDescription">Описание :</string>
+    <string name="instruction">Инструкция</string>
+    <string name="instructionAttention">Перед употреблением, рекомендуем проконсультироваться с врачом и изучить инструкцию.</string>
+    <string name="remainQuestions">Остались вопросы?</string>
+    <string name="askPharmacist">Спроси фармацевта!</string>
+    <string name="recommendedForYou">Рекомендуемое вам :</string>
+
+    <!-- Dev tools -->
+    <string name="devToolsLabel">DEV TOOLS</string>
+
     <!--Image content descriptions-->
     <string name="back_button">Back button</string>
     <string name="logo">Logo</string>

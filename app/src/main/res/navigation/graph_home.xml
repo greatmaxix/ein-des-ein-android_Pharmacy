@@ -22,4 +22,24 @@
         android:label="@string/qrCodeLabel"
         tools:layout="@layout/fragment_qr_code_scanner" />
 
+    <action
+        android:id="@+id/globalToDevTools"
+        app:destination="@id/nav_dev_tools" />
+
+    <fragment
+        android:id="@+id/nav_dev_tools"
+        android:name="com.pharmacy.myapp.devTools.DevToolsFragment"
+        android:label="@string/devToolsLabel"
+        tools:layout="@layout/fragment_dev_tools" />
+
+    <action
+        android:id="@+id/globalToProductCard"
+        app:destination="@id/nav_product_card" />
+
+    <fragment
+        android:id="@+id/nav_product_card"
+        android:name="com.pharmacy.myapp.productCard.ProductCardFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_product_card" />
+
 </navigation>

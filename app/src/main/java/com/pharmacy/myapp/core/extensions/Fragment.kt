@@ -19,6 +19,7 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.BaseActivity
 import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogData
@@ -266,4 +267,10 @@ inline fun <reified VM : ViewModel> Fragment.sharedGraphViewModel(
 ) = lazy {
     val store = findNavController().getViewModelStoreOwner(navGraphId).viewModelStore
     getKoin().getViewModel(ViewModelParameter(VM::class, qualifier, parameters, null, store, null))
+}
+
+inline fun Fragment.debug(code: () -> Unit) {
+    if (BuildConfig.DEBUG) {
+        code()
+    }
 }
