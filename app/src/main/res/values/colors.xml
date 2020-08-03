@@ -8,6 +8,7 @@
 
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorGlobalWhite">#ffffffff</color>
+    <color name="colorGlobalWhite50">#80FFFFFF</color>
     <color name="colorGlobalBlack">#ff000000</color>
     <color name="colorGlobalDisable">#3f4048</color>
     <color name="colorGlobalHint">#9b9b9b</color>
@@ -37,6 +38,7 @@
     <color name="darkBlue">#000A63</color>
     <color name="primaryBlue">#2566F9</color>
     <color name="blueLight">#1A2566F9</color>
+    <color name="primaryBlueLight20">#CCDAFA</color>
     <color name="greyText">#64738C</color>
     <color name="grey">#A5B4CC</color>
     <color name="grey20">#33A5B4CC</color>

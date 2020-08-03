@@ -25,32 +25,19 @@ import kotlinx.android.synthetic.main.fragment_checkout.*
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {
 
     private val orderProductsAdapter = OrderProductsAdapter()
-    private val deliveryMethodClickListener: (View) -> Unit = {
-        when (it.id) {
-            cardMethodDeliveryCheckout.id -> {
-                cardMethodPickupCheckout.isSelected = false
-                cardMethodDeliveryCheckout.isSelected = true
-                viewBuyerDeliveryAddressCheckout.changeDeliveryMethod(BuyerDeliveryAddress.DeliveryMethod.DELIVERY)
-            }
-            cardMethodPickupCheckout.id -> {
-                cardMethodPickupCheckout.isSelected = true
-                cardMethodDeliveryCheckout.isSelected = false
-                viewBuyerDeliveryAddressCheckout.changeDeliveryMethod(BuyerDeliveryAddress.DeliveryMethod.PICKUP)
-            }
-        }
-    }
+    private val radioButtonPadding by lazy { resources.getDimension(R.dimen._8sdp).toInt() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back) { navController.popBackStack() }
+        showBackButton(R.drawable.ic_arrow_back)
 
         viewBuyerDetailsCheckout.setData("Some full name", "+3801231231231", "test@exapmle.com")
         viewBuyerDeliveryAddressCheckout.setData(TempDeliveryAddress.newMockInstance(), TempPharmacyAddress.newMockInstance())
         viewBuyerDeliveryAddressCheckout.changeDeliveryMethod(BuyerDeliveryAddress.DeliveryMethod.DELIVERY)
         cardMethodDeliveryCheckout.isSelected = true
-        cardMethodDeliveryCheckout.setOnClickListener(deliveryMethodClickListener)
-        cardMethodPickupCheckout.setOnClickListener(deliveryMethodClickListener)
+        cardMethodDeliveryCheckout.setOnClickListener(this)
+        cardMethodPickupCheckout.setOnClickListener(this)
 
         initPaymentMethods()
         initOrderProducts()
@@ -71,21 +58,19 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     }
 
     private fun initPaymentMethods() {
-        val padding = resources.getDimension(R.dimen._8sdp).toInt()
         val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         DummyData.paymentMethod.forEach {
-            rgPaymentMethodsCheckout.addView(createPaymentRadioButton(layoutParams, padding, it))
+            rgPaymentMethodsCheckout.addView(createPaymentRadioButton(layoutParams, it))
         }
     }
 
     private fun createPaymentRadioButton(
         layoutParams: ViewGroup.LayoutParams,
-        padding: Int,
         it: TempPaymentMethod
     ): MaterialRadioButton {
         val radio = MaterialRadioButton(requireContext())
         radio.layoutParams = layoutParams
-        radio.setPadding(padding, padding, padding, padding)
+        radio.setPadding(radioButtonPadding, radioButtonPadding, radioButtonPadding, radioButtonPadding)
         radio.text = it.name
         radio.setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
         return radio
@@ -99,13 +84,14 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         orderProductsAdapter.setList(items)
     }
 
-    fun cardCheckout(deliveryMethod: BuyerDeliveryAddress.DeliveryMethod = BuyerDeliveryAddress.DeliveryMethod.PICKUP) {
-        cardMethodPickupCheckout.isSelected = deliveryMethod == BuyerDeliveryAddress.DeliveryMethod.PICKUP
-        cardMethodDeliveryCheckout.isSelected = deliveryMethod != BuyerDeliveryAddress.DeliveryMethod.PICKUP
-        viewBuyerDeliveryAddressCheckout.changeDeliveryMethod(deliveryMethod)
-    }
-
     override fun onClick(v: View?) {
+
+        fun cardCheckout(deliveryMethod: BuyerDeliveryAddress.DeliveryMethod = BuyerDeliveryAddress.DeliveryMethod.PICKUP) {
+            cardMethodPickupCheckout.isSelected = deliveryMethod == BuyerDeliveryAddress.DeliveryMethod.PICKUP
+            cardMethodDeliveryCheckout.isSelected = deliveryMethod != BuyerDeliveryAddress.DeliveryMethod.PICKUP
+            viewBuyerDeliveryAddressCheckout.changeDeliveryMethod(deliveryMethod)
+        }
+
         when (v?.id) {
             cardMethodDeliveryCheckout.id -> cardCheckout(BuyerDeliveryAddress.DeliveryMethod.DELIVERY)
             cardMethodPickupCheckout.id -> cardCheckout(BuyerDeliveryAddress.DeliveryMethod.PICKUP)

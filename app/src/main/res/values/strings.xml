@@ -159,4 +159,8 @@
     <string name="promoCodeApply">Применить</string>
     <string name="promoCodeCancel">Отменить</string>
 
+    <!-- Order -->
+    <string name="orderStepsTestText">Шаг</string>
+    <string name="paymentType">Тип оплаты :</string>
+
 </resources>

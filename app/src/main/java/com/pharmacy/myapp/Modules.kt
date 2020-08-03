@@ -8,6 +8,7 @@ import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
 import com.pharmacy.myapp.devTools.devToolsModule
 import com.pharmacy.myapp.home.homeModule
+import com.pharmacy.myapp.order.orderModule
 import com.pharmacy.myapp.productCard.productCardModule
 import com.pharmacy.myapp.profile.profileModule
 import com.pharmacy.myapp.qrCodeScanner.qrCodeScannerModule
@@ -26,7 +27,8 @@ object Modules {
         authModule,
         qrCodeScannerModule,
         productCardModule,
-        checkoutModule
+        checkoutModule,
+        orderModule
     )
 
     private val managerModule = module(true) {
