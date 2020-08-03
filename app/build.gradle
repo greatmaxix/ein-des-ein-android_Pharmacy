@@ -13,15 +13,48 @@ android {
         minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
+
+        android.applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                outputFileName = "${variant.applicationId}-v.${variant.versionName}(${variant.versionCode})-${variant.getName()}.apk"
+            }
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
+        debug {
+            storeFile file("../keystore/debug.p12")
+            storePassword "default_1Android_2Debug_3Key"
+            keyAlias "defaultDebug"
+            keyPassword "default_1Android_2Debug_3Key"
+        }
         release {
+            storeFile file("../keystore/debug.p12") // TODO change to release in future
+            storePassword "default_1Android_2Debug_3Key"
+            keyAlias "defaultDebug"
+            keyPassword "default_1Android_2Debug_3Key"
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules-debug.pro'
+
+            signingConfig signingConfigs.debug
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.release
         }
     }
 

@@ -8,7 +8,7 @@ import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.fromSplashToAuth
-import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.fromSplashToProfile
+import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.fromSplashToHome
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -17,12 +17,6 @@ import org.koin.core.get
 import org.koin.core.qualifier.named
 
 class SplashViewModel(private val spManager: SPManager, private val workManager: WorkManager) : BaseViewModel(), KoinComponent {
-
-    companion object {
-        private val toAuth = fromSplashToAuth()
-        private val toHome = fromSplashToProfile()
-        const val UPDATE_CUSTOMER_INFO = "updateCustomerInfo"
-    }
 
     val authenticatedLiveData by lazy { SingleLiveEvent<NavDirections>() }
 
@@ -40,4 +34,11 @@ class SplashViewModel(private val spManager: SPManager, private val workManager:
 
     private val Boolean.toNavDirection
         get() = if (this) toAuth else toHome
+
+    companion object {
+
+        private val toAuth = fromSplashToAuth()
+        private val toHome = fromSplashToHome()
+        const val UPDATE_CUSTOMER_INFO = "updateCustomerInfo"
+    }
 }
