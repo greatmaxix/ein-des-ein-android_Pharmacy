@@ -8,6 +8,9 @@
     <string name="error_errorGettingData">Ошибка получения данных</string>
     <string name="error_serverNotResponding">Сервер не отвечает</string>
 
+    <!-- Common -->
+    <string name="phoneHint">+7(•••) •••-••-••</string>
+
     <string name="MinLengthIsCharacters">Минимальная длина номера 11 цифр</string>
     <string name="nameErrorAuth">Имя должно содержать от 2 до 12 букв</string>
     <string name="phoneErrorAuth">Телефон введен не верно</string>
@@ -17,7 +20,7 @@
     <string name="proceedAuth">Далее</string>
     <string name="welcomeBackAuth">С возвращением!</string>
     <string name="pleaseAuth">Для создания аккаунта, укажите Ваше имя, номер телефона и имейл ( по желанию )</string>
-    <string name="phoneHintAuth">+7(•••) •••-••-••</string>
+    <string name="phoneHintAuth">@string/phoneHint</string>
     <string name="accountCreationAuth">Давайте начнем !</string>
     <string name="yourNameAuth">Ваше имя*</string>
     <string name="emailHintAuth">Email для рассылок</string>
@@ -123,5 +126,37 @@
     <string name="whoAreYou_errorSavingAvatar">Ошибка при сохранении изображения</string>
     <string name="chooseAvatarError">Произошла ошибка выбора аватара</string>
     <string name="avatarSavingError">Ошибка во время сохранения аватара</string>
+
+    <!-- Checkout -->
+    <string name="checkoutLabel">Офорление</string>
+    <string name="yourDetails">Ваши данные :</string>
+    <string name="buyerDetails">Данные покупателя :</string>
+    <string name="firstLastNameHint">Имя и фамилия</string>
+    <string name="phoneHintCheckout">@string/phoneHint</string>
+    <string name="emailHint">Email</string>
+    <string name="deliveryMethod">Способ доставки :</string>
+    <string name="delivery">Доставка</string>
+    <string name="pickup">Самовывоз</string>
+    <string name="deliveryAddress">Адрес доставки :</string>
+    <string name="pharmacyAddress">Адрес аптеки :</string>
+    <string name="cityHint">Город</string>
+    <string name="streetHint">Улица</string>
+    <string name="houseNoHint">№ Дома</string>
+    <string name="apartmentNoHint">№ Квартиры</string>
+    <string name="noteToOrder">Примечание к заказу</string>
+    <string name="selectPaymentType">Выберите тип оплаты :</string>
+    <string name="orderList">Состав заказа :</string>
+    <string name="promoCode">Промокод</string>
+    <string name="totalAmount">Общая сумма</string>
+    <string name="discount">Скидка</string>
+    <string name="deliveryAmount">Доставка</string>
+    <string name="totalPayable">Итого к оплате</string>
+    <string name="checkout">Оформить заказ</string>
+    <string name="editCheckout">Изменить</string>
+    <string name="doYouHavePromoCode">У Вас есть промокод?</string>
+    <string name="discountDescription">Введите специальные символы в поле ниже для получения скидки</string>
+    <string name="promoCodeHint">Промокод</string>
+    <string name="promoCodeApply">Применить</string>
+    <string name="promoCodeCancel">Отменить</string>
 
 </resources>

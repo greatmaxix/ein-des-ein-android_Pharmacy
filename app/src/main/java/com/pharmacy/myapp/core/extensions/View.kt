@@ -28,8 +28,8 @@ import androidx.core.widget.TextViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.pharmacy.myapp.R
 import com.google.android.material.textfield.TextInputLayout
+import com.pharmacy.myapp.R
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -262,6 +262,7 @@ fun View.colorValueAnimator(from: Int, to: Int, duration: Long, onUpdate: (Int) 
     }
     return this
 }
+
 val View.toTransitionGroup
     get() = this to transitionName
 

@@ -21,17 +21,19 @@
         <item name="android:background">@color/colorProgressBackground</item>
     </style>
 
-
-    <style name="TextInputAuthStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/_16sdp</item>
-        <item name="android:layout_marginEnd">@dimen/_16sdp</item>
         <item name="boxCornerRadiusBottomEnd">@dimen/_20sdp</item>
         <item name="boxCornerRadiusBottomStart">@dimen/_20sdp</item>
         <item name="boxCornerRadiusTopEnd">@dimen/_20sdp</item>
         <item name="boxCornerRadiusTopStart">@dimen/_20sdp</item>
         <item name="boxStrokeColor">@color/primaryBlue</item>
+    </style>
+
+    <style name="TextInputAuthStyle" parent="TextInputStyle">
+        <item name="android:layout_marginStart">@dimen/_16sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_16sdp</item>
     </style>
 
     <style name="Logo">
@@ -46,7 +48,11 @@
         <item name="android:fontFamily">@font/font_family</item>
     </style>
 
-    <style name="Text" parent="TextAppearance.AppCompat">
+    <style name="TextDirectionLocale" parent="TextAppearance.AppCompat">
+        <item name="android:textDirection">locale</item>
+    </style>
+
+    <style name="Text" parent="TextDirectionLocale">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textDirection">locale</item>
@@ -94,4 +100,19 @@
         <item name="android:textSize">@dimen/_11sdp</item>
     </style>
 
+    <style name="Text.BlockHeader" parent="TextDirectionLocale">
+        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:textColor">@color/darkBlue</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.CheckoutFilled" parent="TextDirectionLocale">
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/darkBlue</item>
+    </style>
+
+    <style name="Text.CheckoutEdit" parent="TextDirectionLocale">
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/primaryBlue</item>
+    </style>
 </resources>

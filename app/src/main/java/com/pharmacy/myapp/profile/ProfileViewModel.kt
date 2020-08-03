@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 
-class ProfileViewModel(private val context: Context, private val repository: ProfileRepository) :BaseViewModel() {
+class ProfileViewModel(private val context: Context, private val repository: ProfileRepository) : BaseViewModel() {
 
     val errorLiveData by lazy { SingleLiveEvent<String>() }
     val progressLiveData by lazy { SingleLiveEvent<Boolean>() }
@@ -42,7 +42,8 @@ class ProfileViewModel(private val context: Context, private val repository: Pro
         val response = repository.updateCustomerInfo(name, email, avatarUuid)
         progressLiveData.postValue(false)
         when (response) {
-            is Success -> {}/*_customerInfoLiveData.postValue(repository.getCustomerInfo())*/
+            is Success -> {
+            }/*_customerInfoLiveData.postValue(repository.getCustomerInfo())*/
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
     }

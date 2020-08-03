@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.pharmacy.myapp.home.HomeFragment"
-        android:label="null"
+        android:label="@null"
         tools:layout="@layout/fragment_home">
 
     </fragment>
@@ -41,5 +41,26 @@
         android:name="com.pharmacy.myapp.productCard.ProductCardFragment"
         android:label="@null"
         tools:layout="@layout/fragment_product_card" />
+
+    <action
+        android:id="@+id/globalToCheckout"
+        app:destination="@id/nav_checkout" />
+
+    <fragment
+        android:id="@+id/nav_checkout"
+        android:name="com.pharmacy.myapp.checkout.CheckoutFragment"
+        android:label="@string/checkoutLabel"
+        tools:layout="@layout/fragment_checkout">
+
+        <action
+            android:id="@+id/actionCheckoutToPromoCodeDialog"
+            app:destination="@id/nav_checkout_dialog_promo_code" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/nav_checkout_dialog_promo_code"
+        android:name="com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment"
+        tools:layout="@layout/dialog_promo_code" />
 
 </navigation>
