@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_checkout.*
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {
 
     private val orderProductsAdapter = OrderProductsAdapter()
+    private val radioButtonPadding by lazy { resources.getDimension(R.dimen._8sdp).toInt() }
     private val deliveryMethodClickListener: (View) -> Unit = {
         when (it.id) {
             cardMethodDeliveryCheckout.id -> {
@@ -71,21 +72,19 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     }
 
     private fun initPaymentMethods() {
-        val padding = resources.getDimension(R.dimen._8sdp).toInt()
         val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         DummyData.paymentMethod.forEach {
-            rgPaymentMethodsCheckout.addView(createPaymentRadioButton(layoutParams, padding, it))
+            rgPaymentMethodsCheckout.addView(createPaymentRadioButton(layoutParams, it))
         }
     }
 
     private fun createPaymentRadioButton(
         layoutParams: ViewGroup.LayoutParams,
-        padding: Int,
         it: TempPaymentMethod
     ): MaterialRadioButton {
         val radio = MaterialRadioButton(requireContext())
         radio.layoutParams = layoutParams
-        radio.setPadding(padding, padding, padding, padding)
+        radio.setPadding(radioButtonPadding, radioButtonPadding, radioButtonPadding, radioButtonPadding)
         radio.text = it.name
         radio.setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
         return radio
@@ -99,7 +98,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         orderProductsAdapter.setList(items)
     }
 
-    fun cardCheckout(deliveryMethod: BuyerDeliveryAddress.DeliveryMethod = BuyerDeliveryAddress.DeliveryMethod.PICKUP) {
+    private fun cardCheckout(deliveryMethod: BuyerDeliveryAddress.DeliveryMethod = BuyerDeliveryAddress.DeliveryMethod.PICKUP) {
         cardMethodPickupCheckout.isSelected = deliveryMethod == BuyerDeliveryAddress.DeliveryMethod.PICKUP
         cardMethodDeliveryCheckout.isSelected = deliveryMethod != BuyerDeliveryAddress.DeliveryMethod.PICKUP
         viewBuyerDeliveryAddressCheckout.changeDeliveryMethod(deliveryMethod)
