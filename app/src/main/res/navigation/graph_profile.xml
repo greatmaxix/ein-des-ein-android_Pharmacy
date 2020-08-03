@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profile_graph"
@@ -37,5 +36,27 @@
         android:id="@+id/nav_profile_edit"
         android:name="com.pharmacy.myapp.profile.edit.EditProfileFragment"
         android:label="@string/editProfileTitle"
-        tools:layout="@layout/fragment_profile_edit" />
+        tools:layout="@layout/fragment_profile_edit">
+
+        <action
+            android:id="@+id/actionFromProfileEditToChangePhoto"
+            app:destination="@id/nav_profile_dialog_change_photo"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_profile_edit" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/nav_profile_dialog_change_photo"
+        android:name="com.pharmacy.myapp.profile.edit.ChangePhotoBottomSheetDialogFragment"
+        tools:layout="@layout/view_change_photo_bottom_sheet">
+
+        <argument
+            android:name="isNeedDelete"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+    </dialog>
 </navigation>
