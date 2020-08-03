@@ -4,7 +4,6 @@ import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,7 +41,7 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
         if (isCancelled) {
             statusTitleOrder.text = "Ваш заказ № 12583 отменен"
             statusDescriptionOrder.text = "Отменен аптекой"
-            toolbarContainerOrder.background.setColorFilter(ContextCompat.getColor(requireContext(), R.color.grey), PorterDuff.Mode.SRC_ATOP)
+            toolbarContainerOrder.background.setColorFilter(R.color.grey.toColor, PorterDuff.Mode.SRC_ATOP)
         }
         statusTitleOrder.visibleOrGone(isCancelled)
         statusDescriptionOrder.visibleOrGone(isCancelled)
@@ -77,7 +76,7 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
     }
 
     private fun initToolbar() {
-        showBackButton(R.drawable.ic_arrow_back) { navController.popBackStack() }
+        showBackButton(R.drawable.ic_arrow_back)
         toolbar?.let {
             it.title = "№ 12345"
 
@@ -92,8 +91,8 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
                 .apply {
                     shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
                     elevation = 0.1f
-                    setShadowColor(ContextCompat.getColor(requireContext(), R.color.primaryBlueRipple))
-                    setTint(ContextCompat.getColor(requireContext(), R.color.primaryBlue))
+                    setShadowColor(R.color.primaryBlueRipple.toColor)
+                    setTint(R.color.primaryBlue.toColor)
                     paintStyle = Paint.Style.FILL
                 }
             ViewCompat.setBackground(it, shape)

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,7 +38,7 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back) { navController.popBackStack() }
+        showBackButton(R.drawable.ic_arrow_back)
         initMenu(R.menu.share, Toolbar.OnMenuItemClickListener {
             if (it.itemId == R.id.menu_share) {
                 // TODO share func
@@ -76,7 +75,7 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
             .apply {
                 shadowCompatibilityMode = SHADOW_COMPAT_MODE_ALWAYS
                 elevation = resources.getDimension(R.dimen._4sdp)
-                setTint(ContextCompat.getColor(requireContext(), R.color.colorGlobalWhite))
+                setTint(R.color.colorGlobalWhite.toColor)
                 paintStyle = Paint.Style.FILL
             }
 
