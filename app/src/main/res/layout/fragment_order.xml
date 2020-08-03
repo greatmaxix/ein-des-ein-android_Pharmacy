@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/toolbarContainerOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_toolbar_corner"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            android:layoutDirection="locale" />
+
+        <com.pharmacy.myapp.ui.OrderSteps
+            android:id="@+id/orderSteps"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_95sdp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/statusTitleOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_23sdp"
+            android:gravity="center"
+            android:textColor="@color/darkBlue"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="Отменен аптекой"
+            tools:visibility="visible" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/statusDescriptionOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_24sdp"
+            android:gravity="center"
+            android:textColor="@color/darkBlue"
+            android:textSize="@dimen/_11ssp"
+            android:visibility="gone"
+            tools:text="Отменен аптекой"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_24sdp">
+
+            <com.pharmacy.myapp.ui.BuyerDetails
+                android:id="@+id/viewBuyerDetailsOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:elevation="0dp"
+                app:cardBackgroundColor="@color/primaryBlueLight20"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:contentPadding="@dimen/_16sdp"
+                app:layout_constraintTop_toBottomOf="@+id/instructionContainer">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvNoteOrder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="@dimen/_12ssp"
+                    tools:text="Оставьте у двери, предварительно позвонив 4 раза в дверь" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.pharmacy.myapp.ui.BuyerDeliveryAddress
+                android:id="@+id/viewBuyerDeliveryAddressOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/paymentType"
+                    android:textAppearance="@style/Text.BlockHeader" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvPaymentTypeEditOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_default_ripple_selector_rect"
+                    android:padding="@dimen/_4sdp"
+                    android:text="@string/editCheckout"
+                    android:textAppearance="@style/Text.CheckoutEdit" />
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                app:cardBackgroundColor="@color/colorGlobalWhite"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="@dimen/_1sdp"
+                app:contentPadding="@dimen/_8sdp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvPaymentTypeOrder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp"
+                    tools:drawableEnd="@drawable/ic_google_pay"
+                    tools:text="Google Pay" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/orderList"
+                    android:textAppearance="@style/Text.BlockHeader" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvOrdersListEditOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_default_ripple_selector_rect"
+                    android:padding="@dimen/_4sdp"
+                    android:text="@string/editCheckout"
+                    android:textAppearance="@style/Text.CheckoutEdit" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvOrdersListOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/totalAmount"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="@dimen/_13sdp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvTotalAmountOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    tools:text="382 ₽" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/discount"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="@dimen/_13sdp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvDiscountOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    tools:text="382 ₽" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDeliveryCheckout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/deliveryAmount"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="@dimen/_13sdp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvDeliveryAmountOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    tools:text="382 ₽" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/totalPayable"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvTotalPayableOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryBlue"
+                    android:textSize="@dimen/_18sdp"
+                    android:textStyle="bold"
+                    tools:text="382 ₽" />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCheckoutOrder"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_48sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:background="@color/primaryBlue"
+                android:gravity="center"
+                android:text="@string/checkout"
+                android:textColor="@color/primaryBlue"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorGlobalWhite"
+                app:cornerRadius="@dimen/_20sdp"
+                app:strokeColor="@color/primaryBlue" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

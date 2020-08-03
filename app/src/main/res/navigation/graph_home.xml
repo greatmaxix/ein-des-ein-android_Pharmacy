@@ -63,4 +63,14 @@
         android:name="com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment"
         tools:layout="@layout/dialog_promo_code" />
 
+    <action
+        android:id="@+id/globalToOrder"
+        app:destination="@id/nav_order" />
+
+    <fragment
+        android:id="@+id/nav_order"
+        android:name="com.pharmacy.myapp.order.OrderFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_order" />
+
 </navigation>

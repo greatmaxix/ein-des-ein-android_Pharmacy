@@ -16,4 +16,10 @@
         android:layout_height="wrap_content"
         android:text="To checkout" />
 
+    <Button
+        android:id="@+id/toOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To order" />
+
 </LinearLayout>
