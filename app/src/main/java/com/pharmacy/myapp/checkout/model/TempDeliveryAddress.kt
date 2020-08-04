@@ -12,12 +12,20 @@ data class TempDeliveryAddress(
 
     companion object {
 
-        fun empty() = TempDeliveryAddress(
+        fun newInstance() = TempDeliveryAddress(
             "",
             "",
             "",
             "",
             ""
+        )
+
+        fun newMockInstance() = TempDeliveryAddress(
+            "Харьков",
+            "ул. Горная",
+            "23a",
+            "кв. 56",
+            "c 8:00 до 22:00 ежедневно"
         )
     }
 }

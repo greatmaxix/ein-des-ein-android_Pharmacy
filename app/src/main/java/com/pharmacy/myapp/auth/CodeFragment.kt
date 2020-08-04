@@ -41,7 +41,7 @@ class CodeFragment : AuthBaseFragment(R.layout.fragment_code) {
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-        viewModel.userPhoneLiveData.observeExt { mtvPhoneCode.text = it }
+        viewModel.customerPhoneLiveData.observeExt { mtvPhoneCode.text = it }
     }
 
     private fun checkSmsCode() {

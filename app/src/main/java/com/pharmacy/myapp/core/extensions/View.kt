@@ -9,6 +9,7 @@ import android.graphics.Rect
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Handler
+import android.os.SystemClock
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -267,8 +268,18 @@ fun View.colorValueAnimator(from: Int, to: Int, duration: Long, onUpdate: (Int) 
     }
     return this
 }
+
 val View.toTransitionGroup
     get() = this to transitionName
+
+fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> Unit) {
+    val lastClickMap = mutableMapOf<Int, Long>()
+    setOnClickListener { v ->
+        val currentTimestamp = SystemClock.uptimeMillis()
+        if (currentTimestamp - lastClickMap.getOrDefault(v.id, 0) > interval) run { listener.invoke(v) }
+        lastClickMap[v.id] = currentTimestamp
+    }
+}
 
 fun View.setRoundCornerBackground() {
     val radius = resources.getDimension(R.dimen._8sdp)

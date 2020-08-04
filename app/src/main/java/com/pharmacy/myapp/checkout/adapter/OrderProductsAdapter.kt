@@ -23,15 +23,17 @@ class OrderProductsAdapter : BaseRecyclerAdapter<TempProductModel, OrderProducts
     class RecommendedViewHolder(view: View) : BaseViewHolder<TempProductModel>(view) {
 
         override fun bind(item: TempProductModel) {
-            Glide.with(itemView)
-                .load(item.imageUrl)
-                .into(itemView.ivProductImageCheckout)
+            with(itemView) {
+                Glide.with(this)
+                    .load(item.imageUrl)
+                    .into(ivProductImageCheckout)
 
-            itemView.tvProductTitleCheckout.text = item.name
-            itemView.tvProductDescriptionCheckout.text = item.description
-            itemView.tvProductIssuerCheckout.text = item.issuer
-            itemView.fabAddToCartCheckout.onClick { itemView.context.toast("TODO: Add to cart") }
-            itemView.fabProductPriceCheckout.text = item.price
+                tvProductTitleCheckout.text = item.name
+                tvProductDescriptionCheckout.text = item.description
+                tvProductIssuerCheckout.text = item.issuer
+                fabAddToCartCheckout.onClick { itemView.context.toast("TODO: Add to cart") }
+                fabProductPriceCheckout.text = item.price
+            }
         }
 
         companion object {

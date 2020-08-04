@@ -1,9 +1,7 @@
 package com.pharmacy.myapp.checkout
 
-import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavDirections
-import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment.Companion.PROMO_CODE_EXTRA_KEY
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import timber.log.Timber
@@ -19,8 +17,7 @@ class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewMo
     private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
 
-    fun handlePromoCodeResult(bundle: Bundle) {
-        val code = bundle[PROMO_CODE_EXTRA_KEY]
+    fun handlePromoCodeResult(code: String) {
         Timber.e("PROMO CODE = $code")
     }
 }

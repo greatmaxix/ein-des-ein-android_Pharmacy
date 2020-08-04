@@ -20,6 +20,7 @@ versions.appcompat = "1.1.0"
 versions.navigation = "2.2.2"
 versions.fragment = "1.3.0-alpha07"
 versions.activity = "1.1.0"
+versions.exifinterface = "1.2.0"
 versions.apacheCommons = "3.9"
 versions.timber = "4.7.1"
 
@@ -28,6 +29,8 @@ versions.paging = "2.1.2"
 versions.viewpager = "1.0.0"
 versions.constraint = "2.0.0-beta6"
 versions.kPermissions = "3.1.2"
+versions.glide = "4.11.0"
+versions.workmanager = "2.4.0"
 versions.qr_code_scanner_version = "2.1.0"
 versions.glide = "4.11.0"
 
@@ -39,9 +42,3 @@ ext.deps.navigation_plugin = "androidx.navigation:navigation-safe-args-gradle-pl
 ext.deps.google_plugin = "com.google.gms:google-services:4.3.2"
 ext.deps.fabric_plugin = "io.fabric.tools:gradle:1.31.2"
 ext.deps.koin_plugin = "org.koin:koin-gradle-plugin:$versions.koin"
-
-def room = [:]
-room.runtime = "androidx.room:room-runtime:$versions.room"
-room.compiler = "androidx.room:room-compiler:$versions.room"
-room.ktx = "androidx.room:room-ktx:$versions.room"
-ext.deps.room = room

@@ -11,6 +11,7 @@ data class LoginResponse(
 data class Customer(
     @SerializedName("email") val email: String,
     @SerializedName("phone") val phone: String,
-    @SerializedName("username") val username: String,
-    @SerializedName("uuid") val uuid: String
+    @SerializedName("username") val name: String,
+    @SerializedName("uuid") val uuid: String,
+    @SerializedName("avatarUuid") val avatarUuid: String
 )

@@ -9,4 +9,18 @@ data class TempPharmacyAddress(
     val houseNo: String?,
     val phone: String?,
     val timing: String?
-)
+) {
+    companion object {
+
+        fun newMockInstance() = TempPharmacyAddress(
+            "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
+            "3/4 в наличии",
+            "Название аптеки",
+            "Харьков",
+            "ул. Горная",
+            "23a",
+            "+7 (098) 000 02 00 • +7 (098) 000 02 00",
+            "c 8:00 до 22:00 ежедневно"
+        )
+    }
+}

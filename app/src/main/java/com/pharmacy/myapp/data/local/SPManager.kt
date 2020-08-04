@@ -25,24 +25,6 @@ class SPManager(val context: Context) : SharedPreferenceContext {
             put(Keys.REFRESH_TOKEN, value)
         }
 
-    var email: String?
-        get() = get(Keys.EMAIL)
-        set(value) {
-            put(Keys.EMAIL, value)
-        }
-
-    var phone: String?
-        get() = get(Keys.PHONE)
-        set(value) {
-            put(Keys.PHONE, value)
-        }
-
-    var username: String?
-        get() = get(Keys.USERNAME)
-        set(value) {
-            put(Keys.USERNAME, value)
-        }
-
     var qrCodeDescriptionShown: Boolean?
         get() = get(Keys.QR_CODE_DESCRIPTION_SHOWN)
         set(value) = put(Keys.QR_CODE_DESCRIPTION_SHOWN, value)
@@ -54,6 +36,6 @@ class SPManager(val context: Context) : SharedPreferenceContext {
     }
 
     private enum class Keys {
-        TOKEN, EMAIL, PHONE, USERNAME, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN
+        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN
     }
 }

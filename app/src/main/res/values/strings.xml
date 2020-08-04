@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Pharmacy</string>
 
+    <string name="common_closeButton">@android:string/cancel</string>
+    <string name="common_okButton">@android:string/ok</string>
+
     <string name="error_networkErrorMessage">Ошибка соединения</string>
     <string name="error_errorGettingData">Ошибка получения данных</string>
     <string name="error_serverNotResponding">Сервер не отвечает</string>
@@ -111,6 +114,19 @@
     <string name="mapIconContentDescriptionHome">Карта аптек</string>
     <string name="cameraIconContentDescription">Иконка камеры</string>
 
+    <string name="changePhotoGallery">Выбрать из галереи</string>
+    <string name="changePhotoCamera">Сделать фото</string>
+    <string name="changePhotoDelete">Удалить аватар</string>
+    <string name="whoAreYou_cameraPermissionPermanentlyDenied">Доступ к камере запрещен. Откройте настройки устройства и дайте разрешение приложению</string>
+    <string name="common_permissionDialog_settingsButton">Настройки</string>
+    <string name="common_permissionDialog_cancel">Отменить</string>
+    <string name="whoAreYou_cameraPermissionDenied">Разрешение камеры не предоставлено</string>
+    <string name="whoAreYou_cameraPermissionNoCameraOnDevice">На устройстве нет камеры</string>
+    <string name="whoAreYou_cameraPermissionRationaleMessage">Требуется разрешение камеры</string>
+    <string name="whoAreYou_errorSavingAvatar">Ошибка при сохранении изображения</string>
+    <string name="chooseAvatarError">Произошла ошибка выбора аватара</string>
+    <string name="avatarSavingError">Ошибка во время сохранения аватара</string>
+
     <!-- Checkout -->
     <string name="checkoutLabel">Офорление</string>
     <string name="yourDetails">Ваши данные :</string>
@@ -142,6 +158,10 @@
     <string name="promoCodeHint">Промокод</string>
     <string name="promoCodeApply">Применить</string>
     <string name="promoCodeCancel">Отменить</string>
+
+    <!-- Order -->
+    <string name="orderStepsTestText">Шаг</string>
+    <string name="paymentType">Тип оплаты :</string>
 
     <!-- Cart -->
     <string name="cartLabel">Корзина</string>

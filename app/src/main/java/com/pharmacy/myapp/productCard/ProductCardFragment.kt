@@ -33,7 +33,7 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back) { navController.popBackStack() }
+        showBackButton(R.drawable.ic_arrow_back)
         initMenu(R.menu.share, Toolbar.OnMenuItemClickListener {
             if (it.itemId == R.id.menu_share) {
                 // TODO share func
