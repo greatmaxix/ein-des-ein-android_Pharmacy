@@ -115,4 +115,21 @@
         <item name="android:textSize">@dimen/_10ssp</item>
         <item name="android:textColor">@color/primaryBlue</item>
     </style>
+
+    <style name="ToggleButtonCart" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:padding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="backgroundTint">@color/colorTransparent</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconTint">@color/primaryBlue</item>
+        <item name="iconGravity">textStart</item>
+        <item name="strokeColor">@color/primaryBlue</item>
+    </style>
+
+    <style name="Recycler">
+        <item name="android:scrollbars">none</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:splitMotionEvents">false</item>
+    </style>
+
 </resources>

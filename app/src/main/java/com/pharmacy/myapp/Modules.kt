@@ -1,6 +1,7 @@
 package com.pharmacy.myapp
 
 import com.pharmacy.myapp.auth.authModule
+import com.pharmacy.myapp.cart.cartModule
 import com.pharmacy.myapp.checkout.checkoutModule
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
@@ -24,7 +25,8 @@ object Modules {
         authModule,
         qrCodeScannerModule,
         productCardModule,
-        checkoutModule
+        checkoutModule,
+        cartModule
     )
 
     private val managerModule = module(true) {

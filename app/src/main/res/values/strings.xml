@@ -143,4 +143,12 @@
     <string name="promoCodeApply">Применить</string>
     <string name="promoCodeCancel">Отменить</string>
 
+    <!-- Cart -->
+    <string name="cartLabel">Корзина</string>
+    <string name="cartImageContentDescription">Изображение медикамента</string>
+    <string name="recipeInCartTitle">В корзине есть рецептурные товары</string>
+    <string name="relevanceDrugsCartSubtitle">Проверьте наличие и актуальность Веших рецептов</string>
+    <string name="infoIconContentDescription">Иконка информации выбора аптеки</string>
+    <string name="chooseDrugstoreCart">Выбрать аптеку</string>
+
 </resources>
