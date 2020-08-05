@@ -1,24 +1,19 @@
 package com.pharmacy.myapp.productCard
 
-import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
-import com.google.android.material.shape.CornerFamily
-import com.google.android.material.shape.MaterialShapeDrawable
-import com.google.android.material.shape.MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
-import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.alphaVisibleOrGone
 import com.pharmacy.myapp.core.extensions.onClick
+import com.pharmacy.myapp.core.extensions.setTopRoundCornerBackground
 import com.pharmacy.myapp.core.extensions.toast
 import com.pharmacy.myapp.data.DummyData
 import com.pharmacy.myapp.productCard.adapter.ProductCardImageAdapter
@@ -50,7 +45,7 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
         initImagePager()
         initReleaseForms()
         initRecommended()
-        initBottomBar()
+        bottomLayout.setTopRoundCornerBackground()
 
         fillTempData()
 
@@ -61,25 +56,6 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
         seeAllRecommended.onClick { requireContext().toast("TODO: See all recommended") }
         favoriteFab.onClick { requireContext().toast("TODO: Favorite") }
         addToCartBtn.onClick { requireContext().toast("TODO: Add to cart") }
-    }
-
-    private fun initBottomBar() {
-        val radius = resources.getDimension(R.dimen._8sdp)
-        val appearanceModel = ShapeAppearanceModel()
-            .toBuilder()
-            .setTopRightCorner(CornerFamily.ROUNDED, radius)
-            .setTopLeftCorner(CornerFamily.ROUNDED, radius)
-            .build()
-
-        val shape = MaterialShapeDrawable(appearanceModel)
-            .apply {
-                shadowCompatibilityMode = SHADOW_COMPAT_MODE_ALWAYS
-                elevation = resources.getDimension(R.dimen._4sdp)
-                setTint(R.color.colorGlobalWhite.toColor)
-                paintStyle = Paint.Style.FILL
-            }
-
-        ViewCompat.setBackground(bottomLayout, shape)
     }
 
     private fun fillTempData() {

@@ -4,6 +4,7 @@ import android.animation.*
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
@@ -19,7 +20,9 @@ import android.widget.TextView
 import androidx.annotation.*
 import androidx.appcompat.widget.Toolbar
 import androidx.core.animation.doOnEnd
+import androidx.core.content.ContextCompat
 import androidx.core.text.PrecomputedTextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isEmpty
 import androidx.core.view.updateLayoutParams
@@ -28,8 +31,13 @@ import androidx.core.widget.TextViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.textfield.TextInputLayout
 import com.pharmacy.myapp.R
+import kotlinx.android.synthetic.main.item_cart_product.view.*
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -273,6 +281,25 @@ fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> U
         if (currentTimestamp - lastClickMap.getOrDefault(v.id, 0) > interval) run { listener.invoke(v) }
         lastClickMap[v.id] = currentTimestamp
     }
+}
+
+fun View.setTopRoundCornerBackground() {
+    val radius = resources.getDimension(R.dimen._8sdp)
+    val appearanceModel = ShapeAppearanceModel()
+        .toBuilder()
+        .setTopRightCorner(CornerFamily.ROUNDED, radius)
+        .setTopLeftCorner(CornerFamily.ROUNDED, radius)
+        .build()
+
+    val shape = MaterialShapeDrawable(appearanceModel)
+        .apply {
+            shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
+            elevation = resources.getDimension(R.dimen._4sdp)
+            setTint(ContextCompat.getColor(context, R.color.colorGlobalWhite))
+            paintStyle = Paint.Style.FILL
+        }
+
+    ViewCompat.setBackground(this, shape)
 }
 
 fun TextView.hideKeyboardOnEditorAction() {

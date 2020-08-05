@@ -2,6 +2,7 @@ package com.pharmacy.myapp
 
 import androidx.work.WorkManager
 import com.pharmacy.myapp.auth.authModule
+import com.pharmacy.myapp.cart.cartModule
 import com.pharmacy.myapp.checkout.checkoutModule
 import com.pharmacy.myapp.data.local.DBManager
 import com.pharmacy.myapp.data.local.SPManager
@@ -28,7 +29,8 @@ object Modules {
         qrCodeScannerModule,
         productCardModule,
         checkoutModule,
-        orderModule
+        orderModule,
+        cartModule
     )
 
     private val managerModule = module(true) {
