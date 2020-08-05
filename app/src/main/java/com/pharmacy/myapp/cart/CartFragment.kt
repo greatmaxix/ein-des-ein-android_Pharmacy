@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.setRoundCornerBackground
+import com.pharmacy.myapp.core.extensions.setTopRoundCornerBackground
 import com.pharmacy.myapp.core.extensions.toast
 import com.pharmacy.myapp.data.DummyData
 import com.pharmacy.myapp.ui.decoration.SwipeHandler
@@ -22,10 +22,10 @@ class CartFragment : BaseMVVMFragment(R.layout.fragment_cart) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back) { navController.popBackStack() }
+        showBackButton(R.drawable.ic_arrow_back)
 
         initOrderProducts()
-        bottomLayoutCart.setRoundCornerBackground()
+        bottomLayoutCart.setTopRoundCornerBackground()
         chooseStoreBtn.onClick { requireContext().toast("TODO: Choose store") }
         mcvRecipeContainer.onClick { requireContext().toast("TODO: Recipe") }
     }

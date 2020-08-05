@@ -10,6 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
+import com.pharmacy.myapp.core.extensions.loadGlide
 
 class ProductCardImageAdapter : BaseRecyclerAdapter<String, ProductCardImageAdapter.ImageViewHolder>() {
 
@@ -27,11 +28,7 @@ class ProductCardImageAdapter : BaseRecyclerAdapter<String, ProductCardImageAdap
                 .centerCrop()
                 .priority(Priority.HIGH)
                 .format(DecodeFormat.PREFER_ARGB_8888)
-
-            Glide.with(itemView)
-                .applyDefaultRequestOptions(options)
-                .load(item)
-                .into(itemView as ImageView)
+            (itemView as ImageView).loadGlide(item) { apply(options) }
         }
 
         companion object {

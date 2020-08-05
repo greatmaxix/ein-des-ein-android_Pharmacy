@@ -13,7 +13,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.alphaVisibleOrGone
 import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.setRoundCornerBackground
+import com.pharmacy.myapp.core.extensions.setTopRoundCornerBackground
 import com.pharmacy.myapp.core.extensions.toast
 import com.pharmacy.myapp.data.DummyData
 import com.pharmacy.myapp.productCard.adapter.ProductCardImageAdapter
@@ -45,7 +45,7 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
         initImagePager()
         initReleaseForms()
         initRecommended()
-        bottomLayout.setRoundCornerBackground()
+        bottomLayout.setTopRoundCornerBackground()
 
         fillTempData()
 

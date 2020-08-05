@@ -7,6 +7,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
 import com.pharmacy.myapp.core.extensions.inflate
+import com.pharmacy.myapp.core.extensions.loadGlide
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.toast
 import com.pharmacy.myapp.productCard.model.TempRecommendedModel
@@ -23,9 +24,7 @@ class RecommendedAdapter : BaseRecyclerAdapter<TempRecommendedModel, Recommended
     class RecommendedViewHolder(view: View) : BaseViewHolder<TempRecommendedModel>(view) {
 
         override fun bind(item: TempRecommendedModel) {
-            Glide.with(itemView)
-                .load(item.imageUrl)
-                .into(itemView.recommendedImage)
+            itemView.recommendedImage.loadGlide(item.imageUrl)
 
             itemView.recommendedFavorite.onClick { itemView.context.toast("TODO: Favorite") }
             itemView.recommendedTitle.text = item.name

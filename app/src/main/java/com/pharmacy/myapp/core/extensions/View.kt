@@ -31,11 +31,13 @@ import androidx.core.widget.TextViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.textfield.TextInputLayout
 import com.pharmacy.myapp.R
+import kotlinx.android.synthetic.main.item_cart_product.view.*
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -281,7 +283,7 @@ fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> U
     }
 }
 
-fun View.setRoundCornerBackground() {
+fun View.setTopRoundCornerBackground() {
     val radius = resources.getDimension(R.dimen._8sdp)
     val appearanceModel = ShapeAppearanceModel()
         .toBuilder()

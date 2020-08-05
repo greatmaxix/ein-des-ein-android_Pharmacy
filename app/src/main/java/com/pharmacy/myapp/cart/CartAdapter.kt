@@ -8,6 +8,7 @@ import com.pharmacy.myapp.checkout.model.TempProductModel
 import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
 import com.pharmacy.myapp.core.extensions.inflate
+import com.pharmacy.myapp.core.extensions.loadGlide
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.toast
 import kotlinx.android.synthetic.main.item_cart_product.view.*
@@ -23,9 +24,7 @@ class CartAdapter : BaseRecyclerAdapter<TempProductModel, CartAdapter.Recommende
     class RecommendedViewHolder(view: View) : BaseViewHolder<TempProductModel>(view) {
 
         override fun bind(item: TempProductModel) {
-            Glide.with(itemView)
-                .load(item.imageUrl)
-                .into(itemView.ivProductImageCart)
+            itemView.ivProductImageCart.loadGlide(item.imageUrl)
 
             itemView.tvProductTitleCart.text = item.name
             itemView.tvProductDescriptionCart.text = item.description
