@@ -50,7 +50,6 @@ class RestManager : KoinComponent {
             val response = api.tokenRefresh(TokenRefreshRequest(refreshToken))
             spManager.token = response.token
             spManager.refreshToken = response.refreshToken
-            // TODO maybe need to update customer data from response?
             Any()
         }
     }

@@ -77,9 +77,6 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
                 directionLiveData.postValue(actionFromCodeToHome())
             }
         } else {
-            // TODO why do we need to notify user with error when he do not have avatar?
-//            errorLiveData.postValue(context?.getString(R.string.avatarSavingError))
-//            delay(1000L)
             directionLiveData.postValue(actionFromCodeToHome())
         }
     }

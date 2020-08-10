@@ -9,19 +9,13 @@ import com.pharmacy.myapp.model.customerInfo.CustomerInfo
 class AuthRepository(private val spManager: SPManager, private val rm: RestManager, private val dao: CustomerDAO) {
 
     suspend fun signUp(name: String, phone: String, email: String) =
-        safeApiCall(rm.tokenRefreshCall) {
-            val response = rm.signUp(name, phone, email)
-            response.dataOrThrow()
-        }
+        safeApiCall(rm.tokenRefreshCall) { rm.signUp(name, phone, email).dataOrThrow() }
 
     suspend fun auth(phone: String) =
         safeApiCall(rm.tokenRefreshCall) { rm.auth(phone) }
 
     suspend fun login(phone: String, code: String) =
-        safeApiCall(rm.tokenRefreshCall) {
-            val response = rm.login(phone, code)
-            response.dataOrThrow()
-        }
+        safeApiCall(rm.tokenRefreshCall) { rm.login(phone, code).dataOrThrow() }
 
     fun saveToken(token: String, refreshToken: String) {
         spManager.token = token
