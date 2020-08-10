@@ -80,7 +80,7 @@ class ProfileViewModel(private val context: Context, private val repository: Pro
 
             when (val uploadImage = repository.uploadImage(avatarFile.getMultipartBody("file"))) {
                 is Success -> {
-                    updateCustomerData(avatarUuid = uploadImage.value.data.uuid)
+                    updateCustomerData(avatarUuid = uploadImage.value.data.avatar.uuid)
                     Glide.get(context).clearDiskCache()
                     _avatarLiveData.postValue(avatarFile.absolutePath)
                 }
