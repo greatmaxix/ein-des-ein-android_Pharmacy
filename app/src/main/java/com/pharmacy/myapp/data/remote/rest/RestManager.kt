@@ -11,9 +11,9 @@ import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.AVATAR_UUID
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.CODE
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.EMAIL
+import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.NAME
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.PHONE
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REFRESH_TOKEN
-import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.USERNAME
 import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -28,7 +28,7 @@ class RestManager : KoinComponent {
     private val spManager: SPManager by inject()
 
     companion object {
-        private const val BASE_URL = "https://api.pharmacies.fmc-dev.com"
+        private const val BASE_URL = "https://api.pharmacies.release.fmc-dev.com"
         private const val READ_TIMEOUT = 30L
         private const val CONNECT_TIMEOUT = 60L
         private const val WRITE_TIMEOUT = 120L
@@ -95,7 +95,7 @@ class RestManager : KoinComponent {
     }.build()
 
     suspend fun signUp(name: String, phone: String, email: String) =
-        api.signUp(mapOf(USERNAME to name, EMAIL to email, PHONE to phone))
+        api.signUp(mapOf(NAME to name, EMAIL to email, PHONE to phone))
 
     suspend fun auth(phone: String) = api.auth(mapOf(PHONE to phone))
 
@@ -103,7 +103,7 @@ class RestManager : KoinComponent {
         api.login(mapOf(PHONE to phone, CODE to code))
 
     suspend fun updateCustomerInfo(name: String, email: String, avatarUuid: String) =
-        api.updateCustomerInfo(mapOf(USERNAME to name, EMAIL to email, AVATAR_UUID to avatarUuid))
+        api.updateCustomerInfo(mapOf(NAME to name, EMAIL to email, AVATAR_UUID to avatarUuid))
 
     suspend fun logout(refreshToken: String) = api.logout(mapOf(REFRESH_TOKEN to refreshToken))
 

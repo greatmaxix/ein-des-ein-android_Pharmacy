@@ -49,8 +49,8 @@
         tools:layout="@layout/fragment_code">
 
         <action
-            android:id="@+id/actionFromCodeToProfile"
-            app:destination="@id/profile_graph"
+            android:id="@+id/actionFromCodeToHome"
+            app:destination="@id/home_graph"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"

@@ -40,6 +40,10 @@ suspend fun <T> safeApiCall(
                     )
                 }
             }
+            is ApiException -> ResponseWrapper.Error(
+                R.string.error_errorGettingData,
+                throwable.message
+            )
             else -> ResponseWrapper.Error(R.string.error_errorGettingData)
         }
     }
@@ -48,7 +52,7 @@ fun getErrorMessage(responseBody: ResponseBody?): String = try {
     val jsonObject = JSONObject(responseBody!!.string())
     when {
         jsonObject.has("message") -> jsonObject.getString("message")
-        jsonObject.has("type") -> jsonObject.getString("type")
+        jsonObject.has("error_type") -> jsonObject.getString("error_type")
         else -> "Something wrong happened"
     }
 } catch (e: Exception) {

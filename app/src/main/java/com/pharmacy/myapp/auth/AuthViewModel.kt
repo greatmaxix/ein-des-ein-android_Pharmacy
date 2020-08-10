@@ -4,8 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
 import com.pharmacy.myapp.BuildConfig
-import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeToProfile
+import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeToHome
 import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToCode
 import com.pharmacy.myapp.auth.SignUpFragmentDirections.Companion.actionFromSignUpToCode
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
@@ -13,8 +12,8 @@ import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
+import com.pharmacy.myapp.model.customerInfo.CustomerInfo
 import com.pharmacy.myapp.util.AvatarUtil
-import kotlinx.coroutines.delay
 
 class AuthViewModel(private var context: Context?, private val repository: AuthRepository) : BaseViewModel() {
 
@@ -37,6 +36,7 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
             when (response) {
                 is Success -> {
                     setUserPhone(phone)
+                    saveCustomerData(response.value.customer)
                     directionLiveData.postValue(actionFromSignUpToCode())
                 }
                 is Error -> errorLiveData.postValue(response.errorMessage)
@@ -64,22 +64,20 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
         when (response) {
             is Success -> {
                 repository.saveToken(response.value.token, response.value.refreshToken)
-                when (val updateResponse = repository.updateCustomerInfo()) {
-                    is Success -> {
-                        if (!updateResponse.value.isNullOrEmpty() && context != null) {
-                            AvatarUtil.saveAvatarToFile(context!!, updateResponse.value) {
-                                directionLiveData.postValue(actionFromCodeToProfile())
-                            }
-                        } else {
-                            errorLiveData.postValue(context?.getString(R.string.avatarSavingError))
-                            delay(1000L)
-                            directionLiveData.postValue(actionFromCodeToProfile())
-                        }
-                    }
-                    is Error -> errorLiveData.postValue(updateResponse.errorMessage)
-                }
+                saveCustomerData(response.value.customer)
             }
             is Error -> errorLiveData.postValue(response.errorMessage)
+        }
+    }
+
+    private suspend fun saveCustomerData(customerInfo: CustomerInfo) {
+        val avatarUrl = repository.saveCustomerInfo(customerInfo)
+        if (!avatarUrl.isNullOrEmpty() && context != null) {
+            AvatarUtil.saveAvatarToFile(context!!, avatarUrl) {
+                directionLiveData.postValue(actionFromCodeToHome())
+            }
+        } else {
+            directionLiveData.postValue(actionFromCodeToHome())
         }
     }
 
@@ -95,9 +93,10 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
         val response = repository.auth(customerPhone)
         progressLiveData.postValue(false)
         when (response) {
-            is Success -> {/*todo snackbar*/}
+            is Success -> {
+                /*todo snackbar*/
+            }
             is Error -> errorLiveData.postValue(response.errorMessage)
         }
     }
-
 }

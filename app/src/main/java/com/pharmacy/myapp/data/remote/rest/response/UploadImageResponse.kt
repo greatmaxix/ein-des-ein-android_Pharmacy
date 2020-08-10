@@ -2,9 +2,9 @@ package com.pharmacy.myapp.data.remote.rest.response
 
 import com.google.gson.annotations.SerializedName
 
-data class UploadImageResponse(@SerializedName("data") val data: Data)
+data class UploadImageResponse(@SerializedName("item") val avatar: Avatar)
 
-data class Data(
+data class Avatar(
     @SerializedName("createdAt") val createdAt: String,
     @SerializedName("extension") val extension: String,
     @SerializedName("filename") val filename: String,

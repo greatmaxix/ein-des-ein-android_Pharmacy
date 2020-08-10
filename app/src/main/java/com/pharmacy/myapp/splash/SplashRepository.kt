@@ -8,7 +8,7 @@ import com.pharmacy.myapp.model.customerInfo.CustomerInfo
 class SplashRepository(private val rm: RestManager, private val dao: CustomerDAO) {
 
     suspend fun updateCustomerInfo() = safeApiCall(rm.tokenRefreshCall) {
-        saveCustomerInfo(rm.fetchCustomerInfo().data)
+        saveCustomerInfo(rm.fetchCustomerInfo().data.item)
     }
 
     private suspend fun saveCustomerInfo(customer: CustomerInfo): String? {
