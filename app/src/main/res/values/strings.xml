@@ -36,6 +36,7 @@
     <string name="googleContentDescriptionSignUp">Sign in via Google account</string>
     <string name="registerButtonContentDescriptionSignUp">Register image button</string>
     <string name="facebookContentDescriptionSignUp">Sign in via Facebook</string>
+    <string name="scanDrugsContentDescription">Сканировать товар</string>
 
     <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
 
@@ -106,7 +107,6 @@
     <string name="categoriesTitleHome">Категории</string>
     <string name="seeAllCategoriesHome">Смотреть все</string>
     <string name="uploadRecipesHome">Загрузить рецепт</string>
-    <string name="scanDrugsContentDescriptionHome">Сканировать товар</string>
     <string name="orderLogoContentDescriptionHome">Лого заказа</string>
     <string name="orderSmallIconContentDescriptionHome">Иконка заказа</string>
     <string name="askTileContentDescriptionHome">Спроси фармацевта</string>
@@ -171,4 +171,12 @@
     <string name="infoIconContentDescription">Иконка информации выбора аптеки</string>
     <string name="chooseDrugstoreCart">Выбрать аптеку</string>
 
+    <!-- Search -->
+    <string name="searchLabel">Поиск</string>
+    <string name="oftenLookingFor">Часто ищут</string>
+    <string name="searchHistoryTitle">История поиска</string>
+    <string name="clearSearchHistory">Очистить</string>
+    <string name="noGoodsFoundTitle">Ой, кажется такого товара\nнет в нашей базе</string>
+    <string name="noGoodsFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
+    <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
 </resources>
