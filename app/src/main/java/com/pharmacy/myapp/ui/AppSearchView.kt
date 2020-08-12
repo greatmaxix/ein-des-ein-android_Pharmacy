@@ -92,7 +92,7 @@ class AppSearchView @JvmOverloads constructor(
         }
 
         notifyJob = viewScope.launch {
-            it.invoke(withContext(Default) {
+            it(withContext(Default) {
                 delay(debounce.toLong())
                 text
             })

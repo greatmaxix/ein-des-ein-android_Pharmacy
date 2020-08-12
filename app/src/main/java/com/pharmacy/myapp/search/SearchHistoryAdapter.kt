@@ -9,21 +9,15 @@ import com.pharmacy.myapp.core.extensions.inflate
 import com.pharmacy.myapp.core.extensions.onClick
 import kotlinx.android.synthetic.main.item_history_search.view.*
 
-class SearchHistoryAdapter : BaseRecyclerAdapter<String, SearchHistoryAdapter.SearchHistoryViewHolder>() {
-
-    private var itemClick:((String) -> Unit)? = null
+class SearchHistoryAdapter(private val itemClick:((String) -> Unit)) : BaseRecyclerAdapter<String, SearchHistoryAdapter.SearchHistoryViewHolder>() {
 
     fun setList(list: MutableList<String>) {
         items = list
     }
 
-    fun setClickListener(listener:(String) -> Unit) {
-        itemClick = listener
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHistoryViewHolder = SearchHistoryViewHolder.newInstance(parent).apply {
         itemView.onClick {
-            itemClick?.invoke(getItem(adapterPosition))
+            itemClick.invoke(getItem(adapterPosition))
         }
     }
 

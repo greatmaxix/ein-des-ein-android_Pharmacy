@@ -13,9 +13,10 @@ import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(R.layout.fragment_search) {
 
-    private val searchHistoryAdapter = SearchHistoryAdapter().apply {
+    private val searchHistoryAdapter = SearchHistoryAdapter() {
+        searchView.setText(it)
+    }.apply {
         setList(mutableListOf("Дротаверин", "Анальгин"))// todo
-        setClickListener { doSearch(it) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +36,7 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
     override fun onBindLiveData() {
         super.onBindLiveData()
         viewModel.oftenLookingLiveData.observeExt {
-            it.forEach { item -> cgOftenLookingForSearch.addView(createChip(item)) }
+            it.forEach { item -> asyncWithContext({ createChip(item) }, { cgOftenLookingForSearch.addView(this) }) }
         }
         viewModel.searchLiveData.observeExt {
             llDrugsNotFoundContainer.animateVisibleOrGoneIfNot(it.isNotEmpty())// todo mock
@@ -53,12 +54,7 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
         shapeAppearanceModel = ShapeAppearanceModel.Builder().setAllCornerSizes(radius).build()
         chipEndPadding = resources.getDimension(R.dimen._2sdp)
         chipStartPadding = resources.getDimension(R.dimen._2sdp)
-        onClick { doSearch(text) }
-    }
-
-    private fun doSearch(text: String) {
-        searchView.setText(text)
-        viewModel.doSearch(text)
+        onClick { searchView.setText(text) }
     }
 
 }
