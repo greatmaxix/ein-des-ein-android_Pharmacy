@@ -228,13 +228,13 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
 
     private fun setNotAuthorizedChatMessages() {
         val list = mutableListOf(
-            ChatMessage.DateHeader(LocalDateTime.now()),
-            ChatMessage.PharmacyMessage(getString(R.string.chat_description_message1)),
-            ChatMessage.PharmacyMessage(getString(R.string.chat_description_message2)),
-            ChatMessage.UserMessage(getString(R.string.chat_description_message3)),
-            ChatMessage.UserMessage(getString(R.string.chat_description_message4), LocalDateTime.now()),
+            ChatMessage.AuthorizeButton,
             ChatMessage.PharmacyMessage(getString(R.string.chat_description_message5)),
-            ChatMessage.AuthorizeButton
+            ChatMessage.UserMessage(getString(R.string.chat_description_message4), LocalDateTime.now()),
+            ChatMessage.UserMessage(getString(R.string.chat_description_message3)),
+            ChatMessage.PharmacyMessage(getString(R.string.chat_description_message2)),
+            ChatMessage.PharmacyMessage(getString(R.string.chat_description_message1)),
+            ChatMessage.DateHeader(LocalDateTime.now())
         )
         viewModel.setNotAuthorizedChatMessages(list)
     }

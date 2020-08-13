@@ -4,7 +4,6 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.checkout.model.TempProductModel
 import com.pharmacy.myapp.productCard.model.TempRecommendedModel
-import com.pharmacy.myapp.productCard.model.TempReleaseFormModel
 
 @Deprecated("Mock data object")
 object DummyData {
@@ -28,14 +27,6 @@ object DummyData {
         "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
         "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
         "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png"
-    )
-
-    fun getReleaseForms() = arrayListOf(
-        TempReleaseFormModel("Порошок д/пригот", "от 568 ₽"),
-        TempReleaseFormModel("Порошок", "от 568 ₽"),
-        TempReleaseFormModel("Порошок", "от 568 ₽"),
-        TempReleaseFormModel("Порошок", "от 568 ₽"),
-        TempReleaseFormModel("Порошок", "от 568 ₽")
     )
 
     fun getRecommended() = arrayListOf(
@@ -96,31 +87,33 @@ object DummyData {
             "Название продукта",
             "Таблетки шипучие, 24 шт",
             "Баер, Италия",
-            "568 ₽"
+            "568 ₽",
+            5
         ), TempProductModel(
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
             "Баер, Италия",
-            "568 ₽"
+            "568 ₽",
+            3
         ), TempProductModel(
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
             "Баер, Италия",
-            "568 ₽"
+            "568 ₽",
+            1
         ), TempProductModel(
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
             "Баер, Италия",
-            "568 ₽"
+            "568 ₽",
+            9
         )
     )
 
     val paymentMethod = arrayListOf(
-        TempPaymentMethod("Google Pay", R.drawable.ic_google_pay),
-        TempPaymentMethod("Apple Pay", R.drawable.ic_apple_pay),
         TempPaymentMethod("Credit card • 9876", R.drawable.ic_mastercard),
         TempPaymentMethod("Kaspi bank", R.drawable.ic_kaspi_bank),
         TempPaymentMethod("Наличными", R.drawable.ic_cash)

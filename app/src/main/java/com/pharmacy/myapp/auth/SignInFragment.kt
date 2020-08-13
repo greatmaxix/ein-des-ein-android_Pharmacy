@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.View
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToSignUp
+import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignToHome
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.onDoneImeAction
+import com.pharmacy.myapp.core.extensions.setDebounceOnClickListener
 import com.pharmacy.myapp.ui.text.isPhoneNumberValid
 import com.pharmacy.myapp.ui.text.setPhoneRule
 import kotlinx.android.synthetic.main.fragment_sign_in.*
@@ -25,6 +27,8 @@ class SignInFragment : AuthBaseFragment(R.layout.fragment_sign_in) {
                 viewModel.signIn(etPhoneSignIn.text.toString())
             }
         }
+        tvSkipAuth.setDebounceOnClickListener {
+            navController.navigate(actionFromSignToHome())
+        }
     }
-
 }

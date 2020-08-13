@@ -181,10 +181,10 @@
     <string name="chatAuthorizeButton">Авторизироваться</string>
     <string name="chatResumeButton">Продолжить</string>
     <string name="chatEndButton">Завершить чат</string>
-    <string name="chat_description_message1">Добрый день !</string>
+    <string name="chat_description_message1">Добрый день!</string>
     <string name="chat_description_message2">Чтобы перейти в чат с фармацевтом, Вам необходимо зарегестрироваться или авторизироваться</string>
-    <string name="chat_description_message3">Ок!Хорошо!</string>
-    <string name="chat_description_message4">Как мне это сделать ?</string>
+    <string name="chat_description_message3">Ок! Хорошо!</string>
+    <string name="chat_description_message4">Как мне это сделать?</string>
     <string name="chat_description_message5">Ничего сложного, просто укажите свою контактуню информацию</string>
     <string name="readDateHolder">Прочитано %s</string>
     <string name="chatEndedTitle">Чат завершен</string>

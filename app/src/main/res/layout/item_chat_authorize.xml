@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/_16sdp"
-    android:paddingTop="@dimen/_72sdp">
+    android:paddingVertical="@dimen/_72sdp">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAuthorize"
