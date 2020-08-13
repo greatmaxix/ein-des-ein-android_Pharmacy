@@ -27,7 +27,6 @@ class ChangePhotoBottomSheetDialogFragment : BottomSheetDialogFragment() {
         }
         if (arguments?.getBoolean(IS_NEED_DELETE_ARGS_KEY) != true) {
             view.change_photo_bottom_sheet_delete.gone()
-            view.change_photo_bottom_sheet_delete.gone()
         } else {
             view.change_photo_bottom_sheet_delete.setDebounceOnClickListener {
                 setFragmentResult(CHANGE_PHOTO_KEY, bundleOf(RESULT_BUTTON_EXTRA_KEY to Button.DELETE.name))

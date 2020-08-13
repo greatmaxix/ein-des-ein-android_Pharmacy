@@ -25,7 +25,7 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
         llButtonContainerSignUp.onClick {
             val isNameValid = tilNameSignUp.checkLength(getString(R.string.nameErrorAuth))
             val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
-            val isEmailValid = if(tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
+            val isEmailValid = if (tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
                 viewModel.signUp(tilNameSignUp.text(), tilPhoneSignUp.text(), tilEmailSignUp.text())
             }
