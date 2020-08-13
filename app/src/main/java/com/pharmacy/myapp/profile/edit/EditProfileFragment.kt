@@ -149,7 +149,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
                 val intent = Intent()
                 intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
                 intent.data = Uri.fromParts("package", requireActivity().packageName, null)
-                requireContext().startActivity(intent)
+                startActivity(intent)
             }
             negative = R.string.common_permissionDialog_cancel
         }
