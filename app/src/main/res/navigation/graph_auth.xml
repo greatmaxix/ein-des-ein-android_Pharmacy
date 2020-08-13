@@ -5,11 +5,24 @@
     android:id="@+id/auth_graph"
     app:startDestination="@id/nav_sign_in">
 
+    <argument
+        android:name="authResultDestination"
+        android:defaultValue="@null"
+        app:argType="string"
+        app:nullable="true" />
+
     <fragment
         android:id="@+id/nav_sign_in"
         android:name="com.pharmacy.myapp.auth.SignInFragment"
         android:label="@null"
         tools:layout="@layout/fragment_sign_in">
+
+        <argument
+            android:name="authResultDestination"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
         <action
             android:id="@+id/actionFromSignInToSignUp"
             app:destination="@id/nav_sign_up"
@@ -18,6 +31,7 @@
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim"
             app:popUpTo="@id/nav_sign_in" />
+
         <action
             android:id="@+id/actionFromSignInToCode"
             app:destination="@id/nav_code"
@@ -25,6 +39,7 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+
     </fragment>
 
     <fragment
@@ -40,6 +55,15 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+        <action
+            android:id="@+id/actionFromSignUpToHome"
+            app:destination="@id/home_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
     </fragment>
 
     <fragment
@@ -57,6 +81,6 @@
             app:popExitAnim="@anim/nav_exit_pop_anim"
             app:popUpTo="@id/main_graph"
             app:popUpToInclusive="true" />
-    </fragment>
 
+    </fragment>
 </navigation>

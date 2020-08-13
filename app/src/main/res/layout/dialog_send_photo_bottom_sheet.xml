@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorGlobalWhite"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/_12sdp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        android:id="@+id/send_photo_bottom_sheet_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_28sdp"
+        android:background="@drawable/background_default_ripple_selector_rect"
+        android:padding="@dimen/_12sdp"
+        android:text="@string/sendPhotoGallery"
+        android:textSize="@dimen/_11ssp" />
+
+    <TextView
+        android:id="@+id/send_photo_bottom_sheet_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_28sdp"
+        android:background="@drawable/background_default_ripple_selector_rect"
+        android:padding="@dimen/_12sdp"
+        android:text="@string/sendPhotoCamera"
+        android:textSize="@dimen/_11ssp" />
+
+</LinearLayout>

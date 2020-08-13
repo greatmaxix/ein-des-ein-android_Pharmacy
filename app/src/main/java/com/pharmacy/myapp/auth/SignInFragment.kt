@@ -6,9 +6,6 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToSignUp
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.onDoneImeAction
-import com.pharmacy.myapp.core.extensions.visibleOrInvisible
-import com.pharmacy.myapp.ui.text.addAfterTextWatcher
-import com.pharmacy.myapp.ui.text.addCountryCodePrefix
 import com.pharmacy.myapp.ui.text.isPhoneNumberValid
 import com.pharmacy.myapp.ui.text.setPhoneRule
 import kotlinx.android.synthetic.main.fragment_sign_in.*
@@ -17,6 +14,8 @@ class SignInFragment : AuthBaseFragment(R.layout.fragment_sign_in) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.authResultDestination = SignInFragmentArgs.fromBundle(requireArguments()).authResultDestination
+
         tilPhoneSignIn.setPhoneRule()
         etPhoneSignIn.onDoneImeAction { llButtonContainer.performClick() }
         mbCreateAccount.onClick { viewModel.directionLiveData.postValue(actionFromSignInToSignUp()) }

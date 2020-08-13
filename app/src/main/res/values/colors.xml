@@ -42,6 +42,7 @@
     <color name="greyText">#64738C</color>
     <color name="grey">#A5B4CC</color>
     <color name="grey20">#33A5B4CC</color>
+    <color name="greyLight">#F6F8FA</color>
     <color name="mediumGrey">#DBE1EB</color>
     <color name="mediumGrey50">#80DBE1EB</color>
     <color name="lightGrey">#F6F8FA</color>
@@ -49,6 +50,7 @@
     <color name="purple">#6E7DF1</color>
     <color name="orange">#FD8A02</color>
     <color name="red">#FF0000</color>
+    <color name="yellow">#F9F125</color>
 
     <color name="primaryBlueRipple">#492566F9</color>
     <color name="primaryLightRipple">#50FFFFFF</color>

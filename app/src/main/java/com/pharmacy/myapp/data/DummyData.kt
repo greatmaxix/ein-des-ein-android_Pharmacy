@@ -125,4 +125,20 @@ object DummyData {
         TempPaymentMethod("Kaspi bank", R.drawable.ic_kaspi_bank),
         TempPaymentMethod("Наличными", R.drawable.ic_cash)
     )
+
+    val pharmacyResponses = arrayListOf(
+        "Чем еще могу быть полезен?",
+        "На что у вас есть аллергия?",
+        "Какие препараты вы сейчас принимаете?",
+        "Есть ли у вас хронические заболевания?",
+        "Беременны ли вы или не в процессе грудного вскармливания?"
+    )
+
+    fun getReviewReasons() = arrayListOf(
+        "Медленные ответы",
+        "Хамство",
+        "Не компетентность",
+        "Не спросили рецепт",
+        "Советовали очень дорогое"
+    )
 }

@@ -31,13 +31,11 @@ import androidx.core.widget.TextViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.textfield.TextInputLayout
 import com.pharmacy.myapp.R
-import kotlinx.android.synthetic.main.item_cart_product.view.*
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -177,6 +175,10 @@ fun View.visibleOrGone(visible: Boolean) {
     if (visible) visible() else gone()
 }
 
+fun View.animateVisibleOrGoneIfNot(visible: Boolean, duration: Long = 100) {
+    if (visible) animateVisibleIfNot(duration) else animateGoneIfNot(duration)
+}
+
 fun View.visibleOrInvisible(visible: Boolean) {
     visibility = if (visible) VISIBLE else INVISIBLE
 }
@@ -283,8 +285,11 @@ fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> U
     }
 }
 
-fun View.setTopRoundCornerBackground() {
-    val radius = resources.getDimension(R.dimen._8sdp)
+fun View.setTopRoundCornerBackground(
+    radius: Float = resources.getDimension(R.dimen._8sdp),
+    elevation: Float = resources.getDimension(R.dimen._4sdp),
+    @ColorInt tintColor: Int = ContextCompat.getColor(context, R.color.colorGlobalWhite)
+) {
     val appearanceModel = ShapeAppearanceModel()
         .toBuilder()
         .setTopRightCorner(CornerFamily.ROUNDED, radius)
@@ -294,8 +299,8 @@ fun View.setTopRoundCornerBackground() {
     val shape = MaterialShapeDrawable(appearanceModel)
         .apply {
             shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
-            elevation = resources.getDimension(R.dimen._4sdp)
-            setTint(ContextCompat.getColor(context, R.color.colorGlobalWhite))
+            this.elevation = elevation
+            setTint(tintColor)
             paintStyle = Paint.Style.FILL
         }
 

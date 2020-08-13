@@ -4,5 +4,6 @@
     <solid android:color="@color/orange" />
     <corners
         android:bottomLeftRadius="0dp"
-        android:radius="@dimen/_16sdp" />
+        android:radius="@dimen/_16sdp"
+        android:topLeftRadius="0dp" />
 </shape>
