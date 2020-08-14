@@ -4,21 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
-import com.pharmacy.myapp.core.extensions.alphaVisibleOrGone
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.setTopRoundCornerBackground
 import com.pharmacy.myapp.core.extensions.toast
 import com.pharmacy.myapp.data.DummyData
 import com.pharmacy.myapp.productCard.adapter.ProductCardImageAdapter
 import com.pharmacy.myapp.productCard.adapter.RecommendedAdapter
-import com.pharmacy.myapp.productCard.adapter.ReleaseFormAdapter
 import kotlinx.android.synthetic.main.fragment_product_card.*
 import kotlinx.android.synthetic.main.layout_product_card_additional_info.*
 import kotlinx.android.synthetic.main.layout_product_card_image_pager.*
@@ -27,7 +24,6 @@ import kotlinx.android.synthetic.main.layout_product_card_main_info.*
 class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVVMFragment(R.layout.fragment_product_card) {
 
     private val imageAdapter = ProductCardImageAdapter()
-    private val releaseFormsAdapter = ReleaseFormAdapter()
     private val recommendedAdapter = RecommendedAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,7 +39,6 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
         })
 
         initImagePager()
-        initReleaseForms()
         initRecommended()
         bottomLayout.setTopRoundCornerBackground()
 
@@ -95,18 +90,6 @@ class ProductCardFragment(private val viewModel: ProductCardViewModel) : BaseMVV
         TabLayoutMediator(productImagePagerIndicator, productImagePager) { _, _ ->
             // no op
         }.attach()
-    }
-
-    private fun initReleaseForms() {
-        val items = DummyData.getReleaseForms()
-        releaseFormsList.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        releaseFormsList.adapter = releaseFormsAdapter
-        releaseFormsAdapter.setList(items)
-        releaseFormsTitleArrow.rotation = if (releaseFormsList.isVisible) 0f else 180f
-        releaseFormsTitle.onClick {
-            releaseFormsTitleArrow.rotation = if (!releaseFormsList.isVisible) 0f else 180f
-            releaseFormsList.alphaVisibleOrGone()
-        }
     }
 
     private fun initRecommended() {

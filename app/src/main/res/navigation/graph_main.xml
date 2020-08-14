@@ -38,13 +38,65 @@
     </fragment>
 
     <action
-        android:id="@+id/globalToQrCodeScanner"
-        app:destination="@id/nav_qr_code_scanner" />
+        android:id="@+id/globalToChat"
+        app:destination="@id/nav_chat"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim" />
 
     <fragment
-        android:id="@+id/nav_qr_code_scanner"
-        android:name="com.pharmacy.myapp.qrCodeScanner.QrCodeScannerFragment"
-        android:label="@string/qrCodeLabel"
-        tools:layout="@layout/fragment_qr_code_scanner" />
+        android:id="@+id/nav_chat"
+        android:name="com.pharmacy.myapp.chat.ChatFragment"
+        android:label="ChatFragment"
+        tools:layout="@layout/fragment_chat">
+
+        <action
+            android:id="@+id/actionChatToSignIn"
+            app:destination="@id/auth_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+        <action
+            android:id="@+id/actionChatToHome"
+            app:destination="@id/home_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/home_graph"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/actionChatToChatReviewBottomSheet"
+            app:destination="@id/nav_chat_review"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+        <action
+            android:id="@+id/actionChatToSendImageBottomSheet"
+            app:destination="@id/nav_send_image"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/nav_chat_review"
+        android:name="com.pharmacy.myapp.chat.dialog.ChatReviewBottomSheetDialogFragment"
+        android:label="ChatReviewBottomSheet"
+        tools:layout="@layout/dialog_chat_review" />
+
+    <dialog
+        android:id="@+id/nav_send_image"
+        android:name="com.pharmacy.myapp.chat.dialog.SendBottomSheetDialogFragment"
+        android:label="SendBottomSheet"
+        tools:layout="@layout/dialog_send_photo_bottom_sheet" />
 
 </navigation>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:maxHeight="@dimen/_200sdp"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_16sdp">
+
+        <View
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:background="@drawable/shape_common_bottom_sheet" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvChatReviewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:gravity="center"
+            android:text="@string/chatReviewDialogTitle"
+            android:textColor="@color/darkBlue"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvChatReviewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:gravity="center"
+            android:text="@string/chatReviewDialogDescription"
+            android:textColor="@color/darkBlue"
+            android:textSize="@dimen/_12ssp" />
+
+        <com.pharmacy.myapp.ui.RatingBarSvg
+            android:id="@+id/ratingChatReview"
+            style="@style/CustomRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:numStars="5"
+            android:stepSize="1" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupReviewReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilChatReview"
+            style="@style/TextInputStyle"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:visibility="gone"
+            app:endIconDrawable="@drawable/ic_clear_circle"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/grey"
+            app:hintEnabled="false"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|top"
+                android:hint="@string/chatReviewHint"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="7"
+                android:minLines="2" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinueReview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginTop="@dimen/_27sdp"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="@string/continueChatReview"
+            android:textColor="@color/colorGlobalWhite"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/selector_action_button"
+            app:cornerRadius="@dimen/_90sdp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSkipChatReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:background="@drawable/background_default_ripple_selector_rect"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:text="@string/skipChatReviewButton"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_12ssp" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

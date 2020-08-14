@@ -2,7 +2,7 @@ package com.pharmacy.myapp.home
 
 import android.os.Bundle
 import android.view.View
-import com.pharmacy.myapp.MainGraphDirections.Companion.globalToQrCodeScanner
+import com.pharmacy.myapp.MainGraphDirections.Companion.globalToChat
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.debug
@@ -18,10 +18,8 @@ class HomeFragment : BaseMVVMFragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mcvScanHome.onClick {
-            navController.navigate(globalToQrCodeScanner())
-        }
-        mcvAskHome.onClick { }
+        mcvScanHome.onClick { doNav(globalToQrCodeScanner()) }
+        mcvAskHome.onClick { doNav(globalToChat()) }
         mcvMapHome.onClick { }
         mcvAnalyzeHome.onClick { }
         mcvOrderContainer.onClick { }

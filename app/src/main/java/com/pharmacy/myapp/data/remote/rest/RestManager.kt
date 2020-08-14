@@ -28,7 +28,7 @@ class RestManager : KoinComponent {
     private val spManager: SPManager by inject()
 
     companion object {
-        private const val BASE_URL = "https://api.pharmacies.release.fmc-dev.com"
+        private const val BASE_URL = "https://api.pharmacies.fmc-dev.com" // "https://api.pharmacies.release.fmc-dev.com" TODO change to release in future
         private const val READ_TIMEOUT = 30L
         private const val CONNECT_TIMEOUT = 60L
         private const val WRITE_TIMEOUT = 120L
@@ -50,7 +50,6 @@ class RestManager : KoinComponent {
             val response = api.tokenRefresh(TokenRefreshRequest(refreshToken))
             spManager.token = response.token
             spManager.refreshToken = response.refreshToken
-            // TODO maybe need to update customer data from response?
             Any()
         }
     }
@@ -111,4 +110,14 @@ class RestManager : KoinComponent {
     suspend fun uploadImage(partBody: MultipartBody.Part) = api.uploadImage(partBody)
 
     suspend fun fetchCustomerInfo() = api.fetchCustomerInfo()
+
+    suspend fun productSearch(
+        page: Int? = null,
+        perPage: Int? = null,
+        regionId: Int? = null,
+        barCode: Int? = null,
+        name: String? = null
+    ) = api.productSearch(page, perPage, regionId, barCode, name)
+
+    suspend fun regions() = api.regions()
 }

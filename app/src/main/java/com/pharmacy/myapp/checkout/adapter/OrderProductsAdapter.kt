@@ -8,8 +8,6 @@ import com.pharmacy.myapp.checkout.model.TempProductModel
 import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
 import com.pharmacy.myapp.core.extensions.inflate
-import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.toast
 import kotlinx.android.synthetic.main.item_order_product.view.*
 
 class OrderProductsAdapter : BaseRecyclerAdapter<TempProductModel, OrderProductsAdapter.RecommendedViewHolder>() {
@@ -31,7 +29,7 @@ class OrderProductsAdapter : BaseRecyclerAdapter<TempProductModel, OrderProducts
                 tvProductTitleCheckout.text = item.name
                 tvProductDescriptionCheckout.text = item.description
                 tvProductIssuerCheckout.text = item.issuer
-                fabAddToCartCheckout.onClick { itemView.context.toast("TODO: Add to cart") }
+                tvCountCheckout.text = String.format("x %d", item.count)
                 fabProductPriceCheckout.text = item.price
             }
         }

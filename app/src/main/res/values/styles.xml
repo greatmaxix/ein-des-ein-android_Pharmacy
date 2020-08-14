@@ -145,6 +145,11 @@
         <item name="android:splitMotionEvents">false</item>
     </style>
 
+    <style name="CustomRating" parent="@android:style/Widget.RatingBar">
+        <item name="android:minHeight">@dimen/_33sdp</item>
+        <item name="android:minWidth">@dimen/_33sdp</item>
+        <item name="android:progressDrawable">@drawable/selector_rating_bar</item>
+    </style>
     <style name="AuthSearchView" parent="AppTheme">
         <item name="colorAccent">@color/colorSearch</item>
         <item name="android:textColorPrimary">@color/colorSearch</item>

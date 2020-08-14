@@ -111,7 +111,7 @@
             android:id="@+id/instructionWarningText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_attention"
+            android:drawableStart="@drawable/ic_about"
             android:drawablePadding="@dimen/_8sdp"
             android:text="@string/instructionAttention"
             android:textColor="@color/darkBlue"
