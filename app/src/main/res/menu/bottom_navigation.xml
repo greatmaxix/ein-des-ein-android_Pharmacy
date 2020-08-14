@@ -9,7 +9,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/nav_search"
+        android:id="@+id/search_graph"
         android:icon="@drawable/ic_search"
         android:iconTint="@color/mainMenuColor"
         android:title="Поиск"

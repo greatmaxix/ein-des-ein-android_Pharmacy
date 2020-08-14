@@ -11,8 +11,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.SystemClock
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.ViewGroup
 import android.view.ViewParent
 import android.widget.EditText
@@ -199,7 +198,9 @@ fun View.enableOrDisable(enable: Boolean) {
     isEnabled = enable
 }
 
-fun View.hideKeyboard() = context.inputMethodManager.hideSoftInputFromWindow(windowToken, 0).also { clearFocus() }
+fun View.hideKeyboard(needClearFocus: Boolean = true) =
+    context.inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+        .also { if (needClearFocus) clearFocus() }
 
 val View.isKeyboardOpen
     get() = Rect().run {

@@ -26,7 +26,6 @@ fun NavController.onNavDestinationSelected(
 fun NavController.onNavDestinationSelected(directions: NavDirections) = onNavDestinationSelected(directions.actionId, directions.arguments)
 
 fun getNavOptions() = NavOptions.Builder()
-    .setLaunchSingleTop(true)
     .setEnterAnim(R.anim.nav_enter_anim)
     .setExitAnim(R.anim.nav_exit_anim)
     .setPopEnterAnim(R.anim.nav_enter_pop_anim)

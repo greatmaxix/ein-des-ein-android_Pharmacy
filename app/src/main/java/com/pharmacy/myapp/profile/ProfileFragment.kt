@@ -17,7 +17,14 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fabEditProfile.onClick { doNav(actionFromProfileToEdit()) }
-        itemLogoutProfile.setOnClick { viewModel.logout() }
+        itemLogoutProfile.setOnClick {
+            showAlertRes(getString(R.string.areYouSureToExit)) {
+                cancelable = false
+                positive = R.string.common_okButton
+                positiveAction = { viewModel.logout() }
+                negative = R.string.common_closeButton
+            }
+        }
     }
 
     override fun onBindLiveData() {
