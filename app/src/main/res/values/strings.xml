@@ -179,4 +179,17 @@
     <string name="noGoodsFoundTitle">Ой, кажется такого товара\nнет в нашей базе</string>
     <string name="noGoodsFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
     <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
+
+    <!-- My orders-->
+    <string name="myOrdersLabel">Мои заказы</string>
+    <string name="allChipMyOrders">Все</string>
+    <string name="inProcessChipMyOrder">В обработке</string>
+    <string name="doneChipMyOrder">Выполнен</string>
+    <string name="canceledChipMyOrder">Отменен</string>
+    <string name="iconDeliveryTypeContentDescription">Иконка типа доставки</string>
+    <string name="firstItemInOrderContentDescription">Иконка первого товара в корзине</string>
+    <string name="secondItemInOrderContentDescription">Иконка второго товара в корзине</string>
+    <string name="thirdItemInOrderContentDescription">Иконка третьего товара в корзине</string>
+
+
 </resources>

@@ -8,6 +8,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.profile.ProfileFragmentDirections.Companion.actionFromProfileToEdit
+import com.pharmacy.myapp.profile.ProfileFragmentDirections.Companion.actionFromProfileToMyOorders
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
@@ -18,6 +19,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         fabEditProfile.onClick { doNav(actionFromProfileToEdit()) }
         itemLogoutProfile.setOnClick { viewModel.logout() }
+        llMyOrdersItemContainer.onClick { doNav(actionFromProfileToMyOorders()) }
     }
 
     override fun onBindLiveData() {

@@ -63,4 +63,8 @@
     <color name="qrCodeScannerMask">#668492B7</color>
     <color name="commonNavShape">#FFD1D3D4</color>
 
+    <color name="deliveryPickupMyOrder">#D5F7E8</color>
+    <color name="deliveryAddressMyOrder">#E2E5FB</color>
+    <color name="defaultChipBackgroundMyOrder">#FAFAFA</color>
+
 </resources>
