@@ -19,5 +19,9 @@
         <attr name="mainColorProfile" format="reference" />
     </declare-styleable>
 
-
+    <declare-styleable name="AppSearchView">
+        <attr name="debounce" format="float" />
+        <attr name="animationDuration" format="float" />
+        <attr name="hintText" format="reference" />
+    </declare-styleable>
 </resources>

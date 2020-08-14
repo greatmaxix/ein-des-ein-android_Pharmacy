@@ -14,6 +14,7 @@ import com.pharmacy.myapp.order.orderModule
 import com.pharmacy.myapp.productCard.productCardModule
 import com.pharmacy.myapp.profile.profileModule
 import com.pharmacy.myapp.qrCodeScanner.qrCodeScannerModule
+import com.pharmacy.myapp.search.searchModule
 import com.pharmacy.myapp.splash.splashModule
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
@@ -31,6 +32,7 @@ object Modules {
         productCardModule,
         checkoutModule,
         orderModule,
+        searchModule,
         cartModule,
         chatModule
     )

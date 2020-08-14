@@ -31,7 +31,7 @@ class QrCodeScannerFragment(private val viewModel: QrCodeScannerViewModel) : Bas
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back) { navController.popBackStack() }
+        showBackButton(R.drawable.ic_arrow_back)
         goToScanBtn.onClick { viewModel.descriptionViewed() }
         checkCameraPermission { initQRCamera() }
     }
