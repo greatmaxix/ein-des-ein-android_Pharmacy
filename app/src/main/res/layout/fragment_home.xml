@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@id/mcvSearchHome"
                         android:layout_alignBottom="@id/mcvSearchHome"
-                        android:contentDescription="@string/scanDrugsContentDescriptionHome"
+                        android:contentDescription="@string/scanDrugsContentDescription"
                         android:padding="@dimen/_6sdp"
                         android:src="@drawable/ic_barcode" />
 

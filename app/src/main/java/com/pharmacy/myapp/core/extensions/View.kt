@@ -11,8 +11,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.SystemClock
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.ViewGroup
 import android.view.ViewParent
 import android.widget.EditText
@@ -31,13 +30,11 @@ import androidx.core.widget.TextViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.textfield.TextInputLayout
 import com.pharmacy.myapp.R
-import kotlinx.android.synthetic.main.item_cart_product.view.*
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -177,6 +174,16 @@ fun View.visibleOrGone(visible: Boolean) {
     if (visible) visible() else gone()
 }
 
+fun View.animateVisibleOrGoneIfNot(visible: Boolean, duration: Long = 100) {
+    if (visible) {
+        if (visibility != VISIBLE)
+            animateVisible(duration)
+    } else {
+        if (visibility != GONE)
+            animateGone(duration)
+    }
+}
+
 fun View.visibleOrInvisible(visible: Boolean) {
     visibility = if (visible) VISIBLE else INVISIBLE
 }
@@ -197,7 +204,9 @@ fun View.enableOrDisable(enable: Boolean) {
     isEnabled = enable
 }
 
-fun View.hideKeyboard() = context.inputMethodManager.hideSoftInputFromWindow(windowToken, 0).also { clearFocus() }
+fun View.hideKeyboard(needClearFocus: Boolean = true) =
+    context.inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+        .also { if (needClearFocus) clearFocus() }
 
 val View.isKeyboardOpen
     get() = Rect().run {
