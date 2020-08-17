@@ -14,7 +14,7 @@ import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.model.customerInfo.CustomerInfo
-import com.pharmacy.myapp.splash.SplashFragmentDirections
+import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToChat
 import com.pharmacy.myapp.util.AvatarUtil
 
 class AuthViewModel(private var context: Context?, private val repository: AuthRepository) : BaseViewModel() {
@@ -76,7 +76,7 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
     private suspend fun saveCustomerData(customerInfo: CustomerInfo) {
         val avatarUrl = repository.saveCustomerInfo(customerInfo)
         val action = if (authResultDestination == KEY_NAVIGATION_CHAT) {
-            SplashFragmentDirections.globalToChat()
+            globalToChat()
         } else {
             actionFromCodeToHome()
         }
