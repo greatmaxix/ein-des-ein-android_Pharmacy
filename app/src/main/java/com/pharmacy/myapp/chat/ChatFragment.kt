@@ -168,25 +168,25 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
                 when {
                     result.anyPermanentlyDenied() -> openSettings()
                     result.anyShouldShowRationale() -> {
-                        showAlertRes(getString(R.string.whoAreYou_cameraPermissionRationaleMessage)) {
+                        showAlertRes(getString(R.string.chatCameraPermissionDescriptionRationale)) {
                             cancelable = false
                             positive = R.string.common_okButton
                             positiveAction = { request.send() }
                             negative = R.string.common_closeButton
                         }
                     }
-                    result.anyDenied() -> messageCallback?.showError(getString(R.string.whoAreYou_cameraPermissionDenied))
+                    result.anyDenied() -> messageCallback?.showError(getString(R.string.cameraPermissionDenied))
                     result.allGranted() -> takePhotoLauncher.launch(uri)
                 }
             }
             request.send()
         } else {
-            messageCallback?.showError(getString(R.string.whoAreYou_cameraPermissionNoCameraOnDevice))
+            messageCallback?.showError(getString(R.string.cameraPermissionNoCameraOnDevice))
         }
     }
 
     private fun openSettings() {
-        showAlertRes(getString(R.string.whoAreYou_cameraPermissionPermanentlyDenied)) {
+        showAlertRes(getString(R.string.cameraPermissionPermanentlyDenied)) {
             cancelable = false
             positive = R.string.common_permissionDialog_settingsButton
             positiveAction = {

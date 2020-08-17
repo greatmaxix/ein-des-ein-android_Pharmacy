@@ -8,6 +8,7 @@
     <include app:graph="@navigation/graph_auth" />
     <include app:graph="@navigation/graph_profile" />
     <include app:graph="@navigation/graph_home" />
+    <include app:graph="@navigation/graph_search" />
 
     <fragment
         android:id="@+id/nav_splash"
@@ -97,5 +98,15 @@
         android:name="com.pharmacy.myapp.chat.dialog.SendBottomSheetDialogFragment"
         android:label="SendBottomSheet"
         tools:layout="@layout/dialog_send_photo_bottom_sheet" />
+
+    <action
+        android:id="@+id/globalToQrCodeScanner"
+        app:destination="@id/nav_qr_code_scanner" />
+
+    <fragment
+        android:id="@+id/nav_qr_code_scanner"
+        android:name="com.pharmacy.myapp.qrCodeScanner.QrCodeScannerFragment"
+        android:label="@string/qrCodeLabel"
+        tools:layout="@layout/fragment_qr_code_scanner" />
 
 </navigation>

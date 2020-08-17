@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lightGrey"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layoutDirection="locale"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightGrey">
+
+            <ImageView
+                android:id="@+id/ivProfileGuest"
+                android:layout_width="@dimen/_56sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/profileImage"
+                android:src="@drawable/ic_avatar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvNameProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:text="Авторизируйтесь, чтобы совершать\nпокупки, получать бонусы и\nиспользовать чат с фармацевтом"
+                android:textColor="@color/darkBlue"
+                android:textSize="@dimen/_9ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/ivProfileGuest"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivProfileGuest"
+                app:layout_constraintTop_toTopOf="@id/ivProfileGuest" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAuthorizeProfileGuest"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="Авторизироваться"
+                android:textColor="@color/colorGlobalWhite"
+                app:cornerRadius="@dimen/_24sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mtvNameProfile"
+                app:rippleColor="@color/primaryLightRipple" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnAuthorizeProfileGuest"
+                app:layout_constraintVertical_bias="0">
+
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemLocationProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="true"
+                    app:iconProfile="@drawable/ic_location"
+                    app:titleProfile="Мой регион" />
+
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemNotificationProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="true"
+                    app:iconProfile="@drawable/ic_notification"
+                    app:titleProfile="Уведомления" />
+
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemAboutProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="true"
+                    app:iconProfile="@drawable/ic_about"
+                    app:titleProfile="О приложении" />
+
+                <com.pharmacy.myapp.ui.ProfileItemView
+                    android:id="@+id/itemHelpProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrowVisibilityProfile="true"
+                    app:iconProfile="@drawable/ic_question"
+                    app:titleProfile="Нужна помощь" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

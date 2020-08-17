@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResultListener
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -43,11 +44,11 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
     private val takePhotoLauncher by lazy {
         registerForActivityResult(ActivityResultContracts.TakePicture()) { viewModel.onActivityResult(uri) }
     }
-
+    private var userDataChanged = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tilPhoneEditProfile.setPhoneRule()
-        showBackButton(R.drawable.ic_arrow_back) { navController.popBackStack() }
+        showBackButton(R.drawable.ic_arrow_back)
         etPhoneEditProfile.addCountryCodePrefix()
         saveEditProfile.onClick {
             val isNameValid = tilNameEditProfile.checkLength(getString(R.string.nameErrorAuth))
@@ -55,10 +56,25 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
             val isEmailValid = if (tilEmailEditProfile.text().isNotEmpty()) tilEmailEditProfile.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
                 viewModel.updateCustomerData(tilNameEditProfile.text(), tilEmailEditProfile.text())
+                userDataChanged = false
             }
         }
         ivProfileEdit.setDebounceOnClickListener { showPhotoSourceChooserDialog() }
         setFragmentResultListener(CHANGE_PHOTO_KEY) { _, bundle -> handleChangePhotoAction(bundle) }
+        attachBackPressCallback { backPressedHandler() }
+    }
+
+    private fun backPressedHandler() {
+        if (userDataChanged) {
+            showAlertRes(getString(R.string.exitWithoutSaving)) {
+                cancelable = false
+                positive = R.string.common_okButton
+                positiveAction = { navController.popBackStack() }
+                negative = R.string.common_closeButton
+            }
+        } else {
+            navController.popBackStack()
+        }
     }
 
     override fun onBindLiveData() {
@@ -67,6 +83,9 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
             etEmailEditProfile.setText(it.email)
             etPhoneEditProfile.setText(it.phone.addPlusSignIfNeeded())
             etNameEditProfile.setText(it.name)
+
+            etNameEditProfile.addTextChangedListener { userDataChanged = true }
+            etEmailEditProfile.addTextChangedListener { userDataChanged = true }
         }
         viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
         viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
@@ -105,32 +124,32 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
                 when {
                     result.anyPermanentlyDenied() -> openSettings()
                     result.anyShouldShowRationale() -> {
-                        showAlertRes(getString(R.string.whoAreYou_cameraPermissionRationaleMessage)) {
+                        showAlertRes(getString(R.string.cameraPermissionRationaleMessage)) {
                             cancelable = false
                             positive = R.string.common_okButton
                             positiveAction = { request.send() }
                             negative = R.string.common_closeButton
                         }
                     }
-                    result.anyDenied() -> messageCallback?.showError(getString(R.string.whoAreYou_cameraPermissionDenied))
+                    result.anyDenied() -> messageCallback?.showError(getString(R.string.cameraPermissionDenied))
                     result.allGranted() -> takePhotoLauncher.launch(uri)
                 }
             }
             request.send()
         } else {
-            messageCallback?.showError(getString(R.string.whoAreYou_cameraPermissionNoCameraOnDevice))
+            messageCallback?.showError(getString(R.string.cameraPermissionNoCameraOnDevice))
         }
     }
 
     private fun openSettings() {
-        showAlertRes(getString(R.string.whoAreYou_cameraPermissionPermanentlyDenied)) {
+        showAlertRes(getString(R.string.cameraPermissionPermanentlyDenied)) {
             cancelable = false
             positive = R.string.common_permissionDialog_settingsButton
             positiveAction = {
                 val intent = Intent()
                 intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
                 intent.data = Uri.fromParts("package", requireActivity().packageName, null)
-                requireContext().startActivity(intent)
+                startActivity(intent)
             }
             negative = R.string.common_permissionDialog_cancel
         }
