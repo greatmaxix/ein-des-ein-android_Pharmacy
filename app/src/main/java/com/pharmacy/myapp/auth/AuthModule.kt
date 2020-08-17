@@ -14,5 +14,6 @@ val authModule = module {
 
     fragment { SignInFragment() }
     fragment { SignUpFragment() }
+    fragment { CodeFragment() }
 
 }
