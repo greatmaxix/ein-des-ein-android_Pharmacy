@@ -38,6 +38,12 @@
     <string name="facebookContentDescriptionSignUp">Sign in via Facebook</string>
     <string name="scanDrugsContentDescription">Сканировать товар</string>
 
+    <string name="menuTitleMain">Главная</string>
+    <string name="menuTitleCategories">Каталог</string>
+    <string name="menuTitleSearch">Поиск</string>
+    <string name="menuTitleCart">Корзина</string>
+    <string name="menuTitleProfile">Профиль</string>
+
     <string name="cameraPermissionPermanentlyDenied">Доступ к камере запрещен. Пожалуйста, перейдите в настройки в раздел Разрешения и предоставьте приложению доступ к камере</string>
     <string name="permissionDialogSettingsButton">Настройки</string>
     <string name="permissionDialogCancel">Отмена</string>
@@ -84,6 +90,12 @@
     <string name="googleSignIn">Sign in via Google</string>
     <string name="sendCodeAgain">Отправить снова</string>
 
+    <!--Profile common-->
+    <string name="myRegionTitle">Мой регион</string>
+    <string name="notificationsTitle">Уведомления</string>
+    <string name="aboutAppTitle">О приложении</string>
+    <string name="needHelpTitle">Нужна помощь</string>
+
     <!--Profile-->
     <string name="profileImageDescription">Profile image</string>
     <string name="favoriteImageDescriptionProfile">Favorite image description</string>
@@ -97,10 +109,17 @@
     <string name="profileImage">Profile image</string>
     <string name="editProfileTitle">Настройки</string>
     <string name="save">Сохранить</string>
-    <string name="logoutProfile">Выйти из аккаунта</string>
     <string name="profileTitle">Профиль</string>
     <string name="areYouSureToExit">Вы уверены, что хотите\nвыйти из приложения?</string>
     <string name="exitWithoutSaving">Вы уверены, что хотите\nвыйти не сохранив данные?</string>
+
+    <string name="paymentsTitle">Оплата и бонусы</string>
+    <string name="deliveryAddressTitle">Адрес доставки</string>
+    <string name="logoutProfile">Выйти из аккаунта</string>
+
+    <!--Profile guest-->
+    <string name="pleaseAuthorizeMessage">Авторизируйтесь, чтобы совершать\nпокупки, получать бонусы и\nиспользовать чат с фармацевтом</string>
+    <string name="authorizeAction">Авторизироваться</string>
 
     <string name="startSearching">Начните поиск</string>
     <string name="searchHintHome">Ношпа</string>
@@ -208,4 +227,22 @@
     <string name="noGoodsFoundTitle">Ой, кажется такого товара\nнет в нашей базе</string>
     <string name="noGoodsFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
     <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
+
+    <!-- Recipes -->
+    <string name="recipesLabel">Рецепты</string>
+    <string name="recipesEmptyContainerAction">Перейти в корзину</string>
+    <string name="recipesEmptyContainerSubtitle">Обратитесь к Вашему лечащему врачу, что бы загрузить рецепт</string>
+    <string name="recipesEmptyContainerTitle">У Вас пока нет подтвержденных рецептов</string>
+
+    <!-- Analyzes -->
+    <string name="analyzesLabel">Анализы</string>
+    <string name="analyzesEmptyContainerAction">Записаться на анализы</string>
+    <string name="analyzesEmptyContainerSubtitle">Это просто исправить! Запишитесь на анализы через наше приложение</string>
+    <string name="analyzesEmptyContainerTitle">У Вас пока нет результатов анализов</string>
+
+    <!-- Favorites -->
+    <string name="favoritesLabel">Избранное</string>
+    <string name="favoritesEmptyContainerAction">Начать поиск</string>
+    <string name="favoritesEmptyContainerSubtitle">Начните поиск, что бы добавить товар в корзину</string>
+    <string name="favoritesEmptyContainerTitle">Вы пока не добавили товар в избранное</string>
 </resources>
