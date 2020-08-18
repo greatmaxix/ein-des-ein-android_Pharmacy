@@ -24,7 +24,7 @@
     <color name="colorPinNormal">#20ffffff</color>
     <color name="colorPinPrimary">@color/colorGlobalWhite</color>
 
-    <color name="acceptTextFieldAuth">#35E85C</color>
+    <color name="acceptTextField">#35E85C</color>
     <color name="titleTextColorAuth">#20272C</color>
     <color name="colorTextAuth">#202020</color>
     <color name="colorTextPrimary">@color/colorGlobalBlack</color>

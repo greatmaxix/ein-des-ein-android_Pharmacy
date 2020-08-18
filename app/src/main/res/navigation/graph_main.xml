@@ -9,6 +9,7 @@
     <include app:graph="@navigation/graph_profile" />
     <include app:graph="@navigation/graph_home" />
     <include app:graph="@navigation/graph_search" />
+    <include app:graph="@navigation/graph_payments" />
 
     <fragment
         android:id="@+id/nav_splash"
