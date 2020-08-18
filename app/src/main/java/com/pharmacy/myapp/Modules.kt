@@ -5,6 +5,7 @@ import com.pharmacy.myapp.auth.authModule
 import com.pharmacy.myapp.cart.cartModule
 import com.pharmacy.myapp.chat.chatModule
 import com.pharmacy.myapp.checkout.checkoutModule
+import com.pharmacy.myapp.checkoutMap.checkoutMapModule
 import com.pharmacy.myapp.data.local.DBManager
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
@@ -34,7 +35,8 @@ object Modules {
         orderModule,
         searchModule,
         cartModule,
-        chatModule
+        chatModule,
+        checkoutMapModule
     )
 
     private val managerModule = module(true) {

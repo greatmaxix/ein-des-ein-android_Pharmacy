@@ -3,6 +3,7 @@ package com.pharmacy.myapp.data
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.checkout.model.TempProductModel
+import com.pharmacy.myapp.checkoutMap.model.TempAvailableDrugstore
 import com.pharmacy.myapp.productCard.model.TempRecommendedModel
 
 @Deprecated("Mock data object")
@@ -134,4 +135,19 @@ object DummyData {
         "Не спросили рецепт",
         "Советовали очень дорогое"
     )
+
+    fun getAvailableDrugstores(): ArrayList<TempAvailableDrugstore> {
+        val firstItem = TempAvailableDrugstore(
+            "Все в наличии",
+            "Название аптеки",
+            "ул Горная 23а, Харьков",
+            "+7 (098) 000 02 00 • +7 (098) 000 02 00",
+            "⏰ c 8:00 до 22:00 ежедневно",
+            "568 ₽"
+        )
+        val secondItem = firstItem.copy(availability = "3/4 в наличии")
+        val thirdItem = firstItem.copy(availability = "Под заказ")
+        return arrayListOf(firstItem, secondItem, thirdItem)
+    }
+
 }

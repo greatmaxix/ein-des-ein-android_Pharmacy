@@ -245,4 +245,10 @@
     <string name="favoritesEmptyContainerAction">Начать поиск</string>
     <string name="favoritesEmptyContainerSubtitle">Начните поиск, что бы добавить товар в корзину</string>
     <string name="favoritesEmptyContainerTitle">Вы пока не добавили товар в избранное</string>
+
+    <!-- Checkout map -->
+    <string name="checkoutMapLabel">Выбор аптеки</string>
+    <string name="checkoutMapTitle">На карте</string>
+    <string name="checkoutListTitle">Списком</string>
+
 </resources>
