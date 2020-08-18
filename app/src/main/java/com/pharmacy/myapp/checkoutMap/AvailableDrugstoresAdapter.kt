@@ -9,26 +9,24 @@ import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
 import com.pharmacy.myapp.core.extensions.inflate
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.textColor
+import com.pharmacy.myapp.core.extensions.toast
 import kotlinx.android.synthetic.main.item_checkout_store.view.*
 
 class AvailableDrugstoresAdapter(list: List<TempAvailableDrugstore>) : BaseRecyclerAdapter<TempAvailableDrugstore, AvailableDrugstoresAdapter.AvailableDrugstoresViewHolder>(list) {
 
     class AvailableDrugstoresViewHolder(itemView: View) : BaseViewHolder<TempAvailableDrugstore>(itemView) {
         override fun bind(item: TempAvailableDrugstore) {
-            val availabilityColor = when (item.availability) {
-                "Все в наличии" -> R.color.colorAccent
-                "3/4 в наличии" -> R.color.orange
-                else -> R.color.primaryBlue
+            with(itemView) {
+                tvAvailabilityInDrugstore.textColor(item.availabilityColor())
+                tvAvailabilityInDrugstore.text = item.availability
+                tvDrugstoreName.text = item.name
+                tvDrugstoreAddress.text = item.address
+                tvContactInformation.text = item.contactInfo
+                tvWorkingHours.text = item.workingHours
+                tvPrice.text = item.price
+                btnChooseDrugstore.onClick { itemView.context.toast("TODO: Choose") }
+                ivDrugstoreLocation.onClick { itemView.context.toast("TODO: Location") }
             }
-            itemView.tvAvailabilityInDrugstore.textColor(availabilityColor)
-            itemView.tvAvailabilityInDrugstore.text = item.availability
-            itemView.tvDrugstoreName.text = item.name
-            itemView.tvDrugstoreAddress.text = item.address
-            itemView.tvContactInformation.text = item.contactInfo
-            itemView.tvWorkingHours.text = item.workingHours
-            itemView.tvPrice.text = item.price
-            itemView.btnChooseDrugstore.onClick { }
-            itemView.ivDrugstoreLocation.onClick { }
         }
 
         companion object {
