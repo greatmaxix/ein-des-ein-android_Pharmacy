@@ -9,7 +9,6 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.profile.ProfileFragmentDirections.Companion.actionFromProfileToEdit
 import com.pharmacy.myapp.profile.ProfileFragmentDirections.Companion.actionFromProfileToFavorites
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {

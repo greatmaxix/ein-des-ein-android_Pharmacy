@@ -75,5 +75,5 @@
         android:id="@+id/nav_favorites"
         android:name="com.pharmacy.myapp.favorites.FavoritesFragment"
         android:label="@string/favoritesLabel"
-        tools:layout="@layout/fragment_favorites"/>
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

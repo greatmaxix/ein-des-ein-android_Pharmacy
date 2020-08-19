@@ -29,7 +29,7 @@ fun RecyclerView.onScrolled(listener: (RecyclerView, Int, Int) -> Unit) {
     })
 }
 
-fun RecyclerView.addAutoKeyboardCloser(){
+fun RecyclerView.addAutoKeyboardCloser() {
     onScrollStateChanged { state ->
         if (state == RecyclerView.SCROLL_STATE_DRAGGING && isKeyboardOpen) {
             hideKeyboard()

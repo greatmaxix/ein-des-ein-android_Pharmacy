@@ -137,6 +137,7 @@
         <item name="android:minWidth">@dimen/_33sdp</item>
         <item name="android:progressDrawable">@drawable/selector_rating_bar</item>
     </style>
+
     <style name="AuthSearchView" parent="AppTheme">
         <item name="colorAccent">@color/colorSearch</item>
         <item name="android:textColorPrimary">@color/colorSearch</item>
@@ -155,4 +156,5 @@
         <item name="textAllCaps">false</item>
         <item name="android:singleLine">true</item>
     </style>
+
 </resources>

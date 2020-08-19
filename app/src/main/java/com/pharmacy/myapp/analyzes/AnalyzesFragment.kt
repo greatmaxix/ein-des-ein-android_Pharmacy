@@ -6,7 +6,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import kotlinx.android.synthetic.main.fragment_analyzes.*
 
-class AnalyzesFragment: BaseMVVMFragment(R.layout.fragment_analyzes) {
+class AnalyzesFragment : BaseMVVMFragment(R.layout.fragment_analyzes) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

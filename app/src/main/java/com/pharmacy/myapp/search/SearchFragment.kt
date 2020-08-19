@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(R.layout.fragment_search) {
 
-    private val searchHistoryAdapter = SearchHistoryAdapter() {
+    private val searchHistoryAdapter = SearchHistoryAdapter {
         searchView.setText(it)
     }.apply {
         setList(mutableListOf("Дротаверин", "Анальгин"))// todo

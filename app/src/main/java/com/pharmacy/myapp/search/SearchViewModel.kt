@@ -3,7 +3,6 @@ package com.pharmacy.myapp.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
-import timber.log.Timber
 
 class SearchViewModel : BaseViewModel() {
 
