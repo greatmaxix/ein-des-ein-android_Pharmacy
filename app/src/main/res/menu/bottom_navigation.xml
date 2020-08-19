@@ -5,30 +5,33 @@
     <item
         android:id="@+id/home_graph"
         android:icon="@drawable/ic_home"
-        android:title="Главная"
+        android:title="@string/menuTitleMain"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_catalog"
+        android:icon="@drawable/ic_catalog"
+        android:title="@string/menuTitleCategories"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/search_graph"
         android:icon="@drawable/ic_search"
         android:iconTint="@color/mainMenuColor"
-        android:title="Поиск"
+        android:title="@string/menuTitleSearch"
         app:showAsAction="ifRoom" />
-    <!--<item
-        android:id="@+id/nav_catalog"
-        android:title="Каталог"
-        app:showAsAction="ifRoom" />-->
 
-    <!--<item
-        android:id="@+id/nav_cart"
-        android:title="Корзина"
-        app:showAsAction="ifRoom" />-->
+    <item
+        android:id="@+id/cart_graph"
+        android:icon="@drawable/ic_shopping_cart"
+        android:title="@string/menuTitleCart"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/profile_graph"
         android:icon="@drawable/ic_box"
         android:iconTint="@color/mainMenuColor"
-        android:title="Профиль"
+        android:title="@string/menuTitleProfile"
         app:showAsAction="ifRoom" />
 
 </menu>

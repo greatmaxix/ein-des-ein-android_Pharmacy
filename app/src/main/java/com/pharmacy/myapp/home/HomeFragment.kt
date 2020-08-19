@@ -21,10 +21,11 @@ class HomeFragment : BaseMVVMFragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         mcvScanHome.onClick { doNav(globalToQrCodeScanner()) }
         mcvAskHome.onClick { doNav(globalToChat()) }
-        mcvMapHome.onClick { }
-        mcvAnalyzeHome.onClick { }
-        mcvOrderContainer.onClick { }
+        mcvAnalyzeHome.onClick { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_home) }
+        uploadRecipes.onClick { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_home) }
         mcvSearchHome.onClick { navController.onNavDestinationSelected(R.id.search_graph, null, R.id.nav_home) }
+        mcvMapHome.onClick { }
+        mcvOrderContainer.onClick { }
 
         // Developers screen for convenient features access
         debug {

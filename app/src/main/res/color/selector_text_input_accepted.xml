@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/acceptTextField" android:state_focused="true" />
+    <item android:alpha="1" android:color="@color/acceptTextField" android:state_hovered="true" />
+    <item android:alpha="1" android:color="@color/acceptTextField" android:state_enabled="false" />
+    <item android:alpha="1" android:color="@color/acceptTextField" />
+</selector>

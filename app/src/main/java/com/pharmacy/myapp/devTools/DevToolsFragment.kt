@@ -2,6 +2,7 @@ package com.pharmacy.myapp.devTools
 
 import android.os.Bundle
 import android.view.View
+import com.pharmacy.myapp.MainGraphDirections.Companion.globalToCheckoutMap
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
@@ -9,6 +10,7 @@ import com.pharmacy.myapp.devTools.DevToolsFragmentDirections.Companion.globalTo
 import com.pharmacy.myapp.devTools.DevToolsFragmentDirections.Companion.globalToCheckout
 import com.pharmacy.myapp.devTools.DevToolsFragmentDirections.Companion.globalToGuestProfile
 import com.pharmacy.myapp.devTools.DevToolsFragmentDirections.Companion.globalToOrder
+import com.pharmacy.myapp.devTools.DevToolsFragmentDirections.Companion.globalToPayments
 import com.pharmacy.myapp.devTools.DevToolsFragmentDirections.Companion.globalToProductCard
 import kotlinx.android.synthetic.main.fragment_dev_tools.*
 
@@ -35,6 +37,14 @@ class DevToolsFragment(private val viewModel: DevToolsViewModel) : BaseMVVMFragm
 
         toGuestProfile.onClick {
             navController.navigate(globalToGuestProfile())
+        }
+
+        toPayments.onClick {
+            navController.navigate(globalToPayments())
+        }
+
+        toCheckoutMap.onClick {
+            navController.navigate(globalToCheckoutMap())
         }
     }
 }
