@@ -11,7 +11,7 @@ class FavoritesFragment : BaseMVVMFragment(R.layout.fragment_favorites) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showBackButton(R.drawable.ic_arrow_back)
+        showBackButton()
         emptyContentFavorites.setButtonAction {
             navController.onNavDestinationSelected(R.id.search_graph, null, R.id.nav_home)
         }

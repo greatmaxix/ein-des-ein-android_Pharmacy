@@ -30,7 +30,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back)
+        showBackButton()
 
         viewBuyerDetailsCheckout.setData("Some full name", "+3801231231231", "test@exapmle.com")
         viewBuyerDeliveryAddressCheckout.setData(TempDeliveryAddress.newMockInstance(), TempPharmacyAddress.newMockInstance())

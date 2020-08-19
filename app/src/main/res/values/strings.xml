@@ -189,6 +189,27 @@
     <string name="infoIconContentDescription">Иконка информации выбора аптеки</string>
     <string name="chooseDrugstoreCart">Выбрать аптеку</string>
 
+    <!-- Search -->
+    <string name="searchLabel">Поиск</string>
+    <string name="oftenLookingFor">Часто ищут</string>
+    <string name="searchHistoryTitle">История поиска</string>
+    <string name="clearSearchHistory">Очистить</string>
+    <string name="noGoodsFoundTitle">Ой, кажется такого товара\nнет в нашей базе</string>
+    <string name="noGoodsFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
+    <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
+
+    <!-- My orders-->
+    <string name="myOrdersLabel">Мои заказы</string>
+    <string name="allChipMyOrders">Все</string>
+    <string name="inProcessChipMyOrder">В обработке</string>
+    <string name="doneChipMyOrder">Выполнен</string>
+    <string name="canceledChipMyOrder">Отменен</string>
+    <string name="iconDeliveryTypeContentDescription">Иконка типа доставки</string>
+    <string name="firstItemInOrderContentDescription">Иконка первого товара в корзине</string>
+    <string name="secondItemInOrderContentDescription">Иконка второго товара в корзине</string>
+    <string name="thirdItemInOrderContentDescription">Иконка третьего товара в корзине</string>
+
+
     <!-- Chat -->
     <string name="menu_info">Info</string>
     <string name="chatMessageFieldHint">Что Вас волнует?</string>
@@ -219,15 +240,6 @@
     <string name="sendPhotoCamera">Камера</string>
     <string name="sendPhotoError">Произошла ошибка добавления изображения</string>
     <string name="cameraPermissionRationaleMessageChat">Разрешение на доступ к камере необходимо для отправки изображений в чат</string>
-
-    <!-- Search -->
-    <string name="searchLabel">Поиск</string>
-    <string name="oftenLookingFor">Часто ищут</string>
-    <string name="searchHistoryTitle">История поиска</string>
-    <string name="clearSearchHistory">Очистить</string>
-    <string name="noGoodsFoundTitle">Ой, кажется такого товара\nнет в нашей базе</string>
-    <string name="noGoodsFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
-    <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
 
     <!-- Recipes -->
     <string name="recipesLabel">Рецепты</string>

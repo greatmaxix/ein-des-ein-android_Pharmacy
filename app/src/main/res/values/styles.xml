@@ -87,6 +87,19 @@
         </item>
     </style>
 
+    <style name="ShapeAppearanceOverlayMyOrderDelivery.MaterialCardView.Cut" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">@dimen/_16sdp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">@dimen/_16sdp</item>
+    </style>
+
+    <style name="MyOrderDeliveryCardView" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlayMyOrderDelivery.MaterialCardView.Cut
+        </item>
+    </style>
+
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
@@ -137,12 +150,21 @@
         <item name="android:minWidth">@dimen/_33sdp</item>
         <item name="android:progressDrawable">@drawable/selector_rating_bar</item>
     </style>
-
     <style name="AuthSearchView" parent="AppTheme">
         <item name="colorAccent">@color/colorSearch</item>
         <item name="android:textColorPrimary">@color/colorSearch</item>
     </style>
 
+    <style name="ChipMyOrders" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/chip_text_color_my_orders</item>
+        <item name="android:gravity">center</item>
+        <item name="chipBackgroundColor">@color/chip_background_color_my_orders</item>
+        <item name="chipCornerRadius">@dimen/_6sdp</item>
+        <item name="chipSurfaceColor">@color/defaultChipBackgroundMyOrder</item>
+        <item name="rippleColor">@color/chip_ripple_color_my_orders</item>
+    </style>
     <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">?attr/colorPrimary</item>
         <item name="tabSelectedTextColor">@color/colorPrimary</item>

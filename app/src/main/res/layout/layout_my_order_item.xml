@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/colorGlobalWhite"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/stateMyOrder"
+            android:layout_width="@dimen/_96sdp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:background="@drawable/my_order_state_background"
+            android:gravity="center"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingTop="@dimen/_4sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_4sdp"
+            android:textAllCaps="true"
+            android:textColor="@color/colorGlobalWhite"
+            android:textSize="@dimen/_9ssp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="В обработке" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/deliveryTypeContainer"
+            style="@style/MyOrderDeliveryCardView"
+            android:layout_width="@dimen/_112sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            app:cardBackgroundColor="#D5F7E8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/deliveryTypeMyOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="@dimen/_10ssp"
+                    tools:text="Самовывоз" />
+
+                <ImageView
+                    android:id="@+id/ivDeliveryTypeMyOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/iconDeliveryTypeContentDescription"
+                    android:tint="@color/darkBlue"
+                    tools:src="@drawable/ic_shopping_bag" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/idMyOrder"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColor="@color/darkBlue"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/stateMyOrder"
+            app:layout_constraintTop_toBottomOf="@id/stateMyOrder"
+            tools:text="№ 12583" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/dateTimeMyOrder"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="@id/idMyOrder"
+            app:layout_constraintTop_toBottomOf="@id/idMyOrder"
+            tools:text="21:12 05.06.20" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/addressMyOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColor="@color/darkBlue"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="@id/dateTimeMyOrder"
+            app:layout_constraintTop_toBottomOf="@id/dateTimeMyOrder"
+            tools:text="🏠 ул. Горная 23а, Харьков 🚪дом 4г • кв. 56" />
+
+        <View
+            android:id="@+id/myOrderSeparator"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/grey20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addressMyOrder" />
+
+        <LinearLayout
+            android:id="@+id/imagesContainerMyOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/priceMyOrder"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myOrderSeparator">
+
+            <ImageView
+                android:id="@+id/firstItemPreview"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:contentDescription="@string/firstItemInOrderContentDescription" />
+
+            <ImageView
+                android:id="@+id/secondItemPreview"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:contentDescription="@string/secondItemInOrderContentDescription" />
+
+            <ImageView
+                android:id="@+id/thirdItemPreview"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:contentDescription="@string/thirdItemInOrderContentDescription" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/restImagesCount"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="match_parent"
+                android:background="@drawable/roundcorner"
+                android:backgroundTint="@color/grey20"
+                android:gravity="center"
+                android:visibility="gone"
+                tools:text="+2"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/priceMyOrder"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:textColor="@color/primaryBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myOrderSeparator"
+            tools:text="6568 ₽" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

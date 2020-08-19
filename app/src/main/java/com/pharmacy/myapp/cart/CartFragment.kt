@@ -22,7 +22,7 @@ class CartFragment : BaseMVVMFragment(R.layout.fragment_cart) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back)
+        showBackButton()
 
         initOrderProducts()
         bottomLayoutCart.setTopRoundCornerBackground()
