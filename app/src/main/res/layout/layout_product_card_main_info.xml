@@ -197,33 +197,4 @@
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/releaseFormsTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_32sdp"
-        android:text="@string/releaseForms"
-        android:textAppearance="@style/Text.BlockHeader"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryContainer" />
-
-    <ImageView
-        android:id="@+id/releaseFormsTitleArrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_up_arrow_blue"
-        app:layout_constraintBottom_toBottomOf="@+id/releaseFormsTitle"
-        app:layout_constraintEnd_toEndOf="@+id/releaseFormsTitle"
-        app:layout_constraintTop_toTopOf="@+id/releaseFormsTitle" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/releaseFormsList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/releaseFormsTitle" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

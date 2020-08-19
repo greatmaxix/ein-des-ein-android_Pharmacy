@@ -2,6 +2,7 @@ package com.pharmacy.myapp.devTools
 
 import android.os.Bundle
 import android.view.View
+import com.pharmacy.myapp.MainGraphDirections.Companion.globalToCheckoutMap
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
@@ -40,6 +41,10 @@ class DevToolsFragment(private val viewModel: DevToolsViewModel) : BaseMVVMFragm
 
         toPayments.onClick {
             navController.navigate(globalToPayments())
+        }
+
+        toCheckoutMap.onClick {
+            navController.navigate(globalToCheckoutMap())
         }
     }
 }

@@ -11,7 +11,8 @@ import android.os.Build
 import android.os.Handler
 import android.os.SystemClock
 import android.view.View
-import android.view.View.*
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.ViewParent
 import android.widget.EditText
@@ -175,13 +176,7 @@ fun View.visibleOrGone(visible: Boolean) {
 }
 
 fun View.animateVisibleOrGoneIfNot(visible: Boolean, duration: Long = 100) {
-    if (visible) {
-        if (visibility != VISIBLE)
-            animateVisible(duration)
-    } else {
-        if (visibility != GONE)
-            animateGone(duration)
-    }
+    if (visible) animateVisibleIfNot(duration) else animateGoneIfNot(duration)
 }
 
 fun View.visibleOrInvisible(visible: Boolean) {
@@ -292,8 +287,11 @@ fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> U
     }
 }
 
-fun View.setTopRoundCornerBackground() {
-    val radius = resources.getDimension(R.dimen._8sdp)
+fun View.setTopRoundCornerBackground(
+    radius: Float = resources.getDimension(R.dimen._8sdp),
+    elevation: Float = resources.getDimension(R.dimen._4sdp),
+    @ColorInt tintColor: Int = ContextCompat.getColor(context, R.color.colorGlobalWhite)
+) {
     val appearanceModel = ShapeAppearanceModel()
         .toBuilder()
         .setTopRightCorner(CornerFamily.ROUNDED, radius)
@@ -303,8 +301,8 @@ fun View.setTopRoundCornerBackground() {
     val shape = MaterialShapeDrawable(appearanceModel)
         .apply {
             shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
-            elevation = resources.getDimension(R.dimen._4sdp)
-            setTint(ContextCompat.getColor(context, R.color.colorGlobalWhite))
+            this.elevation = elevation
+            setTint(tintColor)
             paintStyle = Paint.Style.FILL
         }
 

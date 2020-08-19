@@ -97,7 +97,7 @@
                     android:baselineAligned="false">
 
                     <LinearLayout
-                        android:id="@+id/llFavoriteProfile"
+                        android:id="@+id/favoriteContainerProfile"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".9"
@@ -132,7 +132,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/llFavoriteProfile1"
+                        android:id="@+id/orderContainerProfile"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".8"
@@ -167,7 +167,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/llFavoriteProfile2"
+                        android:id="@+id/analyzesContainerProfile"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".8"
@@ -202,7 +202,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/llFavoriteProfile3"
+                        android:id="@+id/recipesContainerProfile"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".9"
@@ -257,7 +257,7 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_location"
-                    app:titleProfile="Мой регион" />
+                    app:titleProfile="@string/myRegionTitle" />
 
                 <com.pharmacy.myapp.ui.ProfileItemView
                     android:id="@+id/itemPaymentProfile"
@@ -267,7 +267,7 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_credit_card"
-                    app:titleProfile="Оплата и бонусы" />
+                    app:titleProfile="@string/paymentsTitle" />
 
                 <com.pharmacy.myapp.ui.ProfileItemView
                     android:id="@+id/itemAddressProfile"
@@ -277,7 +277,7 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_truck"
-                    app:titleProfile="Адрес доставки" />
+                    app:titleProfile="@string/deliveryAddressTitle" />
 
                 <com.pharmacy.myapp.ui.ProfileItemView
                     android:id="@+id/itemNotificationProfile"
@@ -287,7 +287,7 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_notification"
-                    app:titleProfile="Уведомления" />
+                    app:titleProfile="@string/notificationsTitle" />
 
                 <com.pharmacy.myapp.ui.ProfileItemView
                     android:id="@+id/itemAboutProfile"
@@ -298,7 +298,7 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_about"
-                    app:titleProfile="О приложении" />
+                    app:titleProfile="@string/aboutAppTitle" />
 
                 <com.pharmacy.myapp.ui.ProfileItemView
                     android:id="@+id/itemHelpProfile"
@@ -308,7 +308,7 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_question"
-                    app:titleProfile="Нужна помощь" />
+                    app:titleProfile="@string/needHelpTitle" />
 
                 <com.pharmacy.myapp.ui.ProfileItemView
                     android:id="@+id/itemLogoutProfile"

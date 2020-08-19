@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBackground"
+        android:paddingBottom="@dimen/_16sdp"
         tools:context=".main.MainActivity">
 
         <ImageButton
@@ -178,10 +179,10 @@
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:background="@drawable/oval"
                 android:backgroundTint="@color/primaryBlue"
+                android:contentDescription="@string/registerButtonContentDescriptionSignUp"
                 android:padding="@dimen/_12sdp"
                 android:rotation="180"
-                android:src="@drawable/ic_arrow_back"
-                android:contentDescription="@string/registerButtonContentDescriptionSignUp" />
+                android:src="@drawable/ic_arrow_back" />
         </LinearLayout>
 
         <com.google.android.material.textview.MaterialTextView
@@ -235,13 +236,13 @@
             android:adjustViewBounds="true"
             android:background="@drawable/oval"
             android:backgroundTint="@color/colorGlobalWhite"
+            android:contentDescription="@string/facebookContentDescriptionSignUp"
             android:elevation="@dimen/_4sdp"
             android:src="@drawable/ic_facebook"
             app:layout_constraintEnd_toStartOf="@id/ivGoogleSignUp"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mtvSignUpViaTitle"
-            android:contentDescription="@string/facebookContentDescriptionSignUp" />
+            app:layout_constraintTop_toBottomOf="@id/mtvSignUpViaTitle" />
 
         <ImageView
             android:id="@+id/ivGoogleSignUp"
@@ -249,10 +250,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_12sdp"
-            android:contentDescription="@string/googleContentDescriptionSignUp"
             android:adjustViewBounds="true"
             android:background="@drawable/oval"
             android:backgroundTint="@color/colorGlobalWhite"
+            android:contentDescription="@string/googleContentDescriptionSignUp"
             android:elevation="@dimen/_4sdp"
             android:padding="@dimen/_6sdp"
             android:src="@drawable/ic_google"
@@ -262,6 +263,18 @@
             app:layout_constraintTop_toBottomOf="@id/mtvSignUpViaTitle"
             app:layout_constraintVertical_bias="0" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSkipAuth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/background_default_ripple_selector_rect"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/skipAuth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivGoogleSignUp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

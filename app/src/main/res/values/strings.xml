@@ -38,6 +38,12 @@
     <string name="facebookContentDescriptionSignUp">Sign in via Facebook</string>
     <string name="scanDrugsContentDescription">Сканировать товар</string>
 
+    <string name="menuTitleMain">Главная</string>
+    <string name="menuTitleCategories">Каталог</string>
+    <string name="menuTitleSearch">Поиск</string>
+    <string name="menuTitleCart">Корзина</string>
+    <string name="menuTitleProfile">Профиль</string>
+
     <string name="cameraPermissionPermanentlyDenied">Доступ к камере запрещен. Пожалуйста, перейдите в настройки в раздел Разрешения и предоставьте приложению доступ к камере</string>
     <string name="permissionDialogSettingsButton">Настройки</string>
     <string name="permissionDialogCancel">Отмена</string>
@@ -84,6 +90,12 @@
     <string name="googleSignIn">Sign in via Google</string>
     <string name="sendCodeAgain">Отправить снова</string>
 
+    <!--Profile common-->
+    <string name="myRegionTitle">Мой регион</string>
+    <string name="notificationsTitle">Уведомления</string>
+    <string name="aboutAppTitle">О приложении</string>
+    <string name="needHelpTitle">Нужна помощь</string>
+
     <!--Profile-->
     <string name="profileImageDescription">Profile image</string>
     <string name="favoriteImageDescriptionProfile">Favorite image description</string>
@@ -97,10 +109,17 @@
     <string name="profileImage">Profile image</string>
     <string name="editProfileTitle">Настройки</string>
     <string name="save">Сохранить</string>
-    <string name="logoutProfile">Выйти из аккаунта</string>
     <string name="profileTitle">Профиль</string>
     <string name="areYouSureToExit">Вы уверены, что хотите\nвыйти из приложения?</string>
     <string name="exitWithoutSaving">Вы уверены, что хотите\nвыйти не сохранив данные?</string>
+
+    <string name="paymentsTitle">Оплата и бонусы</string>
+    <string name="deliveryAddressTitle">Адрес доставки</string>
+    <string name="logoutProfile">Выйти из аккаунта</string>
+
+    <!--Profile guest-->
+    <string name="pleaseAuthorizeMessage">Авторизируйтесь, чтобы совершать\nпокупки, получать бонусы и\nиспользовать чат с фармацевтом</string>
+    <string name="authorizeAction">Авторизироваться</string>
 
     <string name="startSearching">Начните поиск</string>
     <string name="searchHintHome">Ношпа</string>
@@ -170,6 +189,36 @@
     <string name="infoIconContentDescription">Иконка информации выбора аптеки</string>
     <string name="chooseDrugstoreCart">Выбрать аптеку</string>
 
+    <!-- Chat -->
+    <string name="menu_info">Info</string>
+    <string name="chatMessageFieldHint">Что Вас волнует?</string>
+    <string name="skipAuth">Пропустить</string>
+    <string name="buttonEndAuth">Закончить</string>
+    <string name="titleEndAuthDialog">Закончить без регистрации?</string>
+    <string name="messageEndAuthDialog">Вам будет неободимо пройти этап регистрации заново</string>
+    <string name="chatAuthorizeButton">Авторизироваться</string>
+    <string name="chatResumeButton">Продолжить</string>
+    <string name="chatEndButton">Завершить чат</string>
+    <string name="chat_description_message1">Добрый день!</string>
+    <string name="chat_description_message2">Чтобы перейти в чат с фармацевтом, Вам необходимо зарегестрироваться или авторизироваться</string>
+    <string name="chat_description_message3">Ок! Хорошо!</string>
+    <string name="chat_description_message4">Как мне это сделать?</string>
+    <string name="chat_description_message5">Ничего сложного, просто укажите свою контактуню информацию</string>
+    <string name="readDateHolder">Прочитано %s</string>
+    <string name="chatEndedTitle">Чат завершен</string>
+    <string name="chatEndedMessage">A short, complete sentence that takes up the first and the second line.</string>
+    <string name="chatReviewDialogTitle">Как прошла консультация?</string>
+    <string name="chatReviewBadDialogTitle">Жаль слышать это 😔</string>
+    <string name="chatReviewDialogDescription">Насколько фармацевт был заинтересован в решении Вашего вопроса?</string>
+    <string name="chatReviewBadDialogDescription">Уточните пожалуйста, что пошло не так</string>
+    <string name="skipChatReviewButton">Может быть позже</string>
+    <string name="continueChatReview">Продолжить</string>
+    <string name="sendChatReview">Отправить</string>
+    <string name="chatReviewHint">Оставить отзыв</string>
+    <string name="sendPhotoGallery">Галерея</string>
+    <string name="sendPhotoCamera">Камера</string>
+    <string name="sendPhotoError">Произошла ошибка добавления изображения</string>
+
     <!-- Search -->
     <string name="searchLabel">Поиск</string>
     <string name="oftenLookingFor">Часто ищут</string>
@@ -178,6 +227,29 @@
     <string name="noGoodsFoundTitle">Ой, кажется такого товара\nнет в нашей базе</string>
     <string name="noGoodsFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
     <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
+
+    <!-- Recipes -->
+    <string name="recipesLabel">Рецепты</string>
+    <string name="recipesEmptyContainerAction">Перейти в корзину</string>
+    <string name="recipesEmptyContainerSubtitle">Обратитесь к Вашему лечащему врачу, что бы загрузить рецепт</string>
+    <string name="recipesEmptyContainerTitle">У Вас пока нет подтвержденных рецептов</string>
+
+    <!-- Analyzes -->
+    <string name="analyzesLabel">Анализы</string>
+    <string name="analyzesEmptyContainerAction">Записаться на анализы</string>
+    <string name="analyzesEmptyContainerSubtitle">Это просто исправить! Запишитесь на анализы через наше приложение</string>
+    <string name="analyzesEmptyContainerTitle">У Вас пока нет результатов анализов</string>
+
+    <!-- Favorites -->
+    <string name="favoritesLabel">Избранное</string>
+    <string name="favoritesEmptyContainerAction">Начать поиск</string>
+    <string name="favoritesEmptyContainerSubtitle">Начните поиск, что бы добавить товар в корзину</string>
+    <string name="favoritesEmptyContainerTitle">Вы пока не добавили товар в избранное</string>
+
+    <!-- Checkout map -->
+    <string name="checkoutMapLabel">Выбор аптеки</string>
+    <string name="checkoutMapTitle">На карте</string>
+    <string name="checkoutListTitle">Списком</string>
 
     <!-- Payments -->
     <string name="bonusComingSoon">Бонусы уже скоро!</string>

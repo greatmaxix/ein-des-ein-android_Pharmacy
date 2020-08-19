@@ -7,12 +7,14 @@ import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeToHome
 import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToCode
 import com.pharmacy.myapp.auth.SignUpFragmentDirections.Companion.actionFromSignUpToCode
+import com.pharmacy.myapp.chat.ChatFragment.Companion.KEY_NAVIGATION_CHAT
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.splash.SplashFragmentDirections
 import com.pharmacy.myapp.util.AvatarUtil
 
 class AuthViewModel(private var context: Context?, private val repository: AuthRepository) : BaseViewModel() {
@@ -22,6 +24,7 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
     val directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     val customerPhoneLiveData by lazy { MutableLiveData<String>() }
     private var customerPhone: String = ""
+    var authResultDestination: String? = null
 
     override fun onCleared() {
         super.onCleared()
@@ -72,12 +75,17 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
 
     private suspend fun saveCustomerData(customerInfo: CustomerInfo) {
         val avatarUrl = repository.saveCustomerInfo(customerInfo)
+        val action = if (authResultDestination == KEY_NAVIGATION_CHAT) {
+            SplashFragmentDirections.globalToChat()
+        } else {
+            actionFromCodeToHome()
+        }
         if (!avatarUrl.isNullOrEmpty() && context != null) {
             AvatarUtil.saveAvatarToFile(context!!, avatarUrl) {
-                directionLiveData.postValue(actionFromCodeToHome())
+                directionLiveData.postValue(action)
             }
         } else {
-            directionLiveData.postValue(actionFromCodeToHome())
+            directionLiveData.postValue(action)
         }
     }
 
