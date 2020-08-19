@@ -9,6 +9,7 @@
     <include app:graph="@navigation/graph_profile" />
     <include app:graph="@navigation/graph_home" />
     <include app:graph="@navigation/graph_search" />
+    <include app:graph="@navigation/graph_payments" />
     <include app:graph="@navigation/graph_cart" />
 
     <fragment
@@ -135,4 +136,5 @@
         app:exitAnim="@anim/nav_exit_anim"
         app:popEnterAnim="@anim/nav_enter_pop_anim"
         app:popExitAnim="@anim/nav_exit_pop_anim" />
+
 </navigation>

@@ -106,4 +106,8 @@
         android:label="@string/profileTitle"
         tools:layout="@layout/fragment_guest_profile" />
 
+    <action
+        android:id="@+id/globalToPayments"
+        app:destination="@id/graph_payments" />
+
 </navigation>

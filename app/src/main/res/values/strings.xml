@@ -252,4 +252,19 @@
     <string name="checkoutMapTitle">На карте</string>
     <string name="checkoutListTitle">Списком</string>
 
+    <!-- Payments -->
+    <string name="bonusComingSoon">Бонусы уже скоро!</string>
+    <string name="comingSoon">Уже скоро!</string>
+    <string name="comingSoonDescription">Вы сможете оплачивать товары и услуги через ФМС!</string>
+    <string name="addPaymentMethod">Добавить способ оплаты</string>
+    <string name="your_bonus">Ваши Бонусы</string>
+    <string name="youCanUseYourBonuses">Вы можете использовать их при заказе доставки или самовывоза</string>
+    <string name="creditOrDebitCard">Кредитная или дебетовая карта</string>
+    <string name="otherPayment">Другое</string>
+    <string name="cardNumberHint">1029 3847 5647 3829</string>
+    <string name="cardExpDateHint">12/26</string>
+    <string name="cardHolderNameHint">Иванов Иван</string>
+    <string name="cvvHint">CVV</string>
+    <string name="addCreditCard">Добавить карту</string>
+
 </resources>

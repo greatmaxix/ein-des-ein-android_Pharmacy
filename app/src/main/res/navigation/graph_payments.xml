@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_payments"
+    app:startDestination="@id/paymentsFragment">
+
+    <fragment
+        android:id="@+id/paymentsFragment"
+        android:name="com.pharmacy.myapp.payments.PaymentsFragment"
+        android:label="PaymentsFragment"
+        tools:layout="@layout/fragment_payments">
+
+        <action
+            android:id="@+id/actionPaymentsToAddPaymentMethodFragment"
+            app:destination="@id/addPaymentMethodFragment"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addPaymentMethodFragment"
+        android:name="com.pharmacy.myapp.payments.AddPaymentMethodFragment"
+        android:label="AddPaymentMethodFragment"
+        tools:layout="@layout/fragment_add_payment_method">
+
+        <action
+            android:id="@+id/actionAddPaymentMethodToAddCard"
+            app:destination="@id/addCardFragment"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addCardFragment"
+        android:name="com.pharmacy.myapp.payments.AddCardFragment"
+        android:label="AddCardFragment"
+        tools:layout="@layout/fragment_add_card" />
+
+</navigation>
