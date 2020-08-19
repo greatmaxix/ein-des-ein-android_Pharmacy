@@ -156,4 +156,5 @@
         <item name="textAllCaps">false</item>
         <item name="android:singleLine">true</item>
     </style>
+
 </resources>

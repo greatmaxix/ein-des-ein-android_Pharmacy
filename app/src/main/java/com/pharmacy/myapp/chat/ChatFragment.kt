@@ -168,7 +168,7 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
                 when {
                     result.anyPermanentlyDenied() -> openSettings()
                     result.anyShouldShowRationale() -> {
-                        showAlertRes(getString(R.string.cameraPermissionRationaleMessage)) {
+                        showAlertRes(getString(R.string.cameraPermissionRationaleMessageChat)) {
                             cancelable = false
                             positive = R.string.common_okButton
                             positiveAction = { request.send() }

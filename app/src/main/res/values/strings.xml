@@ -218,6 +218,7 @@
     <string name="sendPhotoGallery">Галерея</string>
     <string name="sendPhotoCamera">Камера</string>
     <string name="sendPhotoError">Произошла ошибка добавления изображения</string>
+    <string name="cameraPermissionRationaleMessageChat">Разрешение на доступ к камере необходимо для отправки изображений в чат</string>
 
     <!-- Search -->
     <string name="searchLabel">Поиск</string>
