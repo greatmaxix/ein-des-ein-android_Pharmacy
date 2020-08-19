@@ -19,8 +19,6 @@ class PaymentsFragment : PaymentsBaseFragment(R.layout.fragment_payments) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back)
-
         initPaymentMethods()
         tvAddMethodsPayments.setDebounceOnClickListener {
             doNav(actionPaymentsToAddPaymentMethodFragment())
@@ -35,15 +33,15 @@ class PaymentsFragment : PaymentsBaseFragment(R.layout.fragment_payments) {
     }
 
     private fun createPaymentMethodItem(
-        layoutParams: ViewGroup.LayoutParams,
+        params: ViewGroup.LayoutParams,
         it: TempPaymentMethod
     ): MaterialTextView {
-        val item = MaterialTextView(requireContext())
-        item.layoutParams = layoutParams
-        item.setTextColor(paymentItemTextColor)
-        item.setPadding(paymentItemPadding, paymentItemPadding, paymentItemPadding, paymentItemPadding)
-        item.text = it.name
-        item.setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
-        return item
+        return MaterialTextView(requireContext()).apply {
+            layoutParams = params
+            setTextColor(paymentItemTextColor)
+            setPadding(paymentItemPadding, paymentItemPadding, paymentItemPadding, paymentItemPadding)
+            text = it.name
+            setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
+        }
     }
 }

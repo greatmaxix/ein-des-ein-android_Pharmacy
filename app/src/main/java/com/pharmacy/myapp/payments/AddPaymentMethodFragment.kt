@@ -13,8 +13,6 @@ class AddPaymentMethodFragment : PaymentsBaseFragment(R.layout.fragment_add_paym
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back)
-
         cardCardAddPayment.setDebounceOnClickListener {
             doNav(actionAddPaymentMethodToAddCard())
         }

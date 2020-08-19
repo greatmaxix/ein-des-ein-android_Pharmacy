@@ -26,56 +26,50 @@ class AddCardFragment : PaymentsBaseFragment(R.layout.fragment_add_card) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back)
-
-        tilCardNumber.editText?.filters = arrayOf(LengthFilter(CREDIT_CARD_NUMBER_LENGTH), CreditCardInputFilter())
-        tilCardNumber.editText?.doAfterTextChanged { text ->
-            updateInputLayoutState(tilCardNumber, text.toString()) {
+        with(tilCardNumber) {
+            editText?.filters = arrayOf(LengthFilter(CREDIT_CARD_NUMBER_LENGTH), CreditCardInputFilter())
+            updateStateAfterTextChanged {
                 it.length == CREDIT_CARD_NUMBER_LENGTH
             }
-            updateButtonState()
+            setEndIconOnClickListener {
+                if (tilCardNumber.editText?.text?.length != CREDIT_CARD_NUMBER_LENGTH) tilCardNumber.editText?.text = null
+            }
         }
-        tilCardNumber.setEndIconOnClickListener {
-            if (tilCardNumber.editText?.text?.length != CREDIT_CARD_NUMBER_LENGTH) tilCardNumber.editText?.text = null
-        }
-
-        tilCardExpDate.editText?.doAfterTextChanged { text ->
-            updateInputLayoutState(tilCardExpDate, text.toString()) {
+        with(tilCardExpDate) {
+            editText?.filters = arrayOf<InputFilter>(CreditCardExpiryInputFilter())
+            updateStateAfterTextChanged {
                 it.length == CREDIT_CARD_EXP_DATE_LENGTH
             }
-            updateButtonState()
-        }
-        tilCardExpDate.editText?.filters = arrayOf<InputFilter>(CreditCardExpiryInputFilter())
-        tilCardExpDate.setEndIconOnClickListener {
-            if (tilCardExpDate.tag == null) {
-                requireContext().toast("TODO show info") // TODO what to show
-            } else {
-                if (tilCardExpDate.editText?.text?.length != CREDIT_CARD_EXP_DATE_LENGTH) tilCardExpDate.editText?.text = null
+            setEndIconOnClickListener {
+                if (tilCardExpDate.tag == null) {
+                    requireContext().toast("TODO show info") // TODO what to show
+                } else if (tilCardExpDate.tag as Boolean) {
+                    if (tilCardExpDate.editText?.text?.length != CREDIT_CARD_EXP_DATE_LENGTH) tilCardExpDate.editText?.text = null
+                }
             }
         }
-
-        tilCardCVV.editText?.doAfterTextChanged { text ->
-            updateInputLayoutState(tilCardCVV, text.toString()) {
+        with(tilCardCVV) {
+            updateStateAfterTextChanged {
                 it.length == CREDIT_CARD_CVV_LENGTH
             }
-            updateButtonState()
-        }
-        tilCardCVV.setEndIconOnClickListener {
-            if (tilCardCVV.tag == null) {
-                requireContext().toast("TODO show info") // TODO what to show
-            } else {
-                if (tilCardCVV.editText?.text?.length != CREDIT_CARD_CVV_LENGTH) tilCardCVV.editText?.text = null
+            setEndIconOnClickListener {
+                if (tilCardCVV.tag == null) {
+                    requireContext().toast("TODO show info") // TODO what to show
+                } else {
+                    if (tilCardCVV.editText?.text?.length != CREDIT_CARD_CVV_LENGTH) tilCardCVV.editText?.text = null
+                }
             }
         }
-        tilCardHolderName.setEndIconOnClickListener {
-
-        }
-        tilCardHolderName.editText?.doAfterTextChanged { text ->
-            updateInputLayoutState(tilCardHolderName, text.toString()) {
+        with(tilCardHolderName) {
+            updateStateAfterTextChanged {
                 val textSplit = it.split(" ")
                 it.isNotBlank() && it.isLetterAndSpace() && textSplit.size > 1 && textSplit[1].isNotBlank()
             }
-            updateButtonState()
+            setEndIconOnClickListener {
+                if (tilCardHolderName.tag != null && !(tilCardHolderName.tag as Boolean)) {
+                    tilCardHolderName.editText?.text = null
+                }
+            }
         }
 
         btnAddCard.setDebounceOnClickListener {
@@ -91,16 +85,21 @@ class AddCardFragment : PaymentsBaseFragment(R.layout.fragment_add_card) {
         btnAddCard.isEnabled = cardNumberValid && cardExpDateValid && cardCVVValid && cardCardHolderNameValid
     }
 
-    private fun updateInputLayoutState(til: TextInputLayout, text: String, prediction: (String) -> Boolean) {
-        val accepted = prediction.invoke(text)
-        til.tag = accepted
-        val currentColor = if (accepted) greenColor else greyColor
-        val currentIcon = if (accepted) R.drawable.ic_check else R.drawable.ic_clear_search
-        til.setEndIconDrawable(currentIcon)
-        til.setEndIconTintList(ColorStateList.valueOf(currentColor))
-        til.isEndIconVisible = text.isNotEmpty()
-        val stateList = if (accepted) stateListAccepted else stateListDefault
-        stateList?.let { til.setBoxStrokeColorStateList(it) }
+    private fun TextInputLayout.updateStateAfterTextChanged(prediction: (String) -> Boolean) {
+        editText?.doAfterTextChanged { editable ->
+            val text = editable.toString()
+            val accepted = prediction(text)
+            tag = accepted
+            val currentColor = if (accepted) greenColor else greyColor
+            val currentIcon = if (accepted) R.drawable.ic_check else R.drawable.ic_clear_search
+            setEndIconDrawable(currentIcon)
+            setEndIconTintList(ColorStateList.valueOf(currentColor))
+            isEndIconVisible = text.isNotEmpty()
+            val stateList = if (accepted) stateListAccepted else stateListDefault
+            stateList?.let { setBoxStrokeColorStateList(it) }
+
+            updateButtonState()
+        }
     }
 
     companion object {
