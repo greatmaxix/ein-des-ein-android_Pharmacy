@@ -155,19 +155,21 @@
             android:id="@+id/chooseStoreBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/primaryBlue"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:backgroundTint="@color/primaryBlue"
             android:gravity="center"
-            android:paddingStart="@dimen/_16sdp"
             android:paddingTop="@dimen/_12sdp"
-            android:paddingEnd="@dimen/_16sdp"
             android:paddingBottom="@dimen/_12sdp"
             android:text="@string/chooseDrugstoreCart"
+            android:textAllCaps="false"
             android:textColor="@color/colorGlobalWhite"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="@dimen/_12ssp"
             android:textStyle="bold"
+
             app:cornerRadius="@dimen/_64sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvProductTotalPriceDescriptionCart" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

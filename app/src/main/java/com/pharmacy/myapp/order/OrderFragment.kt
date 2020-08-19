@@ -76,7 +76,7 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
     }
 
     private fun initToolbar() {
-        showBackButton(R.drawable.ic_arrow_back)
+        showBackButton()
         toolbar?.let {
             it.title = "№ 12345"
 

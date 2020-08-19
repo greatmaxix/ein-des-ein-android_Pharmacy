@@ -13,7 +13,7 @@ class MyOrdersFragment : BaseMVVMFragment(R.layout.fragment_my_orders) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showBackButton(R.drawable.ic_arrow_back)
+        showBackButton()
         rvOrdersListMyOrders.layoutManager = LinearLayoutManager(requireContext())
         rvOrdersListMyOrders.addItemDecorator()
         rvOrdersListMyOrders.adapter = MyOrdersAdapter().apply { setList(getMyOrders()) }

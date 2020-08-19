@@ -105,7 +105,7 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton(R.drawable.ic_arrow_back)
+        showBackButton()
         initMenu(R.menu.info, Toolbar.OnMenuItemClickListener {
             if (it.itemId == R.id.menu_info) {
                 // TODO menu func
