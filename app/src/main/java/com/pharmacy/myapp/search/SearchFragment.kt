@@ -56,5 +56,4 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
         chipStartPadding = resources.getDimension(R.dimen._2sdp)
         onClick { searchView.setText(text) }
     }
-
 }

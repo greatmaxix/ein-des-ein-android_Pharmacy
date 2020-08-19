@@ -40,16 +40,6 @@
     </fragment>
 
     <action
-        android:id="@+id/globalToQrCodeScanner"
-        app:destination="@id/nav_qr_code_scanner" />
-
-    <fragment
-        android:id="@+id/nav_qr_code_scanner"
-        android:name="com.pharmacy.myapp.qrCodeScanner.QrCodeScannerFragment"
-        android:label="@string/qrCodeLabel"
-        tools:layout="@layout/fragment_qr_code_scanner" />
-
-    <action
         android:id="@+id/globalToChat"
         app:destination="@id/nav_chat"
         app:enterAnim="@anim/nav_enter_anim"
@@ -136,5 +126,19 @@
         app:exitAnim="@anim/nav_exit_anim"
         app:popEnterAnim="@anim/nav_enter_pop_anim"
         app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    <action
+        android:id="@+id/globalToQrCodeScanner"
+        app:destination="@id/nav_qr_code_scanner"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    <fragment
+        android:id="@+id/nav_qr_code_scanner"
+        android:name="com.pharmacy.myapp.qrCodeScanner.QrCodeScannerFragment"
+        android:label="@string/qrCodeLabel"
+        tools:layout="@layout/fragment_qr_code_scanner" />
 
 </navigation>

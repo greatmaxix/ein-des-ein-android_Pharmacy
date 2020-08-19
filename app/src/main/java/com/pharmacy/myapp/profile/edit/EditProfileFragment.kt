@@ -48,7 +48,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tilPhoneEditProfile.setPhoneRule()
-        showBackButton(R.drawable.ic_arrow_back) { backPressedHandler() }
+        showBackButton(R.drawable.ic_arrow_back)
         etPhoneEditProfile.addCountryCodePrefix()
         saveEditProfile.onClick {
             val isNameValid = tilNameEditProfile.checkLength(getString(R.string.nameErrorAuth))

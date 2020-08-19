@@ -44,5 +44,4 @@
             android:src="@drawable/ic_next" />
 
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

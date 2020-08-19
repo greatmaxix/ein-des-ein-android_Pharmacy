@@ -20,5 +20,4 @@ class SearchViewModel : BaseViewModel() {
         _searchLiveData.postValue(value)
         // repository.doSearch() todo
     }
-
 }
