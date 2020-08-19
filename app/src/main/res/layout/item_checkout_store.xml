@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/colorGlobalWhite"
+    app:cardCornerRadius="@dimen/_6sdp"
+    app:cardElevation="0dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivBaseIcon"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Базовая иконка аптеки"
+            android:src="@drawable/ic_drugstore_base"
+            app:layout_constraintBottom_toBottomOf="@id/tvDrugstoreAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAvailabilityInDrugstore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintStart_toEndOf="@id/ivBaseIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Все в наличии"
+            tools:textColor="@color/colorAccent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvDrugstoreName"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:textColor="@color/darkBlue"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/ivBaseIcon"
+            app:layout_constraintTop_toBottomOf="@id/tvAvailabilityInDrugstore"
+            tools:text="Название аптеки" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvDrugstoreAddress"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintStart_toEndOf="@id/ivBaseIcon"
+            app:layout_constraintTop_toBottomOf="@id/tvDrugstoreName"
+            tools:text="ул Горная 23а, Харьков" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/ivDrugstoreLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:backgroundTint="@color/mediumGrey"
+            android:src="@drawable/ic_drugstore_location"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:fabSize="mini"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:maxImageSize="@dimen/_28sdp"
+            app:rippleColor="@color/primaryLightRipple" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvContactInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivBaseIcon"
+            tools:text="+7 (098) 000 02 00 • +7 (098) 000 02 00" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvWorkingHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvContactInformation"
+            tools:text="⏰ c 8:00 до 22:00 ежедневно" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvPrice"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textColor="@color/primaryBlue"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/btnChooseDrugstore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btnChooseDrugstore"
+            tools:text="568 ₽" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnChooseDrugstore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:backgroundTint="@color/primaryBlue"
+            android:gravity="center"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:text="@string/chooseDrugstoreCart"
+            android:textColor="@color/colorGlobalWhite"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/_64sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvPrice"
+            app:layout_constraintTop_toBottomOf="@id/tvWorkingHours" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

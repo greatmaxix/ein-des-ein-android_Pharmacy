@@ -24,4 +24,10 @@
         <attr name="animationDuration" format="float" />
         <attr name="hintText" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="EmptyContainerView">
+        <attr name="titleEmpty" format="string" />
+        <attr name="subtitleEmpty" format="string" />
+        <attr name="buttonTextEmpty" format="string" />
+    </declare-styleable>
 </resources>
