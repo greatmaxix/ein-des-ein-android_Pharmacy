@@ -36,6 +36,13 @@
     <string name="googleContentDescriptionSignUp">Sign in via Google account</string>
     <string name="registerButtonContentDescriptionSignUp">Register image button</string>
     <string name="facebookContentDescriptionSignUp">Sign in via Facebook</string>
+    <string name="scanDrugsContentDescription">Сканировать товар</string>
+
+    <string name="cameraPermissionPermanentlyDenied">Доступ к камере запрещен. Пожалуйста, перейдите в настройки в раздел Разрешения и предоставьте приложению доступ к камере</string>
+    <string name="permissionDialogSettingsButton">Настройки</string>
+    <string name="permissionDialogCancel">Отмена</string>
+    <string name="cameraPermissionDenied">Доступ к камере запрещен</string>
+    <string name="cameraPermissionNoCameraOnDevice">На устройстве отсутствует камера</string>
 
     <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
 
@@ -44,11 +51,6 @@
     <string name="cameraPermissionRationaleMessage">Разрешение на доступ к камере необходимо для сканирования QR кода</string>
     <string name="grantPermissionButton">Разрешить</string>
     <string name="closeButton">Закрыть</string>
-    <string name="cameraPermissionPermanentlyDenied">Доступ к камере запрещен. Пожалуйста, перейдите в настройки в раздел Разрешения и предоставьте приложению доступ к камере</string>
-    <string name="permissionDialogSettingsButton">Настройки</string>
-    <string name="permissionDialogCancel">Отмена</string>
-    <string name="cameraPermissionDenied">Доступ к камере запрещен</string>
-    <string name="cameraPermissionNoCameraOnDevice">На устройстве отсутствует камера</string>
     <string name="qrCodeDescription">Наведите камеру на штрих-код, что бы найти его в приложении</string>
     <string name="understandScan">Понятно! Сканировать</string>
     <string name="pointToBarcode">Наведите на штрих код</string>
@@ -82,6 +84,7 @@
     <string name="googleSignIn">Sign in via Google</string>
     <string name="sendCodeAgain">Отправить снова</string>
 
+    <!--Profile-->
     <string name="profileImageDescription">Profile image</string>
     <string name="favoriteImageDescriptionProfile">Favorite image description</string>
     <string name="favoriteProfile">Избранное</string>
@@ -96,6 +99,8 @@
     <string name="save">Сохранить</string>
     <string name="logoutProfile">Выйти из аккаунта</string>
     <string name="profileTitle">Профиль</string>
+    <string name="areYouSureToExit">Вы уверены, что хотите\nвыйти из приложения?</string>
+    <string name="exitWithoutSaving">Вы уверены, что хотите\nвыйти не сохранив данные?</string>
 
     <string name="startSearching">Начните поиск</string>
     <string name="searchHintHome">Ношпа</string>
@@ -106,7 +111,6 @@
     <string name="categoriesTitleHome">Категории</string>
     <string name="seeAllCategoriesHome">Смотреть все</string>
     <string name="uploadRecipesHome">Загрузить рецепт</string>
-    <string name="scanDrugsContentDescriptionHome">Сканировать товар</string>
     <string name="orderLogoContentDescriptionHome">Лого заказа</string>
     <string name="orderSmallIconContentDescriptionHome">Иконка заказа</string>
     <string name="askTileContentDescriptionHome">Спроси фармацевта</string>
@@ -117,13 +121,8 @@
     <string name="changePhotoGallery">Выбрать из галереи</string>
     <string name="changePhotoCamera">Сделать фото</string>
     <string name="changePhotoDelete">Удалить аватар</string>
-    <string name="whoAreYou_cameraPermissionPermanentlyDenied">Доступ к камере запрещен. Откройте настройки устройства и дайте разрешение приложению</string>
     <string name="common_permissionDialog_settingsButton">Настройки</string>
     <string name="common_permissionDialog_cancel">Отменить</string>
-    <string name="whoAreYou_cameraPermissionDenied">Разрешение камеры не предоставлено</string>
-    <string name="whoAreYou_cameraPermissionNoCameraOnDevice">На устройстве нет камеры</string>
-    <string name="whoAreYou_cameraPermissionRationaleMessage">Требуется разрешение камеры</string>
-    <string name="whoAreYou_errorSavingAvatar">Ошибка при сохранении изображения</string>
     <string name="chooseAvatarError">Произошла ошибка выбора аватара</string>
     <string name="avatarSavingError">Ошибка во время сохранения аватара</string>
 
@@ -171,6 +170,15 @@
     <string name="infoIconContentDescription">Иконка информации выбора аптеки</string>
     <string name="chooseDrugstoreCart">Выбрать аптеку</string>
 
+    <!-- Search -->
+    <string name="searchLabel">Поиск</string>
+    <string name="oftenLookingFor">Часто ищут</string>
+    <string name="searchHistoryTitle">История поиска</string>
+    <string name="clearSearchHistory">Очистить</string>
+    <string name="noGoodsFoundTitle">Ой, кажется такого товара\nнет в нашей базе</string>
+    <string name="noGoodsFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
+    <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
+
     <!-- Chat -->
     <string name="menu_info">Info</string>
     <string name="chatMessageFieldHint">Что Вас волнует?</string>
@@ -200,5 +208,6 @@
     <string name="sendPhotoGallery">Галерея</string>
     <string name="sendPhotoCamera">Камера</string>
     <string name="sendPhotoError">Произошла ошибка добавления изображения</string>
+    <string name="cameraPermissionRationaleMessageChat">Разрешение на доступ к камере необходимо для отправки изображений в чат</string>
 
 </resources>

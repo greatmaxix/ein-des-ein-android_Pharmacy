@@ -15,6 +15,10 @@
     <color name="colorTransparent">#00000000</color>
     <color name="mainMenuColor">#A5B4CC</color>
 
+    <color name="colorSearchHint">#80333333</color>
+    <color name="colorSearch">@color/darkBlue</color>
+    <color name="colorSearchChipBackground">#E2EAFA</color>
+
     <color name="colorProgressBackground">#a0000000</color>
 
     <color name="colorPinNormal">#20ffffff</color>

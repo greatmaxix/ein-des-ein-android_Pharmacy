@@ -199,7 +199,9 @@ fun View.enableOrDisable(enable: Boolean) {
     isEnabled = enable
 }
 
-fun View.hideKeyboard() = context.inputMethodManager.hideSoftInputFromWindow(windowToken, 0).also { clearFocus() }
+fun View.hideKeyboard(needClearFocus: Boolean = true) =
+    context.inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+        .also { if (needClearFocus) clearFocus() }
 
 val View.isKeyboardOpen
     get() = Rect().run {
