@@ -5,5 +5,6 @@ data class TempProductModel(
     val name: String,
     val description: String,
     val issuer: String,
-    val price: String
+    val price: String,
+    val count: Int
 )

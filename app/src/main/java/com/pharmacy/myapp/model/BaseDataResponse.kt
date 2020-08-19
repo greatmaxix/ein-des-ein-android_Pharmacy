@@ -20,3 +20,18 @@ data class Violation(
     @SerializedName("propertyPath") val propertyPath: String,
     @SerializedName("message") val message: String
 )
+
+data class PaginationModel<T>(
+    @SerializedName("currentPageNumber") val currentPageNumber: Int,
+    @SerializedName("items") val items: List<T>,
+    @SerializedName("numItemsPerPage") val numItemsPerPage: Int,
+    @SerializedName("totalCount") val totalCount: Int
+)
+
+data class SingleItemModel<T>(
+    @SerializedName("item") val item: T
+)
+
+data class ListItemsModel<T>(
+    @SerializedName("items") val items: List<T>
+)

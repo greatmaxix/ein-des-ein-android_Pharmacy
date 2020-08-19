@@ -60,16 +60,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tvProductDescriptionCheckout"
         tools:text="Название товара" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddToCartCheckout"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvCountCheckout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
-        android:src="@drawable/ic_shopping_cart"
-        app:backgroundTint="@color/primaryBlue"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_17sdp"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="x 3" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/fabProductPriceCheckout"
@@ -79,7 +81,7 @@
         android:textColor="@color/primaryBlue"
         android:textSize="@dimen/_16ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/fabAddToCartCheckout"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCountCheckout"
         app:layout_constraintStart_toStartOf="@+id/tvProductTitleCheckout"
         tools:text="от 568 ₽" />
 
