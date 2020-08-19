@@ -11,7 +11,8 @@ import android.os.Build
 import android.os.Handler
 import android.os.SystemClock
 import android.view.View
-import android.view.View.*
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.ViewParent
 import android.widget.EditText

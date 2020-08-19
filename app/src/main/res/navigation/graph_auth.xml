@@ -5,6 +5,8 @@
     android:id="@+id/auth_graph"
     app:startDestination="@id/nav_sign_in">
 
+    <include app:graph="@navigation/graph_home" />
+
     <argument
         android:name="authResultDestination"
         android:defaultValue="@null"

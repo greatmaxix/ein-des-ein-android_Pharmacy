@@ -51,6 +51,6 @@ fun AppCompatTextView.setTextAsync(text: String?) {
     }
 }
 
-fun TextView.clearText(){
+fun TextView.clearText() {
     text = ""
 }

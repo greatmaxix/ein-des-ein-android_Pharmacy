@@ -31,6 +31,17 @@
             app:popUpToInclusive="true" />
 
         <action
+            android:id="@+id/actionFromProfileToFavorites"
+            app:destination="@id/nav_favorites"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/main_graph"
+            app:popUpToInclusive="true" />
+
+        <action
             android:id="@+id/actionFromProfileToMyOorders"
             app:destination="@id/nav_my_orders"
             app:enterAnim="@anim/nav_enter_anim"
@@ -75,4 +86,10 @@
         android:label="@string/myOrdersLabel"
         tools:layout="@layout/fragment_my_orders" />
 
+
+    <fragment
+        android:id="@+id/nav_favorites"
+        android:name="com.pharmacy.myapp.favorites.FavoritesFragment"
+        android:label="@string/favoritesLabel"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

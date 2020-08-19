@@ -107,5 +107,4 @@ class AppSearchView @JvmOverloads constructor(
         etSearch.setText(value)
         ivClose.setOnClickListener(closeClick)
     }
-
 }

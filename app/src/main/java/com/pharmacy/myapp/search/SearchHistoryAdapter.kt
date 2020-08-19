@@ -9,7 +9,7 @@ import com.pharmacy.myapp.core.extensions.inflate
 import com.pharmacy.myapp.core.extensions.onClick
 import kotlinx.android.synthetic.main.item_history_search.view.*
 
-class SearchHistoryAdapter(private val itemClick:((String) -> Unit)) : BaseRecyclerAdapter<String, SearchHistoryAdapter.SearchHistoryViewHolder>() {
+class SearchHistoryAdapter(private val itemClick: ((String) -> Unit)) : BaseRecyclerAdapter<String, SearchHistoryAdapter.SearchHistoryViewHolder>() {
 
     fun setList(list: MutableList<String>) {
         items = list

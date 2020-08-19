@@ -54,9 +54,7 @@
                     android:src="@drawable/ic_barcode" />
 
             </com.google.android.material.card.MaterialCardView>
-
         </LinearLayout>
-
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -138,6 +136,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvSearchHistoryTitle"
             tools:listitem="@layout/item_history_search"
             tools:visibility="visible" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -178,6 +177,6 @@
             android:gravity="center"
             android:text="@string/noGoodsFoundSubtitle"
             android:textColor="@color/darkBlue" />
-    </LinearLayout>
 
+    </LinearLayout>
 </LinearLayout>
