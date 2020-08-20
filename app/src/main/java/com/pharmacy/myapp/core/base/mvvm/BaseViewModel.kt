@@ -10,5 +10,4 @@ open class BaseViewModel : ViewModel() {
 
     fun launchIO(block: suspend CoroutineScope.() -> Unit) =
         viewModelScope.launch(IO, block = block)
-
 }

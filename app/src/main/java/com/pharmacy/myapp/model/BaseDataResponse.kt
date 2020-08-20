@@ -11,9 +11,10 @@ data class BaseDataResponse<T>(
     @SerializedName("violations") val violations: List<Violation>
 ) {
 
-    fun isSuccess() = status == "success"
+    val isSuccess
+        get() = status == "success"
 
-    fun dataOrThrow() = if (isSuccess()) data else throw ApiException(message, errorType, violations)
+    fun dataOrThrow() = if (isSuccess) data else throw ApiException(message, errorType, violations)
 }
 
 data class Violation(

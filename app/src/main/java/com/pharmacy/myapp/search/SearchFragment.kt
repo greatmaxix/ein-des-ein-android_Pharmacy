@@ -2,59 +2,40 @@ package com.pharmacy.myapp.search
 
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.chip.Chip
-import com.google.android.material.shape.ShapeAppearanceModel
+import androidx.lifecycle.lifecycleScope
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
-import com.pharmacy.myapp.core.extensions.*
+import com.pharmacy.myapp.core.extensions.addDrawableItemDivider
+import com.pharmacy.myapp.search.adapter.SearchAdapter
+import com.pharmacy.myapp.search.extra.ISearchCallback
 import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
-class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(R.layout.fragment_search) {
+class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(R.layout.fragment_search), ISearchCallback {
 
-    private val searchHistoryAdapter = SearchHistoryAdapter() {
-        searchView.setText(it)
-    }.apply {
-        setList(mutableListOf("Дротаверин", "Анальгин"))// todo
+    private val searchAdapter = SearchAdapter {
+        Timber.e("Name: ${it?.rusName}")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mcvScanSearch.onClick { navController.onNavDestinationSelected(R.id.globalToQrCodeScanner, null, R.id.nav_search) }
-        searchView.setSearchListener { viewModel.doSearch(it.toString()) }
-
-        rvOrdersListOrder.setHasFixedSize(true)
-        rvOrdersListOrder.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvOrdersListOrder.adapter = searchHistoryAdapter
-        tvClearSearchHistory.onClick {
-            searchHistoryAdapter.setList(mutableListOf())
-            tvClearSearchHistory.gone() // todo mock
-        }
+        rvProducts.adapter = searchAdapter
+        rvProducts.addDrawableItemDivider(R.drawable.divider_search_)
     }
 
     override fun onBindLiveData() {
-        super.onBindLiveData()
-        viewModel.oftenLookingLiveData.observeExt {
-            it.forEach { item -> asyncWithContext({ createChip(item) }, { cgOftenLookingForSearch.addView(this) }) }
+        observe(viewModel.pagedSearchLiveData) {
+            viewLifecycleOwner.lifecycleScope.launch {
+                searchAdapter.submitData(it)
+            }
         }
-        viewModel.searchLiveData.observeExt {
-            llDrugsNotFoundContainer.animateVisibleOrGoneIfNot(it.isNotEmpty())// todo mock
-            clSearchContent.animateVisibleOrGoneIfNot(it.isEmpty())
+
+        observe(viewModel.productCountLiveData) {
+            tvSearchResult.text = getString(R.string.countProducts, it)
         }
     }
 
-    private fun createChip(text: String) = Chip(context).apply {
-        setTextColor(colorCompat(R.color.primaryBlue))
-        setChipBackgroundColorResource(R.color.colorSearchChipBackground)
-        setRippleColorResource(R.color.primaryBlueRipple)
-        setEnsureMinTouchTargetSize(false)
-        setText(text)
-        val radius = resources.getDimension(R.dimen._4sdp)
-        shapeAppearanceModel = ShapeAppearanceModel.Builder().setAllCornerSizes(radius).build()
-        chipEndPadding = resources.getDimension(R.dimen._2sdp)
-        chipStartPadding = resources.getDimension(R.dimen._2sdp)
-        onClick { searchView.setText(text) }
-    }
+    override fun doSearch(text: String) = viewModel.doSearch(text)
 
 }

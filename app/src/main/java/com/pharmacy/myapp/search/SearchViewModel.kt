@@ -2,24 +2,34 @@ package com.pharmacy.myapp.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.distinctUntilChanged
+import androidx.lifecycle.switchMap
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
-import timber.log.Timber
+import com.pharmacy.myapp.core.general.SingleLiveEvent
+import com.pharmacy.myapp.search.repository.SearchDataSource
+import com.pharmacy.myapp.search.repository.SearchRepository
 
-class SearchViewModel : BaseViewModel() {
+class SearchViewModel(private val repository: SearchRepository) : BaseViewModel() {
 
-    private val _oftenLookingLiveData by lazy { MutableLiveData<List<String>>() }
-    val oftenLookingLiveData: LiveData<List<String>> by lazy { _oftenLookingLiveData }
-    private val _searchLiveData by lazy { MutableLiveData<String>() }
-    val searchLiveData: LiveData<String> by lazy { _searchLiveData }
+    private val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
+    val progressLiveData: LiveData<Boolean> by lazy { _progressLiveData }
 
-    init {
-        _oftenLookingLiveData.postValue(listOf("Спазмы", "Головная боль", "Болит живот", "ОРВИ", "Дротаверин", "Но Шпа", "Терафлю")) // todo
-        _searchLiveData.postValue("")
+    private val _errorLiveData by lazy { SingleLiveEvent<String>() }
+    val errorLiveData: LiveData<String> by lazy { _errorLiveData }
+
+    private val searchLiveData by lazy { MutableLiveData<String>() }
+
+    private val _productCountLiveData by lazy { MutableLiveData<Int>() }
+    val productCountLiveData: LiveData<Int> by lazy { _productCountLiveData.distinctUntilChanged() }
+
+    val pagedSearchLiveData = searchLiveData.switchMap { Pager(PagingConfig(20, initialLoadSize = 40)) { SearchDataSource(it) { _productCountLiveData.postValue(it) } }.liveData }
+
+    fun doSearch(value: String) = searchLiveData.postValue(value)
+
+    fun getProductInfo(){
+
     }
-
-    fun doSearch(value: String) {
-        _searchLiveData.postValue(value)
-        // repository.doSearch() todo
-    }
-
 }

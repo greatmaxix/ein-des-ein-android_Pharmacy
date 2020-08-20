@@ -26,6 +26,7 @@ import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogData
 import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogDataRes
 import com.pharmacy.myapp.core.flow.CountDownFlow
 import com.pharmacy.myapp.core.keyboard.KeyboardObserver
+import com.pharmacy.myapp.search.SearchFragment
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.collect
@@ -198,6 +199,12 @@ fun <T : Fragment> Fragment.setFragment(
         if (needBackStack) {
             addToBackStack(fragment::class.java.simpleName)
         }
+    }
+}
+
+fun Fragment.setFragmentIfNeed(fragment: Fragment, containerId: Int = R.id.container, needBackStack: Boolean = false) {
+    if (findFragment<SearchFragment>(containerId) == null) {
+        setFragment(fragment, containerId, needBackStack)
     }
 }
 

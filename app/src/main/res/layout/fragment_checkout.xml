@@ -35,7 +35,7 @@
                 android:layout_marginTop="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:text="@string/deliveryMethod"
-                android:textAppearance="@style/Text.BlockHeader"
+                android:textAppearance="@style/Text.BlockHeaderBold"
                 app:layout_constraintEnd_toStartOf="@+id/tvBuyerDeliveryAddressEditCheckout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -135,7 +135,7 @@
                 android:layout_marginTop="@dimen/_48sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:text="@string/selectPaymentType"
-                android:textAppearance="@style/Text.BlockHeader"
+                android:textAppearance="@style/Text.BlockHeaderBold"
                 app:layout_constraintEnd_toStartOf="@+id/tvBuyerDeliveryAddressEditCheckout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -174,7 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/orderList"
-                    android:textAppearance="@style/Text.BlockHeader" />
+                    android:textAppearance="@style/Text.BlockHeaderBold" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvOrdersListEditCheckout"

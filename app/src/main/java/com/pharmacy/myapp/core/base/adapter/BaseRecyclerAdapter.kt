@@ -15,7 +15,7 @@ abstract class BaseRecyclerAdapter<Type, ViewHolder : BaseViewHolder<Type>>(
             }
         }
 
-    protected lateinit var recyclerView: RecyclerView
+    protected var recyclerView: RecyclerView? = null
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -33,4 +33,8 @@ abstract class BaseRecyclerAdapter<Type, ViewHolder : BaseViewHolder<Type>>(
     }
 
     fun isEmpty() = itemCount == 0
+
+    protected fun scrollTop() {
+        recyclerView?.scrollToPosition(0)
+    }
 }

@@ -18,6 +18,8 @@
     <color name="colorSearchHint">#80333333</color>
     <color name="colorSearch">@color/darkBlue</color>
     <color name="colorSearchChipBackground">#E2EAFA</color>
+    <color name="colorSearchBackground">#F3F6F9</color>
+    <color name="colorSearchDivider">@color/grey</color>
 
     <color name="colorProgressBackground">#a0000000</color>
 
@@ -42,6 +44,7 @@
     <color name="darkBlue">#000A63</color>
     <color name="primaryBlue">#2566F9</color>
     <color name="blueLight">#1A2566F9</color>
+
     <color name="primaryBlueLight20">#CCDAFA</color>
     <color name="greyText">#64738C</color>
     <color name="grey">#A5B4CC</color>

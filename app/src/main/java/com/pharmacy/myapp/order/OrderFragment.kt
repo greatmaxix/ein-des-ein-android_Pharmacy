@@ -101,9 +101,9 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
 
     private fun initOrderProducts() {
         val items = DummyData.getOrderProducts()
-        rvOrdersListOrder.setHasFixedSize(true)
-        rvOrdersListOrder.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvOrdersListOrder.adapter = orderProductsAdapter
+        rvQuickAccess.setHasFixedSize(true)
+        rvQuickAccess.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        rvQuickAccess.adapter = orderProductsAdapter
         orderProductsAdapter.setList(items)
     }
 }

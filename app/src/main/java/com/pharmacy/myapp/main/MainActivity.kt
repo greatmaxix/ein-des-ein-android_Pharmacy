@@ -20,7 +20,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     private val progressBehavior by lazy { attachBehavior(ProgressViewBehavior(progressRoot)) }
     private val messagesBehavior by lazy { attachBehavior(DialogMessagesBehavior(this)) }
 
-    private val topLevelDestinations = intArrayOf(R.id.nav_home, R.id.nav_search, R.id.nav_profile)
+    private val topLevelDestinations = intArrayOf(R.id.nav_home, R.id.nav_quick, R.id.nav_profile)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     override fun showError(strResId: Int, action: (() -> Unit)?) =
         messagesBehavior.showError(strResId, action)
 
-    override fun onBackPressed() {
+  /* override fun onBackPressed() {
         navController.currentDestination?.apply {
             when {
                 isTopDestinationAndHome -> finish()
@@ -43,7 +43,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
                 else -> super.onBackPressed()
             }
         } ?: super.onBackPressed()
-    }
+    }*/
 
     private fun setupNavigation() = with(bottomNavigation) {
         setupWithNavController(navController)

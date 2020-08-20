@@ -204,8 +204,16 @@
     <string name="searchLabel">Поиск</string>
     <string name="oftenLookingFor">Часто ищут</string>
     <string name="searchHistoryTitle">История поиска</string>
-    <string name="clearSearchHistory">Очистить</string>
+    <string name="clear">Очистить</string>
     <string name="noGoodsFoundTitle">Ой, кажется такого товара\nнет в нашей базе</string>
     <string name="noGoodsFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
     <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
+    <string name="sort">Сортировать</string>
+    <string name="countProducts">Найдено %d товара(ов)</string>
+    <string name="from">от </string>
+
+    <string name="price">%1$s \u20BD</string>
+    <string name="cancel">Отмена</string>
+    <string name="clearSearchHistory">Очистить историю поиска ?</string>
+    <string name="previousRequest">Ваши предыдущие запросы будут удалены из быстрого доступа</string>
 </resources>

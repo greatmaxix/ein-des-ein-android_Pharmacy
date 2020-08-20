@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/search_graph"
-    app:startDestination="@id/nav_search">
+    app:startDestination="@id/nav_quick">
 
     <fragment
-        android:id="@+id/nav_search"
-        android:name="com.pharmacy.myapp.search.SearchFragment"
-        android:label="@string/searchLabel"
-        tools:layout="@layout/fragment_search" />
+        android:id="@+id/nav_quick"
+        android:name="com.pharmacy.myapp.quickAccess.QuickAccessFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_quick_access" />
 
 </navigation>

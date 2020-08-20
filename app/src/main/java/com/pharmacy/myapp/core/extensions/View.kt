@@ -21,10 +21,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.text.PrecomputedTextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.doOnPreDraw
-import androidx.core.view.isEmpty
-import androidx.core.view.updateLayoutParams
+import androidx.core.view.*
 import androidx.core.widget.NestedScrollView
 import androidx.core.widget.TextViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -96,19 +93,19 @@ fun View.intValueAnimator(from: Int, to: Int, duration: Long, onUpdate: (Int) ->
 }
 
 fun View.gone() {
-    if (visibility != View.GONE) {
-        visibility = View.GONE
+    if (visibility != GONE) {
+        isGone = true
     }
 }
 
 fun View.animateGone(duration: Long = 100) {
     animate().setDuration(duration).alpha(0f).withEndAction {
-        visibility = View.GONE
+        visibility = GONE
     }
 }
 
 fun View.animateGoneIfNot(duration: Long = 100) {
-    if (visibility != View.GONE) {
+    if (visibility != GONE) {
         animateGone(duration)
     }
 }
@@ -198,8 +195,11 @@ fun View.enableOrDisable(enable: Boolean) {
     isEnabled = enable
 }
 
+val View.inputMethodManager
+    get() = context.inputMethodManager
+
 fun View.hideKeyboard(needClearFocus: Boolean = true) =
-    context.inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+    inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
         .also { if (needClearFocus) clearFocus() }
 
 val View.isKeyboardOpen

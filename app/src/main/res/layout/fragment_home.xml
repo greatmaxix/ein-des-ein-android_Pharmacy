@@ -11,7 +11,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/mcvToolbarHome"
-            style="@style/MyCardView"
+            style="@style/SearchCardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primaryBlue"
@@ -160,7 +160,7 @@
                     android:layout_height="@dimen/_20sdp"
                     android:contentDescription="@string/orderSmallIconContentDescriptionHome"
                     android:src="@drawable/ic_box"
-                    android:tint="@color/colorGlobalWhite"
+                    app:tint="@color/colorGlobalWhite"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

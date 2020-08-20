@@ -1,6 +1,8 @@
 package com.pharmacy.myapp.core.extensions
 
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.PrecomputedTextCompat
@@ -41,16 +43,10 @@ fun TextView.animateEnableOrDisable(
 
 fun AppCompatTextView.setTextAsync(text: String?) {
     if (!text.isNullOrEmpty()) {
-        setTextFuture(
-            PrecomputedTextCompat.getTextFuture(
-                text,
-                TextViewCompat.getTextMetricsParams(this),
-                null
-            )
-        )
+        setTextFuture(PrecomputedTextCompat.getTextFuture(text, TextViewCompat.getTextMetricsParams(this), null))
     }
 }
 
-fun TextView.clearText(){
+fun TextView.clearText() {
     text = ""
 }
