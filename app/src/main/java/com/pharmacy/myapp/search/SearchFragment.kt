@@ -37,5 +37,4 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
     }
 
     override fun doSearch(text: String) = viewModel.doSearch(text)
-
 }

@@ -26,7 +26,7 @@
     <color name="colorPinNormal">#20ffffff</color>
     <color name="colorPinPrimary">@color/colorGlobalWhite</color>
 
-    <color name="acceptTextFieldAuth">#35E85C</color>
+    <color name="acceptTextField">#35E85C</color>
     <color name="titleTextColorAuth">#20272C</color>
     <color name="colorTextAuth">#202020</color>
     <color name="colorTextPrimary">@color/colorGlobalBlack</color>
@@ -67,5 +67,9 @@
     <color name="qrCodeDescriptionBackground">#8492B7</color>
     <color name="qrCodeScannerMask">#668492B7</color>
     <color name="commonNavShape">#FFD1D3D4</color>
+
+    <color name="deliveryPickupMyOrder">#D5F7E8</color>
+    <color name="deliveryAddressMyOrder">#E2E5FB</color>
+    <color name="defaultChipBackgroundMyOrder">#FAFAFA</color>
 
 </resources>

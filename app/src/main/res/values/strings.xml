@@ -38,6 +38,12 @@
     <string name="facebookContentDescriptionSignUp">Sign in via Facebook</string>
     <string name="scanDrugsContentDescription">Сканировать товар</string>
 
+    <string name="menuTitleMain">Главная</string>
+    <string name="menuTitleCategories">Каталог</string>
+    <string name="menuTitleSearch">Поиск</string>
+    <string name="menuTitleCart">Корзина</string>
+    <string name="menuTitleProfile">Профиль</string>
+
     <string name="cameraPermissionPermanentlyDenied">Доступ к камере запрещен. Пожалуйста, перейдите в настройки в раздел Разрешения и предоставьте приложению доступ к камере</string>
     <string name="permissionDialogSettingsButton">Настройки</string>
     <string name="permissionDialogCancel">Отмена</string>
@@ -84,6 +90,12 @@
     <string name="googleSignIn">Sign in via Google</string>
     <string name="sendCodeAgain">Отправить снова</string>
 
+    <!--Profile common-->
+    <string name="myRegionTitle">Мой регион</string>
+    <string name="notificationsTitle">Уведомления</string>
+    <string name="aboutAppTitle">О приложении</string>
+    <string name="needHelpTitle">Нужна помощь</string>
+
     <!--Profile-->
     <string name="profileImageDescription">Profile image</string>
     <string name="favoriteImageDescriptionProfile">Favorite image description</string>
@@ -97,10 +109,17 @@
     <string name="profileImage">Profile image</string>
     <string name="editProfileTitle">Настройки</string>
     <string name="save">Сохранить</string>
-    <string name="logoutProfile">Выйти из аккаунта</string>
     <string name="profileTitle">Профиль</string>
     <string name="areYouSureToExit">Вы уверены, что хотите\nвыйти из приложения?</string>
     <string name="exitWithoutSaving">Вы уверены, что хотите\nвыйти не сохранив данные?</string>
+
+    <string name="paymentsTitle">Оплата и бонусы</string>
+    <string name="deliveryAddressTitle">Адрес доставки</string>
+    <string name="logoutProfile">Выйти из аккаунта</string>
+
+    <!--Profile guest-->
+    <string name="pleaseAuthorizeMessage">Авторизируйтесь, чтобы совершать\nпокупки, получать бонусы и\nиспользовать чат с фармацевтом</string>
+    <string name="authorizeAction">Авторизироваться</string>
 
     <string name="startSearching">Начните поиск</string>
     <string name="searchHintHome">Ношпа</string>
@@ -170,6 +189,18 @@
     <string name="infoIconContentDescription">Иконка информации выбора аптеки</string>
     <string name="chooseDrugstoreCart">Выбрать аптеку</string>
 
+    <!-- My orders-->
+    <string name="myOrdersLabel">Мои заказы</string>
+    <string name="allChipMyOrders">Все</string>
+    <string name="inProcessChipMyOrder">В обработке</string>
+    <string name="doneChipMyOrder">Выполнен</string>
+    <string name="canceledChipMyOrder">Отменен</string>
+    <string name="iconDeliveryTypeContentDescription">Иконка типа доставки</string>
+    <string name="firstItemInOrderContentDescription">Иконка первого товара в корзине</string>
+    <string name="secondItemInOrderContentDescription">Иконка второго товара в корзине</string>
+    <string name="thirdItemInOrderContentDescription">Иконка третьего товара в корзине</string>
+
+
     <!-- Chat -->
     <string name="menu_info">Info</string>
     <string name="chatMessageFieldHint">Что Вас волнует?</string>
@@ -199,6 +230,13 @@
     <string name="sendPhotoGallery">Галерея</string>
     <string name="sendPhotoCamera">Камера</string>
     <string name="sendPhotoError">Произошла ошибка добавления изображения</string>
+    <string name="cameraPermissionRationaleMessageChat">Разрешение на доступ к камере необходимо для отправки изображений в чат</string>
+
+    <!-- Recipes -->
+    <string name="recipesLabel">Рецепты</string>
+    <string name="recipesEmptyContainerAction">Перейти в корзину</string>
+    <string name="recipesEmptyContainerSubtitle">Обратитесь к Вашему лечащему врачу, что бы загрузить рецепт</string>
+    <string name="recipesEmptyContainerTitle">У Вас пока нет подтвержденных рецептов</string>
 
     <!-- Search -->
     <string name="searchLabel">Поиск</string>
@@ -216,4 +254,36 @@
     <string name="cancel">Отмена</string>
     <string name="clearSearchHistory">Очистить историю поиска ?</string>
     <string name="previousRequest">Ваши предыдущие запросы будут удалены из быстрого доступа</string>
+    <!-- Analyzes -->
+    <string name="analyzesLabel">Анализы</string>
+    <string name="analyzesEmptyContainerAction">Записаться на анализы</string>
+    <string name="analyzesEmptyContainerSubtitle">Это просто исправить! Запишитесь на анализы через наше приложение</string>
+    <string name="analyzesEmptyContainerTitle">У Вас пока нет результатов анализов</string>
+
+    <!-- Favorites -->
+    <string name="favoritesLabel">Избранное</string>
+    <string name="favoritesEmptyContainerAction">Начать поиск</string>
+    <string name="favoritesEmptyContainerSubtitle">Начните поиск, что бы добавить товар в корзину</string>
+    <string name="favoritesEmptyContainerTitle">Вы пока не добавили товар в избранное</string>
+
+    <!-- Checkout map -->
+    <string name="checkoutMapLabel">Выбор аптеки</string>
+    <string name="checkoutMapTitle">На карте</string>
+    <string name="checkoutListTitle">Списком</string>
+
+    <!-- Payments -->
+    <string name="bonusComingSoon">Бонусы уже скоро!</string>
+    <string name="comingSoon">Уже скоро!</string>
+    <string name="comingSoonDescription">Вы сможете оплачивать товары и услуги через ФМС!</string>
+    <string name="addPaymentMethod">Добавить способ оплаты</string>
+    <string name="your_bonus">Ваши Бонусы</string>
+    <string name="youCanUseYourBonuses">Вы можете использовать их при заказе доставки или самовывоза</string>
+    <string name="creditOrDebitCard">Кредитная или дебетовая карта</string>
+    <string name="otherPayment">Другое</string>
+    <string name="cardNumberHint">1029 3847 5647 3829</string>
+    <string name="cardExpDateHint">12/26</string>
+    <string name="cardHolderNameHint">Иванов Иван</string>
+    <string name="cvvHint">CVV</string>
+    <string name="addCreditCard">Добавить карту</string>
+
 </resources>

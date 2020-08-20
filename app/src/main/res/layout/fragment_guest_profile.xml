@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
-                android:text="Авторизируйтесь, чтобы совершать\nпокупки, получать бонусы и\nиспользовать чат с фармацевтом"
+                android:text="@string/pleaseAuthorizeMessage"
                 android:textColor="@color/darkBlue"
                 android:textSize="@dimen/_9ssp"
                 android:textStyle="bold"
@@ -60,7 +60,7 @@
                 android:layout_marginEnd="@dimen/_16sdp"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
-                android:text="Авторизироваться"
+                android:text="@string/authorizeAction"
                 android:textColor="@color/colorGlobalWhite"
                 app:cornerRadius="@dimen/_24sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +88,7 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_location"
-                    app:titleProfile="Мой регион" />
+                    app:titleProfile="@string/myRegionTitle" />
 
                 <com.pharmacy.myapp.ui.ProfileItemView
                     android:id="@+id/itemNotificationProfile"
@@ -98,7 +98,7 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_notification"
-                    app:titleProfile="Уведомления" />
+                    app:titleProfile="@string/notificationsTitle" />
 
                 <com.pharmacy.myapp.ui.ProfileItemView
                     android:id="@+id/itemAboutProfile"
@@ -109,7 +109,7 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_about"
-                    app:titleProfile="О приложении" />
+                    app:titleProfile="@string/aboutAppTitle" />
 
                 <com.pharmacy.myapp.ui.ProfileItemView
                     android:id="@+id/itemHelpProfile"
@@ -119,10 +119,9 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_question"
-                    app:titleProfile="Нужна помощь" />
+                    app:titleProfile="@string/needHelpTitle" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
 </LinearLayout>

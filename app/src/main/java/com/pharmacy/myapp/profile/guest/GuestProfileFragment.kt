@@ -13,5 +13,4 @@ class GuestProfileFragment : BaseMVVMFragment(R.layout.fragment_guest_profile) {
         super.onViewCreated(view, savedInstanceState)
         btnAuthorizeProfileGuest.onClick { /*doNav(actionFromGuestToAuth())*/ }
     }
-
 }

@@ -3,6 +3,8 @@ package com.pharmacy.myapp.data
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.checkout.model.TempProductModel
+import com.pharmacy.myapp.myOrders.model.MyOrder
+import com.pharmacy.myapp.checkoutMap.model.TempAvailableDrugstore
 import com.pharmacy.myapp.productCard.model.TempRecommendedModel
 
 @Deprecated("Mock data object")
@@ -134,4 +136,47 @@ object DummyData {
         "Не спросили рецепт",
         "Советовали очень дорогое"
     )
+
+    fun getAvailableDrugstores(): ArrayList<TempAvailableDrugstore> {
+        val firstItem = TempAvailableDrugstore(
+            "Все в наличии",
+            "Название аптеки",
+            "ул Горная 23а, Харьков",
+            "+7 (098) 000 02 00 • +7 (098) 000 02 00",
+            "⏰ c 8:00 до 22:00 ежедневно",
+            "568 ₽"
+        )
+        val secondItem = firstItem.copy(availability = "3/4 в наличии")
+        val thirdItem = firstItem.copy(availability = "Под заказ")
+        return arrayListOf(firstItem, secondItem, thirdItem)
+    }
+
+
+    private fun getMyOrderPreviewImages() = listOf(
+        "https://ichef.bbci.co.uk/news/976/cpsprodpb/13672/production/_112947497_2add3259-7faf-45df-9618-dd98fc1e53a6.jpg",
+        "https://as2.ftcdn.net/jpg/01/88/71/03/500_F_188710349_3A3hMUoHsRraqzr20m9gGhV8B7oBA6d3.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/71e6Si4GmeL._AC_SX425_.jpg",
+        "https://ichef.bbci.co.uk/news/976/cpsprodpb/13672/production/_112947497_2add3259-7faf-45df-9618-dd98fc1e53a6.jpg",
+        "https://images-na.ssl-images-amazon.com/images/I/71e6Si4GmeL._AC_SX425_.jpg"
+    )
+
+    fun getMyOrders() = mutableListOf(
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"),
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", listOf(
+                "https://as2.ftcdn.net/jpg/01/88/71/03/500_F_188710349_3A3hMUoHsRraqzr20m9gGhV8B7oBA6d3.jpg",
+                "https://images-na.ssl-images-amazon.com/images/I/71e6Si4GmeL._AC_SX425_.jpg",
+                "https://ichef.bbci.co.uk/news/976/cpsprodpb/13672/production/_112947497_2add3259-7faf-45df-9618-dd98fc1e53a6.jpg",
+                "https://images-na.ssl-images-amazon.com/images/I/71e6Si4GmeL._AC_SX425_.jpg"
+            ), "7879 ₽"),
+        MyOrder(12583, "Выполнен", "Доставка", "21:12 05.06.20", "\uD83C\uDFE0 ул. Горная 23а, Харьков \uD83D\uDEAAдом 4г • кв. 56", listOf(
+                "https://ichef.bbci.co.uk/news/976/cpsprodpb/13672/production/_112947497_2add3259-7faf-45df-9618-dd98fc1e53a6.jpg",
+                "https://as2.ftcdn.net/jpg/01/88/71/03/500_F_188710349_3A3hMUoHsRraqzr20m9gGhV8B7oBA6d3.jpg",
+                "https://images-na.ssl-images-amazon.com/images/I/71e6Si4GmeL._AC_SX425_.jpg"
+            ), "6568 ₽")
+        ,MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"),
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"),
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"),
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"),
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"))
+
 }

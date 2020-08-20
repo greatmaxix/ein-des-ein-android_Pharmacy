@@ -40,6 +40,20 @@ fun String.bold() = SpannableString(this).apply {
 
 }
 
+fun String.isLetterAndSpace(): Boolean {
+    if (this.isEmpty()) {
+        return false
+    }
+    val chars = this.toCharArray()
+    for (index in chars.indices) {
+        val codePoint = Character.codePointAt(chars, index)
+        if (!Character.isLetter(codePoint) && !Character.isSpaceChar(codePoint)) {
+            return false
+        }
+    }
+    return true
+}
+
 fun String.toSmsCodeMatcher(): Matcher = Pattern.compile("(\\d{4})").matcher(replace("\\s".toRegex(), ""))
 
 fun String.formatPrice(): CharSequence {

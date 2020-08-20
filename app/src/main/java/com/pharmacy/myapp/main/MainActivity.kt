@@ -20,7 +20,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     private val progressBehavior by lazy { attachBehavior(ProgressViewBehavior(progressRoot)) }
     private val messagesBehavior by lazy { attachBehavior(DialogMessagesBehavior(this)) }
 
-    private val topLevelDestinations = intArrayOf(R.id.nav_home, R.id.nav_quick, R.id.nav_profile)
+    private val topLevelDestinations = intArrayOf(R.id.nav_home, R.id.nav_catalog, R.id.nav_quick, R.id.nav_cart, R.id.nav_profile)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
