@@ -17,10 +17,9 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.dimensionPixelSize
 import com.pharmacy.myapp.core.extensions.sharedGraphViewModel
 import kotlinx.android.synthetic.main.fragment_checkout_map.*
-import org.koin.core.KoinComponent
-import org.koin.core.get
+import org.koin.android.ext.android.get
 
-class CheckoutMapFragment : BaseMVVMFragment(R.layout.fragment_checkout_map), KoinComponent {
+class CheckoutMapFragment : BaseMVVMFragment(R.layout.fragment_checkout_map) {
 
     private val viewModel: CheckoutMapViewModel by sharedGraphViewModel(R.id.checkout_map_graph)
     private var map: GoogleMap? = null
