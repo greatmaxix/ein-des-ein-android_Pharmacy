@@ -190,7 +190,7 @@ val Fragment.keyboardObserver
 fun <T : Fragment> Fragment.setFragment(
     fragment: Class<T>?,
     args: Bundle? = null,
-    containerId: Int = R.id.container,
+    @IdRes containerId: Int = R.id.container,
     needBackStack: Boolean = false
 ) = fragment?.let {
     childFragmentManager.commit {
@@ -202,13 +202,13 @@ fun <T : Fragment> Fragment.setFragment(
     }
 }
 
-fun Fragment.setFragmentIfNeed(fragment: Fragment, containerId: Int = R.id.container, needBackStack: Boolean = false) {
+fun Fragment.setFragmentIfNeed(fragment: Fragment, @IdRes containerId: Int = R.id.container, needBackStack: Boolean = false) {
     if (findFragment<SearchFragment>(containerId) == null) {
         setFragment(fragment, containerId, needBackStack)
     }
 }
 
-fun Fragment.setFragment(fragment: Fragment, containerId: Int = R.id.container, needBackStack: Boolean = false) =
+fun Fragment.setFragment(fragment: Fragment, @IdRes containerId: Int = R.id.container, needBackStack: Boolean = false) =
     with(childFragmentManager) {
         commit {
             findFragmentById(containerId)?.let(::detach)
@@ -219,13 +219,13 @@ fun Fragment.setFragment(fragment: Fragment, containerId: Int = R.id.container, 
         }
     }
 
-fun Fragment.addFragment(fragment: Fragment, containerId: Int = R.id.container) {
+fun Fragment.addFragment(fragment: Fragment, @IdRes containerId: Int = R.id.container) {
     if (childFragmentManager.findFragmentById(containerId) == null) {
         childFragmentManager.inTransaction { add(containerId, fragment) }
     }
 }
 
-inline fun <reified F : Fragment> Fragment.findFragment(containerId: Int = R.id.container): F? =
+inline fun <reified F : Fragment> Fragment.findFragment(@IdRes containerId: Int = R.id.container): F? =
     childFragmentManager.findFragmentById(containerId)?.run { if (this is F) this else null }
 
 val Fragment.inputMethodManager
