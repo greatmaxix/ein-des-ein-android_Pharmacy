@@ -19,7 +19,6 @@ class CheckoutMapContainerFragment : BaseMVVMFragment(R.layout.fragment_checkout
         super.onViewCreated(view, savedInstanceState)
         showBackButton()
         initPager()
-
     }
 
     override fun onBindLiveData() {
