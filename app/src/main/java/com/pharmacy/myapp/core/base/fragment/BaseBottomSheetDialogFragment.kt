@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.FragmentManager
 import com.pharmacy.myapp.core.general.behavior.IBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.State
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.pharmacy.myapp.core.extensions.getFragmentTag
 
 abstract class BaseBottomSheetDialogFragment(@LayoutRes private val layoutResourceId: Int) : BottomSheetDialogFragment() {
 
@@ -33,5 +35,13 @@ abstract class BaseBottomSheetDialogFragment(@LayoutRes private val layoutResour
 
     protected fun setState(@State state: Int) {
         bottomSheetBehavior.state = state
+    }
+
+    @CallSuper
+    open fun show(manager: FragmentManager) {
+        val tag = getFragmentTag()
+        if (manager.findFragmentByTag(tag) == null) {
+            super.show(manager, tag)
+        }
     }
 }

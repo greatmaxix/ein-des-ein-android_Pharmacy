@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tags"
-        android:textAppearance="@style/Text.BlockHeader"
+        android:textAppearance="@style/Text.BlockHeaderBold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24sdp"
         android:text="@string/productDescription"
-        android:textAppearance="@style/Text.BlockHeader"
+        android:textAppearance="@style/Text.BlockHeaderBold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tagsGroup" />
@@ -185,7 +185,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_32sdp"
         android:text="@string/recommendedForYou"
-        android:textAppearance="@style/Text.BlockHeader"
+        android:textAppearance="@style/Text.BlockHeaderBold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/questionsContainer" />

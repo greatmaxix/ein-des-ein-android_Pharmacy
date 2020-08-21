@@ -82,9 +82,8 @@
         <item name="cornerSizeBottomLeft">@dimen/_8sdp</item>
     </style>
 
-    <style name="MyCardView" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut
-        </item>
+    <style name="SearchCardView" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>
     </style>
 
     <style name="ShapeAppearanceOverlayMyOrderDelivery.MaterialCardView.Cut" parent="">
@@ -113,9 +112,13 @@
         <item name="android:textSize">@dimen/_11sdp</item>
     </style>
 
+
     <style name="Text.BlockHeader" parent="TextDirectionLocale">
         <item name="android:textSize">@dimen/_16ssp</item>
         <item name="android:textColor">@color/darkBlue</item>
+    </style>
+
+    <style name="Text.BlockHeaderBold" parent="Text.BlockHeader">
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -150,6 +153,7 @@
         <item name="android:minWidth">@dimen/_33sdp</item>
         <item name="android:progressDrawable">@drawable/selector_rating_bar</item>
     </style>
+
     <style name="AuthSearchView" parent="AppTheme">
         <item name="colorAccent">@color/colorSearch</item>
         <item name="android:textColorPrimary">@color/colorSearch</item>
@@ -165,6 +169,7 @@
         <item name="chipSurfaceColor">@color/defaultChipBackgroundMyOrder</item>
         <item name="rippleColor">@color/chip_ripple_color_my_orders</item>
     </style>
+
     <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">?attr/colorPrimary</item>
         <item name="tabSelectedTextColor">@color/colorPrimary</item>

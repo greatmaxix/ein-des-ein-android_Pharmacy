@@ -32,10 +32,10 @@ class CartFragment : BaseMVVMFragment(R.layout.fragment_cart) {
 
     private fun initOrderProducts() {
         val items = DummyData.getOrderProducts()
-        rvOrdersListOrder.setHasFixedSize(true)
-        rvOrdersListOrder.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvOrdersListOrder.adapter = cartAdapter
-        itemTouchHelper.attachToRecyclerView(rvOrdersListOrder)
+        rvQuickAccess.setHasFixedSize(true)
+        rvQuickAccess.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        rvQuickAccess.adapter = cartAdapter
+        itemTouchHelper.attachToRecyclerView(rvQuickAccess)
         cartAdapter.setList(items)
     }
 

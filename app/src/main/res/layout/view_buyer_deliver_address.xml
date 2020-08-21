@@ -14,7 +14,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/deliveryAddress"
-        android:textAppearance="@style/Text.BlockHeader"
+        android:textAppearance="@style/Text.BlockHeaderBold"
         app:layout_constraintEnd_toStartOf="@+id/tvBuyerDeliveryAddressEditCheckout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -83,7 +83,7 @@
         android:background="@drawable/background_default_ripple_selector_circle"
         android:padding="@dimen/_4sdp"
         android:src="@drawable/ic_map"
-        android:tint="@color/grey"
+        app:tint="@color/grey"
         app:layout_constraintBottom_toBottomOf="@+id/tilStreetCheckout"
         app:layout_constraintEnd_toEndOf="@+id/tilStreetCheckout"
         app:layout_constraintTop_toTopOf="@+id/tilStreetCheckout" />
@@ -171,7 +171,7 @@
                 android:foreground="@drawable/background_default_ripple_selector_circle"
                 android:padding="@dimen/_8sdp"
                 android:src="@drawable/ic_map"
-                android:tint="@color/primaryBlue"
+                app:tint="@color/primaryBlue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
