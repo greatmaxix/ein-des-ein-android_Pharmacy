@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_136sdp"
+    android:padding="@dimen/_8sdp">
+
+    <ImageView
+        android:id="@+id/ivProduct"
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_96sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_favorite" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Text.BlockHeaderBold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFavoriteProduct"
+        app:layout_constraintEnd_toStartOf="@+id/ivFavoriteProduct"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintTop_toTopOf="@+id/ivFavoriteProduct"
+        tools:text="Название товара..." />
+
+    <TextView
+        android:id="@+id/tvSubTitle"
+        style="@style/Text.CheckoutFilled"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="3"
+        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:text="Таблетки шипучие, 20 мг" />
+
+    <TextView
+        android:id="@+id/tvPricePrefix"
+        style="@style/Text.CheckoutEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:text="@string/from"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        style="@style/Text.CheckoutEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvPricePrefix"
+        app:layout_constraintStart_toEndOf="@+id/tvPricePrefix"
+        tools:text="580 Р" />
+
+    <ImageButton
+        android:id="@+id/ivFavoriteProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivProduct" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

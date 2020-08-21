@@ -8,7 +8,7 @@ import org.koin.dsl.module
 
 val authModule = module {
 
-    single { AuthRepository(get(), get(), get<DBManager>().getCustomerDAO()) }
+    single { AuthRepository(get(), get(), get<DBManager>().customerDAO()) }
 
     viewModel { AuthViewModel(androidApplication(), get()) }
 

@@ -65,7 +65,7 @@
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/iconDeliveryTypeContentDescription"
-                    android:tint="@color/darkBlue"
+                    app:tint="@color/darkBlue"
                     tools:src="@drawable/ic_shopping_bag" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

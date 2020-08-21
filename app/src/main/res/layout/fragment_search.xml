@@ -1,182 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_marginBottom="?actionBarSize">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvToolbarSearch"
-        style="@style/MyCardView"
+    <View
+        android:id="@+id/vBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorSearchBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSearchResult"
+        app:layout_constraintTop_toTopOf="@id/tvSearchResult" />
+
+    <LinearLayout
+        android:id="@+id/llToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/primaryBlue"
+        android:background="@drawable/bg_search"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.pharmacy.myapp.ui.AppSearchView
-                android:id="@+id/searchView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_6sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_6sdp"
-                android:layout_weight="1"
-                app:cardCornerRadius="@dimen/_16sdp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvScanSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:rippleColor="@color/primaryLightRipple">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/scanDrugsContentDescription"
-                    android:padding="@dimen/_6sdp"
-                    android:src="@drawable/ic_barcode" />
-
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clSearchContent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        tools:visibility="visible">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvOftenLookingTitle"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_24sdp"
-            android:text="@string/oftenLookingFor"
-            android:textColor="@color/darkBlue"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/cgOftenLookingForSearch"
+        <com.pharmacy.myapp.ui.AppSearchView
+            android:id="@+id/searchView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_12sdp"
-            app:chipSpacingHorizontal="@dimen/_6sdp"
-            app:chipSpacingVertical="@dimen/_6sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvOftenLookingTitle"
-            tools:visibility="visible" />
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:layout_weight="1"
+            app:cardCornerRadius="@dimen/_16sdp" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvSearchHistoryTitle"
-            style="@style/TextAppearance.AppCompat.Medium"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvScanSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_24sdp"
-            android:text="@string/searchHistoryTitle"
-            android:textColor="@color/darkBlue"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cgOftenLookingForSearch"
-            tools:visibility="visible" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvClearSearchHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_12sdp"
-            android:background="@drawable/background_default_ripple_selector_rect"
-            android:padding="@dimen/_4sdp"
-            android:text="@string/clearSearchHistory"
-            android:textAppearance="@style/Text.CheckoutEdit"
-            app:layout_constraintBottom_toBottomOf="@id/tvSearchHistoryTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintStart_toEndOf="@id/tvSearchHistoryTitle"
-            app:layout_constraintTop_toTopOf="@id/tvSearchHistoryTitle"
-            tools:visibility="visible" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvOrdersListOrder"
-            style="@style/Recycler"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/_12sdp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:backgroundTint="@color/green"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSearchHistoryTitle"
-            tools:listitem="@layout/item_history_search"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="@color/primaryLightRipple">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/scanDrugsContentDescription"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_barcode" />
 
-    <LinearLayout
-        android:id="@+id/llDrugsNotFoundContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/_12sdp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone"
-        tools:visibility="visible">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_164sdp"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:src="@drawable/main_icon"
-            android:contentDescription="@string/noGoodsFoundImageContentDescription" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/TextAppearance.AppCompat.Large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:gravity="center"
-            android:text="@string/noGoodsFoundTitle"
-            android:textColor="@color/darkBlue"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:gravity="center"
-            android:text="@string/noGoodsFoundSubtitle"
-            android:textColor="@color/darkBlue" />
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-</LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSearchResult"
+        style="@style/Text.CheckoutFilled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:paddingTop="@dimen/_15sdp"
+        android:paddingBottom="@dimen/_15sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llToolbar"
+        tools:text="@string/countProducts" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSort"
+        style="@style/Text.CheckoutFilled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:text="@string/sort"
+        app:layout_constraintBottom_toBottomOf="@+id/ivSort"
+        app:layout_constraintEnd_toStartOf="@+id/ivSort"
+        app:layout_constraintTop_toTopOf="@+id/ivSort" />
+
+    <ImageView
+        android:id="@+id/ivSort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:src="@drawable/ic_sort"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSearchResult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvSearchResult" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProducts"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vBackground"
+        tools:listitem="@layout/item_search" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

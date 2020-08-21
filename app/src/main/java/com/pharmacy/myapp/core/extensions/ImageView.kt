@@ -6,6 +6,8 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 fun ImageView.setFilter(@ColorInt color: Int) {
     drawable?.setFilter(color)

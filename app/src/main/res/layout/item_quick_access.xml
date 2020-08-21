@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileItemContainer"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_48sdp"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardUseCompatPadding="true"
+    app:rippleColor="@color/primaryBlueRipple">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvQuickAccess"
+        style="@style/Text.BlockHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawableEnd="@drawable/ic_next"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:padding="@dimen/_8sdp"
+        android:textColor="@color/darkBlue"
+        tools:text="Выйти из аккаунта" />
+
+</com.google.android.material.card.MaterialCardView>

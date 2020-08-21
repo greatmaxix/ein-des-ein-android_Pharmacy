@@ -7,6 +7,8 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.isGone
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.*
+import com.pharmacy.myapp.ui.text.setTextWithCursorToEnd
+import com.pharmacy.myapp.ui.text.setTextWithCursorToEndAndOpen
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.layout_search.view.*
 import kotlinx.coroutines.*
@@ -17,6 +19,7 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.focusChanges
 import reactivecircus.flowbinding.android.widget.editorActionEvents
 import reactivecircus.flowbinding.android.widget.textChanges
+import timber.log.Timber
 
 class AppSearchView @JvmOverloads constructor(
     context: Context,
@@ -25,11 +28,12 @@ class AppSearchView @JvmOverloads constructor(
 ) : CardView(context, attrs, defStyleAttr), LayoutContainer {
 
     private var hint = -1
-    private var debounce = 200f
+    private var debounce = 500f
     private var notifyJob: Job? = null
     private var animationDuration = 400L
 
     private var notify: ((CharSequence) -> Unit)? = null
+    private var editor: ((String) -> Boolean)? = null
 
     private val viewJob = SupervisorJob()
     private val viewScope = CoroutineScope(Main.immediate + viewJob)
@@ -54,25 +58,34 @@ class AppSearchView @JvmOverloads constructor(
 
         if (hint != -1) tvHint.setText(hint)
 
-        etSearch.textChanges().skipInitialValue().onEach {
-            notifySearchListener(it)
-            val isContainsText = it.isNotEmpty()
-            tvHint.isGone = isContainsText
-            ivSearch.isGone = isContainsText
-            if (isContainsText) ivClose.animateVisibleIfNot(animationDuration) else ivClose.animateGoneIfNot(animationDuration)
-            if (!ivClose.hasOnClickListeners()) {
-                ivClose.setOnClickListener(closeClick)
+        etSearch.textChanges()
+            .skipInitialValue()
+            .onEach {
+                notifySearchListener(it)
+                val isContainsText = it.isNotEmpty()
+                tvHint.isGone = isContainsText
+                ivSearch.isGone = isContainsText
+                if (isContainsText) ivClose.animateVisibleIfNot(animationDuration) else ivClose.animateGoneIfNot(animationDuration)
+                if (!ivClose.hasOnClickListeners()) {
+                    ivClose.setOnClickListener(closeClick)
+                }
             }
-        }.launchIn(viewScope)
+            .launchIn(viewScope)
 
-        etSearch.focusChanges().skipInitialValue().onEach {
-            if (it) {
-                ivClose.setOnClickListener(closeClick)
+        etSearch.focusChanges()
+            .skipInitialValue()
+            .onEach {
+                if (it) {
+                    ivClose.setOnClickListener(closeClick)
+                }
             }
-        }.launchIn(viewScope)
+            .launchIn(viewScope)
 
-        etSearch.editorActionEvents { hideKeyboard(false) }.launchIn(viewScope)
+        etSearch
+            .editorActionEvents { hideKeyboard(editor?.invoke(etSearch.text()) ?: false) }
+            .launchIn(viewScope)
     }
+
 
     private val closeClick = OnClickListener {
         ivClose.setOnClickListener(null)
@@ -99,12 +112,26 @@ class AppSearchView @JvmOverloads constructor(
         }
     }
 
+    val text
+        get() = etSearch.text()
+
     fun setSearchListener(action: (CharSequence) -> Unit) {
         notify = action
     }
 
+    fun setEditorListener(action: (String) -> Boolean) {
+        editor = action
+    }
+
     fun setText(value: String) {
-        etSearch.setText(value)
+        etSearch.setTextWithCursorToEnd(value)
         ivClose.setOnClickListener(closeClick)
+    }
+
+    fun setTextAndOpen(value: String) {
+        if (text != value) {
+            etSearch.setTextWithCursorToEndAndOpen(value)
+            ivClose.setOnClickListener(closeClick)
+        }
     }
 }

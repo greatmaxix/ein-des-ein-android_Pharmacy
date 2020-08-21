@@ -9,11 +9,13 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.textfield.TextInputLayout
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.*
+import timber.log.Timber
 import java.math.BigDecimal
 
 private const val MIN_PHONE_LENGTH = 11
@@ -69,13 +71,33 @@ fun EditText.cursorToEnd() {
     }
 }
 
+fun EditText.openKeyboard() {
+    requestFocus()
+    inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+}
+
+fun EditText.setTextWithCursorToEndAndOpen(text: String) {
+    setTextWithCursorToEnd(text)
+    Timber.e("Is keyboard open: $isKeyboardOpen")
+    if (isKeyboardNotOpen) {
+        openKeyboard()
+    }
+}
+
 fun EditText.setTextWithCursorToEnd(text: String): String {
     setText(text)
     cursorToEnd()
     return ""
 }
 
-fun EditText.addAfterTextWatcher(doAfter: (String)-> Unit): TextWatcher {
+fun EditText.setTextFocusWithCursorToEnd(text: String): String {
+    requestFocus()
+    setText(text)
+    cursorToEnd()
+    return ""
+}
+
+fun EditText.addAfterTextWatcher(doAfter: (String) -> Unit): TextWatcher {
     val value = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
             doAfter(s.toString())

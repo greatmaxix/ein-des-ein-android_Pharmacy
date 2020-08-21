@@ -189,15 +189,6 @@
     <string name="infoIconContentDescription">Иконка информации выбора аптеки</string>
     <string name="chooseDrugstoreCart">Выбрать аптеку</string>
 
-    <!-- Search -->
-    <string name="searchLabel">Поиск</string>
-    <string name="oftenLookingFor">Часто ищут</string>
-    <string name="searchHistoryTitle">История поиска</string>
-    <string name="clearSearchHistory">Очистить</string>
-    <string name="noGoodsFoundTitle">Ой, кажется такого товара\nнет в нашей базе</string>
-    <string name="noGoodsFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
-    <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
-
     <!-- My orders-->
     <string name="myOrdersLabel">Мои заказы</string>
     <string name="allChipMyOrders">Все</string>
@@ -246,6 +237,20 @@
     <string name="recipesEmptyContainerAction">Перейти в корзину</string>
     <string name="recipesEmptyContainerSubtitle">Обратитесь к Вашему лечащему врачу, что бы загрузить рецепт</string>
     <string name="recipesEmptyContainerTitle">У Вас пока нет подтвержденных рецептов</string>
+
+    <!-- Search -->
+    <string name="searchLabel">Поиск</string>
+    <string name="oftenLookingFor">Часто ищут</string>
+    <string name="searchHistoryTitle">История поиска</string>
+    <string name="clear">Очистить</string>
+    <string name="noGoodsFoundTitle">Ой, кажется такого товара\nнет в нашей базе</string>
+    <string name="noGoodsFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
+    <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
+    <string name="sort">Сортировать</string>
+    <string name="countProducts">Найдено %d товара(ов)</string>
+    <string name="from">от </string>
+    <string name="price">%1$s ₸</string>
+    <string name="cancel">Отмена</string>
 
     <!-- Analyzes -->
     <string name="analyzesLabel">Анализы</string>

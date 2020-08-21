@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.pharmacy.myapp.core.base.fragment.BaseBottomSheetDialogFragment
-import com.pharmacy.myapp.core.extensions.getFragmentTag
 
 abstract class BaseMVVMFragmentDialogBottomSheet(@LayoutRes layoutResourceId: Int) : BaseBottomSheetDialogFragment(layoutResourceId) {
 
@@ -46,8 +44,4 @@ abstract class BaseMVVMFragmentDialogBottomSheet(@LayoutRes layoutResourceId: In
             onChanged(it)
         })
     }
-
-    @CallSuper
-    open fun show(manager: FragmentManager) = super.show(manager, getFragmentTag())
-
 }

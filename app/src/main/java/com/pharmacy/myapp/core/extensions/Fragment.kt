@@ -26,6 +26,7 @@ import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogData
 import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogDataRes
 import com.pharmacy.myapp.core.flow.CountDownFlow
 import com.pharmacy.myapp.core.keyboard.KeyboardObserver
+import com.pharmacy.myapp.search.SearchFragment
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.collect
@@ -189,7 +190,7 @@ val Fragment.keyboardObserver
 fun <T : Fragment> Fragment.setFragment(
     fragment: Class<T>?,
     args: Bundle? = null,
-    containerId: Int = R.id.container,
+    @IdRes containerId: Int = R.id.container,
     needBackStack: Boolean = false
 ) = fragment?.let {
     childFragmentManager.commit {
@@ -201,7 +202,13 @@ fun <T : Fragment> Fragment.setFragment(
     }
 }
 
-fun Fragment.setFragment(fragment: Fragment, containerId: Int = R.id.container, needBackStack: Boolean = false) =
+fun Fragment.setFragmentIfNeed(fragment: Fragment, @IdRes containerId: Int = R.id.container, needBackStack: Boolean = false) {
+    if (findFragment<SearchFragment>(containerId) == null) {
+        setFragment(fragment, containerId, needBackStack)
+    }
+}
+
+fun Fragment.setFragment(fragment: Fragment, @IdRes containerId: Int = R.id.container, needBackStack: Boolean = false) =
     with(childFragmentManager) {
         commit {
             findFragmentById(containerId)?.let(::detach)
@@ -212,13 +219,13 @@ fun Fragment.setFragment(fragment: Fragment, containerId: Int = R.id.container, 
         }
     }
 
-fun Fragment.addFragment(fragment: Fragment, containerId: Int = R.id.container) {
+fun Fragment.addFragment(fragment: Fragment, @IdRes containerId: Int = R.id.container) {
     if (childFragmentManager.findFragmentById(containerId) == null) {
         childFragmentManager.inTransaction { add(containerId, fragment) }
     }
 }
 
-inline fun <reified F : Fragment> Fragment.findFragment(containerId: Int = R.id.container): F? =
+inline fun <reified F : Fragment> Fragment.findFragment(@IdRes containerId: Int = R.id.container): F? =
     childFragmentManager.findFragmentById(containerId)?.run { if (this is F) this else null }
 
 val Fragment.inputMethodManager
