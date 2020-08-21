@@ -1,12 +1,9 @@
 package com.pharmacy.myapp.search
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.distinctUntilChanged
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.liveData
+import androidx.paging.cachedIn
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.search.repository.SearchDataSource
@@ -25,11 +22,13 @@ class SearchViewModel(private val repository: SearchRepository) : BaseViewModel(
     private val _productCountLiveData by lazy { MutableLiveData<Int>() }
     val productCountLiveData: LiveData<Int> by lazy { _productCountLiveData.distinctUntilChanged() }
 
-    val pagedSearchLiveData = searchLiveData.switchMap { Pager(PagingConfig(20, initialLoadSize = 40)) { SearchDataSource(it) { _productCountLiveData.postValue(it) } }.liveData }
+    val pagedSearchLiveData = searchLiveData.switchMap {
+        Pager(PagingConfig(20, initialLoadSize = 40)) { SearchDataSource(it) { _productCountLiveData.postValue(it) } }.flow.cachedIn(viewModelScope).asLiveData()
+    }
 
     fun doSearch(value: String) = searchLiveData.postValue(value)
 
-    fun getProductInfo(){
+    fun getProductInfo() {
 
     }
 }

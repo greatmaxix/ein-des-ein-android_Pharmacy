@@ -21,7 +21,7 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvProducts.adapter = searchAdapter
-        rvProducts.addDrawableItemDivider(R.drawable.divider_search_)
+        rvProducts.addDrawableItemDivider(R.drawable.divider_search_padding)
     }
 
     override fun onBindLiveData() {

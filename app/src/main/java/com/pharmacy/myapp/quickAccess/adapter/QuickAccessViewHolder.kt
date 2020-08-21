@@ -9,11 +9,11 @@ import kotlinx.android.synthetic.main.item_quick_access.view.*
 
 class QuickAccessViewHolder(override val containerView: View) : BaseViewHolder<String>(containerView) {
 
-    companion object {
-        fun newInstance(parent: ViewGroup) = QuickAccessViewHolder(parent.inflate(R.layout.item_quick_access))
-    }
-
     override fun bind(item: String) {
         itemView.mtvQuickAccess.text = item
+    }
+
+    companion object {
+        fun newInstance(parent: ViewGroup) = QuickAccessViewHolder(parent.inflate(R.layout.item_quick_access))
     }
 }

@@ -17,8 +17,8 @@ class App: Application() {
         startKoin {
             androidContext(this@App)
             /*logger(AndroidLogger())*/
+            /*androidLogger(Level.DEBUG)*/ //TODO Too many logs in the console
             logger(EmptyLogger())
-            /*androidLogger(Level.DEBUG)*/
             fragmentFactory()
             modules(Modules.getListOfModules())
         }

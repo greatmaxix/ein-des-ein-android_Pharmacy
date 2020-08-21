@@ -17,10 +17,6 @@ import kotlinx.android.synthetic.main.item_search.view.*
 
 class SearchViewHolder(override val containerView: View) : BaseViewHolder<Product>(containerView) {
 
-    companion object {
-        fun newInstance(parent: ViewGroup) = SearchViewHolder(parent.inflate(R.layout.item_search))
-    }
-
     override fun bind(item: Product) = with(item) {
         if (pictures.isNotEmpty()) {
             itemView.ivProduct.loadGlide(pictures.first().url) { transform(CenterCrop(), RoundedCorners(R.dimen._8sdp.toPixelSize)) }
@@ -30,5 +26,9 @@ class SearchViewHolder(override val containerView: View) : BaseViewHolder<Produc
         itemView.tvSubTitle.setText(Html.fromHtml(releaseForm, FROM_HTML_MODE_COMPACT), SPANNABLE)
 
         itemView.tvPrice.text = stringRes(R.string.price, aggregation.minPrice)
+    }
+
+    companion object {
+        fun newInstance(parent: ViewGroup) = SearchViewHolder(parent.inflate(R.layout.item_search))
     }
 }
