@@ -17,7 +17,7 @@ class SearchViewModel(private val repository: SearchRepository) : BaseViewModel(
     private val _errorLiveData by lazy { SingleLiveEvent<String>() }
     val errorLiveData: LiveData<String> by lazy { _errorLiveData }
 
-    private val searchLiveData by lazy { MutableLiveData<String>() }
+    private val searchLiveData by lazy { MutableLiveData("") }
 
     private val _productCountLiveData by lazy { MutableLiveData<Int>() }
     val productCountLiveData: LiveData<Int> by lazy { _productCountLiveData.distinctUntilChanged() }

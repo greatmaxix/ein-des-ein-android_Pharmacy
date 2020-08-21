@@ -6,6 +6,8 @@ import androidx.lifecycle.lifecycleScope
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.addDrawableItemDivider
+import com.pharmacy.myapp.core.extensions.onClick
+import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
 import com.pharmacy.myapp.search.adapter.SearchAdapter
 import com.pharmacy.myapp.search.extra.ISearchCallback
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -20,8 +22,12 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvProducts.adapter = searchAdapter
-        rvProducts.addDrawableItemDivider(R.drawable.divider_search_padding)
+        mcvScanSearch.onClick { navController.onNavDestinationSelected(R.id.globalToQrCodeScanner, null, R.id.nav_search) }
+
+        with(rvProducts) {
+            adapter = searchAdapter
+            addDrawableItemDivider(R.drawable.divider_search_padding)
+        }
     }
 
     override fun onBindLiveData() {

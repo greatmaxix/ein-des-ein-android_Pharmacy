@@ -83,8 +83,7 @@
     </style>
 
     <style name="SearchCardView" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut
-        </item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>
     </style>
 
     <style name="ShapeAppearanceOverlayMyOrderDelivery.MaterialCardView.Cut" parent="">
@@ -170,6 +169,7 @@
         <item name="chipSurfaceColor">@color/defaultChipBackgroundMyOrder</item>
         <item name="rippleColor">@color/chip_ripple_color_my_orders</item>
     </style>
+
     <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">?attr/colorPrimary</item>
         <item name="tabSelectedTextColor">@color/colorPrimary</item>

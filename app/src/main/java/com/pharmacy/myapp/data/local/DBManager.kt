@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.room.*
 import com.pharmacy.myapp.model.customerInfo.CustomerDAO
 import com.pharmacy.myapp.model.customerInfo.CustomerInfo
-import com.pharmacy.myapp.quickAccess.model.QuickAccess
-import com.pharmacy.myapp.quickAccess.model.QuickAccessDAO
 
 class DBManager(context: Context) {
 
@@ -19,19 +17,15 @@ class DBManager(context: Context) {
         .apply { fallbackToDestructiveMigration() }
         .build()
 
-    @Database(entities = [CustomerInfo::class, QuickAccess::class], version = VERSION, exportSchema = false)
+    @Database(entities = [CustomerInfo::class], version = VERSION, exportSchema = false)
     @TypeConverters(StringListConverter::class)
     abstract class LocalDB : RoomDatabase() {
 
         abstract fun customerDAO(): CustomerDAO
 
-        abstract fun quickAccessDAO(): QuickAccessDAO
-
     }
 
     fun customerDAO() = db.customerDAO()
-
-    fun quickAccessDAO() = db.quickAccessDAO()
 
     class StringListConverter {
         @TypeConverter
