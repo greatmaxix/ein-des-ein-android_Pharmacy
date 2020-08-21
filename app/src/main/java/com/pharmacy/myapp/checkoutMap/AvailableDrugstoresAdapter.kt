@@ -12,9 +12,10 @@ import com.pharmacy.myapp.core.extensions.textColor
 import com.pharmacy.myapp.core.extensions.toast
 import kotlinx.android.synthetic.main.item_checkout_store.view.*
 
-class AvailableDrugstoresAdapter(list: List<TempAvailableDrugstore>) : BaseRecyclerAdapter<TempAvailableDrugstore, AvailableDrugstoresAdapter.AvailableDrugstoresViewHolder>(list) {
+class AvailableDrugstoresAdapter(list: List<TempAvailableDrugstore>, private val click: (TempAvailableDrugstore) -> Unit) :
+    BaseRecyclerAdapter<TempAvailableDrugstore, AvailableDrugstoresAdapter.AvailableDrugstoresViewHolder>(list) {
 
-    class AvailableDrugstoresViewHolder(itemView: View) : BaseViewHolder<TempAvailableDrugstore>(itemView) {
+    class AvailableDrugstoresViewHolder(itemView: View, private val click: (TempAvailableDrugstore) -> Unit) : BaseViewHolder<TempAvailableDrugstore>(itemView) {
         override fun bind(item: TempAvailableDrugstore) {
             with(itemView) {
                 tvAvailabilityInDrugstore.textColor(item.availabilityColor())
@@ -24,17 +25,17 @@ class AvailableDrugstoresAdapter(list: List<TempAvailableDrugstore>) : BaseRecyc
                 tvContactInformation.text = item.contactInfo
                 tvWorkingHours.text = item.workingHours
                 tvPrice.text = item.price
-                btnChooseDrugstore.onClick { itemView.context.toast("TODO: Choose") }
+                btnChooseDrugstore.onClick { click(item) }
                 ivDrugstoreLocation.onClick { itemView.context.toast("TODO: Location") }
             }
         }
 
         companion object {
 
-            fun newInstance(parent: ViewGroup) = AvailableDrugstoresViewHolder(parent.inflate(R.layout.item_checkout_store))
+            fun newInstance(parent: ViewGroup, click: (TempAvailableDrugstore) -> Unit) = AvailableDrugstoresViewHolder(parent.inflate(R.layout.item_checkout_store), click)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = AvailableDrugstoresViewHolder.newInstance(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = AvailableDrugstoresViewHolder.newInstance(parent, click)
 
 }

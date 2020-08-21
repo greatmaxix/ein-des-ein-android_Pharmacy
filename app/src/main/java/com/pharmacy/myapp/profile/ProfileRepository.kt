@@ -24,7 +24,10 @@ class ProfileRepository(private val spManager: SPManager, private val rm: RestMa
             rm.logout(spManager.refreshToken ?: "")
         }
 
-    fun clearCustomerData() = spManager.clear()
+    fun clearCustomerData(customer: CustomerInfo) {
+        dao.delete(customer)
+        spManager.clear()
+    }
 
     suspend fun uploadImage(partBody: MultipartBody.Part) =
         safeApiCall(rm.tokenRefreshCall) { rm.uploadImage(partBody) }

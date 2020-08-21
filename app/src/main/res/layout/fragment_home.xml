@@ -43,7 +43,7 @@
                     android:layout_below="@id/tvTitleToolbar"
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:backgroundTint="@color/primaryLightRipple"
-                    app:cardCornerRadius="@dimen/_24sdp"
+                    app:cardCornerRadius="@dimen/_16sdp"
                     app:cardElevation="0dp"
                     app:cardUseCompatPadding="true"
                     app:layout_constraintEnd_toStartOf="@id/mcvScanHome"

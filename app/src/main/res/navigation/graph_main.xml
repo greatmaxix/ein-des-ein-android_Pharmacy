@@ -7,10 +7,12 @@
 
     <include app:graph="@navigation/graph_auth" />
     <include app:graph="@navigation/graph_profile" />
+    <include app:graph="@navigation/graph_profile_guest" />
     <include app:graph="@navigation/graph_home" />
     <include app:graph="@navigation/graph_search" />
     <include app:graph="@navigation/graph_payments" />
     <include app:graph="@navigation/graph_cart" />
+    <include app:graph="@navigation/graph_checkout_map" />
 
     <fragment
         android:id="@+id/nav_splash"
@@ -113,15 +115,9 @@
         android:label="@string/analyzesLabel"
         tools:layout="@layout/fragment_analyzes" />
 
-    <fragment
-        android:id="@+id/nav_checkout_map"
-        android:name="com.pharmacy.myapp.checkoutMap.CheckoutMapContainerFragment"
-        android:label="@string/checkoutMapLabel"
-        tools:layout="@layout/fragment_checkout_map_container" />
-
     <action
         android:id="@+id/globalToCheckoutMap"
-        app:destination="@id/nav_checkout_map"
+        app:destination="@id/checkout_map_graph"
         app:enterAnim="@anim/nav_enter_anim"
         app:exitAnim="@anim/nav_exit_anim"
         app:popEnterAnim="@anim/nav_enter_pop_anim"
@@ -140,5 +136,48 @@
         android:name="com.pharmacy.myapp.qrCodeScanner.QrCodeScannerFragment"
         android:label="@string/qrCodeLabel"
         tools:layout="@layout/fragment_qr_code_scanner" />
+
+    <action
+        android:id="@+id/globalToCheckout"
+        app:destination="@id/nav_checkout"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    <fragment
+        android:id="@+id/nav_checkout"
+        android:name="com.pharmacy.myapp.checkout.CheckoutFragment"
+        android:label="@string/checkoutLabel"
+        tools:layout="@layout/fragment_checkout">
+
+        <action
+            android:id="@+id/actionCheckoutToPromoCodeDialog"
+            app:destination="@id/nav_checkout_dialog_promo_code"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/nav_checkout_dialog_promo_code"
+        android:name="com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment"
+        tools:layout="@layout/dialog_promo_code" />
+
+    <action
+        android:id="@+id/globalToOrder"
+        app:destination="@id/nav_order"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    <fragment
+        android:id="@+id/nav_order"
+        android:name="com.pharmacy.myapp.order.OrderFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_order" />
 
 </navigation>

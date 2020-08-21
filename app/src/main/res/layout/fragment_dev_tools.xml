@@ -11,39 +11,9 @@
         android:text="To product card" />
 
     <Button
-        android:id="@+id/toCheckout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To checkout" />
-
-    <Button
-        android:id="@+id/toOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To order" />
-
-    <Button
-        android:id="@+id/toCart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To cart" />
-
-    <Button
-        android:id="@+id/toGuestProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To guest profile" />
-
-    <Button
         android:id="@+id/toPayments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="To payments" />
-
-    <Button
-        android:id="@+id/toCheckoutMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To checkout map" />
 
 </LinearLayout>
