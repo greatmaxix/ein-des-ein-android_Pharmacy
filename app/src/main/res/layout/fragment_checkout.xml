@@ -328,7 +328,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_32sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
-                android:background="@color/primaryBlue"
+                android:backgroundTint="@color/primaryBlue"
                 android:gravity="center"
                 android:text="@string/checkout"
                 android:textColor="@color/colorGlobalWhite"

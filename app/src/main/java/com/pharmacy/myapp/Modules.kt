@@ -11,6 +11,7 @@ import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
 import com.pharmacy.myapp.devTools.devToolsModule
 import com.pharmacy.myapp.home.homeModule
+import com.pharmacy.myapp.main.mainModule
 import com.pharmacy.myapp.order.orderModule
 import com.pharmacy.myapp.payments.paymentsModule
 import com.pharmacy.myapp.productCard.productCardModule
@@ -26,6 +27,7 @@ object Modules {
     fun getListOfModules() = mutableListOf(
         managerModule,
         devToolsModule,
+        mainModule,
         splashModule,
         profileModule,
         homeModule,

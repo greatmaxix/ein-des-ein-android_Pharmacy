@@ -30,7 +30,7 @@
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_6sdp"
                 android:layout_weight="1"
-                app:cardCornerRadius="@dimen/_24sdp" />
+                app:cardCornerRadius="@dimen/_16sdp" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/mcvScanSearch"

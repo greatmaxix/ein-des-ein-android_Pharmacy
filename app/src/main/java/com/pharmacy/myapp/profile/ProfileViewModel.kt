@@ -54,8 +54,8 @@ class ProfileViewModel(private val context: Context, private val repository: Pro
         progressLiveData.postValue(false)
         when (response) {
             is Success -> {
-                repository.clearCustomerData()
-                deleteAvatarPhoto()
+                repository.clearCustomerData(customerInfoLiveData.value?: throw Exception("Customer is null"))
+                deleteLocalAvatar()
                 directionLiveData.postValue(actionFromProfileToSplash())
             }
             is Error -> errorLiveData.postValue(response.errorMessage)
@@ -93,9 +93,11 @@ class ProfileViewModel(private val context: Context, private val repository: Pro
     fun deleteAvatarPhoto() {
         updateCustomerData(avatarUuid = "")
         _avatarLiveData.postValue(null)
-        if (avatarFile.exists()) {
-            avatarFile.delete()
-        }
+        deleteLocalAvatar()
+    }
+
+    private fun deleteLocalAvatar() {
+        if (avatarFile.exists()) avatarFile.delete()
     }
 
 }

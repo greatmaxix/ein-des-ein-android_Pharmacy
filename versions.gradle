@@ -35,6 +35,7 @@ versions.qrCodeScanner = "2.1.0"
 versions.glide = "4.11.0"
 versions.desugaring ="1.0.10"
 versions.handlePathOz ="1.0.7"
+versions.maps ="17.0.0"
 
 ext.deps.versions = versions
 
