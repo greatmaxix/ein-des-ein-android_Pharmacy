@@ -249,11 +249,9 @@
     <string name="sort">Сортировать</string>
     <string name="countProducts">Найдено %d товара(ов)</string>
     <string name="from">от </string>
-
-    <string name="price">%1$s \u20BD</string>
+    <string name="price">%1$s ₸</string>
     <string name="cancel">Отмена</string>
-    <string name="clearSearchHistory">Очистить историю поиска ?</string>
-    <string name="previousRequest">Ваши предыдущие запросы будут удалены из быстрого доступа</string>
+
     <!-- Analyzes -->
     <string name="analyzesLabel">Анализы</string>
     <string name="analyzesEmptyContainerAction">Записаться на анализы</string>

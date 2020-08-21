@@ -5,16 +5,16 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
+import com.pharmacy.myapp.core.extensions.addAutoKeyboardCloser
 import com.pharmacy.myapp.core.extensions.addDrawableItemDivider
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
 import com.pharmacy.myapp.search.adapter.SearchAdapter
-import com.pharmacy.myapp.search.extra.ISearchCallback
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(R.layout.fragment_search), ISearchCallback {
+class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(R.layout.fragment_search) {
 
     private val searchAdapter = SearchAdapter {
         Timber.e("Name: ${it?.rusName}")
@@ -24,8 +24,11 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
         super.onViewCreated(view, savedInstanceState)
         mcvScanSearch.onClick { navController.onNavDestinationSelected(R.id.globalToQrCodeScanner, null, R.id.nav_search) }
 
+        searchView.setSearchListener { viewModel.doSearch(it.toString()) }
+
         with(rvProducts) {
             adapter = searchAdapter
+            addAutoKeyboardCloser()
             addDrawableItemDivider(R.drawable.divider_search_padding)
         }
     }
@@ -41,6 +44,4 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
             tvSearchResult.text = getString(R.string.countProducts, it)
         }
     }
-
-    override fun doSearch(text: String) = viewModel.doSearch(text)
 }

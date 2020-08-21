@@ -13,7 +13,7 @@
     <color name="colorGlobalDisable">#3f4048</color>
     <color name="colorGlobalHint">#9b9b9b</color>
     <color name="colorTransparent">#00000000</color>
-    <color name="mainMenuColor">#A5B4CC</color>
+    <color name="mainMenuColor">@color/grey</color>
 
     <color name="colorSearchHint">#80333333</color>
     <color name="colorSearch">@color/darkBlue</color>
