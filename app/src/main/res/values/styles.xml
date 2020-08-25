@@ -46,6 +46,7 @@
 
     <style name="AppToolbarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:fontFamily">@font/font_family</item>
+        <item name="android:background">@drawable/bg_toolbar</item>
     </style>
 
     <style name="TextDirectionLocale" parent="TextAppearance.AppCompat">

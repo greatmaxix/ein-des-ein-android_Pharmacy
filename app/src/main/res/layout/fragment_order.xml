@@ -10,7 +10,7 @@
         android:id="@+id/toolbarContainerOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_bottom_round_corners"
+        android:background="@drawable/bg_toolbar"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical">

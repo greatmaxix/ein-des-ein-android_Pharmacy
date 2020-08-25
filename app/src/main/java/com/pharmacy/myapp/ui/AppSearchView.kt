@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.focusChanges
 import reactivecircus.flowbinding.android.widget.editorActionEvents
 import reactivecircus.flowbinding.android.widget.textChanges
-import timber.log.Timber
 
 class AppSearchView @JvmOverloads constructor(
     context: Context,
@@ -90,7 +89,6 @@ class AppSearchView @JvmOverloads constructor(
     private val closeClick = OnClickListener {
         ivClose.setOnClickListener(null)
         ivClose.animateGoneIfNot(animationDuration)
-        hideKeyboard()
         etSearch.clearText()
     }
 

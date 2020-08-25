@@ -5,7 +5,7 @@ import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.checkout.model.TempProductModel
 import com.pharmacy.myapp.myOrders.model.MyOrder
 import com.pharmacy.myapp.checkoutMap.model.TempAvailableDrugstore
-import com.pharmacy.myapp.productCard.model.TempRecommendedModel
+import com.pharmacy.myapp.product.model.TempRecommendedModel
 
 @Deprecated("Mock data object")
 object DummyData {

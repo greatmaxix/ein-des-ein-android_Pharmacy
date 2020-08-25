@@ -6,7 +6,7 @@ import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
 import com.pharmacy.myapp.data.remote.rest.response.UploadImageResponse
 import com.pharmacy.myapp.model.*
 import com.pharmacy.myapp.model.customerInfo.CustomerInfoItem
-import com.pharmacy.myapp.model.product.Product
+import com.pharmacy.myapp.product.model.Product
 import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Response
@@ -50,6 +50,9 @@ interface ApiService {
 
     @GET("$API_PATH_PUBLIC/regions")
     suspend fun regions(): BaseDataResponse<ListItemsModel<Region>>
+
+    @GET("$API_PATH_PUBLIC/products/global-product/{id}")
+    suspend fun getProductById(@Path("id") globalProductId: Int): BaseDataResponseWithItem<Product>
 
     // TODO specify proper moder for response
 //    @GET("$API_PATH_PUBLIC/categories")

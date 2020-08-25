@@ -40,20 +40,6 @@
         tools:layout="@layout/fragment_dev_tools" />
 
     <action
-        android:id="@+id/globalToProductCard"
-        app:destination="@id/nav_product_card"
-        app:enterAnim="@anim/nav_enter_anim"
-        app:exitAnim="@anim/nav_exit_anim"
-        app:popEnterAnim="@anim/nav_enter_pop_anim"
-        app:popExitAnim="@anim/nav_exit_pop_anim" />
-
-    <fragment
-        android:id="@+id/nav_product_card"
-        android:name="com.pharmacy.myapp.productCard.ProductCardFragment"
-        android:label="@null"
-        tools:layout="@layout/fragment_product_card" />
-
-    <action
         android:id="@+id/globalToCheckout"
         app:destination="@id/nav_checkout"
         app:enterAnim="@anim/nav_enter_anim"

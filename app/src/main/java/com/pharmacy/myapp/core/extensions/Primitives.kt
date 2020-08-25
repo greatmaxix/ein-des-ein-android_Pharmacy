@@ -2,6 +2,7 @@ package com.pharmacy.myapp.core.extensions
 
 import android.graphics.Color
 import android.graphics.Typeface
+import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextUtils
@@ -36,9 +37,16 @@ fun String.underlineSpan() = SpannableString(this).apply {
     setSpan(UnderlineSpan(), 0, length, 0)
 }
 
-fun String.bold() = SpannableString(this).apply {
+fun String.bold() = SpannableString(this).apply {}
 
-}
+val String.wrapHtml
+    get() = String(Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).run {
+        val chars = CharArray(length).also {
+            TextUtils.getChars(this, 0, length, it, 0)
+        }
+
+        chars
+    })
 
 fun String.isLetterAndSpace(): Boolean {
     if (this.isEmpty()) {

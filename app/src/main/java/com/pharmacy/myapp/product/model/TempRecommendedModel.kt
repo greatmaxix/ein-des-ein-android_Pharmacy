@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.productCard.model
+package com.pharmacy.myapp.product.model
 
 data class TempRecommendedModel(
     val recipeTitle: String,

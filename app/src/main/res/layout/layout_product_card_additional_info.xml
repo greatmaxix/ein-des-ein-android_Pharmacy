@@ -7,37 +7,18 @@
     android:animateLayoutChanges="true"
     android:clipToPadding="false"
     android:paddingStart="@dimen/_12sdp"
-    android:paddingEnd="@dimen/_12sdp">
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tagsTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tags"
-        android:textAppearance="@style/Text.BlockHeaderBold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/tagsGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tagsTitle" />
+    android:paddingEnd="@dimen/_12sdp"
+    android:paddingBottom="@dimen/_40sdp">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/descriptionTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_24sdp"
         android:text="@string/productDescription"
         android:textAppearance="@style/Text.BlockHeaderBold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tagsGroup" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/descriptionText"
@@ -178,43 +159,5 @@
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/recommendedTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_32sdp"
-        android:text="@string/recommendedForYou"
-        android:textAppearance="@style/Text.BlockHeaderBold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/questionsContainer" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recommendedList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_24sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recommendedTitle" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/seeAllRecommended"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:layout_marginBottom="@dimen/_12sdp"
-        android:background="@drawable/background_default_ripple_selector_rect"
-        android:drawableEnd="@drawable/ic_right_arrow_white"
-        android:drawableTint="@color/primaryBlue"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/_4sdp"
-        android:textColor="@color/primaryBlue"
-        android:textSize="@dimen/_11ssp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recommendedList"
-        tools:text="Смотреть все (23)" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

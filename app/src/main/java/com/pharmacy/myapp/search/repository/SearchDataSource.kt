@@ -1,7 +1,7 @@
 package com.pharmacy.myapp.search.repository
 
 import androidx.paging.PagingSource
-import com.pharmacy.myapp.model.product.Product
+import com.pharmacy.myapp.product.model.Product
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
