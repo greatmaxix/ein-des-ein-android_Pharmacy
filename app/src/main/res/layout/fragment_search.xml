@@ -18,7 +18,7 @@
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_search"
+        android:background="@drawable/bg_toolbar"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,5 +101,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vBackground"
         tools:listitem="@layout/item_search" />
+
+    <com.pharmacy.myapp.ui.EmptyContainerView
+        android:id="@+id/llDrugsNotFoundContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGlobalWhite"
+        android:visibility="gone"
+        app:isButtonVisible="false"
+        app:layout_constraintTop_toBottomOf="@+id/llToolbar"
+        app:subtitleEmpty="@string/noGoodsFoundSubtitle"
+        app:titleEmpty="@string/noGoodsFoundTitle"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

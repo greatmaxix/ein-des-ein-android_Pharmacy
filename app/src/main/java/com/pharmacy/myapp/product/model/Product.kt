@@ -1,8 +1,10 @@
-package com.pharmacy.myapp.model.product
+package com.pharmacy.myapp.product.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.pharmacy.myapp.model.Picture
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Product(
     @SerializedName("globalProductId") val globalProductId: Int,
     @SerializedName("engName") val engName: String,
@@ -13,4 +15,4 @@ data class Product(
     @SerializedName("pictures") val pictures: List<Picture>,
     @SerializedName("releaseForm") val releaseForm: String,
     @SerializedName("registrationDateAndNumber") val registrationDateAndNumber: String
-)
+) : Parcelable

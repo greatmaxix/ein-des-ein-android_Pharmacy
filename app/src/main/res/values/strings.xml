@@ -248,6 +248,7 @@
     <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
     <string name="sort">Сортировать</string>
     <string name="countProducts">Найдено %d товара(ов)</string>
+    <string name="to">до </string>
     <string name="from">от </string>
     <string name="price">%1$s ₸</string>
     <string name="cancel">Отмена</string>

@@ -43,33 +43,54 @@
         app:layout_constraintTop_toBottomOf="@+id/productShortDescription"
         tools:text="Chinoin Pharmaceutical and Chemical Works Co.  Венгрия" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productPrice"
+    <TextView
+        android:id="@+id/tvPriceFromPrefix"
+        style="@style/Text.CheckoutEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:paddingEnd="@dimen/_8sdp"
-        android:textColor="@color/primaryBlue"
-        android:textSize="@dimen/_19ssp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/productBonus"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:text="@string/from"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productIssuer"
-        tools:text="от 568 ₽ - 985₽" />
+        app:layout_constraintTop_toBottomOf="@+id/productIssuer" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productBonus"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tvPriceFrom"
+        style="@style/Text.CheckoutEdit"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_plus_green"
-        android:drawablePadding="@dimen/_4sdp"
-        android:textColor="@color/green"
-        android:textSize="@dimen/_10ssp"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:textSize="@dimen/_18ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/productPrice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/productPrice"
-        tools:text="🤑50 БОНСУОВ" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvPriceFromPrefix"
+        app:layout_constraintStart_toEndOf="@+id/tvPriceFromPrefix"
+        tools:text="580 ₸" />
+
+    <TextView
+        android:id="@+id/tvPriceToPrefix"
+        style="@style/Text.CheckoutEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:text="@string/to"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toEndOf="@+id/tvPriceFrom"
+        app:layout_constraintTop_toBottomOf="@+id/productIssuer" />
+
+    <TextView
+        android:id="@+id/tvPriceTo"
+        style="@style/Text.CheckoutEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvPriceToPrefix"
+        app:layout_constraintStart_toEndOf="@+id/tvPriceToPrefix"
+        tools:text="580 ₸" />
 
     <include
         android:id="@+id/productMainDivider"
@@ -79,7 +100,7 @@
         android:layout_marginTop="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPriceFromPrefix" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/productAnalogContainer"

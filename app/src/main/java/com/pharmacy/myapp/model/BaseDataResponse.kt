@@ -17,6 +17,12 @@ data class BaseDataResponse<T>(
     fun dataOrThrow() = if (isSuccess) data else throw ApiException(message, errorType, violations)
 }
 
+data class BaseDataResponseWithItem<T>(
+    @SerializedName("message") val message: String,
+    @SerializedName("status") val status: String,
+    @SerializedName("data") val data: SingleItemModel<T>
+)
+
 data class Violation(
     @SerializedName("propertyPath") val propertyPath: String,
     @SerializedName("message") val message: String

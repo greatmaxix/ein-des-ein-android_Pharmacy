@@ -286,10 +286,7 @@ fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> U
     }
 }
 
-fun View.setTopRoundCornerBackground(
-    radius: Float = resources.getDimension(R.dimen._8sdp),
-    elevation: Float = resources.getDimension(R.dimen._4sdp),
-    @ColorInt tintColor: Int = ContextCompat.getColor(context, R.color.colorGlobalWhite)
+fun View.setTopRoundCornerBackground(radius: Float = resources.getDimension(R.dimen._8sdp), elevation: Float = resources.getDimension(R.dimen._4sdp), @ColorInt tintColor: Int = ContextCompat.getColor(context, R.color.colorGlobalWhite)
 ) {
     val appearanceModel = ShapeAppearanceModel()
         .toBuilder()

@@ -1,7 +1,7 @@
 package com.pharmacy.myapp.search.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.pharmacy.myapp.model.product.Product
+import com.pharmacy.myapp.product.model.Product
 
 object SearchDiffUtil : DiffUtil.ItemCallback<Product>() {
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_136sdp"
+    android:background="@drawable/background_default_ripple_selector_rect"
     android:padding="@dimen/_8sdp">
 
     <ImageView
@@ -20,8 +21,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_4sdp"
         android:layout_marginTop="@dimen/_1sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
         android:ellipsize="end"
         android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="@+id/ivFavoriteProduct"

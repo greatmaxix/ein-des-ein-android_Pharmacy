@@ -1,8 +1,6 @@
 package com.pharmacy.myapp.core.extensions
 
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY
-import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.PrecomputedTextCompat
@@ -50,3 +48,5 @@ fun AppCompatTextView.setTextAsync(text: String?) {
 fun TextView.clearText() {
     text = ""
 }
+
+fun TextView.setTextHtml(text: String?) = setText(text?.wrapHtml, TextView.BufferType.SPANNABLE)

@@ -7,7 +7,7 @@ import com.pharmacy.myapp.chat.adapter.ChatMessageAdapter.Companion.TYPE_END_CHA
 import com.pharmacy.myapp.chat.adapter.ChatMessageAdapter.Companion.TYPE_MESSAGE_PHARMACY
 import com.pharmacy.myapp.chat.adapter.ChatMessageAdapter.Companion.TYPE_MESSAGE_USER
 import com.pharmacy.myapp.chat.adapter.ChatMessageAdapter.Companion.TYPE_PRODUCT
-import com.pharmacy.myapp.productCard.model.TempRecommendedModel
+import com.pharmacy.myapp.product.model.TempRecommendedModel
 import java.time.LocalDateTime
 
 sealed class ChatMessage(val itemType: Int) {
