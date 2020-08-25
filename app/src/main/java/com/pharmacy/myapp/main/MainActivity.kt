@@ -6,6 +6,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMActivity
 import com.pharmacy.myapp.core.extensions.hideNav
+import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
 import com.pharmacy.myapp.core.extensions.showNav
 import com.pharmacy.myapp.core.general.behavior.DialogMessagesBehavior
 import com.pharmacy.myapp.core.general.behavior.ProgressViewBehavior
@@ -20,11 +21,15 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     private val progressBehavior by lazy { attachBehavior(ProgressViewBehavior(progressRoot)) }
     private val messagesBehavior by lazy { attachBehavior(DialogMessagesBehavior(this)) }
 
-    private val topLevelDestinations = intArrayOf(R.id.nav_home, R.id.nav_catalog, R.id.nav_search, R.id.nav_cart, R.id.nav_profile)
+    private val topLevelDestinations = intArrayOf(R.id.nav_home, R.id.nav_catalog, R.id.nav_search, R.id.nav_cart, R.id.nav_profile, R.id.nav_guest_profile)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupNavigation()
+    }
+
+    override fun onBindLiveData() {
+        observe(viewModel.directionLiveData) { navController.onNavDestinationSelected(this) }
     }
 
     override fun setInProgress(progress: Boolean) = progressBehavior.setInProgress(progress)
@@ -47,6 +52,10 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
 
     private fun setupNavigation() = with(bottomNavigation) {
         setupWithNavController(navController)
+        setOnNavigationItemSelectedListener {
+            viewModel.navSelected(it.itemId)
+            true
+        }
         setOnNavigationItemReselectedListener {}
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.isTopLevelDestination) showNav() else hideNav()

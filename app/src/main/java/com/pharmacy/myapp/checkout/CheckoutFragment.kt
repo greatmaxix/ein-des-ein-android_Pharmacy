@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.actionCheckoutToPromoCodeDialog
+import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.globalToOrder
 import com.pharmacy.myapp.checkout.adapter.OrderProductsAdapter
 import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment
 import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment.Companion.PROMO_CODE_REQUEST_KEY
@@ -19,6 +20,7 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.toast
 import com.pharmacy.myapp.data.DummyData
+import com.pharmacy.myapp.devTools.DevToolsFragmentDirections
 import com.pharmacy.myapp.ui.BuyerDeliveryAddress
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
@@ -49,7 +51,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
             }
             doNav(actionCheckoutToPromoCodeDialog())
         }
-        btnCheckoutOrderCheckout.onClick { requireContext().toast("TODO checkout") }
+        btnCheckoutOrderCheckout.onClick { navController.navigate(globalToOrder()) }
 
         tvTotalAmountCheckout.text = "123 ₽"
         tvDiscountCheckout.text = "321 ₽"

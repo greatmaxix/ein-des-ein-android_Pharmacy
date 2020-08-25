@@ -1,5 +1,6 @@
 package com.pharmacy.myapp.data
 
+import com.google.android.gms.maps.model.LatLng
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.checkout.model.TempProductModel
@@ -138,16 +139,17 @@ object DummyData {
     )
 
     fun getAvailableDrugstores(): ArrayList<TempAvailableDrugstore> {
-        val firstItem = TempAvailableDrugstore(
+        val firstItem = TempAvailableDrugstore(1,
             "Все в наличии",
-            "Название аптеки",
-            "ул Горная 23а, Харьков",
-            "+7 (098) 000 02 00 • +7 (098) 000 02 00",
+            "Гиппократ",
+            "Сәкен Сейфуллин көшесі 29",
+            "+77172322640",
             "⏰ c 8:00 до 22:00 ежедневно",
-            "568 ₽"
+            "235 ₽",
+            LatLng(51.141951, 71.4435751)
         )
-        val secondItem = firstItem.copy(availability = "3/4 в наличии")
-        val thirdItem = firstItem.copy(availability = "Под заказ")
+        val secondItem = firstItem.copy(id = 2, availability = "3/4 в наличии", name = "Аптека \"Цветная\"", price = "567 ₽", latLng = LatLng(51.140856, 71.435294))
+        val thirdItem = firstItem.copy(id = 3, availability = "Под заказ", name = "Аптека 99", price = "145 ₽", latLng = LatLng(51.1636063, 71.4365608))
         return arrayListOf(firstItem, secondItem, thirdItem)
     }
 
