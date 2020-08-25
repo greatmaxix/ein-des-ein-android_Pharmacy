@@ -4,7 +4,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.ImageView
-import com.bumptech.glide.request.RequestOptions
 import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
 import com.pharmacy.myapp.core.extensions.loadGlide
@@ -16,11 +15,7 @@ class ProductsImageAdapter(items: List<Picture>) : BaseRecyclerAdapter<Picture, 
 
     class ImageViewHolder(view: View) : BaseViewHolder<Picture>(view) {
 
-        override fun bind(item: Picture) {
-            val options = RequestOptions()
-
-            (itemView as ImageView).loadGlide(item.url) { apply(options) }
-        }
+        override fun bind(item: Picture) = (itemView as ImageView).loadGlide(item.url)
 
         companion object {
             fun newInstance(parent: ViewGroup) = ImageViewHolder(ImageView(parent.context)

@@ -96,7 +96,7 @@ class AddCardFragment : PaymentsBaseFragment(R.layout.fragment_add_card) {
             setEndIconTintList(ColorStateList.valueOf(currentColor))
             isEndIconVisible = text.isNotEmpty()
             val stateList = if (accepted) stateListAccepted else stateListDefault
-            //stateList?.let { setBoxStrokeColorStateList(it) }
+            stateList?.let { setBoxStrokeColorStateList(it) }
 
             updateButtonState()
         }

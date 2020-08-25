@@ -41,11 +41,9 @@ fun String.bold() = SpannableString(this).apply {}
 
 val String.wrapHtml
     get() = String(Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).run {
-        val chars = CharArray(length).also {
+        CharArray(length).also {
             TextUtils.getChars(this, 0, length, it, 0)
         }
-
-        chars
     })
 
 fun String.isLetterAndSpace(): Boolean {

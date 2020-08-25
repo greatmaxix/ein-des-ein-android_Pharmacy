@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_136sdp"
-    android:background="?selectableItemBackground"
+    android:background="@drawable/background_default_ripple_selector_rect"
     android:padding="@dimen/_8sdp">
 
     <ImageView

@@ -102,47 +102,16 @@
         app:layout_constraintTop_toBottomOf="@+id/vBackground"
         tools:listitem="@layout/item_search" />
 
-    <LinearLayout
+    <com.pharmacy.myapp.ui.EmptyContainerView
         android:id="@+id/llDrugsNotFoundContainer"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:background="@color/colorGlobalWhite"
-        android:gravity="center"
-        android:orientation="vertical"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:isButtonVisible="false"
         app:layout_constraintTop_toBottomOf="@+id/llToolbar"
-        tools:visibility="visible">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_164sdp"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/noGoodsFoundImageContentDescription"
-            android:src="@drawable/main_icon" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/TextAppearance.AppCompat.Large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:gravity="center"
-            android:text="@string/noGoodsFoundTitle"
-            android:textColor="@color/darkBlue"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:gravity="center"
-            android:text="@string/noGoodsFoundSubtitle"
-            android:textColor="@color/darkBlue" />
-
-    </LinearLayout>
+        app:subtitleEmpty="@string/noGoodsFoundSubtitle"
+        app:titleEmpty="@string/noGoodsFoundTitle"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

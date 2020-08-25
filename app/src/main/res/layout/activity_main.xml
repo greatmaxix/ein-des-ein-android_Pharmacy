@@ -24,6 +24,7 @@
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
+            android:translationY="?actionBarSize"
             app:itemBackground="?attr/colorPrimary"
             app:itemIconTint="@color/selector_navigation_item"
             app:itemTextAppearanceActive="@style/Text.Small"

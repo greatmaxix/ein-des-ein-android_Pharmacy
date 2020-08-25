@@ -49,6 +49,4 @@ fun TextView.clearText() {
     text = ""
 }
 
-fun TextView.setTextHtml(text: String?) {
-    setText(text?.wrapHtml, TextView.BufferType.SPANNABLE)
-}
+fun TextView.setTextHtml(text: String?) = setText(text?.wrapHtml, TextView.BufferType.SPANNABLE)
