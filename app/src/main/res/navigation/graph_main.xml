@@ -13,6 +13,7 @@
     <include app:graph="@navigation/graph_payments" />
     <include app:graph="@navigation/graph_cart" />
     <include app:graph="@navigation/graph_checkout_map" />
+    <include app:graph="@navigation/graph_onboarding" />
 
     <fragment
         android:id="@+id/nav_splash"
@@ -33,6 +34,16 @@
         <action
             android:id="@+id/fromSplashToAuth"
             app:destination="@id/auth_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_splash"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/fromSplashToOnboarding"
+            app:destination="@id/onboarding_graph"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"

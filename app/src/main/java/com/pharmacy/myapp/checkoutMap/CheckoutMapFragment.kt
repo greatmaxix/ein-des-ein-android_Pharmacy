@@ -24,6 +24,7 @@ class CheckoutMapFragment : BaseMVVMFragment(R.layout.fragment_checkout_map) {
     private val viewModel: CheckoutMapViewModel by sharedGraphViewModel(R.id.checkout_map_graph)
     private var map: GoogleMap? = null
     private val mapZoom = 18F
+    private val drawTextSize = 14
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -100,29 +101,29 @@ class CheckoutMapFragment : BaseMVVMFragment(R.layout.fragment_checkout_map) {
         val canvas = Canvas(bitmap)
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.color = Color.WHITE
-        paint.textSize = (14 * scale)
+        paint.textSize = (drawTextSize * scale)
         paint.setShadowLayer(1f, 0f, 1f, Color.WHITE)
 
         val bounds = Rect()
         paint.getTextBounds(text, 0, text.length, bounds)
-        val x = (bitmap.width - bounds.width()) / 2
-        val y = (bitmap.height + bounds.height()) / 2.8
-        canvas.drawText(text, x.toFloat(), y.toFloat(), paint)
+        val centerX = (bitmap.width - bounds.width()) / 2
+        val centerY = (bitmap.height + bounds.height()) / 2.8
+        canvas.drawText(text, centerX.toFloat(), centerY.toFloat(), paint)
         return bitmap
     }
 
     private fun boundsFromLatLngList(list: List<LatLng>): LatLngBounds {
-        var x0 = list.first().latitude
-        var x1 = x0
-        var y0 = list.first().longitude
-        var y1 = y0
+        var bottomRightLatitude = list.first().latitude
+        var topLeftLatitude = bottomRightLatitude
+        var bottomRightLongitude = list.first().longitude
+        var topLeftLongitude = bottomRightLongitude
         for (latLng in list) {
-            if (latLng.latitude > x1) x1 = latLng.latitude
-            if (latLng.latitude < x0) x0 = latLng.latitude
-            if (latLng.longitude > y1) y1 = latLng.longitude
-            if (latLng.longitude < y0) y0 = latLng.longitude
+            if (latLng.latitude > topLeftLatitude) topLeftLatitude = latLng.latitude
+            if (latLng.latitude < bottomRightLatitude) bottomRightLatitude = latLng.latitude
+            if (latLng.longitude > topLeftLongitude) topLeftLongitude = latLng.longitude
+            if (latLng.longitude < bottomRightLongitude) bottomRightLongitude = latLng.longitude
         }
-        return LatLngBounds(LatLng(x0, y0), LatLng(x1, y1))
+        return LatLngBounds(LatLng(bottomRightLatitude, bottomRightLongitude), LatLng(topLeftLatitude, topLeftLongitude))
     }
 
 }

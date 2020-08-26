@@ -218,7 +218,7 @@
         android:background="@drawable/background_default_ripple_selector_rect"
         android:paddingHorizontal="@dimen/_16sdp"
         android:paddingVertical="@dimen/_8sdp"
-        android:text="@string/skipAuth"
+        android:text="@string/skip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivGoogleSignIn" />

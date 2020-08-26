@@ -31,6 +31,10 @@ class SPManager(val context: Context) : SharedPreferenceContext {
     val isUserLogin
         get() = refreshToken?.isNotEmpty() ?: false
 
+    var isOnboardingShown: Boolean
+        get() = get(Keys.IS_ONBOARDING_SHOWN) ?: false
+        set(value) = put(Keys.IS_ONBOARDING_SHOWN, value)
+
     fun clear() = sp.edit {
         sp.all.forEach {
             remove(it.key)
@@ -38,6 +42,6 @@ class SPManager(val context: Context) : SharedPreferenceContext {
     }
 
     private enum class Keys {
-        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN
+        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN
     }
 }

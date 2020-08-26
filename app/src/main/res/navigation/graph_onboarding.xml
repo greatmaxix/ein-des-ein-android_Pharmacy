@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onboarding_graph"
+    app:startDestination="@id/nav_onboarding">
+
+    <fragment
+        android:id="@+id/nav_onboarding"
+        android:name="com.pharmacy.myapp.onboarding.OnboardingFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_onboarding">
+
+        <action
+            android:id="@+id/actionFromOnboardingToAuth"
+            app:destination="@id/auth_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_onboarding"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/actionFromOnboardingToHome"
+            app:destination="@id/home_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+    </fragment>
+
+</navigation>
