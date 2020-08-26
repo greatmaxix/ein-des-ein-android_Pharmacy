@@ -14,7 +14,7 @@
         style="@style/TabLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_bottom_round_corners"
+        android:background="@drawable/bg_toolbar"
         android:backgroundTint="@color/colorGlobalWhite"
         android:elevation="@dimen/_4sdp" />
 

@@ -29,5 +29,6 @@
         <attr name="titleEmpty" format="string" />
         <attr name="subtitleEmpty" format="string" />
         <attr name="buttonTextEmpty" format="string" />
+        <attr name="isButtonVisible" format="boolean" />
     </declare-styleable>
 </resources>

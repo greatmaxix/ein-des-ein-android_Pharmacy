@@ -7,7 +7,7 @@
     android:layout_height="@dimen/_48sdp"
     app:cardCornerRadius="@dimen/_8sdp"
     app:cardUseCompatPadding="true"
-    app:rippleColor="@color/primaryBlueRipple">
+    app:rippleColor="@color/colorRippleBlue">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/mtvQuickAccess"

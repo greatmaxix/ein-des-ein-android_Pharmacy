@@ -10,8 +10,7 @@ import com.pharmacy.myapp.core.extensions.put
 
 class SPManager(val context: Context) : SharedPreferenceContext {
 
-    override val sp: SharedPreferences =
-        context.getSharedPreferences("${context.getString(R.string.app_name)}_sp", Context.MODE_PRIVATE)
+    override val sp: SharedPreferences = context.getSharedPreferences("${context.getString(R.string.app_name)}_sp", Context.MODE_PRIVATE)
 
     var token: String?
         get() = get(Keys.TOKEN)
@@ -28,6 +27,9 @@ class SPManager(val context: Context) : SharedPreferenceContext {
     var qrCodeDescriptionShown: Boolean?
         get() = get(Keys.QR_CODE_DESCRIPTION_SHOWN)
         set(value) = put(Keys.QR_CODE_DESCRIPTION_SHOWN, value)
+
+    val isUserLogin
+        get() = refreshToken?.isNotEmpty() ?: false
 
     var isOnboardingShown: Boolean?
         get() = get(Keys.IS_ONBOARDING_SHOWN)

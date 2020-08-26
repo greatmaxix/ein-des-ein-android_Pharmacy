@@ -11,7 +11,7 @@
     app:cardElevation="1dp"
     app:cardMaxElevation="0dp"
     app:cardUseCompatPadding="true"
-    app:rippleColor="@color/primaryBlueRipple">
+    app:rippleColor="@color/colorRippleBlue">
 
     <LinearLayout
         android:layout_width="match_parent"

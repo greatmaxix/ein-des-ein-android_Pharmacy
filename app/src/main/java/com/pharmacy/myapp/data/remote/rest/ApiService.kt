@@ -6,7 +6,8 @@ import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
 import com.pharmacy.myapp.data.remote.rest.response.UploadImageResponse
 import com.pharmacy.myapp.model.*
 import com.pharmacy.myapp.model.customerInfo.CustomerInfoItem
-import com.pharmacy.myapp.model.product.Product
+import com.pharmacy.myapp.product.model.Product
+import com.pharmacy.myapp.product.model.ProductLite
 import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Response
@@ -46,10 +47,22 @@ interface ApiService {
         @Query("regionId") regionId: Int? = null,
         @Query("barCode") barCode: Int? = null,
         @Query("name") name: String? = null
-    ): BaseDataResponse<PaginationModel<Product>>
+    ): BaseDataResponse<PaginationModel<ProductLite>>
+
+    @GET("/api/v1/customer/products/search")
+    suspend fun productSearchCustomer(
+        @Query("page") page: Int? = null,
+        @Query("per_page") pageSize: Int? = null,
+        @Query("regionId") regionId: Int? = null,
+        @Query("barCode") barCode: Int? = null,
+        @Query("name") name: String? = null
+    ): BaseDataResponse<PaginationModel<ProductLite>>
 
     @GET("$API_PATH_PUBLIC/regions")
     suspend fun regions(): BaseDataResponse<ListItemsModel<Region>>
+
+    @GET("$API_PATH_PUBLIC/products/global-product/{id}")
+    suspend fun getProductById(@Path("id") globalProductId: Int): BaseDataResponseWithItem<Product>
 
     // TODO specify proper moder for response
 //    @GET("$API_PATH_PUBLIC/categories")

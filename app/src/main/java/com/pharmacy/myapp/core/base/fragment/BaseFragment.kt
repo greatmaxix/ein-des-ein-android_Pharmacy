@@ -15,6 +15,7 @@ import com.pharmacy.myapp.core.general.behavior.IBehavior
 import com.pharmacy.myapp.core.general.interfaces.MessagesCallback
 import com.pharmacy.myapp.core.general.interfaces.ProgressCallback
 
+
 abstract class BaseFragment(@LayoutRes layoutResourceId: Int) : Fragment(layoutResourceId) {
 
     protected var progressCallback: ProgressCallback? = null
@@ -49,6 +50,10 @@ abstract class BaseFragment(@LayoutRes layoutResourceId: Int) : Fragment(layoutR
     private fun initToolbar() {
         toolbar?.title = label
         toolbar?.setNavigationOnClickListener { navigationBack() }
+    }
+
+    protected fun setToolbarTitle(title: String?) {
+        toolbar?.title = title?.wrapHtml
     }
 
     protected fun changeNavigationIcon(@DrawableRes drawable: Int) {

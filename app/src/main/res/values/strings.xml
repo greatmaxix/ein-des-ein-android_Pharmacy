@@ -77,6 +77,8 @@
     <string name="remainQuestions">Остались вопросы?</string>
     <string name="askPharmacist">Спроси фармацевта!</string>
     <string name="recommendedForYou">Рекомендуемое вам :</string>
+    <string name="analoguesAndMain">Аналоги и основное действующее вещетсво</string>
+    <string name="findInPharmacies">Найти в аптеках</string>
 
     <!-- Dev tools -->
     <string name="devToolsLabel">DEV TOOLS</string>
@@ -248,9 +250,11 @@
     <string name="noGoodsFoundImageContentDescription">Товар не найден</string>
     <string name="sort">Сортировать</string>
     <string name="countProducts">Найдено %d товара(ов)</string>
+    <string name="to">до </string>
     <string name="from">от </string>
     <string name="price">%1$s ₸</string>
     <string name="cancel">Отмена</string>
+    <string name="manufacture">Производитель, %1$s</string>
 
     <!-- Analyzes -->
     <string name="analyzesLabel">Анализы</string>

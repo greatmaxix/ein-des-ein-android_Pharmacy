@@ -10,7 +10,7 @@
         android:id="@+id/toolbarContainerOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_bottom_round_corners"
+        android:background="@drawable/bg_toolbar"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical">
@@ -80,7 +80,7 @@
                 app:cardBackgroundColor="@color/primaryBlueLight20"
                 app:cardCornerRadius="@dimen/_8sdp"
                 app:contentPadding="@dimen/_16sdp"
-                app:layout_constraintTop_toBottomOf="@+id/instructionContainer">
+                app:layout_constraintTop_toBottomOf="@+id/mcvInstruction">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvNoteOrder"

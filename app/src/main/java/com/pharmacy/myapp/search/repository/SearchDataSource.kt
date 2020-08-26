@@ -1,15 +1,15 @@
 package com.pharmacy.myapp.search.repository
 
 import androidx.paging.PagingSource
-import com.pharmacy.myapp.model.product.Product
+import com.pharmacy.myapp.product.model.ProductLite
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class SearchDataSource(private val text: String? = null, private val total: (Int) -> Unit) : PagingSource<Int, Product>(), KoinComponent {
+class SearchDataSource(private val text: String? = null, private val total: (Int) -> Unit) : PagingSource<Int, ProductLite>(), KoinComponent {
 
     private val repository: SearchRepository by inject()
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> = try {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductLite> = try {
         repository.searchPaging(text, params.key ?: 1, params.loadSize)
             .run {
                 total(data.totalCount)

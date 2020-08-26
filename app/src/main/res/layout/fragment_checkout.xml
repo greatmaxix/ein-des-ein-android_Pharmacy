@@ -59,7 +59,7 @@
                     app:cardBackgroundColor="@color/colorGlobalWhite"
                     app:cardCornerRadius="@dimen/_4sdp"
                     app:cardElevation="@dimen/_1sdp"
-                    app:rippleColor="@color/primaryBlueRipple"
+                    app:rippleColor="@color/colorRippleBlue"
                     app:strokeColor="@color/selector_delivery_method_stroke"
                     app:strokeWidth="@dimen/_2sdp">
 
@@ -85,7 +85,7 @@
                     app:cardBackgroundColor="@color/colorGlobalWhite"
                     app:cardCornerRadius="@dimen/_4sdp"
                     app:cardElevation="@dimen/_1sdp"
-                    app:rippleColor="@color/primaryBlueRipple"
+                    app:rippleColor="@color/colorRippleBlue"
                     app:strokeColor="@color/selector_delivery_method_stroke"
                     app:strokeWidth="@dimen/_2sdp">
 
