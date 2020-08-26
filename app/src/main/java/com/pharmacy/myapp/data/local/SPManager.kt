@@ -29,6 +29,10 @@ class SPManager(val context: Context) : SharedPreferenceContext {
         get() = get(Keys.QR_CODE_DESCRIPTION_SHOWN)
         set(value) = put(Keys.QR_CODE_DESCRIPTION_SHOWN, value)
 
+    var isOnboardingShown: Boolean?
+        get() = get(Keys.IS_ONBOARDING_SHOWN)
+        set(value) = put(Keys.IS_ONBOARDING_SHOWN, value)
+
     fun clear() = sp.edit {
         sp.all.forEach {
             remove(it.key)
@@ -36,6 +40,6 @@ class SPManager(val context: Context) : SharedPreferenceContext {
     }
 
     private enum class Keys {
-        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN
+        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN
     }
 }

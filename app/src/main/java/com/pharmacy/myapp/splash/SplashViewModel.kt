@@ -1,14 +1,16 @@
 package com.pharmacy.myapp.splash
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
+import com.pharmacy.myapp.core.extensions.falseIfNull
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.data.local.SPManager
-import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.fromSplashToAuth
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.fromSplashToHome
+import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.fromSplashToOnboarding
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -18,7 +20,8 @@ import org.koin.core.qualifier.named
 
 class SplashViewModel(private val spManager: SPManager, private val workManager: WorkManager) : BaseViewModel(), KoinComponent {
 
-    val authenticatedLiveData by lazy { SingleLiveEvent<NavDirections>() }
+    private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
+    val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
 
     fun checkAuthentication() {
         viewModelScope.launch(IO) {
@@ -26,18 +29,17 @@ class SplashViewModel(private val spManager: SPManager, private val workManager:
             if (!isTokenExists) {
                 workManager.enqueue(get<OneTimeWorkRequest>(named(UPDATE_CUSTOMER_INFO))).state
             }
-            val direction = isTokenExists.toNavDirection
             delay(1000)
-            authenticatedLiveData.postValue(direction)
+            _directionLiveData.postValue(spManager.isOnboardingShown.falseIfNull().toNavDirection)
         }
     }
 
     private val Boolean.toNavDirection
-        get() = if (this) toAuth else toHome
+        get() = if (this) toHome else toOnboarding
 
     companion object {
 
-        private val toAuth = fromSplashToAuth()
+        private val toOnboarding = fromSplashToOnboarding()
         private val toHome = fromSplashToHome()
         const val UPDATE_CUSTOMER_INFO = "updateCustomerInfo"
     }

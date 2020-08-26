@@ -37,6 +37,7 @@
     <string name="registerButtonContentDescriptionSignUp">Register image button</string>
     <string name="facebookContentDescriptionSignUp">Sign in via Facebook</string>
     <string name="scanDrugsContentDescription">Сканировать товар</string>
+    <string name="skip">Пропустить</string>
 
     <string name="menuTitleMain">Главная</string>
     <string name="menuTitleCategories">Каталог</string>
@@ -204,7 +205,6 @@
     <!-- Chat -->
     <string name="menu_info">Info</string>
     <string name="chatMessageFieldHint">Что Вас волнует?</string>
-    <string name="skipAuth">Пропустить</string>
     <string name="buttonEndAuth">Закончить</string>
     <string name="titleEndAuthDialog">Закончить без регистрации?</string>
     <string name="messageEndAuthDialog">Вам будет неободимо пройти этап регистрации заново</string>
@@ -283,5 +283,15 @@
     <string name="cardHolderNameHint">Иванов Иван</string>
     <string name="cvvHint">CVV</string>
     <string name="addCreditCard">Добавить карту</string>
+
+    <!--Onboarding-->
+    <string name="regionLabel">Регион</string>
+    <string name="onboardingAuthTitle">Приступаем к покупкам</string>
+    <string name="onboardingAuthSubtitle">Авторизируйтесь, что бы совершать покупки и записи на анализы быстрее</string>
+    <string name="onboardingAuthAction">Авторизироваться</string>
+    <string name="onboardingAuthSkip">Продолжить без регистрации</string>
+    <string name="onboardingRegionTitle">Ваш город</string>
+    <string name="onboardingRegionSubtitle">Выберите регион из списка доступных для актуального отображения контента</string>
+    <string name="onboardingRegionActionText">Выбрать регион</string>
 
 </resources>
