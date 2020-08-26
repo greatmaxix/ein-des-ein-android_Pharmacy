@@ -25,7 +25,7 @@ class SearchViewModel(private val repository: SearchRepository) : BaseViewModel(
     val productCountLiveData: LiveData<Int> by lazy { _productCountLiveData.distinctUntilChanged() }
 
     private val _productLiveData by lazy { SingleLiveEvent<Product>() }
-    val productLiveData: LiveData<Product> by lazy { _productLiveData }
+    val productLiteLiveData: LiveData<Product> by lazy { _productLiveData }
 
     val pagedSearchLiveData = searchLiveData.switchMap {
         Pager(PagingConfig(20, initialLoadSize = 40)) { SearchDataSource(it) { _productCountLiveData.postValue(it) } }.flow.cachedIn(viewModelScope).asLiveData()

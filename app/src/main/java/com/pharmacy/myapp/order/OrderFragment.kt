@@ -91,7 +91,7 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
                 .apply {
                     shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_ALWAYS
                     elevation = 0.1f
-                    setShadowColor(R.color.primaryBlueRipple.toColor)
+                    setShadowColor(R.color.colorRippleBlue.toColor)
                     setTint(R.color.primaryBlue.toColor)
                     paintStyle = Paint.Style.FILL
                 }

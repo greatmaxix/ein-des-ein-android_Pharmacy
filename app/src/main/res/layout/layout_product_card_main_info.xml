@@ -10,11 +10,11 @@
     android:paddingEnd="@dimen/_12sdp">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productTitle"
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/darkBlue"
-        android:textSize="@dimen/_19ssp"
+        android:textSize="@dimen/_18ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,25 +22,26 @@
         tools:text="АЛЛОПУРИНОЛ-ЭГИС, 40 мг" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productShortDescription"
+        android:id="@+id/tvSubTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/darkBlue"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         tools:text="Таблетки шипучие, 24 шт" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productIssuer"
+        android:id="@+id/tvManufacture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
         android:textColor="@color/greyText"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productShortDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubTitle"
         tools:text="Chinoin Pharmaceutical and Chemical Works Co.  Венгрия" />
 
     <TextView
@@ -48,12 +49,12 @@
         style="@style/Text.CheckoutEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_24sdp"
         android:layout_marginBottom="@dimen/_8sdp"
         android:text="@string/from"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productIssuer" />
+        app:layout_constraintTop_toBottomOf="@+id/tvManufacture" />
 
     <TextView
         android:id="@+id/tvPriceFrom"
@@ -73,12 +74,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_24sdp"
         android:layout_marginBottom="@dimen/_8sdp"
         android:text="@string/to"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintStart_toEndOf="@+id/tvPriceFrom"
-        app:layout_constraintTop_toBottomOf="@+id/productIssuer" />
+        app:layout_constraintTop_toBottomOf="@+id/tvManufacture" />
 
     <TextView
         android:id="@+id/tvPriceTo"
@@ -103,119 +104,111 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPriceFromPrefix" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/productAnalogContainer"
+        android:id="@+id/mcvAnalog"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_12sdp"
         app:cardBackgroundColor="@color/purple"
         app:cardCornerRadius="@dimen/_8sdp"
         app:cardElevation="0dp"
         app:contentPadding="@dimen/_12sdp"
         app:layout_constraintTop_toBottomOf="@+id/productMainDivider"
-        app:rippleColor="@color/primaryBlueRipple">
+        app:rippleColor="@color/colorRippleBlue">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvAnalogTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/analoguesAndMain"
+                android:textColor="@color/colorGlobalWhite"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toStartOf="@id/ivArrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/analogTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/productShortDescription"
-                    tools:text="Аналоги и основное действующее вещетсво" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/analogName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/productShortDescription"
-                    tools:text="Дротаверин" />
-
-            </LinearLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvAnalog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textColor="@color/colorGlobalWhite"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivArrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtvAnalogTitle"
+                tools:text="Дротаверин" />
 
             <ImageView
+                android:id="@+id/ivArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_right_arrow_white" />
+                android:src="@drawable/ic_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/categoryContainer"
+        android:id="@+id/mcvCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_12sdp"
         app:cardBackgroundColor="@color/colorGlobalWhite"
         app:cardCornerRadius="@dimen/_8sdp"
         app:contentPadding="@dimen/_8sdp"
-        app:layout_constraintTop_toBottomOf="@+id/productAnalogContainer"
-        app:rippleColor="@color/primaryBlueRipple">
+        app:layout_constraintTop_toBottomOf="@+id/mcvAnalog"
+        app:rippleColor="@color/colorRippleBlue">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/categoryIcon"
+            <!-- TODO add corners when need -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivCategory"
                 android:layout_width="@dimen/_48sdp"
                 android:layout_height="@dimen/_48sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_vaccine" />
 
-            <LinearLayout
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCategoryTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:text="@string/productCategory"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toEndOf="@+id/ivCategory"
+                app:layout_constraintTop_toTopOf="@+id/ivCategory" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCategoryDes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/_4sdp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/_6sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/primaryBlue"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCategory"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvCategoryTitle"
+                tools:text="Противогрибковый" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/categoryTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/productCategory"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/productShortDescription" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/categoryName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:textColor="@color/primaryBlue"
-                    android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/productShortDescription"
-                    tools:text="Противогрибковый" />
-
-            </LinearLayout>
-        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

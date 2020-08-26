@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Aggregation(
-    @SerializedName("maxPrice") val maxPrice: Double = 0.00,
-    @SerializedName("minPrice") val minPrice: Double = 0.00
+data class Manufacture(
+    @SerializedName("localName") val producer: String = "",
+    @SerializedName("countryRusName") val producerRu: String = ""
 ) : Parcelable

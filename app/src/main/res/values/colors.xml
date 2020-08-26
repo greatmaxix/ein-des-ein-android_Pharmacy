@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2566F9</color>
+    <color name="colorPrimary">@color/primaryBlue</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#29D986</color>
 
@@ -59,8 +59,8 @@
     <color name="red">#FF0000</color>
     <color name="yellow">#F9F125</color>
 
-    <color name="primaryBlueRipple">#492566F9</color>
-    <color name="primaryLightRipple">#50FFFFFF</color>
+    <color name="colorRippleBlue">#492566F9</color>
+    <color name="colorRippleWhiteTransparent">#50FFFFFF</color>
 
     <color name="askCardViewBackgroundHome">#02AEF8</color>
 

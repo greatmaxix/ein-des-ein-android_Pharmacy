@@ -24,7 +24,6 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
         with(rvProducts) {
             adapter = searchAdapter
             addAutoKeyboardCloser()
-            addDrawableItemDivider(R.drawable.divider_search_padding)
         }
     }
 
@@ -43,7 +42,7 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
             llDrugsNotFoundContainer.visibleOrGone(it == 0)
         }
 
-        observe(viewModel.productLiveData) {
+        observe(viewModel.productLiteLiveData) {
             navController.navigate(globalToProductCard(it))
         }
     }

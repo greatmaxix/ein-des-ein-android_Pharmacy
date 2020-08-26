@@ -5,14 +5,16 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Product(
-    @SerializedName("globalProductId") val globalProductId: Int,
-    @SerializedName("engName") val engName: String,
-    @SerializedName("rusName") val rusName: String,
-    @SerializedName("pharmacyProductsAggregationData") val aggregation: Aggregation,
+class Product(
     @SerializedName("description") val description: String,
-    @SerializedName("barCodes") val barCodes: List<String>,
-    @SerializedName("pictures") val pictures: List<Picture>,
-    @SerializedName("releaseForm") val releaseForm: String,
-    @SerializedName("registrationDateAndNumber") val registrationDateAndNumber: String
-) : Parcelable
+    @SerializedName("category") val category: String,
+    @SerializedName("activeSubstances") val substances: List<String>
+) : ProductLite(), Parcelable {
+
+    val substance
+        get() = substances.first()
+
+    val getFullManufacture
+        get() = "${manufacture.producer} , ${manufacture.producerRu}"
+
+}
