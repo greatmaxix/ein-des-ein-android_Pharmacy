@@ -60,7 +60,7 @@
     <color name="yellow">#F9F125</color>
 
     <color name="colorRippleBlue">#492566F9</color>
-    <color name="colorRippleWhiteTransparent">#50FFFFFF</color>
+    <color name="colorRippleWhiteSemiTransparent">#50FFFFFF</color>
 
     <color name="askCardViewBackgroundHome">#02AEF8</color>
 

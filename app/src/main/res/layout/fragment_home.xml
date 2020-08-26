@@ -42,14 +42,14 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvTitleToolbar"
                     android:layout_marginEnd="@dimen/_8sdp"
-                    android:backgroundTint="@color/colorRippleWhiteTransparent"
+                    android:backgroundTint="@color/colorRippleWhiteSemiTransparent"
                     app:cardCornerRadius="@dimen/_16sdp"
                     app:cardElevation="0dp"
                     app:cardUseCompatPadding="true"
                     app:layout_constraintEnd_toStartOf="@id/mcvScanHome"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvTitleToolbar"
-                    app:rippleColor="@color/colorRippleWhiteTransparent">
+                    app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/mcvSearchHome"
-                    app:rippleColor="@color/colorRippleWhiteTransparent">
+                    app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mcvToolbarHome"
-            app:rippleColor="@color/colorRippleWhiteTransparent">
+            app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -183,7 +183,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mcvOrderContainer"
             app:layout_constraintWidth_percent="0.31"
-            app:rippleColor="@color/colorRippleWhiteTransparent">
+            app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -256,7 +256,7 @@
             app:layout_constraintStart_toEndOf="@id/mcvAnalyzeHome"
             app:layout_constraintTop_toTopOf="@id/mcvAskHome"
             app:layout_constraintWidth_percent="0.31"
-            app:rippleColor="@color/colorRippleWhiteTransparent">
+            app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
             <ImageView
                 android:layout_width="wrap_content"
