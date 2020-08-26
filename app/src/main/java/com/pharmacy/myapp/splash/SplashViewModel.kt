@@ -30,7 +30,7 @@ class SplashViewModel(private val spManager: SPManager, private val workManager:
                 workManager.enqueue(get<OneTimeWorkRequest>(named(UPDATE_CUSTOMER_INFO))).state
             }
             delay(1000)
-            _directionLiveData.postValue(spManager.isOnboardingShown.falseIfNull().toNavDirection)
+            _directionLiveData.postValue(spManager.isOnboardingShown.toNavDirection)
         }
     }
 

@@ -31,8 +31,8 @@ class SPManager(val context: Context) : SharedPreferenceContext {
     val isUserLogin
         get() = refreshToken?.isNotEmpty() ?: false
 
-    var isOnboardingShown: Boolean?
-        get() = get(Keys.IS_ONBOARDING_SHOWN)
+    var isOnboardingShown: Boolean
+        get() = get(Keys.IS_ONBOARDING_SHOWN) ?: false
         set(value) = put(Keys.IS_ONBOARDING_SHOWN, value)
 
     fun clear() = sp.edit {
