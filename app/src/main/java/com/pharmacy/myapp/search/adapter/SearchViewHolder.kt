@@ -10,12 +10,12 @@ import com.pharmacy.myapp.core.extensions.inflate
 import com.pharmacy.myapp.core.extensions.loadGlide
 import com.pharmacy.myapp.core.extensions.setTextHtml
 import com.pharmacy.myapp.core.extensions.stringRes
-import com.pharmacy.myapp.product.model.Product
+import com.pharmacy.myapp.product.model.ProductLite
 import kotlinx.android.synthetic.main.item_search.view.*
 
-class SearchViewHolder(override val containerView: View) : BaseViewHolder<Product>(containerView) {
+class SearchViewHolder(override val containerView: View) : BaseViewHolder<ProductLite>(containerView) {
 
-    override fun bind(item: Product) = with(item) {
+    override fun bind(item: ProductLite) = with(item) {
         if (pictures.isNotEmpty()) {
             itemView.ivProduct.loadGlide(pictures.first().url) { transform(CenterCrop(), RoundedCorners(R.dimen._8sdp.toPixelSize)) }
         }
@@ -23,6 +23,7 @@ class SearchViewHolder(override val containerView: View) : BaseViewHolder<Produc
         itemView.tvTitle.setTextHtml(rusName)
         itemView.tvSubTitle.setTextHtml(releaseForm)
 
+        itemView.tvManufacture.setTextHtml(stringRes(R.string.manufacture, manufacture.producerRu))
         itemView.tvPrice.text = stringRes(R.string.price, aggregation.minPrice)
     }
 

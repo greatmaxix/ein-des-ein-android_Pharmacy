@@ -18,11 +18,4 @@ class ProductViewModel(private val repository: ProductRepository) : BaseViewMode
     private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
 
-
-    init {
-        launchIO {
-            Timber.e(repository.productById(743).toString())
-        }
-
-    }
 }

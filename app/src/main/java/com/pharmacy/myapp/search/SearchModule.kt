@@ -8,7 +8,7 @@ import org.koin.dsl.module
 
 val searchModule = module {
     single { SearchRemoteDataSource(get()) }
-    single { SearchRepository(get(), get()) }
+    single { SearchRepository(get(), get(), get()) }
 
     viewModel { SearchViewModel(get()) }
 

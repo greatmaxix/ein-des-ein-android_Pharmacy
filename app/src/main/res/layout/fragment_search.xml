@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="?actionBarSize">
+    android:layout_marginBottom="?actionBarSize"
+    android:background="@color/colorSearchBackground">
 
-    <View
-        android:id="@+id/vBackground"
+    <com.pharmacy.myapp.ui.EmptyContainerView
+        android:id="@+id/llDrugsNotFoundContainer"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/colorSearchBackground"
-        app:layout_constraintBottom_toBottomOf="@+id/tvSearchResult"
-        app:layout_constraintTop_toTopOf="@id/tvSearchResult" />
+        android:layout_height="match_parent"
+        android:background="@color/colorGlobalWhite"
+        android:visibility="gone"
+        app:isButtonVisible="false"
+        app:layout_constraintTop_toBottomOf="@+id/llToolbar"
+        app:subtitleEmpty="@string/noGoodsFoundSubtitle"
+        app:titleEmpty="@string/noGoodsFoundTitle" />
 
     <LinearLayout
         android:id="@+id/llToolbar"
@@ -47,7 +51,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:rippleColor="@color/primaryLightRipple">
+            app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -97,21 +101,11 @@
         android:id="@+id/rvProducts"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/_8sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vBackground"
+        app:layout_constraintTop_toBottomOf="@+id/tvSearchResult"
         tools:listitem="@layout/item_search" />
-
-    <com.pharmacy.myapp.ui.EmptyContainerView
-        android:id="@+id/llDrugsNotFoundContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorGlobalWhite"
-        android:visibility="gone"
-        app:isButtonVisible="false"
-        app:layout_constraintTop_toBottomOf="@+id/llToolbar"
-        app:subtitleEmpty="@string/noGoodsFoundSubtitle"
-        app:titleEmpty="@string/noGoodsFoundTitle"
-        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

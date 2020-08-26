@@ -41,8 +41,6 @@
         android:id="@+id/bottomLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:clipToPadding="false"
         android:orientation="horizontal"
         android:paddingStart="@dimen/_8sdp"
         android:paddingTop="@dimen/_8sdp"
@@ -53,25 +51,23 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/favoriteFab"
+            android:id="@+id/fbWish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_heart"
-            app:backgroundTint="@color/colorGlobalWhite" />
+
+            android:src="@drawable/ic_heart" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/addToCartBtn"
-            android:layout_width="0dp"
+            android:id="@+id/mbCart"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_12sdp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/primaryBlue"
-            android:gravity="center"
+            android:stateListAnimator="@null"
+            android:text="@string/findInPharmacies"
             android:textColor="@color/colorGlobalWhite"
             android:textSize="@dimen/_14ssp"
             android:textStyle="bold"
-            app:cornerRadius="@dimen/_20sdp"
-            tools:text="В корзину от 568 ₽ -985 ₽" />
+            app:cornerRadius="@dimen/_20sdp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,41 +32,48 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseMVVMFragmen
             TabLayoutMediator(productImagePagerIndicator, this) { _, _ -> }.attach()
         }
 
-        fillTempData()
+        setProductInfo()
 
-        productAnalogContainer.onClick { requireContext().toast("TODO: Analogs") }
-        categoryContainer.onClick { requireContext().toast("TODO: Category") }
-        instructionContainer.onClick { requireContext().toast("TODO: Instruction") }
-        questionsContainer.onClick { requireContext().toast("TODO: Ask pharmacist") }
-        favoriteFab.onClick { requireContext().toast("TODO: Favorite") }
-        addToCartBtn.onClick { requireContext().toast("TODO: Add to cart") }
+        mcvAnalog.onClick { onAnalog() }
+        mcvCategory.onClick { onCategory() }
+        mcvInstruction.onClick { onInstruction() }
+        mcvQuestions.onClick { onQuestions() }
+        fbWish.onClick { onWish() }
+        mbCart.onClick { onCart() }
 
         bottomLayout.setTopRoundCornerBackground()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_share) {
-            requireContext().toast("TODO: Share")
-        }
+        if (item.itemId == R.id.menu_share) { requireContext().toast("TODO: Share") }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun fillTempData() {
-        productTitle.setTextHtml(args.product?.rusName)
-        productShortDescription.setTextHtml(args.product?.releaseForm)
-        //productIssuer.text = "Chinoin Pharmaceutical and Chemical Works Co.  Венгрия"
+    private fun onAnalog() { requireContext().toast("TODO: Analogs") }
 
-        tvPriceTo.text = getString(R.string.price, args.product?.aggregation?.maxPrice.toString())
-        tvPriceFrom.text = getString(R.string.price, args.product?.aggregation?.minPrice.toString())
+    private fun onCategory() { requireContext().toast("TODO: Category") }
 
-        analogTitle.text = "Аналоги и основное действующее вещетсво"
-        analogName.text = "Дротаверин"
+    private fun onInstruction() { requireContext().toast("TODO: Instruction") }
 
-        categoryIcon.setImageResource(R.drawable.ic_vaccine)
-        categoryName.text = "Противогрибковый"
+    private fun onQuestions() { requireContext().toast("TODO: Ask pharmacist") }
 
-        descriptionText.setTextHtml(args.product?.description)
+    private fun onWish() { requireContext().toast("TODO: Favorite") }
 
-        addToCartBtn.text = "В корзину от 568 ₽ -985 ₽"
+    private fun onCart() { requireContext().toast("TODO: Add to cart") }
+
+    private fun setProductInfo() {
+        args.product?.apply {
+            tvTitle.setTextHtml(rusName)
+            tvSubTitle.setTextHtml(releaseForm)
+            tvManufacture.text = getFullManufacture
+            tvPriceTo.text = getString(R.string.price, aggregation.maxPrice.toString())
+            tvPriceFrom.text = getString(R.string.price, aggregation.minPrice.toString())
+            tvAnalog.text = substance
+
+            ivCategory.setImageResource(R.drawable.ic_vaccine)
+            tvCategoryDes.text = category
+
+            mtvDescriptionText.setTextHtml(args.product?.description)
+        }
     }
 }
