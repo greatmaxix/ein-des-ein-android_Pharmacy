@@ -6,7 +6,7 @@
     app:startDestination="@id/nav_profile">
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.pharmacy.myapp.profile.ProfileFragment"
+        android:name="com.pharmacy.myapp.user.profile.ProfileFragment"
         android:label="@string/profileTitle"
         tools:layout="@layout/fragment_profile">
 
@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/nav_profile_edit"
-        android:name="com.pharmacy.myapp.profile.edit.EditProfileFragment"
+        android:name="com.pharmacy.myapp.user.profile.edit.EditProfileFragment"
         android:label="@string/editProfileTitle"
         tools:layout="@layout/fragment_profile_edit">
 
@@ -70,7 +70,7 @@
 
     <dialog
         android:id="@+id/nav_profile_dialog_change_photo"
-        android:name="com.pharmacy.myapp.profile.edit.ChangePhotoBottomSheetDialogFragment"
+        android:name="com.pharmacy.myapp.user.profile.edit.ChangePhotoBottomSheetDialogFragment"
         tools:layout="@layout/view_change_photo_bottom_sheet">
 
         <argument
@@ -89,7 +89,7 @@
 
     <fragment
         android:id="@+id/nav_favorites"
-        android:name="com.pharmacy.myapp.favorites.FavoritesFragment"
+        android:name="com.pharmacy.myapp.user.wishlist.WishFragment"
         android:label="@string/favoritesLabel"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_wish" />
 </navigation>

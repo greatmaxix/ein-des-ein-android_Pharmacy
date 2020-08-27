@@ -15,8 +15,7 @@ import com.pharmacy.myapp.core.general.interfaces.ProgressCallback
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_progress.*
 
-class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, MainViewModel::class),
-    ProgressCallback, MessagesCallback {
+class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, MainViewModel::class), ProgressCallback, MessagesCallback {
 
     private val progressBehavior by lazy { attachBehavior(ProgressViewBehavior(progressRoot)) }
     private val messagesBehavior by lazy { attachBehavior(DialogMessagesBehavior(this)) }

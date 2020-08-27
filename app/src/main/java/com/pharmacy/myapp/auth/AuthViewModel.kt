@@ -13,7 +13,7 @@ import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
-import com.pharmacy.myapp.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToChat
 import com.pharmacy.myapp.util.AvatarUtil
 

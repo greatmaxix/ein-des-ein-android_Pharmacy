@@ -118,7 +118,7 @@
                                 android:layout_height="@dimen/_32sdp"
                                 android:contentDescription="@string/favoriteImageDescriptionProfile"
                                 android:padding="@dimen/_4sdp"
-                                android:src="@drawable/ic_favorite" />
+                                android:src="@drawable/ic_heart_stroke" />
                         </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.textview.MaterialTextView

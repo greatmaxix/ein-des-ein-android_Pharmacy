@@ -2,8 +2,8 @@ package com.pharmacy.myapp.splash
 
 import com.pharmacy.myapp.core.network.safeApiCall
 import com.pharmacy.myapp.data.remote.rest.RestManager
-import com.pharmacy.myapp.model.customerInfo.CustomerDAO
-import com.pharmacy.myapp.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
+import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
 
 class SplashRepository(private val rm: RestManager, private val dao: CustomerDAO) {
 
