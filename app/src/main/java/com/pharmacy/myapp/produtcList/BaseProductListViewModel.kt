@@ -49,4 +49,9 @@ abstract class BaseProductListViewModel : BaseViewModel(), KoinComponent {
             _progressLiveData.postValue(false)
         }
     }
+
+    companion object {
+        const val PAGE_SIZE = 20
+        const val INIT_LOAD_SIZE = PAGE_SIZE * 2
+    }
 }

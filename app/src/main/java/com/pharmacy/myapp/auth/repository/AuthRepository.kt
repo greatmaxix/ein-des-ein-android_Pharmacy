@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.auth
+package com.pharmacy.myapp.auth.repository
 
 import com.pharmacy.myapp.core.network.safeApiCall
 import com.pharmacy.myapp.data.local.SPManager

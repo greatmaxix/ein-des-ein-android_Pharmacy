@@ -16,10 +16,12 @@ class SearchViewModel(private val searchRepository: SearchRepository) : BaseProd
     private val _productCountLiveData by lazy { MutableLiveData<Int>() }
     val productCountLiveData: LiveData<Int> by lazy { _productCountLiveData.distinctUntilChanged() }
 
-    val pagedSearchLiveData = searchLiveData.distinctUntilChanged().switchMap {
-        Pager(PagingConfig(20, initialLoadSize = 40)) { SearchPagingSource(it, _productCountLiveData::postValue) }
-            .flow.cachedIn(viewModelScope)
-            .asLiveData()
+    val pagedSearchLiveData by lazy {
+        searchLiveData.distinctUntilChanged().switchMap {
+            Pager(PagingConfig(PAGE_SIZE, initialLoadSize = INIT_LOAD_SIZE)) { SearchPagingSource(it, _productCountLiveData::postValue) }
+                .flow.cachedIn(viewModelScope)
+                .asLiveData()
+        }
     }
 
     fun doSearch(value: String) = searchLiveData.postValue(value)

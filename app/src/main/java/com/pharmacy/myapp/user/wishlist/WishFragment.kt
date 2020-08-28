@@ -2,7 +2,7 @@ package com.pharmacy.myapp.user.wishlist
 
 import android.os.Bundle
 import android.view.View
-import com.pharmacy.myapp.MainGraphDirections
+import com.pharmacy.myapp.MainGraphDirections.Companion.globalToProductCard
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.produtcList.ProductListAdapter
@@ -25,6 +25,6 @@ class WishFragment(private val viewModel: WishViewModel) : BaseMVVMFragment(R.la
         observe(viewModel.wishLiveData) { productAdapter.submitData(lifecycle, it) }
         observe(viewModel.wishLiteLiveData) { productAdapter.refresh() }
 
-        observe(viewModel.productLiteLiveData) { navController.navigate(MainGraphDirections.globalToProductCard(it)) }
+        observe(viewModel.productLiteLiveData) { navController.navigate(globalToProductCard(it)) }
     }
 }

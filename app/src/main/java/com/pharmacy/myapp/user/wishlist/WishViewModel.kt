@@ -10,9 +10,10 @@ import com.pharmacy.myapp.user.wishlist.repository.WishPagingSource
 
 class WishViewModel : BaseProductListViewModel() {
 
+    val wishLiveData by lazy {
+        Pager(PagingConfig(PAGE_SIZE, initialLoadSize = INIT_LOAD_SIZE)) { WishPagingSource() }.flow
+            .cachedIn(viewModelScope)
+            .asLiveData()
+    }
 
-
-    val wishLiveData = Pager(PagingConfig(20, initialLoadSize = 40)) { WishPagingSource() }.flow
-        .cachedIn(viewModelScope)
-        .asLiveData()
 }
