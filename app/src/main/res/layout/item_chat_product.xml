@@ -29,12 +29,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/ivFavoriteProduct"
+                android:id="@+id/ivWish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_default_ripple_selector_circle"
                 android:padding="@dimen/_4sdp"
-                android:src="@drawable/ic_heart"
+                android:src="@drawable/ic_heart_stroke"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

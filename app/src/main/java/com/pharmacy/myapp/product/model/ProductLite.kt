@@ -11,8 +11,12 @@ open class ProductLite(
     @SerializedName("releaseForm") val releaseForm: String = "",
     @SerializedName("pictures") val pictures: List<Picture> = listOf(),
     @SerializedName("manufacturerData") val manufacture: Manufacture = Manufacture(),
-    @SerializedName("pharmacyProductsAggregationData") val aggregation: Aggregation = Aggregation()
+    @SerializedName("pharmacyProductsAggregationData") val aggregation: Aggregation = Aggregation(),
+    @SerializedName("liked") var wish: Boolean? = false
 ) : Parcelable {
+
+    val isWish
+        get() = wish ?: false
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

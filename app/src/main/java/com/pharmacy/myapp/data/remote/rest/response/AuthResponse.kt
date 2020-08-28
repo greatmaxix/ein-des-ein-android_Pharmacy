@@ -1,7 +1,7 @@
 package com.pharmacy.myapp.data.remote.rest.response
 
 import com.google.gson.annotations.SerializedName
-import com.pharmacy.myapp.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
 
 data class AuthResponse(
     @SerializedName("item") val customer: CustomerInfo,

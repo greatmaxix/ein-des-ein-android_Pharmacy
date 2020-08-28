@@ -10,7 +10,6 @@ abstract class AuthBaseFragment(@LayoutRes layoutResourceId: Int) : BaseMVVMFrag
     protected val viewModel: AuthViewModel by sharedGraphViewModel(R.id.auth_graph)
 
     override fun onBindLiveData() {
-        super.onBindLiveData()
         viewModel.directionLiveData.observeExt(navController::navigate)
         viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
         viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }

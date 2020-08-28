@@ -39,9 +39,7 @@
     <style name="Logo">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:adjustViewBounds">true</item>
-        <item name="srcCompat">@drawable/main_icon</item>
-        <item name="android:scaleType">centerCrop</item>
+        <item name="android:src">@drawable/main_icon</item>
     </style>
 
     <style name="AppToolbarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
