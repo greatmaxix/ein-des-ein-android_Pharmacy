@@ -15,7 +15,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/search_graph"
+        android:id="@+id/nav_search"
         android:icon="@drawable/ic_search"
         android:iconTint="@color/mainMenuColor"
         android:title="@string/menuTitleSearch"

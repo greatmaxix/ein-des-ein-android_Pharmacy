@@ -3,8 +3,8 @@ package com.pharmacy.myapp.data.local
 import android.content.Context
 import androidx.room.*
 import com.pharmacy.myapp.model.TemporaryRegion
-import com.pharmacy.myapp.model.customerInfo.CustomerDAO
-import com.pharmacy.myapp.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
+import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
 import com.pharmacy.myapp.model.region.RegionDAO
 
 class DBManager(context: Context) {
@@ -19,6 +19,7 @@ class DBManager(context: Context) {
         .apply { fallbackToDestructiveMigration() }
         .build()
 
+
     @Database(entities = [CustomerInfo::class, TemporaryRegion::class], version = VERSION, exportSchema = false)
     @TypeConverters(StringListConverter::class)
     abstract class LocalDB : RoomDatabase() {
@@ -29,7 +30,8 @@ class DBManager(context: Context) {
 
     }
 
-    fun customerDAO() = db.customerDAO()
+    val customerDAO
+        get() = db.customerDAO()
 
     fun regionDAO() = db.regionDAO()
 

@@ -22,6 +22,7 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Path
 import java.util.concurrent.TimeUnit
 
 class RestManager : KoinComponent {
@@ -115,10 +116,13 @@ class RestManager : KoinComponent {
     suspend fun productSearch(page: Int? = null, pageSize: Int? = null, regionId: Int? = null, barCode: Int? = null, name: String? = null) =
         api.productSearch(page, pageSize, regionId, barCode, name)
 
-    suspend fun productSearchCustomer(page: Int? = null, pageSize: Int? = null, regionId: Int? = null, barCode: Int? = null, name: String? = null) =
-        api.productSearchCustomer(page, pageSize, regionId, barCode, name)
-
     suspend fun getProductById(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.getProductById(globalProductId) }
+
+    suspend fun setToWishList(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.setToWishList(globalProductId) }
+
+    suspend fun removeFromWishList(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.removeFromWishList(globalProductId) }
+
+    suspend fun getWishList(page: Int? = null, pageSize: Int? = null) = safeApiCall(tokenRefreshCall) { api.getWishList(page, pageSize) }
 
     suspend fun regions() = safeApiCall(tokenRefreshCall) { api.regions() }
 

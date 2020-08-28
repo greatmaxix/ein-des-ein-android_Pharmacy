@@ -7,7 +7,6 @@
         android:id="@+id/ivLogo"
         style="@style/Logo"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/_75sdp"
         android:src="@drawable/main_icon" />
 
 </FrameLayout>

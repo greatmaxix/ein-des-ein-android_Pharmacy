@@ -255,6 +255,7 @@
     <string name="price">%1$s ₸</string>
     <string name="cancel">Отмена</string>
     <string name="manufacture">Производитель, %1$s</string>
+    <string name="forAddingProduct">Для того что бы добавить продукт в Избраное нужно авторизироваться</string>
 
     <!-- Analyzes -->
     <string name="analyzesLabel">Анализы</string>

@@ -16,11 +16,13 @@ import com.pharmacy.myapp.onboarding.onboardingModule
 import com.pharmacy.myapp.order.orderModule
 import com.pharmacy.myapp.payments.paymentsModule
 import com.pharmacy.myapp.product.productCardModule
-import com.pharmacy.myapp.profile.profileModule
+import com.pharmacy.myapp.user.profile.profileModule
 import com.pharmacy.myapp.qrCodeScanner.qrCodeScannerModule
 import com.pharmacy.myapp.region.regionModule
 import com.pharmacy.myapp.search.searchModule
 import com.pharmacy.myapp.splash.splashModule
+import com.pharmacy.myapp.user.userModule
+import com.pharmacy.myapp.user.wishlist.wishModule
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
@@ -43,8 +45,10 @@ object Modules {
         cartModule,
         chatModule,
         checkoutMapModule,
+        regionModule,
         paymentsModule,
-        regionModule
+        userModule,
+        wishModule
     )
 
     private val managerModule = module(true) {

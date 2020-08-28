@@ -5,7 +5,7 @@ import com.pharmacy.myapp.data.remote.rest.response.AuthResponse
 import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
 import com.pharmacy.myapp.data.remote.rest.response.UploadImageResponse
 import com.pharmacy.myapp.model.*
-import com.pharmacy.myapp.model.customerInfo.CustomerInfoItem
+import com.pharmacy.myapp.user.model.customerInfo.CustomerInfoItem
 import com.pharmacy.myapp.model.region.Region
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.product.model.ProductLite
@@ -50,15 +50,6 @@ interface ApiService {
         @Query("name") name: String? = null
     ): BaseDataResponse<PaginationModel<ProductLite>>
 
-    @GET("/api/v1/customer/products/search")
-    suspend fun productSearchCustomer(
-        @Query("page") page: Int? = null,
-        @Query("per_page") pageSize: Int? = null,
-        @Query("regionId") regionId: Int? = null,
-        @Query("barCode") barCode: Int? = null,
-        @Query("name") name: String? = null
-    ): BaseDataResponse<PaginationModel<ProductLite>>
-
     @GET("$API_PATH_PUBLIC/regions")
     suspend fun regions(): BaseDataResponse<ListItemsModel<Region>>
 
@@ -67,6 +58,17 @@ interface ApiService {
 
     @PATCH("$API_PATH_CUSTOMER/customer/region")
     suspend fun updateRegion(@Body arguments: Map<String, Int>): BaseDataResponse<CustomerInfoItem>
+
+    @POST("/api/v1/customer/wishlist/global-product/{id}")
+    suspend fun setToWishList(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
+
+    @DELETE("/api/v1/customer/wishlist/global-product/{id}")
+    suspend fun removeFromWishList(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
+
+    @GET("/api/v1/customer/wishlist")
+    suspend fun getWishList(@Query("page") page: Int? = null,
+                            @Query("per_page") pageSize: Int? = null
+    ): BaseDataResponse<PaginationModel<ProductLite>>
 
     // TODO specify proper moder for response
 //    @GET("$API_PATH_PUBLIC/categories")

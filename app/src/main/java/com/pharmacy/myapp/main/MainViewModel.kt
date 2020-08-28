@@ -12,8 +12,8 @@ class MainViewModel(private val repository: MainRepository) : BaseViewModel() {
     val directionLiveData: LiveData<Int> by lazy {
         destIdLiveData.switchMap { id ->
             liveData(viewModelScope.coroutineContext + IO) {
-                val isCustomerExist = repository.getCustomer() == null
-                emit(if (id == R.id.profile_graph && isCustomerExist) R.id.profile_graph_guest else id)
+                val isCustomerExist = repository.isCustomerExist()
+                emit(if (id == R.id.profile_graph && !isCustomerExist) R.id.profile_graph_guest else id)
             }
         }
     }

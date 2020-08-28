@@ -7,13 +7,14 @@ import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.auth.CodeFragmentDirections.Companion.actionFromCodeToHome
 import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToCode
 import com.pharmacy.myapp.auth.SignUpFragmentDirections.Companion.actionFromSignUpToCode
+import com.pharmacy.myapp.auth.repository.AuthRepository
 import com.pharmacy.myapp.chat.ChatFragment.Companion.KEY_NAVIGATION_CHAT
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
-import com.pharmacy.myapp.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToChat
 import com.pharmacy.myapp.util.AvatarUtil
 
