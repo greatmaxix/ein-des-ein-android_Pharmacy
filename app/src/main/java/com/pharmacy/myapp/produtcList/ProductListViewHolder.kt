@@ -6,10 +6,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
-import com.pharmacy.myapp.core.extensions.inflate
-import com.pharmacy.myapp.core.extensions.loadGlide
-import com.pharmacy.myapp.core.extensions.setTextHtml
-import com.pharmacy.myapp.core.extensions.stringRes
+import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.product.model.ProductLite
 import kotlinx.android.synthetic.main.item_product.view.*
 
@@ -30,7 +27,7 @@ class ProductListViewHolder(override val containerView: View, private val onClic
         itemView.tvPrice.text = stringRes(R.string.price, aggregation.minPrice)
 
         with(itemView.ivWish) {
-            setOnClickListener {
+            setDebounceOnClickListener(2000) {
                 onClick(Triple(!isWish, globalProductId, bindingAdapterPosition))
             }
             notifyHeart(isWish)
