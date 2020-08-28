@@ -32,7 +32,7 @@
 
         <action
             android:id="@+id/actionFromProfileToFavorites"
-            app:destination="@id/nav_favorites"
+            app:destination="@id/nav_wish"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:launchSingleTop="true"
@@ -86,9 +86,8 @@
         android:label="@string/myOrdersLabel"
         tools:layout="@layout/fragment_my_orders" />
 
-
     <fragment
-        android:id="@+id/nav_favorites"
+        android:id="@+id/nav_wish"
         android:name="com.pharmacy.myapp.user.wishlist.WishFragment"
         android:label="@string/favoritesLabel"
         tools:layout="@layout/fragment_wish" />

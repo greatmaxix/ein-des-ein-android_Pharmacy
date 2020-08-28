@@ -21,7 +21,7 @@
     <LinearLayout
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?actionBarSize"
         android:background="@drawable/bg_toolbar"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +36,7 @@
             android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_6sdp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             app:cardCornerRadius="@dimen/_16sdp" />
 

@@ -27,9 +27,9 @@ import com.fondesa.kpermissions.anyPermanentlyDenied
 import com.fondesa.kpermissions.anyShouldShowRationale
 import com.fondesa.kpermissions.extension.addListener
 import com.fondesa.kpermissions.extension.permissionsBuilder
-import com.pharmacy.myapp.AuthGraphArgs
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.auth.SignInFragmentArgs
 import com.pharmacy.myapp.chat.ChatFragmentDirections.Companion.actionChatToChatReviewBottomSheet
 import com.pharmacy.myapp.chat.ChatFragmentDirections.Companion.actionChatToHome
 import com.pharmacy.myapp.chat.ChatFragmentDirections.Companion.actionChatToSendImageBottomSheet
@@ -78,19 +78,8 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
                 doNav(actionChatToChatReviewBottomSheet())
             }
             RESUME_CHAT -> viewModel.removeEndChatMessage()
-            AUTHORIZE -> navToAuth()
+            AUTHORIZE -> navController.navigate(R.id.fromChatToSignIn, SignInFragmentArgs(R.id.nav_chat).toBundle())
         }
-    }
-
-    private fun navToAuth() {
-        val options = NavOptions.Builder()
-            .setEnterAnim(R.anim.nav_enter_anim)
-            .setExitAnim(R.anim.nav_exit_anim)
-            .setPopEnterAnim(R.anim.nav_enter_pop_anim)
-            .setPopExitAnim(R.anim.nav_exit_pop_anim)
-            .setPopUpTo(R.id.nav_chat, false)
-            .build()
-        navController.navigate(R.id.actionChatToSignIn, AuthGraphArgs(KEY_NAVIGATION_CHAT).toBundle(), options)
     }
 
     private fun showChatEndDialog() {
@@ -243,10 +232,5 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
         rvMessagesChat.adapter = adapter
         rvMessagesChat.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, true)
         rvMessagesChat.setHasFixedSize(true)
-    }
-
-    companion object {
-
-        const val KEY_NAVIGATION_CHAT = "CHAT"
     }
 }

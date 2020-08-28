@@ -7,8 +7,8 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.SignUpFragmentDirections.Companion.actionFromSignUpToHome
 import com.pharmacy.myapp.core.extensions.*
+import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
 import com.pharmacy.myapp.ui.text.checkEmail
 import com.pharmacy.myapp.ui.text.checkLength
 import com.pharmacy.myapp.ui.text.isPhoneNumberValid
@@ -63,7 +63,7 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
                 cancelable = false
                 title = R.string.titleEndAuthDialog
                 positive = R.string.buttonEndAuth
-                positiveAction = { navController.navigate(actionFromSignUpToHome()) }
+                positiveAction = { navController.navigate(globalToHome()) }
                 negative = R.string.common_closeButton
             }
         }

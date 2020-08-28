@@ -16,12 +16,22 @@ class SearchViewModel(private val searchRepository: SearchRepository) : BaseProd
     private val _productCountLiveData by lazy { MutableLiveData<Int>() }
     val productCountLiveData: LiveData<Int> by lazy { _productCountLiveData.distinctUntilChanged() }
 
+    private var wishToSave: Triple<Boolean, Int, Int>? = null
+
     val pagedSearchLiveData by lazy {
         searchLiveData.distinctUntilChanged().switchMap {
             Pager(PagingConfig(PAGE_SIZE, initialLoadSize = INIT_LOAD_SIZE)) { SearchPagingSource(it, _productCountLiveData::postValue) }
                 .flow.cachedIn(viewModelScope)
                 .asLiveData()
         }
+    }
+
+    fun checkIsWishSaved() {
+        wishToSave?.let(::setOrRemoveWish)
+    }
+
+    fun clearWishToSave() {
+        wishToSave = null
     }
 
     fun doSearch(value: String) = searchLiveData.postValue(value)
@@ -31,6 +41,7 @@ class SearchViewModel(private val searchRepository: SearchRepository) : BaseProd
             if (searchRepository.isCustomerExist()) {
                 super.setOrRemoveWish(setOrRemove)
             } else {
+                wishToSave = setOrRemove
                 _errorLiveData.postValue(R.string.forAddingProduct)
             }
         }

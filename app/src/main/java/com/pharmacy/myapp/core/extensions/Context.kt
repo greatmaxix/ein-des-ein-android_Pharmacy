@@ -17,7 +17,15 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.pharmacy.myapp.BuildConfig
+import com.pharmacy.myapp.util.Constants
+import com.pharmacy.myapp.util.ImageFileUtil
+import java.io.File
 
 @ColorInt
 fun Context.getCompatColor(@ColorRes colorRes: Int): Int = ContextCompat.getColor(this, colorRes)
@@ -92,4 +100,25 @@ inline fun Context.debug(code: () -> Unit) {
     if (BuildConfig.DEBUG) {
         code()
     }
+}
+
+fun Context.saveDrawableToFile(drawableUrl: String, onComplete: () -> Unit = {}){
+    Glide.get(this).clearDiskCache()
+    Glide.with(this)
+        .asDrawable()
+        .listener(object : RequestListener<Drawable?> {
+
+            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable?>?, isFirstResource: Boolean): Boolean {
+                onComplete()
+                return true
+            }
+
+            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable?>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                resource?.let { ImageFileUtil.saveImageDrawable(it, File(externalCacheDir, Constants.AVATAR_FILE_NAME)) }
+                onComplete()
+                return true
+            }
+        })
+        .load(drawableUrl)
+        .submit()
 }

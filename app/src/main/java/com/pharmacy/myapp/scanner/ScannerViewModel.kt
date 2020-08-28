@@ -1,13 +1,14 @@
-package com.pharmacy.myapp.qrCodeScanner
+package com.pharmacy.myapp.scanner
 
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavDirections
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
+import com.pharmacy.myapp.scanner.repository.ScannerRepository
 import kotlinx.coroutines.delay
 import timber.log.Timber
 
-class QrCodeScannerViewModel(private val repository: QrCodeScannerRepository) : BaseViewModel() {
+class ScannerViewModel(private val repository: ScannerRepository) : BaseViewModel() {
 
     private val _errorLiveData by lazy { SingleLiveEvent<String>() }
     val errorLiveData: LiveData<String> by lazy { _errorLiveData }
