@@ -18,6 +18,7 @@ import com.pharmacy.myapp.payments.paymentsModule
 import com.pharmacy.myapp.product.productCardModule
 import com.pharmacy.myapp.profile.profileModule
 import com.pharmacy.myapp.qrCodeScanner.qrCodeScannerModule
+import com.pharmacy.myapp.region.regionModule
 import com.pharmacy.myapp.search.searchModule
 import com.pharmacy.myapp.splash.splashModule
 import org.koin.android.ext.koin.androidApplication
@@ -42,7 +43,8 @@ object Modules {
         cartModule,
         chatModule,
         checkoutMapModule,
-        paymentsModule
+        paymentsModule,
+        regionModule
     )
 
     private val managerModule = module(true) {

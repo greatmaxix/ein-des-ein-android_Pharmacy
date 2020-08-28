@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.fondesa.kpermissions.extension.addListener
 import com.fondesa.kpermissions.extension.permissionsBuilder
+import com.pharmacy.myapp.MainGraphDirections.Companion.globalToRegion
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
@@ -20,10 +21,7 @@ class OnboardingRegionFragment : BaseMVVMFragment(R.layout.fragment_onboarding_r
         tvOnboardingSkipRegion.onClick { viewModel.skipRegion() }
         generalInfoRegion.setButtonAction {
             val request = permissionsBuilder(Manifest.permission.ACCESS_FINE_LOCATION).build()
-            request.addListener { _ ->
-                // todo go to region selection
-                viewModel.skipRegion()
-            }
+            request.addListener { doNav(globalToRegion()) }
             request.send()
         }
     }

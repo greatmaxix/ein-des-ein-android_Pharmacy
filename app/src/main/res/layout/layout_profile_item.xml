@@ -5,7 +5,6 @@
     android:id="@+id/profileItemContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:foreground="?attr/selectableItemBackground"
     app:cardBackgroundColor="@color/colorGlobalWhite"
     app:cardCornerRadius="@dimen/_7sdp"
     app:cardElevation="1dp"
@@ -25,7 +24,7 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_12sdp"
             android:layout_marginBottom="@dimen/_8sdp"
-            android:tint="@color/darkBlue"
+            app:tint="@color/darkBlue"
             tools:src="@drawable/ic_logout" />
 
         <com.google.android.material.textview.MaterialTextView

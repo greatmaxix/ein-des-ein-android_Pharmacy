@@ -30,6 +30,7 @@ abstract class BaseMVVMFragment(@LayoutRes layoutResourceId: Int) : BaseFragment
 
     protected fun <T, LD : LiveData<T>> observe(liveData: LD, onChanged: (T) -> Unit) = liveData.observe(viewLifecycleOwner, Observer { it?.let(onChanged) })
 
+    @Deprecated("User observe() member function")
     protected fun <T> LiveData<T>.observeSingle(onChanged: (T?) -> Unit) {
         observe(viewLifecycleOwner, object : Observer<T> {
             override fun onChanged(t: T?) {
@@ -39,12 +40,14 @@ abstract class BaseMVVMFragment(@LayoutRes layoutResourceId: Int) : BaseFragment
         })
     }
 
+    @Deprecated("Use observe() member function, because we should invoke this class function and not use extension function", replaceWith = ReplaceWith("observe()", "com.pharmacy.myapp.core.base.mvvm"))
     protected fun <T> LiveData<T>.observeExt(onChanged: (T) -> Unit) {
         observe(viewLifecycleOwner, Observer {
             it?.let(onChanged)
         })
     }
 
+    @Deprecated("Use observeNullable() member function, because we should invoke this class function and not use extension function", replaceWith = ReplaceWith("observeNullable()", "com.pharmacy.myapp.core.base.mvvm"))
     protected fun <T> LiveData<T>.observeNullableExt(onChanged: (T?) -> Unit) {
         observe(viewLifecycleOwner, Observer {
             onChanged(it)

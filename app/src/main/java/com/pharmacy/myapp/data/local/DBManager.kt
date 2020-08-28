@@ -2,8 +2,10 @@ package com.pharmacy.myapp.data.local
 
 import android.content.Context
 import androidx.room.*
+import com.pharmacy.myapp.model.TemporaryRegion
 import com.pharmacy.myapp.model.customerInfo.CustomerDAO
 import com.pharmacy.myapp.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.model.region.RegionDAO
 
 class DBManager(context: Context) {
 
@@ -17,15 +19,19 @@ class DBManager(context: Context) {
         .apply { fallbackToDestructiveMigration() }
         .build()
 
-    @Database(entities = [CustomerInfo::class], version = VERSION, exportSchema = false)
+    @Database(entities = [CustomerInfo::class, TemporaryRegion::class], version = VERSION, exportSchema = false)
     @TypeConverters(StringListConverter::class)
     abstract class LocalDB : RoomDatabase() {
 
         abstract fun customerDAO(): CustomerDAO
 
+        abstract fun regionDAO(): RegionDAO
+
     }
 
     fun customerDAO() = db.customerDAO()
+
+    fun regionDAO() = db.regionDAO()
 
     class StringListConverter {
         @TypeConverter
