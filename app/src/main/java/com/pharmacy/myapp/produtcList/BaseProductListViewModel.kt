@@ -27,7 +27,6 @@ abstract class BaseProductListViewModel : BaseViewModel(), KoinComponent {
     private val _wishLiveData by lazy { SingleLiveEvent<Int>() }
     val wishLiteLiveData: LiveData<Int> by lazy { _wishLiveData }
 
-
     fun getProductInfo(globalProductId: Int) {
         launchIO {
             _progressLiveData.postValue(true)

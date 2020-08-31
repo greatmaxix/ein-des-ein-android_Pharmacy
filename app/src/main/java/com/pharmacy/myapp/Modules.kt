@@ -17,7 +17,7 @@ import com.pharmacy.myapp.order.orderModule
 import com.pharmacy.myapp.payments.paymentsModule
 import com.pharmacy.myapp.product.productCardModule
 import com.pharmacy.myapp.user.profile.profileModule
-import com.pharmacy.myapp.qrCodeScanner.qrCodeScannerModule
+import com.pharmacy.myapp.scanner.qrCodeScannerModule
 import com.pharmacy.myapp.region.regionModule
 import com.pharmacy.myapp.search.searchModule
 import com.pharmacy.myapp.splash.splashModule

@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.qrCodeScanner
+package com.pharmacy.myapp.scanner
 
 import android.content.DialogInterface
 import com.pharmacy.myapp.R

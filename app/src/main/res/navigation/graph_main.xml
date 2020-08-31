@@ -8,7 +8,6 @@
     <include app:graph="@navigation/graph_auth" />
     <include app:graph="@navigation/graph_profile" />
     <include app:graph="@navigation/graph_profile_guest" />
-    <include app:graph="@navigation/graph_home" />
     <include app:graph="@navigation/graph_payments" />
     <include app:graph="@navigation/graph_cart" />
     <include app:graph="@navigation/graph_checkout_map" />
@@ -22,7 +21,7 @@
 
         <action
             android:id="@+id/fromSplashToHome"
-            app:destination="@id/home_graph"
+            app:destination="@id/nav_home"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
@@ -51,6 +50,55 @@
             app:popUpToInclusive="true" />
     </fragment>
 
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.pharmacy.myapp.home.HomeFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/fromHomeToScanner"
+            app:destination="@id/nav_scanner"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+    </fragment>
+
+    <action
+        android:id="@+id/globalToHome"
+        app:destination="@id/nav_home"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim"
+        app:popUpTo="@id/main_graph"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/globalToDevTools"
+        app:destination="@id/nav_dev_tools"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    <fragment
+        android:id="@+id/nav_dev_tools"
+        android:name="com.pharmacy.myapp.devTools.DevToolsFragment"
+        android:label="@string/devToolsLabel"
+        tools:layout="@layout/fragment_dev_tools" />
+
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.pharmacy.myapp.cart.CartFragment"
+        android:label="@string/cartLabel"
+        tools:layout="@layout/fragment_cart" />
+
+    <action
+        android:id="@+id/globalToPayments"
+        app:destination="@id/graph_payments" />
+
+
     <action
         android:id="@+id/globalToChat"
         app:destination="@id/nav_chat"
@@ -66,7 +114,7 @@
         tools:layout="@layout/fragment_chat">
 
         <action
-            android:id="@+id/actionChatToSignIn"
+            android:id="@+id/fromChatToSignIn"
             app:destination="@id/auth_graph"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
@@ -75,12 +123,12 @@
 
         <action
             android:id="@+id/actionChatToHome"
-            app:destination="@id/home_graph"
+            app:destination="@id/nav_home"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim"
-            app:popUpTo="@id/home_graph"
+            app:popUpTo="@id/nav_home"
             app:popUpToInclusive="true" />
 
         <action
@@ -133,17 +181,9 @@
         app:popEnterAnim="@anim/nav_enter_pop_anim"
         app:popExitAnim="@anim/nav_exit_pop_anim" />
 
-    <action
-        android:id="@+id/globalToQrCodeScanner"
-        app:destination="@id/nav_qr_code_scanner"
-        app:enterAnim="@anim/nav_enter_anim"
-        app:exitAnim="@anim/nav_exit_anim"
-        app:popEnterAnim="@anim/nav_enter_pop_anim"
-        app:popExitAnim="@anim/nav_exit_pop_anim" />
-
     <fragment
-        android:id="@+id/nav_qr_code_scanner"
-        android:name="com.pharmacy.myapp.qrCodeScanner.QrCodeScannerFragment"
+        android:id="@+id/nav_scanner"
+        android:name="com.pharmacy.myapp.scanner.ScannerFragment"
         android:label="@string/qrCodeLabel"
         tools:layout="@layout/fragment_qr_code_scanner" />
 
@@ -198,6 +238,20 @@
         <action
             android:id="@+id/fromSearchToAuth"
             app:destination="@id/auth_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+        <action
+            android:id="@+id/fromSearchToScanner"
+            app:destination="@id/nav_scanner"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+        <action
+            android:id="@+id/fromSearchToProduct"
+            app:destination="@id/nav_product"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"

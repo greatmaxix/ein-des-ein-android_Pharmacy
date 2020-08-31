@@ -5,14 +5,6 @@
     android:id="@+id/auth_graph"
     app:startDestination="@id/nav_sign_in">
 
-    <include app:graph="@navigation/graph_home" />
-
-    <argument
-        android:name="authResultDestination"
-        android:defaultValue="@null"
-        app:argType="string"
-        app:nullable="true" />
-
     <fragment
         android:id="@+id/nav_sign_in"
         android:name="com.pharmacy.myapp.auth.SignInFragment"
@@ -20,10 +12,9 @@
         tools:layout="@layout/fragment_sign_in">
 
         <argument
-            android:name="authResultDestination"
-            android:defaultValue="@null"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="popBackId"
+            android:defaultValue="-1"
+            app:argType="integer" />
 
         <action
             android:id="@+id/actionFromSignInToSignUp"
@@ -37,14 +28,6 @@
         <action
             android:id="@+id/actionFromSignInToCode"
             app:destination="@id/nav_code"
-            app:enterAnim="@anim/nav_enter_anim"
-            app:exitAnim="@anim/nav_exit_anim"
-            app:popEnterAnim="@anim/nav_enter_pop_anim"
-            app:popExitAnim="@anim/nav_exit_pop_anim" />
-
-        <action
-            android:id="@+id/actionFromSignToHome"
-            app:destination="@id/home_graph"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
@@ -66,31 +49,12 @@
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
 
-        <action
-            android:id="@+id/actionFromSignUpToHome"
-            app:destination="@id/home_graph"
-            app:enterAnim="@anim/nav_enter_anim"
-            app:exitAnim="@anim/nav_exit_anim"
-            app:popEnterAnim="@anim/nav_enter_pop_anim"
-            app:popExitAnim="@anim/nav_exit_pop_anim" />
-
     </fragment>
 
     <fragment
         android:id="@+id/nav_code"
         android:name="com.pharmacy.myapp.auth.CodeFragment"
         android:label="@null"
-        tools:layout="@layout/fragment_code">
+        tools:layout="@layout/fragment_code" />
 
-        <action
-            android:id="@+id/actionFromCodeToHome"
-            app:destination="@id/home_graph"
-            app:enterAnim="@anim/nav_enter_anim"
-            app:exitAnim="@anim/nav_exit_anim"
-            app:popEnterAnim="@anim/nav_enter_pop_anim"
-            app:popExitAnim="@anim/nav_exit_pop_anim"
-            app:popUpTo="@id/main_graph"
-            app:popUpToInclusive="true" />
-
-    </fragment>
 </navigation>
