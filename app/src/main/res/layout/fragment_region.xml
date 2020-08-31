@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/lightGrey">
 
-    <!--todo add logic to fragment-->
     <com.pharmacy.myapp.ui.EmptyContainerView
         android:id="@+id/llRegionNotFoundContainer"
         android:layout_width="match_parent"
@@ -14,9 +13,9 @@
         android:background="@color/colorGlobalWhite"
         android:visibility="gone"
         app:isButtonVisible="false"
-        app:layout_constraintTop_toBottomOf="@+id/llToolbar"
-        app:subtitleEmpty="@string/noGoodsFoundSubtitle"
-        app:titleEmpty="@string/noGoodsFoundTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/llToolbarRegion"
+        app:subtitleEmpty="@string/noRegionFoundSubtitle"
+        app:titleEmpty="@string/noRegionFoundTitle" />
 
     <LinearLayout
         android:id="@+id/llToolbarRegion"

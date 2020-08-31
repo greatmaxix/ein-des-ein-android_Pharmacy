@@ -8,14 +8,19 @@ import com.pharmacy.myapp.model.region.RegionWithHeader
 import com.pharmacy.myapp.region.adapter.viewHolder.HeaderViewHolder
 import com.pharmacy.myapp.region.adapter.viewHolder.RegionViewHolder
 
-class RegionAdapter(private val itemClick: (Region) -> Unit) : BaseFilterRecyclerAdapter<RegionWithHeader, BaseViewHolder<RegionWithHeader>>() {
+class RegionAdapter(private val itemClick: (Region) -> Unit, private val emptyListCallback: (Boolean) -> Unit) :
+    BaseFilterRecyclerAdapter<RegionWithHeader, BaseViewHolder<RegionWithHeader>>() {
 
-    override fun transformList(list: MutableList<RegionWithHeader>) = list
-        .subList(0, (list.indexOfLast { it.region != null } + 1)) // skip all lasts headers without region
-        .filterIndexed { index, item -> // filter intermediate header without region
-            if (index != 0) !(item.header != 0.toChar() && list[index - 1].header != 0.toChar()) else true
-        }
-        .toMutableList()
+    override fun transformList(list: MutableList<RegionWithHeader>): MutableList<RegionWithHeader> {
+        val transformedList = list
+            .subList(0, (list.indexOfLast { it.region != null } + 1)) // skip all lasts headers without region
+            .filterIndexed { index, item -> // filter intermediate header without region
+                if (index != 0) !(item.header != 0.toChar() && list[index - 1].header != 0.toChar()) else true
+            }
+            .toMutableList()
+        emptyListCallback(transformedList.isEmpty())
+        return transformedList
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
         HEADER -> HeaderViewHolder.newInstance(parent)

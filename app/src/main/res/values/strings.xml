@@ -299,4 +299,8 @@
     <string name="onboardingRegionSubtitle">Выберите регион из списка доступных для актуального отображения контента</string>
     <string name="onboardingRegionActionText">Выбрать регион</string>
 
+    <!--Region-->
+    <string name="noRegionFoundSubtitle">Повторите поиск</string>
+    <string name="noRegionFoundTitle">Регион не найден</string>
+
 </resources>

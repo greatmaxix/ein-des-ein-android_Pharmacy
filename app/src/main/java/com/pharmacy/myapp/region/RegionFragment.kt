@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
+import com.pharmacy.myapp.core.extensions.animateVisibleOrGoneIfNot
 import com.pharmacy.myapp.core.extensions.falseIfNull
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.model.region.RegionWithHeader
@@ -18,10 +19,12 @@ import kotlinx.coroutines.launch
 
 class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(R.layout.fragment_region) {
 
-    private val regionAdapter = RegionAdapter {
+    private val regionAdapter = RegionAdapter({
         searchViewRegion.clearFocus()
         viewModel.regionSelected(it)
-    }
+    }, {
+        requireActivity().runOnUiThread { llRegionNotFoundContainer.animateVisibleOrGoneIfNot(it) }
+    })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,7 +36,7 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
         ivBackRegion.onClick { requireActivity().onBackPressed() }
         searchViewRegion.setSearchListener { text ->
             viewLifecycleOwner.lifecycleScope.launch {
-                regionAdapter.filter { it.region?.name?.contains(text).falseIfNull() || it.header != 0.toChar() }
+                regionAdapter.filter { it.region?.name?.contains(text, true).falseIfNull() || it.header != 0.toChar() }
             }
         }
     }

@@ -20,8 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:subtitleEmpty="@string/favoritesEmptyContainerSubtitle"
-        app:titleEmpty="@string/favoritesEmptyContainerTitle"
-        tools:visibility="visible" />
+        app:titleEmpty="@string/favoritesEmptyContainerTitle" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWish"
