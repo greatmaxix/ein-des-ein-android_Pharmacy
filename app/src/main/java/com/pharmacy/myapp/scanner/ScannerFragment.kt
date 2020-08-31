@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.qrCodeScanner
+package com.pharmacy.myapp.scanner
 
 import android.Manifest
 import android.content.Intent
@@ -24,7 +24,7 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class QrCodeScannerFragment(private val viewModel: QrCodeScannerViewModel) : BaseMVVMFragment(R.layout.fragment_qr_code_scanner) {
+class ScannerFragment(private val viewModel: ScannerViewModel) : BaseMVVMFragment(R.layout.fragment_qr_code_scanner) {
 
     private var codeScanner: CodeScanner? = null
 

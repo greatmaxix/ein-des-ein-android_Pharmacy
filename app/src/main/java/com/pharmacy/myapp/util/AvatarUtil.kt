@@ -9,24 +9,26 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import java.io.File
 
+@Deprecated("Use extensions fun from Context @saveDrawableToFile")
 object AvatarUtil {
-
     fun saveAvatarToFile(context: Context, avatarUrl: String, actionEnd: () -> Unit = {}) {
         Glide.get(context).clearDiskCache()
-        Glide.with(context).asDrawable().listener(object : RequestListener<Drawable?> {
+        Glide.with(context)
+            .asDrawable()
+            .listener(object : RequestListener<Drawable?> {
 
-            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable?>?, isFirstResource: Boolean): Boolean {
-                actionEnd()
-                return true
-            }
+                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable?>?, isFirstResource: Boolean): Boolean {
+                    actionEnd()
+                    return true
+                }
 
-            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable?>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                val file = File(context.externalCacheDir, Constants.AVATAR_FILE_NAME)
-                resource?.let { ImageFileUtil.saveImageDrawable(it, file) }
-                actionEnd()
-                return true
-            }
-        }).load(avatarUrl).submit()
+                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable?>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                    resource?.let { ImageFileUtil.saveImageDrawable(it, File(context.externalCacheDir, Constants.AVATAR_FILE_NAME)) }
+                    actionEnd()
+                    return true
+                }
+            })
+            .load(avatarUrl)
+            .submit()
     }
-
 }

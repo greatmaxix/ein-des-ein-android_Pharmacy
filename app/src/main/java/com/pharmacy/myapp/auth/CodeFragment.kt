@@ -55,5 +55,4 @@ class CodeFragment : AuthBaseFragment(R.layout.fragment_code) {
 
     private val EditText.isCodeLength
         get() = length() == 5
-
 }

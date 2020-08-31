@@ -11,8 +11,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layoutDirection="locale" />
+        layout="@layout/toolbar" />
 
     <FrameLayout
         android:layout_width="match_parent"

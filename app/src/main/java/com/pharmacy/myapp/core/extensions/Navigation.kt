@@ -16,7 +16,7 @@ fun NavController.onNavDestinationSelected(
     inclusive: Boolean = false,
     navigatorExtras: Navigator.Extras? = null
 ) = try {
-    navigate(destId, args, getNavOptions().setPopUpTo(startDestination, inclusive).build(), navigatorExtras)
+    navigate(destId, args, navOptions.setPopUpTo(startDestination, inclusive).build(), navigatorExtras)
     true
 } catch (e: IllegalArgumentException) {
     Timber.e("Destination problem: $e")
@@ -25,8 +25,9 @@ fun NavController.onNavDestinationSelected(
 
 fun NavController.onNavDestinationSelected(directions: NavDirections) = onNavDestinationSelected(directions.actionId, directions.arguments)
 
-fun getNavOptions() = NavOptions.Builder()
-    .setEnterAnim(R.anim.nav_enter_anim)
-    .setExitAnim(R.anim.nav_exit_anim)
-    .setPopEnterAnim(R.anim.nav_enter_pop_anim)
-    .setPopExitAnim(R.anim.nav_exit_pop_anim)
+val navOptions
+    get() = NavOptions.Builder()
+        .setEnterAnim(R.anim.nav_enter_anim)
+        .setExitAnim(R.anim.nav_exit_anim)
+        .setPopEnterAnim(R.anim.nav_enter_pop_anim)
+        .setPopExitAnim(R.anim.nav_exit_pop_anim)

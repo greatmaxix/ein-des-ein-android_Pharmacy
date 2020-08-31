@@ -23,7 +23,7 @@
 
         <action
             android:id="@+id/actionFromOnboardingToHome"
-            app:destination="@id/home_graph"
+            app:destination="@id/nav_home"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"

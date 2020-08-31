@@ -43,7 +43,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
         navController.currentDestination?.apply {
             when {
                 isTopDestinationAndHome -> finish()
-                isTopLevelDestination -> navController.navigate(R.id.home_graph)
+                isTopLevelDestination -> navController.navigate(R.id.nav_home)
                 else -> super.onBackPressed()
             }
         } ?: super.onBackPressed()
