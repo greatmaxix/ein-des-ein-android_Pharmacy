@@ -96,13 +96,12 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
     }
 
     fun resendCode() {
+        progressLiveData.value = true
         launchIO {
-            progressLiveData.postValue(true)
             val response = repository.auth(customerPhone)
             progressLiveData.postValue(false)
             when (response) {
-                is Success -> {/*todo snackbar*/
-                }
+                is Success -> {/*todo snackbar*/ }
                 is Error -> errorLiveData.postValue(response.errorMessage)
             }
         }

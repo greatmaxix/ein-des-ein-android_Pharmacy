@@ -8,7 +8,7 @@ import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSign
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.onDoneImeAction
 import com.pharmacy.myapp.core.extensions.setDebounceOnClickListener
-import com.pharmacy.myapp.splash.SplashFragmentDirections
+import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
 import com.pharmacy.myapp.ui.text.isPhoneNumberValid
 import com.pharmacy.myapp.ui.text.setPhoneRule
 import kotlinx.android.synthetic.main.fragment_sign_in.*
@@ -31,7 +31,7 @@ class SignInFragment : AuthBaseFragment(R.layout.fragment_sign_in) {
             }
         }
         tvSkipAuth.setDebounceOnClickListener {
-            navController.navigate(SplashFragmentDirections.globalToHome())
+            navController.navigate(globalToHome())
         }
     }
 }
