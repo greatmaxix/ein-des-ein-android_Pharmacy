@@ -2,7 +2,6 @@ package com.pharmacy.myapp.cart
 
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.model.TempProductModel
 import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter
@@ -39,7 +38,7 @@ class CartAdapter : BaseRecyclerAdapter<TempProductModel, CartAdapter.Recommende
             itemView.button3.onClick {
                 itemView.button2.text = (itemView.button2.text.toString().toInt() + 1).toString()
             }
-            itemView.recommendedFavoriteCart.onClick { itemView.context.toast("TODO: Favorite") }
+            itemView.recommendedWishCart.onClick { itemView.context.toast("TODO: Wish") }
         }
 
         companion object {

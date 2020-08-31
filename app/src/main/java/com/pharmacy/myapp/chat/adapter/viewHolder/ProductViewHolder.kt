@@ -30,7 +30,7 @@ class ProductViewHolder(itemView: View) : BaseViewHolder<ChatMessage>(itemView) 
             tvChatProductDescription.text = productMessage.product.description
             tvChatProductPrice.text = productMessage.product.price
             tvChatProductTitle.text = productMessage.product.name
-            ivWish.onClick { itemView.context.toast("TODO: Favorite") }
+            ivWish.onClick { itemView.context.toast("TODO: Wish") }
             ivChatProduct.loadGlide(productMessage.product.imageUrl)
         }
     }

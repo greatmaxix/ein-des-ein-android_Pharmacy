@@ -29,7 +29,7 @@
         android:textColor="@color/darkBlue"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/recommendedFavoriteCart"
+        app:layout_constraintEnd_toStartOf="@id/recommendedWishCart"
         app:layout_constraintStart_toEndOf="@+id/ivProductImageCart"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Название товара" />
@@ -44,7 +44,7 @@
         android:maxLines="1"
         android:textColor="@color/darkBlue"
         android:textSize="@dimen/_12ssp"
-        app:layout_constraintEnd_toStartOf="@id/recommendedFavoriteCart"
+        app:layout_constraintEnd_toStartOf="@id/recommendedWishCart"
         app:layout_constraintStart_toStartOf="@+id/tvProductTitleCart"
         app:layout_constraintTop_toBottomOf="@+id/tvProductTitleCart"
         tools:text="Название товара" />
@@ -59,13 +59,13 @@
         android:maxLines="1"
         android:textColor="@color/darkBlue"
         android:textSize="@dimen/_10ssp"
-        app:layout_constraintEnd_toStartOf="@id/recommendedFavoriteCart"
+        app:layout_constraintEnd_toStartOf="@id/recommendedWishCart"
         app:layout_constraintStart_toStartOf="@+id/tvProductTitleCart"
         app:layout_constraintTop_toBottomOf="@+id/tvProductDescriptionCart"
         tools:text="Название товара" />
 
     <ImageView
-        android:id="@+id/recommendedFavoriteCart"
+        android:id="@+id/recommendedWishCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_12sdp"

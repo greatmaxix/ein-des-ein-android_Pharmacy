@@ -26,7 +26,7 @@ class WishFragment(private val viewModel: WishViewModel) : BaseMVVMFragment(R.la
         super.onViewCreated(view, savedInstanceState)
         showBackButton()
         rvWish.adapter = productAdapter
-        emptyContentFavorites.setButtonAction { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_favorites) }
+        emptyContentWish.setButtonAction { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_wish) }
 
         productAdapter.registerAdapterDataObserver(observer)
     }
@@ -42,7 +42,7 @@ class WishFragment(private val viewModel: WishViewModel) : BaseMVVMFragment(R.la
     }
 
     private fun setListVisibility(visible: Boolean) {
-        emptyContentFavorites.animateVisibleOrGone(visible)
+        emptyContentWish.animateVisibleOrGone(visible)
         rvWish.animateVisibleOrGone(!visible)
     }
 

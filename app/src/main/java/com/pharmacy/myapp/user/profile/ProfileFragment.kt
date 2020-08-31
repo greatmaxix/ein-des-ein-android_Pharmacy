@@ -8,7 +8,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.user.profile.ProfileFragmentDirections.Companion.actionFromProfileToEdit
-import com.pharmacy.myapp.user.profile.ProfileFragmentDirections.Companion.actionFromProfileToFavorites
+import com.pharmacy.myapp.user.profile.ProfileFragmentDirections.Companion.actionFromProfileToWish
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
@@ -26,7 +26,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
                 negative = R.string.common_closeButton
             }
         }
-        favoriteContainerProfile.onClick { doNav(actionFromProfileToFavorites()) }
+        wishContainerProfile.onClick { doNav(actionFromProfileToWish()) }
         analyzesContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_profile) }
         recipesContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
         orderContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_my_orders, null, R.id.nav_profile) }

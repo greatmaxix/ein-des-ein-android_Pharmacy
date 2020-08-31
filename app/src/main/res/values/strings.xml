@@ -101,8 +101,8 @@
 
     <!--Profile-->
     <string name="profileImageDescription">Profile image</string>
-    <string name="favoriteImageDescriptionProfile">Favorite image description</string>
-    <string name="favoriteProfile">Избранное</string>
+    <string name="wishImageDescriptionProfile">Wish image description</string>
+    <string name="wishProfile">Избранное</string>
     <string name="orderImageProfile">Order image</string>
     <string name="orderProfile">Заказы</string>
     <string name="analysesImageProfile">Analyses image</string>
@@ -263,11 +263,11 @@
     <string name="analyzesEmptyContainerSubtitle">Это просто исправить! Запишитесь на анализы через наше приложение</string>
     <string name="analyzesEmptyContainerTitle">У Вас пока нет результатов анализов</string>
 
-    <!-- Favorites -->
-    <string name="favoritesLabel">Избранное</string>
-    <string name="favoritesEmptyContainerAction">Начать поиск</string>
-    <string name="favoritesEmptyContainerSubtitle">Начните поиск, что бы добавить товар в корзину</string>
-    <string name="favoritesEmptyContainerTitle">Вы пока не добавили товар в избранное</string>
+    <!-- Wish -->
+    <string name="wishLabel">Избранное</string>
+    <string name="wishEmptyContainerAction">Начать поиск</string>
+    <string name="wishEmptyContainerSubtitle">Начните поиск, что бы добавить товар в корзину</string>
+    <string name="wishEmptyContainerTitle">Вы пока не добавили товар в избранное</string>
 
     <!-- Checkout map -->
     <string name="checkoutMapLabel">Выбор аптеки</string>
