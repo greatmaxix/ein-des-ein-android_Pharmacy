@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.pharmacy.myapp.MainGraphDirections
+import com.pharmacy.myapp.MainGraphDirections.Companion.globalToRegion
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
@@ -19,7 +19,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fabEditProfile.onClick { doNav(actionFromProfileToEdit()) }
-        itemRegionProfile.setOnClick { doNav(MainGraphDirections.globalToRegion()) }
+        itemRegionProfile.setOnClick { doNav(globalToRegion()) }
         itemLogoutProfile.setOnClick { showLogoutDialog() }
 
         wishContainerProfile.onClick { doNav(actionFromProfileToWish()) }

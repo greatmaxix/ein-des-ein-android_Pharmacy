@@ -8,6 +8,7 @@ import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.model.region.Region
 import com.pharmacy.myapp.model.region.RegionWithHeader
+import com.pharmacy.myapp.region.repository.RegionRepository
 import kotlinx.coroutines.delay
 
 class RegionViewModel(private val repository: RegionRepository) : BaseViewModel() {
@@ -28,8 +29,8 @@ class RegionViewModel(private val repository: RegionRepository) : BaseViewModel(
     private var itemClicked = false
 
     init {
+        _progressLiveData.value = true
         launchIO {
-            _progressLiveData.postValue(true)
             when (val response = repository.getRegions()) {
                 is Success -> {
                     val items = response.value.data.items

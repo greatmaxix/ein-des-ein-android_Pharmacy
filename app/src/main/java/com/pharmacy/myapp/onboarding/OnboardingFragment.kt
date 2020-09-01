@@ -2,7 +2,6 @@ package com.pharmacy.myapp.onboarding
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.clearFragmentResultListener
 import androidx.fragment.app.setFragmentResultListener
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
@@ -17,7 +16,6 @@ class OnboardingFragment : BaseMVVMFragment(R.layout.fragment_onboarding) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vpOnboarding.adapter = OnboardingPagerAdapter(this)
-        clearFragmentResultListener(REGION_SELECTION_FINISHED_KEY)
         setFragmentResultListener(REGION_SELECTION_FINISHED_KEY) { _, _ -> viewModel.skipRegion(true) }
         attachBackPressCallback {
             if (vpOnboarding.currentItem == 1) {

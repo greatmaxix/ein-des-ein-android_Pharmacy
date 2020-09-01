@@ -25,7 +25,7 @@ abstract class BaseFilterRecyclerAdapter<T, VH : BaseViewHolder<T>>(list: List<T
         val (newList, diff) = withContext(Default) {
             originList
                 .filter(predicate)
-                .run { transformList(this.toMutableList()) }
+                .run { transformList(toMutableList()) }
                 .run { this to DiffUtil.calculateDiff(diffResult(items, this)) }
         }
         items = newList.toMutableList()

@@ -15,6 +15,7 @@ import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.model.region.RegionWithHeader
 import com.pharmacy.myapp.region.adapter.RegionAdapter
 import kotlinx.android.synthetic.main.fragment_region.*
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 
 class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(R.layout.fragment_region) {
@@ -23,7 +24,9 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
         searchViewRegion.clearFocus()
         viewModel.regionSelected(it)
     }, {
-        requireActivity().runOnUiThread { llRegionNotFoundContainer.animateVisibleOrGoneIfNot(it) }
+        viewLifecycleOwner.lifecycleScope.launch(Main) {
+            llRegionNotFoundContainer.animateVisibleOrGoneIfNot(it)
+        }
     })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,10 +45,10 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
     }
 
     override fun onBindLiveData() {
-        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
-        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
-        viewModel.regionsLiveData.observeExt(::setListToAdapter)
-        viewModel.regionSavedLiveData.observeExt {
+        observe(viewModel.errorLiveData)  { messageCallback?.showError(it) }
+        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        observe(viewModel.regionsLiveData, ::setListToAdapter)
+        observe(viewModel.regionSavedLiveData) {
             setFragmentResult(it)
             navigationBack()
         }
