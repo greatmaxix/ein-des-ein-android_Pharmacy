@@ -16,15 +16,12 @@ import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.PHONE
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REFRESH_TOKEN
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REGION_ID
 import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
-import com.pharmacy.myapp.model.BaseDataResponse
-import com.pharmacy.myapp.user.model.customerInfo.CustomerInfoItem
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Path
 import java.util.concurrent.TimeUnit
 
 class RestManager : KoinComponent {
