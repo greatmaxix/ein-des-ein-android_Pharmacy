@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.pharmacy.myapp.MainGraphDirections
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
@@ -18,14 +19,9 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fabEditProfile.onClick { doNav(actionFromProfileToEdit()) }
-        itemLogoutProfile.setOnClick {
-            showAlertRes(getString(R.string.areYouSureToExit)) {
-                cancelable = false
-                positive = R.string.common_okButton
-                positiveAction = { viewModel.logout() }
-                negative = R.string.common_closeButton
-            }
-        }
+        itemRegionProfile.setOnClick { doNav(MainGraphDirections.globalToRegion()) }
+        itemLogoutProfile.setOnClick { showLogoutDialog() }
+
         wishContainerProfile.onClick { doNav(actionFromProfileToWish()) }
         analyzesContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_profile) }
         recipesContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
@@ -49,6 +45,13 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
                 transition(DrawableTransitionOptions.withCrossFade())
             }
         }
+    }
+
+    private fun showLogoutDialog() = showAlertRes(getString(R.string.areYouSureToExit)) {
+        cancelable = false
+        positive = R.string.common_okButton
+        positiveAction = { viewModel.logout() }
+        negative = R.string.common_closeButton
     }
 
 }

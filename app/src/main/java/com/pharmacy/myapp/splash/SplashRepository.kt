@@ -13,6 +13,7 @@ class SplashRepository(private val rm: RestManager, private val dao: CustomerDAO
 
     private suspend fun saveCustomerInfo(customer: CustomerInfo): String? {
         dao.save(customer)
+        rm.setLocalRegion(customer.region?.regionId)
         return customer.avatarInfo?.url
     }
 }

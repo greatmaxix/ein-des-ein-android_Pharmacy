@@ -16,6 +16,8 @@ import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.PHONE
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REFRESH_TOKEN
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REGION_ID
 import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
+import com.pharmacy.myapp.model.BaseDataResponse
+import com.pharmacy.myapp.user.model.customerInfo.CustomerInfoItem
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import org.koin.core.KoinComponent
@@ -28,6 +30,7 @@ import java.util.concurrent.TimeUnit
 class RestManager : KoinComponent {
 
     private val spManager: SPManager by inject()
+    private var regionId: Int? = null
 
     companion object {
         private const val BASE_URL = "https://api.pharmacies.fmc-dev.com" // "https://api.pharmacies.release.fmc-dev.com" TODO change to release in future
@@ -113,7 +116,7 @@ class RestManager : KoinComponent {
 
     suspend fun fetchCustomerInfo() = api.fetchCustomerInfo()
 
-    suspend fun productSearch(page: Int? = null, pageSize: Int? = null, regionId: Int? = null, barCode: Int? = null, name: String? = null) =
+    suspend fun productSearch(page: Int? = null, pageSize: Int? = null, barCode: Int? = null, name: String? = null) =
         api.productSearch(page, pageSize, regionId, barCode, name)
 
     suspend fun getProductById(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.getProductById(globalProductId) }
@@ -127,4 +130,8 @@ class RestManager : KoinComponent {
     suspend fun regions() = safeApiCall(tokenRefreshCall) { api.regions() }
 
     suspend fun updateRegion(id: Int) = safeApiCall(tokenRefreshCall) { api.updateRegion(mapOf(REGION_ID to id)) }
+
+    fun setLocalRegion(id: Int?) {
+        regionId = id
+    }
 }
