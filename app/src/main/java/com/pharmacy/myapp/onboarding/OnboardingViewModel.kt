@@ -26,7 +26,6 @@ class OnboardingViewModel(repository: OnboardingRepository) : BaseViewModel() {
         viewModelScope.launch {
             if (needDelay) delay(1000) // for smooth animation between screens
             _skipRegionLiveData.postValue(Unit)
-            Unit
         }
     }
 
