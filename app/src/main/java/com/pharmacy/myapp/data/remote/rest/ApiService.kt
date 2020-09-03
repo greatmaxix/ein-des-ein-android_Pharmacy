@@ -6,6 +6,7 @@ import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
 import com.pharmacy.myapp.data.remote.rest.response.UploadImageResponse
 import com.pharmacy.myapp.model.*
 import com.pharmacy.myapp.user.model.customerInfo.CustomerInfoItem
+import com.pharmacy.myapp.model.region.Region
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.product.model.ProductLite
 import okhttp3.MultipartBody
@@ -54,6 +55,9 @@ interface ApiService {
 
     @GET("$API_PATH_PUBLIC/products/global-product/{id}")
     suspend fun getProductById(@Path("id") globalProductId: Int): BaseDataResponseWithItem<Product>
+
+    @PATCH("$API_PATH_CUSTOMER/customer/region")
+    suspend fun updateRegion(@Body arguments: Map<String, Int>): BaseDataResponse<CustomerInfoItem>
 
     @POST("/api/v1/customer/wishlist/global-product/{id}")
     suspend fun setToWishList(@Path("id") globalProductId: Int): BaseDataResponse<Unit>

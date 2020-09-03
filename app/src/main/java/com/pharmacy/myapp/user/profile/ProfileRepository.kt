@@ -13,7 +13,9 @@ class ProfileRepository(private val spManager: SPManager, private val rm: RestMa
 
     suspend fun updateCustomerInfo(name: String, email: String, avatarUuid: String) =
         safeApiCall(rm.tokenRefreshCall) {
-            saveCustomerInfo(rm.updateCustomerInfo(name, email, avatarUuid).data.item)
+            val updateCustomerInfo = rm.updateCustomerInfo(name, email, avatarUuid)
+            rm.setLocalRegion(updateCustomerInfo.data.item.region?.regionId)
+            saveCustomerInfo(updateCustomerInfo.data.item)
         }
 
     private suspend fun saveCustomerInfo(customer: CustomerInfo) = dao.update(customer)

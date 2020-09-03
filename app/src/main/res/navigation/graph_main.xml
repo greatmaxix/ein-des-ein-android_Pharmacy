@@ -278,5 +278,18 @@
             app:nullable="true" />
     </fragment>
 
+    <action
+        android:id="@+id/globalToRegion"
+        app:destination="@id/nav_region"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    <fragment
+        android:id="@+id/nav_region"
+        android:name="com.pharmacy.myapp.region.RegionFragment"
+        android:label="@string/regionLabel"
+        tools:layout="@layout/fragment_region" />
 
 </navigation>

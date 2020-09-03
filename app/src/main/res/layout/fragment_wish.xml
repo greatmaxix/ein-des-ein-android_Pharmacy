@@ -10,18 +10,17 @@
         layout="@layout/toolbar" />
 
     <com.pharmacy.myapp.ui.EmptyContainerView
-        android:id="@+id/emptyContentFavorites"
+        android:id="@+id/emptyContentWish"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
-        app:buttonTextEmpty="@string/favoritesEmptyContainerAction"
+        app:buttonTextEmpty="@string/wishEmptyContainerAction"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:subtitleEmpty="@string/favoritesEmptyContainerSubtitle"
-        app:titleEmpty="@string/favoritesEmptyContainerTitle"
-        tools:visibility="visible" />
+        app:subtitleEmpty="@string/wishEmptyContainerSubtitle"
+        app:titleEmpty="@string/wishEmptyContainerTitle" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWish"

@@ -42,6 +42,6 @@ class SPManager(val context: Context) : SharedPreferenceContext {
     }
 
     private enum class Keys {
-        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN
+        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, REGION_ID, REGION_NAME
     }
 }

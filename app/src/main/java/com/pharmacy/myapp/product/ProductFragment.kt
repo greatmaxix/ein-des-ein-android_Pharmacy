@@ -57,7 +57,7 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseMVVMFragmen
 
     private fun onQuestions() { requireContext().toast("TODO: Ask pharmacist") }
 
-    private fun onWish() { requireContext().toast("TODO: Favorite") }
+    private fun onWish() { requireContext().toast("TODO: Wish") }
 
     private fun onCart() { requireContext().toast("TODO: Add to cart") }
 

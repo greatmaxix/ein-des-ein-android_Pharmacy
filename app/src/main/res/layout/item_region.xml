@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileItemContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_8sdp"
+    android:layout_marginEnd="@dimen/_8sdp"
+    app:cardBackgroundColor="@color/colorGlobalWhite"
+    app:cardCornerRadius="@dimen/_7sdp"
+    app:cardElevation="1dp"
+    app:cardMaxElevation="0dp"
+    app:cardUseCompatPadding="true"
+    app:rippleColor="@color/colorRippleBlue">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvRegionName"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/darkBlue"
+        tools:text="Нур султан" />
+
+    <ImageView
+        android:id="@+id/ivRegionCheck"
+        android:layout_width="@dimen/_28sdp"
+        android:layout_height="@dimen/_28sdp"
+        android:layout_gravity="end|center"
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:srcCompat="@drawable/animated_check" />
+
+</com.google.android.material.card.MaterialCardView>

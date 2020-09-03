@@ -97,7 +97,7 @@
                     android:baselineAligned="false">
 
                     <LinearLayout
-                        android:id="@+id/favoriteContainerProfile"
+                        android:id="@+id/wishContainerProfile"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".9"
@@ -116,7 +116,7 @@
                             <ImageView
                                 android:layout_width="@dimen/_32sdp"
                                 android:layout_height="@dimen/_32sdp"
-                                android:contentDescription="@string/favoriteImageDescriptionProfile"
+                                android:contentDescription="@string/wishImageDescriptionProfile"
                                 android:padding="@dimen/_4sdp"
                                 android:src="@drawable/ic_heart_stroke" />
                         </com.google.android.material.card.MaterialCardView>
@@ -126,7 +126,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginBottom="@dimen/_8sdp"
-                            android:text="@string/favoriteProfile"
+                            android:text="@string/wishProfile"
                             android:textColor="@color/darkBlue"
                             android:textSize="@dimen/_10ssp" />
                     </LinearLayout>
@@ -249,7 +249,7 @@
                 app:layout_constraintVertical_bias="0">
 
                 <com.pharmacy.myapp.ui.ProfileItemView
-                    android:id="@+id/itemLocationProfile"
+                    android:id="@+id/itemRegionProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_12sdp"

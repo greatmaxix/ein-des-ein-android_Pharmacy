@@ -2,6 +2,8 @@ package com.pharmacy.myapp.data.local
 
 import android.content.Context
 import androidx.room.*
+import com.pharmacy.myapp.model.TemporaryRegion
+import com.pharmacy.myapp.model.region.RegionDAO
 import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
 import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
 
@@ -18,16 +20,21 @@ class DBManager(context: Context) {
         .build()
 
 
-    @Database(entities = [CustomerInfo::class], version = VERSION, exportSchema = false)
+    @Database(entities = [CustomerInfo::class, TemporaryRegion::class], version = VERSION, exportSchema = false)
     @TypeConverters(StringListConverter::class)
     abstract class LocalDB : RoomDatabase() {
 
         abstract fun customerDAO(): CustomerDAO
 
+        abstract fun regionDAO(): RegionDAO
+
     }
 
     val customerDAO
         get() = db.customerDAO()
+
+    val regionDAO
+        get() = db.regionDAO()
 
     class StringListConverter {
         @TypeConverter

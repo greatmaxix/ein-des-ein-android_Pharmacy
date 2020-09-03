@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGrey">
+
+    <com.pharmacy.myapp.ui.EmptyContainerView
+        android:id="@+id/llRegionNotFoundContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGlobalWhite"
+        android:visibility="gone"
+        app:isButtonVisible="false"
+        app:layout_constraintTop_toBottomOf="@+id/llToolbarRegion"
+        app:subtitleEmpty="@string/noRegionFoundSubtitle"
+        app:titleEmpty="@string/noRegionFoundTitle" />
+
+    <LinearLayout
+        android:id="@+id/llToolbarRegion"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/bg_toolbar"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBackRegion"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_4sdp"
+            android:adjustViewBounds="true"
+            android:foreground="@drawable/background_light_ripple_selector_circle"
+            android:padding="@dimen/_6sdp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <com.pharmacy.myapp.ui.AppSearchView
+            android:id="@+id/searchViewRegion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:layout_weight="1"
+            app:cardCornerRadius="@dimen/_16sdp" />
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRegions"
+        style="@style/Recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_6sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llToolbarRegion"
+        tools:listitem="@layout/item_region" />
+</androidx.constraintlayout.widget.ConstraintLayout>

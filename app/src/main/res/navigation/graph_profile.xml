@@ -31,7 +31,7 @@
             app:popUpToInclusive="true" />
 
         <action
-            android:id="@+id/actionFromProfileToFavorites"
+            android:id="@+id/actionFromProfileToWish"
             app:destination="@id/nav_wish"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
@@ -89,6 +89,6 @@
     <fragment
         android:id="@+id/nav_wish"
         android:name="com.pharmacy.myapp.user.wishlist.WishFragment"
-        android:label="@string/favoritesLabel"
+        android:label="@string/wishLabel"
         tools:layout="@layout/fragment_wish" />
 </navigation>

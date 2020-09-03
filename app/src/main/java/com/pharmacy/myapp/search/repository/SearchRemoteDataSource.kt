@@ -4,7 +4,7 @@ import com.pharmacy.myapp.data.remote.rest.RestManager
 
 class SearchRemoteDataSource(private val rm: RestManager) {
 
-    suspend fun globalSearch(page: Int? = null, pageSize: Int? = null, regionId: Int? = null, barCode: Int? = null, name: String? = null) =
-        rm.productSearch(page, pageSize, regionId, barCode, name)
+    suspend fun globalSearch(name: String? = null, page: Int? = null, pageSize: Int? = null, barCode: Int? = null) =
+        rm.productSearch(page, pageSize, barCode, name)
 
 }
