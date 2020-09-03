@@ -18,42 +18,51 @@
 
         <ImageView
             android:id="@+id/ivIconProfileItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
             android:layout_marginEnd="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/oval"
+            android:backgroundTint="@color/profileIconBackground"
+            android:padding="@dimen/_6sdp"
             app:tint="@color/darkBlue"
             tools:src="@drawable/ic_logout" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/mtvTitleProfileItem"
             style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:textColor="@color/darkBlue"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
             tools:text="Выйти из аккаунта" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/mtvDetailProfileItem"
             style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_12sdp"
-            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="end|center"
+            android:lines="1"
             android:textColor="@color/primaryBlue"
-            tools:text="Москва и МО" />
+            android:textSize="@dimen/_12ssp"
+            tools:text="Нур-Султан (Астана)" />
 
         <ImageView
             android:id="@+id/ivArrowProfileItem"
             android:layout_width="@dimen/_16sdp"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_gravity="center"
             android:layout_marginEnd="@dimen/_8sdp"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_next" />

@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_136sdp"
-    android:background="@color/colorGlobalWhite"
+    android:background="@color/greyLight"
     android:clipToPadding="false">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivProductImageCart"
-        android:layout_width="@dimen/_112sdp"
+        android:layout_width="@dimen/_110sdp"
         android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/cartImageContentDescription"
+        android:padding="@dimen/_6sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_vaccine"
-        android:contentDescription="@string/cartImageContentDescription" />
+        tools:src="@drawable/ic_vaccine" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvProductTitleCart"

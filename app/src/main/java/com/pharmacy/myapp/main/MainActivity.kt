@@ -7,6 +7,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMActivity
 import com.pharmacy.myapp.core.extensions.hideNav
 import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
+import com.pharmacy.myapp.core.extensions.setTopRoundCornerBackground
 import com.pharmacy.myapp.core.extensions.showNav
 import com.pharmacy.myapp.core.general.behavior.DialogMessagesBehavior
 import com.pharmacy.myapp.core.general.behavior.ProgressViewBehavior
@@ -50,6 +51,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     }
 
     private fun setupNavigation() = with(bottomNavigation) {
+        setTopRoundCornerBackground()
         setupWithNavController(navController)
         setOnNavigationItemSelectedListener {
             viewModel.navSelected(it.itemId)

@@ -2,7 +2,7 @@ package com.pharmacy.myapp.data.local
 
 import android.content.Context
 import androidx.room.*
-import com.pharmacy.myapp.model.TemporaryRegion
+import com.pharmacy.myapp.model.region.TemporaryRegion
 import com.pharmacy.myapp.model.region.RegionDAO
 import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
 import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo

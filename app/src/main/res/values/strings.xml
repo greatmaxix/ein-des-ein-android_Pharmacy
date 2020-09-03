@@ -13,17 +13,16 @@
 
     <string name="MinLengthIsCharacters">Минимальная длина номера 11 цифр</string>
     <string name="nameErrorAuth">Имя должно содержать от 2 до 12 букв</string>
-    <string name="phoneErrorAuth">Телефон введен не верно</string>
+    <string name="phoneErrorAuth">Ой! Это не похоже на номер телефона</string>
     <string name="emailErrorAuth">Ой: Кажется это не похоже на имейл адрес</string>
     <string name="dontHaveAnAccountAuth">Еще нет аккаунта?</string>
     <string name="registrationAuth">Зарегистрируйтесь</string>
     <string name="proceedAuth">Далее</string>
     <string name="welcomeBackAuth">С возвращением!</string>
     <string name="pleaseAuth">Для создания аккаунта, укажите Ваше имя, номер телефона и имейл ( по желанию )</string>
-    <string name="phoneHintAuth">@string/phoneHint</string>
     <string name="accountCreationAuth">Давайте начнем !</string>
     <string name="yourNameAuth">Ваше имя*</string>
-    <string name="emailHintAuth">Email для рассылок</string>
+    <string name="emailHintAuth">Email для уведомлений о статусе заказа</string>
     <string name="orSignInWithAuth">Или войдите с помощью</string>
     <string name="enterTheCode">Введите код</string>
     <string name="tokenIsEmpty">Ошибка запроса</string>
@@ -38,6 +37,11 @@
     <string name="facebookContentDescriptionSignUp">Sign in via Facebook</string>
     <string name="scanDrugsContentDescription">Сканировать товар</string>
     <string name="skip">Пропустить</string>
+    <string name="alreadyHaveAnAccount">Уже есть аккаунт?</string>
+    <string name="backToSignIn">Войдите</string>
+    <string name="signInSubTitle">Что бы войти в систему, введите зарегестрированный номер телефона</string>
+    <string name="authPhoneHint">+7 (•••) •••–••–••*</string>
+    <string name="authPhoneDebugHint">+3 (•••) •••–••–••*</string>
 
     <string name="menuTitleMain">Главная</string>
     <string name="menuTitleCategories">Каталог</string>
@@ -115,6 +119,7 @@
     <string name="profileTitle">Профиль</string>
     <string name="areYouSureToExit">Вы уверены, что хотите\nвыйти из приложения?</string>
     <string name="exitWithoutSaving">Вы уверены, что хотите\nвыйти не сохранив данные?</string>
+    <string name="phoneHintProfile">@string/phoneHint</string>
 
     <string name="paymentsTitle">Оплата и бонусы</string>
     <string name="deliveryAddressTitle">Адрес доставки</string>
@@ -233,10 +238,11 @@
     <string name="sendPhotoCamera">Камера</string>
     <string name="sendPhotoError">Произошла ошибка добавления изображения</string>
     <string name="cameraPermissionRationaleMessageChat">Разрешение на доступ к камере необходимо для отправки изображений в чат</string>
+    <string name="chatLabel">Фармацевт</string>
 
     <!-- Recipes -->
     <string name="recipesLabel">Рецепты</string>
-    <string name="recipesEmptyContainerAction">Перейти в корзину</string>
+    <string name="recipesEmptyContainerAction">Записаться на прийом</string>
     <string name="recipesEmptyContainerSubtitle">Обратитесь к Вашему лечащему врачу, что бы загрузить рецепт</string>
     <string name="recipesEmptyContainerTitle">У Вас пока нет подтвержденных рецептов</string>
 

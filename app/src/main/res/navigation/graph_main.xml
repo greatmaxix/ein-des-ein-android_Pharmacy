@@ -110,7 +110,7 @@
     <fragment
         android:id="@+id/nav_chat"
         android:name="com.pharmacy.myapp.chat.ChatFragment"
-        android:label="ChatFragment"
+        android:label="@string/chatLabel"
         tools:layout="@layout/fragment_chat">
 
         <action
@@ -179,7 +179,14 @@
         app:enterAnim="@anim/nav_enter_anim"
         app:exitAnim="@anim/nav_exit_anim"
         app:popEnterAnim="@anim/nav_enter_pop_anim"
-        app:popExitAnim="@anim/nav_exit_pop_anim" />
+        app:popExitAnim="@anim/nav_exit_pop_anim">
+
+        <argument
+            android:name="showMap"
+            android:defaultValue="false"
+            app:argType="boolean"
+            app:nullable="false" />
+    </action>
 
     <fragment
         android:id="@+id/nav_scanner"

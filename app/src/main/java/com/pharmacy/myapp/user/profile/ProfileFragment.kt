@@ -33,6 +33,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         viewModel.customerInfoLiveData.observeExt {
             mtvNameProfile.text = it.name
             mtvPhoneProfile.text = it.phone.addPlusSignIfNeeded().formatPhone()
+            itemRegionProfile.setDetailText(it.region?.regionName ?: "")
         }
         viewModel.directionLiveData.observeExt(navController::navigate)
         viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }

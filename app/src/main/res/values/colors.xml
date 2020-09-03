@@ -30,6 +30,7 @@
     <color name="titleTextColorAuth">#20272C</color>
     <color name="colorTextAuth">#202020</color>
     <color name="colorTextPrimary">@color/colorGlobalBlack</color>
+    <color name="hintColor">#80837F</color>
 
     <color name="colorButtonPrimary">@color/colorMainStart</color>
     <color name="colorButtonPrimaryDisable">@color/colorGlobalDisable</color>
@@ -39,6 +40,7 @@
     <color name="colorBackgroundInputTextPrimaryDisable">#42424d</color>
 
     <color name="profileButtonGreyTint">#C7C7CC</color>
+    <color name="profileIconBackground">#EDEFF5</color>
 
     <!--colors from figma-->
     <color name="darkBlue">#000A63</color>
