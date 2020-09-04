@@ -36,15 +36,7 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/logo"
-                android:src="@drawable/oval" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="@dimen/_28sdp"
-                android:text="@string/imageTextLogo"
-                android:textColor="@color/colorGlobalWhite" />
+                android:src="@drawable/mock_logo" />
         </FrameLayout>
 
         <com.google.android.material.textview.MaterialTextView

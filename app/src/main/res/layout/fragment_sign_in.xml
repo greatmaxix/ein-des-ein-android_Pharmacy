@@ -19,16 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:paddingTop="@dimen/_16sdp"
-            android:src="@drawable/oval" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="@dimen/_28sdp"
-            android:text="лого"
-            android:textColor="@color/colorGlobalWhite" />
+            android:src="@drawable/mock_logo" />
 
     </FrameLayout>
 
