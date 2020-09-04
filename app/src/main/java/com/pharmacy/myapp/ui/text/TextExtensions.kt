@@ -3,8 +3,10 @@ package com.pharmacy.myapp.ui.text
 import android.animation.AnimatorSet
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.graphics.Color
 import android.text.*
 import android.text.InputType.TYPE_CLASS_NUMBER
+import android.text.style.ForegroundColorSpan
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
@@ -15,6 +17,12 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.textfield.TextInputLayout
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.android.view.focusChanges
 import timber.log.Timber
 import java.math.BigDecimal
 
@@ -113,25 +121,21 @@ fun EditText.addAfterTextWatcher(doAfter: (String) -> Unit): TextWatcher {
     return value
 }
 
-fun EditText.addCountryCodePrefix() {
-    var watcher: TextWatcher? = null
-    setOnFocusChangeListener { _, hasFocus ->
-        // material design 1.2.0 has "app:prefix" for TextInputLayout
-        if (hasFocus && text.toString().isEmpty()) {
-            setText("+7")
-            watcher = addAfterTextWatcher {
-                if (!it.startsWith("+7")) {
-                    setText("+7")
-                    setSelection(2)
-                }
-            }
+fun EditText.setAsteriskHint(text: String, start: Int, end: Int, darkCode: Boolean = true) {
+    fun setHint(text: String, start: Int, end: Int, darkCode: Boolean) {
+        val hintSpan = SpannableString(text).apply {
+            setExclusiveSpan(colorCompat(R.color.hintColor), 0, start)
+            setExclusiveSpan(Color.RED, start, end)
+            if (darkCode) setExclusiveSpan(colorCompat(R.color.darkBlue), 0, 2)
         }
-        if (!hasFocus && text.toString() == "+7") {
-            removeTextChangedListener(watcher)
-            setText("")
-        }
+        hint = hintSpan
     }
+    focusChanges().onEach { if (it) hint = "" else setHint(text, start, end, darkCode) }
+        .launchIn(CoroutineScope(Dispatchers.Main.immediate + SupervisorJob()))
 }
+
+
+fun SpannableString.setExclusiveSpan(color: Int, start: Int, end: Int) = setSpan(ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
 /* TextInputLayout */
 
@@ -198,7 +202,7 @@ fun TextInputLayout.checkAmount(message: String? = null) =
     if (isEmptyWithError(message)) errorAction() else true
 
 fun TextInputLayout.checkLength(message: String? = null): Boolean {
-    val matches = editText?.text?.matches(Regex("^[a-zA-Z0-9]{2,12}$")).falseIfNull() // \u0400-\u04FF for cyrillic
+    val matches = editText?.text?.matches(Regex("^[a-zA-Z0-9а-яА-Я]{2,12}$")).falseIfNull() // \u0400-\u04FF for cyrillic
     if (!matches) showError(message)
     return matches
 }
@@ -258,3 +262,5 @@ fun TextInputLayout.animateEnableOrDisable(enable: Boolean) {
     }
     enableOrDisable(enable)
 }
+
+fun TextInputLayout.getPhonePrefix() = prefixText?.substring(1, prefixText?.length?: 2)

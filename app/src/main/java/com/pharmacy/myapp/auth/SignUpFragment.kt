@@ -6,13 +6,11 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.widget.doOnTextChanged
+import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
-import com.pharmacy.myapp.ui.text.checkEmail
-import com.pharmacy.myapp.ui.text.checkLength
-import com.pharmacy.myapp.ui.text.isPhoneNumberValid
-import com.pharmacy.myapp.ui.text.setPhoneRule
+import com.pharmacy.myapp.ui.text.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
@@ -21,13 +19,16 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
         super.onViewCreated(view, savedInstanceState)
         etEmailSignUp.onDoneImeAction { llButtonContainerSignUp.performClick() }
         tilPhoneSignUp.setPhoneRule()
-//        etPhoneSignUp.addCountryCodePrefix()
+        debug { tilPhoneSignUp.prefixText = "+3" }
+        val hint = if (BuildConfig.DEBUG) R.string.authPhoneDebugHint else R.string.authPhoneHint
+        etPhoneSignUp.setAsteriskHint(hint.toString, 18, 19)
+        etNameSignUp.setAsteriskHint(R.string.yourNameAuth.toString, 8, 9, false)
         llButtonContainerSignUp.onClick {
             val isNameValid = tilNameSignUp.checkLength(getString(R.string.nameErrorAuth))
             val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
             val isEmailValid = if (tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
-                viewModel.signUp(tilNameSignUp.text(), tilPhoneSignUp.text(), tilEmailSignUp.text())
+                viewModel.signUp(tilNameSignUp.text(), tilPhoneSignUp.getPhonePrefix() + tilPhoneSignUp.text(), tilEmailSignUp.text())
             }
         }
         val clearError: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit =
@@ -40,6 +41,7 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
             it.editText?.doOnTextChanged(clearError)
         }
         mtvToss.text = SpannableString(R.string.toss.toString).apply {
+            setSpan(ForegroundColorSpan(R.color.darkBlue.toColor), 0, 76, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
             setSpan(ForegroundColorSpan(R.color.primaryBlue.toColor), 26, 46, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
             setSpan(ForegroundColorSpan(R.color.primaryBlue.toColor), 49, 76, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
 /*
@@ -57,6 +59,7 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
 */
         }
         btnBackSignUp.onClick { navigationBack() }
+        mbGoToSignIn.onClick { navigationBack() }
 
         tvSkipAuth.setDebounceOnClickListener {
             showAlertRes(getString(R.string.messageEndAuthDialog)) {

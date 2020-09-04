@@ -12,6 +12,7 @@
         <item name="android:includeFontPadding">false</item>
 
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="android:windowBackground">@color/greyLight</item>
     </style>
 
     <style name="ProgressContainer">
@@ -70,6 +71,7 @@
 
     <style name="Text.Small">
         <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/primaryBlue</item>
     </style>
 
     <!--shapeAppearanceOverlay-->

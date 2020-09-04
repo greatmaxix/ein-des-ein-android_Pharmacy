@@ -25,12 +25,15 @@ import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
+import com.pharmacy.myapp.ui.text.checkEmail
+import com.pharmacy.myapp.ui.text.checkLength
+import com.pharmacy.myapp.ui.text.isPhoneNumberValid
+import com.pharmacy.myapp.ui.text.setPhoneRule
 import com.pharmacy.myapp.user.profile.ProfileViewModel
 import com.pharmacy.myapp.user.profile.edit.ChangePhotoBottomSheetDialogFragment.Button
 import com.pharmacy.myapp.user.profile.edit.ChangePhotoBottomSheetDialogFragment.Companion.CHANGE_PHOTO_KEY
 import com.pharmacy.myapp.user.profile.edit.ChangePhotoBottomSheetDialogFragment.Companion.RESULT_BUTTON_EXTRA_KEY
 import com.pharmacy.myapp.user.profile.edit.EditProfileFragmentDirections.Companion.actionFromProfileEditToChangePhoto
-import com.pharmacy.myapp.ui.text.*
 import com.pharmacy.myapp.util.BlurTransformation
 import kotlinx.android.synthetic.main.fragment_profile_edit.*
 
@@ -49,7 +52,6 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
         super.onViewCreated(view, savedInstanceState)
         tilPhoneEditProfile.setPhoneRule()
         showBackButton()
-        etPhoneEditProfile.addCountryCodePrefix()
         saveEditProfile.onClick {
             val isNameValid = tilNameEditProfile.checkLength(getString(R.string.nameErrorAuth))
             val isPhoneValid = tilPhoneEditProfile.isPhoneNumberValid(getString(R.string.phoneErrorAuth))

@@ -7,6 +7,7 @@
     android:background="@color/colorProgressBackground"
     android:clickable="true"
     android:focusable="true"
+    android:translationZ="100dp"
     android:visibility="gone"
     tools:visibility="visible">
 

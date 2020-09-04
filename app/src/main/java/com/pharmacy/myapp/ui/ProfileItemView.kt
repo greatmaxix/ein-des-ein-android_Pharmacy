@@ -49,4 +49,7 @@ class ProfileItemView @JvmOverloads constructor(
 
     fun setOnClick(f: () -> Unit) = profileItemContainer.onClick(f)
 
+    fun setDetailText(text: String?) {
+        mtvDetailProfileItem.text = text
+    }
 }

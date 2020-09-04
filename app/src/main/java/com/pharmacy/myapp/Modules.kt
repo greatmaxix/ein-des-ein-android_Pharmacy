@@ -22,6 +22,7 @@ import com.pharmacy.myapp.scanner.qrCodeScannerModule
 import com.pharmacy.myapp.region.regionModule
 import com.pharmacy.myapp.search.searchModule
 import com.pharmacy.myapp.splash.splashModule
+import com.pharmacy.myapp.user.profile.guest.guestProfileModule
 import com.pharmacy.myapp.user.userModule
 import com.pharmacy.myapp.user.wishlist.wishModule
 import org.koin.android.ext.koin.androidApplication
@@ -50,6 +51,7 @@ object Modules {
         paymentsModule,
         userModule,
         wishModule,
+        guestProfileModule,
         categoriesModule
     )
 
