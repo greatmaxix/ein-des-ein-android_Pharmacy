@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.model
+package com.pharmacy.myapp.model.region
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

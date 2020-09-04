@@ -17,7 +17,6 @@
     <item
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_search"
-        android:iconTint="@color/mainMenuColor"
         android:title="@string/menuTitleSearch"
         app:showAsAction="ifRoom" />
 
@@ -30,7 +29,6 @@
     <item
         android:id="@+id/profile_graph"
         android:icon="@drawable/ic_box"
-        android:iconTint="@color/mainMenuColor"
         android:title="@string/menuTitleProfile"
         app:showAsAction="ifRoom" />
 

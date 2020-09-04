@@ -19,6 +19,7 @@ import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.math.abs
+import kotlin.math.log10
 
 
 fun Boolean?.falseIfNull() = this ?: false
@@ -95,6 +96,10 @@ fun String.formatPhone(): String {
 
 fun String.addPlusSignIfNeeded() = if (contains("+")) this else "+".plus(this)
 
+fun String.spanSearchCount(count: Int) = SpannableString(this).apply {
+    setSpan(StyleSpan(Typeface.BOLD), 8, 8 + count.length(), 0)
+}
+
 val Float.isPositive get() = this > 0
 
 fun Float.toSymbol(needMinus: Boolean = false) = if (isPositive) "+" else if (needMinus) "-" else ""
@@ -144,6 +149,11 @@ fun Int.mixColorWith(@ColorInt color: Int, ratio: Float): Int {
     val g = Color.green(color) * ratio + Color.green(this) * inverseRatio
 
     return Color.rgb(r, g.toInt(), b)
+}
+
+fun Int.length() = when(this) {
+    0 -> 1
+    else -> log10(abs(toDouble())).toInt() + 1
 }
 
 enum class Range {

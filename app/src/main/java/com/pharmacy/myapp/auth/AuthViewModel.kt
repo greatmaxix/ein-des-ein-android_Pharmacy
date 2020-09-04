@@ -35,7 +35,7 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
     fun signUp(name: String, phone: String, email: String) {
         progressLiveData.value = true
         launchIO {
-            val response = repository.signUp(name, phone.substring(1), email)
+            val response = repository.signUp(name, phone, email)
             progressLiveData.postValue(false)
             when (response) {
                 is Success -> {
@@ -51,7 +51,7 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
     fun signIn(phone: String) {
         progressLiveData.value = true
         launchIO {
-            val response = repository.auth(phone.substring(1))
+            val response = repository.auth(phone)
             progressLiveData.postValue(false)
             when (response) {
                 is Success -> {
@@ -66,7 +66,7 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
     fun login(code: String) {
         progressLiveData.value = true
         launchIO {
-            when (val response = repository.login(customerPhone.substring(1), code)) {
+            when (val response = repository.login(customerPhone, code)) {
                 is Success -> {
                     repository.saveToken(response.value.token, response.value.refreshToken)
                     saveCustomerData(response.value.customer)
@@ -91,7 +91,7 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
     private fun setUserPhone(phone: String) {
         var newPhone = phone
         customerPhone = phone
-        if (BuildConfig.DEBUG) if (!phone.contains("+")) newPhone = "+${phone.substring(1)}"
+        if (!phone.contains("+")) newPhone = "+${phone}"
         customerPhoneLiveData.postValue(newPhone.formatPhone())
     }
 

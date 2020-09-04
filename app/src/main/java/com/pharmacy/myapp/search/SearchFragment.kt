@@ -6,10 +6,7 @@ import androidx.annotation.StringRes
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.auth.SignInFragmentArgs
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
-import com.pharmacy.myapp.core.extensions.addAutoKeyboardCloser
-import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.showAlert
-import com.pharmacy.myapp.core.extensions.visibleOrGone
+import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.produtcList.ProductListAdapter
 import com.pharmacy.myapp.search.SearchFragmentDirections.Companion.fromSearchToProduct
 import com.pharmacy.myapp.search.SearchFragmentDirections.Companion.fromSearchToScanner
@@ -43,7 +40,7 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseMVVMFragment(
         observe(viewModel.pagedSearchLiveData) { productAdapter.submitData(lifecycle, it) }
 
         observe(viewModel.productCountLiveData) {
-            tvSearchResult.text = getString(R.string.countProducts, it)
+            tvSearchResult.text = getString(R.string.countProducts, it).spanSearchCount(it)
             llDrugsNotFoundContainer.visibleOrGone(it == 0)
         }
 

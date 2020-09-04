@@ -100,6 +100,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/qrCodeDescriptionTop" />
 
+    <ImageView
+        android:id="@+id/curvedTopIcon"
+        android:layout_width="@dimen/_54sdp"
+        android:layout_height="@dimen/_54sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:rotation="270"
+        android:scaleY="-1"
+        android:src="@drawable/ic_curved_arrow"
+        app:layout_constraintEnd_toEndOf="@id/qrCodeDescriptionTopIcon"
+        app:layout_constraintHorizontal_bias=".1"
+        app:layout_constraintStart_toStartOf="@id/qrCodeDescriptionTopIcon"
+        app:layout_constraintTop_toBottomOf="@id/qrCodeDescriptionTopIcon" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/qrCodeDescriptionTop"
         android:layout_width="0dp"
@@ -121,9 +134,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_24sdp"
         android:contentDescription="@string/cameraIconContentDescription"
-        android:src="@drawable/ic_camera"
+        android:src="@drawable/ic_barcode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/qrCodeDescriptionBottom" />
+
+    <ImageView
+        android:id="@+id/curvedBottomIcon"
+        android:layout_width="@dimen/_54sdp"
+        android:layout_height="@dimen/_54sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:src="@drawable/ic_curved_arrow"
+        app:layout_constraintEnd_toEndOf="@id/qrCodeDescriptionBottomIcon"
+        app:layout_constraintHorizontal_bias=".1"
+        app:layout_constraintStart_toStartOf="@id/qrCodeDescriptionBottomIcon"
+        app:layout_constraintTop_toBottomOf="@id/qrCodeDescriptionBottomIcon" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/qrCodeDescriptionBottom"
@@ -164,6 +188,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        app:constraint_referenced_ids="qrCodeScannerInstructionBg,goToScanBtn,qrCodeDescriptionTitle,qrCodeDescriptionTopIcon,qrCodeDescriptionTop,qrCodeDescriptionBottomIcon,qrCodeDescriptionBottom" />
+        app:constraint_referenced_ids="qrCodeScannerInstructionBg,goToScanBtn,qrCodeDescriptionTitle,qrCodeDescriptionTopIcon,qrCodeDescriptionTop,qrCodeDescriptionBottomIcon,qrCodeDescriptionBottom, curvedBottomIcon, curvedTopIcon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

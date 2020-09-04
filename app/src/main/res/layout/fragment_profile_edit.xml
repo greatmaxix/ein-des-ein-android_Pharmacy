@@ -78,7 +78,7 @@
             android:clickable="false"
             android:digits="0123456789+"
             android:enabled="false"
-            android:hint="@string/phoneHintAuth"
+            android:hint="@string/phoneHintProfile"
             android:imeOptions="actionNext"
             android:inputType="phone"
             android:lines="1"
