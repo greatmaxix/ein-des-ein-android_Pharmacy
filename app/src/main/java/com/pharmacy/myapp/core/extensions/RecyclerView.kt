@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.categories.adapter.GridSpacingItemDecoration
+import com.pharmacy.myapp.ui.decoration.GridSpacingItemDecoration
 
 fun RecyclerView.onScrollStateChanged(listener: (RecyclerView, Int) -> Unit) {
     addOnScrollListener(object : RecyclerView.OnScrollListener() {

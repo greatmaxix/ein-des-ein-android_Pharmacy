@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.categories.adapter
+package com.pharmacy.myapp.ui.decoration
 
 import android.graphics.Rect
 import android.view.View
