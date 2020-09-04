@@ -128,6 +128,8 @@ class RestManager : KoinComponent {
 
     suspend fun updateRegion(id: Int) = safeApiCall(tokenRefreshCall) { api.updateRegion(mapOf(REGION_ID to id)) }
 
+    suspend fun getCategories() = safeApiCall(tokenRefreshCall) { api.categories() }
+
     fun setLocalRegion(id: Int?) {
         regionId = id
     }

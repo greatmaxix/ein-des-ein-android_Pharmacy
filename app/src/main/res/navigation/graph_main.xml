@@ -292,4 +292,9 @@
         android:label="@string/regionLabel"
         tools:layout="@layout/fragment_region" />
 
+    <fragment
+        android:id="@+id/nav_catalog"
+        android:name="com.pharmacy.myapp.categories.CategoriesFragment"
+        android:label="Категории"
+        tools:layout="@layout/fragment_categories"/>
 </navigation>

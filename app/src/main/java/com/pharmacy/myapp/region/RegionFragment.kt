@@ -31,7 +31,6 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showBackButton { viewModel.handleBackPress() }
         rvRegions.layoutManager = LinearLayoutManager(requireContext())
         rvRegions.adapter = regionAdapter
         attachBackPressCallback { viewModel.handleBackPress() }
@@ -47,7 +46,7 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
     override fun onBindLiveData() {
         observe(viewModel.errorLiveData)  { messageCallback?.showError(it) }
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
-        observe(viewModel.regionsLiveData, ::setListToAdapter)
+        observe(viewModel.regionsLiveData, regionAdapter::notifyDataSet)
         observe(viewModel.regionSavedLiveData) {
             setFragmentResult(it)
             navigationBack()
@@ -55,10 +54,6 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
     }
 
     private fun setFragmentResult(value: Boolean) = setFragmentResult(REGION_SELECTION_FINISHED_KEY, bundleOf(REGION_SELECTION_FINISHED_DATA to value))
-
-    private fun setListToAdapter(list: MutableList<RegionWithHeader>) {
-        regionAdapter.notifyDataSet(list)
-    }
 
     companion object {
 
