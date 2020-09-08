@@ -3,6 +3,7 @@ package com.pharmacy.myapp
 import androidx.work.WorkManager
 import com.pharmacy.myapp.auth.authModule
 import com.pharmacy.myapp.cart.cartModule
+import com.pharmacy.myapp.categories.categoriesModule
 import com.pharmacy.myapp.chat.chatModule
 import com.pharmacy.myapp.checkout.checkoutModule
 import com.pharmacy.myapp.checkoutMap.checkoutMapModule
@@ -50,7 +51,8 @@ object Modules {
         paymentsModule,
         userModule,
         wishModule,
-        guestProfileModule
+        guestProfileModule,
+        categoriesModule
     )
 
     private val managerModule = module(true) {

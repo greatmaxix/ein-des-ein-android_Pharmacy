@@ -5,6 +5,7 @@ import com.pharmacy.myapp.data.remote.rest.response.AuthResponse
 import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
 import com.pharmacy.myapp.data.remote.rest.response.UploadImageResponse
 import com.pharmacy.myapp.model.*
+import com.pharmacy.myapp.model.category.Category
 import com.pharmacy.myapp.user.model.customerInfo.CustomerInfoItem
 import com.pharmacy.myapp.model.region.Region
 import com.pharmacy.myapp.product.model.Product
@@ -70,9 +71,8 @@ interface ApiService {
                             @Query("per_page") pageSize: Int? = null
     ): BaseDataResponse<PaginationModel<ProductLite>>
 
-    // TODO specify proper moder for response
-//    @GET("$API_PATH_PUBLIC/categories")
-//    suspend fun categories(): BaseDataResponse<ListItemsModel<T>>
+    @GET("$API_PATH_PUBLIC/categories")
+    suspend fun categories(): BaseDataResponse<ListItemsModel<Category>>
 
     companion object {
 
