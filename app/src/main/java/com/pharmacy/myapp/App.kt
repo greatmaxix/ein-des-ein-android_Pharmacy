@@ -9,11 +9,15 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.EmptyLogger
 import org.koin.core.logger.Level
 import timber.log.Timber
+import java.util.*
 
-class App: Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        initCountryCodeMapping()
+
         startKoin {
             androidContext(this@App)
             /*logger(AndroidLogger())*/
@@ -25,6 +29,21 @@ class App: Application() {
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+        }
+    }
+
+    //TODO Find better solution to get country name from ISO3
+    companion object {
+        var localeMap: MutableMap<String, Locale> = hashMapOf()
+            private set
+
+        private fun initCountryCodeMapping() {
+            val countries = Locale.getISOCountries()
+            localeMap = HashMap(countries.size)
+            for (country in countries) {
+                val locale = Locale("", country)
+                (localeMap as HashMap<String, Locale>)[locale.isO3Country.toUpperCase()] = locale
+            }
         }
     }
 }

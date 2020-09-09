@@ -16,7 +16,7 @@ import com.pharmacy.myapp.core.general.interfaces.MessagesCallback
 import com.pharmacy.myapp.core.general.interfaces.ProgressCallback
 
 
-abstract class BaseFragment(@LayoutRes layoutResourceId: Int) : Fragment(layoutResourceId) {
+abstract class BaseFragment(@LayoutRes private val layoutResourceId: Int) : Fragment(layoutResourceId) {
 
     protected var progressCallback: ProgressCallback? = null
         private set

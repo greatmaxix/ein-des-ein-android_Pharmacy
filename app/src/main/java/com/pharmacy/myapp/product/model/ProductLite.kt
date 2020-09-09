@@ -1,8 +1,12 @@
 package com.pharmacy.myapp.product.model
 
+import android.R.string
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import com.pharmacy.myapp.App
 import kotlinx.android.parcel.Parcelize
+import java.util.*
+
 
 @Parcelize
 open class ProductLite(
@@ -17,6 +21,10 @@ open class ProductLite(
 
     val isWish
         get() = wish ?: false
+
+    //TODO Create global "Local helper"
+    val productLocale: String?
+        get() = App.localeMap[manufacture.isoCode]?.getDisplayCountry(Locale("RU"))
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

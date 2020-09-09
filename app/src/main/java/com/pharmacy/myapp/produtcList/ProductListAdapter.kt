@@ -1,11 +1,12 @@
 package com.pharmacy.myapp.produtcList
 
 import android.view.ViewGroup
+import androidx.paging.ItemSnapshotList
 import androidx.paging.PagingDataAdapter
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.product.model.ProductLite
 
-class ProductListAdapter(private val itemClick: (Int) -> Unit, private val onClick: (Triple<Boolean, Int, Int>) -> Unit) :
+class ProductListAdapter(private val itemClick: (Int) -> Unit, private val onClick: (Pair<Boolean, Int>) -> Unit) :
     PagingDataAdapter<ProductLite, ProductListViewHolder>(ProductListDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProductListViewHolder.newInstance(parent, onClick).apply {
@@ -27,10 +28,15 @@ class ProductListAdapter(private val itemClick: (Int) -> Unit, private val onCli
         }
     }
 
-    fun notifyWish(position: Int) {
-        getItem(position)?.let { product ->
-            product.wish = product.wish?.let { !it } ?: true
-            notifyItemChanged(position, product.isWish)
+    fun notifyWish(globalProductId: Int) {
+        snapshot().findItemWithPosition { it?.globalProductId == globalProductId }.let {
+            val (product, position) = it
+            product?.apply {
+                wish = !isWish
+                notifyItemChanged(position, isWish)
+            }
         }
     }
+
+    private fun <T> ItemSnapshotList<T>.findItemWithPosition(predicate: (T?) -> Boolean) = find(predicate).run { this to indexOf(this) }
 }

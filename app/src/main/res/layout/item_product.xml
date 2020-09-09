@@ -64,11 +64,11 @@
             android:maxLines="2"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toTopOf="@+id/tvPrice"
-            app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+            app:layout_constraintEnd_toEndOf="@+id/ivWish"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvSubTitle"
             app:layout_constraintVertical_bias="0.0"
-            tools:text="Таблетки шипучие, 20 мг" />
+            tools:text="Производитель, Россия" />
 
         <TextView
             android:id="@+id/tvPricePrefix"

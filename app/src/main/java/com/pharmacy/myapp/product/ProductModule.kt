@@ -11,7 +11,7 @@ val productCardModule = module {
     single { ProductRemoteDataSource(get()) }
     single { ProductRepository(get()) }
 
-    viewModel { ProductViewModel(get()) }
+    viewModel { ProductViewModel() }
 
     fragment { ProductFragment(get()) }
 }

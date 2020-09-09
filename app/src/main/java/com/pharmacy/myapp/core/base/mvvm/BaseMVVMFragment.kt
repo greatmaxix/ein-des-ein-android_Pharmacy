@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.pharmacy.myapp.core.base.fragment.BaseFragment
 
-abstract class BaseMVVMFragment(@LayoutRes layoutResourceId: Int) : BaseFragment(layoutResourceId) {
+abstract class BaseMVVMFragment(@LayoutRes private val layoutResourceId: Int) : BaseFragment(layoutResourceId) {
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

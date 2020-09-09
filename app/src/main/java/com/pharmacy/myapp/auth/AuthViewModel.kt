@@ -3,7 +3,6 @@ package com.pharmacy.myapp.auth
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
-import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.auth.SignInFragmentDirections.Companion.actionFromSignInToCode
 import com.pharmacy.myapp.auth.SignUpFragmentDirections.Companion.actionFromSignUpToCode
 import com.pharmacy.myapp.auth.repository.AuthRepository

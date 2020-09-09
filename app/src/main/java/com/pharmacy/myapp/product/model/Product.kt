@@ -15,6 +15,6 @@ class Product(
         get() = substances.first()
 
     val getFullManufacture
-        get() = "${manufacture.producer} , ${manufacture.producerRu}"
+        get() = "${manufacture.producer} , $productLocale"
 
 }
