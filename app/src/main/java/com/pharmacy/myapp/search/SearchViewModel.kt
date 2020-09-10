@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.pharmacy.myapp.produtcList.BaseProductViewModel
+import com.pharmacy.myapp.product.BaseProductViewModel
 import com.pharmacy.myapp.search.repository.SearchPagingSource
 
 class SearchViewModel : BaseProductViewModel() {

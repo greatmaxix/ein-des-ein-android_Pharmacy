@@ -130,6 +130,9 @@ class RestManager : KoinComponent {
 
     suspend fun getCategories() = safeApiCall(tokenRefreshCall) { api.categories() }
 
+    suspend fun getPharmacyList(globalProductId: Int, page: Int? = null, pageSize: Int? = null) =
+        safeApiCall(tokenRefreshCall) { api.pharmacyList(globalProductId, regionId, page, pageSize) }
+
     fun setLocalRegion(id: Int?) {
         regionId = id
     }

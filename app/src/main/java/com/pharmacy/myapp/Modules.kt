@@ -6,7 +6,7 @@ import com.pharmacy.myapp.cart.cartModule
 import com.pharmacy.myapp.categories.categoriesModule
 import com.pharmacy.myapp.chat.chatModule
 import com.pharmacy.myapp.checkout.checkoutModule
-import com.pharmacy.myapp.checkoutMap.checkoutMapModule
+import com.pharmacy.myapp.pharmacy.checkoutMapModule
 import com.pharmacy.myapp.data.local.DBManager
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager

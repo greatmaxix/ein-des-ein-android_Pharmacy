@@ -1,11 +1,10 @@
 package com.pharmacy.myapp.data
 
-import com.google.android.gms.maps.model.LatLng
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.checkout.model.TempProductModel
 import com.pharmacy.myapp.myOrders.model.MyOrder
-import com.pharmacy.myapp.checkoutMap.model.TempAvailableDrugstore
+import com.pharmacy.myapp.pharmacy.model.Pharmacy
 import com.pharmacy.myapp.product.model.TempRecommendedModel
 
 @Deprecated("Mock data object")
@@ -138,8 +137,8 @@ object DummyData {
         "Советовали очень дорогое"
     )
 
-    fun getAvailableDrugstores(): ArrayList<TempAvailableDrugstore> {
-        val firstItem = TempAvailableDrugstore(1,
+    fun getAvailableDrugstores(): ArrayList<Pharmacy> {
+        /*val firstItem = Pharmacy(1,
             "Все в наличии",
             "Гиппократ",
             "Сәкен Сейфуллин көшесі 29",
@@ -150,7 +149,8 @@ object DummyData {
         )
         val secondItem = firstItem.copy(id = 2, availability = "3/4 в наличии", name = "Аптека \"Цветная\"", price = "567 ₽", latLng = LatLng(51.140856, 71.435294))
         val thirdItem = firstItem.copy(id = 3, availability = "Под заказ", name = "Аптека 99", price = "145 ₽", latLng = LatLng(51.1636063, 71.4365608))
-        return arrayListOf(firstItem, secondItem, thirdItem)
+        return arrayListOf(firstItem, secondItem, thirdItem)*/
+        return arrayListOf()
     }
 
 

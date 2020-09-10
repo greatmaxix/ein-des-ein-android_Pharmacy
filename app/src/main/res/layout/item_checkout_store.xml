@@ -11,63 +11,65 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp">
 
         <ImageView
-            android:id="@+id/ivBaseIcon"
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="@dimen/_36sdp"
-            android:layout_marginStart="@dimen/_12sdp"
+            android:id="@+id/ivPharmacy"
+            android:layout_width="@dimen/_48sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:adjustViewBounds="true"
-            android:contentDescription="Базовая иконка аптеки"
             android:src="@drawable/ic_drugstore_base"
-            app:layout_constraintBottom_toBottomOf="@id/tvDrugstoreAddress"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--  <com.google.android.material.textview.MaterialTextView
+              android:id="@+id/tvAvailabilityInDrugstore"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="@dimen/_8sdp"
+              android:layout_marginTop="@dimen/_2sdp"
+              android:textSize="@dimen/_9ssp"
+              app:layout_constraintStart_toEndOf="@id/ivPharmacy"
+              app:layout_constraintTop_toTopOf="parent"
+              tools:text="Все в наличии"
+              tools:textColor="@color/colorAccent" />-->
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvAvailabilityInDrugstore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:textSize="@dimen/_9ssp"
-            app:layout_constraintStart_toEndOf="@id/ivBaseIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Все в наличии"
-            tools:textColor="@color/colorAccent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDrugstoreName"
+            android:id="@+id/tvPharmacyName"
             style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
             android:textColor="@color/darkBlue"
+            android:textSize="@dimen/_16ssp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/ivBaseIcon"
-            app:layout_constraintTop_toBottomOf="@id/tvAvailabilityInDrugstore"
+            app:layout_constraintEnd_toStartOf="@+id/ivDrugstoreLocation"
+            app:layout_constraintStart_toEndOf="@id/ivPharmacy"
+            app:layout_constraintTop_toTopOf="@+id/ivPharmacy"
             tools:text="Название аптеки" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDrugstoreAddress"
-            style="@style/TextAppearance.AppCompat.Small"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvPharmacyAddress"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_4sdp"
             android:textColor="@color/darkBlue"
-            app:layout_constraintStart_toEndOf="@id/ivBaseIcon"
-            app:layout_constraintTop_toBottomOf="@id/tvDrugstoreName"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivPharmacy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvPharmacyName"
+            app:layout_constraintTop_toBottomOf="@id/tvPharmacyName"
+            app:layout_constraintVertical_bias="1.0"
             tools:text="ул Горная 23а, Харьков" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/ivDrugstoreLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_12sdp"
             android:backgroundTint="@color/mediumGrey"
             android:src="@drawable/ic_drugstore_location"
             app:borderWidth="0dp"
@@ -82,11 +84,11 @@
             android:id="@+id/tvContactInformation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="@dimen/_14ssp"
             android:textColor="@color/darkBlue"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivBaseIcon"
+            app:layout_constraintStart_toStartOf="@+id/ivPharmacy"
+            app:layout_constraintTop_toBottomOf="@id/ivPharmacy"
             tools:text="+7 (098) 000 02 00 • +7 (098) 000 02 00" />
 
         <com.google.android.material.textview.MaterialTextView

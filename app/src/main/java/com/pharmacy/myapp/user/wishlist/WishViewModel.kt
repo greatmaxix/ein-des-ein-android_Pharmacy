@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.pharmacy.myapp.produtcList.BaseProductViewModel
+import com.pharmacy.myapp.product.BaseProductViewModel
 import com.pharmacy.myapp.user.wishlist.repository.WishPagingSource
 
 class WishViewModel : BaseProductViewModel() {

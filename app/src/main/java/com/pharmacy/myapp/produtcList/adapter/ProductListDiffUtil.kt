@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.produtcList
+package com.pharmacy.myapp.produtcList.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.pharmacy.myapp.product.model.ProductLite

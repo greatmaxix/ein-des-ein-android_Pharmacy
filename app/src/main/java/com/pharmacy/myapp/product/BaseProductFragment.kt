@@ -5,7 +5,6 @@ import androidx.annotation.StringRes
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.showAlert
-import com.pharmacy.myapp.produtcList.BaseProductViewModel
 
 abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private val layoutResourceId: Int, private val viewModel: VM) : BaseMVVMFragment(layoutResourceId) {
 

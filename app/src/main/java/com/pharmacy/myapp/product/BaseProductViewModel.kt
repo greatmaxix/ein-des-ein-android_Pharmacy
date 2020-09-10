@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.produtcList
+package com.pharmacy.myapp.product
 
 import androidx.lifecycle.LiveData
 import com.pharmacy.myapp.R

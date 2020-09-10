@@ -6,11 +6,11 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.auth.SignInFragmentArgs
 import com.pharmacy.myapp.core.extensions.*
+import com.pharmacy.myapp.product.ProductFragmentDirections.Companion.fromProductToPharmacy
 import com.pharmacy.myapp.product.adapter.ProductsImageAdapter
 import kotlinx.android.synthetic.main.fragment_product.*
 import kotlinx.android.synthetic.main.layout_product_card_additional_info.*
@@ -47,9 +47,9 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         mcvAnalog.onClick { onAnalog() }
         mcvCategory.onClick { onCategory() }
         mcvInstruction.onClick { onInstruction() }
-        mcvQuestions.onClick(::onQuestions)
-        fbWish.onClick(::onWish)
-        mbCart.onClick { onCart() }
+        mcvQuestions.onClick { navController.navigate(R.id.fromProductToChat) }
+        fbWish.onClick { viewModel.setOrRemoveWish(!args.product.isWish to args.product.globalProductId) }
+        mbToPharmacy.onClick { navController.navigate(fromProductToPharmacy(args.product.globalProductId)) }
 
         bottomLayout.setTopRoundCornerBackground()
 
@@ -81,14 +81,6 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
 
     private fun onInstruction() {
         requireContext().toast("TODO: Instruction")
-    }
-
-    private fun onQuestions() = navController.navigate(R.id.fromProductToChat)
-
-    private fun onWish() = viewModel.setOrRemoveWish(!args.product.isWish to args.product.globalProductId)
-
-    private fun onCart() {
-        requireContext().toast("TODO: Add to cart")
     }
 
     private fun setProductInfo() = with(args.product) {
