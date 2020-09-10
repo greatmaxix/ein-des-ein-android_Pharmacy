@@ -9,11 +9,19 @@ import androidx.navigation.NavDirections
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
+import com.pharmacy.myapp.MainGraphDirections
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.addAutoKeyboardCloser
 import com.pharmacy.myapp.product.BaseProductFragment
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.product.model.ProductLite
+import com.pharmacy.myapp.search.SearchFragment
+import com.pharmacy.myapp.search.SearchFragmentDirections
+import com.pharmacy.myapp.search.SearchFragmentDirections.Companion.fromSearchToProduct
+import com.pharmacy.myapp.search.SearchFragmentDirections.Companion.globalToProductCard
+import com.pharmacy.myapp.user.wishlist.WishFragment
+import timber.log.Timber
+import java.lang.Exception
 
 abstract class BaseProductListFragment<VM : BaseProductViewModel>(@LayoutRes private val layoutResourceId: Int, private val viewModel: VM) :
     BaseProductFragment<VM>(layoutResourceId, viewModel) {
@@ -37,15 +45,18 @@ abstract class BaseProductListFragment<VM : BaseProductViewModel>(@LayoutRes pri
         productAdapter.addLoadStateListener { progressCallback?.setInProgress(it.refresh is LoadState.Loading || it.append is LoadState.Loading) }
     }
 
-    abstract fun directionToProductCard(product: Product): NavDirections
-
-    abstract val liveDataForProductList: LiveData<PagingData<ProductLite>>
+    abstract val productLiveData: LiveData<PagingData<ProductLite>>
 
     override fun onBindLiveData() {
         super.onBindLiveData()
 
-        observe(liveDataForProductList) { productAdapter.submitData(lifecycle, it) }
+        observe(productLiveData) { productAdapter.submitData(lifecycle, it) }
+        observe(viewModel.productLiteLiveData) { navController.navigate(getNavDirection(it)) }
+    }
 
-        observe(viewModel.productLiteLiveData) { navController.navigate(directionToProductCard(it)) }
+    private fun getNavDirection(product: Product) = when (this) {
+        is WishFragment -> globalToProductCard(product)
+        is SearchFragment -> fromSearchToProduct(product)
+        else -> throw Exception("Add new instance to base product")
     }
 }

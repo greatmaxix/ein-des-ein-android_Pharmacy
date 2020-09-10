@@ -7,9 +7,7 @@ import com.pharmacy.myapp.auth.SignInFragmentArgs
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.spanSearchCount
 import com.pharmacy.myapp.core.extensions.visibleOrGone
-import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.produtcList.BaseProductListFragment
-import com.pharmacy.myapp.search.SearchFragmentDirections.Companion.fromSearchToProduct
 import com.pharmacy.myapp.search.SearchFragmentDirections.Companion.fromSearchToScanner
 import kotlinx.android.synthetic.main.fragment_search.*
 
@@ -35,8 +33,6 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseProductListFr
 
     override fun notifyWish(globalProductId: Int) = productAdapter.notifyWish(globalProductId)
 
-    override fun directionToProductCard(product: Product) = fromSearchToProduct(product)
-
-    override val liveDataForProductList
+    override val productLiveData
         get() = viewModel.pagedSearchLiveData
 }

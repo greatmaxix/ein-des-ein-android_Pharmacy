@@ -11,6 +11,7 @@ import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import com.pharmacy.myapp.R
 import java.math.BigDecimal
 import java.math.BigDecimal.ZERO
@@ -29,6 +30,9 @@ val Boolean.inputTextBackground
 
 val Boolean.inputTextColor
     get() = if (this) R.color.colorTextInputTextPrimary else R.color.colorTextInputTextPrimaryDisable
+
+val Boolean.wishResId
+    get() = if (this) R.drawable.ic_heart_fill else R.drawable.ic_heart_stroke
 
 fun String.setColor(@ColorInt color: Int) = SpannableString(this).apply {
     setSpan(ForegroundColorSpan(color), 0, this.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -151,7 +155,7 @@ fun Int.mixColorWith(@ColorInt color: Int, ratio: Float): Int {
     return Color.rgb(r, g.toInt(), b)
 }
 
-fun Int.length() = when(this) {
+fun Int.length() = when (this) {
     0 -> 1
     else -> log10(abs(toDouble())).toInt() + 1
 }

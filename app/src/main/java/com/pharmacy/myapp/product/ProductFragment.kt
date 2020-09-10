@@ -64,11 +64,6 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         navController.popBackStack()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.checkIsWishSaved()
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_share) {
             requireContext().toast("TODO: Share")
@@ -109,17 +104,13 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
 
         mtvDescriptionText.setTextHtml(description)
 
-        fbWish.notifyWish(isWish)
-    }
-
-    private fun FloatingActionButton.notifyWish(isWish: Boolean) {
-        setImageResource(if (isWish) R.drawable.ic_heart_fill else R.drawable.ic_heart_stroke)
+        fbWish.setWish(isWish)
     }
 
     override fun notifyWish(globalProductId: Int) {
         isNeedResult = !isNeedResult
         args.product.wish = !args.product.isWish
-        fbWish.notifyWish(args.product.isWish)
+        fbWish.setWish(args.product.isWish)
     }
 
     override fun needToLogin() {

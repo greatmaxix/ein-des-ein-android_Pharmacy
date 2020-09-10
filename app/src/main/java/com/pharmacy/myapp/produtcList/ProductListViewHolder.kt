@@ -35,7 +35,7 @@ class ProductListViewHolder(override val containerView: View, private val onClic
     }
 
     fun notifyHeart(isInWish: Boolean) {
-        itemView.ivWish.setImageResource(if (isInWish) R.drawable.ic_heart_fill else R.drawable.ic_heart_stroke)
+        itemView.ivWish.setWish(isInWish)
     }
 
     companion object {

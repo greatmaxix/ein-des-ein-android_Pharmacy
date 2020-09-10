@@ -3,11 +3,9 @@ package com.pharmacy.myapp.user.wishlist
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.pharmacy.myapp.MainGraphDirections.Companion.globalToProductCard
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.animateVisibleOrGone
 import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
-import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.produtcList.BaseProductListFragment
 import kotlinx.android.synthetic.main.fragment_wish.*
 
@@ -20,8 +18,8 @@ class WishFragment(private val viewModel: WishViewModel) : BaseProductListFragme
         emptyContentWish.setButtonAction { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_wish) }
 
         productAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
-            override fun onItemRangeInserted(position: Int, count: Int) = setListVisibility(count == 0)
             override fun onItemRangeRemoved(position: Int, count: Int) = setListVisibility(productAdapter.itemCount == 1)
+            override fun onItemRangeInserted(position: Int, count: Int) = setListVisibility(count == 0)
         })
     }
 
@@ -32,8 +30,6 @@ class WishFragment(private val viewModel: WishViewModel) : BaseProductListFragme
 
     override fun notifyWish(globalProductId: Int) = productAdapter.refresh()
 
-    override fun directionToProductCard(product: Product) = globalToProductCard(product)
-
-    override val liveDataForProductList
+    override val productLiveData
         get() = viewModel.wishLiveData
 }
