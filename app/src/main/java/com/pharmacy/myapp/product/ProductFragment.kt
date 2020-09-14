@@ -34,7 +34,6 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showBackButton { backPress() }
-        initMenu(R.menu.share)
         setToolbarTitle(args.product.rusName)
 
         with(productImagePager) {
@@ -64,24 +63,11 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         navController.popBackStack()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_share) {
-            requireContext().toast("TODO: Share")
-        }
-        return super.onOptionsItemSelected(item)
-    }
+    private fun onAnalog() = requireContext().toast(getString(R.string.expectSoonMock))
 
-    private fun onAnalog() {
-        requireContext().toast("TODO: Analogs")
-    }
+    private fun onCategory() = requireContext().toast("TODO: Category")
 
-    private fun onCategory() {
-        requireContext().toast("TODO: Category")
-    }
-
-    private fun onInstruction() {
-        requireContext().toast("TODO: Instruction")
-    }
+    private fun onInstruction() = requireContext().toast(getString(R.string.expectSoonMock))
 
     private fun setProductInfo() = with(args.product) {
         tvTitle.setTextHtml(rusName)
