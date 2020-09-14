@@ -58,7 +58,7 @@
             app:elevation="@dimen/_2sdp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbCart"
+            android:id="@+id/mbToPharmacy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"

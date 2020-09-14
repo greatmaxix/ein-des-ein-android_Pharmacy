@@ -1,27 +1,24 @@
-package com.pharmacy.myapp.checkoutMap
+package com.pharmacy.myapp.pharmacy.map
 
 import android.graphics.*
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.toBitmap
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.MarkerOptions
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.checkoutMap.model.TempAvailableDrugstore
+import com.pharmacy.myapp.pharmacy.PharmacyViewModel
+import com.pharmacy.myapp.pharmacy.model.Pharmacy
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
-import com.pharmacy.myapp.core.extensions.dimensionPixelSize
-import com.pharmacy.myapp.core.extensions.sharedGraphViewModel
 import kotlinx.android.synthetic.main.fragment_checkout_map.*
 import org.koin.android.ext.android.get
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class CheckoutMapFragment : BaseMVVMFragment(R.layout.fragment_checkout_map) {
+class PharmacyMapFragment : BaseMVVMFragment(R.layout.fragment_checkout_map) {
 
-    private val viewModel: CheckoutMapViewModel by sharedGraphViewModel(R.id.checkout_map_graph)
+    private val viewModel: PharmacyViewModel by lazy { requireParentFragment().getViewModel() }
     private var map: GoogleMap? = null
     private val mapZoom = 18F
     private val drawTextSize = 14
@@ -64,8 +61,8 @@ class CheckoutMapFragment : BaseMVVMFragment(R.layout.fragment_checkout_map) {
     override fun onBindLiveData() {
         viewModel.drugstoresLiveData.observeExt(::showMarkers)
         viewModel.showBottomSheetLiveData.observeExt {
-            get<DrugstoreBottomSheet>().show(childFragmentManager)
-            map?.animateCamera(CameraUpdateFactory.newLatLngZoom(it.latLng, mapZoom))
+            get<PharmacyMapBottomSheet>().show(childFragmentManager)
+            //map?.animateCamera(CameraUpdateFactory.newLatLngZoom(it.latLng, mapZoom))
         }
     }
 
@@ -81,15 +78,15 @@ class CheckoutMapFragment : BaseMVVMFragment(R.layout.fragment_checkout_map) {
         }
     }
 
-    private fun showMarkers(list: ArrayList<TempAvailableDrugstore>) {
-        list.forEach(::addMarkerToMap)
-        map?.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsFromLatLngList(list.map { it.latLng }), dimensionPixelSize(R.dimen._36sdp)))
+    private fun showMarkers(list: ArrayList<Pharmacy>) {
+        //list.forEach(::addMarkerToMap)
+        //map?.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsFromLatLngList(list.map { it.latLng }), dimensionPixelSize(R.dimen._36sdp)))
     }
 
-    private fun addMarkerToMap(drugstore: TempAvailableDrugstore) {
-        val icon = BitmapDescriptorFactory.fromBitmap(drawTextToBitmap(drugstore.price))
-        val marker = MarkerOptions().title(drugstore.price).position(drugstore.latLng).icon(icon)
-        map?.addMarker(marker)?.apply { tag = drugstore.id }
+    private fun addMarkerToMap(drugstore: Pharmacy) {
+        //val icon = BitmapDescriptorFactory.fromBitmap(drawTextToBitmap(drugstore.price))
+        //val marker = MarkerOptions().title(drugstore.price).position(drugstore.latLng).icon(icon)
+        //map?.addMarker(marker)?.apply { tag = drugstore.id }
     }
 
     private fun drawTextToBitmap(text: String): Bitmap? {

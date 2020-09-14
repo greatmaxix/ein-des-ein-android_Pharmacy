@@ -5,7 +5,6 @@ import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.pharmacy.myapp.MainGraphDirections.Companion.globalToCheckoutMap
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
@@ -27,7 +26,7 @@ class CartFragment : BaseMVVMFragment(R.layout.fragment_cart) {
 
         initOrderProducts()
         bottomLayoutCart.setTopRoundCornerBackground()
-        chooseStoreBtn.onClick { navController.navigate(globalToCheckoutMap()) }
+        //chooseStoreBtn.onClick { navController.navigate(globalToCheckoutMap()) }
         mcvRecipeContainer.onClick { requireContext().toast("TODO: Recipe") }
     }
 

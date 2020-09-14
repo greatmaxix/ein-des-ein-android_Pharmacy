@@ -8,6 +8,7 @@ import com.pharmacy.myapp.model.*
 import com.pharmacy.myapp.model.category.Category
 import com.pharmacy.myapp.user.model.customerInfo.CustomerInfoItem
 import com.pharmacy.myapp.model.region.Region
+import com.pharmacy.myapp.pharmacy.model.Pharmacy
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.product.model.ProductLite
 import okhttp3.MultipartBody
@@ -67,12 +68,21 @@ interface ApiService {
     suspend fun removeFromWishList(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
 
     @GET("/api/v1/customer/wishlist")
-    suspend fun getWishList(@Query("page") page: Int? = null,
-                            @Query("per_page") pageSize: Int? = null
+    suspend fun getWishList(
+        @Query("page") page: Int? = null,
+        @Query("per_page") pageSize: Int? = null
     ): BaseDataResponse<PaginationModel<ProductLite>>
 
     @GET("$API_PATH_PUBLIC/categories")
     suspend fun categories(): BaseDataResponse<ListItemsModel<Category>>
+
+    @GET("/api/v1/public/pharmacies/global-product/{id}/pharmacy-products")
+    suspend fun pharmacyList(
+        @Path("id") globalProductId: Int,
+        @Query("regionId") regionId: Int? = null,
+        @Query("page") page: Int? = null,
+        @Query("per_page") pageSize: Int? = null
+    ): BaseDataResponse<PaginationModel<Pharmacy>>
 
     companion object {
 

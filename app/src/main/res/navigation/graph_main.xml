@@ -10,7 +10,6 @@
     <include app:graph="@navigation/graph_profile_guest" />
     <include app:graph="@navigation/graph_payments" />
     <include app:graph="@navigation/graph_cart" />
-    <include app:graph="@navigation/graph_checkout_map" />
     <include app:graph="@navigation/graph_onboarding" />
 
     <fragment
@@ -55,6 +54,7 @@
         android:name="com.pharmacy.myapp.home.HomeFragment"
         android:label="@null"
         tools:layout="@layout/fragment_home">
+
         <action
             android:id="@+id/fromHomeToScanner"
             app:destination="@id/nav_scanner"
@@ -62,6 +62,15 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+        <action
+            android:id="@+id/fromHomeToCheckout"
+            app:destination="@id/nav_pharmacy"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
     </fragment>
 
     <action
@@ -173,21 +182,6 @@
         android:label="@string/analyzesLabel"
         tools:layout="@layout/fragment_analyzes" />
 
-    <action
-        android:id="@+id/globalToCheckoutMap"
-        app:destination="@id/checkout_map_graph"
-        app:enterAnim="@anim/nav_enter_anim"
-        app:exitAnim="@anim/nav_exit_anim"
-        app:popEnterAnim="@anim/nav_enter_pop_anim"
-        app:popExitAnim="@anim/nav_exit_pop_anim">
-
-        <argument
-            android:name="showMap"
-            android:defaultValue="false"
-            app:argType="boolean"
-            app:nullable="false" />
-    </action>
-
     <fragment
         android:id="@+id/nav_scanner"
         android:name="com.pharmacy.myapp.scanner.ScannerFragment"
@@ -295,6 +289,13 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+        <action
+            android:id="@+id/fromProductToPharmacy"
+            app:destination="@id/nav_pharmacy"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
     </fragment>
 
     <action
@@ -316,4 +317,21 @@
         android:name="com.pharmacy.myapp.categories.CategoriesFragment"
         android:label="Категории"
         tools:layout="@layout/fragment_categories" />
+
+    <fragment
+        android:id="@+id/nav_pharmacy"
+        android:name="com.pharmacy.myapp.pharmacy.PharmacyFragment"
+        android:label="@string/checkoutMapLabel"
+        tools:layout="@layout/fragment_checkout_map_container">
+        <argument
+            android:name="productId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+        <argument
+            android:name="isMapNeed"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+    </fragment>
 </navigation>

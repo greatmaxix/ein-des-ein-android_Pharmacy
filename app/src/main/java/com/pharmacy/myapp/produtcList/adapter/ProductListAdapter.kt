@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.produtcList
+package com.pharmacy.myapp.produtcList.adapter
 
 import android.view.ViewGroup
 import androidx.paging.ItemSnapshotList
