@@ -30,7 +30,7 @@ class RestManager : KoinComponent {
     private var regionId: Int? = null
 
     companion object {
-        private const val BASE_URL = "https://api.pharmacies.fmc-dev.com" // "https://api.pharmacies.release.fmc-dev.com" TODO change to release in future
+        private const val BASE_URL = /*"https://api.pharmacies.fmc-dev.com"*/ "https://api.pharmacies.release.fmc-dev.com" //TODO change to release in future
         private const val READ_TIMEOUT = 30L
         private const val CONNECT_TIMEOUT = 60L
         private const val WRITE_TIMEOUT = 120L

@@ -4,19 +4,15 @@ import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.pharmacy.myapp.R
-import com.pharmacy.myapp.produtcList.BaseProductListViewModel
+import com.pharmacy.myapp.produtcList.BaseProductViewModel
 import com.pharmacy.myapp.search.repository.SearchPagingSource
-import com.pharmacy.myapp.search.repository.SearchRepository
 
-class SearchViewModel(private val searchRepository: SearchRepository) : BaseProductListViewModel() {
+class SearchViewModel : BaseProductViewModel() {
 
     private val searchLiveData by lazy { MutableLiveData("") }
 
     private val _productCountLiveData by lazy { MutableLiveData<Int>() }
     val productCountLiveData: LiveData<Int> by lazy { _productCountLiveData.distinctUntilChanged() }
-
-    private var wishToSave: Triple<Boolean, Int, Int>? = null
 
     val pagedSearchLiveData by lazy {
         searchLiveData.distinctUntilChanged().switchMap {
@@ -26,24 +22,7 @@ class SearchViewModel(private val searchRepository: SearchRepository) : BaseProd
         }
     }
 
-    fun checkIsWishSaved() {
-        wishToSave?.let(::setOrRemoveWish)
-    }
-
-    fun clearWishToSave() {
-        wishToSave = null
-    }
-
-    fun doSearch(value: String) = searchLiveData.postValue(value)
-
-    override fun setOrRemoveWish(setOrRemove: Triple<Boolean, Int, Int>) {
-        launchIO {
-            if (searchRepository.isCustomerExist()) {
-                super.setOrRemoveWish(setOrRemove)
-            } else {
-                wishToSave = setOrRemove
-                _errorLiveData.postValue(R.string.forAddingProduct)
-            }
-        }
+    fun doSearch(value: String) {
+        searchLiveData.value = value
     }
 }

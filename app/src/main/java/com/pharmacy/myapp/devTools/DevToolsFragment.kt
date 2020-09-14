@@ -15,7 +15,7 @@ class DevToolsFragment(private val viewModel: DevToolsViewModel) : BaseMVVMFragm
         super.onViewCreated(view, savedInstanceState)
 
         toProductCard.onClick {
-            navController.navigate(globalToProductCard())
+            //navController.navigate(globalToProductCard())
         }
 
         toPayments.onClick {

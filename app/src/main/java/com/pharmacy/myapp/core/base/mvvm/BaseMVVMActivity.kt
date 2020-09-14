@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.pharmacy.myapp.core.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -12,7 +11,7 @@ import kotlin.reflect.KClass
 
 abstract class BaseMVVMActivity<out VM : ViewModel>(@LayoutRes layoutResourceId: Int, viewModelClass: KClass<VM>) : BaseActivity(layoutResourceId) {
 
-    protected val viewModel: VM by lazy { getViewModel<VM>(viewModelClass) }
+    protected val viewModel: VM by lazy { getViewModel(clazz = viewModelClass) }
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,15 +28,14 @@ abstract class BaseMVVMActivity<out VM : ViewModel>(@LayoutRes layoutResourceId:
     }
 
     protected fun <T, LD : LiveData<T>> observeNullable(liveData: LD, onChanged: T?.() -> Unit) {
-        liveData.observe(this, Observer { value ->
+        liveData.observe(this, { value ->
             onChanged(value)
         })
     }
 
     protected fun <T, LD : LiveData<T>> observe(liveData: LD, onChanged: T.() -> Unit) {
-        liveData.observe(this, Observer { value ->
+        liveData.observe(this, { value ->
             value?.let(onChanged)
         })
     }
-
 }
