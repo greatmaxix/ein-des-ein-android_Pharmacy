@@ -186,7 +186,27 @@
         android:id="@+id/nav_scanner"
         android:name="com.pharmacy.myapp.scanner.ScannerFragment"
         android:label="@string/qrCodeLabel"
-        tools:layout="@layout/fragment_qr_code_scanner" />
+        tools:layout="@layout/fragment_qr_code_scanner">
+
+        <action
+            android:id="@+id/fromScannerToListResult"
+            app:destination="@id/nav_scanner_list"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_scanner_list"
+        android:name="com.pharmacy.myapp.scanner.ScannerListFragment"
+        android:label="@string/qrCodeLabel"
+        tools:layout="@layout/fragment_scanner_result">
+
+        <argument
+            android:name="products"
+            app:argType="com.pharmacy.myapp.product.model.ProductLite[]" />
+    </fragment>
 
     <action
         android:id="@+id/globalToCheckout"
