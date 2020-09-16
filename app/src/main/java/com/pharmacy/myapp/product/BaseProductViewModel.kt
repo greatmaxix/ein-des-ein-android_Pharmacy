@@ -18,10 +18,10 @@ abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
     private val repositoryUser by inject<UserRepository>()
     private val repositoryProduct by inject<ProductRepository>()
 
-    private val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
+    protected val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
     val progressLiveData: LiveData<Boolean> by lazy { _progressLiveData }
 
-    private val _errorLiveData by lazy { SingleLiveEvent<Int>() }
+    protected val _errorLiveData by lazy { SingleLiveEvent<Int>() }
     val errorLiveData: LiveData<Int> by lazy { _errorLiveData }
 
     private val _productLiveData by lazy { SingleLiveEvent<Product>() }

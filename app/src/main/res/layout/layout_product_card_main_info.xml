@@ -45,6 +45,20 @@
         tools:text="Chinoin Pharmaceutical and Chemical Works Co.  Венгрия" />
 
     <TextView
+        android:id="@+id/tvPriceUnavailable"
+        style="@style/Text.CheckoutEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/temporaryUnavailable"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:textColor="@color/greyText"
+        android:textSize="@dimen/_13ssp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvManufacture"
+        tools:visibility="visible" />
+
+    <TextView
         android:id="@+id/tvPriceFromPrefix"
         style="@style/Text.CheckoutEdit"
         android:layout_width="0dp"
@@ -100,6 +114,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_goneMarginTop="@dimen/_48sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPriceFromPrefix" />
 
@@ -211,4 +226,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupPriceFields"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="tvPriceFromPrefix, tvPriceFrom, tvPriceToPrefix, tvPriceTo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

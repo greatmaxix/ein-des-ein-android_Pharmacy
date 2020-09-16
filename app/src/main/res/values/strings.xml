@@ -83,6 +83,7 @@
     <string name="recommendedForYou">Рекомендуемое вам :</string>
     <string name="analoguesAndMain">Аналоги и основное действующее вещетсво</string>
     <string name="findInPharmacies">Найти в аптеках</string>
+    <string name="temporaryUnavailable">Временно не доступен</string>
 
     <!-- Dev tools -->
     <string name="devToolsLabel">DEV TOOLS</string>

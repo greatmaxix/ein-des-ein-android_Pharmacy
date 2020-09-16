@@ -87,8 +87,13 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         tvTitle.setTextHtml(rusName)
         tvSubTitle.setTextHtml(releaseForm)
         tvManufacture.text = getFullManufacture
-        tvPriceTo.text = getString(R.string.price, aggregation.maxPrice.toString())
-        tvPriceFrom.text = getString(R.string.price, aggregation.minPrice.toString())
+        aggregation?.let {
+            tvPriceTo.text = getString(R.string.price, aggregation.maxPrice.toString())
+            tvPriceFrom.text = getString(R.string.price, aggregation.minPrice.toString())
+        }
+        groupPriceFields.visibleOrGone(aggregation != null)
+        tvPriceUnavailable.visibleOrGone(aggregation == null)
+
         tvAnalog.text = substance
 
         ivCategory.setImageResource(R.drawable.ic_vaccine)

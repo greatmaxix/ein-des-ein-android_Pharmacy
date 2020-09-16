@@ -1,9 +1,8 @@
 package com.pharmacy.myapp.scanner.repository
 
 import com.pharmacy.myapp.data.local.SPManager
-import com.pharmacy.myapp.data.remote.rest.RestManager
 
-class ScannerRepository(private val spManager: SPManager, private val rm: RestManager) {
+class ScannerRepository(private val spManager: SPManager, private val srds: ScannerRemoteDataSource) {
 
     fun isQrCodeDescriptionShown(): Boolean = spManager.qrCodeDescriptionShown ?: false
 
@@ -11,7 +10,5 @@ class ScannerRepository(private val spManager: SPManager, private val rm: RestMa
         spManager.qrCodeDescriptionShown = true
     }
 
-    fun searchQrCode(code: String) {
-        // TODO implement code search
-    }
+    suspend fun searchQrCode(code: String) = srds.searchBarcode(barCode = code)
 }

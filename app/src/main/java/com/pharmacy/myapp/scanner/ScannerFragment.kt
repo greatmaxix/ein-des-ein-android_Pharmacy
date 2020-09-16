@@ -17,14 +17,18 @@ import com.fondesa.kpermissions.extension.addListener
 import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogFragment
-import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
-import com.pharmacy.myapp.core.extensions.*
+import com.pharmacy.myapp.core.extensions.animateVisibleOrGone
+import com.pharmacy.myapp.core.extensions.doWithDelay
+import com.pharmacy.myapp.core.extensions.onClick
+import com.pharmacy.myapp.core.extensions.toast
+import com.pharmacy.myapp.product.BaseProductFragment
+import com.pharmacy.myapp.scanner.ScannerFragmentDirections.Companion.fromScannerToListResult
 import kotlinx.android.synthetic.main.fragment_qr_code_scanner.*
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class ScannerFragment(private val viewModel: ScannerViewModel) : BaseMVVMFragment(R.layout.fragment_qr_code_scanner) {
+class ScannerFragment(private val viewModel: ScannerViewModel) : BaseProductFragment<ScannerViewModel>(R.layout.fragment_qr_code_scanner, viewModel) {
 
     private var codeScanner: CodeScanner? = null
 
@@ -51,9 +55,7 @@ class ScannerFragment(private val viewModel: ScannerViewModel) : BaseMVVMFragmen
                             positive = getString(R.string.grantPermissionButton),
                             negative = getString(R.string.closeButton)
                         ).apply {
-                            setPositiveListener(DialogOnClick { _, _ ->
-                                request.send()
-                            })
+                            setPositiveListener { _, _ -> request.send() }
                         }.show(childFragmentManager)
                     }
                 }
@@ -70,34 +72,26 @@ class ScannerFragment(private val viewModel: ScannerViewModel) : BaseMVVMFragmen
             positive = getString(R.string.permissionDialogSettingsButton),
             negative = getString(R.string.permissionDialogCancel)
         ).apply {
-            setPositiveListener(DialogOnClick { _, _ ->
+            setPositiveListener { _, _ ->
                 startActivity(Intent().apply {
                     action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
                     data = Uri.fromParts("package", requireActivity().packageName, null)
                 })
-            })
+            }
         }.show(childFragmentManager)
     }
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-
-        viewModel.directionLiveData.observeExt(navController::navigate)
-        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
-        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
-        viewModel.descriptionVisibility.observeExt { qrCodeScannerInstructionGroup.animateVisibleOrGone(it) }
-        viewModel.searchResultItem.observeExt {
-            SearchResultBottomSheet.newInstance {
-                codeScanner?.startPreview()
-            }.show(childFragmentManager)
-        }
+        observe(viewModel.descriptionVisibility) { qrCodeScannerInstructionGroup.animateVisibleOrGone(it) }
+        observe(viewModel.resultLiveData) { doNav(fromScannerToListResult(it.toTypedArray())) }
     }
 
     private fun initQRCamera() {
         codeScanner = CodeScanner(requireContext(), codeScannerView)
             .apply {
                 camera = CodeScanner.CAMERA_BACK // TODO check on devices with only front camera available
-                formats = CodeScanner.ALL_FORMATS
+                formats = CodeScanner.ONE_DIMENSIONAL_FORMATS
                 autoFocusMode = AutoFocusMode.SAFE
                 scanMode = ScanMode.SINGLE
                 isAutoFocusEnabled = true
@@ -132,4 +126,8 @@ class ScannerFragment(private val viewModel: ScannerViewModel) : BaseMVVMFragmen
         codeScanner?.releaseResources()
         super.onPause()
     }
+
+    override fun notifyWish(globalProductId: Int) { /*mock*/
+    }
+
 }
