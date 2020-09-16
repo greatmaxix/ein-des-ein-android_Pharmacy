@@ -18,7 +18,7 @@ class ScannerListFragment(private val viewModel: ProductViewModel) : BaseProduct
         super.onViewCreated(view, savedInstanceState)
 
         showBackButton()
-        adapter.apply { setList(args.products.toMutableList()) }
+        adapter.setList(args.products.toMutableList())
         rvProducts.adapter = adapter
     }
 
