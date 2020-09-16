@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_category.view.*
 
 class CategoryViewHolder(view: View, val click: (Category) -> Unit) : BaseViewHolder<Category>(view) {
     override fun bind(item: Category) {
-        itemView.tvCategoryName.text = item.rusName
+        itemView.tvCategoryName.text = item.name
         itemView.mcvCategory.onClick { click(item) }
     }
 

@@ -48,7 +48,7 @@ interface ApiService {
         @Query("page") page: Int? = null,
         @Query("per_page") pageSize: Int? = null,
         @Query("regionId") regionId: Int? = null,
-        @Query("barCode") barCode: Int? = null,
+        @Query("barCode") barCode: String? = null,
         @Query("name") name: String? = null
     ): BaseDataResponse<PaginationModel<ProductLite>>
 

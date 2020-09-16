@@ -30,7 +30,7 @@ class ProfileViewModel(private val context: Context, private val repository: Pro
     val customerInfoLiveData = repository.getCustomerInfo()
     val directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     var avatarFile = File(context.externalCacheDir, AVATAR_FILE_NAME)
-    private val _avatarLiveData = MutableLiveData<String?>(avatarFile.absolutePath)
+    private val _avatarLiveData = MutableLiveData(avatarFile.absolutePath)
     val avatarLiveData: LiveData<String?> = _avatarLiveData
 
     fun updateCustomerData(

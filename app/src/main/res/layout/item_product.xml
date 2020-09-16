@@ -20,10 +20,11 @@
             android:layout_width="@dimen/_110sdp"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/_8sdp"
+            android:scaleType="centerInside"
+            android:src="@drawable/main_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_facebook" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -69,6 +70,19 @@
             app:layout_constraintTop_toBottomOf="@+id/tvSubTitle"
             app:layout_constraintVertical_bias="0.0"
             tools:text="Производитель, Россия" />
+
+        <TextView
+            android:id="@+id/tvPriceUnavailable"
+            style="@style/Text.CheckoutEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:text="@string/temporaryUnavailable"
+            android:textColor="@color/greyText"
+            android:textSize="@dimen/_11ssp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/ivProduct"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle" />
 
         <TextView
             android:id="@+id/tvPricePrefix"

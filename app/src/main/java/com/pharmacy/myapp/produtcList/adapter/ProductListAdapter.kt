@@ -6,10 +6,10 @@ import androidx.paging.PagingDataAdapter
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.product.model.ProductLite
 
-class ProductListAdapter(private val itemClick: (Int) -> Unit, private val onClick: (Pair<Boolean, Int>) -> Unit) :
+class ProductListAdapter(private val itemClick: (Int) -> Unit, private val wishClick: (Pair<Boolean, Int>) -> Unit) :
     PagingDataAdapter<ProductLite, ProductListViewHolder>(ProductListDiffUtil) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProductListViewHolder.newInstance(parent, onClick).apply {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProductListViewHolder.newInstance(parent, wishClick).apply {
         itemView.onClick { itemClick(getItem(bindingAdapterPosition)!!.globalProductId) }
     }
 

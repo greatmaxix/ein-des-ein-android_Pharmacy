@@ -1,30 +1,19 @@
 package com.pharmacy.myapp.scanner
 
 import androidx.lifecycle.LiveData
-import androidx.navigation.NavDirections
-import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
+import com.pharmacy.myapp.core.network.ResponseWrapper
+import com.pharmacy.myapp.product.BaseProductViewModel
+import com.pharmacy.myapp.product.model.ProductLite
 import com.pharmacy.myapp.scanner.repository.ScannerRepository
-import kotlinx.coroutines.delay
-import timber.log.Timber
 
-class ScannerViewModel(private val repository: ScannerRepository) : BaseViewModel() {
+class ScannerViewModel(private val repository: ScannerRepository) : BaseProductViewModel() {
 
-    private val _errorLiveData by lazy { SingleLiveEvent<String>() }
-    val errorLiveData: LiveData<String> by lazy { _errorLiveData }
-
-    private val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
-    val progressLiveData: LiveData<Boolean> by lazy { _progressLiveData }
-
-    private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
-    val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
+    private val _resultLiveData by lazy { SingleLiveEvent<List<ProductLite>>() }
+    val resultLiveData: LiveData<List<ProductLite>> by lazy { _resultLiveData }
 
     private val _descriptionVisibility by lazy { SingleLiveEvent<Boolean>() }
     val descriptionVisibility: LiveData<Boolean> by lazy { _descriptionVisibility }
-
-    // TODO set proper type
-    private val _searchResultItem by lazy { SingleLiveEvent<Any>() }
-    val searchResultItem: LiveData<Any> by lazy { _searchResultItem }
 
     init {
         _descriptionVisibility.value = !repository.isQrCodeDescriptionShown()
@@ -36,18 +25,20 @@ class ScannerViewModel(private val repository: ScannerRepository) : BaseViewMode
     }
 
     fun searchQrCode(code: String) {
+        _progressLiveData.postValue(true)
         launchIO {
-            // TODO implement code search
-            // repository.searchQrCode(code)
-
-            // --- STUB start ---
-            _progressLiveData.postValue(true)
-            delay(2000)
+            when (val response = repository.searchQrCode(code)) {
+                is ResponseWrapper.Success -> {
+                    val items = response.value.data.items
+                    if (items.size == 1) {
+                        getProductInfo(items.first().globalProductId)
+                    } else {
+                        _resultLiveData.postValue(items)
+                    }
+                }
+                is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
+            }
             _progressLiveData.postValue(false)
-
-            _searchResultItem.postValue(Any())
-            Timber.i(code)
-            // --- STUB end ---
         }
     }
 }

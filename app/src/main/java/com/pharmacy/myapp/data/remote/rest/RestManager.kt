@@ -113,8 +113,8 @@ class RestManager : KoinComponent {
 
     suspend fun fetchCustomerInfo() = api.fetchCustomerInfo()
 
-    suspend fun productSearch(page: Int? = null, pageSize: Int? = null, barCode: Int? = null, name: String? = null) =
-        api.productSearch(page, pageSize, regionId, barCode, name)
+    suspend fun productSearch(page: Int? = null, pageSize: Int? = null, barCode: String? = null, name: String? = null) =
+        safeApiCall(tokenRefreshCall) { api.productSearch(page, pageSize, regionId, barCode, name) }
 
     suspend fun getProductById(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.getProductById(globalProductId) }
 
