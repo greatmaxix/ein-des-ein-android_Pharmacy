@@ -12,13 +12,12 @@ class ScannerListFragment(private val viewModel: ProductViewModel) : BaseProduct
 
     private val args by navArgs<ScannerListFragmentArgs>()
 
-    val adapter = ProductListScannerAdapter(viewModel::getProductInfo, viewModel::setOrRemoveWish)
+    private val adapter by lazy { ProductListScannerAdapter(viewModel::getProductInfo, viewModel::setOrRemoveWish, args.products.toMutableList()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         showBackButton()
-        adapter.setList(args.products.toMutableList())
         rvProducts.adapter = adapter
     }
 

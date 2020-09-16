@@ -19,8 +19,6 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
             itemView.ivProduct.loadGlide(pictures.first().url) {
                 transform(CenterCrop(), RoundedCorners(R.dimen._8sdp.toPixelSize))
             }
-        } else {
-            Glide.with(itemView).load(R.drawable.main_icon).into(itemView.ivProduct)
         }
 
         itemView.tvTitle.setTextHtml(rusName)
@@ -33,7 +31,6 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
         itemView.tvPricePrefix.visibleOrGone(aggregation != null)
         itemView.tvPriceUnavailable.visibleOrGone(aggregation == null)
 
-        itemView.invalidate()
         with(itemView.ivWish) {
             setDebounceOnClickListener(2000) {
                 wishClick(!isWish to globalProductId)

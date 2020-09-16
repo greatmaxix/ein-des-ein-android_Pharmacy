@@ -8,13 +8,13 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class AvatarInfo(
     @ColumnInfo(name = "createdAtAvatar")
-    @SerializedName("createdAt") val createdAt: String,
-    @SerializedName("extension") val extension: String,
-    @SerializedName("filename") val filename: String,
-    @SerializedName("mimeType") val mimeType: String,
-    @SerializedName("originalFilename") val originalFilename: String,
-    @SerializedName("ownerUuid") val ownerUuid: String,
-    @SerializedName("type") val type: String,
+    @SerializedName("createdAt") val createdAt: String?,
+    @SerializedName("extension") val extension: String?,
+    @SerializedName("filename") val filename: String?,
+    @SerializedName("mimeType") val mimeType: String?,
+    @SerializedName("originalFilename") val originalFilename: String?,
+    @SerializedName("ownerUuid") val ownerUuid: String?,
+    @SerializedName("type") val type: String?,
     @SerializedName("url") val url: String,
     @PrimaryKey
     @ColumnInfo(name = "uuidAvatar")

@@ -6,12 +6,8 @@ import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.product.model.ProductLite
 import com.pharmacy.myapp.produtcList.adapter.ProductListViewHolder
 
-class ProductListScannerAdapter(private val itemClick: (Int) -> Unit, private val wishClick: (Pair<Boolean, Int>) -> Unit) :
-    BaseRecyclerAdapter<ProductLite, ProductListViewHolder>() {
-
-    fun setList(list: MutableList<ProductLite>) {
-        items = list
-    }
+class ProductListScannerAdapter(private val itemClick: (Int) -> Unit, private val wishClick: (Pair<Boolean, Int>) -> Unit, list: MutableList<ProductLite>) :
+    BaseRecyclerAdapter<ProductLite, ProductListViewHolder>(list) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProductListViewHolder.newInstance(parent, wishClick).apply {
         itemView.onClick { itemClick(getItem(bindingAdapterPosition).globalProductId) }
