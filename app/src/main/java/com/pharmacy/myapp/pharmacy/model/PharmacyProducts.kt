@@ -1,3 +1,7 @@
 package com.pharmacy.myapp.pharmacy.model
 
-data class PharmacyProducts(val pharmacyProductId: Int, val price: Float)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class PharmacyProducts(val pharmacyProductId: Int, val price: Float) : Parcelable

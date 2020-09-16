@@ -3,109 +3,119 @@ package com.pharmacy.myapp.pharmacy.map
 import android.graphics.*
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.toBitmap
+import androidx.navigation.fragment.findNavController
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
+import com.pharmacy.myapp.core.extensions.asyncWithContext
+import com.pharmacy.myapp.core.extensions.dimensionPixelSize
+import com.pharmacy.myapp.core.extensions.getDrawable
+import com.pharmacy.myapp.pharmacy.PharmacyFragmentDirections.Companion.fromPharmacyToProductInfo
 import com.pharmacy.myapp.pharmacy.PharmacyViewModel
 import com.pharmacy.myapp.pharmacy.model.Pharmacy
-import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
-import kotlinx.android.synthetic.main.fragment_checkout_map.*
-import org.koin.android.ext.android.get
+import kotlinx.android.synthetic.main.fragment_pharmacy_map.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import timber.log.Timber
 
-class PharmacyMapFragment : BaseMVVMFragment(R.layout.fragment_checkout_map) {
+class PharmacyMapFragment : BaseMVVMFragment(R.layout.fragment_pharmacy_map), OnMapReadyCallback {
 
     private val viewModel: PharmacyViewModel by lazy { requireParentFragment().getViewModel() }
-    private var map: GoogleMap? = null
-    private val mapZoom = 18F
-    private val drawTextSize = 14
+
+    private var googleMap: GoogleMap? = null
+
+    private val paint by lazy {
+        Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.WHITE
+            textSize = 14 * resources.displayMetrics.density // scale
+            setShadowLayer(1f, 0f, 1f, Color.WHITE)
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initMap(savedInstanceState)
+        mvPharmacy.onCreate(savedInstanceState)
+        mvPharmacy.getMapAsync(this)
+    }
+
+    override fun onBindLiveData() {
+        observe(viewModel.pharmacyLiveData) {
+            navController.navigate(fromPharmacyToProductInfo(it))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mvPharmacy.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mvPharmacy.onPause()
     }
 
     override fun onStart() {
         super.onStart()
-        mapViewCheckout.onStart()
-    }
-
-    override fun onResume() {
-        mapViewCheckout.onResume()
-        super.onResume()
-    }
-
-    override fun onPause() {
-        mapViewCheckout.onPause()
-        super.onPause()
+        mvPharmacy.onStart()
     }
 
     override fun onStop() {
-        mapViewCheckout.onStop()
         super.onStop()
+        mvPharmacy.onStop()
     }
 
     override fun onDestroy() {
-        mapViewCheckout?.onDestroy()
         super.onDestroy()
+        mvPharmacy?.onDestroy()
     }
 
     override fun onLowMemory() {
-        mapViewCheckout.onLowMemory()
         super.onLowMemory()
+        mvPharmacy.onLowMemory()
     }
 
-    override fun onBindLiveData() {
-        viewModel.drugstoresLiveData.observeExt(::showMarkers)
-        viewModel.showBottomSheetLiveData.observeExt {
-            get<PharmacyMapBottomSheet>().show(childFragmentManager)
-            //map?.animateCamera(CameraUpdateFactory.newLatLngZoom(it.latLng, mapZoom))
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mvPharmacy.onSaveInstanceState(outState)
+    }
+
+    override fun onMapReady(map: GoogleMap?) {
+        googleMap = map
+        observe(viewModel.pharmacyListLiveData, ::showMarkers)
+
+        googleMap?.setOnMarkerClickListener { marker ->
+            viewModel.getPharmacy(marker.tag as Int)
+            Timber.e("Click: $marker, TAG: ${marker.tag as Int}")
+
+            //requireParentFragment().findNavController().navigate(fromPharmacyToProductInfo())
+            //viewModel.markerClicked(marker.tag as Int)
+
+            true
         }
     }
 
-    private fun initMap(savedInstanceState: Bundle?) {
-        mapViewCheckout.onCreate(savedInstanceState)
-        mapViewCheckout.getMapAsync {
-            viewModel.getDrugstores()
-            map = it
-            map?.setOnMarkerClickListener { marker ->
-                viewModel.markerClicked(marker.tag as Int)
-                true
-            }
-        }
+    private fun showMarkers(list: MutableList<Pharmacy>) {
+        list.forEach { asyncWithContext({ createMarker(it) }, { googleMap?.addMarker(this)?.apply { tag = it.id } }) }
+        googleMap?.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsFromLatLngList(list.map { it.location.mapCoordinates }), dimensionPixelSize(R.dimen._36sdp)))
     }
 
-    private fun showMarkers(list: ArrayList<Pharmacy>) {
-        //list.forEach(::addMarkerToMap)
-        //map?.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsFromLatLngList(list.map { it.latLng }), dimensionPixelSize(R.dimen._36sdp)))
-    }
+    private fun createMarker(pharmacy: Pharmacy) =
+        MarkerOptions().position(pharmacy.location.mapCoordinates).icon(BitmapDescriptorFactory.fromBitmap(pharmacy.firstProductPrice.asBitmap()))
 
-    private fun addMarkerToMap(drugstore: Pharmacy) {
-        //val icon = BitmapDescriptorFactory.fromBitmap(drawTextToBitmap(drugstore.price))
-        //val marker = MarkerOptions().title(drugstore.price).position(drugstore.latLng).icon(icon)
-        //map?.addMarker(marker)?.apply { tag = drugstore.id }
-    }
-
-    private fun drawTextToBitmap(text: String): Bitmap? {
-        val scale: Float = resources.displayMetrics.density
-        var bitmap = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_marker_icon)?.toBitmap() ?: return null
-        var bitmapConfig = bitmap.config
-        if (bitmapConfig == null) bitmapConfig = Bitmap.Config.ARGB_8888
-        bitmap = bitmap.copy(bitmapConfig, true)
-        val canvas = Canvas(bitmap)
-        val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-        paint.color = Color.WHITE
-        paint.textSize = (drawTextSize * scale)
-        paint.setShadowLayer(1f, 0f, 1f, Color.WHITE)
-
+    private fun String.asBitmap(): Bitmap? {
+        var bitmap = getDrawable(R.drawable.ic_marker_icon)?.toBitmap() ?: return null
+        bitmap = bitmap.copy(bitmap.config ?: Bitmap.Config.ARGB_8888, true)
         val bounds = Rect()
-        paint.getTextBounds(text, 0, text.length, bounds)
-        val centerX = (bitmap.width - bounds.width()) / 2
-        val centerY = (bitmap.height + bounds.height()) / 2.8
-        canvas.drawText(text, centerX.toFloat(), centerY.toFloat(), paint)
+        paint.getTextBounds(this, 0, length, bounds)
+        val centerX = (bitmap.width - bounds.width()) / 2f
+        val centerY = (bitmap.height + bounds.height()) / 2.8f
+        Canvas(bitmap).drawText(this, centerX, centerY, paint)
         return bitmap
     }
 
@@ -122,5 +132,4 @@ class PharmacyMapFragment : BaseMVVMFragment(R.layout.fragment_checkout_map) {
         }
         return LatLngBounds(LatLng(bottomRightLatitude, bottomRightLongitude), LatLng(topLeftLatitude, topLeftLongitude))
     }
-
 }

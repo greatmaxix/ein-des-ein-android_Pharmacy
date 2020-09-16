@@ -24,7 +24,7 @@ class ProductListViewHolder(override val containerView: View, private val onClic
         itemView.tvSubTitle.setTextHtml(releaseForm)
 
         itemView.tvManufacture.setTextHtml(stringRes(R.string.manufacture, productLocale))
-        itemView.tvPrice.text = stringRes(R.string.price, aggregation.minPrice)
+        itemView.tvProductPrice.text = stringRes(R.string.price, aggregation.minPrice)
 
         with(itemView.ivWish) {
             setDebounceOnClickListener(2000) {

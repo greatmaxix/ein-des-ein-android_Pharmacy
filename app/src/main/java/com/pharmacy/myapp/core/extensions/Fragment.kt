@@ -3,7 +3,10 @@ package com.pharmacy.myapp.core.extensions
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.ACTION_DIAL
+import android.content.Intent.ACTION_VIEW
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.Window
@@ -13,6 +16,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.annotation.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.commit
@@ -126,6 +131,10 @@ fun Fragment.showAlertRes(message: String, block: AlertDialogDataRes.() -> Unit)
 fun Fragment.browser(url: String, block: (BrowserIntent.() -> Unit)? = null) = requireActivity().browser(url, block)
 
 fun Fragment.browser(@StringRes url: Int, block: (BrowserIntent.() -> Unit)? = null) = requireActivity().browser(getString(url), block)
+
+fun Fragment.showDial(number: String) = startActivity(Intent(ACTION_DIAL, String.format("tel:%s", Uri.encode(number)).toUri()))
+
+fun Fragment.showDirection(lat: Double, lng: Double) = startActivity(Intent(ACTION_VIEW, "google.navigation:q=${lat},${lng}&mode=w".toUri()))
 
 fun Fragment.getFragmentTag(suffix: String? = null): String = this::class.java.simpleName + (suffix ?: "")
 
@@ -241,7 +250,7 @@ fun Fragment.setWindowBackground(@DrawableRes resId: Int?) = window.setBackgroun
 fun Fragment.setAsyncWindowBackground(@DrawableRes resId: Int?) = asyncWithContext({ getDrawable(resId) }, window::setBackgroundDrawable)
 
 fun <T> Fragment.asyncWithContext(async: () -> T, result: T.() -> Unit) = viewLifecycleOwner.lifecycleScope.launch {
-    result.invoke(withContext(Dispatchers.Default) { async.invoke() })
+    result.invoke(withContext(Dispatchers.Default) { async() })
 }
 
 fun Fragment.launch(action: KSuspendFunction0<Unit>) = viewLifecycleOwner.lifecycleScope.launch { action.invoke() }
@@ -281,3 +290,22 @@ inline fun Fragment.debug(code: () -> Unit) {
         code()
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

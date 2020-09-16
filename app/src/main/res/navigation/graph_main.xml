@@ -321,8 +321,8 @@
     <fragment
         android:id="@+id/nav_pharmacy"
         android:name="com.pharmacy.myapp.pharmacy.PharmacyFragment"
-        android:label="@string/checkoutMapLabel"
-        tools:layout="@layout/fragment_checkout_map_container">
+        android:label="@string/pharmacyMapLabel"
+        tools:layout="@layout/fragment_pharmacy">
         <argument
             android:name="productId"
             android:defaultValue="-1"
@@ -333,5 +333,18 @@
             android:defaultValue="false"
             app:argType="boolean" />
 
+        <action
+            android:id="@+id/fromPharmacyToProductInfo"
+            app:destination="@id/nav_pharmacy_product_info" />
+
     </fragment>
+
+    <dialog
+        android:id="@+id/nav_pharmacy_product_info"
+        android:name="com.pharmacy.myapp.pharmacy.map.PharmacyMapBottomSheet"
+        tools:layout="@layout/dialog_promo_code">
+        <argument
+            android:name="pharmacy"
+            app:argType="com.pharmacy.myapp.pharmacy.model.Pharmacy" />
+    </dialog>
 </navigation>

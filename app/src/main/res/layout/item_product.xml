@@ -63,7 +63,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textSize="@dimen/_10ssp"
-            app:layout_constraintBottom_toTopOf="@+id/tvPrice"
+            app:layout_constraintBottom_toTopOf="@+id/tvProductPrice"
             app:layout_constraintEnd_toEndOf="@+id/ivWish"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvSubTitle"
@@ -82,7 +82,7 @@
             app:layout_constraintStart_toStartOf="@+id/tvTitle" />
 
         <TextView
-            android:id="@+id/tvPrice"
+            android:id="@+id/tvProductPrice"
             style="@style/Text.CheckoutEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

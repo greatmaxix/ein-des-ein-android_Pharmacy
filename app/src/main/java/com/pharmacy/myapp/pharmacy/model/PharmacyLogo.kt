@@ -1,3 +1,7 @@
 package com.pharmacy.myapp.pharmacy.model
 
-data class PharmacyLogo(val url: String)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class PharmacyLogo(val url: String) : Parcelable

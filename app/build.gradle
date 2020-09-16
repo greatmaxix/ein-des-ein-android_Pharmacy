@@ -5,12 +5,13 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: "kotlin-kapt"
 
 android {
-    compileSdkVersion 29
+
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.pharmacy.myapp"
         minSdkVersion 26
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "0.1"
 
@@ -157,6 +158,7 @@ dependencies {
     implementation "androidx.work:work-runtime-ktx:$rootProject.ext.deps.versions.workmanager"
     implementation "com.budiyev.android:code-scanner:$rootProject.ext.deps.versions.qrCodeScanner"
     implementation "com.github.onimur:handle-path-oz:$rootProject.ext.deps.versions.handlePathOz"
+
     implementation "com.google.android.gms:play-services-maps:$rootProject.ext.deps.versions.maps"
 
     implementation "$room.runtime"
