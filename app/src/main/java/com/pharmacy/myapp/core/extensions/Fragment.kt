@@ -71,7 +71,7 @@ val Fragment.compatActivity
 fun Fragment.doWithDelay(delay: Long, action: () -> Unit) {
     viewLifecycleOwner.lifecycleScope.launch {
         delay(delay)
-        action.invoke()
+        action()
     }
 }
 
@@ -79,12 +79,12 @@ fun Fragment.doWithDelay(delay: Int, action: () -> Unit) = doWithDelay(delay.toL
 
 fun Fragment.doWithContext(start: Context.() -> Unit) {
     context?.let {
-        start.invoke(it)
+        start(it)
     }
 }
 
 fun Fragment.doWithActivity(start: FragmentActivity.() -> Unit) {
-    start.invoke(requireActivity())
+    start(requireActivity())
 }
 
 val Fragment.screeHeight get() = requireActivity().screenHeight
@@ -250,12 +250,12 @@ fun Fragment.setWindowBackground(@DrawableRes resId: Int?) = window.setBackgroun
 fun Fragment.setAsyncWindowBackground(@DrawableRes resId: Int?) = asyncWithContext({ getDrawable(resId) }, window::setBackgroundDrawable)
 
 fun <T> Fragment.asyncWithContext(async: () -> T, result: T.() -> Unit) = viewLifecycleOwner.lifecycleScope.launch {
-    result.invoke(withContext(Dispatchers.Default) { async() })
+    result(withContext(Dispatchers.Default) { async() })
 }
 
-fun Fragment.launch(action: KSuspendFunction0<Unit>) = viewLifecycleOwner.lifecycleScope.launch { action.invoke() }
+fun Fragment.launch(action: KSuspendFunction0<Unit>) = viewLifecycleOwner.lifecycleScope.launch { action() }
 
-fun Fragment.launch(action: (CoroutineScope) -> Unit) = viewLifecycleOwner.lifecycleScope.launch { action.invoke(this) }
+fun Fragment.launch(action: (CoroutineScope) -> Unit) = viewLifecycleOwner.lifecycleScope.launch { action(this) }
 
 fun Fragment.sendEmail(email: String = "support@emfex.com", subject: String? = null, message: String? = null, @StringRes intentTitle: Int) =
     run {
@@ -290,22 +290,3 @@ inline fun Fragment.debug(code: () -> Unit) {
         code()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
