@@ -278,10 +278,12 @@
     <string name="wishEmptyContainerSubtitle">Начните поиск, что бы добавить товар в корзину</string>
     <string name="wishEmptyContainerTitle">Вы пока не добавили товар в избранное</string>
 
-    <!-- Checkout map -->
-    <string name="checkoutMapLabel">Выбор аптеки</string>
-    <string name="checkoutMapTitle">На карте</string>
-    <string name="checkoutListTitle">Списком</string>
+    <!-- Pharmacy map -->
+    <string name="pharmacyMapLabel">Выбор аптеки</string>
+    <string name="pharmacyMapTitle">На карте</string>
+    <string name="pharmacyListTitle">Списком</string>
+    <string name="pharmacyAddToCart">Добавить в корзину</string>
+    <string name="pharmacyPhoneWith">📞️ %1$s</string>
 
     <!-- Payments -->
     <string name="bonusComingSoon">Бонусы уже скоро!</string>

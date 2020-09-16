@@ -10,7 +10,7 @@
         android:layoutDirection="locale" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tlCheckoutMap"
+        android:id="@+id/tlPharmacy"
         style="@style/TabLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,9 +19,8 @@
         android:elevation="@dimen/_4sdp" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpCheckoutMap"
+        android:id="@+id/vpPharmacy"
         style="@style/Recycler"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent" />
 </LinearLayout>

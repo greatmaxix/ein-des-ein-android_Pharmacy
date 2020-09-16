@@ -1,24 +1,37 @@
 package com.pharmacy.myapp.pharmacy.map
 
+import android.os.Bundle
+import android.view.View
+import androidx.navigation.fragment.navArgs
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragmentDialogBottomSheet
+import com.pharmacy.myapp.core.extensions.loadGlide
+import com.pharmacy.myapp.core.extensions.onClick
+import com.pharmacy.myapp.core.extensions.showDial
+import com.pharmacy.myapp.core.extensions.showDirection
+import kotlinx.android.synthetic.main.item_pharmacy.*
 
-class PharmacyMapBottomSheet : BaseMVVMFragmentDialogBottomSheet(R.layout.item_checkout_store) {
+class PharmacyMapBottomSheet : BaseMVVMFragmentDialogBottomSheet(R.layout.item_pharmacy) {
 
-    //private val viewModel: CheckoutMapViewModel  by lazy { requireParentFragment().getViewModel() }
+    private val args: PharmacyMapBottomSheetArgs by navArgs()
 
-    override fun onBindLiveData() {
-       /* viewModel.selectedDrugstoreLiveData.observe { drugstore ->
-            tvAvailabilityInDrugstore.textColor(drugstore.availabilityColor())
-            tvAvailabilityInDrugstore.text = drugstore.availability
-            tvDrugstoreName.text = drugstore.name
-            tvDrugstoreAddress.text = drugstore.address
-            tvContactInformation.text = drugstore.contactInfo
-            tvWorkingHours.text = drugstore.workingHours
-            tvPrice.text = drugstore.price
-            btnChooseDrugstore.onClick { viewModel.setDirection(globalToCheckout()) }
-            ivDrugstoreLocation.onClick { context?.toast("TODO: Location") }
-        }*/
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        with(args.pharmacy) {
+            ivPharmacy.loadGlide(logo.url)
+            tvPharmacyName.text = name
+            tvPharmacyAddress.text = location.address
+            tvPharmacyPhone.text = getString(R.string.pharmacyPhoneWith, phone)
+            tvPharmacyPhone.onClick { showDial(phone) }
+
+            tvProductPrice.text = getString(R.string.price, firstProductPrice)
+
+            ivPharmacyLocation.onClick { showDirection(location.lat, location.lng) }
+
+            mbProductAddToCart.onClick {
+
+            }
+        }
     }
-
 }

@@ -2,7 +2,6 @@ package com.pharmacy.myapp.produtcList.adapter
 
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.pharmacy.myapp.R
@@ -26,8 +25,7 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
 
         itemView.tvManufacture.setTextHtml(stringRes(R.string.manufacture, productLocale))
 
-        aggregation?.let { itemView.tvPrice.text = stringRes(R.string.price, it.minPrice) }
-        itemView.tvPrice.visibleOrGone(aggregation != null)
+        aggregation?.let { itemView.tvProductPrice.text = stringRes(R.string.price, it.minPrice) }
         itemView.tvPricePrefix.visibleOrGone(aggregation != null)
         itemView.tvPriceUnavailable.visibleOrGone(aggregation == null)
 

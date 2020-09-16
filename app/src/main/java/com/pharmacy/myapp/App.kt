@@ -1,6 +1,7 @@
 package com.pharmacy.myapp
 
 import android.app.Application
+import com.google.android.gms.maps.MapsInitializer
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.logger.AndroidLogger

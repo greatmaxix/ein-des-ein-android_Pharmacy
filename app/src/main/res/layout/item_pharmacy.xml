@@ -25,18 +25,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--  <com.google.android.material.textview.MaterialTextView
-              android:id="@+id/tvAvailabilityInDrugstore"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="@dimen/_8sdp"
-              android:layout_marginTop="@dimen/_2sdp"
-              android:textSize="@dimen/_9ssp"
-              app:layout_constraintStart_toEndOf="@id/ivPharmacy"
-              app:layout_constraintTop_toTopOf="parent"
-              tools:text="Все в наличии"
-              tools:textColor="@color/colorAccent" />-->
-
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvPharmacyName"
             style="@style/TextAppearance.AppCompat.Medium"
@@ -47,7 +35,7 @@
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/_16ssp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/ivDrugstoreLocation"
+            app:layout_constraintEnd_toStartOf="@+id/ivPharmacyLocation"
             app:layout_constraintStart_toEndOf="@id/ivPharmacy"
             app:layout_constraintTop_toTopOf="@+id/ivPharmacy"
             tools:text="Название аптеки" />
@@ -59,7 +47,6 @@
             android:layout_marginTop="@dimen/_4sdp"
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="@+id/ivPharmacy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvPharmacyName"
             app:layout_constraintTop_toBottomOf="@id/tvPharmacyName"
@@ -67,7 +54,7 @@
             tools:text="ул Горная 23а, Харьков" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/ivDrugstoreLocation"
+            android:id="@+id/ivPharmacyLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/mediumGrey"
@@ -81,58 +68,47 @@
             app:rippleColor="@color/colorRippleWhiteSemiTransparent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvContactInformation"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvPharmacyPhone"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:textColor="@color/darkBlue"
             android:textSize="@dimen/_14ssp"
-            android:textColor="@color/darkBlue"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/ivPharmacy"
-            app:layout_constraintTop_toBottomOf="@id/ivPharmacy"
-            tools:text="+7 (098) 000 02 00 • +7 (098) 000 02 00" />
+            app:layout_constraintTop_toBottomOf="@id/tvPharmacyAddress"
+            tools:text="@string/pharmacyPhoneWith" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvWorkingHours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:textColor="@color/darkBlue"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvContactInformation"
-            tools:text="⏰ c 8:00 до 22:00 ежедневно" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvPrice"
+            android:id="@+id/tvProductPrice"
             style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
             android:textColor="@color/primaryBlue"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/btnChooseDrugstore"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btnChooseDrugstore"
+            app:layout_constraintBottom_toBottomOf="@id/mbProductAddToCart"
+            app:layout_constraintStart_toStartOf="@+id/ivPharmacy"
+            app:layout_constraintTop_toTopOf="@id/mbProductAddToCart"
             tools:text="568 ₽" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnChooseDrugstore"
+            android:id="@+id/mbProductAddToCart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:backgroundTint="@color/primaryBlue"
-            android:gravity="center"
-            android:paddingTop="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_8sdp"
-            android:text="@string/chooseDrugstoreCart"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/pharmacyAddToCart"
             android:textColor="@color/colorGlobalWhite"
             android:textSize="@dimen/_12ssp"
             android:textStyle="bold"
-            app:cornerRadius="@dimen/_64sdp"
+            app:cornerRadius="@dimen/_45sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tvPrice"
-            app:layout_constraintTop_toBottomOf="@id/tvWorkingHours" />
+            app:layout_constraintStart_toEndOf="@id/tvProductPrice"
+            app:layout_constraintTop_toBottomOf="@id/tvPharmacyPhone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
