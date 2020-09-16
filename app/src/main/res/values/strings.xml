@@ -57,6 +57,8 @@
 
     <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
 
+    <string name="expectSoonMock">Ожидайте в ближайшее время</string>
+
     <!--QrCodeScanner-->
     <string name="qrCodeLabel">Штрих код</string>
     <string name="cameraPermissionRationaleMessage">Разрешение на доступ к камере необходимо для сканирования QR кода</string>
