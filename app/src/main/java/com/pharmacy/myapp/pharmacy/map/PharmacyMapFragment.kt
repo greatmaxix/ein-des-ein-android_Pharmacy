@@ -4,7 +4,6 @@ import android.graphics.*
 import android.os.Bundle
 import android.view.View
 import androidx.core.graphics.drawable.toBitmap
-import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -22,7 +21,6 @@ import com.pharmacy.myapp.pharmacy.PharmacyViewModel
 import com.pharmacy.myapp.pharmacy.model.Pharmacy
 import kotlinx.android.synthetic.main.fragment_pharmacy_map.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import timber.log.Timber
 
 class PharmacyMapFragment : BaseMVVMFragment(R.layout.fragment_pharmacy_map), OnMapReadyCallback {
 
@@ -91,11 +89,6 @@ class PharmacyMapFragment : BaseMVVMFragment(R.layout.fragment_pharmacy_map), On
 
         googleMap?.setOnMarkerClickListener { marker ->
             viewModel.getPharmacy(marker.tag as Int)
-            Timber.e("Click: $marker, TAG: ${marker.tag as Int}")
-
-            //requireParentFragment().findNavController().navigate(fromPharmacyToProductInfo())
-            //viewModel.markerClicked(marker.tag as Int)
-
             true
         }
     }
