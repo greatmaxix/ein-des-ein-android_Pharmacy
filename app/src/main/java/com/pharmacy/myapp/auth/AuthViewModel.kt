@@ -68,7 +68,7 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
             when (val response = repository.login(customerPhone, code)) {
                 is Success -> {
                     repository.saveToken(response.value.token, response.value.refreshToken)
-                    saveCustomerData(response.value.customer)
+                    saveCustomerData(response.value.customer) { homeOrPopBack() }
                     progressLiveData.postValue(false)
                 }
                 is Error -> {
@@ -79,8 +79,9 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
         }
     }
 
-    private suspend fun saveCustomerData(customerInfo: CustomerInfo) {
-        repository.saveCustomerInfo(customerInfo)?.let { context?.saveDrawableToFile(it) { homeOrPopBack() } } ?: homeOrPopBack()
+    private suspend fun saveCustomerData(customerInfo: CustomerInfo, homeOrPopBackIfNeeded: () -> Unit = {}) {
+        repository.saveCustomerInfo(customerInfo)?.let { context?.saveDrawableToFile(it) }
+        homeOrPopBackIfNeeded()
     }
 
     private fun homeOrPopBack() {
