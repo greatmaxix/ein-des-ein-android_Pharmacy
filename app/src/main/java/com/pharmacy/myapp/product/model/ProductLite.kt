@@ -1,12 +1,10 @@
 package com.pharmacy.myapp.product.model
 
-import android.R.string
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.pharmacy.myapp.App
 import kotlinx.android.parcel.Parcelize
 import java.util.*
-
 
 @Parcelize
 open class ProductLite(

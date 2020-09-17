@@ -30,7 +30,7 @@ abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private
 
     abstract fun notifyWish(globalProductId: Int)
 
-    /**
+    /*
      * Here we may write some custom logic for authorization process.
      * This method will be executed [errorOrDialog] method
      */
@@ -50,17 +50,17 @@ abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private
         }
     }
 
+    private fun getNavDirection(product: Product) = when (this) {
+        is WishFragment -> SearchFragmentDirections.globalToProductCard(product)
+        is SearchFragment -> SearchFragmentDirections.fromSearchToProduct(product)
+        is ScannerFragment -> SearchFragmentDirections.globalToProductCard(product)
+        is ScannerListFragment -> SearchFragmentDirections.globalToProductCard(product)
+        is CategoriesSearchFragment -> globalToProductCard(product)
+        else -> throw Exception("Add new instance to base product")
+    }
+
     companion object {
         const val PRODUCT_WISH_KEY = "productWishKey"
         const val PRODUCT_WISH_FIELD = "productWishField"
-    }
-
-    private fun getNavDirection(product: Product) = when (this) {
-        is WishFragment -> globalToProductCard(product)
-        is SearchFragment -> fromSearchToProduct(product)
-        is ScannerFragment -> globalToProductCard(product)
-        is ScannerListFragment -> globalToProductCard(product)
-        is CategoriesSearchFragment -> globalToProductCard(product)
-        else -> throw Exception("Add new instance to base product")
     }
 }

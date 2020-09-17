@@ -33,8 +33,7 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
 
         itemView.tvManufacture.setTextHtml(stringRes(R.string.manufacture, productLocale))
 
-        aggregation?.let { itemView.tvPrice.text = stringRes(R.string.price, it.minPrice) }
-        itemView.tvPrice.visibleOrGone(aggregation != null)
+        aggregation?.let { itemView.tvProductPrice.text = stringRes(R.string.price, it.minPrice) }
         itemView.tvPricePrefix.visibleOrGone(aggregation != null)
         itemView.tvPriceUnavailable.visibleOrGone(aggregation == null)
 
