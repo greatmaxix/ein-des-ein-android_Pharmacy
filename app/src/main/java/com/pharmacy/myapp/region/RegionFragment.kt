@@ -24,7 +24,7 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
         searchViewRegion.clearFocus()
         viewModel.regionSelected(it)
     }, {
-        viewLifecycleOwner.lifecycleScope.launch(Main) {
+        lifecycleScope.launch(Main) {
             llRegionNotFoundContainer.animateVisibleOrGoneIfNot(it)
         }
     })
@@ -37,7 +37,7 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
         clearFragmentResult(REGION_SELECTION_FINISHED_KEY)
         ivBackRegion.onClick { requireActivity().onBackPressed() }
         searchViewRegion.setSearchListener { text ->
-            viewLifecycleOwner.lifecycleScope.launch {
+            lifecycleScope.launch {
                 regionAdapter.filter { it.region?.name?.contains(text, true).falseIfNull() || it.header != 0.toChar() }
             }
         }

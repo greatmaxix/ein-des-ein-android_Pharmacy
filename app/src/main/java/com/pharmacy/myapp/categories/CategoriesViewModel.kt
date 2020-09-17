@@ -4,6 +4,7 @@ import androidx.core.text.trimmedLength
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
+import com.pharmacy.myapp.categories.CategoriesFragmentDirections.Companion.globalToSearchWithCategory
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
@@ -24,7 +25,7 @@ class CategoriesViewModel(private val repository: CategoriesRepository) : BaseVi
     private val _parentCategoriesLiveData by lazy { SingleLiveEvent<List<Category>>() }
     val parentCategoriesLiveData: LiveData<List<Category>> by lazy { _parentCategoriesLiveData }
 
-    private val _nestedCategoriesLiveData by lazy { SingleLiveEvent<List<Category>>() }
+    private val _nestedCategoriesLiveData by lazy { MutableLiveData<List<Category>>() }
     val nestedCategoriesLiveData: LiveData<List<Category>> by lazy { _nestedCategoriesLiveData }
 
     private val _navigateBackLiveData by lazy { MutableLiveData<Unit>() }
@@ -65,7 +66,7 @@ class CategoriesViewModel(private val repository: CategoriesRepository) : BaseVi
             selectedCategory = category
             _nestedCategoriesLiveData.postValue(category.nodes)
         } else {
-            // todo go to search
+            _directionLiveData.postValue(globalToSearchWithCategory(category))
         }
     }
 

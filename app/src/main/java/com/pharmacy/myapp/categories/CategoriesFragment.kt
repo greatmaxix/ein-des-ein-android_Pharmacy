@@ -2,26 +2,35 @@ package com.pharmacy.myapp.categories
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.categories.adapter.CategoriesAdapter
 import com.pharmacy.myapp.categories.adapter.NestedCategoriesAdapter
+import com.pharmacy.myapp.core.base.adapter.BaseFilterRecyclerAdapter
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.addGridItemDecorator
 import com.pharmacy.myapp.core.extensions.addItemDecorator
 import com.pharmacy.myapp.core.extensions.onClick
+import com.pharmacy.myapp.model.category.Category
 import kotlinx.android.synthetic.main.fragment_categories.*
+import kotlinx.coroutines.launch
 
 class CategoriesFragment(private val viewModel: CategoriesViewModel) : BaseMVVMFragment(R.layout.fragment_categories) {
 
     private val clickAction = viewModel::adapterClicked
     private val spacing by lazy { resources.getDimensionPixelSize(R.dimen._4sdp) }
+    private var adapter: BaseFilterRecyclerAdapter<Category, *>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         attachBackPressCallback { viewModel.handleBackPress() }
         ivBackCategories.onClick { viewModel.handleBackPress() }
+
+        searchViewCategories.setSearchListener { value ->
+            lifecycleScope.launch { adapter?.filter { it.name.contains(value, true) } }
+        }
     }
 
     override fun onBindLiveData() {
@@ -31,17 +40,21 @@ class CategoriesFragment(private val viewModel: CategoriesViewModel) : BaseMVVMF
 
         observe(viewModel.navigateBackLiveData) { navigationBack() }
         observe(viewModel.parentCategoriesLiveData) {
-            rvCategories.adapter = CategoriesAdapter(it.toMutableList(), clickAction)
+            setAdapter(CategoriesAdapter(clickAction).apply { notifyDataSet(it.toMutableList()) })
             rvCategories.layoutManager = GridLayoutManager(requireContext(), 2)
-            clearItemDecoration()
             rvCategories.addGridItemDecorator()
         }
         observe(viewModel.nestedCategoriesLiveData) {
-            rvCategories.adapter = NestedCategoriesAdapter(it.toMutableList(), clickAction) // todo temp
+            setAdapter(NestedCategoriesAdapter(clickAction).apply { notifyDataSet(it.toMutableList()) })
             rvCategories.layoutManager = LinearLayoutManager(requireContext())
-            clearItemDecoration()
             rvCategories.addItemDecorator(true, spacing, spacing, spacing, spacing)
         }
+    }
+
+    private fun setAdapter(categoriesAdapter: BaseFilterRecyclerAdapter<Category, *>) {
+        adapter = categoriesAdapter
+        rvCategories.adapter = categoriesAdapter
+        clearItemDecoration()
     }
 
     private fun clearItemDecoration() {
