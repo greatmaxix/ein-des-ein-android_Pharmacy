@@ -51,10 +51,10 @@ abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private
     }
 
     private fun getNavDirection(product: Product) = when (this) {
-        is WishFragment -> SearchFragmentDirections.globalToProductCard(product)
-        is SearchFragment -> SearchFragmentDirections.fromSearchToProduct(product)
-        is ScannerFragment -> SearchFragmentDirections.globalToProductCard(product)
-        is ScannerListFragment -> SearchFragmentDirections.globalToProductCard(product)
+        is WishFragment -> globalToProductCard(product)
+        is SearchFragment -> fromSearchToProduct(product)
+        is ScannerFragment -> globalToProductCard(product)
+        is ScannerListFragment -> globalToProductCard(product)
         is CategoriesSearchFragment -> globalToProductCard(product)
         else -> throw Exception("Add new instance to base product")
     }
