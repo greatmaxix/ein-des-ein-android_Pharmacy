@@ -1,7 +1,5 @@
 package com.pharmacy.myapp.produtcList.adapter
 
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -10,11 +8,10 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.product.model.ProductLite
+import com.pharmacy.myapp.util.ColorFilterUtil.blackWhiteFilter
 import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductListViewHolder(override val containerView: View, private val wishClick: (Pair<Boolean, Int>) -> Unit) : BaseViewHolder<ProductLite>(containerView) {
-
-    val filter by lazy { ColorMatrixColorFilter(ColorMatrix().apply { setSaturation(0f) }) }
 
     override fun bind(item: ProductLite) = with(item) {
 
@@ -25,7 +22,7 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
             itemView.ivProduct.setBackgroundColor(0)
         } else {
             itemView.ivProduct.setBackgroundColor(compatColor(R.color.mediumGrey50))
-            itemView.ivProduct.colorFilter = (if (aggregation == null) filter else null)
+            itemView.ivProduct.colorFilter = (if (aggregation == null) blackWhiteFilter else null)
         }
 
         itemView.tvTitle.setTextHtml(rusName)
