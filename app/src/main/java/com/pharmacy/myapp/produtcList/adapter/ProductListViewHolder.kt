@@ -15,10 +15,11 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
 
     override fun bind(item: ProductLite) = with(item) {
 
+        itemView.ivProduct.loadGlide(pictures.firstOrNull()?.url) {
+            transform(CenterCrop(), RoundedCorners(R.dimen._8sdp.toPixelSize))
+            error(R.drawable.default_product_image)
+        }
         if (pictures.isNotEmpty()) {
-            itemView.ivProduct.loadGlide(pictures.first().url) {
-                transform(CenterCrop(), RoundedCorners(R.dimen._8sdp.toPixelSize))
-            }
             itemView.ivProduct.setBackgroundColor(0)
         } else {
             itemView.ivProduct.setBackgroundColor(compatColor(R.color.mediumGrey50))

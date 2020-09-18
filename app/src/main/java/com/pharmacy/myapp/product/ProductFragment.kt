@@ -77,7 +77,7 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         aggregation?.let {
             tvPriceTo.text = getString(R.string.price, aggregation.maxPrice.toString())
             tvPriceFrom.text = getString(R.string.price, aggregation.minPrice.toString())
-        }?: run {
+        } ?: run {
             ivProductDetailAbsent.colorFilter = blackWhiteFilter
         }
         groupPriceFields.visibleOrGone(aggregation != null)
