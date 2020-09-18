@@ -29,7 +29,7 @@ class CategoriesFragment(private val viewModel: CategoriesViewModel) : BaseMVVMF
         ivBackCategories.onClick { viewModel.handleBackPress() }
 
         searchViewCategories.setSearchListener { value ->
-            lifecycleScope.launch { adapter?.filter { it.name.contains(value, true) } }
+            viewLifecycleOwner.lifecycleScope.launch { adapter?.filter { it.name.contains(value, true) } }
         }
     }
 

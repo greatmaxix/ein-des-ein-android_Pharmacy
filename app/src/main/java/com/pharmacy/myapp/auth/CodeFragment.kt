@@ -27,12 +27,12 @@ class CodeFragment : AuthBaseFragment(R.layout.fragment_code) {
         etCode.textChanges()
             .filter { etCode.isCodeLength }
             .onEach { checkSmsCode() }
-            .launchIn(lifecycleScope)
+            .launchIn(viewLifecycleOwner.lifecycleScope)
 
         etCode.editorActionEvents()
             .filter { etCode.isCodeLength && it.actionId == EditorInfo.IME_ACTION_DONE }
             .onEach { checkSmsCode() }
-            .launchIn(lifecycleScope)
+            .launchIn(viewLifecycleOwner.lifecycleScope)
         btnBackCode.onClick { navigationBack() }
         if (BuildConfig.DEBUG) etCode.setText("11111")
         btnSendCodeAgain.underlineSpan()
