@@ -31,9 +31,9 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
 
         with(itemView.ivWish) {
             setDebounceOnClickListener(2000) {
-                wishClick(!isWish to globalProductId)
+                wishClick(!isInWish to globalProductId)
             }
-            notifyHeart(isWish)
+            notifyHeart(isInWish)
         }
     }
 

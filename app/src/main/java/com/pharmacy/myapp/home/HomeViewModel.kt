@@ -1,10 +1,9 @@
 package com.pharmacy.myapp.home
 
-import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
-import com.pharmacy.myapp.core.general.SingleLiveEvent
+import com.pharmacy.myapp.product.BaseProductViewModel
 
-class HomeViewModel : BaseViewModel() {
+class HomeViewModel : BaseProductViewModel() {
 
-    val errorLiveData by lazy { SingleLiveEvent<String>() }
-    val progressLiveData by lazy { SingleLiveEvent<Boolean>() }
+
+
 }

@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.showAlert
+import com.pharmacy.myapp.home.HomeFragment
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.scanner.ScannerFragment
 import com.pharmacy.myapp.scanner.ScannerListFragment
@@ -53,6 +54,7 @@ abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private
         is SearchFragment -> SearchFragmentDirections.fromSearchToProduct(product)
         is ScannerFragment -> SearchFragmentDirections.globalToProductCard(product)
         is ScannerListFragment -> SearchFragmentDirections.globalToProductCard(product)
+        is HomeFragment -> SearchFragmentDirections.globalToProductCard(product)
         else -> throw Exception("Add new instance to base product")
     }
 

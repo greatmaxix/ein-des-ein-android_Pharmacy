@@ -32,8 +32,8 @@ class ProductListAdapter(private val itemClick: (Int) -> Unit, private val wishC
         snapshot().findItemWithPosition { it?.globalProductId == globalProductId }.let {
             val (product, position) = it
             product?.apply {
-                wish = !isWish
-                notifyItemChanged(position, isWish)
+                wish = !isInWish
+                notifyItemChanged(position, isInWish)
             }
         }
     }

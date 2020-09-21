@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
-import com.pharmacy.myapp.core.network.ResponseWrapper
+import com.pharmacy.myapp.core.network.ResponseWrapper.Error
+import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.product.repository.ProductRepository
 import com.pharmacy.myapp.user.repository.UserRepository
@@ -30,6 +31,9 @@ abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
     private val _wishLiveData by lazy { SingleLiveEvent<Int>() }
     val wishLiteLiveData: LiveData<Int> by lazy { _wishLiveData }
 
+    private val _recentlyViewedLiveData by lazy { SingleLiveEvent<List<Product>>() }
+    val recentlyViewedLiveData: LiveData<List<Product>> by lazy { _recentlyViewedLiveData }
+
     private var wishToSave: Pair<Boolean, Int>? = null
 
     fun checkIsWishSaved() {
@@ -40,8 +44,15 @@ abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
         launchIO {
             _progressLiveData.postValue(true)
             when (val response = repositoryProduct.productById(globalProductId)) {
-                is ResponseWrapper.Success -> _productLiveData.postValue(response.value.data.item)
-                is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
+                is Success -> {
+                    val lastProduct = repositoryProduct.getRecentlyViewed().firstOrNull()?.apply { primaryKey = 1 }
+                    val currentProduct = response.value.data.item
+                    if (lastProduct != currentProduct) {
+                        repositoryProduct.saveRecentlyViewed(listOfNotNull(currentProduct, lastProduct))
+                    }
+                    _productLiveData.postValue(currentProduct)
+                }
+                is Error -> _errorLiveData.postValue(response.errorResId)
             }
             _progressLiveData.postValue(false)
         }
@@ -52,11 +63,11 @@ abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
             if (repositoryUser.isCustomerExist()) {
                 _progressLiveData.postValue(true)
                 when (val response = repositoryWish.setOrRemoveWish(setOrRemove.first to setOrRemove.second)) {
-                    is ResponseWrapper.Success -> {
+                    is Success -> {
                         _wishLiveData.postValue(setOrRemove.second)
                         wishToSave = null
                     }
-                    is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
+                    is Error -> _errorLiveData.postValue(response.errorResId)
                 }
                 _progressLiveData.postValue(false)
             } else {
@@ -64,6 +75,10 @@ abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
                 _errorLiveData.postValue(R.string.forAddingProduct)
             }
         }
+    }
+
+    fun getRecentlyViewed() {
+        launchIO { _recentlyViewedLiveData.postValue(repositoryProduct.getRecentlyViewed()) }
     }
 
     companion object {
