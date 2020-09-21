@@ -39,7 +39,7 @@ class ChatViewModel(
 
     fun checkUserLoggedIn() {
         _chatMessagesLiveData.value = mutableListOf()
-        val userLoggedIn = repository.isUserLoggedIn()
+        val userLoggedIn = repository.isUserLoggedIn
         _isUserLoggedInLiveData.value = userLoggedIn
 
         mockPharmacyResponse(userLoggedIn)
