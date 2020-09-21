@@ -5,7 +5,7 @@ import com.pharmacy.myapp.categories.adapter.viewHolder.CategoryViewHolder
 import com.pharmacy.myapp.core.base.adapter.BaseFilterRecyclerAdapter
 import com.pharmacy.myapp.model.category.Category
 
-class NestedCategoriesAdapter(list: MutableList<Category>, private val click: (Category) -> Unit) : BaseFilterRecyclerAdapter<Category, CategoryViewHolder>(list) {
+class NestedCategoriesAdapter(private val click: (Category) -> Unit) : BaseFilterRecyclerAdapter<Category, CategoryViewHolder>() {
 
     override fun diffResult(origin: List<Category>, new: List<Category>) = CategoryDiff(origin, new)
 

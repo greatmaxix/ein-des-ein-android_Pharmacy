@@ -19,12 +19,12 @@
             android:id="@+id/ivProduct"
             android:layout_width="@dimen/_110sdp"
             android:layout_height="@dimen/_110sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
+            android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:src="@drawable/main_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/default_product_image" />
 
         <TextView
             android:id="@+id/tvTitle"

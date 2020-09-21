@@ -47,17 +47,16 @@ import kotlinx.android.synthetic.main.fragment_chat.*
 import kotlinx.coroutines.FlowPreview
 import java.time.LocalDateTime
 
+@FlowPreview
 class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.layout.fragment_chat) {
 
     private val uri by lazy { FileProvider.getUriForFile(requireContext(), "${BuildConfig.APPLICATION_ID}.fileprovider", viewModel.tempPhotoFile) }
 
-    @FlowPreview
-    private val choosePhotoLauncher by lazy {
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            handlePathOz.getListRealPath(it.data.getListUri())
-        }
+    private val choosePhotoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        handlePathOz.getListRealPath(it.data.getListUri())
     }
-    private val takePhotoLauncher by lazy { registerForActivityResult(ActivityResultContracts.TakePicture()) { viewModel.sendPhotos(listOf(uri)) } }
+
+    private val takePhotoLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { viewModel.sendPhotos(listOf(uri)) }
     private val handlePathOz by lazy { HandlePathOz(requireContext(), listener) }
     private val listener = object : HandlePathOzListener.MultipleUri {
         override fun onRequestHandlePathOz(listPathOz: List<PathOz>, tr: Throwable?) {
@@ -77,15 +76,6 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
             }
             RESUME_CHAT -> viewModel.removeEndChatMessage()
             AUTHORIZE -> navController.navigate(R.id.fromChatToSignIn, SignInFragmentArgs(R.id.nav_chat).toBundle())
-        }
-    }
-
-    private fun showChatEndDialog() {
-        showAlertRes(getString(R.string.chatEndedMessage)) {
-            cancelable = false
-            title = R.string.chatEndedTitle
-            positive = R.string.common_okButton
-            positiveAction = { doNav(actionChatToHome()) }
         }
     }
 
@@ -136,6 +126,16 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
                 SendBottomSheetDialogFragment.Button.GALLERY.name -> requestPickPhoto()
                 SendBottomSheetDialogFragment.Button.CAMERA.name -> requestTakePhoto()
             }
+        }
+        viewModel.checkUserLoggedIn()
+    }
+
+    private fun showChatEndDialog() {
+        showAlertRes(getString(R.string.chatEndedMessage)) {
+            cancelable = false
+            title = R.string.chatEndedTitle
+            positive = R.string.common_okButton
+            positiveAction = { doNav(actionChatToHome()) }
         }
     }
 
@@ -195,17 +195,17 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
     override fun onBindLiveData() {
         super.onBindLiveData()
 
-        viewModel.directionLiveData.observeExt(navController::navigate)
-        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
-        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
-        viewModel.isUserLoggedInLiveData.observeExt {
+        observe(viewModel.directionLiveData, navController::navigate)
+        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        observe(viewModel.isUserLoggedInLiveData) {
             if (it.not()) {
                 setNotAuthorizedChatMessages()
             } else {
                 llMessageFieldChat.visible()
             }
         }
-        viewModel.chatMessagesLiveData.observeExt {
+        observe(viewModel.chatMessagesLiveData) {
             adapter.setList(it)
             rvMessagesChat.postDelayed({
                 rvMessagesChat.smoothScrollToPosition(0)
