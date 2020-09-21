@@ -106,7 +106,7 @@ class ScannerFragment(private val viewModel: ScannerViewModel) : BaseProductFrag
                 }
 
                 errorCallback = ErrorCallback {
-                    lifecycleScope.launch(Main.immediate) {
+                    viewLifecycleOwner.lifecycleScope.launch(Main.immediate) {
                         Timber.e(it, "Error scanning qr code")
                         messageCallback?.showError(getString(R.string.qrCodeScannerError)) {
                             navController.popBackStack()

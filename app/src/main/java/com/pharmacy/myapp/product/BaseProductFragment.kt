@@ -2,7 +2,9 @@ package com.pharmacy.myapp.product
 
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
+import com.pharmacy.myapp.MainGraphDirections.Companion.globalToProductCard
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.categories.search.CategoriesSearchFragment
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.showAlert
 import com.pharmacy.myapp.home.HomeFragment
@@ -10,7 +12,7 @@ import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.scanner.ScannerFragment
 import com.pharmacy.myapp.scanner.ScannerListFragment
 import com.pharmacy.myapp.search.SearchFragment
-import com.pharmacy.myapp.search.SearchFragmentDirections
+import com.pharmacy.myapp.search.SearchFragmentDirections.Companion.fromSearchToProduct
 import com.pharmacy.myapp.user.wishlist.WishFragment
 
 abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private val layoutResourceId: Int, private val viewModel: VM) : BaseMVVMFragment(layoutResourceId) {
@@ -50,10 +52,11 @@ abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private
     }
 
     private fun getNavDirection(product: Product) = when (this) {
-        is WishFragment -> SearchFragmentDirections.globalToProductCard(product)
-        is SearchFragment -> SearchFragmentDirections.fromSearchToProduct(product)
-        is ScannerFragment -> SearchFragmentDirections.globalToProductCard(product)
-        is ScannerListFragment -> SearchFragmentDirections.globalToProductCard(product)
+        is WishFragment -> globalToProductCard(product)
+        is SearchFragment -> fromSearchToProduct(product)
+        is ScannerFragment -> globalToProductCard(product)
+        is ScannerListFragment -> globalToProductCard(product)
+        is CategoriesSearchFragment -> globalToProductCard(product)
         is HomeFragment -> SearchFragmentDirections.globalToProductCard(product)
         else -> throw Exception("Add new instance to base product")
     }

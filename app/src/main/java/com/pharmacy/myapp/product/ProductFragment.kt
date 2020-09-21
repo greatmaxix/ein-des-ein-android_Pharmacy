@@ -11,6 +11,7 @@ import com.pharmacy.myapp.auth.SignInFragmentArgs
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.product.ProductFragmentDirections.Companion.fromProductToPharmacy
 import com.pharmacy.myapp.product.adapter.ProductsImageAdapter
+import com.pharmacy.myapp.util.ColorFilterUtil.blackWhiteFilter
 import kotlinx.android.synthetic.main.fragment_product.*
 import kotlinx.android.synthetic.main.layout_product_card_additional_info.*
 import kotlinx.android.synthetic.main.layout_product_card_image_pager.*
@@ -38,6 +39,7 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         with(productImagePager) {
             adapter = ProductsImageAdapter(args.product.pictures)
             TabLayoutMediator(productImagePagerIndicator, this) { _, _ -> }.attach()
+            if (args.product.pictures.isEmpty()) ivProductDetailAbsent.visible()
         }
 
         setProductInfo()
@@ -75,6 +77,8 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         aggregation?.let {
             tvPriceTo.text = getString(R.string.price, aggregation?.maxPrice.toString())
             tvPriceFrom.text = getString(R.string.price, aggregation?.minPrice.toString())
+        } ?: run {
+            ivProductDetailAbsent.colorFilter = blackWhiteFilter
         }
         groupPriceFields.visibleOrGone(aggregation != null)
         tvPriceUnavailable.visibleOrGone(aggregation == null)
