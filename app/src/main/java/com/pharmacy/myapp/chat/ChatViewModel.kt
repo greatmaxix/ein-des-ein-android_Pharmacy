@@ -37,10 +37,12 @@ class ChatViewModel(
 
     val tempPhotoFile = File(context.externalCacheDir, Constants.TEMP_PHOTO_FILE_NAME)
 
-    init {
-        _isUserLoggedInLiveData.value = repository.isUserLoggedIn
+    fun checkUserLoggedIn() {
+        _chatMessagesLiveData.value = mutableListOf()
+        val userLoggedIn = repository.isUserLoggedIn
+        _isUserLoggedInLiveData.value = userLoggedIn
 
-        mockPharmacyResponse(true)
+        mockPharmacyResponse(userLoggedIn)
     }
 
     fun sendMessage(message: String) {
