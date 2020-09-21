@@ -34,9 +34,7 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
     fun signUp(name: String, phone: String, email: String) {
         progressLiveData.value = true
         launchIO {
-            val response = repository.signUp(name, phone, email)
-            progressLiveData.postValue(false)
-            when (response) {
+            when (val response = repository.signUp(name, phone, email)) {
                 is Success -> {
                     setUserPhone(phone)
                     saveCustomerData(response.value.customer)
@@ -44,6 +42,7 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
                 }
                 is Error -> errorLiveData.postValue(response.errorMessage)
             }
+            progressLiveData.postValue(false)
         }
     }
 

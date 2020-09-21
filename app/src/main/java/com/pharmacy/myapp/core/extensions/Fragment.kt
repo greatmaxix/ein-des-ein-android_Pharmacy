@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
@@ -27,10 +28,13 @@ import androidx.navigation.fragment.findNavController
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.BaseActivity
+import com.pharmacy.myapp.core.base.fragment.BaseFragment
 import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogData
 import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogDataRes
+import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogFragment
 import com.pharmacy.myapp.core.flow.CountDownFlow
 import com.pharmacy.myapp.core.keyboard.KeyboardObserver
+import com.pharmacy.myapp.pharmacy.tabs.BaseTabFragment
 import com.pharmacy.myapp.search.SearchFragment
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
@@ -123,8 +127,7 @@ fun Fragment.showAlert(message: String, block: AlertDialogData.() -> Unit) = req
 
 fun Fragment.showAlert(@StringRes resId: Int, block: AlertDialogData.() -> Unit) = requireActivity().showAlert(getString(resId), block)
 
-fun Fragment.showAlertRes(@StringRes resId: Int, block: AlertDialogDataRes.() -> Unit) =
-    requireActivity().showAlertRes(getString(resId), block)
+fun Fragment.showAlertRes(@StringRes resId: Int, block: AlertDialogDataRes.() -> Unit) = requireActivity().showAlertRes(getString(resId), block)
 
 fun Fragment.showAlertRes(message: String, block: AlertDialogDataRes.() -> Unit) = requireActivity().showAlertRes(message, block)
 
@@ -285,8 +288,13 @@ inline fun <reified VM : ViewModel> Fragment.sharedGraphViewModel(
     getKoin().getViewModel(ViewModelParameter(VM::class, qualifier, parameters, null, store, null))
 }
 
+fun <T> Fragment.notifySavedStateHandle(key: String, value: T) {
+    findNavController().previousBackStackEntry?.savedStateHandle?.set(key, value)
+}
+
 inline fun Fragment.debug(code: () -> Unit) {
     if (BuildConfig.DEBUG) {
         code()
     }
 }
+

@@ -9,7 +9,6 @@
     <include app:graph="@navigation/graph_profile" />
     <include app:graph="@navigation/graph_profile_guest" />
     <include app:graph="@navigation/graph_payments" />
-    <include app:graph="@navigation/graph_cart" />
     <include app:graph="@navigation/graph_onboarding" />
 
     <fragment
@@ -63,14 +62,6 @@
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
 
-        <action
-            android:id="@+id/fromHomeToCheckout"
-            app:destination="@id/nav_pharmacy"
-            app:enterAnim="@anim/nav_enter_anim"
-            app:exitAnim="@anim/nav_exit_anim"
-            app:popEnterAnim="@anim/nav_enter_pop_anim"
-            app:popExitAnim="@anim/nav_exit_pop_anim" />
-
     </fragment>
 
     <action
@@ -101,12 +92,26 @@
         android:id="@+id/nav_cart"
         android:name="com.pharmacy.myapp.cart.CartFragment"
         android:label="@string/cartLabel"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/fromCartToCheckout"
+            app:destination="@id/nav_checkout"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+        <action
+            android:id="@+id/fromCartToSearch"
+            app:destination="@id/nav_search"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+    </fragment>
 
     <action
         android:id="@+id/globalToPayments"
         app:destination="@id/graph_payments" />
-
 
     <action
         android:id="@+id/globalToChat"
@@ -207,14 +212,6 @@
             android:name="products"
             app:argType="com.pharmacy.myapp.product.model.ProductLite[]" />
     </fragment>
-
-    <action
-        android:id="@+id/globalToCheckout"
-        app:destination="@id/nav_checkout"
-        app:enterAnim="@anim/nav_enter_anim"
-        app:exitAnim="@anim/nav_exit_anim"
-        app:popEnterAnim="@anim/nav_enter_pop_anim"
-        app:popExitAnim="@anim/nav_exit_pop_anim" />
 
     <fragment
         android:id="@+id/nav_checkout"
@@ -357,14 +354,23 @@
             android:id="@+id/fromPharmacyToProductInfo"
             app:destination="@id/nav_pharmacy_product_info" />
 
+        <action
+            android:id="@+id/fromPharmacyToCart"
+            app:destination="@id/nav_cart"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
     </fragment>
 
     <dialog
         android:id="@+id/nav_pharmacy_product_info"
-        android:name="com.pharmacy.myapp.pharmacy.map.PharmacyMapBottomSheet"
+        android:name="com.pharmacy.myapp.pharmacy.tabs.map.PharmacyMapBottomSheet"
         tools:layout="@layout/dialog_promo_code">
         <argument
             android:name="pharmacy"
             app:argType="com.pharmacy.myapp.pharmacy.model.Pharmacy" />
     </dialog>
+
 </navigation>

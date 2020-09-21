@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.pharmacy.list.adapter
+package com.pharmacy.myapp.pharmacy.tabs.list.adapter
 
 import android.view.ViewGroup
 import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="-10dp"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="@dimen/_10sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/_24sdp"
+        android:paddingTop="@dimen/_16sdp"
+        android:paddingEnd="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_18sdp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbCheckout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginStart="@dimen/_1sdp"
+            android:stateListAnimator="@null"
+            android:text="@string/checkout"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/_90sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvDelivery"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTotalPrice"
+            style="@style/Text.CheckoutEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="@dimen/_18ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvDelivery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="5000 ₸" />
+
+        <TextView
+            android:id="@+id/tvNumberProducts"
+            style="@style/Text.CheckoutFilled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="@+id/tvDelivery"
+            app:layout_constraintStart_toStartOf="@+id/tvTotalPrice"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalPrice"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="2 товара (ов)" />
+
+        <TextView
+            android:id="@+id/tvDelivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deliveryPrice"
+            android:textColor="@color/purple"
+            app:layout_constraintStart_toStartOf="@+id/tvTotalPrice"
+            app:layout_constraintTop_toBottomOf="@+id/tvNumberProducts" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

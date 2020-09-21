@@ -30,7 +30,7 @@ class RestManager : KoinComponent {
     private var regionId: Int? = null
 
     companion object {
-        private const val BASE_URL = /*"https://api.pharmacies.fmc-dev.com"*/ "https://api.pharmacies.release.fmc-dev.com" //TODO change to release in future
+        private const val BASE_URL = "https://api.pharmacies.fmc-dev.com" /*"https://api.pharmacies.release.fmc-dev.com"*/ //TODO change to release in future
         private const val READ_TIMEOUT = 30L
         private const val CONNECT_TIMEOUT = 60L
         private const val WRITE_TIMEOUT = 120L
@@ -132,6 +132,12 @@ class RestManager : KoinComponent {
 
     suspend fun getPharmacyList(globalProductId: Int, page: Int? = null, pageSize: Int? = null) =
         safeApiCall(tokenRefreshCall) { api.pharmacyList(globalProductId, regionId, page, pageSize) }
+
+    suspend fun getCartProducts() = safeApiCall(tokenRefreshCall) { api.cartProducts() }
+
+    suspend fun addProductToCart(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.addProductToCart(globalProductId) }
+
+    suspend fun removeProductFromCart(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.removeProductFromCart(globalProductId) }
 
     fun setLocalRegion(id: Int?) {
         regionId = id

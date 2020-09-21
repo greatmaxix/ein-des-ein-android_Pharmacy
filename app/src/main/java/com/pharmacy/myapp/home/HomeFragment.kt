@@ -8,7 +8,6 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.debug
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
-import com.pharmacy.myapp.home.HomeFragmentDirections.Companion.fromHomeToCheckout
 import com.pharmacy.myapp.home.HomeFragmentDirections.Companion.fromHomeToScanner
 import com.pharmacy.myapp.home.HomeFragmentDirections.Companion.globalToDevTools
 import kotlinx.android.synthetic.main.fragment_home.*

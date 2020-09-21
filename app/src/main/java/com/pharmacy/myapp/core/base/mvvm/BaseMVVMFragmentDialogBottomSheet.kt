@@ -5,8 +5,8 @@ import android.view.View
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import com.pharmacy.myapp.core.base.fragment.BaseBottomSheetDialogFragment
+import androidx.lifecycle.Observer as Observer1
 
 abstract class BaseMVVMFragmentDialogBottomSheet(@LayoutRes layoutResourceId: Int) : BaseBottomSheetDialogFragment(layoutResourceId) {
 
@@ -24,24 +24,19 @@ abstract class BaseMVVMFragmentDialogBottomSheet(@LayoutRes layoutResourceId: In
         //Optional
     }
 
-    protected fun <T> LiveData<T>.observeSingle(onChanged: (T?) -> Unit) {
-        observe(viewLifecycleOwner, object : Observer<T> {
-            override fun onChanged(t: T?) {
-                onChanged.invoke(t)
-                removeObserver(this)
+    protected fun <T, LD : LiveData<T>> observeSingle(liveData: LD, onChanged: (T) -> Unit) {
+        liveData.observe(viewLifecycleOwner, object : Observer1<T> {
+            override fun onChanged(t: T) {
+                onChanged(t)
+                liveData.removeObserver(this)
             }
         })
     }
 
-    protected fun <T> LiveData<T>.observe(onChanged: (T) -> Unit) {
-        observe(viewLifecycleOwner, Observer {
-            it?.let(onChanged)
-        })
+    protected fun <T, LD : LiveData<T>> observeNullable(liveData: LD, onChanged: (T?) -> Unit) {
+        liveData.observe(viewLifecycleOwner, { onChanged(it) })
     }
 
-    protected fun <T> LiveData<T>.observeNullable(onChanged: (T?) -> Unit) {
-        observe(viewLifecycleOwner, Observer {
-            onChanged(it)
-        })
-    }
+    protected fun <T, LD : LiveData<T>> observe(liveData: LD, onChanged: (T) -> Unit) = liveData.observe(viewLifecycleOwner, { it?.let(onChanged) })
+
 }

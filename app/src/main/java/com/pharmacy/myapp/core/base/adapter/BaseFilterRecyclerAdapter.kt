@@ -21,6 +21,7 @@ abstract class BaseFilterRecyclerAdapter<T, VH : BaseViewHolder<T>>(list: List<T
 
     open fun transformList(list: MutableList<T>) = list
 
+    // TODO have to refactor this section, for remove @fun transformList@
     suspend fun filter(predicate: (T) -> Boolean) {
         val (newList, diff) = withContext(Default) {
             originList

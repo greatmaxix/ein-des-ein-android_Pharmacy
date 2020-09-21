@@ -1,5 +1,6 @@
 package com.pharmacy.myapp.product.model
 
+@Deprecated("")
 data class TempRecommendedModel(
     val recipeTitle: String,
     val imageUrl: String,

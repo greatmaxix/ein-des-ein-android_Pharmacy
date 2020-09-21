@@ -25,13 +25,11 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseProductListFr
         super.onBindLiveData()
         observe(viewModel.productCountLiveData) {
             tvSearchResult.text = getString(R.string.countProducts, it).spanSearchCount(it)
-            llDrugsNotFoundContainer.visibleOrGone(it == 0)
+            ecvPharmacy.visibleOrGone(it == 0)
         }
     }
 
     override fun needToLogin() = navController.navigate(R.id.fromSearchToAuth, SignInFragmentArgs(R.id.nav_search).toBundle())
-
-    override fun notifyWish(globalProductId: Int) = productAdapter.notifyWish(globalProductId)
 
     override val productLiveData
         get() = viewModel.pagedSearchLiveData

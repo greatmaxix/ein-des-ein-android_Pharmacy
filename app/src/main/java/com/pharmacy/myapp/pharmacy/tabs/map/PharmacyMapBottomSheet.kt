@@ -1,14 +1,12 @@
-package com.pharmacy.myapp.pharmacy.map
+package com.pharmacy.myapp.pharmacy.tabs.map
 
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragmentDialogBottomSheet
-import com.pharmacy.myapp.core.extensions.loadGlide
-import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.showDial
-import com.pharmacy.myapp.core.extensions.showDirection
+import com.pharmacy.myapp.core.extensions.*
+import com.pharmacy.myapp.pharmacy.tabs.BaseTabFragment.Companion.PHARMACY_KEY
 import kotlinx.android.synthetic.main.item_pharmacy.*
 
 class PharmacyMapBottomSheet : BaseMVVMFragmentDialogBottomSheet(R.layout.item_pharmacy) {
@@ -29,9 +27,7 @@ class PharmacyMapBottomSheet : BaseMVVMFragmentDialogBottomSheet(R.layout.item_p
 
             ivPharmacyLocation.onClick { showDirection(location.lat, location.lng) }
 
-            mbProductAddToCart.onClick {
-
-            }
+            mbProductAddToCart.onClick { notifySavedStateHandle(PHARMACY_KEY, args.pharmacy.pharmacyProducts.first().pharmacyProductId) }
         }
     }
 }

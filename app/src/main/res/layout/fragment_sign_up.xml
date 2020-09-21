@@ -129,46 +129,40 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/llButtonContainerSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:background="@drawable/background_default_ripple_selector_rect"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp">
 
-            <LinearLayout
-                android:id="@+id/llButtonContainerSignUp"
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
-                android:background="@drawable/background_default_ripple_selector_rect"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_8sdp">
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:text="@string/signUp"
+                android:textColor="@color/darkBlue"
+                android:textStyle="bold" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:text="@string/signUp"
-                    android:textColor="@color/darkBlue"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="@dimen/_42sdp"
-                    android:layout_height="@dimen/_42sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:background="@drawable/oval"
-                    android:backgroundTint="@color/primaryBlue"
-                    android:contentDescription="@string/registerButtonContentDescriptionSignUp"
-                    android:padding="@dimen/_12sdp"
-                    android:rotation="180"
-                    android:src="@drawable/ic_arrow_back" />
-            </LinearLayout>
-
-        </FrameLayout>
+            <ImageView
+                android:layout_width="@dimen/_42sdp"
+                android:layout_height="@dimen/_42sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:background="@drawable/oval"
+                android:backgroundTint="@color/primaryBlue"
+                android:contentDescription="@string/registerButtonContentDescriptionSignUp"
+                android:padding="@dimen/_12sdp"
+                android:rotation="180"
+                android:src="@drawable/ic_arrow_back" />
+        </LinearLayout>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/mtvToss"

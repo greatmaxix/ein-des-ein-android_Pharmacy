@@ -7,7 +7,7 @@ import android.widget.ImageView
 import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
 import com.pharmacy.myapp.core.extensions.loadGlide
-import com.pharmacy.myapp.product.model.Picture
+import com.pharmacy.myapp.model.Picture
 
 class ProductsImageAdapter(items: List<Picture>) : BaseRecyclerAdapter<Picture, ProductsImageAdapter.ImageViewHolder>(items) {
 

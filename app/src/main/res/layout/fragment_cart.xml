@@ -4,174 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false"
-    android:clipToPadding="false">
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomLayoutCart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvRecipeContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_6sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:backgroundTint="@color/orange"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:cardElevation="@dimen/_6sdp"
-                app:cardUseCompatPadding="true"
-                app:contentPadding="@dimen/_8sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
-                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/containerRecipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/ivOrderLogoHome"
-                        android:layout_width="@dimen/_32sdp"
-                        android:layout_height="@dimen/_32sdp"
-                        android:contentDescription="@string/orderLogoContentDescriptionHome"
-                        android:src="@drawable/main_icon"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/mtvTitleOrderHome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="@string/recipeInCartTitle"
-                        android:textColor="@color/colorGlobalWhite"
-                        android:textSize="@dimen/_11ssp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@id/mtvSubtitleOrderHome"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintStart_toEndOf="@id/ivOrderLogoHome"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/mtvSubtitleOrderHome"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:text="@string/relevanceDrugsCartSubtitle"
-                        android:textColor="@color/colorGlobalWhite"
-                        android:textSize="@dimen/_11ssp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/ivOrderLogoHome"
-                        app:layout_constraintTop_toBottomOf="@id/mtvTitleOrderHome" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvQuickAccess"
-                style="@style/Recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_cart_product" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    android:layout_marginBottom="?actionBarSize">
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layoutDirection="locale" />
+        layout="@layout/toolbar" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottomLayoutCart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="@dimen/_8sdp"
-        android:clipChildren="false"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCart"
+        style="@style/Recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:clipToPadding="false"
-        android:paddingStart="@dimen/_8sdp"
-        android:paddingTop="@dimen/_8sdp"
-        android:paddingEnd="@dimen/_12sdp"
-        android:paddingBottom="?attr/actionBarSize"
+        android:paddingBottom="@dimen/_24sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:background="@color/colorGlobalWhite">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:listitem="@layout/item_cart_content" />
 
-        <ImageView
-            android:id="@+id/ivInfoCart"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:contentDescription="@string/infoIconContentDescription"
-            android:src="@drawable/ic_about"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/colorAccent" />
+    <com.pharmacy.myapp.ui.EmptyContainerView
+        android:id="@+id/ecvPharmacy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorGlobalWhite"
+        android:visibility="gone"
+        app:buttonTextEmpty="@string/startSearch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:subtitleEmpty="@string/startSearchFor"
+        app:titleEmpty="@string/yourCartIsEmpty" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvProductTotalPriceCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:text="235 - 568 ₽"
-            android:textColor="@color/primaryBlue"
-            android:textSize="@dimen/_16ssp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivInfoCart"
-            app:layout_constraintStart_toEndOf="@+id/ivInfoCart"
-            app:layout_constraintTop_toTopOf="@+id/ivInfoCart" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvProductTotalPriceDescriptionCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:text="2 товара\n+ доставка от 150 ₽"
-            android:textColor="@color/darkBlue"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/ivInfoCart"
-            app:layout_constraintTop_toBottomOf="@+id/tvProductTotalPriceCart" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/chooseStoreBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:backgroundTint="@color/primaryBlue"
-            android:gravity="center"
-            android:paddingTop="@dimen/_12sdp"
-            android:paddingBottom="@dimen/_12sdp"
-            android:text="@string/chooseDrugstoreCart"
-            android:textAllCaps="false"
-            android:textColor="@color/colorGlobalWhite"
-            android:textSize="@dimen/_12ssp"
-            android:textStyle="bold"
-
-            app:cornerRadius="@dimen/_64sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tvProductTotalPriceDescriptionCart" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,11 @@
-package com.pharmacy.myapp.pharmacy.model
+package com.pharmacy.myapp.model
 
 import android.os.Parcelable
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class PharmacyLocation(
+data class Location(
     val lat: Double,
     val lng: Double,
     val address: String

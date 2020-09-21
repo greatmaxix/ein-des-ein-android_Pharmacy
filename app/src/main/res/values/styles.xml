@@ -136,6 +136,7 @@
     <style name="ToggleButtonCart" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:padding">0dp</item>
         <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
         <item name="backgroundTint">@color/colorTransparent</item>
         <item name="iconPadding">0dp</item>
         <item name="iconTint">@color/primaryBlue</item>

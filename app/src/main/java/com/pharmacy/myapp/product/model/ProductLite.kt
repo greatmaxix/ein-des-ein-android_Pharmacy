@@ -3,6 +3,7 @@ package com.pharmacy.myapp.product.model
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.pharmacy.myapp.App
+import com.pharmacy.myapp.model.Picture
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 

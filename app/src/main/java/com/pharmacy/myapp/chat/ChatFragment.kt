@@ -10,11 +10,9 @@ import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.FileProvider
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResultListener
-import androidx.navigation.NavOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.onimur.handlepathoz.HandlePathOz
@@ -95,13 +93,13 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
         super.onViewCreated(view, savedInstanceState)
 
         showBackButton()
-        initMenu(R.menu.info, Toolbar.OnMenuItemClickListener {
+        initMenu(R.menu.info) {
             if (it.itemId == R.id.menu_info) {
                 // TODO menu func
                 requireContext().toast("TODO: Info")
             }
             true
-        })
+        }
         initAdapter()
 
         tilMessageChat.editText?.doAfterTextChanged {

@@ -1,7 +1,6 @@
 package com.pharmacy.myapp.product
 
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
