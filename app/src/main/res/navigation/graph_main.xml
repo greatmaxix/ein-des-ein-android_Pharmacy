@@ -256,6 +256,7 @@
         android:name="com.pharmacy.myapp.search.SearchFragment"
         android:label="@null"
         tools:layout="@layout/fragment_search">
+
         <action
             android:id="@+id/fromSearchToAuth"
             app:destination="@id/auth_graph"
@@ -263,6 +264,7 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+
         <action
             android:id="@+id/fromSearchToScanner"
             app:destination="@id/nav_scanner"
@@ -270,6 +272,7 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+
         <action
             android:id="@+id/fromSearchToProduct"
             app:destination="@id/nav_product"
@@ -335,8 +338,30 @@
     <fragment
         android:id="@+id/nav_catalog"
         android:name="com.pharmacy.myapp.categories.CategoriesFragment"
-        android:label="Категории"
-        tools:layout="@layout/fragment_categories" />
+        android:label="@string/categoriesTitleHome"
+        tools:layout="@layout/fragment_categories">
+
+        <action
+            android:id="@+id/globalToSearchWithCategory"
+            app:destination="@id/nav_categories_search"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_catalog" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_categories_search"
+        android:name="com.pharmacy.myapp.categories.search.CategoriesSearchFragment"
+        android:label="@string/categoriesTitleHome"
+        tools:layout="@layout/fragment_categories_search">
+
+        <argument
+            android:name="category"
+            app:argType="com.pharmacy.myapp.model.category.Category" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_pharmacy"
