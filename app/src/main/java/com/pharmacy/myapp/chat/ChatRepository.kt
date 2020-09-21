@@ -8,5 +8,6 @@ class ChatRepository(
     private val rm: RestManager
 ) {
 
-    fun isUserLoggedIn() = !spManager.token.isNullOrBlank()
+    val isUserLoggedIn
+        get() = !spManager.token.isNullOrBlank()
 }
