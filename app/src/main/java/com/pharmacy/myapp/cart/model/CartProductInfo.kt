@@ -1,6 +1,8 @@
 package com.pharmacy.myapp.cart.model
 
+import com.google.gson.annotations.SerializedName
+
 data class CartProductInfo(
-    val id: Int,
-    var count: Int
+    @SerializedName("id") val id: Int,
+    @SerializedName("count") var count: Int
 )

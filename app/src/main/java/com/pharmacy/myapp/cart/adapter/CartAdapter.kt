@@ -10,8 +10,7 @@ class CartAdapter(
     private val removeClick: (Int) -> Unit,
     private val notifyCheckout: (CartItem) -> Unit,
     private val getConcat: () -> ConcatAdapter?
-) :
-    RecyclerView.Adapter<CartViewHolder<*>>() {
+) : RecyclerView.Adapter<CartViewHolder<*>>() {
 
     companion object {
         private const val VIEW_TYPE_ITEM = 1

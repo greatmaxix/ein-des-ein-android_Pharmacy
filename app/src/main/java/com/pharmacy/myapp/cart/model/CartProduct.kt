@@ -9,11 +9,11 @@ import java.util.*
 data class CartProduct(
     @SerializedName("pharmacyProductId") val productId: Int,
     @SerializedName("rusName") val rusName: String,
-    val releaseForm: String,
-    val pictures: List<Picture>,
+    @SerializedName("releaseForm") val releaseForm: String,
+    @SerializedName("pictures") val pictures: List<Picture>,
     @SerializedName("productCartPharmacyProduct") val cartProductInfo: CartProductInfo,
     @SerializedName("manufacturerData") val manufacture: Manufacture,
-    val price: Double
+    @SerializedName("price") val price: Double
 ) {
     //TODO Create global "Local helper"
     val productLocale: String?
