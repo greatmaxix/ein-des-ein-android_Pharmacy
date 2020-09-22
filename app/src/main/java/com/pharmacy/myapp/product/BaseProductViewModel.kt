@@ -52,10 +52,7 @@ abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
     }
 
     private suspend fun saveToRecentlyViewedAndProceed(product: Product) {
-        val lastProduct = repositoryProduct.getRecentlyViewed().firstOrNull()?.apply { primaryKey = 1 }
-        if (lastProduct != product) {
-            repositoryProduct.saveRecentlyViewed(listOfNotNull(product, lastProduct))
-        }
+        repositoryProduct.saveRecentlyViewed(product)
         _productLiveData.postValue(product)
     }
 

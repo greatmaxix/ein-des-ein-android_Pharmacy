@@ -8,5 +8,10 @@ class ProductRepository(private val rds: ProductRemoteDataSource, private val ld
 
     suspend fun getRecentlyViewed() = lds.getRecentlyViewed()
 
-    suspend fun saveRecentlyViewed(products: List<Product>) = lds.save(products)
+    suspend fun saveRecentlyViewed(product: Product) {
+        val lastProduct = getRecentlyViewed().firstOrNull()?.apply { primaryKey = 1 }
+        if (lastProduct != product) {
+            lds.save(listOfNotNull(product, lastProduct))
+        }
+    }
 }

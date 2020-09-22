@@ -7,9 +7,9 @@ import com.google.android.material.card.MaterialCardView
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.gone
 import com.pharmacy.myapp.core.extensions.inflate
+import com.pharmacy.myapp.core.extensions.setProductImage
 import com.pharmacy.myapp.core.extensions.setTextHtml
 import com.pharmacy.myapp.product.model.Product
-import com.pharmacy.myapp.util.ProductImageUtil
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.layout_recently_viewed_item.view.*
 
@@ -30,7 +30,7 @@ class RecentlyViewedView @JvmOverloads constructor(
     }
 
     fun setProduct(product: Product) {
-        ProductImageUtil.setProductImage(ivRecentlyViewed, product)
+        ivRecentlyViewed.setProductImage(product)
         tvNameRecentlyViewed.setTextHtml(product.rusName)
         tvDescriptionRecentlyViewed.setTextHtml(product.releaseForm)
         product.aggregation?.let {
