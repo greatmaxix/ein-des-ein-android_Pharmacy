@@ -3,7 +3,6 @@ package com.pharmacy.myapp.core.extensions
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.graphics.Rect
-import android.os.Build
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -55,11 +54,9 @@ fun Activity.setStatusBarColorInt(@ColorInt color: Int, withAnim: Boolean = fals
 }
 
 fun Activity.setLightStatusBar(light: Boolean) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        val flags = window.decorView.systemUiVisibility
-        val lightStatusFlag = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        window.decorView.systemUiVisibility = if (light) flags or lightStatusFlag else flags xor lightStatusFlag
-    }
+    val flags = window.decorView.systemUiVisibility
+    val lightStatusFlag = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    window.decorView.systemUiVisibility = if (light) flags or lightStatusFlag else flags xor lightStatusFlag
 }
 
 fun Activity.animatorMedium(tick: (Float) -> Unit) {
@@ -98,23 +95,25 @@ val Activity.actionBarSize
 fun Activity.alert(message: String, block: AlertDialogData.() -> Unit) = AlertDialogData().apply(block).run {
     AlertDialogFragment.newInstance(title, message, positive, negative)
         .apply {
-            setNegativeListener(DialogOnClick { dialog, _ ->
+            setNegativeListener { dialog, _ ->
                 negativeAction?.invoke()
                 dialog.dismiss()
-            })
-            setPositiveListener(DialogOnClick { _, _ -> positiveAction?.invoke() })
+            }
+            setPositiveListener { _, _ -> positiveAction?.invoke() }
             isCancelable = cancelable
         }
 }
 
 fun Activity.alertRes(message: String, block: AlertDialogDataRes.() -> Unit) = AlertDialogDataRes().apply(block).run {
-    AlertDialogFragment.newInstance(title?.let { getString(it) }, message, positive?.let { getString(it) }, negative?.let { getString(it) })
+    AlertDialogFragment.newInstance(title?.let(::getString), message, positive?.let(::getString), negative?.let(::getString))
         .apply {
-            setNegativeListener(DialogOnClick { dialog, _ ->
+            setNegativeListener { dialog, _ ->
                 negativeAction?.invoke()
                 dialog.dismiss()
-            })
-            setPositiveListener(DialogOnClick { _, _ -> positiveAction?.invoke() })
+            }
+            setPositiveListener { _, _ ->
+                positiveAction?.invoke()
+            }
             isCancelable = cancelable
         }
 }

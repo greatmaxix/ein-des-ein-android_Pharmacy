@@ -8,7 +8,7 @@
     android:background="@color/colorSearchBackground">
 
     <com.pharmacy.myapp.ui.EmptyContainerView
-        android:id="@+id/llDrugsNotFoundContainer"
+        android:id="@+id/ecvPharmacy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorGlobalWhite"

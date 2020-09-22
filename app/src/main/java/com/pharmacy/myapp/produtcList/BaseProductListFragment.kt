@@ -39,9 +39,10 @@ abstract class BaseProductListFragment<VM : BaseProductViewModel>(@LayoutRes pri
 
     abstract val productLiveData: LiveData<PagingData<ProductLite>>
 
+    override fun notifyWish(globalProductId: Int) = productAdapter.notifyWish(globalProductId)
+
     override fun onBindLiveData() {
         super.onBindLiveData()
-
         observe(productLiveData) { productAdapter.submitData(lifecycle, it) }
     }
 }

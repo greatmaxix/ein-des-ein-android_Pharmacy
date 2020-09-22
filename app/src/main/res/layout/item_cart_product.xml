@@ -8,7 +8,7 @@
     android:clipToPadding="false">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivProductImageCart"
+        android:id="@+id/ivProduct"
         android:layout_width="@dimen/_110sdp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
@@ -20,7 +20,7 @@
         tools:src="@drawable/ic_vaccine" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvProductTitleCart"
+        android:id="@+id/tvProductTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16sdp"
@@ -31,13 +31,13 @@
         android:textColor="@color/darkBlue"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/recommendedWishCart"
-        app:layout_constraintStart_toEndOf="@+id/ivProductImageCart"
+        app:layout_constraintEnd_toStartOf="@id/ivRemove"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Название товара" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvProductDescriptionCart"
+        android:id="@+id/tvProductDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
@@ -46,13 +46,13 @@
         android:maxLines="1"
         android:textColor="@color/darkBlue"
         android:textSize="@dimen/_12ssp"
-        app:layout_constraintEnd_toStartOf="@id/recommendedWishCart"
-        app:layout_constraintStart_toStartOf="@+id/tvProductTitleCart"
-        app:layout_constraintTop_toBottomOf="@+id/tvProductTitleCart"
+        app:layout_constraintEnd_toStartOf="@id/ivRemove"
+        app:layout_constraintStart_toStartOf="@+id/tvProductTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductTitle"
         tools:text="Название товара" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvProductIssuerCart"
+        android:id="@+id/tvProductProducer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
@@ -61,13 +61,13 @@
         android:maxLines="1"
         android:textColor="@color/darkBlue"
         android:textSize="@dimen/_10ssp"
-        app:layout_constraintEnd_toStartOf="@id/recommendedWishCart"
-        app:layout_constraintStart_toStartOf="@+id/tvProductTitleCart"
-        app:layout_constraintTop_toBottomOf="@+id/tvProductDescriptionCart"
+        app:layout_constraintEnd_toStartOf="@id/ivRemove"
+        app:layout_constraintStart_toStartOf="@+id/tvProductTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductDescription"
         tools:text="Название товара" />
 
     <ImageView
-        android:id="@+id/recommendedWishCart"
+        android:id="@+id/ivRemove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_12sdp"
@@ -91,7 +91,7 @@
             style="@style/ToggleButtonCart"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
-            app:icon="@drawable/ic_minus" />
+            app:icon="@drawable/ic_cart_minus" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button2"
@@ -109,7 +109,7 @@
             style="@style/ToggleButtonCart"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
-            app:icon="@drawable/ic_plus_cart" />
+            app:icon="@drawable/ic_cart_plus" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <com.google.android.material.textview.MaterialTextView
@@ -121,7 +121,7 @@
         android:textSize="@dimen/_16ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/toggleButton"
-        app:layout_constraintStart_toStartOf="@+id/tvProductTitleCart"
+        app:layout_constraintStart_toStartOf="@+id/tvProductTitle"
         tools:text="от 568 ₽" />
 
     <View
@@ -131,6 +131,6 @@
         android:background="@color/grey20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivProductImageCart" />
+        app:layout_constraintStart_toEndOf="@+id/ivProduct" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

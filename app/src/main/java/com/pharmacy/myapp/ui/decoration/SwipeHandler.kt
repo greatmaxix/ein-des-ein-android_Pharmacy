@@ -16,7 +16,7 @@ class SwipeHandler(private val swiped: (Int) -> Unit) : ItemTouchHelper.Callback
     override fun onMove(recyclerView: RecyclerView, viewHolder: ViewHolder, target: ViewHolder) = false
 
     override fun onSwiped(viewHolder: ViewHolder, direction: Int) {
-        swiped.invoke(viewHolder.adapterPosition)
+        swiped(viewHolder.adapterPosition)
     }
 
     override fun onChildDraw(c: Canvas, rv: RecyclerView, vh: ViewHolder, dX: Float, dY: Float, state: Int, isActive: Boolean) {

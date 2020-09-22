@@ -22,6 +22,9 @@ class PharmacyViewModel(globalProductId: Int, private val repository: PharmacyRe
     private val _pharmacyLiveData by lazy { MutableLiveData<Pharmacy>() }
     val pharmacyLiveData: LiveData<Pharmacy> by lazy { _pharmacyLiveData }
 
+    private val _cartNotifyLiveData by lazy { SingleLiveEvent<Unit>() }
+    val cartNotifyLiveData: LiveData<Unit> by lazy { _cartNotifyLiveData }
+
     private var pharmacyList = mutableListOf<Pharmacy>()
         set(value) {
             field = value
@@ -45,5 +48,16 @@ class PharmacyViewModel(globalProductId: Int, private val repository: PharmacyRe
 
     fun getPharmacy(pharmacyId: Int) {
         pharmacyList.find { it.id == pharmacyId }?.let { _pharmacyLiveData.value = it }
+    }
+
+    fun addToCart(globalProductId: Int) {
+        _progressLiveData.value = true
+        launchIO {
+            when (val response = repository.addToCart(globalProductId)) {
+                is ResponseWrapper.Success -> _cartNotifyLiveData.postValue(Unit)
+                is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
+            }
+            _progressLiveData.postValue(false)
+        }
     }
 }

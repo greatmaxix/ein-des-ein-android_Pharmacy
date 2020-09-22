@@ -182,7 +182,6 @@
     <string name="discount">Скидка</string>
     <string name="deliveryAmount">Доставка</string>
     <string name="totalPayable">Итого к оплате</string>
-    <string name="checkout">Оформить заказ</string>
     <string name="editCheckout">Изменить</string>
     <string name="doYouHavePromoCode">У Вас есть промокод?</string>
     <string name="discountDescription">Введите специальные символы в поле ниже для получения скидки</string>
@@ -315,5 +314,18 @@
     <!--Region-->
     <string name="noRegionFoundSubtitle">Повторите поиск</string>
     <string name="noRegionFoundTitle">Регион не найден</string>
+
+    <!--Cart-->
+    <string name="productAddedToCart">Товар усешно добавлен, перейти в корзину ?</string>
+    <string name="cart">Корзина</string>
+    <string name="stay">Остаться</string>
+    <string name="areYouSure">Вы уверены, что хотите удалить товар из корзины?</string>
+    <string name="delete">Удалить</string>
+    <string name="checkout">Оформить заказ</string>
+    <string name="countCurtProducts">%d товара(ов)</string>
+    <string name="deliveryPrice">+ доставка от 150 ₸</string>
+    <string name="yourCartIsEmpty">Оу,ваша корзина пуста</string>
+    <string name="startSearchFor">Начните поиск, что бы  добавить товар в корзину</string>
+    <string name="startSearch">Начать поиск</string>
 
 </resources>

@@ -43,7 +43,7 @@ fun View.freeze(duration: Long = 300) {
 }
 
 inline fun View.onClick(crossinline f: () -> Unit) {
-    setOnClickListener { f.invoke() }
+    setOnClickListener { f() }
 }
 
 inline fun <reified T : ViewParent> View.castParent(block: T.() -> Unit) {

@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.product.model
+package com.pharmacy.myapp.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

@@ -8,8 +8,7 @@ import com.pharmacy.myapp.model.region.RegionWithHeader
 import com.pharmacy.myapp.region.adapter.viewHolder.HeaderViewHolder
 import com.pharmacy.myapp.region.adapter.viewHolder.RegionViewHolder
 
-class RegionAdapter(private val itemClick: (Region) -> Unit, private val emptyListCallback: (Boolean) -> Unit) :
-    BaseFilterRecyclerAdapter<RegionWithHeader, BaseViewHolder<RegionWithHeader>>() {
+class RegionAdapter(private val itemClick: (Region) -> Unit, private val emptyListCallback: (Boolean) -> Unit) : BaseFilterRecyclerAdapter<RegionWithHeader, BaseViewHolder<RegionWithHeader>>() {
 
     override fun transformList(list: MutableList<RegionWithHeader>): MutableList<RegionWithHeader> {
         val transformedList = list

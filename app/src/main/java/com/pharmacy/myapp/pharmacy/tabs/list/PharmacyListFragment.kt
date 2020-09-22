@@ -1,25 +1,20 @@
-package com.pharmacy.myapp.pharmacy.list
+package com.pharmacy.myapp.pharmacy.tabs.list
 
 import android.os.Bundle
 import android.view.View
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.addItemDecorator
 import com.pharmacy.myapp.core.extensions.showDial
 import com.pharmacy.myapp.core.extensions.showDirection
-import com.pharmacy.myapp.pharmacy.PharmacyViewModel
-import com.pharmacy.myapp.pharmacy.list.adapter.PharmacyListAdapter
+import com.pharmacy.myapp.pharmacy.tabs.BaseTabFragment
+import com.pharmacy.myapp.pharmacy.tabs.list.adapter.PharmacyListAdapter
 import kotlinx.android.synthetic.main.fragment_pharmacy_list.*
-import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
-class PharmacyListFragment : BaseMVVMFragment(R.layout.fragment_pharmacy_list) {
+class PharmacyListFragment : BaseTabFragment(R.layout.fragment_pharmacy_list) {
 
-    private val viewModel: PharmacyViewModel by lazy { requireParentFragment().getViewModel() }
-
-    private val pharmacyAdapter = PharmacyListAdapter({
-
-    }, { showDial(it) }, { showDirection(it.location.lat, it.location.lng) })
+    private val pharmacyAdapter =
+        PharmacyListAdapter({ addProductToCart(it.pharmacyProducts.first().pharmacyProductId) }, ::showDial, { showDirection(it.location.lat, it.location.lng) })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +25,7 @@ class PharmacyListFragment : BaseMVVMFragment(R.layout.fragment_pharmacy_list) {
     }
 
     override fun onBindLiveData() {
+        super.onBindLiveData()
         observe(viewModel.pharmacyListLiveData, pharmacyAdapter::notifyItems)
     }
 }

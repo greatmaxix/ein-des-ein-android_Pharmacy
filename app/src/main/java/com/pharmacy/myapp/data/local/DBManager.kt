@@ -2,10 +2,10 @@ package com.pharmacy.myapp.data.local
 
 import android.content.Context
 import androidx.room.*
+import com.pharmacy.myapp.model.Picture
 import com.pharmacy.myapp.model.product.RecentlyViewedDAO
 import com.pharmacy.myapp.model.region.RegionDAO
 import com.pharmacy.myapp.model.region.TemporaryRegion
-import com.pharmacy.myapp.product.model.Picture
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
 import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo

@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.pharmacy.map
+package com.pharmacy.myapp.pharmacy.tabs.map
 
 import android.graphics.*
 import android.os.Bundle
@@ -12,19 +12,15 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.asyncWithContext
 import com.pharmacy.myapp.core.extensions.dimensionPixelSize
 import com.pharmacy.myapp.core.extensions.getDrawable
 import com.pharmacy.myapp.pharmacy.PharmacyFragmentDirections.Companion.fromPharmacyToProductInfo
-import com.pharmacy.myapp.pharmacy.PharmacyViewModel
 import com.pharmacy.myapp.pharmacy.model.Pharmacy
+import com.pharmacy.myapp.pharmacy.tabs.BaseTabFragment
 import kotlinx.android.synthetic.main.fragment_pharmacy_map.*
-import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class PharmacyMapFragment : BaseMVVMFragment(R.layout.fragment_pharmacy_map), OnMapReadyCallback {
-
-    private val viewModel: PharmacyViewModel by lazy { requireParentFragment().getViewModel() }
+class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnMapReadyCallback {
 
     private var googleMap: GoogleMap? = null
 
@@ -43,9 +39,9 @@ class PharmacyMapFragment : BaseMVVMFragment(R.layout.fragment_pharmacy_map), On
     }
 
     override fun onBindLiveData() {
-        observe(viewModel.pharmacyLiveData) {
-            navController.navigate(fromPharmacyToProductInfo(it))
-        }
+        super.onBindLiveData()
+        observe(viewModel.pharmacyLiveData) { navController.navigate(fromPharmacyToProductInfo(it)) }
+        observeSavedStateHandler(PHARMACY_KEY, ::addProductToCart)
     }
 
     override fun onResume() {
@@ -101,6 +97,7 @@ class PharmacyMapFragment : BaseMVVMFragment(R.layout.fragment_pharmacy_map), On
     private fun createMarker(pharmacy: Pharmacy) =
         MarkerOptions().position(pharmacy.location.mapCoordinates).icon(BitmapDescriptorFactory.fromBitmap(pharmacy.firstProductPrice.asBitmap()))
 
+    @Deprecated("use library")
     private fun String.asBitmap(): Bitmap? {
         var bitmap = getDrawable(R.drawable.ic_marker_icon)?.toBitmap() ?: return null
         bitmap = bitmap.copy(bitmap.config ?: Bitmap.Config.ARGB_8888, true)

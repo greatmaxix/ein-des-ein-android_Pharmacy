@@ -1,5 +1,6 @@
 package com.pharmacy.myapp.data.remote.rest
 
+import com.pharmacy.myapp.cart.model.CartItem
 import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
 import com.pharmacy.myapp.data.remote.rest.response.AuthResponse
 import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
@@ -18,32 +19,32 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @POST("$API_PATH_CUSTOMER/refresh_token")
+    @POST("/api/v1/customer/refresh_token")
     suspend fun tokenRefresh(@Body body: TokenRefreshRequest): TokenRefreshResponse
 
-    @POST("$API_PATH_CUSTOMER/registration")
+    @POST("/api/v1/customer/registration")
     suspend fun signUp(@Body arguments: Map<String, String>): BaseDataResponse<AuthResponse>
 
-    @POST("$API_PATH_CUSTOMER/auth")
+    @POST("/api/v1/customer/auth")
     suspend fun auth(@Body arguments: Map<String, String>): JSONObject
 
-    @POST("$API_PATH_CUSTOMER/login")
+    @POST("/api/v1/customer/login")
     suspend fun login(@Body arguments: Map<String, String>): BaseDataResponse<AuthResponse>
 
-    @PUT("$API_PATH_CUSTOMER/customer")
+    @PUT("/api/v1/customer/customer")
     suspend fun updateCustomerInfo(@Body arguments: Map<String, String>): BaseDataResponse<CustomerInfoItem>
 
-    @POST("$API_PATH_CUSTOMER/logout")
+    @POST("/api/v1/customer/logout")
     suspend fun logout(@Body arguments: Map<String, String>): Response<JSONObject>
 
     @Multipart
-    @POST("$API_PATH_CUSTOMER/image")
+    @POST("/api/v1/customer/image")
     suspend fun uploadImage(@Part file: MultipartBody.Part): BaseDataResponse<UploadImageResponse>
 
-    @GET("$API_PATH_CUSTOMER/customer")
+    @GET("/api/v1/customer/customer")
     suspend fun fetchCustomerInfo(): BaseDataResponse<CustomerInfoItem>
 
-    @GET("$API_PATH_PUBLIC/products/search")
+    @GET("/api/v1/public/products/search")
     suspend fun productSearch(
         @Query("page") page: Int? = null,
         @Query("per_page") pageSize: Int? = null,
@@ -53,13 +54,13 @@ interface ApiService {
         @Query("name") name: String? = null
     ): BaseDataResponse<PaginationModel<ProductLite>>
 
-    @GET("$API_PATH_PUBLIC/regions")
+    @GET("/api/v1/public/regions")
     suspend fun regions(): BaseDataResponse<ListItemsModel<Region>>
 
-    @GET("$API_PATH_PUBLIC/products/global-product/{id}")
+    @GET("/api/v1/public/products/global-product/{id}")
     suspend fun getProductById(@Path("id") globalProductId: Int): BaseDataResponseWithItem<Product>
 
-    @PATCH("$API_PATH_CUSTOMER/customer/region")
+    @PATCH("/api/v1/customer/customer/region")
     suspend fun updateRegion(@Body arguments: Map<String, Int>): BaseDataResponse<CustomerInfoItem>
 
     @POST("/api/v1/customer/wishlist/global-product/{id}")
@@ -74,7 +75,7 @@ interface ApiService {
         @Query("per_page") pageSize: Int? = null
     ): BaseDataResponse<PaginationModel<ProductLite>>
 
-    @GET("$API_PATH_PUBLIC/categories")
+    @GET("/api/v1/public/categories")
     suspend fun categories(): BaseDataResponse<ListItemsModel<Category>>
 
     @GET("/api/v1/public/pharmacies/global-product/{id}/pharmacy-products")
@@ -85,10 +86,12 @@ interface ApiService {
         @Query("per_page") pageSize: Int? = null
     ): BaseDataResponse<PaginationModel<Pharmacy>>
 
-    companion object {
+    @GET("/api/v1/customer/product-cart")
+    suspend fun cartProducts(): BaseDataResponse<PaginationModel<CartItem>>
 
-        private const val API_PATH = "/api/v1"
-        private const val API_PATH_CUSTOMER = "$API_PATH/customer"
-        private const val API_PATH_PUBLIC = "$API_PATH/public"
-    }
+    @POST("/api/v1/customer/product-cart/pharmacy-product/{id}")
+    suspend fun addProductToCart(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
+
+    @DELETE("/api/v1/customer/product-cart/pharmacy-product/{id}")
+    suspend fun removeProductFromCart(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
 }

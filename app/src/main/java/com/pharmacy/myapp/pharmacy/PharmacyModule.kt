@@ -1,8 +1,8 @@
 package com.pharmacy.myapp.pharmacy
 
-import com.pharmacy.myapp.pharmacy.list.PharmacyListFragment
-import com.pharmacy.myapp.pharmacy.map.PharmacyMapBottomSheet
-import com.pharmacy.myapp.pharmacy.map.PharmacyMapFragment
+import com.pharmacy.myapp.pharmacy.tabs.list.PharmacyListFragment
+import com.pharmacy.myapp.pharmacy.tabs.map.PharmacyMapBottomSheet
+import com.pharmacy.myapp.pharmacy.tabs.map.PharmacyMapFragment
 import com.pharmacy.myapp.pharmacy.repository.PharmacyRemoteDataSource
 import com.pharmacy.myapp.pharmacy.repository.PharmacyRepository
 import org.koin.androidx.fragment.dsl.fragment
@@ -16,7 +16,7 @@ val checkoutMapModule = module {
     fragment { PharmacyMapBottomSheet() }
 
     single { PharmacyRemoteDataSource(get()) }
-    single { PharmacyRepository(get()) }
+    single { PharmacyRepository(get(), get()) }
 
     viewModel { (globalProductId: Int) -> PharmacyViewModel(globalProductId, get()) }
 }
