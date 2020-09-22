@@ -58,9 +58,4 @@ open class ProductLite(
         return result
     }
 
-    override fun toString(): String {
-        return "ProductLite(globalProductId=$globalProductId, rusName='$rusName', releaseForm='$releaseForm', pictures=$pictures, manufacture=$manufacture, aggregation=$aggregation, wish=$wish)"
-    }
-
-
 }

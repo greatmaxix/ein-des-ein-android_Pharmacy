@@ -41,21 +41,22 @@ abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
     }
 
     fun getProductInfo(globalProductId: Int) {
+        _progressLiveData.value = true
         launchIO {
-            _progressLiveData.postValue(true)
             when (val response = repositoryProduct.productById(globalProductId)) {
-                is Success -> {
-                    val lastProduct = repositoryProduct.getRecentlyViewed().firstOrNull()?.apply { primaryKey = 1 }
-                    val currentProduct = response.value.data.item
-                    if (lastProduct != currentProduct) {
-                        repositoryProduct.saveRecentlyViewed(listOfNotNull(currentProduct, lastProduct))
-                    }
-                    _productLiveData.postValue(currentProduct)
-                }
+                is Success -> saveToRecentlyViewedAndProceed(response.value.data.item)
                 is Error -> _errorLiveData.postValue(response.errorResId)
             }
             _progressLiveData.postValue(false)
         }
+    }
+
+    private suspend fun saveToRecentlyViewedAndProceed(product: Product) {
+        val lastProduct = repositoryProduct.getRecentlyViewed().firstOrNull()?.apply { primaryKey = 1 }
+        if (lastProduct != product) {
+            repositoryProduct.saveRecentlyViewed(listOfNotNull(product, lastProduct))
+        }
+        _productLiveData.postValue(product)
     }
 
     fun setOrRemoveWish(setOrRemove: Pair<Boolean, Int>) {

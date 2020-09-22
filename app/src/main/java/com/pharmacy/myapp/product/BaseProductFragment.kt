@@ -57,7 +57,7 @@ abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private
         is ScannerFragment -> globalToProductCard(product)
         is ScannerListFragment -> globalToProductCard(product)
         is CategoriesSearchFragment -> globalToProductCard(product)
-        is HomeFragment -> SearchFragmentDirections.globalToProductCard(product)
+        is HomeFragment -> globalToProductCard(product)
         else -> throw Exception("Add new instance to base product")
     }
 

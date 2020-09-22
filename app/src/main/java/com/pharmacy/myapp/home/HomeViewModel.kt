@@ -4,6 +4,4 @@ import com.pharmacy.myapp.product.BaseProductViewModel
 
 class HomeViewModel : BaseProductViewModel() {
 
-
-
 }

@@ -14,7 +14,6 @@ import com.pharmacy.myapp.product.BaseProductFragment
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.ui.RecentlyViewedView
 import kotlinx.android.synthetic.main.fragment_home.*
-import timber.log.Timber
 
 class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<HomeViewModel>(R.layout.fragment_home, viewModel) {
 
@@ -42,14 +41,15 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         super.onBindLiveData()
         observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
-        observe(viewModel.recentlyViewedLiveData) { list ->
-            if (list.isNotEmpty()) {
-                Timber.d(list.joinToString("\n"))
-                llRecentlyViewedContainer.animateVisible()
-                tvRecentlyViewedTitle.animateVisible()
-                list.firstOrNull()?.let { setProduct(it, firstRecentlyViewedView) }
-                list.getOrNull(1)?.let { setProduct(it, secondRecentlyViewedView) }
-            }
+        observe(viewModel.recentlyViewedLiveData, ::populateRecentViewed)
+    }
+
+    private fun populateRecentViewed(list: List<Product>) {
+        if (list.isNotEmpty()) {
+            llRecentlyViewedContainer.animateVisible()
+            tvRecentlyViewedTitle.animateVisible()
+            list.firstOrNull()?.let { setProduct(it, firstRecentlyViewedView) }
+            list.getOrNull(1)?.let { setProduct(it, secondRecentlyViewedView) }
         }
     }
 
