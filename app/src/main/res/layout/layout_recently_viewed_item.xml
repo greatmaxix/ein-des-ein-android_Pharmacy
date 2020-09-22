@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recentlyViewedItemContainer"
+    tools:parentTag="com.google.android.material.card.MaterialCardView">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivRecentlyViewed"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_72sdp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            tools:src="@drawable/main_icon" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNameRecentlyViewed"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/darkBlue"
+            android:textStyle="bold"
+            tools:text="Название товара" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvDescriptionRecentlyViewed"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/darkBlue"
+            tools:text="Таблетки шипучие , 20 мг" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPriceFromPrefixRecentlyViewed"
+                style="@style/Text.CheckoutEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from"
+                android:textSize="@dimen/_11ssp" />
+
+            <TextView
+                android:id="@+id/tvPriceFromRecentlyViewed"
+                style="@style/Text.CheckoutEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                tools:text="580 ₸" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</merge>

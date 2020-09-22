@@ -48,7 +48,7 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         mcvCategory.onClick { onCategory() }
         mcvInstruction.onClick { onInstruction() }
         mcvQuestions.onClick { navController.navigate(R.id.fromProductToChat) }
-        fbWish.onClick { viewModel.setOrRemoveWish(!args.product.isWish to args.product.globalProductId) }
+        fbWish.onClick { viewModel.setOrRemoveWish(!args.product.isInWish to args.product.globalProductId) }
         mbToPharmacy.onClick { navController.navigate(fromProductToPharmacy(args.product.globalProductId)) }
 
         bottomLayout.setTopRoundCornerBackground()
@@ -75,8 +75,8 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         tvSubTitle.setTextHtml(releaseForm)
         tvManufacture.text = getFullManufacture
         aggregation?.let {
-            tvPriceTo.text = getString(R.string.price, aggregation.maxPrice.toString())
-            tvPriceFrom.text = getString(R.string.price, aggregation.minPrice.toString())
+            tvPriceTo.text = getString(R.string.price, aggregation?.maxPrice.toString())
+            tvPriceFrom.text = getString(R.string.price, aggregation?.minPrice.toString())
         } ?: run {
             ivProductDetailAbsent.colorFilter = blackWhiteFilter
         }
@@ -90,13 +90,13 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
 
         mtvDescriptionText.setTextHtml(description)
 
-        fbWish.setWish(isWish)
+        fbWish.setWish(isInWish)
     }
 
     override fun notifyWish(globalProductId: Int) {
         isNeedResult = !isNeedResult
-        args.product.wish = !args.product.isWish
-        fbWish.setWish(args.product.isWish)
+        args.product.wish = !args.product.isInWish
+        fbWish.setWish(args.product.isInWish)
     }
 
     override fun needToLogin() {

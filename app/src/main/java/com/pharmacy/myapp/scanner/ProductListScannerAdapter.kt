@@ -29,8 +29,8 @@ class ProductListScannerAdapter(private val itemClick: (Int) -> Unit, private va
     fun notifyWish(globalProductId: Int) = items.forEachIndexed { index, productLite ->
         if (globalProductId == productLite.globalProductId) {
             productLite.apply {
-                wish = !isWish
-                notifyItemChanged(index, isWish)
+                wish = !isInWish
+                notifyItemChanged(index, isInWish)
             }
         }
     }

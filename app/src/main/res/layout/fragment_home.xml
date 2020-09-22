@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_marginBottom="?actionBarSize"
+    android:fillViewport="true"
+    android:scrollbars="none">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -100,6 +103,7 @@
             android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginEnd="@dimen/_12sdp"
             android:backgroundTint="@color/green"
+            android:visibility="gone"
             app:cardCornerRadius="@dimen/_8sdp"
             app:cardElevation="@dimen/_6sdp"
             app:cardUseCompatPadding="true"
@@ -160,9 +164,9 @@
                     android:layout_height="@dimen/_20sdp"
                     android:contentDescription="@string/orderSmallIconContentDescriptionHome"
                     android:src="@drawable/ic_box"
-                    app:tint="@color/colorGlobalWhite"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/colorGlobalWhite" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -432,6 +436,52 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llCategoriesContainer" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvRecentlyViewedTitle"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="@string/recentlyViewedTitle"
+            android:textColor="@color/darkBlue"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uploadRecipes"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/llRecentlyViewedContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRecentlyViewedTitle"
+            tools:visibility="visible">
+
+            <com.pharmacy.myapp.ui.RecentlyViewedView
+                android:id="@+id/firstRecentlyViewedView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_weight="1"
+                tools:visibility="visible" />
+
+            <com.pharmacy.myapp.ui.RecentlyViewedView
+                android:id="@+id/secondRecentlyViewedView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
