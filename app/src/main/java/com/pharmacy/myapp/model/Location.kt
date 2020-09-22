@@ -2,13 +2,14 @@ package com.pharmacy.myapp.model
 
 import android.os.Parcelable
 import com.google.android.gms.maps.model.LatLng
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Location(
-    val lat: Double,
-    val lng: Double,
-    val address: String
+    @SerializedName("lat") val lat: Double,
+    @SerializedName("lng") val lng: Double,
+    @SerializedName("address") val address: String
 ) : Parcelable {
     val mapCoordinates
         get() = LatLng(lat, lng)

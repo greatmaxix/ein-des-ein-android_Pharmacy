@@ -69,15 +69,11 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
         }
     }
 
-    private fun askConfirmation(productId: Int) {
-        showAlertRes(getString(R.string.areYouSure)) {
-            positive = R.string.delete
-            positiveAction = { viewModel.removeProductFromCart(productId) }
-            negative = R.string.cancel
-        }
+    private fun askConfirmation(productId: Int) = showAlertRes(getString(R.string.areYouSure)) {
+        positive = R.string.delete
+        positiveAction = { viewModel.removeProductFromCart(productId) }
+        negative = R.string.cancel
     }
 
-    private fun startDeliveryProcess(cartItem: CartItem) {
-        navController.navigate(fromCartToCheckout())
-    }
+    private fun startDeliveryProcess(cartItem: CartItem) = navController.navigate(fromCartToCheckout())
 }

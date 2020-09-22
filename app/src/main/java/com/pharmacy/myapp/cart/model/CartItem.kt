@@ -5,10 +5,10 @@ import com.pharmacy.myapp.model.Location
 import com.pharmacy.myapp.model.Logo
 
 data class CartItem(
-    val id: Int,
-    val name: String,
-    val location: Location,
-    val logo: Logo,
+    @SerializedName("id") val id: Int,
+    @SerializedName("name") val name: String,
+    @SerializedName("location") val location: Location,
+    @SerializedName("logo") val logo: Logo,
     @SerializedName("pharmacyProducts") val products: MutableList<CartProduct>
 ) {
     val totalPrice

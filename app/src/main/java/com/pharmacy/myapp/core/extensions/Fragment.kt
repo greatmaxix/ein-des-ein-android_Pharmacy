@@ -297,4 +297,3 @@ inline fun Fragment.debug(code: () -> Unit) {
         code()
     }
 }
-

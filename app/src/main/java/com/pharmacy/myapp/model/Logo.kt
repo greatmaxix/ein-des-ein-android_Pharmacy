@@ -1,7 +1,8 @@
 package com.pharmacy.myapp.model
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Logo(val url: String) : Parcelable
+data class Logo(@SerializedName("url") val url: String) : Parcelable
