@@ -1,6 +1,9 @@
 package com.pharmacy.myapp.product.model
 
 import android.os.Parcelable
+import androidx.room.Embedded
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.pharmacy.myapp.App
 import kotlinx.android.parcel.Parcelize
@@ -8,16 +11,21 @@ import java.util.*
 
 @Parcelize
 open class ProductLite(
-    @SerializedName("globalProductId") val globalProductId: Int = -1,
-    @SerializedName("rusName") val rusName: String = "",
-    @SerializedName("releaseForm") val releaseForm: String = "",
-    @SerializedName("pictures") val pictures: List<Picture> = listOf(),
-    @SerializedName("manufacturerData") val manufacture: Manufacture = Manufacture(),
-    @SerializedName("pharmacyProductsAggregationData") val aggregation: Aggregation? = Aggregation(),
-    @SerializedName("liked") var wish: Boolean? = false
+    @SerializedName("globalProductId") var globalProductId: Int = -1,
+    @SerializedName("rusName") var rusName: String = "",
+    @SerializedName("releaseForm") var releaseForm: String = "",
+    @SerializedName("pictures") var pictures: List<Picture> = listOf(),
+    @Embedded(prefix = "manufacturerData")
+    @SerializedName("manufacturerData") var manufacture: Manufacture = Manufacture(),
+    @Embedded(prefix = "pharmacyProductsAggregationData")
+    @SerializedName("pharmacyProductsAggregationData") var aggregation: Aggregation? = Aggregation(),
+    @SerializedName("liked") var wish: Boolean? = false,
+    @PrimaryKey
+    @Expose(serialize = false)
+    var primaryKey: Int = 0
 ) : Parcelable {
 
-    val isWish
+    val isInWish
         get() = wish ?: false
 
     //TODO Create global "Local helper"
@@ -49,4 +57,5 @@ open class ProductLite(
         result = 31 * result + aggregation.hashCode()
         return result
     }
+
 }

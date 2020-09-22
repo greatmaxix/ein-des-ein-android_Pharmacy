@@ -7,6 +7,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.categories.search.CategoriesSearchFragment
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.showAlert
+import com.pharmacy.myapp.home.HomeFragment
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.scanner.ScannerFragment
 import com.pharmacy.myapp.scanner.ScannerListFragment
@@ -56,6 +57,7 @@ abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private
         is ScannerFragment -> globalToProductCard(product)
         is ScannerListFragment -> globalToProductCard(product)
         is CategoriesSearchFragment -> globalToProductCard(product)
+        is HomeFragment -> globalToProductCard(product)
         else -> throw Exception("Add new instance to base product")
     }
 

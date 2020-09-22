@@ -8,6 +8,6 @@ val homeModule = module {
 
     viewModel { HomeViewModel() }
 
-    fragment { HomeFragment() }
+    fragment { HomeFragment(get()) }
 
 }
