@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.widget.addTextChangedListener
@@ -36,6 +37,7 @@ import com.pharmacy.myapp.user.profile.edit.ChangePhotoBottomSheetDialogFragment
 import com.pharmacy.myapp.user.profile.edit.EditProfileFragmentDirections.Companion.actionFromProfileEditToChangePhoto
 import com.pharmacy.myapp.util.BlurTransformation
 import kotlinx.android.synthetic.main.fragment_profile_edit.*
+import kotlinx.coroutines.FlowPreview
 
 class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
 
@@ -43,11 +45,12 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
 
     private val uri by lazy { FileProvider.getUriForFile(requireContext(), "${BuildConfig.APPLICATION_ID}.fileprovider", viewModel.avatarFile) }
 
-    private val choosePhotoLauncher by lazy { registerForActivityResult(ActivityResultContracts.StartActivityForResult(), viewModel::onActivityResult) }
-    private val takePhotoLauncher by lazy {
-        registerForActivityResult(ActivityResultContracts.TakePicture()) { viewModel.onActivityResult(uri) }
-    }
+    @FlowPreview
+    private lateinit var choosePhotoLauncher: ActivityResultLauncher<Intent>
+    private lateinit var takePhotoLauncher: ActivityResultLauncher<Uri>
     private var userDataChanged = false
+
+    @FlowPreview
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tilPhoneEditProfile.setPhoneRule()
@@ -64,6 +67,9 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
         ivProfileEdit.setDebounceOnClickListener { showPhotoSourceChooserDialog() }
         setFragmentResultListener(CHANGE_PHOTO_KEY) { _, bundle -> handleChangePhotoAction(bundle) }
         attachBackPressCallback { backPressedHandler() }
+
+        choosePhotoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), viewModel::onActivityResult)
+        takePhotoLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { viewModel.onActivityResult(uri) }
     }
 
     private fun backPressedHandler() {
@@ -103,6 +109,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
     private fun showPhotoSourceChooserDialog() =
         doNav(actionFromProfileEditToChangePhoto(viewModel.avatarLiveData.value != null))
 
+    @FlowPreview
     private fun handleChangePhotoAction(bundle: Bundle) {
         when (bundle.getString(RESULT_BUTTON_EXTRA_KEY)) {
             Button.GALLERY.name -> requestPickPhoto()
@@ -111,11 +118,13 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
         }
     }
 
+    @FlowPreview
     private fun requestPickPhoto() {
         val pickIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         choosePhotoLauncher.launch(pickIntent)
     }
 
+    @FlowPreview
     private fun requestTakePhoto() {
         val isDeviceSupportCamera: Boolean = activity?.packageManager?.hasSystemFeature(
             PackageManager.FEATURE_CAMERA_ANY
