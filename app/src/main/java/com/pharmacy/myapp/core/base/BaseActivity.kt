@@ -32,8 +32,7 @@ abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivit
 
     protected val navController: NavController by lazy {
         try {
-            val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
-            navHostFragment.navController
+            (supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment).navController
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException("${this::class.java.simpleName} does not use \"navController\"")
         }
