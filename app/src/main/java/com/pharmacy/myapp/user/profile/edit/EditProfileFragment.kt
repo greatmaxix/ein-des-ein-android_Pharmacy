@@ -13,6 +13,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResultListener
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import com.fondesa.kpermissions.allGranted
 import com.fondesa.kpermissions.anyDenied
 import com.fondesa.kpermissions.anyPermanentlyDenied
@@ -32,6 +35,7 @@ import com.pharmacy.myapp.user.profile.edit.ChangePhotoBottomSheetDialogFragment
 import com.pharmacy.myapp.user.profile.edit.ChangePhotoBottomSheetDialogFragment.Companion.CHANGE_PHOTO_KEY
 import com.pharmacy.myapp.user.profile.edit.ChangePhotoBottomSheetDialogFragment.Companion.RESULT_BUTTON_EXTRA_KEY
 import com.pharmacy.myapp.user.profile.edit.EditProfileFragmentDirections.Companion.actionFromProfileEditToChangePhoto
+import com.pharmacy.myapp.util.BlurTransformation
 import kotlinx.android.synthetic.main.fragment_profile_edit.*
 import kotlinx.coroutines.FlowPreview
 
@@ -83,7 +87,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-        {
+        viewModel.customerInfoLiveData.observeExt {
             etEmailEditProfile.setText(it.email)
             etPhoneEditProfile.setText(it.phone.addPlusSignIfNeeded())
             etNameEditProfile.setText(it.name)
@@ -91,10 +95,15 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
             etNameEditProfile.addTextChangedListener { userDataChanged = true }
             etEmailEditProfile.addTextChangedListener { userDataChanged = true }
         }
-        observe()
-        observe()
-        observe()
-        observeNullable()
+        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
+        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
+        viewModel.avatarLiveData.observeNullableExt {
+            ivProfileEdit.loadGlide(it) {
+                placeholder(R.drawable.ic_avatar)
+                skipMemoryCache(true)
+                apply(RequestOptions().transform(MultiTransformation(BlurTransformation(requireContext()), CircleCrop())))
+            }
+        }
     }
 
     private fun showPhotoSourceChooserDialog() =
