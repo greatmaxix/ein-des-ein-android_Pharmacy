@@ -13,6 +13,8 @@ import com.pharmacy.myapp.core.general.behavior.DialogMessagesBehavior
 import com.pharmacy.myapp.core.general.behavior.ProgressViewBehavior
 import com.pharmacy.myapp.core.general.interfaces.MessagesCallback
 import com.pharmacy.myapp.core.general.interfaces.ProgressCallback
+import com.pharmacy.myapp.ui.SelectableBottomNavView
+import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_progress.*
 
@@ -30,6 +32,18 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
 
     override fun onBindLiveData() {
         observe(viewModel.directionLiveData) { navController.onNavDestinationSelected(this) }
+        observe(viewModel.customerInfoLiveData, ::setBottomNavItems)
+    }
+
+    private fun setBottomNavItems(customerInfo: CustomerInfo?) {
+        val avatarUrl = customerInfo?.avatarInfo?.url.orEmpty()
+        bottomNavigation.navItems = listOf(
+            SelectableBottomNavView.NavItem(R.id.nav_home, R.id.nav_home, R.drawable.ic_home, null),
+            SelectableBottomNavView.NavItem(R.id.nav_catalog, R.id.nav_catalog, R.drawable.ic_catalog, null),
+            SelectableBottomNavView.NavItem(R.id.nav_search, R.id.nav_search, R.drawable.ic_search, null, true),
+            SelectableBottomNavView.NavItem(R.id.nav_cart, R.id.nav_cart, R.drawable.ic_shopping_cart, null),
+            SelectableBottomNavView.NavItem(R.id.profile_graph, R.id.nav_profile, null, avatarUrl)
+        )
     }
 
     override fun setInProgress(progress: Boolean) = progressBehavior.setInProgress(progress)
@@ -52,7 +66,9 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
 
     private fun setupNavigation() = with(bottomNavigation) {
         setTopRoundCornerBackground()
+        itemIconTintList = null
         setupWithNavController(navController)
+        setBottomNavItems(viewModel.customerInfoLiveData.value)
         setOnNavigationItemSelectedListener {
             viewModel.navSelected(it.itemId)
             true
@@ -60,6 +76,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
         setOnNavigationItemReselectedListener {}
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.isTopLevelDestination) showNav() else hideNav()
+            changeSelection(destination)
         }
     }
 
