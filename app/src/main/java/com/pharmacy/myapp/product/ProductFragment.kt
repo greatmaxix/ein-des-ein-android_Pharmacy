@@ -49,7 +49,11 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         mcvInstruction.onClick { onInstruction() }
         mcvQuestions.onClick { navController.navigate(R.id.fromProductToChat) }
         fbWish.onClick { viewModel.setOrRemoveWish(!args.product.isInWish to args.product.globalProductId) }
-        mbToPharmacy.onClick { navController.navigate(fromProductToPharmacy(args.product.globalProductId)) }
+        args.product.aggregation?.let {
+            mbToPharmacy.onClick { navController.navigate(fromProductToPharmacy(args.product.globalProductId)) }
+        }?: run {
+            mbToPharmacy.isEnabled = false
+        }
 
         bottomLayout.setTopRoundCornerBackground()
 

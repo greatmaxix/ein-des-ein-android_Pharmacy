@@ -12,14 +12,17 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
 
     override fun bind(item: ProductLite) = with(item) {
 
-        itemView.ivProduct.setProductImage(this)
+        itemView.ivProduct.setProductImage(pictures, aggregation == null)
 
         itemView.tvTitle.setTextHtml(rusName)
         itemView.tvSubTitle.setTextHtml(releaseForm)
 
         itemView.tvManufacture.setTextHtml(stringRes(R.string.manufacture, productLocale))
 
-        aggregation?.let { itemView.tvProductPrice.text = stringRes(R.string.price, it.minPrice) } ?: run {
+        aggregation?.let {
+            itemView.tvProductPrice.text = stringRes(R.string.price, it.minPrice)
+            itemView.tvProductPrice.visible()
+        } ?: run {
             itemView.tvProductPrice.gone()
         }
         itemView.tvPricePrefix.visibleOrGone(aggregation != null)

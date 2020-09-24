@@ -219,6 +219,10 @@
         android:label="@string/checkoutLabel"
         tools:layout="@layout/fragment_checkout">
 
+        <argument
+            android:name="cartItem"
+            app:argType="com.pharmacy.myapp.cart.model.CartItem" />
+
         <action
             android:id="@+id/actionCheckoutToPromoCodeDialog"
             app:destination="@id/nav_checkout_dialog_promo_code"

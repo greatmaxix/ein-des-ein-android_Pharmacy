@@ -75,5 +75,5 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
         negative = R.string.cancel
     }
 
-    private fun startDeliveryProcess(cartItem: CartItem) = navController.navigate(fromCartToCheckout())
+    private fun startDeliveryProcess(cartItem: CartItem) = navController.navigate(fromCartToCheckout(cartItem))
 }

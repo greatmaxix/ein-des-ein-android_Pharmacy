@@ -95,7 +95,7 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
 
         override fun bind(item: CartItem) = with(itemView) {
             mbCheckout.onClick { notifyCheckout(item) }
-            tvTotalPrice.text = stringRes(R.string.price, item.totalPrice)
+            tvTotalPrice.text = stringRes(R.string.price, item.totalPrice.toPlainString())
             tvNumberProducts.text = stringRes(R.string.countCurtProducts, item.products.count())
         }
 

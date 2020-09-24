@@ -89,7 +89,7 @@
             app:layout_constraintBottom_toBottomOf="@id/mbProductAddToCart"
             app:layout_constraintStart_toStartOf="@+id/ivPharmacy"
             app:layout_constraintTop_toTopOf="@id/mbProductAddToCart"
-            tools:text="568 ₽" />
+            tools:text="568 ₸" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mbProductAddToCart"

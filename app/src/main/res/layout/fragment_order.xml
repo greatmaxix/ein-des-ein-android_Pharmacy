@@ -64,7 +64,7 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/_24sdp">
 
-            <com.pharmacy.myapp.ui.BuyerDetails
+            <com.pharmacy.myapp.ui.BuyerDetailsCheckout
                 android:id="@+id/viewBuyerDetailsOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <com.pharmacy.myapp.ui.BuyerDeliveryAddress
+            <com.pharmacy.myapp.ui.BuyerDeliveryAddressCheckout
                 android:id="@+id/viewBuyerDeliveryAddressOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                     android:background="@drawable/background_default_ripple_selector_rect"
                     android:padding="@dimen/_4sdp"
                     android:text="@string/editCheckout"
-                    android:textAppearance="@style/Text.CheckoutEdit" />
+                    android:textAppearance="@style/Text.Edit" />
 
             </LinearLayout>
 
@@ -167,7 +167,7 @@
                     android:background="@drawable/background_default_ripple_selector_rect"
                     android:padding="@dimen/_4sdp"
                     android:text="@string/editCheckout"
-                    android:textAppearance="@style/Text.CheckoutEdit" />
+                    android:textAppearance="@style/Text.Edit" />
 
             </LinearLayout>
 
@@ -200,7 +200,7 @@
                     android:textColor="@color/darkBlue"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
-                    tools:text="382 ₽" />
+                    tools:text="382 ₸" />
 
             </LinearLayout>
 
@@ -227,7 +227,7 @@
                     android:textColor="@color/green"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
-                    tools:text="382 ₽" />
+                    tools:text="382 ₸" />
 
             </LinearLayout>
 
@@ -255,7 +255,7 @@
                     android:textColor="@color/darkBlue"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
-                    tools:text="382 ₽" />
+                    tools:text="382 ₸" />
 
             </LinearLayout>
 
@@ -283,7 +283,7 @@
                     android:textColor="@color/primaryBlue"
                     android:textSize="@dimen/_18sdp"
                     android:textStyle="bold"
-                    tools:text="382 ₽" />
+                    tools:text="382 ₸" />
 
             </LinearLayout>
 

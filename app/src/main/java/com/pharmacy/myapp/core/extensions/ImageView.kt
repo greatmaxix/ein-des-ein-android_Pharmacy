@@ -10,7 +10,7 @@ import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.product.model.ProductLite
+import com.pharmacy.myapp.model.Picture
 import com.pharmacy.myapp.util.ColorFilterUtil
 
 fun ImageView.setFilter(@ColorInt color: Int) {
@@ -32,12 +32,12 @@ fun ImageView.loadGlide(url: String?, block: (RequestBuilder<Drawable>.() -> Uni
 
 fun ImageView.setWish(isWish: Boolean) = setImageResource(isWish.wishResId)
 
-fun ImageView.setProductImage(product: ProductLite) {
-    loadGlide(product.pictures.firstOrNull()?.url) {
+fun ImageView.setProductImage(list: List<Picture>, hasAggregation: Boolean = false) {
+    loadGlide(list.firstOrNull()?.url) {
         transform(CenterCrop(), RoundedCorners(resources.getDimensionPixelSize(R.dimen._8sdp)))
         error(R.drawable.default_product_image)
     }
-    val hasPictures = product.pictures.isNotEmpty()
-    setBackgroundColor(if (hasPictures) 0 else ContextCompat.getColor(context, R.color.mediumGrey50))
-    colorFilter = (if (product.aggregation == null && !hasPictures) ColorFilterUtil.blackWhiteFilter else null)
+    val hasPictures = list.isNotEmpty()
+    background = if (hasPictures) null else ContextCompat.getDrawable(context, R.drawable.bg_product_default_background)
+    colorFilter = (if (hasAggregation && !hasPictures) ColorFilterUtil.blackWhiteFilter else null)
 }

@@ -4,29 +4,29 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.actionCheckoutToPromoCodeDialog
 import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.globalToOrder
-import com.pharmacy.myapp.checkout.adapter.OrderProductsAdapter
+import com.pharmacy.myapp.checkout.adapter.CheckoutProductsAdapter
 import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment
 import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment.Companion.PROMO_CODE_REQUEST_KEY
 import com.pharmacy.myapp.checkout.model.TempDeliveryAddress
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
-import com.pharmacy.myapp.checkout.model.TempPharmacyAddress
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
+import com.pharmacy.myapp.core.extensions.addPlusSignIfNeeded
 import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.toast
+import com.pharmacy.myapp.core.extensions.visibleOrGone
 import com.pharmacy.myapp.data.DummyData
-import com.pharmacy.myapp.devTools.DevToolsFragmentDirections
-import com.pharmacy.myapp.ui.BuyerDeliveryAddress
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {
 
-    private val orderProductsAdapter = OrderProductsAdapter()
+    private val args by navArgs<CheckoutFragmentArgs>()
+
+    private val orderProductsAdapter by lazy { CheckoutProductsAdapter(args.cartItem.products) }
     private val radioButtonPadding by lazy { resources.getDimension(R.dimen._8sdp).toInt() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,16 +34,13 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
 
         showBackButton()
 
-        viewBuyerDetailsCheckout.setData("Some full name", "+3801231231231", "test@exapmle.com")
-        viewBuyerDeliveryAddressCheckout.setData(TempDeliveryAddress.newMockInstance(), TempPharmacyAddress.newMockInstance())
-        viewBuyerDeliveryAddressCheckout.changeDeliveryMethod(BuyerDeliveryAddress.DeliveryMethod.DELIVERY)
+        viewBuyerDeliveryAddressCheckout.setData(TempDeliveryAddress.newInstance())
         cardMethodDeliveryCheckout.isSelected = true
         cardMethodDeliveryCheckout.setOnClickListener(this)
         cardMethodPickupCheckout.setOnClickListener(this)
 
         initPaymentMethods()
         initOrderProducts()
-        tvOrdersListEditCheckout.onClick { requireContext().toast("TODO edit order list") }
         btnPromoCodeCheckout.onClick {
             setFragmentResultListener(PROMO_CODE_REQUEST_KEY) { _, bundle ->
                 val code = bundle[PromoCodeDialogFragment.PROMO_CODE_EXTRA_KEY]
@@ -51,12 +48,42 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
             }
             doNav(actionCheckoutToPromoCodeDialog())
         }
-        btnCheckoutOrderCheckout.onClick { navController.navigate(globalToOrder()) }
+        btnCheckoutOrderCheckout.onClick { validateFields() }
 
-        tvTotalAmountCheckout.text = "123 ₽"
-        tvDiscountCheckout.text = "321 ₽"
-        tvDeliveryAmountCheckout.text = "\uD83D\uDE9B 382 ₽"
-        tvTotalPayableCheckout.text = "999 ₽"
+        tvTotalAmountCheckout.text = "${args.cartItem.totalPrice.toPlainString()} ₸"
+//        tvDiscountCheckout.text = "321 ₸"
+        val deliveryCost = 150
+        tvDeliveryAmountCheckout.text = "\uD83D\uDE9B $deliveryCost ₸"
+        tvTotalPayableCheckout.text = "${args.cartItem.totalPrice.plus(deliveryCost.toBigDecimal()).toPlainString()} ₸"
+
+        setPharmacyInfo()
+    }
+
+    private fun setPharmacyInfo() = with(args.cartItem) {
+        Glide.with(ivPharmacyLogoCheckout)
+            .load(logo.url)
+            .error(R.drawable.ic_drugstore_base)
+            .into(ivPharmacyLogoCheckout)
+        tvPharmacyNameCheckout.text = name
+        val cityAndStreetHolder = "\uD83C\uDFE0 ${location.address}"
+        tvPharmacyAddressOrder.text = cityAndStreetHolder
+    }
+
+    private fun validateFields() {
+        if (viewBuyerDetailsCheckout.isFieldsValid() && viewBuyerDeliveryAddressCheckout.validateFields()) {
+            val detail = viewBuyerDetailsCheckout.getDetail() // todo
+            if (cardMethodDeliveryCheckout.isSelected) {
+                val deliveryAddress = viewBuyerDeliveryAddressCheckout.obtainDeliveryAddress() // todo
+            }
+//            viewModel.sendOrder(detail, deliveryAddress, paymentType, checkoutNote) // todo
+            navController.navigate(globalToOrder())
+        }
+    }
+
+    override fun onBindLiveData() {
+        observe(viewModel.customerInfoLiveData) {
+            viewBuyerDetailsCheckout.setData(it.name, it.phone.addPlusSignIfNeeded(), it.email)
+        }
     }
 
     private fun initPaymentMethods() {
@@ -75,28 +102,27 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         radio.setPadding(radioButtonPadding, radioButtonPadding, radioButtonPadding, radioButtonPadding)
         radio.text = it.name
         radio.setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
+        radio.isEnabled = it.isChecked
+        radio.isChecked = it.isChecked
         return radio
     }
 
     private fun initOrderProducts() {
-        val items = DummyData.getOrderProducts()
-        rvOrdersListCheckout.setHasFixedSize(true)
-        rvOrdersListCheckout.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvOrdersListCheckout.adapter = orderProductsAdapter
-        orderProductsAdapter.setList(items)
+        rvProductsListCheckout.setHasFixedSize(true)
+        rvProductsListCheckout.adapter = orderProductsAdapter
     }
 
     override fun onClick(v: View?) {
 
-        fun cardCheckout(deliveryMethod: BuyerDeliveryAddress.DeliveryMethod = BuyerDeliveryAddress.DeliveryMethod.PICKUP) {
-            cardMethodPickupCheckout.isSelected = deliveryMethod == BuyerDeliveryAddress.DeliveryMethod.PICKUP
-            cardMethodDeliveryCheckout.isSelected = deliveryMethod != BuyerDeliveryAddress.DeliveryMethod.PICKUP
-            viewBuyerDeliveryAddressCheckout.changeDeliveryMethod(deliveryMethod)
+        fun setDeliveryMethod(isPickup: Boolean) {
+            cardMethodDeliveryCheckout.isSelected = !isPickup
+            cardMethodPickupCheckout.isSelected = isPickup
+            viewBuyerDeliveryAddressCheckout.visibleOrGone(!isPickup)
         }
 
         when (v?.id) {
-            cardMethodDeliveryCheckout.id -> cardCheckout(BuyerDeliveryAddress.DeliveryMethod.DELIVERY)
-            cardMethodPickupCheckout.id -> cardCheckout(BuyerDeliveryAddress.DeliveryMethod.PICKUP)
+            cardMethodDeliveryCheckout.id -> setDeliveryMethod(false)
+            cardMethodPickupCheckout.id -> setDeliveryMethod(true)
         }
     }
 }

@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@+id/tvTotalPrice"
-            style="@style/Text.CheckoutEdit"
+            style="@style/Text.Edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -46,7 +46,7 @@
 
         <TextView
             android:id="@+id/tvNumberProducts"
-            style="@style/Text.CheckoutFilled"
+            style="@style/Text.Filled"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"

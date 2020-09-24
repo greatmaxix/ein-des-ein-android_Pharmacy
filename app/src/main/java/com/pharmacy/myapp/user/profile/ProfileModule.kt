@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 val profileModule = module {
 
-    single { ProfileRepository(get(), get(), get<DBManager>().customerDAO) }
+    single { ProfileRepository(get(), get(), get<DBManager>().customerDAO, get<DBManager>().recentlyViewedDAO) }
 
     viewModel { ProfileViewModel(androidApplication(), get()) }
 

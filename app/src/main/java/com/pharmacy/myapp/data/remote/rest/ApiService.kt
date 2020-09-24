@@ -94,4 +94,7 @@ interface ApiService {
 
     @DELETE("/api/v1/customer/product-cart/pharmacy-product/{id}")
     suspend fun removeProductFromCart(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
+
+    @POST("mock")
+    suspend fun sendOrder(@Path("mock") mock: String): BaseDataResponse<Unit> // todo
 }

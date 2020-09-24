@@ -139,6 +139,8 @@ class RestManager : KoinComponent {
 
     suspend fun removeProductFromCart(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.removeProductFromCart(globalProductId) }
 
+    suspend fun sendOrder(mock: String) = api.sendOrder(mock)
+
     fun setLocalRegion(id: Int?) {
         regionId = id
     }

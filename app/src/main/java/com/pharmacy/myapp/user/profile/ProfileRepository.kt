@@ -3,13 +3,14 @@ package com.pharmacy.myapp.user.profile
 import com.pharmacy.myapp.core.network.safeApiCall
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
+import com.pharmacy.myapp.model.product.RecentlyViewedDAO
 import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
 import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
 import okhttp3.MultipartBody
 
-class ProfileRepository(private val spManager: SPManager, private val rm: RestManager, private val dao: CustomerDAO) {
+class ProfileRepository(private val spManager: SPManager, private val rm: RestManager, private val customerDao: CustomerDAO, private val recentlyViewedDAO: RecentlyViewedDAO) {
 
-    fun getCustomerInfo() = dao.get()
+    fun getCustomerInfo() = customerDao.get()
 
     suspend fun updateCustomerInfo(name: String, email: String, avatarUuid: String) =
         safeApiCall(rm.tokenRefreshCall) {
@@ -18,7 +19,7 @@ class ProfileRepository(private val spManager: SPManager, private val rm: RestMa
             saveCustomerInfo(updateCustomerInfo.data.item)
         }
 
-    private suspend fun saveCustomerInfo(customer: CustomerInfo) = dao.update(customer)
+    private suspend fun saveCustomerInfo(customer: CustomerInfo) = customerDao.update(customer)
 
     suspend fun logout() =
         safeApiCall(rm.tokenRefreshCall) {
@@ -27,7 +28,8 @@ class ProfileRepository(private val spManager: SPManager, private val rm: RestMa
         }
 
     suspend fun clearCustomerData(customer: CustomerInfo) {
-        dao.delete(customer)
+        customerDao.delete(customer)
+        recentlyViewedDAO.clear()
         spManager.clear()
     }
 

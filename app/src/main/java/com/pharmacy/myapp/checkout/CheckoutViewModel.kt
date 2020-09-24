@@ -17,7 +17,17 @@ class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewMo
     private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
 
+    val customerInfoLiveData = repository.getCustomerInfo()
+
     fun handlePromoCodeResult(code: String) {
         Timber.e("PROMO CODE = $code")
+    }
+
+    fun sendOrder() { // todo
+        _progressLiveData.value = true
+        launchIO {
+            val sendOrder = repository.sendOrder("mock")
+            _progressLiveData.postValue(false)
+        }
     }
 }

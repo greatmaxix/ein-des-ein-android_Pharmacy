@@ -45,7 +45,7 @@
 
         <TextView
             android:id="@+id/tvSubTitle"
-            style="@style/Text.CheckoutFilled"
+            style="@style/Text.Filled"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -57,12 +57,12 @@
 
         <TextView
             android:id="@+id/tvManufacture"
-            style="@style/Text.CheckoutFilled"
+            style="@style/Text.Filled"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toTopOf="@+id/tvProductPrice"
             app:layout_constraintEnd_toEndOf="@+id/ivWish"
@@ -73,7 +73,7 @@
 
         <TextView
             android:id="@+id/tvPriceUnavailable"
-            style="@style/Text.CheckoutEdit"
+            style="@style/Text.Edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_4sdp"
@@ -86,7 +86,7 @@
 
         <TextView
             android:id="@+id/tvPricePrefix"
-            style="@style/Text.CheckoutEdit"
+            style="@style/Text.Edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_4sdp"
@@ -97,7 +97,7 @@
 
         <TextView
             android:id="@+id/tvProductPrice"
-            style="@style/Text.CheckoutEdit"
+            style="@style/Text.Edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"

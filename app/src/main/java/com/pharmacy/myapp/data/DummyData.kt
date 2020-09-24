@@ -37,49 +37,49 @@ object DummyData {
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
-            "от 568 ₽"
+            "от 568 ₸"
         ), TempRecommendedModel(
             "Рецепт",
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
-            "от 568 ₽"
+            "от 568 ₸"
         ), TempRecommendedModel(
             "Рецепт",
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
-            "от 568 ₽"
+            "от 568 ₸"
         ), TempRecommendedModel(
             "Рецепт",
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
-            "от 568 ₽"
+            "от 568 ₸"
         ), TempRecommendedModel(
             "Рецепт",
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
-            "от 568 ₽"
+            "от 568 ₸"
         ), TempRecommendedModel(
             "Рецепт",
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
-            "от 568 ₽"
+            "от 568 ₸"
         ), TempRecommendedModel(
             "Рецепт",
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
-            "от 568 ₽"
+            "от 568 ₸"
         ), TempRecommendedModel(
             "Рецепт",
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
-            "от 568 ₽"
+            "от 568 ₸"
         )
     )
 
@@ -89,36 +89,36 @@ object DummyData {
             "Название продукта",
             "Таблетки шипучие, 24 шт",
             "Баер, Италия",
-            "568 ₽",
+            "568 ₸",
             5
         ), TempProductModel(
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
             "Баер, Италия",
-            "568 ₽",
+            "568 ₸",
             3
         ), TempProductModel(
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
             "Баер, Италия",
-            "568 ₽",
+            "568 ₸",
             1
         ), TempProductModel(
             "https://s3.eu-west-1.amazonaws.com/i.apteka24.ua/products/1d1909e2-b7ff-11ea-96c2-0635d0043582-medium.png",
             "Название продукта",
             "Таблетки шипучие, 24 шт",
             "Баер, Италия",
-            "568 ₽",
+            "568 ₸",
             9
         )
     )
 
     val paymentMethod = arrayListOf(
-        TempPaymentMethod("Credit card • 9876", R.drawable.ic_mastercard),
+        TempPaymentMethod("Банковская карта"/* • 9876"*/, R.drawable.ic_mastercard),
         TempPaymentMethod("Kaspi bank", R.drawable.ic_kaspi_bank),
-        TempPaymentMethod("Наличными", R.drawable.ic_cash)
+        TempPaymentMethod("Наличными", R.drawable.ic_cash, true)
     )
 
     val pharmacyResponses = arrayListOf(
@@ -144,11 +144,11 @@ object DummyData {
             "Сәкен Сейфуллин көшесі 29",
             "+77172322640",
             "⏰ c 8:00 до 22:00 ежедневно",
-            "235 ₽",
+            "235 ₸",
             LatLng(51.141951, 71.4435751)
         )
-        val secondItem = firstItem.copy(id = 2, availability = "3/4 в наличии", name = "Аптека \"Цветная\"", price = "567 ₽", latLng = LatLng(51.140856, 71.435294))
-        val thirdItem = firstItem.copy(id = 3, availability = "Под заказ", name = "Аптека 99", price = "145 ₽", latLng = LatLng(51.1636063, 71.4365608))
+        val secondItem = firstItem.copy(id = 2, availability = "3/4 в наличии", name = "Аптека \"Цветная\"", price = "567 ₸", latLng = LatLng(51.140856, 71.435294))
+        val thirdItem = firstItem.copy(id = 3, availability = "Под заказ", name = "Аптека 99", price = "145 ₸", latLng = LatLng(51.1636063, 71.4365608))
         return arrayListOf(firstItem, secondItem, thirdItem)*/
         return arrayListOf()
     }
@@ -163,22 +163,22 @@ object DummyData {
     )
 
     fun getMyOrders() = mutableListOf(
-        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"),
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₸"),
         MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", listOf(
                 "https://as2.ftcdn.net/jpg/01/88/71/03/500_F_188710349_3A3hMUoHsRraqzr20m9gGhV8B7oBA6d3.jpg",
                 "https://images-na.ssl-images-amazon.com/images/I/71e6Si4GmeL._AC_SX425_.jpg",
                 "https://ichef.bbci.co.uk/news/976/cpsprodpb/13672/production/_112947497_2add3259-7faf-45df-9618-dd98fc1e53a6.jpg",
                 "https://images-na.ssl-images-amazon.com/images/I/71e6Si4GmeL._AC_SX425_.jpg"
-            ), "7879 ₽"),
+            ), "7879 ₸"),
         MyOrder(12583, "Выполнен", "Доставка", "21:12 05.06.20", "\uD83C\uDFE0 ул. Горная 23а, Харьков \uD83D\uDEAAдом 4г • кв. 56", listOf(
                 "https://ichef.bbci.co.uk/news/976/cpsprodpb/13672/production/_112947497_2add3259-7faf-45df-9618-dd98fc1e53a6.jpg",
                 "https://as2.ftcdn.net/jpg/01/88/71/03/500_F_188710349_3A3hMUoHsRraqzr20m9gGhV8B7oBA6d3.jpg",
                 "https://images-na.ssl-images-amazon.com/images/I/71e6Si4GmeL._AC_SX425_.jpg"
-            ), "6568 ₽")
-        ,MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"),
-        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"),
-        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"),
-        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"),
-        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₽"))
+            ), "6568 ₸")
+        ,MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₸"),
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₸"),
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₸"),
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₸"),
+        MyOrder(12582, "В обработке", "Самовывоз", "21:12 05.06.20", "“Ригла “, ул Горная 23а, Харьков", getMyOrderPreviewImages(), "7879 ₸"))
 
 }

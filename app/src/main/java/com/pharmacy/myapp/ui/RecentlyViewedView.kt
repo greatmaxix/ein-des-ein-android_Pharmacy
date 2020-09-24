@@ -30,7 +30,7 @@ class RecentlyViewedView @JvmOverloads constructor(
     }
 
     fun setProduct(product: Product) {
-        ivRecentlyViewed.setProductImage(product)
+        ivRecentlyViewed.setProductImage(product.pictures, product.aggregation == null)
         tvNameRecentlyViewed.setTextHtml(product.rusName)
         tvDescriptionRecentlyViewed.setTextHtml(product.releaseForm)
         product.aggregation?.let {
