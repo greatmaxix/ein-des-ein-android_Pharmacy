@@ -204,7 +204,6 @@
     <string name="secondItemInOrderContentDescription">Иконка второго товара в корзине</string>
     <string name="thirdItemInOrderContentDescription">Иконка третьего товара в корзине</string>
 
-
     <!-- Chat -->
     <string name="menu_info">Info</string>
     <string name="chatMessageFieldHint">Что Вас волнует?</string>
@@ -277,6 +276,7 @@
     <string name="pharmacyListTitle">Списком</string>
     <string name="pharmacyAddToCart">Добавить в корзину</string>
     <string name="pharmacyPhoneWith">📞️ %1$s</string>
+    <string name="forAddingToCart">Для того что бы добавить продукт в Корзину нужно авторизироваться</string>
 
     <!-- Payments -->
     <string name="bonusComingSoon">Бонусы уже скоро!</string>

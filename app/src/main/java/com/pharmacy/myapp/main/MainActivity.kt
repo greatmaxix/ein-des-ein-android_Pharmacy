@@ -48,11 +48,9 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
 
     override fun setInProgress(progress: Boolean) = progressBehavior.setInProgress(progress)
 
-    override fun showError(error: String, action: (() -> Unit)?) =
-        messagesBehavior.showError(error, action)
+    override fun showError(error: String, action: (() -> Unit)?) = messagesBehavior.showError(error, action)
 
-    override fun showError(strResId: Int, action: (() -> Unit)?) =
-        messagesBehavior.showError(strResId, action)
+    override fun showError(strResId: Int, action: (() -> Unit)?) = messagesBehavior.showError(strResId, action)
 
     override fun onBackPressed() {
         navController.currentDestination?.apply {

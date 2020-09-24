@@ -53,7 +53,7 @@ class PharmacyViewModel(globalProductId: Int, private val repository: PharmacyRe
 
     fun addToCart(globalProductId: Int) {
         launchIO {
-            if (repository.isCustomerExist()) saveProductToCart(globalProductId) else _errorLiveData.postValue(R.string.forCheckCart)
+            if (repository.isCustomerExist()) saveProductToCart(globalProductId) else _errorLiveData.postValue(R.string.forAddingToCart)
         }
     }
 
