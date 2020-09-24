@@ -74,7 +74,7 @@ class SelectableBottomNavView @JvmOverloads constructor(
                             menu.findItem(item.menuItemId)?.icon = resource.run {
                                 RoundedBitmapDrawableFactory.create(
                                     resources,
-                                    if (selected) createBitmapWithBorder(selectedBorder, context.getCompatColor(R.color.primaryBlue)) else this
+                                    if (selected) createBitmapWithBorder(selectedBorder, selectedColor) else this
                                 ).apply {
                                     isCircular = true
                                 }
