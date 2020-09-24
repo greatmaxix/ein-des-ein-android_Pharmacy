@@ -81,7 +81,7 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
             }
 
             tvManufacture.setTextHtml(stringRes(R.string.manufacture, product.productLocale))
-            tvProductPrice.text = stringRes(R.string.price, product.price)
+            tvProductPrice.text = stringRes(R.string.price, product.price.formatPrice())
 
             ivRemove.onClick { removeClick(product.productId) }
         }
@@ -95,8 +95,8 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
 
         override fun bind(item: CartItem) = with(itemView) {
             mbCheckout.onClick { notifyCheckout(item) }
-            tvTotalPrice.text = stringRes(R.string.price, item.totalPrice)
-            tvNumberProducts.text = stringRes(R.string.countCurtProducts, item.products.count())
+            tvTotalPrice.text = stringRes(R.string.price, item.totalPrice.formatPrice())
+            tvNumberProducts.text = stringRes(R.string.countCurtProducts, item.totalCount)
         }
 
         companion object {

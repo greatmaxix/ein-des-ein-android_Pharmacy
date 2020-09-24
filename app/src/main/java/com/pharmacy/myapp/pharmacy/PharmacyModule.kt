@@ -16,7 +16,7 @@ val checkoutMapModule = module {
     fragment { PharmacyMapBottomSheet() }
 
     single { PharmacyRemoteDataSource(get()) }
-    single { PharmacyRepository(get(), get()) }
+    single { PharmacyRepository(get(), get(), get()) }
 
     viewModel { (globalProductId: Int) -> PharmacyViewModel(globalProductId, get()) }
 }

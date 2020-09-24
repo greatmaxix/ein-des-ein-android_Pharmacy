@@ -2,6 +2,7 @@ package com.pharmacy.myapp.core.extensions
 
 import android.graphics.Rect
 import android.view.View
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.ui.decoration.GridSpacingItemDecoration
@@ -64,3 +65,6 @@ fun RecyclerView.addItemDecorator(
 }
 
 fun RecyclerView.addGridItemDecorator() = addItemDecoration(GridSpacingItemDecoration(spacing = context.resources.getDimensionPixelSize(R.dimen._8sdp)))
+
+val concatWithIsolate
+    get() = ConcatAdapter.Config.Builder().setIsolateViewTypes(false).build()

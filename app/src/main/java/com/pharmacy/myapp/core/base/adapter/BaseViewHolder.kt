@@ -3,7 +3,7 @@ package com.pharmacy.myapp.core.base.adapter
 import android.content.res.Resources.NotFoundException
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.pharmacy.myapp.core.extensions.compatColor
+import com.pharmacy.myapp.core.extensions.color
 import com.pharmacy.myapp.core.extensions.dimensionPixelSize
 import com.pharmacy.myapp.core.extensions.drawable
 import com.pharmacy.myapp.core.extensions.stringRes
@@ -24,7 +24,7 @@ abstract class BaseViewHolder<T>(override val containerView: View) : RecyclerVie
             null
         }
 
-    protected val Int.toColor get() = compatColor(this)
+    protected val Int.toColor get() = color(this)
 
     protected val Int.toPixelSize get() = dimensionPixelSize(this)
 }
