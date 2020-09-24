@@ -1,6 +1,5 @@
 package com.pharmacy.myapp.core.base
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
@@ -8,7 +7,7 @@ import androidx.annotation.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
@@ -33,9 +32,9 @@ abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivit
 
     protected val navController: NavController by lazy {
         try {
-            findNavController(R.id.navHost)
+            (supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment).navController
         } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException("${this::class.java.simpleName} does not use navController\"")
+            throw IllegalArgumentException("${this::class.java.simpleName} does not use \"navController\"")
         }
     }
 
