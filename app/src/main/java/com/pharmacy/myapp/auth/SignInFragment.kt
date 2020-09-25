@@ -33,7 +33,7 @@ class SignInFragment : AuthBaseFragment(R.layout.fragment_sign_in) {
         mbCreateAccount.onClick { viewModel.directionLiveData.postValue(actionFromSignInToSignUp()) }
         llButtonContainer.onClick {
             if (tilPhoneSignIn.isPhoneNumberValid(getString(R.string.phoneErrorAuth))) {
-                viewModel.signIn(tilPhoneSignIn.getPhonePrefix() + etPhoneSignIn.text.toString())
+                viewModel.signIn(tilPhoneSignIn.getPhonePrefix + etPhoneSignIn.text.toString())
             }
         }
         tvSkipAuth.setDebounceOnClickListener { navController.navigate(globalToHome()) }

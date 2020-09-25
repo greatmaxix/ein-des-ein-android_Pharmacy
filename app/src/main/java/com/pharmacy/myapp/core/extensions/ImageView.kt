@@ -38,6 +38,6 @@ fun ImageView.setProductImage(list: List<Picture>, hasAggregation: Boolean = fal
         error(R.drawable.default_product_image)
     }
     val hasPictures = list.isNotEmpty()
-    background = if (hasPictures) null else ContextCompat.getDrawable(context, R.drawable.bg_product_default_background)
+    background = if (hasPictures) null else context.getCompatDrawable(R.drawable.bg_product_default_background)
     colorFilter = (if (hasAggregation && !hasPictures) ColorFilterUtil.blackWhiteFilter else null)
 }

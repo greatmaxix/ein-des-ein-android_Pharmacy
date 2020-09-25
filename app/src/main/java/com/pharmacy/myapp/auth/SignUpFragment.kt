@@ -28,7 +28,7 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
             val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
             val isEmailValid = if (tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
-                viewModel.signUp(tilNameSignUp.text(), tilPhoneSignUp.getPhonePrefix() + tilPhoneSignUp.text(), tilEmailSignUp.text())
+                viewModel.signUp(tilNameSignUp.text(), tilPhoneSignUp.getPhonePrefix + tilPhoneSignUp.text(), tilEmailSignUp.text())
             }
         }
         val clearError: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit =

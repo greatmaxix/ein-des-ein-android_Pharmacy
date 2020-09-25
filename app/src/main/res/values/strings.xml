@@ -189,6 +189,8 @@
     <string name="promoCodeApply">Применить</string>
     <string name="promoCodeCancel">Отменить</string>
     <string name="checkoutNoteTitle">Комментарий к заказу:</string>
+    <string name="deliveryCost">🚛 %1$d ₸</string>
+    <string name="cityStreetHolder">🚛🏠 %1$s</string>
 
     <!-- Order -->
     <string name="orderStepsTestText">Шаг</string>

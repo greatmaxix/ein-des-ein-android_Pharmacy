@@ -5,7 +5,7 @@ import androidx.room.*
 import com.pharmacy.myapp.model.Picture
 import com.pharmacy.myapp.model.product.RecentlyViewedDAO
 import com.pharmacy.myapp.model.region.RegionDAO
-import com.pharmacy.myapp.model.region.TemporaryRegion
+import com.pharmacy.myapp.model.region.LocalRegion
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
 import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
@@ -23,7 +23,7 @@ class DBManager(context: Context) {
         .build()
 
 
-    @Database(entities = [CustomerInfo::class, TemporaryRegion::class, Product::class], version = VERSION, exportSchema = false)
+    @Database(entities = [CustomerInfo::class, LocalRegion::class, Product::class], version = VERSION, exportSchema = false)
     @TypeConverters(StringListConverter::class, PicturesListConverter::class)
     abstract class LocalDB : RoomDatabase() {
 

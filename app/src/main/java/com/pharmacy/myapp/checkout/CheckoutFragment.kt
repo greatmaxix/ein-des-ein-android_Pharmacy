@@ -50,11 +50,12 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         }
         btnCheckoutOrderCheckout.onClick { validateFields() }
 
-        tvTotalAmountCheckout.text = "${args.cartItem.totalPrice.toPlainString()} ₸"
-//        tvDiscountCheckout.text = "321 ₸"
+        val totalAmount = "${args.cartItem.totalPrice.toPlainString()} ₸"
+        tvTotalAmountCheckout.text = totalAmount
         val deliveryCost = 150
-        tvDeliveryAmountCheckout.text = "\uD83D\uDE9B $deliveryCost ₸"
-        tvTotalPayableCheckout.text = "${args.cartItem.totalPrice.plus(deliveryCost.toBigDecimal()).toPlainString()} ₸"
+        tvDeliveryAmountCheckout.text = getString(R.string.deliveryCost, deliveryCost)
+        val totalCost = "${args.cartItem.totalPrice.plus(deliveryCost.toBigDecimal()).toPlainString()} ₸"
+        tvTotalPayableCheckout.text = totalCost
 
         setPharmacyInfo()
     }
@@ -65,8 +66,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
             .error(R.drawable.ic_drugstore_base)
             .into(ivPharmacyLogoCheckout)
         tvPharmacyNameCheckout.text = name
-        val cityAndStreetHolder = "\uD83C\uDFE0 ${location.address}"
-        tvPharmacyAddressOrder.text = cityAndStreetHolder
+        tvPharmacyAddressOrder.text = getString(R.string.cityStreetHolder, location.address)
     }
 
     private fun validateFields() {
@@ -96,15 +96,13 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     private fun createPaymentRadioButton(
         layoutParams: ViewGroup.LayoutParams,
         it: TempPaymentMethod
-    ): MaterialRadioButton {
-        val radio = MaterialRadioButton(requireContext())
-        radio.layoutParams = layoutParams
-        radio.setPadding(radioButtonPadding, radioButtonPadding, radioButtonPadding, radioButtonPadding)
-        radio.text = it.name
-        radio.setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
-        radio.isEnabled = it.isChecked
-        radio.isChecked = it.isChecked
-        return radio
+    ) = MaterialRadioButton(requireContext()).apply {
+        this.layoutParams = layoutParams
+        setPadding(radioButtonPadding, radioButtonPadding, radioButtonPadding, radioButtonPadding)
+        text = it.name
+        setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
+        isEnabled = it.isChecked
+        isChecked = it.isChecked
     }
 
     private fun initOrderProducts() {

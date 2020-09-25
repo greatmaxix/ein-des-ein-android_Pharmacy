@@ -265,7 +265,8 @@ fun TextInputLayout.animateEnableOrDisable(enable: Boolean) {
     enableOrDisable(enable)
 }
 
-fun TextInputLayout.getPhonePrefix() = prefixText?.substring(1, prefixText?.length ?: 2)
+val TextInputLayout.getPhonePrefix
+    get() = prefixText?.substring(1, prefixText?.length ?: 2)
 
 fun TextInputLayout.isAddressLengthValid(): Boolean {
     val textLength = text().length

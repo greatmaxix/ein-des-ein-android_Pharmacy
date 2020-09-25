@@ -1,14 +1,14 @@
 package com.pharmacy.myapp.checkout
 
-import com.pharmacy.myapp.data.remote.rest.RestManager
-import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
+import com.pharmacy.myapp.checkout.repository.CheckoutLocalDataSource
+import com.pharmacy.myapp.checkout.repository.CheckoutRemoteDataSource
 
 class CheckoutRepository(
-    private val rm: RestManager,
-    private val dao: CustomerDAO
+    private val crds: CheckoutRemoteDataSource,
+    private val clds: CheckoutLocalDataSource
 ) {
 
-    fun getCustomerInfo() = dao.get()
+    fun getCustomerInfo() = clds.getCustomerInfo()
 
-    suspend fun sendOrder(mock: String) = rm.sendOrder(mock)
+    suspend fun sendOrder(mock: String) = crds.sendOrder(mock)
 }

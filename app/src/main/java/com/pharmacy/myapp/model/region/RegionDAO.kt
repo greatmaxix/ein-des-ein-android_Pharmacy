@@ -6,11 +6,11 @@ import com.pharmacy.myapp.core.db.BaseDao
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface RegionDAO : BaseDao<TemporaryRegion> {
+interface RegionDAO : BaseDao<LocalRegion> {
 
-    @Query("select * from temporary_region limit 1")
-    fun get(): Flow<TemporaryRegion?>
+    @Query("select * from local_region limit 1")
+    fun get(): Flow<LocalRegion?>
 
-    @Query("DELETE FROM temporary_region")
+    @Query("DELETE FROM local_region")
     fun clear()
 }

@@ -44,13 +44,13 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
 
         setProductInfo()
 
-        mcvAnalog.onClick { onAnalog() }
-        mcvCategory.onClick { onCategory() }
-        mcvInstruction.onClick { onInstruction() }
-        mcvQuestions.onClick { navController.navigate(R.id.fromProductToChat) }
-        fbWish.onClick { viewModel.setOrRemoveWish(!args.product.isInWish to args.product.globalProductId) }
+        mcvAnalog.setDebounceOnClickListener { onAnalog() }
+        mcvCategory.setDebounceOnClickListener { onCategory() }
+        mcvInstruction.setDebounceOnClickListener { onInstruction() }
+        mcvQuestions.setDebounceOnClickListener { navController.navigate(R.id.fromProductToChat) }
+        fbWish.setDebounceOnClickListener { viewModel.setOrRemoveWish(!args.product.isInWish to args.product.globalProductId) }
         args.product.aggregation?.let {
-            mbToPharmacy.onClick { navController.navigate(fromProductToPharmacy(args.product.globalProductId)) }
+            mbToPharmacy.setDebounceOnClickListener { navController.navigate(fromProductToPharmacy(args.product.globalProductId)) }
         }?: run {
             mbToPharmacy.isEnabled = false
         }
@@ -103,7 +103,5 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         fbWish.setWish(args.product.isInWish)
     }
 
-    override fun needToLogin() {
-        navController.navigate(R.id.fromProductToAuth, SignInFragmentArgs(R.id.nav_product).toBundle())
-    }
+    override fun needToLogin() = navController.navigate(R.id.fromProductToAuth, SignInFragmentArgs(R.id.nav_product).toBundle())
 }
