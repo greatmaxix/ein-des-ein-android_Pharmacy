@@ -6,7 +6,6 @@ import androidx.navigation.NavDirections
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
-import com.pharmacy.myapp.core.extensions.falseIfNull
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.fromSplashToHome

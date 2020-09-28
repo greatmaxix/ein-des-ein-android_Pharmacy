@@ -16,12 +16,10 @@ object AvatarUtil {
         Glide.with(context)
             .asDrawable()
             .listener(object : RequestListener<Drawable?> {
-
                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable?>?, isFirstResource: Boolean): Boolean {
                     actionEnd()
                     return true
                 }
-
                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable?>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                     resource?.let { ImageFileUtil.saveImageDrawable(it, File(context.externalCacheDir, Constants.AVATAR_FILE_NAME)) }
                     actionEnd()
