@@ -41,7 +41,7 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
         }
         tilPhoneCheckout.editText?.doAfterTextChanged {
             hideError()
-            phone = tilPhoneCheckout.getPhonePrefix + it.toString()
+            phone = tilPhoneCheckout.phoneCodePrefix + it.toString()
         }
         tilEmailCheckout.editText?.doAfterTextChanged {
             hideError()

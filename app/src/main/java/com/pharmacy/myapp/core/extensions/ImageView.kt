@@ -4,11 +4,13 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.model.Picture
 import com.pharmacy.myapp.util.ColorFilterUtil
@@ -28,6 +30,12 @@ val ImageView.createGlide
 fun ImageView.loadGlide(url: String?, block: (RequestBuilder<Drawable>.() -> Unit)? = null) {
     val glide = createGlide.load(url)
     block?.let { glide.apply(it).into(this) } ?: glide.into(this)
+}
+
+fun ImageView.loadGlideDrugstore(url: String?)= loadGlide(url) {
+    placeholder(R.drawable.ic_drugstore_base)
+    RequestOptions.bitmapTransform(CircleCrop())
+    transition(DrawableTransitionOptions().crossFade())
 }
 
 fun ImageView.setWish(isWish: Boolean) = setImageResource(isWish.wishResId)

@@ -14,10 +14,7 @@ import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment
 import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment.Companion.PROMO_CODE_REQUEST_KEY
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
-import com.pharmacy.myapp.core.extensions.addPlusSignIfNeeded
-import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.text
-import com.pharmacy.myapp.core.extensions.visibleOrGone
+import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.data.DummyData
 import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryInfoOrderData
 import kotlinx.android.synthetic.main.fragment_checkout.*
@@ -57,7 +54,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
 
         val totalAmount = "${args.cartItem.totalPrice.toPlainString()} ₸"
         tvTotalAmountCheckout.text = totalAmount
-        val deliveryCost = 150
+        val deliveryCost = 150 // todo change in future
         tvDeliveryAmountCheckout.text = getString(R.string.deliveryCost, deliveryCost)
         val totalCost = "${args.cartItem.totalPrice.plus(deliveryCost.toBigDecimal()).toPlainString()} ₸"
         tvTotalPayableCheckout.text = totalCost
@@ -66,10 +63,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     }
 
     private fun setPharmacyInfo() = with(args.cartItem) {
-        Glide.with(ivPharmacyLogoCheckout)
-            .load(logo.url)
-            .error(R.drawable.ic_drugstore_base)
-            .into(ivPharmacyLogoCheckout)
+        ivPharmacyLogoCheckout.loadGlideDrugstore(logo.url)
         tvPharmacyNameCheckout.text = name
         tvPharmacyAddressOrder.text = getString(R.string.cityStreetHolder, location.address)
     }
