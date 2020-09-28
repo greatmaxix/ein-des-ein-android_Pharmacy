@@ -11,16 +11,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingStart="@dimen/_24sdp"
+        android:paddingStart="@dimen/_8sdp"
         android:paddingTop="@dimen/_16sdp"
-        android:paddingEnd="@dimen/_16sdp"
+        android:paddingEnd="@dimen/_8sdp"
         android:paddingBottom="@dimen/_18sdp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mbCheckout"
             android:layout_width="0dp"
             android:layout_height="@dimen/_48sdp"
-            android:layout_marginStart="@dimen/_1sdp"
+            android:layout_marginStart="@dimen/_2sdp"
             android:stateListAnimator="@null"
             android:text="@string/checkout"
             android:textSize="@dimen/_14sdp"
@@ -54,7 +54,6 @@
             app:layout_constraintEnd_toEndOf="@+id/tvDelivery"
             app:layout_constraintStart_toStartOf="@+id/tvTotalPrice"
             app:layout_constraintTop_toBottomOf="@+id/tvTotalPrice"
-            app:layout_constraintVertical_bias="0.0"
             tools:text="2 товара (ов)" />
 
         <TextView

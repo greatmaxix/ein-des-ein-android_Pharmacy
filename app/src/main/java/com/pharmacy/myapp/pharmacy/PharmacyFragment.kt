@@ -2,10 +2,14 @@ package com.pharmacy.myapp.pharmacy
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.StringRes
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.auth.SignInFragmentArgs
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
+import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
+import com.pharmacy.myapp.core.extensions.showAlert
 import kotlinx.android.synthetic.main.fragment_pharmacy.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -26,7 +30,21 @@ class PharmacyFragment : BaseMVVMFragment(R.layout.fragment_pharmacy) {
 
     override fun onBindLiveData() {
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        observe(viewModel.errorLiveData, ::errorOrAuth)
+    }
+
+    private fun errorOrAuth(@StringRes strResId: Int) {
+        if (strResId == R.string.forAddingToCart) {
+            showAlert(strResId) {
+                cancelable = false
+                positive = getString(R.string.signIn)
+                negative = getString(R.string.cancel)
+                positiveAction = { navController.navigate(R.id.fromPharmacyToAuth, SignInFragmentArgs(R.id.nav_pharmacy).toBundle()) }
+                negativeAction = { navController.onNavDestinationSelected(R.id.nav_home, inclusive = true) }
+            }
+        } else {
+            messageCallback?.showError(strResId)
+        }
     }
 
     private fun initPager() {

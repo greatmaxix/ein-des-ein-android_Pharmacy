@@ -75,8 +75,8 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         tvSubTitle.setTextHtml(releaseForm)
         tvManufacture.text = getFullManufacture
         aggregation?.let {
-            tvPriceTo.text = getString(R.string.price, aggregation?.maxPrice.toString())
-            tvPriceFrom.text = getString(R.string.price, aggregation?.minPrice.toString())
+            tvPriceTo.text = getString(R.string.price, aggregation?.maxPrice?.formatPrice())
+            tvPriceFrom.text = getString(R.string.price, aggregation?.minPrice?.formatPrice())
         } ?: run {
             ivProductDetailAbsent.colorFilter = blackWhiteFilter
         }

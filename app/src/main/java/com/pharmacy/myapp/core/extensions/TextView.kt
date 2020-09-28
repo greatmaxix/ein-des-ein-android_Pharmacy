@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.PrecomputedTextCompat
 import androidx.core.widget.TextViewCompat
 import com.pharmacy.myapp.R
+import org.w3c.dom.Text
 
 fun TextView.onDoneImeAction(clearFocus: Boolean = false, action: () -> Unit) {
     setOnEditorActionListener { v, actionId, _ ->

@@ -18,7 +18,7 @@ import com.pharmacy.myapp.user.wishlist.WishFragment
 abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private val layoutResourceId: Int, private val viewModel: VM) : BaseMVVMFragment(layoutResourceId) {
 
     override fun onBindLiveData() {
-        observe(viewModel.errorLiveData, ::errorOrDialog)
+        observe(viewModel.errorLiveData, ::errorOrAuth)
         observe(viewModel.wishLiteLiveData, ::notifyWish)
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
         observe(viewModel.productLiteLiveData) { navController.navigate(getNavDirection(it)) }
@@ -39,7 +39,7 @@ abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private
         //Optional
     }
 
-    private fun errorOrDialog(@StringRes strResId: Int) {
+    private fun errorOrAuth(@StringRes strResId: Int) {
         if (strResId == R.string.forAddingProduct) {
             showAlert(strResId) {
                 positive = getString(R.string.signIn)

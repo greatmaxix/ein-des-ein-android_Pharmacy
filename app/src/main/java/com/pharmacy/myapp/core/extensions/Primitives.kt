@@ -112,7 +112,7 @@ val Float.toPercent get() = abs(this) * 100
 
 fun Float.formatPrice(digits: Int = 2): String = String.format(Locale.US, "%.${digits}f", this)
 
-fun Double.formatPrice(digits: Int): String = String.format(Locale.US, "%.${digits}f", this)
+fun Double.formatPrice(digits: Int = 2): String = String.format(Locale.US, "%.${digits}f", this)
 
 fun BigDecimal.more(bigDecimal: BigDecimal?) = compareTo(bigDecimal) > 0
 

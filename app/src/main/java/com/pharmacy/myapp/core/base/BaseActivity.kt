@@ -21,8 +21,8 @@ import com.pharmacy.myapp.core.general.behavior.IBehavior
 abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivity(layoutResourceId) {
 
     companion object {
-        val ANIM_EXIT = R.anim.nav_exit_anim
-        val ANIM_ENTER = R.anim.nav_enter_anim
+        const val ANIM_EXIT = R.anim.nav_exit_anim
+        const val ANIM_ENTER = R.anim.nav_enter_anim
     }
 
     var toolbar: Toolbar? = null
