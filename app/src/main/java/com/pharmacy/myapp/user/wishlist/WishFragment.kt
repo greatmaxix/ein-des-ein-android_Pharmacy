@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.animateVisibleOrGone
 import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
-import com.pharmacy.myapp.produtcList.BaseProductListFragment
+import com.pharmacy.myapp.productList.BaseProductListFragment
 import kotlinx.android.synthetic.main.fragment_wish.*
 
 class WishFragment(private val viewModel: WishViewModel) : BaseProductListFragment<WishViewModel>(R.layout.fragment_wish, viewModel) {

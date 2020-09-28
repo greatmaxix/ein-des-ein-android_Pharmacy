@@ -292,7 +292,7 @@ fun <T> Fragment.notifySavedStateHandle(key: String, value: T) {
     findNavController().previousBackStackEntry?.savedStateHandle?.set(key, value)
 }
 
-inline fun Fragment.debug(code: () -> Unit) {
+inline fun debug(code: () -> Unit) {
     if (BuildConfig.DEBUG) {
         code()
     }

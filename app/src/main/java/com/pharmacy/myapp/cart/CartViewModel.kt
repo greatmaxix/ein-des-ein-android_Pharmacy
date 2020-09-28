@@ -16,13 +16,13 @@ class CartViewModel(private val repository: CartRepository) : BaseViewModel() {
     private val _errorLiveData by lazy { SingleLiveEvent<Int>() }
     val errorLiveData: LiveData<Int> by lazy { _errorLiveData }
 
-    private val _cartItemLiveData by lazy { MutableLiveData<List<CartItem>>() }
+    private val _cartItemLiveData by lazy { SingleLiveEvent<List<CartItem>>() }
     val cartItemLiveData: LiveData<List<CartItem>> by lazy { _cartItemLiveData }
 
     private val _removeItemLiveData by lazy { SingleLiveEvent<Int>() }
     val removeItemLiveData: LiveData<Int> by lazy { _removeItemLiveData }
 
-    init {
+    fun getCartProducts() {
         _progressLiveData.value = true
         launchIO {
             when (val response = repository.getCartProducts()) {

@@ -9,17 +9,17 @@ import com.bumptech.glide.Glide
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.actionCheckoutToPromoCodeDialog
-import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.globalToOrder
 import com.pharmacy.myapp.checkout.adapter.CheckoutProductsAdapter
 import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment
 import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment.Companion.PROMO_CODE_REQUEST_KEY
-import com.pharmacy.myapp.checkout.model.TempDeliveryAddress
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.addPlusSignIfNeeded
 import com.pharmacy.myapp.core.extensions.onClick
+import com.pharmacy.myapp.core.extensions.text
 import com.pharmacy.myapp.core.extensions.visibleOrGone
 import com.pharmacy.myapp.data.DummyData
+import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryInfoOrderData
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {
@@ -29,12 +29,17 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     private val orderProductsAdapter by lazy { CheckoutProductsAdapter(args.cartItem.products) }
     private val radioButtonPadding by lazy { resources.getDimension(R.dimen._8sdp).toInt() }
 
+    private val Boolean.deliveryType
+        get() = if (this) "delivery_address" else "pickup"
+
+    private val Boolean.deliveryAddress
+        get() = if (this) viewBuyerDeliveryAddressCheckout.obtainDeliveryAddress() else null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         showBackButton()
 
-        viewBuyerDeliveryAddressCheckout.setData(TempDeliveryAddress.newInstance())
         cardMethodDeliveryCheckout.isSelected = true
         cardMethodDeliveryCheckout.setOnClickListener(this)
         cardMethodPickupCheckout.setOnClickListener(this)
@@ -48,7 +53,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
             }
             doNav(actionCheckoutToPromoCodeDialog())
         }
-        btnCheckoutOrderCheckout.onClick { validateFields() }
+        btnCheckoutOrderCheckout.onClick { validateFieldsAndSendOrder() }
 
         val totalAmount = "${args.cartItem.totalPrice.toPlainString()} ₸"
         tvTotalAmountCheckout.text = totalAmount
@@ -69,18 +74,19 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         tvPharmacyAddressOrder.text = getString(R.string.cityStreetHolder, location.address)
     }
 
-    private fun validateFields() {
-        if (viewBuyerDetailsCheckout.isFieldsValid() && viewBuyerDeliveryAddressCheckout.validateFields()) {
-            val detail = viewBuyerDetailsCheckout.getDetail() // todo
-            if (cardMethodDeliveryCheckout.isSelected) {
-                val deliveryAddress = viewBuyerDeliveryAddressCheckout.obtainDeliveryAddress() // todo
-            }
-//            viewModel.sendOrder(detail, deliveryAddress, paymentType, checkoutNote) // todo
-            navController.navigate(globalToOrder())
+    private fun validateFieldsAndSendOrder() {
+        val isDelivery = cardMethodDeliveryCheckout.isSelected
+        if (viewBuyerDetailsCheckout.isFieldsValid() && (!isDelivery || viewBuyerDeliveryAddressCheckout.validateFields())) {
+            val deliveryInfo = DeliveryInfoOrderData(isDelivery.deliveryType, tilOrderNote.text(), isDelivery.deliveryAddress)
+            viewModel.sendOrder(viewBuyerDetailsCheckout.getDetail(), deliveryInfo, args.cartItem)
         }
     }
 
     override fun onBindLiveData() {
+        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        observe(viewModel.directionLiveData, navController::navigate)
+
         observe(viewModel.customerInfoLiveData) {
             viewBuyerDetailsCheckout.setData(it.name, it.phone.addPlusSignIfNeeded(), it.email)
         }

@@ -231,6 +231,16 @@
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
 
+        <action
+            android:id="@+id/fromCheckoutToOrder"
+            app:destination="@id/nav_order"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@+id/nav_checkout"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <dialog
@@ -238,19 +248,17 @@
         android:name="com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment"
         tools:layout="@layout/dialog_promo_code" />
 
-    <action
-        android:id="@+id/globalToOrder"
-        app:destination="@id/nav_order"
-        app:enterAnim="@anim/nav_enter_anim"
-        app:exitAnim="@anim/nav_exit_anim"
-        app:popEnterAnim="@anim/nav_enter_pop_anim"
-        app:popExitAnim="@anim/nav_exit_pop_anim" />
-
     <fragment
         android:id="@+id/nav_order"
         android:name="com.pharmacy.myapp.order.OrderFragment"
         android:label="@null"
-        tools:layout="@layout/fragment_order" />
+        tools:layout="@layout/fragment_order">
+
+        <argument
+            android:name="order"
+            app:argType="com.pharmacy.myapp.model.order.Order" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_search"

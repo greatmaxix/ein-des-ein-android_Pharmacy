@@ -40,10 +40,12 @@
         android:layout_marginTop="@dimen/_16sdp"
         android:imeOptions="actionNext"
         app:endIconMode="clear_text"
+        app:prefixText="+7"
         app:hintAnimationEnabled="false"
         app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPhoneCheckout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:digits="0123456789+"

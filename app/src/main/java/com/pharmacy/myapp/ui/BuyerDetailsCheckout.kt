@@ -5,12 +5,13 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.widget.doAfterTextChanged
+import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.core.extensions.debug
 import com.pharmacy.myapp.core.extensions.inflate
 import com.pharmacy.myapp.core.extensions.text
-import com.pharmacy.myapp.ui.text.checkEmail
-import com.pharmacy.myapp.ui.text.checkLength
-import com.pharmacy.myapp.ui.text.isPhoneNumberValid
+import com.pharmacy.myapp.data.remote.rest.request.order.CustomerOrderData
+import com.pharmacy.myapp.ui.text.*
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_buyer_details_checkout.view.*
 
@@ -30,13 +31,17 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
     private var email: String? = null
 
     init {
+        debug { tilPhoneCheckout.prefixText = "+3" }
+        val hint = if (BuildConfig.DEBUG) R.string.authPhoneDebugHint else R.string.authPhoneHint
+        etPhoneCheckout.setAsteriskHint(context.getString(hint), 18, 19)
+
         tilFirstLastNameCheckout.editText?.doAfterTextChanged {
             hideError()
             fullName = it.toString()
         }
         tilPhoneCheckout.editText?.doAfterTextChanged {
             hideError()
-            phone = it.toString()
+            phone = tilPhoneCheckout.getPhonePrefix + it.toString()
         }
         tilEmailCheckout.editText?.doAfterTextChanged {
             hideError()
@@ -54,7 +59,7 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
 
     fun setData(fullName: String?, phone: String?, email: String?) {
         this.fullName = fullName
-        this.phone = phone
+        this.phone = phone?.substring(2)
         this.email = email
         updateContent()
     }
@@ -69,8 +74,10 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
         val isNameValid = tilFirstLastNameCheckout.checkLength(context.getString(R.string.nameErrorAuth))
         val isPhoneValid = tilPhoneCheckout.isPhoneNumberValid(context.getString(R.string.phoneErrorAuth))
         val isEmailValid = if (tilEmailCheckout.text().isNotEmpty()) tilEmailCheckout.checkEmail(context.getString(R.string.emailErrorAuth)) else true
-        return isNameValid && isPhoneValid && isEmailValid
+        val isValid = isNameValid && isPhoneValid && isEmailValid
+        if (!isValid) requestFocus()
+        return isValid
     }
 
-    fun getDetail() = Triple(fullName, phone, email)
+    fun getDetail() = CustomerOrderData(fullName, phone, email)
 }

@@ -22,4 +22,7 @@ data class CartItem(
     fun updateCount(count: Int, position: Int) {
         products[position].cartProductInfo.count = count
     }
+
+    val productOrderList
+        get() = products.map { it.productOrderData }
 }

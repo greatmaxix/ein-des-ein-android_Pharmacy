@@ -3,6 +3,7 @@ package com.pharmacy.myapp.cart.model
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.pharmacy.myapp.App
+import com.pharmacy.myapp.data.remote.rest.request.order.ProductOrderData
 import com.pharmacy.myapp.model.Picture
 import com.pharmacy.myapp.product.model.Manufacture
 import kotlinx.android.parcel.Parcelize
@@ -17,8 +18,11 @@ data class CartProduct(
     @SerializedName("productCartPharmacyProduct") val cartProductInfo: CartProductInfo,
     @SerializedName("manufacturerData") val manufacture: Manufacture,
     @SerializedName("price") val price: Double
-): Parcelable {
+) : Parcelable {
     //TODO Create global "Local helper"
     val productLocale: String?
         get() = App.localeMap[manufacture.isoCode]?.getDisplayCountry(Locale("RU"))
+
+    val productOrderData
+        get() = ProductOrderData(productId, price, cartProductInfo.count)
 }

@@ -5,6 +5,7 @@ import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.ViewCompat
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.shape.CornerFamily
@@ -12,7 +13,6 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.adapter.CheckoutProductsAdapter
-import com.pharmacy.myapp.checkout.model.TempDeliveryAddress
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.toast
@@ -24,6 +24,8 @@ import timber.log.Timber
 import kotlin.random.Random
 
 class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.layout.fragment_order) {
+
+    private val args: OrderFragmentArgs by navArgs()
 
     private val orderProductsAdapter = CheckoutProductsAdapter(mutableListOf())
 
@@ -45,7 +47,6 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
 
         Timber.e("$isCancelled")
         viewBuyerDetailsOrder.setData("Some full name", "+3801231231231", "test@exapmle.com")
-        viewBuyerDeliveryAddressOrder.setData(TempDeliveryAddress.newMockInstance())
         tvNoteOrder.text = "Оставьте у двери, предварительно позвонив 4 раза в дверь"
 
         tvPaymentTypeEditOrder.onClick { requireContext().toast("TODO edit payment method") }
@@ -69,6 +70,7 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
                 OrderSteps.Step(R.string.promoCodeHint, false)
             )
         )
+        Timber.d(args.order.toString())
     }
 
     private fun initToolbar() {

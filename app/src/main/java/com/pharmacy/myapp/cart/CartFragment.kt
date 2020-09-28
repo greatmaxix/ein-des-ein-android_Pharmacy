@@ -25,6 +25,7 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getCartProducts()
         showBackButton()
 
         with(rvCart) {

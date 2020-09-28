@@ -2,6 +2,7 @@ package com.pharmacy.myapp.checkout
 
 import com.pharmacy.myapp.checkout.repository.CheckoutLocalDataSource
 import com.pharmacy.myapp.checkout.repository.CheckoutRemoteDataSource
+import com.pharmacy.myapp.data.remote.rest.request.order.CreateOrderRequest
 
 class CheckoutRepository(
     private val crds: CheckoutRemoteDataSource,
@@ -10,5 +11,5 @@ class CheckoutRepository(
 
     fun getCustomerInfo() = clds.getCustomerInfo()
 
-    suspend fun sendOrder(mock: String) = crds.sendOrder(mock)
+    suspend fun sendOrder(body: CreateOrderRequest) = crds.sendOrder(body)
 }
