@@ -25,8 +25,6 @@ import java.util.concurrent.TimeUnit
 
 class RestManager(private val sp: SPManager) {
 
-    /*private var regionId: Int? = null*/
-
     companion object {
         private const val BASE_URL = "https://api.pharmacies.fmc-dev.com" /*"https://api.pharmacies.release.fmc-dev.com"*/ //TODO change to release in future
         private const val READ_TIMEOUT = 30L
@@ -138,8 +136,4 @@ class RestManager(private val sp: SPManager) {
     suspend fun removeProductFromCart(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.removeProductFromCart(globalProductId) }
 
     suspend fun sendOrder(body: CreateOrderRequest) = safeApiCall(tokenRefreshCall) { api.sendOrder(body) }
-
-    /*fun setLocalRegion(id: Int?) {
-        regionId = id
-    }*/
 }
