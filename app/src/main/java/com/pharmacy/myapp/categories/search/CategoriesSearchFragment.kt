@@ -7,7 +7,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.auth.SignInFragmentArgs
 import com.pharmacy.myapp.core.extensions.spanSearchCount
 import com.pharmacy.myapp.core.extensions.visibleOrGone
-import com.pharmacy.myapp.produtcList.BaseProductListFragment
+import com.pharmacy.myapp.productList.BaseProductListFragment
 import kotlinx.android.synthetic.main.fragment_categories_search.*
 
 class CategoriesSearchFragment(private val viewModel: CategoriesSearchViewModel) :

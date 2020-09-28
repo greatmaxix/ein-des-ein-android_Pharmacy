@@ -1,487 +1,493 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="?actionBarSize"
-    android:fillViewport="true"
-    android:scrollbars="none">
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvToolbarHome"
+        style="@style/SearchCardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primaryBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvToolbarHome"
-            style="@style/SearchCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/primaryBlue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTitleToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/startSearching"
+                android:textColor="@color/colorGlobalWhite"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvSearchHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTitleToolbar"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:backgroundTint="@color/colorRippleWhiteSemiTransparent"
+                app:cardCornerRadius="@dimen/_16sdp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toStartOf="@id/mcvScanHome"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleToolbar"
+                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvTitleToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:drawableStart="@drawable/ic_search"
+                    android:text="@string/searchHintHome"
+                    android:textColor="@color/colorGlobalWhite"
+                    android:textSize="@dimen/_12ssp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvScanHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:backgroundTint="@color/green"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/mcvSearchHome"
+                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:text="@string/startSearching"
-                    android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_18ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_alignTop="@id/mcvSearchHome"
+                    android:layout_alignBottom="@id/mcvSearchHome"
+                    android:contentDescription="@string/scanDrugsContentDescription"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_barcode" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mcvSearchHome"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvTitleToolbar"
-                    android:layout_marginEnd="@dimen/_8sdp"
-                    android:backgroundTint="@color/colorRippleWhiteSemiTransparent"
-                    app:cardCornerRadius="@dimen/_16sdp"
-                    app:cardElevation="0dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintEnd_toStartOf="@id/mcvScanHome"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvTitleToolbar"
-                    app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <ScrollView
+        style="@style/Recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvOrderContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:backgroundTint="@color/green"
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="@dimen/_6sdp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivOrderLogoHome"
+                        android:layout_width="@dimen/_32sdp"
+                        android:layout_height="@dimen/_32sdp"
+                        android:contentDescription="@string/orderLogoContentDescriptionHome"
+                        android:src="@drawable/main_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/mtvTitleOrderHome"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_6sdp"
-                        android:layout_marginBottom="@dimen/_6sdp"
-                        android:drawableStart="@drawable/ic_search"
-                        android:text="@string/searchHintHome"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Ваш заказ №23567 готов"
                         android:textColor="@color/colorGlobalWhite"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/mtvSubtitleOrderHome"
+                        app:layout_constraintEnd_toStartOf="@id/ivBoxOrderHome"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toEndOf="@id/ivOrderLogoHome"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtvSubtitleOrderHome"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="@string/orderSubtitleHome"
+                        android:textColor="@color/colorGlobalWhite"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/ivBoxOrderHome"
+                        app:layout_constraintStart_toEndOf="@id/ivOrderLogoHome"
+                        app:layout_constraintTop_toBottomOf="@id/mtvTitleOrderHome" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mcvScanHome"
+                    <ImageView
+                        android:id="@+id/ivBoxOrderHome"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:contentDescription="@string/orderSmallIconContentDescriptionHome"
+                        android:src="@drawable/ic_box"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/colorGlobalWhite" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvAskHome"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:backgroundTint="@color/askCardViewBackgroundHome"
+                app:cardCornerRadius="@dimen/_6sdp"
+                app:cardElevation="@dimen/_6sdp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@id/mcvAnalyzeHome"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mcvOrderContainer"
+                app:layout_constraintWidth_percent="0.31"
+                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:contentDescription="@string/askTileContentDescriptionHome"
+                    android:src="@drawable/ic_chat" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:text="@string/askTitleHome"
+                    android:textColor="@color/colorGlobalWhite"
+                    android:textSize="@dimen/_9ssp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvAnalyzeHome"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/colorGlobalWhite"
+                app:cardCornerRadius="@dimen/_6sdp"
+                app:cardElevation="@dimen/_6sdp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="@id/mcvAskHome"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@id/mcvMapHome"
+                app:layout_constraintStart_toEndOf="@id/mcvAskHome"
+                app:layout_constraintTop_toTopOf="@id/mcvAskHome"
+                app:layout_constraintWidth_percent="0.31"
+                app:rippleColor="@color/colorRippleBlue">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:contentDescription="@string/analyzeTitleContentDescriptionHome"
+                    android:src="@drawable/ic_vector" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:text="@string/analyzeTitleHome"
+                    android:textColor="@color/primaryBlue"
+                    android:textSize="@dimen/_9ssp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvMapHome"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:backgroundTint="@color/purple"
+                app:cardCornerRadius="@dimen/_6sdp"
+                app:cardElevation="@dimen/_6sdp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="@id/mcvAskHome"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mcvAnalyzeHome"
+                app:layout_constraintTop_toTopOf="@id/mcvAskHome"
+                app:layout_constraintWidth_percent="0.31"
+                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:contentDescription="@string/mapIconContentDescriptionHome"
+                    android:src="@drawable/ic_map" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:text="@string/mapTitleHome"
+                    android:textColor="@color/colorGlobalWhite"
+                    android:textSize="@dimen/_9ssp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvCategoryTitleHome"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/categoriesTitleHome"
+                android:textColor="@color/darkBlue"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/btnSeeAllCategoriesHome"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSeeAllCategoriesHome"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_14sdp"
+                android:gravity="bottom"
+                android:insetBottom="0dp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:text="@string/seeAllCategoriesHome"
+                android:textAllCaps="false"
+                android:textColor="@color/primaryBlue"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintBottom_toBottomOf="@id/mtvCategoryTitleHome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mcvAskHome" />
+
+            <LinearLayout
+                android:id="@+id/llCategoriesContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:baselineAligned="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mtvCategoryTitleHome">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
-                    android:backgroundTint="@color/green"
-                    app:cardCornerRadius="@dimen/_8sdp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/mcvSearchHome"
-                    app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_vaccine" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/mcvSearchHome"
-                        android:layout_alignBottom="@id/mcvSearchHome"
-                        android:contentDescription="@string/scanDrugsContentDescription"
-                        android:padding="@dimen/_6sdp"
-                        android:src="@drawable/ic_barcode" />
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="Категория" />
+                </LinearLayout>
 
-                </com.google.android.material.card.MaterialCardView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvOrderContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:layout_marginEnd="@dimen/_12sdp"
-            android:backgroundTint="@color/green"
-            android:visibility="gone"
-            app:cardCornerRadius="@dimen/_8sdp"
-            app:cardElevation="@dimen/_6sdp"
-            app:cardUseCompatPadding="true"
-            app:contentPadding="@dimen/_8sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mcvToolbarHome"
-            app:rippleColor="@color/colorRippleWhiteSemiTransparent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/ivOrderLogoHome"
-                    android:layout_width="@dimen/_32sdp"
-                    android:layout_height="@dimen/_32sdp"
-                    android:contentDescription="@string/orderLogoContentDescriptionHome"
-                    android:src="@drawable/main_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mtvTitleOrderHome"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Ваш заказ №23567 готов"
-                    android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_11ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@id/mtvSubtitleOrderHome"
-                    app:layout_constraintEnd_toStartOf="@id/ivBoxOrderHome"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toEndOf="@id/ivOrderLogoHome"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mtvSubtitleOrderHome"
-                    android:layout_width="0dp"
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_vaccine" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="Категория" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text="@string/orderSubtitleHome"
-                    android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_11ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ivBoxOrderHome"
-                    app:layout_constraintStart_toEndOf="@id/ivOrderLogoHome"
-                    app:layout_constraintTop_toBottomOf="@id/mtvTitleOrderHome" />
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/ivBoxOrderHome"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:contentDescription="@string/orderSmallIconContentDescriptionHome"
-                    android:src="@drawable/ic_box"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/colorGlobalWhite" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_vaccine" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="Категория" />
+                </LinearLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvAskHome"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:backgroundTint="@color/askCardViewBackgroundHome"
-            app:cardCornerRadius="@dimen/_6sdp"
-            app:cardElevation="@dimen/_6sdp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@id/mcvAnalyzeHome"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mcvOrderContainer"
-            app:layout_constraintWidth_percent="0.31"
-            app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_vaccine" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="Категория" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/uploadRecipes"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="@dimen/_8sdp"
-                android:contentDescription="@string/askTileContentDescriptionHome"
-                android:src="@drawable/ic_chat" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_margin="@dimen/_8sdp"
-                android:text="@string/askTitleHome"
+                android:layout_marginStart="@dimen/_32sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_32sdp"
+                android:backgroundTint="@color/orange"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/uploadRecipesHome"
+                android:textAllCaps="false"
                 android:textColor="@color/colorGlobalWhite"
-                android:textSize="@dimen/_9ssp" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvAnalyzeHome"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:backgroundTint="@color/colorGlobalWhite"
-            app:cardCornerRadius="@dimen/_6sdp"
-            app:cardElevation="@dimen/_6sdp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toBottomOf="@id/mcvAskHome"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@id/mcvMapHome"
-            app:layout_constraintStart_toEndOf="@id/mcvAskHome"
-            app:layout_constraintTop_toTopOf="@id/mcvAskHome"
-            app:layout_constraintWidth_percent="0.31"
-            app:rippleColor="@color/colorRippleBlue">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="@dimen/_8sdp"
-                android:contentDescription="@string/analyzeTitleContentDescriptionHome"
-                android:src="@drawable/ic_vector" />
+                android:textStyle="bold"
+                app:cornerRadius="@dimen/_24sdp"
+                app:icon="@drawable/ic_recipes"
+                app:iconGravity="textStart"
+                app:iconTint="@color/colorGlobalWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llCategoriesContainer" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvRecentlyViewedTitle"
+                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_margin="@dimen/_8sdp"
-                android:text="@string/analyzeTitleHome"
-                android:textColor="@color/primaryBlue"
-                android:textSize="@dimen/_9ssp" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvMapHome"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="@dimen/_12sdp"
-            android:backgroundTint="@color/purple"
-            app:cardCornerRadius="@dimen/_6sdp"
-            app:cardElevation="@dimen/_6sdp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toBottomOf="@id/mcvAskHome"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/mcvAnalyzeHome"
-            app:layout_constraintTop_toTopOf="@id/mcvAskHome"
-            app:layout_constraintWidth_percent="0.31"
-            app:rippleColor="@color/colorRippleWhiteSemiTransparent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="@dimen/_8sdp"
-                android:contentDescription="@string/mapIconContentDescriptionHome"
-                android:src="@drawable/ic_map" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_margin="@dimen/_8sdp"
-                android:text="@string/mapTitleHome"
-                android:textColor="@color/colorGlobalWhite"
-                android:textSize="@dimen/_9ssp" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvCategoryTitleHome"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="@string/categoriesTitleHome"
-            android:textColor="@color/darkBlue"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/btnSeeAllCategoriesHome"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSeeAllCategoriesHome"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_24sdp"
-            android:layout_marginEnd="@dimen/_14sdp"
-            android:gravity="bottom"
-            android:insetBottom="0dp"
-            android:paddingStart="@dimen/_8sdp"
-            android:paddingEnd="@dimen/_8sdp"
-            android:text="@string/seeAllCategoriesHome"
-            android:textAllCaps="false"
-            android:textColor="@color/primaryBlue"
-            android:textSize="@dimen/_9ssp"
-            app:layout_constraintBottom_toBottomOf="@id/mtvCategoryTitleHome"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mcvAskHome" />
-
-        <LinearLayout
-            android:id="@+id/llCategoriesContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:baselineAligned="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mtvCategoryTitleHome">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_42sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_vaccine" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text="Категория" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_42sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_vaccine" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text="Категория" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_42sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_vaccine" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text="Категория" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_42sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_vaccine" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text="Категория" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/uploadRecipes"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_32sdp"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginEnd="@dimen/_32sdp"
-            android:backgroundTint="@color/orange"
-            android:gravity="center"
-            android:padding="@dimen/_8sdp"
-            android:text="@string/uploadRecipesHome"
-            android:textAllCaps="false"
-            android:textColor="@color/colorGlobalWhite"
-            android:textStyle="bold"
-            app:cornerRadius="@dimen/_24sdp"
-            app:icon="@drawable/ic_recipes"
-            app:iconGravity="textStart"
-            app:iconTint="@color/colorGlobalWhite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llCategoriesContainer" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvRecentlyViewedTitle"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="@string/recentlyViewedTitle"
-            android:textColor="@color/darkBlue"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/uploadRecipes"
-            tools:visibility="visible" />
-
-        <LinearLayout
-            android:id="@+id/llRecentlyViewedContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_8sdp"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvRecentlyViewedTitle"
-            tools:visibility="visible">
-
-            <com.pharmacy.myapp.ui.RecentlyViewedView
-                android:id="@+id/firstRecentlyViewedView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_4sdp"
-                android:layout_weight="1"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/recentlyViewedTitle"
+                android:textColor="@color/darkBlue"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/uploadRecipes"
                 tools:visibility="visible" />
 
-            <com.pharmacy.myapp.ui.RecentlyViewedView
-                android:id="@+id/secondRecentlyViewedView"
+            <LinearLayout
+                android:id="@+id/llRecentlyViewedContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                tools:visibility="visible" />
+                android:layout_margin="@dimen/_8sdp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRecentlyViewedTitle"
+                tools:visibility="visible">
 
-        </LinearLayout>
+                <com.pharmacy.myapp.ui.RecentlyViewedView
+                    android:id="@+id/firstRecentlyViewedView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    tools:visibility="visible" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                <com.pharmacy.myapp.ui.RecentlyViewedView
+                    android:id="@+id/secondRecentlyViewedView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

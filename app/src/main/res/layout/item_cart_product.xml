@@ -122,7 +122,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/toggleButton"
         app:layout_constraintStart_toStartOf="@+id/tvProductTitle"
-        tools:text="от 568 ₽" />
+        tools:text="от 568 ₸" />
 
     <View
         android:layout_width="0dp"

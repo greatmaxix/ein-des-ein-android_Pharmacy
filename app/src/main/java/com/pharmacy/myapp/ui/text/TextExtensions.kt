@@ -203,7 +203,9 @@ fun TextInputLayout.checkAmount(message: String? = null) =
 
 fun TextInputLayout.checkLength(message: String? = null): Boolean {
     val matches = editText?.text?.matches(Regex("^[a-zA-Z0-9а-яА-Я]{2,12}$")).falseIfNull() // \u0400-\u04FF for cyrillic
-    if (!matches) showError(message)
+    if (!matches) showError(message) else {
+        error = null
+    }
     return matches
 }
 
@@ -263,4 +265,14 @@ fun TextInputLayout.animateEnableOrDisable(enable: Boolean) {
     enableOrDisable(enable)
 }
 
-fun TextInputLayout.getPhonePrefix() = prefixText?.substring(1, prefixText?.length?: 2)
+val TextInputLayout.phoneCodePrefix
+    get() = prefixText?.substring(1)
+
+fun TextInputLayout.isAddressLengthValid(): Boolean {
+    val textLength = text().length
+    if (textLength < 1) {
+        showError(context.getString(R.string.mustNotBeEmpty))
+        return false
+    }
+    return true
+}

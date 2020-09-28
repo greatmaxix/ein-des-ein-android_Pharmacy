@@ -123,12 +123,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Text.CheckoutFilled" parent="TextDirectionLocale">
+    <style name="Text.Filled" parent="TextDirectionLocale">
         <item name="android:textSize">@dimen/_12ssp</item>
         <item name="android:textColor">@color/darkBlue</item>
     </style>
 
-    <style name="Text.CheckoutEdit" parent="TextDirectionLocale">
+    <style name="Text.Edit" parent="TextDirectionLocale">
         <item name="android:textSize">@dimen/_10ssp</item>
         <item name="android:textColor">@color/primaryBlue</item>
     </style>

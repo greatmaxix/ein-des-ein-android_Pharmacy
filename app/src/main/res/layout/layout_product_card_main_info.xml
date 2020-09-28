@@ -46,7 +46,7 @@
 
     <TextView
         android:id="@+id/tvPriceUnavailable"
-        style="@style/Text.CheckoutEdit"
+        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/temporaryUnavailable"
@@ -59,7 +59,7 @@
 
     <TextView
         android:id="@+id/tvPriceFromPrefix"
-        style="@style/Text.CheckoutEdit"
+        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24sdp"
@@ -71,7 +71,7 @@
 
     <TextView
         android:id="@+id/tvPriceFrom"
-        style="@style/Text.CheckoutEdit"
+        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
@@ -83,7 +83,7 @@
 
     <TextView
         android:id="@+id/tvPriceToPrefix"
-        style="@style/Text.CheckoutEdit"
+        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
@@ -96,7 +96,7 @@
 
     <TextView
         android:id="@+id/tvPriceTo"
-        style="@style/Text.CheckoutEdit"
+        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"

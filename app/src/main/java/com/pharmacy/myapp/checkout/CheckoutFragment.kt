@@ -4,46 +4,45 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.actionCheckoutToPromoCodeDialog
-import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.globalToOrder
-import com.pharmacy.myapp.checkout.adapter.OrderProductsAdapter
+import com.pharmacy.myapp.checkout.adapter.CheckoutProductsAdapter
 import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment
 import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment.Companion.PROMO_CODE_REQUEST_KEY
-import com.pharmacy.myapp.checkout.model.TempDeliveryAddress
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
-import com.pharmacy.myapp.checkout.model.TempPharmacyAddress
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
-import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.toast
+import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.data.DummyData
-import com.pharmacy.myapp.devTools.DevToolsFragmentDirections
-import com.pharmacy.myapp.ui.BuyerDeliveryAddress
+import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryInfoOrderData
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {
 
-    private val orderProductsAdapter = OrderProductsAdapter()
+    private val args by navArgs<CheckoutFragmentArgs>()
+
+    private val orderProductsAdapter by lazy { CheckoutProductsAdapter(args.cartItem.products) }
     private val radioButtonPadding by lazy { resources.getDimension(R.dimen._8sdp).toInt() }
+
+    private val Boolean.deliveryType
+        get() = if (this) "delivery_address" else "pickup"
+
+    private val Boolean.deliveryAddress
+        get() = if (this) viewBuyerDeliveryAddressCheckout.obtainDeliveryAddress() else null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         showBackButton()
 
-        viewBuyerDetailsCheckout.setData("Some full name", "+3801231231231", "test@exapmle.com")
-        viewBuyerDeliveryAddressCheckout.setData(TempDeliveryAddress.newMockInstance(), TempPharmacyAddress.newMockInstance())
-        viewBuyerDeliveryAddressCheckout.changeDeliveryMethod(BuyerDeliveryAddress.DeliveryMethod.DELIVERY)
         cardMethodDeliveryCheckout.isSelected = true
         cardMethodDeliveryCheckout.setOnClickListener(this)
         cardMethodPickupCheckout.setOnClickListener(this)
 
         initPaymentMethods()
         initOrderProducts()
-        tvOrdersListEditCheckout.onClick { requireContext().toast("TODO edit order list") }
         btnPromoCodeCheckout.onClick {
             setFragmentResultListener(PROMO_CODE_REQUEST_KEY) { _, bundle ->
                 val code = bundle[PromoCodeDialogFragment.PROMO_CODE_EXTRA_KEY]
@@ -51,12 +50,40 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
             }
             doNav(actionCheckoutToPromoCodeDialog())
         }
-        btnCheckoutOrderCheckout.onClick { navController.navigate(globalToOrder()) }
+        btnCheckoutOrderCheckout.onClick { validateFieldsAndSendOrder() }
 
-        tvTotalAmountCheckout.text = "123 ₽"
-        tvDiscountCheckout.text = "321 ₽"
-        tvDeliveryAmountCheckout.text = "\uD83D\uDE9B 382 ₽"
-        tvTotalPayableCheckout.text = "999 ₽"
+        val totalAmount = "${args.cartItem.totalPrice.formatPrice()} ₸"
+        tvTotalAmountCheckout.text = totalAmount
+        val deliveryCost = 150 // todo change in future
+        tvDeliveryAmountCheckout.text = getString(R.string.deliveryCost, deliveryCost)
+        val totalCost = "${(args.cartItem.totalPrice + deliveryCost).formatPrice()} ₸"
+        tvTotalPayableCheckout.text = totalCost
+
+        setPharmacyInfo()
+    }
+
+    private fun setPharmacyInfo() = with(args.cartItem) {
+        ivPharmacyLogoCheckout.loadGlideDrugstore(logo.url)
+        tvPharmacyNameCheckout.text = name
+        tvPharmacyAddressOrder.text = getString(R.string.cityStreetHolder, location.address)
+    }
+
+    private fun validateFieldsAndSendOrder() {
+        val isDelivery = cardMethodDeliveryCheckout.isSelected
+        if (viewBuyerDetailsCheckout.isFieldsValid() && (!isDelivery || viewBuyerDeliveryAddressCheckout.validateFields())) {
+            val deliveryInfo = DeliveryInfoOrderData(isDelivery.deliveryType, tilOrderNote.text(), isDelivery.deliveryAddress)
+            viewModel.sendOrder(viewBuyerDetailsCheckout.getDetail(), deliveryInfo, args.cartItem)
+        }
+    }
+
+    override fun onBindLiveData() {
+        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        observe(viewModel.directionLiveData, navController::navigate)
+
+        observe(viewModel.customerInfoLiveData) {
+            viewBuyerDetailsCheckout.setData(it.name, it.phone.addPlusSignIfNeeded(), it.email)
+        }
     }
 
     private fun initPaymentMethods() {
@@ -69,34 +96,31 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     private fun createPaymentRadioButton(
         layoutParams: ViewGroup.LayoutParams,
         it: TempPaymentMethod
-    ): MaterialRadioButton {
-        val radio = MaterialRadioButton(requireContext())
-        radio.layoutParams = layoutParams
-        radio.setPadding(radioButtonPadding, radioButtonPadding, radioButtonPadding, radioButtonPadding)
-        radio.text = it.name
-        radio.setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
-        return radio
+    ) = MaterialRadioButton(requireContext()).apply {
+        this.layoutParams = layoutParams
+        setPadding(radioButtonPadding, radioButtonPadding, radioButtonPadding, radioButtonPadding)
+        text = it.name
+        setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
+        isEnabled = it.isChecked
+        isChecked = it.isChecked
     }
 
     private fun initOrderProducts() {
-        val items = DummyData.getOrderProducts()
-        rvOrdersListCheckout.setHasFixedSize(true)
-        rvOrdersListCheckout.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvOrdersListCheckout.adapter = orderProductsAdapter
-        orderProductsAdapter.setList(items)
+        rvProductsListCheckout.setHasFixedSize(true)
+        rvProductsListCheckout.adapter = orderProductsAdapter
     }
 
     override fun onClick(v: View?) {
 
-        fun cardCheckout(deliveryMethod: BuyerDeliveryAddress.DeliveryMethod = BuyerDeliveryAddress.DeliveryMethod.PICKUP) {
-            cardMethodPickupCheckout.isSelected = deliveryMethod == BuyerDeliveryAddress.DeliveryMethod.PICKUP
-            cardMethodDeliveryCheckout.isSelected = deliveryMethod != BuyerDeliveryAddress.DeliveryMethod.PICKUP
-            viewBuyerDeliveryAddressCheckout.changeDeliveryMethod(deliveryMethod)
+        fun setDeliveryMethod(isPickup: Boolean) {
+            cardMethodDeliveryCheckout.isSelected = !isPickup
+            cardMethodPickupCheckout.isSelected = isPickup
+            viewBuyerDeliveryAddressCheckout.visibleOrGone(!isPickup)
         }
 
         when (v?.id) {
-            cardMethodDeliveryCheckout.id -> cardCheckout(BuyerDeliveryAddress.DeliveryMethod.DELIVERY)
-            cardMethodPickupCheckout.id -> cardCheckout(BuyerDeliveryAddress.DeliveryMethod.PICKUP)
+            cardMethodDeliveryCheckout.id -> setDeliveryMethod(false)
+            cardMethodPickupCheckout.id -> setDeliveryMethod(true)
         }
     }
 }

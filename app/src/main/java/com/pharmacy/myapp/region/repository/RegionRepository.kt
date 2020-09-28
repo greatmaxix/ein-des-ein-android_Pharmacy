@@ -1,6 +1,6 @@
 package com.pharmacy.myapp.region.repository
 
-import com.pharmacy.myapp.model.region.TemporaryRegion
+import com.pharmacy.myapp.model.region.LocalRegion
 import com.pharmacy.myapp.model.region.Region
 import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
 import com.pharmacy.myapp.user.repository.UserLocalDataSource
@@ -13,7 +13,7 @@ class RegionRepository(private val rrds: RegionRemoteDataSource, private val rld
 
     suspend fun saveRegionLocally(region: Region) {
         rlds.clear()
-        rlds.setRegion(TemporaryRegion(region.id, region.name))
+        rlds.setRegion(LocalRegion(region.id, region.name))
         rrds.setLocalRegion(region.id)
     }
 
@@ -23,5 +23,5 @@ class RegionRepository(private val rrds: RegionRemoteDataSource, private val rld
 
     suspend fun saveCustomerInfoLocally(customer: CustomerInfo) = lds.save(customer)
 
-    fun getTemporaryRegion(): Flow<TemporaryRegion?> = rlds.getTemporaryRegion()
+    fun getTemporaryRegion(): Flow<LocalRegion?> = rlds.getTemporaryRegion()
 }

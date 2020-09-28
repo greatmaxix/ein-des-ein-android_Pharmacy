@@ -81,7 +81,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/recommendedAddToCartFab"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="от 568 ₽" />
+            tools:text="от 568 ₸" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

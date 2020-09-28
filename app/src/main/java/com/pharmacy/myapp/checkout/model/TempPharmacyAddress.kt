@@ -7,8 +7,7 @@ data class TempPharmacyAddress(
     val city: String?,
     val street: String?,
     val houseNo: String?,
-    val phone: String?,
-    val timing: String?
+    val phone: String?
 ) {
     companion object {
 
@@ -19,8 +18,7 @@ data class TempPharmacyAddress(
             "Харьков",
             "ул. Горная",
             "23a",
-            "+7 (098) 000 02 00 • +7 (098) 000 02 00",
-            "c 8:00 до 22:00 ежедневно"
+            "+7 (098) 000 02 00 • +7 (098) 000 02 00"
         )
     }
 }

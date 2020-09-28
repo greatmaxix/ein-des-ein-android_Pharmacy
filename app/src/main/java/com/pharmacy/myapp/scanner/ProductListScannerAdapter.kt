@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.product.model.ProductLite
-import com.pharmacy.myapp.produtcList.adapter.ProductListViewHolder
+import com.pharmacy.myapp.productList.adapter.ProductListViewHolder
 
 class ProductListScannerAdapter(private val itemClick: (Int) -> Unit, private val wishClick: (Pair<Boolean, Int>) -> Unit, list: MutableList<ProductLite>) :
     BaseRecyclerAdapter<ProductLite, ProductListViewHolder>(list) {

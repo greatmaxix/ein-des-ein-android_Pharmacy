@@ -30,6 +30,7 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
         showBackButton()
 
         with(rvCart) {
+            clearAdapter()
             adapter = concatAdapter
             itemAnimator = ItemExpandAnimator()
         }
@@ -38,6 +39,9 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
             navController.navigate(fromCartToSearch())
         }
     }
+
+    //TODO move to extensions
+    private fun clearAdapter() = concatAdapter.adapters.forEach(concatAdapter::removeAdapter)
 
     override fun onBindLiveData() {
         observe(viewModel.errorLiveData, ::errorOrAuth)
@@ -57,14 +61,12 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
         ecvPharmacy.visibleOrGone(isListEmpty)
     }
 
-    private fun removeProduct(productId: Int) {
-        concatAdapter.adapters.forEach { adapter ->
-            if (adapter is CartAdapter) {
-                adapter.notifyRemoveIfContains(productId) { nestedAdapter ->
-                    concatAdapter.removeAdapter(nestedAdapter)
-                    if (concatAdapter.adapters.isEmpty()) {
-                        ecvPharmacy.visible()
-                    }
+    private fun removeProduct(productId: Int) = concatAdapter.adapters.forEach { adapter ->
+        if (adapter is CartAdapter) {
+            adapter.notifyRemoveIfContains(productId) { nestedAdapter ->
+                concatAdapter.removeAdapter(nestedAdapter)
+                if (concatAdapter.adapters.isEmpty()) {
+                    ecvPharmacy.visible()
                 }
             }
         }
@@ -90,5 +92,5 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
         negative = R.string.cancel
     }
 
-    private fun startDeliveryProcess(cartItem: CartItem) = navController.navigate(fromCartToCheckout())
+    private fun startDeliveryProcess(cartItem: CartItem) = navController.navigate(fromCartToCheckout(cartItem))
 }

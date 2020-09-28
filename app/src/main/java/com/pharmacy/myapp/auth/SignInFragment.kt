@@ -11,7 +11,7 @@ import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.onDoneImeAction
 import com.pharmacy.myapp.core.extensions.setDebounceOnClickListener
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
-import com.pharmacy.myapp.ui.text.getPhonePrefix
+import com.pharmacy.myapp.ui.text.phoneCodePrefix
 import com.pharmacy.myapp.ui.text.isPhoneNumberValid
 import com.pharmacy.myapp.ui.text.setAsteriskHint
 import com.pharmacy.myapp.ui.text.setPhoneRule
@@ -33,7 +33,7 @@ class SignInFragment : AuthBaseFragment(R.layout.fragment_sign_in) {
         mbCreateAccount.onClick { viewModel.directionLiveData.postValue(actionFromSignInToSignUp()) }
         llButtonContainer.onClick {
             if (tilPhoneSignIn.isPhoneNumberValid(getString(R.string.phoneErrorAuth))) {
-                viewModel.signIn(tilPhoneSignIn.getPhonePrefix() + etPhoneSignIn.text.toString())
+                viewModel.signIn(tilPhoneSignIn.phoneCodePrefix + etPhoneSignIn.text.toString())
             }
         }
         tvSkipAuth.setDebounceOnClickListener { navController.navigate(globalToHome()) }

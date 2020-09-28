@@ -1,8 +1,10 @@
 package com.pharmacy.myapp.data.remote.rest
 
 import com.pharmacy.myapp.cart.model.CartItem
+import com.pharmacy.myapp.data.remote.rest.request.order.CreateOrderRequest
 import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
 import com.pharmacy.myapp.data.remote.rest.response.AuthResponse
+import com.pharmacy.myapp.model.order.Order
 import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
 import com.pharmacy.myapp.data.remote.rest.response.UploadImageResponse
 import com.pharmacy.myapp.model.*
@@ -94,4 +96,7 @@ interface ApiService {
 
     @DELETE("/api/v1/customer/product-cart/pharmacy-product/{id}")
     suspend fun removeProductFromCart(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
+
+    @POST("/api/v1/customer/order")
+    suspend fun sendOrder(@Body body: CreateOrderRequest): BaseDataResponseWithItem<Order>
 }

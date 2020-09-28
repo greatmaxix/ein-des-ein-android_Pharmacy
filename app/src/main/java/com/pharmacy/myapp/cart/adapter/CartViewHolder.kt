@@ -28,11 +28,7 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
         override fun bind(item: Triple<CartItem, Boolean, () -> Unit>) = with(itemView) {
             val cardItem = item.first
 
-            ivLogo.loadGlide(cardItem.logo.url) {
-                placeholder(R.drawable.ic_drugstore_base)
-                RequestOptions.bitmapTransform(CircleCrop())
-                transition(DrawableTransitionOptions().crossFade())
-            }
+            ivLogo.loadGlideDrugstore(cardItem.logo.url)
 
             tvTitle.text = cardItem.name
             tvSubTitle.text = cardItem.location.address

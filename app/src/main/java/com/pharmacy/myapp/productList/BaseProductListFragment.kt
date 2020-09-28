@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.produtcList
+package com.pharmacy.myapp.productList
 
 import android.os.Bundle
 import android.view.View
@@ -13,7 +13,7 @@ import com.pharmacy.myapp.core.extensions.addAutoKeyboardCloser
 import com.pharmacy.myapp.product.BaseProductFragment
 import com.pharmacy.myapp.product.BaseProductViewModel
 import com.pharmacy.myapp.product.model.ProductLite
-import com.pharmacy.myapp.produtcList.adapter.ProductListAdapter
+import com.pharmacy.myapp.productList.adapter.ProductListAdapter
 
 abstract class BaseProductListFragment<VM : BaseProductViewModel>(@LayoutRes private val layoutResourceId: Int, private val viewModel: VM) :
     BaseProductFragment<VM>(layoutResourceId, viewModel) {

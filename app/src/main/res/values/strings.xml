@@ -59,6 +59,7 @@
 
     <string name="expectSoonMock">Ожидайте в ближайшее время</string>
     <string name="recentlyViewedImageDescription">Иконка товара недавно просмотренных</string>
+    <string name="mustNotBeEmpty">Текст не должен быть пустым</string>
 
     <!--QrCodeScanner-->
     <string name="qrCodeLabel">Штрих код</string>
@@ -161,7 +162,6 @@
     <!-- Checkout -->
     <string name="checkoutLabel">Офорление</string>
     <string name="yourDetails">Ваши данные :</string>
-    <string name="buyerDetails">Данные покупателя :</string>
     <string name="firstLastNameHint">Имя и фамилия</string>
     <string name="phoneHintCheckout">@string/phoneHint</string>
     <string name="emailHint">Email</string>
@@ -174,7 +174,7 @@
     <string name="streetHint">Улица</string>
     <string name="houseNoHint">№ Дома</string>
     <string name="apartmentNoHint">№ Квартиры</string>
-    <string name="noteToOrder">Примечание к заказу</string>
+    <string name="noteToOrder">Оставить комментарий</string>
     <string name="selectPaymentType">Выберите тип оплаты :</string>
     <string name="orderList">Состав заказа :</string>
     <string name="promoCode">Промокод</string>
@@ -188,6 +188,9 @@
     <string name="promoCodeHint">Промокод</string>
     <string name="promoCodeApply">Применить</string>
     <string name="promoCodeCancel">Отменить</string>
+    <string name="checkoutNoteTitle">Комментарий к заказу:</string>
+    <string name="deliveryCost">🚛 %1$d ₸</string>
+    <string name="cityStreetHolder">🚛🏠 %1$s</string>
 
     <!-- Order -->
     <string name="orderStepsTestText">Шаг</string>

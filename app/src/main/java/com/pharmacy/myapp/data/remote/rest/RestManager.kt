@@ -16,6 +16,7 @@ import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.PHONE
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REFRESH_TOKEN
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REGION_ID
 import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
+import com.pharmacy.myapp.data.remote.rest.request.order.CreateOrderRequest
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import org.koin.core.KoinComponent
@@ -138,6 +139,8 @@ class RestManager : KoinComponent {
     suspend fun addProductToCart(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.addProductToCart(globalProductId) }
 
     suspend fun removeProductFromCart(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.removeProductFromCart(globalProductId) }
+
+    suspend fun sendOrder(body: CreateOrderRequest) = safeApiCall(tokenRefreshCall) { api.sendOrder(body) }
 
     fun setLocalRegion(id: Int?) {
         regionId = id

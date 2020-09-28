@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.produtcList.adapter
+package com.pharmacy.myapp.productList.adapter
 
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +12,17 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
 
     override fun bind(item: ProductLite) = with(item) {
 
-        itemView.ivProduct.setProductImage(this)
+        itemView.ivProduct.setProductImage(pictures, aggregation == null)
 
         itemView.tvTitle.setTextHtml(rusName)
         itemView.tvSubTitle.setTextHtml(releaseForm)
 
         itemView.tvManufacture.setTextHtml(stringRes(R.string.manufacture, productLocale))
 
-        aggregation?.let { itemView.tvProductPrice.text = stringRes(R.string.price, it.minPrice.formatPrice()) } ?: run { itemView.tvProductPrice.gone() }
-
+        aggregation?.let {
+            itemView.tvProductPrice.text = stringRes(R.string.price, it.minPrice.formatPrice())
+            itemView.tvProductPrice.visible()
+        } ?: run { itemView.tvProductPrice.gone() }
         itemView.tvPricePrefix.visibleOrGone(aggregation != null)
         itemView.tvPriceUnavailable.visibleOrGone(aggregation == null)
 

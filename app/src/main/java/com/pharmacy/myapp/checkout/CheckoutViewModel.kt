@@ -2,8 +2,14 @@ package com.pharmacy.myapp.checkout
 
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavDirections
+import com.pharmacy.myapp.cart.model.CartItem
+import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.fromCheckoutToOrder
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
+import com.pharmacy.myapp.core.network.ResponseWrapper
+import com.pharmacy.myapp.data.remote.rest.request.order.CreateOrderRequest
+import com.pharmacy.myapp.data.remote.rest.request.order.CustomerOrderData
+import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryInfoOrderData
 import timber.log.Timber
 
 class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewModel() {
@@ -17,7 +23,21 @@ class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewMo
     private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
 
+    val customerInfoLiveData = repository.getCustomerInfo()
+
     fun handlePromoCodeResult(code: String) {
         Timber.e("PROMO CODE = $code")
+    }
+
+    fun sendOrder(customerInfo: CustomerOrderData, deliveryInfo: DeliveryInfoOrderData, cartItem: CartItem) {
+        val orderRequest = CreateOrderRequest(customerInfo, deliveryInfo, cartItem.id, cartItem.productOrderList, cartItem.totalPrice)
+        _progressLiveData.value = true
+        launchIO {
+            when (val response = repository.sendOrder(orderRequest)) {
+                is ResponseWrapper.Success -> _directionLiveData.postValue(fromCheckoutToOrder(response.value.data.item))
+                is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorMessage)
+            }
+            _progressLiveData.postValue(false)
+        }
     }
 }

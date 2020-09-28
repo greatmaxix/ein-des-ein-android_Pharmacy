@@ -53,7 +53,7 @@
 
     <TextView
         android:id="@+id/tvSubTitle"
-        style="@style/Text.CheckoutFilled"
+        style="@style/Text.Filled"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_4sdp"

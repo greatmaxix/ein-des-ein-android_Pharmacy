@@ -5,22 +5,19 @@ import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.ViewCompat
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.checkout.adapter.OrderProductsAdapter
-import com.pharmacy.myapp.checkout.model.TempDeliveryAddress
-import com.pharmacy.myapp.checkout.model.TempPharmacyAddress
+import com.pharmacy.myapp.checkout.adapter.CheckoutProductsAdapter
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.toast
 import com.pharmacy.myapp.core.extensions.visibleOrGone
-import com.pharmacy.myapp.data.DummyData
 import com.pharmacy.myapp.data.DummyData.paymentMethod
-import com.pharmacy.myapp.ui.BuyerDeliveryAddress
 import com.pharmacy.myapp.ui.OrderSteps
 import kotlinx.android.synthetic.main.fragment_order.*
 import timber.log.Timber
@@ -28,7 +25,9 @@ import kotlin.random.Random
 
 class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.layout.fragment_order) {
 
-    private val orderProductsAdapter = OrderProductsAdapter()
+    private val args: OrderFragmentArgs by navArgs()
+
+    private val orderProductsAdapter = CheckoutProductsAdapter(mutableListOf())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,18 +47,16 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
 
         Timber.e("$isCancelled")
         viewBuyerDetailsOrder.setData("Some full name", "+3801231231231", "test@exapmle.com")
-        viewBuyerDeliveryAddressOrder.setData(TempDeliveryAddress.newMockInstance(), TempPharmacyAddress.newMockInstance())
-        viewBuyerDeliveryAddressOrder.changeDeliveryMethod(BuyerDeliveryAddress.DeliveryMethod.values().random())
         tvNoteOrder.text = "Оставьте у двери, предварительно позвонив 4 раза в дверь"
 
         tvPaymentTypeEditOrder.onClick { requireContext().toast("TODO edit payment method") }
         tvOrdersListEditOrder.onClick { requireContext().toast("TODO edit order list") }
         btnCheckoutOrder.onClick { requireContext().toast("TODO order") }
 
-        tvTotalAmountOrder.text = "123 ₽"
-        tvDiscountOrder.text = "321 ₽"
-        tvDeliveryAmountOrder.text = "\uD83D\uDE9B 382 ₽"
-        tvTotalPayableOrder.text = "999 ₽"
+        tvTotalAmountOrder.text = "123 ₸"
+        tvDiscountOrder.text = "321 ₸"
+        tvDeliveryAmountOrder.text = "\uD83D\uDE9B 382 ₸"
+        tvTotalPayableOrder.text = "999 ₸"
 
         paymentMethod.random().let {
             tvPaymentTypeOrder.text = it.name
@@ -73,6 +70,7 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
                 OrderSteps.Step(R.string.promoCodeHint, false)
             )
         )
+        Timber.d(args.order.toString())
     }
 
     private fun initToolbar() {
@@ -100,10 +98,8 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
     }
 
     private fun initOrderProducts() {
-        val items = DummyData.getOrderProducts()
         rvOrdersListOrder.setHasFixedSize(true)
         rvOrdersListOrder.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         rvOrdersListOrder.adapter = orderProductsAdapter
-        orderProductsAdapter.setList(items)
     }
 }
