@@ -15,7 +15,7 @@ val splashModule = module {
     viewModel { SplashViewModel(get(), get()) }
     fragment { SplashFragment(get()) }
 
-    single { SplashRepository(get(), get<DBManager>().customerDAO) }
+    single { SplashRepository(get(), get<DBManager>().customerDAO, get()) }
 
     factory(named(UPDATE_CUSTOMER_INFO)) {
         OneTimeWorkRequestBuilder<UpdateCustomerInfoWorker>().setConstraints(
