@@ -2,6 +2,7 @@ package com.pharmacy.myapp.cart
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.pharmacy.myapp.R
 import com.pharmacy.myapp.cart.model.CartItem
 import com.pharmacy.myapp.cart.repository.CartRepository
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
@@ -22,17 +23,6 @@ class CartViewModel(private val repository: CartRepository) : BaseViewModel() {
     private val _removeItemLiveData by lazy { SingleLiveEvent<Int>() }
     val removeItemLiveData: LiveData<Int> by lazy { _removeItemLiveData }
 
-    fun getCartProducts() {
-        _progressLiveData.value = true
-        launchIO {
-            when (val response = repository.getCartProducts()) {
-                is ResponseWrapper.Success -> _cartItemLiveData.postValue(response.value.data.items)
-                is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
-            }
-            _progressLiveData.postValue(false)
-        }
-    }
-
     fun removeProductFromCart(productId: Int) {
         _progressLiveData.value = true
         launchIO {
@@ -42,5 +32,20 @@ class CartViewModel(private val repository: CartRepository) : BaseViewModel() {
             }
             _progressLiveData.postValue(false)
         }
+    }
+
+    fun cartOrAuth() {
+        launchIO {
+            if (repository.isCustomerExist()) retrieveUserCart() else _errorLiveData.postValue(R.string.forCheckCart)
+        }
+    }
+
+    private suspend fun retrieveUserCart() {
+        _progressLiveData.postValue(true)
+        when (val response = repository.getCartProducts()) {
+            is ResponseWrapper.Success -> _cartItemLiveData.postValue(response.value.data.items)
+            is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
+        }
+        _progressLiveData.postValue(false)
     }
 }

@@ -14,7 +14,7 @@ class DBManager(context: Context) {
 
     companion object {
         private const val NAME = "pharmacyDB"
-        private const val VERSION = 3
+        private const val VERSION = 4
     }
 
     private val db = Room

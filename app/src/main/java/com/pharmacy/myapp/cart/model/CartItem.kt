@@ -2,11 +2,10 @@ package com.pharmacy.myapp.cart.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import com.pharmacy.myapp.core.extensions.formatPrice
 import com.pharmacy.myapp.model.Location
 import com.pharmacy.myapp.model.Logo
 import kotlinx.android.parcel.Parcelize
-import java.math.BigDecimal
-import java.math.RoundingMode
 
 @Parcelize
 data class CartItem(
@@ -16,8 +15,11 @@ data class CartItem(
     @SerializedName("logo") val logo: Logo,
     @SerializedName("pharmacyProducts") val products: MutableList<CartProduct>
 ) : Parcelable {
-    val totalPrice: BigDecimal
-        get() = products.sumOf { it.price.toBigDecimal().multiply(it.cartProductInfo.count.toBigDecimal()) }.setScale(2, RoundingMode.DOWN)
+    val totalPrice
+        get() = products.sumByDouble { it.price * it.cartProductInfo.count }.formatPrice()
+
+    val totalCount
+        get() = products.sumBy { it.cartProductInfo.count }
 
     fun updateCount(count: Int, position: Int) {
         products[position].cartProductInfo.count = count

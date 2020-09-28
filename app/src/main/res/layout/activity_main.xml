@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainContent"
+    android:clipChildren="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navHost"
         android:name="com.pharmacy.myapp.main.MainNavHostFragment"
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/graph_main" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.pharmacy.myapp.ui.SelectableBottomNavView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"

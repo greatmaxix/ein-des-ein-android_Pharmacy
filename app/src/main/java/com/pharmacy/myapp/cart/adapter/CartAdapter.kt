@@ -1,15 +1,13 @@
 package com.pharmacy.myapp.cart.adapter
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.myapp.cart.model.CartItem
 
 class CartAdapter(
     private val cartItem: CartItem,
     private val removeClick: (Int) -> Unit,
-    private val notifyCheckout: (CartItem) -> Unit,
-    private val getConcat: () -> ConcatAdapter?
+    private val notifyCheckout: (CartItem) -> Unit
 ) : RecyclerView.Adapter<CartViewHolder<*>>() {
 
     companion object {
@@ -44,11 +42,16 @@ class CartAdapter(
         when (holder) {
             is CartViewHolder.CartItemViewHolder -> {
                 val itemPosition = position - 1
-                holder.bind(cartItem.products[itemPosition] to { count -> cartItem.updateCount(count, itemPosition) })
+                holder.bind(cartItem.products[itemPosition] to { count -> notifyProductCountChange(count, itemPosition) })
             }
             is CartViewHolder.CartHeaderViewHolder -> holder.bind(Triple(cartItem, isExpanded, { isExpanded = !isExpanded }))
             is CartViewHolder.CartFooterViewHolder -> holder.bind(cartItem)
         }
+    }
+
+    private fun notifyProductCountChange(count: Int, position: Int) {
+        cartItem.updateCount(count, position)
+        notifyItemChanged(itemCount - 1)
     }
 
     fun notifyRemoveIfContains(productId: Int, removeAdapter: (CartAdapter) -> Unit) {

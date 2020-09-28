@@ -13,8 +13,7 @@ import kotlinx.android.synthetic.main.fragment_pharmacy_list.*
 
 class PharmacyListFragment : BaseTabFragment(R.layout.fragment_pharmacy_list) {
 
-    private val pharmacyAdapter =
-        PharmacyListAdapter({ addProductToCart(it.pharmacyProducts.first().pharmacyProductId) }, ::showDial, { showDirection(it.location.lat, it.location.lng) })
+    private val pharmacyAdapter = PharmacyListAdapter({ addProductToCart(it.pharmacyProducts.first().pharmacyProductId) }, ::showDial, { showDirection(it.location.lat, it.location.lng) })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

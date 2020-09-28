@@ -196,14 +196,6 @@
     <string name="orderStepsTestText">Шаг</string>
     <string name="paymentType">Тип оплаты :</string>
 
-    <!-- Cart -->
-    <string name="cartLabel">Корзина</string>
-    <string name="cartImageContentDescription">Изображение медикамента</string>
-    <string name="recipeInCartTitle">В корзине есть рецептурные товары</string>
-    <string name="relevanceDrugsCartSubtitle">Проверьте наличие и актуальность Ваших рецептов</string>
-    <string name="infoIconContentDescription">Иконка информации выбора аптеки</string>
-    <string name="chooseDrugstoreCart">Выбрать аптеку</string>
-
     <!-- My orders-->
     <string name="myOrdersLabel">Мои заказы</string>
     <string name="allChipMyOrders">Все</string>
@@ -214,7 +206,6 @@
     <string name="firstItemInOrderContentDescription">Иконка первого товара в корзине</string>
     <string name="secondItemInOrderContentDescription">Иконка второго товара в корзине</string>
     <string name="thirdItemInOrderContentDescription">Иконка третьего товара в корзине</string>
-
 
     <!-- Chat -->
     <string name="menu_info">Info</string>
@@ -288,6 +279,7 @@
     <string name="pharmacyListTitle">Списком</string>
     <string name="pharmacyAddToCart">Добавить в корзину</string>
     <string name="pharmacyPhoneWith">📞️ %1$s</string>
+    <string name="forAddingToCart">Для того что бы добавить продукт в Корзину нужно авторизироваться</string>
 
     <!-- Payments -->
     <string name="bonusComingSoon">Бонусы уже скоро!</string>
@@ -319,6 +311,12 @@
     <string name="noRegionFoundTitle">Регион не найден</string>
 
     <!--Cart-->
+    <string name="cartLabel">Корзина</string>
+    <string name="cartImageContentDescription">Изображение медикамента</string>
+    <string name="recipeInCartTitle">В корзине есть рецептурные товары</string>
+    <string name="relevanceDrugsCartSubtitle">Проверьте наличие и актуальность Ваших рецептов</string>
+    <string name="infoIconContentDescription">Иконка информации выбора аптеки</string>
+    <string name="chooseDrugstoreCart">Выбрать аптеку</string>
     <string name="productAddedToCart">Товар усешно добавлен, перейти в корзину ?</string>
     <string name="cart">Корзина</string>
     <string name="stay">Остаться</string>
@@ -330,5 +328,7 @@
     <string name="yourCartIsEmpty">Оу,ваша корзина пуста</string>
     <string name="startSearchFor">Начните поиск, что бы  добавить товар в корзину</string>
     <string name="startSearch">Начать поиск</string>
+    <string name="forCheckCart">Для того что бы просмотреть продукты в Корзине нужно авторизироваться</string>
+    <string name="exit">Выйти</string>
 
 </resources>

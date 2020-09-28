@@ -107,6 +107,14 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+        <action
+            android:id="@+id/fromCartToAuth"
+            app:destination="@id/auth_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
     </fragment>
 
     <action
@@ -377,6 +385,7 @@
         android:name="com.pharmacy.myapp.pharmacy.PharmacyFragment"
         android:label="@string/pharmacyMapLabel"
         tools:layout="@layout/fragment_pharmacy">
+
         <argument
             android:name="productId"
             android:defaultValue="-1"
@@ -394,6 +403,13 @@
         <action
             android:id="@+id/fromPharmacyToCart"
             app:destination="@id/nav_cart"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+        <action
+            android:id="@+id/fromPharmacyToAuth"
+            app:destination="@id/auth_graph"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"

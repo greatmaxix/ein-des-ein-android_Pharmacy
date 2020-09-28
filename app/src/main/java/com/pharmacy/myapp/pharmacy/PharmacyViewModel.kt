@@ -2,6 +2,7 @@ package com.pharmacy.myapp.pharmacy
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper
@@ -51,13 +52,18 @@ class PharmacyViewModel(globalProductId: Int, private val repository: PharmacyRe
     }
 
     fun addToCart(globalProductId: Int) {
-        _progressLiveData.value = true
         launchIO {
-            when (val response = repository.addToCart(globalProductId)) {
-                is ResponseWrapper.Success -> _cartNotifyLiveData.postValue(Unit)
-                is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
-            }
-            _progressLiveData.postValue(false)
+            if (repository.isCustomerExist()) saveProductToCart(globalProductId) else _errorLiveData.postValue(R.string.forAddingToCart)
         }
     }
+
+    private suspend fun saveProductToCart(id: Int) {
+        _progressLiveData.postValue(true)
+        when (val response = repository.addToCart(id)) {
+            is ResponseWrapper.Success -> _cartNotifyLiveData.postValue(Unit)
+            is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
+        }
+        _progressLiveData.postValue(false)
+    }
+
 }

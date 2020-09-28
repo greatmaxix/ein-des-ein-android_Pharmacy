@@ -50,9 +50,9 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
 
     private fun showLogoutDialog() = showAlertRes(getString(R.string.areYouSureToExit)) {
         cancelable = false
-        positive = R.string.common_okButton
+        positive = R.string.exit
         positiveAction = { viewModel.logout() }
-        negative = R.string.common_closeButton
+        negative = R.string.cancel
     }
 
 }
