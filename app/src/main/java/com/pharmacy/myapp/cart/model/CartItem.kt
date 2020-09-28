@@ -15,16 +15,17 @@ data class CartItem(
     @SerializedName("logo") val logo: Logo,
     @SerializedName("pharmacyProducts") val products: MutableList<CartProduct>
 ) : Parcelable {
+
     val totalPrice
-        get() = products.sumByDouble { it.price * it.cartProductInfo.count }.formatPrice()
+        get() = products.sumByDouble { it.price * it.cartProductInfo.count }
 
     val totalCount
         get() = products.sumBy { it.cartProductInfo.count }
 
+    val productOrderList
+        get() = products.map { it.productOrderData }
+
     fun updateCount(count: Int, position: Int) {
         products[position].cartProductInfo.count = count
     }
-
-    val productOrderList
-        get() = products.map { it.productOrderData }
 }

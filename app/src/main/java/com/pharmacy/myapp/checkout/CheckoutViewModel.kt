@@ -30,7 +30,7 @@ class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewMo
     }
 
     fun sendOrder(customerInfo: CustomerOrderData, deliveryInfo: DeliveryInfoOrderData, cartItem: CartItem) {
-        val orderRequest = CreateOrderRequest(customerInfo, deliveryInfo, cartItem.id, cartItem.productOrderList, cartItem.totalPrice.toDouble())
+        val orderRequest = CreateOrderRequest(customerInfo, deliveryInfo, cartItem.id, cartItem.productOrderList, cartItem.totalPrice)
         _progressLiveData.value = true
         launchIO {
             when (val response = repository.sendOrder(orderRequest)) {

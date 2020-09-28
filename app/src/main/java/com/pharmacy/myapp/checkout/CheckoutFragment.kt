@@ -52,11 +52,11 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         }
         btnCheckoutOrderCheckout.onClick { validateFieldsAndSendOrder() }
 
-        val totalAmount = "${args.cartItem.totalPrice.toPlainString()} ₸"
+        val totalAmount = "${args.cartItem.totalPrice.formatPrice()} ₸"
         tvTotalAmountCheckout.text = totalAmount
         val deliveryCost = 150 // todo change in future
         tvDeliveryAmountCheckout.text = getString(R.string.deliveryCost, deliveryCost)
-        val totalCost = "${args.cartItem.totalPrice.plus(deliveryCost.toBigDecimal()).toPlainString()} ₸"
+        val totalCost = "${(args.cartItem.totalPrice + deliveryCost).formatPrice()} ₸"
         tvTotalPayableCheckout.text = totalCost
 
         setPharmacyInfo()
