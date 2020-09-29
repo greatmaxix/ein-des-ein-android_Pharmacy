@@ -6,5 +6,5 @@ class MainRepository(private val dao: CustomerDAO) {
 
     suspend fun isCustomerExist() = dao.isCustomerExist()
 
-    fun getCustomerInfo() = dao.get()
+    fun customerLiveData() = dao.customerLiveData()
 }

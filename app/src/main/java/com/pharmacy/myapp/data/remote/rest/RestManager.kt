@@ -107,7 +107,7 @@ class RestManager(private val sp: SPManager) {
 
     suspend fun uploadImage(partBody: MultipartBody.Part) = api.uploadImage(partBody)
 
-    suspend fun fetchCustomerInfo() = api.fetchCustomerInfo()
+    suspend fun fetchCustomer() = safeApiCall(tokenRefreshCall) { api.fetchCustomer() }
 
     suspend fun productSearch(page: Int? = null, pageSize: Int? = null, barCode: String? = null, categoryCode: String? = null, name: String? = null) =
         safeApiCall(tokenRefreshCall) { api.productSearch(page, pageSize, sp.regionId, barCode, categoryCode, name) }

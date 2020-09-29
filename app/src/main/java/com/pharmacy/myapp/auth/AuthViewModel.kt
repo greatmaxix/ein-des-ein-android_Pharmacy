@@ -13,7 +13,7 @@ import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
-import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.user.model.customerInfo.Customer
 
 class AuthViewModel(private var context: Context?, private val repository: AuthRepository) : BaseViewModel() {
 
@@ -78,8 +78,8 @@ class AuthViewModel(private var context: Context?, private val repository: AuthR
         }
     }
 
-    private suspend fun saveCustomerData(customerInfo: CustomerInfo, homeOrPopBackIfNeeded: () -> Unit = {}) {
-        repository.saveCustomerInfo(customerInfo)?.let { context?.saveDrawableToFile(it) }
+    private suspend fun saveCustomerData(customer: Customer, homeOrPopBackIfNeeded: () -> Unit = {}) {
+        repository.saveCustomerInfo(customer)?.let { context?.saveDrawableToFile(it) }
         homeOrPopBackIfNeeded()
     }
 

@@ -4,6 +4,6 @@ import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
 
 class CheckoutLocalDataSource(private val dao: CustomerDAO) {
 
-    fun getCustomerInfo() = dao.get()
+    fun getCustomerInfo() = dao.customerLiveData()
 
 }

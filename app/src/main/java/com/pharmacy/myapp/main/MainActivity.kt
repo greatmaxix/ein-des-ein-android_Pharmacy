@@ -14,7 +14,7 @@ import com.pharmacy.myapp.core.general.behavior.ProgressViewBehavior
 import com.pharmacy.myapp.core.general.interfaces.MessagesCallback
 import com.pharmacy.myapp.core.general.interfaces.ProgressCallback
 import com.pharmacy.myapp.ui.SelectableBottomNavView
-import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.user.model.customerInfo.Customer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_progress.*
 
@@ -35,8 +35,8 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
         observe(viewModel.customerInfoLiveData, ::setBottomNavItems)
     }
 
-    private fun setBottomNavItems(customerInfo: CustomerInfo?) {
-        val avatarUrl = customerInfo?.avatarInfo?.url.orEmpty()
+    private fun setBottomNavItems(customer: Customer?) {
+        val avatarUrl = customer?.avatarInfo?.url.orEmpty()
         bottomNavigation.navItems = listOf(
             SelectableBottomNavView.NavItem(R.id.nav_home, R.id.nav_home, R.drawable.ic_home, null),
             SelectableBottomNavView.NavItem(R.id.nav_catalog, R.id.nav_catalog, R.drawable.ic_catalog, null),

@@ -2,7 +2,7 @@ package com.pharmacy.myapp.region.repository
 
 import com.pharmacy.myapp.model.region.LocalRegion
 import com.pharmacy.myapp.model.region.Region
-import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.user.model.customerInfo.Customer
 import com.pharmacy.myapp.user.repository.UserLocalDataSource
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.KoinComponent
@@ -21,7 +21,7 @@ class RegionRepository(private val rrds: RegionRemoteDataSource, private val rld
 
     suspend fun getCustomer() = lds.getCustomer()
 
-    suspend fun saveCustomerInfoLocally(customer: CustomerInfo) = lds.save(customer)
+    suspend fun saveCustomerInfoLocally(customer: Customer) = lds.save(customer)
 
     fun getTemporaryRegion(): Flow<LocalRegion?> = rlds.getTemporaryRegion()
 }

@@ -4,7 +4,7 @@ import com.pharmacy.myapp.core.network.safeApiCall
 import com.pharmacy.myapp.data.local.SPManager
 import com.pharmacy.myapp.data.remote.rest.RestManager
 import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
-import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.user.model.customerInfo.Customer
 
 class AuthRepository(private val spManager: SPManager, private val rm: RestManager, private val dao: CustomerDAO) {
 
@@ -22,8 +22,8 @@ class AuthRepository(private val spManager: SPManager, private val rm: RestManag
         spManager.refreshToken = refreshToken
     }
 
-    suspend fun saveCustomerInfo(customer: CustomerInfo): String? {
-        dao.save(customer)
+    suspend fun saveCustomerInfo(customer: Customer): String? {
+        dao.insert(customer)
         return customer.avatarInfo?.url
     }
 }
