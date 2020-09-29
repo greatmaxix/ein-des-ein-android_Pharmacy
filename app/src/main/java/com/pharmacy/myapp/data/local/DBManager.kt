@@ -2,15 +2,16 @@ package com.pharmacy.myapp.data.local
 
 import android.content.Context
 import androidx.room.*
+import com.pharmacy.myapp.core.general.interfaces.ManagerInterface
 import com.pharmacy.myapp.model.Picture
 import com.pharmacy.myapp.model.product.RecentlyViewedDAO
 import com.pharmacy.myapp.model.region.RegionDAO
 import com.pharmacy.myapp.model.region.LocalRegion
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
-import com.pharmacy.myapp.user.model.customerInfo.CustomerInfo
+import com.pharmacy.myapp.user.model.customerInfo.Customer
 
-class DBManager(context: Context) {
+class DBManager(context: Context) : ManagerInterface {
 
     companion object {
         private const val NAME = "pharmacyDB"
@@ -23,7 +24,7 @@ class DBManager(context: Context) {
         .build()
 
 
-    @Database(entities = [CustomerInfo::class, LocalRegion::class, Product::class], version = VERSION, exportSchema = false)
+    @Database(entities = [Customer::class, LocalRegion::class, Product::class], version = VERSION, exportSchema = false)
     @TypeConverters(StringListConverter::class, PicturesListConverter::class)
     abstract class LocalDB : RoomDatabase() {
 
@@ -58,5 +59,9 @@ class DBManager(context: Context) {
 
         @TypeConverter
         fun fromList(list: List<Picture>) = list.joinToString("|") { it.url }
+    }
+
+    override fun clear() {
+        db.clearAllTables()
     }
 }

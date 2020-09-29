@@ -7,22 +7,21 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.SharedPreferenceContext
 import com.pharmacy.myapp.core.extensions.get
 import com.pharmacy.myapp.core.extensions.put
+import com.pharmacy.myapp.core.general.interfaces.ManagerInterface
 
-class SPManager(val context: Context) : SharedPreferenceContext {
+class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterface {
 
     override val sp: SharedPreferences = context.getSharedPreferences("${context.getString(R.string.app_name)}_sp", Context.MODE_PRIVATE)
 
     var token: String?
         get() = get(Keys.TOKEN)
-        set(value) {
-            put(Keys.TOKEN, value)
-        }
+        set(value) { put(Keys.TOKEN, value) }
 
     var refreshToken: String?
         get() = get(Keys.REFRESH_TOKEN)
-        set(value) {
-            put(Keys.REFRESH_TOKEN, value)
-        }
+        set(value) { put(Keys.REFRESH_TOKEN, value) }
+
+    val isTokenExists: Boolean get() = !token.isNullOrEmpty() && !refreshToken.isNullOrEmpty()
 
     var qrCodeDescriptionShown: Boolean?
         get() = get(Keys.QR_CODE_DESCRIPTION_SHOWN)
@@ -31,7 +30,7 @@ class SPManager(val context: Context) : SharedPreferenceContext {
     val isUserLogin
         get() = refreshToken?.isNotEmpty() ?: false
 
-    var isOnboardingShown: Boolean
+    var isNeedOnBoarding: Boolean
         get() = get(Keys.IS_ONBOARDING_SHOWN) ?: false
         set(value) = put(Keys.IS_ONBOARDING_SHOWN, value)
 
@@ -39,7 +38,7 @@ class SPManager(val context: Context) : SharedPreferenceContext {
         get() = get(Keys.REGION_ID)
         set(value) { value?.let { put(Keys.REGION_ID, it) } }
 
-    fun clear() = sp.edit {
+    override fun clear() = sp.edit {
         sp.all.forEach {
             remove(it.key)
         }

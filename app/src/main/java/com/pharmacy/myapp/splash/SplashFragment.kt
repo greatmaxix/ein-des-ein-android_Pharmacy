@@ -13,11 +13,11 @@ class SplashFragment(private val viewModel: SplashViewModel) : BaseMVVMFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.checkAuthentication()
+        viewModel.updateCustomer()
         ivLogo.animateVisible(duration)
     }
 
     override fun onBindLiveData() {
-        viewModel.directionLiveData.observeExt(navController::navigate)
+        observe(viewModel.directionLiveData, navController::navigate)
     }
 }

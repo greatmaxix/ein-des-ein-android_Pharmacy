@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName
 import com.pharmacy.myapp.user.model.AvatarInfo
 import com.pharmacy.myapp.user.model.RegionInfo
 
-data class CustomerInfoItem(@SerializedName("item") val item: CustomerInfo)
+data class CustomerItem(@SerializedName("item") val item: Customer)
 
 @Entity
-data class CustomerInfo(
+data class Customer(
     @PrimaryKey
     @SerializedName("id") val id: Int,
     @Embedded
