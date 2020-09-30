@@ -12,7 +12,7 @@ enum class DeliveryType(val type: String) {
     val isPickup
         get() = this == PICKUP
 
-    val rusText
+    val textRes
         get() = if (isPickup) R.string.pickup else R.string.delivery
 
     val icon

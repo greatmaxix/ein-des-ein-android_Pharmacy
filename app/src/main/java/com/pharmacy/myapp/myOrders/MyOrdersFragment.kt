@@ -2,10 +2,10 @@ package com.pharmacy.myapp.myOrders
 
 import android.os.Bundle
 import android.view.View
-import androidx.paging.LoadState
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.addItemDecorator
+import com.pharmacy.myapp.core.extensions.addStateListener
 import com.pharmacy.myapp.myOrders.StateQuery.*
 import com.pharmacy.myapp.myOrders.adapter.MyOrdersAdapter
 import kotlinx.android.synthetic.main.fragment_my_orders.*
@@ -28,7 +28,7 @@ class MyOrdersFragment(private val viewModel: MyOrdersViewModel) : BaseMVVMFragm
             }
             viewModel.setStateQuery(state)
         }
-        adapter.addLoadStateListener { progressCallback?.setInProgress(it.refresh is LoadState.Loading || it.append is LoadState.Loading) }
+        adapter.addStateListener { progressCallback?.setInProgress(it) }
     }
 
     override fun onBindLiveData() {

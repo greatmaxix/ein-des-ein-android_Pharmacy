@@ -24,11 +24,11 @@ class MyOrdersAdapter : PagingDataAdapter<Order, MyOrdersAdapter.MyOrderViewHold
             val isPickup = item.deliveryInfo.deliveryType?.isPickup.falseIfNull()
 
             stateMyOrder.backgroundTintList = ColorStateList.valueOf(colorCompat(item.orderStatus.statusColor))
-            stateMyOrder.text = stringRes(item.orderStatus.getStatusRus)
+            stateMyOrder.text = stringRes(item.orderStatus.getStatusRes)
             item.deliveryInfo.deliveryType?.backgroundColor?.let {
                 deliveryTypeContainer.setCardBackgroundColor(colorCompat(it))
             }
-            item.deliveryInfo.deliveryType?.rusText?.let { deliveryTypeMyOrder.text = stringRes(it) }
+            item.deliveryInfo.deliveryType?.textRes?.let { deliveryTypeMyOrder.text = stringRes(it) }
             item.deliveryInfo.deliveryType?.icon?.let(ivDeliveryTypeMyOrder::setImageResource)
             idMyOrder.text = stringRes(R.string.orderNumber, item.id)
 
@@ -44,9 +44,9 @@ class MyOrdersAdapter : PagingDataAdapter<Order, MyOrdersAdapter.MyOrderViewHold
             tvProductCount.text = stringRes(item.productCountString, item.productCount)
             imagesContainerMyOrder.visibleOrGone(!item.isShowProductCount)
             with(item.pharmacyProductOrderDataList) {
-                getOrNull(0)?.let(firstItemPreview::loadGlideOrder)
-                getOrNull(1)?.let(secondItemPreview::loadGlideOrder)
-                getOrNull(2)?.let(thirdItemPreview::loadGlideOrder)
+                getOrNull(0)?.let(firstItemPreview::loadGlideOrder) ?: run { firstItemPreview.gone() }
+                getOrNull(1)?.let(secondItemPreview::loadGlideOrder) ?: run { secondItemPreview.gone() }
+                getOrNull(2)?.let(thirdItemPreview::loadGlideOrder) ?: run { thirdItemPreview.gone() }
             }
             restImagesCount.visibleOrGone(item.isProductCountVisible)
             restImagesCount.text = item.getRestImagesCount

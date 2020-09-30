@@ -35,7 +35,8 @@ fun ImageView.loadGlide(url: String?, block: (RequestBuilder<Drawable>.() -> Uni
 }
 
 fun ImageView.loadGlideOrder(product: CartProduct) {
-    product.pictures.firstOrNull()?.url?.let {
+    visible()
+    product.firstPictureUrl?.let {
         val options: RequestBuilder<Drawable>.() -> Unit = {
             transition(DrawableTransitionOptions.withCrossFade())
             override(300)

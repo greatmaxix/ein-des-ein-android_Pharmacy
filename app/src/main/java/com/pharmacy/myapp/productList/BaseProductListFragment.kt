@@ -10,6 +10,7 @@ import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.addAutoKeyboardCloser
+import com.pharmacy.myapp.core.extensions.addStateListener
 import com.pharmacy.myapp.product.BaseProductFragment
 import com.pharmacy.myapp.product.BaseProductViewModel
 import com.pharmacy.myapp.product.model.ProductLite
@@ -34,7 +35,7 @@ abstract class BaseProductListFragment<VM : BaseProductViewModel>(@LayoutRes pri
             }
         }
 
-        productAdapter.addLoadStateListener { progressCallback?.setInProgress(it.refresh is LoadState.Loading || it.append is LoadState.Loading) }
+        productAdapter.addStateListener { progressCallback?.setInProgress(it) }
     }
 
     abstract val productLiveData: LiveData<PagingData<ProductLite>>

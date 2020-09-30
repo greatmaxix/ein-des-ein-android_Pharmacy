@@ -17,7 +17,7 @@ enum class OrderStatus(val status: String) {
     val statusColor
         get() = if (isInProgress) R.color.green else R.color.primaryBlue
 
-    val getStatusRus
+    val getStatusRes
         get() = when (this) {
             NEW -> R.string.statusNew
             IN_PROGRESS -> R.string.statusInProgress
