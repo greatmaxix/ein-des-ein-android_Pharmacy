@@ -13,7 +13,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.gone
 import com.pharmacy.myapp.core.extensions.setDebounceOnClickListener
 import com.pharmacy.myapp.core.extensions.visible
-import com.pharmacy.myapp.data.DummyData
+import com.pharmacy.myapp.data.remote.DummyData
 import kotlinx.android.synthetic.main.dialog_chat_review.view.*
 
 class ChatReviewBottomSheetDialogFragment : BottomSheetDialogFragment() {

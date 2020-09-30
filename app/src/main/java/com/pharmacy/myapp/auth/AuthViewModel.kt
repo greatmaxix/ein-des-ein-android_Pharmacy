@@ -13,7 +13,7 @@ import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
-import com.pharmacy.myapp.user.model.customerInfo.Customer
+import com.pharmacy.myapp.user.model.customer.Customer
 
 class AuthViewModel(private var context: Context?, private val repository: AuthRepository) : BaseViewModel() {
 

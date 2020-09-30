@@ -7,7 +7,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.core.extensions.setDebounceOnClickListener
-import com.pharmacy.myapp.data.DummyData
+import com.pharmacy.myapp.data.remote.DummyData
 import com.pharmacy.myapp.payments.PaymentsFragmentDirections.Companion.actionPaymentsToAddPaymentMethodFragment
 import kotlinx.android.synthetic.main.fragment_payments.*
 

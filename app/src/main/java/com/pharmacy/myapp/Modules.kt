@@ -9,7 +9,8 @@ import com.pharmacy.myapp.checkout.checkoutModule
 import com.pharmacy.myapp.pharmacy.checkoutMapModule
 import com.pharmacy.myapp.data.local.DBManager
 import com.pharmacy.myapp.data.local.SPManager
-import com.pharmacy.myapp.data.remote.rest.RestManager
+import com.pharmacy.myapp.data.remote.RESTModule
+import com.pharmacy.myapp.data.remote.RestManager
 import com.pharmacy.myapp.devTools.devToolsModule
 import com.pharmacy.myapp.home.homeModule
 import com.pharmacy.myapp.main.mainModule
@@ -52,12 +53,13 @@ object Modules {
         userModule,
         wishModule,
         guestProfileModule,
-        categoriesModule
+        categoriesModule,
+        RESTModule
     )
 
     private val managerModule = module(true) {
         single { SPManager(androidApplication()) }
-        single { RestManager(get()) }
+        single { RestManager(get(), get()) }
         single { WorkManager.getInstance(androidApplication()) }
         single { DBManager(androidApplication()) }
     }

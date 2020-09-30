@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.actionCheckoutToPromoCodeDialog
@@ -15,8 +14,8 @@ import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment.Companion.PROM
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
-import com.pharmacy.myapp.data.DummyData
-import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryInfoOrderData
+import com.pharmacy.myapp.data.remote.DummyData
+import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {

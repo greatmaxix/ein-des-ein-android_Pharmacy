@@ -1,7 +1,8 @@
-package com.pharmacy.myapp.data.remote.rest.request
+package com.pharmacy.myapp.model.auth.token
 
 import com.google.gson.annotations.SerializedName
 
-data class TokenRefreshRequest(
+data class TokenModel(
+    @SerializedName("token") val token: String,
     @SerializedName("refresh_token") val refreshToken: String
 )

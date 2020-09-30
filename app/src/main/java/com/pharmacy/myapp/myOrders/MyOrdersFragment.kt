@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.addItemDecorator
-import com.pharmacy.myapp.data.DummyData.getMyOrders
+import com.pharmacy.myapp.data.remote.DummyData.getMyOrders
 import kotlinx.android.synthetic.main.fragment_my_orders.*
 
 class MyOrdersFragment : BaseMVVMFragment(R.layout.fragment_my_orders) {

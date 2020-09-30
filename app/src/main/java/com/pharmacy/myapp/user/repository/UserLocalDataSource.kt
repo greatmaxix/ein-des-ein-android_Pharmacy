@@ -1,7 +1,7 @@
 package com.pharmacy.myapp.user.repository
 
-import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
-import com.pharmacy.myapp.user.model.customerInfo.Customer
+import com.pharmacy.myapp.user.model.customer.CustomerDAO
+import com.pharmacy.myapp.user.model.customer.Customer
 
 class UserLocalDataSource(private val dao: CustomerDAO) {
 

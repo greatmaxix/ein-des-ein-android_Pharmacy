@@ -1,6 +1,6 @@
 package com.pharmacy.myapp.pharmacy.repository
 
-import com.pharmacy.myapp.data.remote.rest.RestManager
+import com.pharmacy.myapp.data.remote.RestManager
 
 class PharmacyRemoteDataSource(private val rm: RestManager) {
 

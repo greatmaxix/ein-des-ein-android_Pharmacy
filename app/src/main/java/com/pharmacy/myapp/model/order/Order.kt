@@ -3,8 +3,8 @@ package com.pharmacy.myapp.model.order
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.pharmacy.myapp.cart.model.CartProduct
-import com.pharmacy.myapp.data.remote.rest.request.order.CustomerOrderData
-import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryInfoOrderData
+import com.pharmacy.myapp.data.remote.model.order.CustomerOrderData
+import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
 import com.pharmacy.myapp.pharmacy.model.Pharmacy
 import kotlinx.android.parcel.Parcelize
 

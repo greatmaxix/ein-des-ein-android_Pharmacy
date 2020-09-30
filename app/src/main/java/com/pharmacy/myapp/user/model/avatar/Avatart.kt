@@ -1,12 +1,14 @@
-package com.pharmacy.myapp.user.model
+package com.pharmacy.myapp.user.model.avatar
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+data class AvatarItem(@SerializedName("item") val avatar: Avatar)
+
 @Entity
-data class AvatarInfo(
+data class Avatar(
     @ColumnInfo(name = "createdAtAvatar")
     @SerializedName("createdAt") val createdAt: String?,
     @SerializedName("extension") val extension: String?,

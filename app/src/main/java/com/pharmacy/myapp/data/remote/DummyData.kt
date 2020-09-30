@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.data
+package com.pharmacy.myapp.data.remote
 
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod

@@ -1,7 +1,6 @@
 package com.pharmacy.myapp.scanner.repository
 
-import com.pharmacy.myapp.core.network.safeApiCall
-import com.pharmacy.myapp.data.remote.rest.RestManager
+import com.pharmacy.myapp.data.remote.RestManager
 
 class ScannerRemoteDataSource(private val rm: RestManager) {
 

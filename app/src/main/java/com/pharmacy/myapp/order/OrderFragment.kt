@@ -17,7 +17,7 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.toast
 import com.pharmacy.myapp.core.extensions.visibleOrGone
-import com.pharmacy.myapp.data.DummyData.paymentMethod
+import com.pharmacy.myapp.data.remote.DummyData.paymentMethod
 import com.pharmacy.myapp.ui.OrderSteps
 import kotlinx.android.synthetic.main.fragment_order.*
 import timber.log.Timber

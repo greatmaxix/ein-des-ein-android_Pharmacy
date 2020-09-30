@@ -1,37 +1,35 @@
-package com.pharmacy.myapp.data.remote.rest
+package com.pharmacy.myapp.data.remote.api
 
 import com.pharmacy.myapp.cart.model.CartItem
-import com.pharmacy.myapp.data.remote.rest.request.order.CreateOrderRequest
-import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
-import com.pharmacy.myapp.data.remote.rest.response.AuthResponse
-import com.pharmacy.myapp.model.order.Order
-import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
-import com.pharmacy.myapp.data.remote.rest.response.UploadImageResponse
-import com.pharmacy.myapp.model.*
+import com.pharmacy.myapp.data.remote.model.order.CreateOrderRequest
+import com.pharmacy.myapp.model.auth.StartInfo
+import com.pharmacy.myapp.model.BaseDataResponse
+import com.pharmacy.myapp.model.BaseDataResponseWithItem
+import com.pharmacy.myapp.model.ListItemsModel
+import com.pharmacy.myapp.model.PaginationModel
 import com.pharmacy.myapp.model.category.Category
-import com.pharmacy.myapp.user.model.customerInfo.CustomerItem
+import com.pharmacy.myapp.model.order.Order
 import com.pharmacy.myapp.model.region.Region
 import com.pharmacy.myapp.pharmacy.model.Pharmacy
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.product.model.ProductLite
+import com.pharmacy.myapp.user.model.avatar.AvatarItem
+import com.pharmacy.myapp.user.model.customer.CustomerItem
 import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.*
 
-interface ApiService {
-
-    @POST("/api/v1/customer/refresh_token")
-    suspend fun tokenRefresh(@Body body: TokenRefreshRequest): TokenRefreshResponse
+interface RESTApi {
 
     @POST("/api/v1/customer/registration")
-    suspend fun signUp(@Body arguments: Map<String, String>): BaseDataResponse<AuthResponse>
+    suspend fun signUp(@Body arguments: Map<String, String>): BaseDataResponse<StartInfo>
 
     @POST("/api/v1/customer/auth")
     suspend fun auth(@Body arguments: Map<String, String>): JSONObject
 
     @POST("/api/v1/customer/login")
-    suspend fun login(@Body arguments: Map<String, String>): BaseDataResponse<AuthResponse>
+    suspend fun login(@Body arguments: Map<String, String>): BaseDataResponse<StartInfo>
 
     @PUT("/api/v1/customer/customer")
     suspend fun updateCustomerInfo(@Body arguments: Map<String, String>): BaseDataResponse<CustomerItem>
@@ -41,7 +39,7 @@ interface ApiService {
 
     @Multipart
     @POST("/api/v1/customer/image")
-    suspend fun uploadImage(@Part file: MultipartBody.Part): BaseDataResponse<UploadImageResponse>
+    suspend fun uploadImage(@Part file: MultipartBody.Part): BaseDataResponse<AvatarItem>
 
     @GET("/api/v1/customer/customer")
     suspend fun fetchCustomer(): BaseDataResponse<CustomerItem>

@@ -1,7 +1,7 @@
 package com.pharmacy.myapp.chat
 
 import com.pharmacy.myapp.data.local.SPManager
-import com.pharmacy.myapp.data.remote.rest.RestManager
+import com.pharmacy.myapp.data.remote.RestManager
 
 class ChatRepository(
     private val spManager: SPManager,

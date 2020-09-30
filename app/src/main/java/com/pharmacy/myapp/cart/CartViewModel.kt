@@ -36,7 +36,7 @@ class CartViewModel(private val repository: CartRepository) : BaseViewModel() {
 
     fun cartOrAuth() {
         launchIO {
-            if (repository.isCustomerExist()) retrieveUserCart() else _errorLiveData.postValue(R.string.forCheckCart)
+            /*if (repository.isCustomerExist())*/ retrieveUserCart() /*else _errorLiveData.postValue(R.string.forCheckCart)*/
         }
     }
 
