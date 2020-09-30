@@ -9,7 +9,7 @@ import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
 import com.pharmacy.myapp.data.remote.rest.response.UploadImageResponse
 import com.pharmacy.myapp.model.*
 import com.pharmacy.myapp.model.category.Category
-import com.pharmacy.myapp.user.model.customerInfo.CustomerInfoItem
+import com.pharmacy.myapp.user.model.customerInfo.CustomerItem
 import com.pharmacy.myapp.model.region.Region
 import com.pharmacy.myapp.pharmacy.model.Pharmacy
 import com.pharmacy.myapp.product.model.Product
@@ -34,7 +34,7 @@ interface ApiService {
     suspend fun login(@Body arguments: Map<String, String>): BaseDataResponse<AuthResponse>
 
     @PUT("/api/v1/customer/customer")
-    suspend fun updateCustomerInfo(@Body arguments: Map<String, String>): BaseDataResponse<CustomerInfoItem>
+    suspend fun updateCustomerInfo(@Body arguments: Map<String, String>): BaseDataResponse<CustomerItem>
 
     @POST("/api/v1/customer/logout")
     suspend fun logout(@Body arguments: Map<String, String>): Response<JSONObject>
@@ -44,7 +44,7 @@ interface ApiService {
     suspend fun uploadImage(@Part file: MultipartBody.Part): BaseDataResponse<UploadImageResponse>
 
     @GET("/api/v1/customer/customer")
-    suspend fun fetchCustomerInfo(): BaseDataResponse<CustomerInfoItem>
+    suspend fun fetchCustomer(): BaseDataResponse<CustomerItem>
 
     @GET("/api/v1/public/products/search")
     suspend fun productSearch(
@@ -63,7 +63,7 @@ interface ApiService {
     suspend fun getProductById(@Path("id") globalProductId: Int): BaseDataResponseWithItem<Product>
 
     @PATCH("/api/v1/customer/customer/region")
-    suspend fun updateRegion(@Body arguments: Map<String, Int>): BaseDataResponse<CustomerInfoItem>
+    suspend fun updateRegion(@Body arguments: Map<String, Int>): BaseDataResponse<CustomerItem>
 
     @POST("/api/v1/customer/wishlist/global-product/{id}")
     suspend fun setToWishList(@Path("id") globalProductId: Int): BaseDataResponse<Unit>

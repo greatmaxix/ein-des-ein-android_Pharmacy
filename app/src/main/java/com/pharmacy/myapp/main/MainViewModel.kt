@@ -17,7 +17,9 @@ class MainViewModel(private val repository: MainRepository) : BaseViewModel() {
             }
         }
     }
-    val customerInfoLiveData = repository.getCustomerInfo()
+
+    val customerInfoLiveData
+        get() = repository.customerLiveData()
 
     fun navSelected(@IdRes id: Int) = destIdLiveData.postValue(id)
 }

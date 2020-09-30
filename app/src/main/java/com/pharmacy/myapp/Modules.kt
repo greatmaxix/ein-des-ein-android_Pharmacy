@@ -59,7 +59,7 @@ object Modules {
 
     private val managerModule = module(true) {
         single { SPManager(androidApplication()) }
-        single { RestManager() }
+        single { RestManager(get()) }
         single { WorkManager.getInstance(androidApplication()) }
         single { DBManager(androidApplication()) }
     }

@@ -25,16 +25,11 @@ import com.pharmacy.myapp.data.remote.rest.serializer.OrderStatusSerializer
 import com.pharmacy.myapp.model.order.OrderStatus
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
-import org.koin.core.KoinComponent
-import org.koin.core.inject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class RestManager : KoinComponent {
-
-    private val spManager: SPManager by inject()
-    private var regionId: Int? = null
+class RestManager(private val sp: SPManager) {
 
     companion object {
         private const val BASE_URL = "https://api.pharmacies.fmc-dev.com" /*"https://api.pharmacies.release.fmc-dev.com"*/ //TODO change to release in future
@@ -53,12 +48,12 @@ class RestManager : KoinComponent {
                 "Token refresh error due to recursive refresh call"
             ) // TODO check this case
         }) {
-            spManager.token = ""
-            val refreshToken = spManager.refreshToken
+            sp.token = ""
+            val refreshToken = sp.refreshToken
             if (refreshToken.isNullOrBlank()) throw IllegalArgumentException("refreshToken is empty")
             val response = api.tokenRefresh(TokenRefreshRequest(refreshToken))
-            spManager.token = response.token
-            spManager.refreshToken = response.refreshToken
+            sp.token = response.token
+            sp.refreshToken = response.refreshToken
             Any()
         }
     }
@@ -93,7 +88,7 @@ class RestManager : KoinComponent {
         retryOnConnectionFailure(true)
         addInterceptor {
             val original = it.request()
-            val token = spManager.token
+            val token = sp.token
             if (!token.isNullOrEmpty()) {
                 it.proceed(original.newBuilder().header("Authorization", "Bearer $token").build())
             } else {
@@ -122,10 +117,10 @@ class RestManager : KoinComponent {
 
     suspend fun uploadImage(partBody: MultipartBody.Part) = api.uploadImage(partBody)
 
-    suspend fun fetchCustomerInfo() = api.fetchCustomerInfo()
+    suspend fun fetchCustomer() = safeApiCall(tokenRefreshCall) { api.fetchCustomer() }
 
     suspend fun productSearch(page: Int? = null, pageSize: Int? = null, barCode: String? = null, categoryCode: String? = null, name: String? = null) =
-        safeApiCall(tokenRefreshCall) { api.productSearch(page, pageSize, regionId, barCode, categoryCode, name) }
+        safeApiCall(tokenRefreshCall) { api.productSearch(page, pageSize, sp.regionId, barCode, categoryCode, name) }
 
     suspend fun getProductById(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.getProductById(globalProductId) }
 
@@ -142,7 +137,7 @@ class RestManager : KoinComponent {
     suspend fun getCategories() = safeApiCall(tokenRefreshCall) { api.categories() }
 
     suspend fun getPharmacyList(globalProductId: Int, page: Int? = null, pageSize: Int? = null) =
-        safeApiCall(tokenRefreshCall) { api.pharmacyList(globalProductId, regionId, page, pageSize) }
+        safeApiCall(tokenRefreshCall) { api.pharmacyList(globalProductId, sp.regionId, page, pageSize) }
 
     suspend fun getCartProducts() = safeApiCall(tokenRefreshCall) { api.cartProducts() }
 
@@ -153,8 +148,4 @@ class RestManager : KoinComponent {
     suspend fun sendOrder(body: CreateOrderRequest) = safeApiCall(tokenRefreshCall) { api.sendOrder(body) }
 
     suspend fun fetchOrders(query: String, page: Int? = null, pageSize: Int? = null) = safeApiCall(tokenRefreshCall) { api.fetchOrders(query, page, pageSize) }
-
-    fun setLocalRegion(id: Int?) {
-        regionId = id
-    }
 }
