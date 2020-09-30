@@ -17,6 +17,12 @@ import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REFRESH_TOKEN
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REGION_ID
 import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
 import com.pharmacy.myapp.data.remote.rest.request.order.CreateOrderRequest
+import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
+import com.pharmacy.myapp.data.remote.rest.serializer.DeliveryTypeDeserializer
+import com.pharmacy.myapp.data.remote.rest.serializer.DeliveryTypeSerializer
+import com.pharmacy.myapp.data.remote.rest.serializer.OrderStatusDeserializer
+import com.pharmacy.myapp.data.remote.rest.serializer.OrderStatusSerializer
+import com.pharmacy.myapp.model.order.OrderStatus
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import org.koin.core.KoinComponent
@@ -73,6 +79,10 @@ class RestManager : KoinComponent {
 
     private fun createGsonConverter() =
         GsonConverterFactory.create(GsonBuilder().apply {
+            registerTypeAdapter(DeliveryType::class.java, DeliveryTypeDeserializer())
+            registerTypeAdapter(DeliveryType::class.java, DeliveryTypeSerializer())
+            registerTypeAdapter(OrderStatus::class.java, OrderStatusDeserializer())
+            registerTypeAdapter(OrderStatus::class.java, OrderStatusSerializer())
             setLenient()
         }.create().also { gson = it })
 
@@ -141,6 +151,8 @@ class RestManager : KoinComponent {
     suspend fun removeProductFromCart(globalProductId: Int) = safeApiCall(tokenRefreshCall) { api.removeProductFromCart(globalProductId) }
 
     suspend fun sendOrder(body: CreateOrderRequest) = safeApiCall(tokenRefreshCall) { api.sendOrder(body) }
+
+    suspend fun fetchOrders(query: String, page: Int? = null, pageSize: Int? = null) = safeApiCall(tokenRefreshCall) { api.fetchOrders(query, page, pageSize) }
 
     fun setLocalRegion(id: Int?) {
         regionId = id
