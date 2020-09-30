@@ -7,6 +7,12 @@ import com.pharmacy.myapp.data.remote.api.RESTApi
 import com.pharmacy.myapp.data.remote.api.RESTApiRefresh
 import com.pharmacy.myapp.data.remote.authenticator.RESTAuthenticator
 import com.pharmacy.myapp.data.remote.interceptor.RESTHeaderInterceptor
+import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
+import com.pharmacy.myapp.data.remote.rest.serializer.DeliveryTypeDeserializer
+import com.pharmacy.myapp.data.remote.rest.serializer.DeliveryTypeSerializer
+import com.pharmacy.myapp.data.remote.rest.serializer.OrderStatusDeserializer
+import com.pharmacy.myapp.data.remote.rest.serializer.OrderStatusSerializer
+import com.pharmacy.myapp.model.order.OrderStatus
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -49,6 +55,12 @@ val RESTModule = module {
     }
 
     single {
-        GsonBuilder().apply { setLenient() }.create()
+        GsonBuilder().apply {
+            registerTypeAdapter(DeliveryType::class.java, DeliveryTypeDeserializer())
+            registerTypeAdapter(DeliveryType::class.java, DeliveryTypeSerializer())
+            registerTypeAdapter(OrderStatus::class.java, OrderStatusDeserializer())
+            registerTypeAdapter(OrderStatus::class.java, OrderStatusSerializer())
+            setLenient()
+        }.create()
     }
 }

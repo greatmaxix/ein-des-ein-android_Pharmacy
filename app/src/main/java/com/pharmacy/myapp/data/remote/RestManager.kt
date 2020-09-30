@@ -10,7 +10,6 @@ import com.pharmacy.myapp.data.remote.RestConstants.PHONE
 import com.pharmacy.myapp.data.remote.RestConstants.REFRESH_TOKEN
 import com.pharmacy.myapp.data.remote.RestConstants.REGION_ID
 import com.pharmacy.myapp.data.remote.api.RESTApi
-import com.pharmacy.myapp.data.remote.api.RESTApiRefresh
 import com.pharmacy.myapp.data.remote.model.order.CreateOrderRequest
 import okhttp3.MultipartBody
 
@@ -60,5 +59,7 @@ class RestManager(private val sp: SPManager, private val RESTApi: RESTApi) {
     suspend fun removeProductFromCart(globalProductId: Int) = safeApiCall { RESTApi.removeProductFromCart(globalProductId) }
 
     suspend fun sendOrder(body: CreateOrderRequest) = safeApiCall { RESTApi.sendOrder(body) }
+
+    suspend fun fetchOrders(query: String, page: Int? = null, pageSize: Int? = null) = safeApiCall { RESTApi.fetchOrders(query, page, pageSize) }
 
 }

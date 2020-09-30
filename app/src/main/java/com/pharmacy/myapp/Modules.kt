@@ -14,6 +14,7 @@ import com.pharmacy.myapp.data.remote.RestManager
 import com.pharmacy.myapp.devTools.devToolsModule
 import com.pharmacy.myapp.home.homeModule
 import com.pharmacy.myapp.main.mainModule
+import com.pharmacy.myapp.myOrders.myOrdersModule
 import com.pharmacy.myapp.onboarding.onboardingModule
 import com.pharmacy.myapp.order.orderModule
 import com.pharmacy.myapp.payments.paymentsModule
@@ -54,6 +55,7 @@ object Modules {
         wishModule,
         guestProfileModule,
         categoriesModule,
+        myOrdersModule,
         RESTModule
     )
 

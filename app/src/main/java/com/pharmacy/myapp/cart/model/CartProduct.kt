@@ -25,4 +25,7 @@ data class CartProduct(
 
     val productOrderData
         get() = ProductOrderData(productId, price, cartProductInfo.count)
+
+    val firstPictureUrl
+        get() = pictures.firstOrNull()?.url
 }

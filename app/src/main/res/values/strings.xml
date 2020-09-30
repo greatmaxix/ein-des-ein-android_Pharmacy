@@ -195,6 +195,19 @@
     <!-- Order -->
     <string name="orderStepsTestText">Шаг</string>
     <string name="paymentType">Тип оплаты :</string>
+    <string name="orderNumber">№ %1$d</string>
+    <string name="orderCost">%1$s ₸</string>
+    <string name="orderAddressDelivery">🏠 %1$s 🚪%2$s</string>
+    <string name="oneGoods">%1$d товар</string>
+    <string name="coupleOfGoods">%1$d товара</string>
+    <string name="multipleGoods">%1$d 🚪товаров</string>
+    <string name="statusNew">Создан</string>
+    <string name="statusInProgress">В обработке</string>
+    <string name="statusReady">Готов</string>
+    <string name="statusToDelivery">Готов к доставке</string>
+    <string name="statusInDelivery">Доставляется</string>
+    <string name="statusDone">Выполнен</string>
+    <string name="statusCanceled">Отменен</string>
 
     <!-- My orders-->
     <string name="myOrdersLabel">Мои заказы</string>
