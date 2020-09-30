@@ -76,7 +76,7 @@ class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnM
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        mvPharmacy.onSaveInstanceState(outState)
+        mvPharmacy?.onSaveInstanceState(outState)
     }
 
     override fun onMapReady(map: GoogleMap?) {

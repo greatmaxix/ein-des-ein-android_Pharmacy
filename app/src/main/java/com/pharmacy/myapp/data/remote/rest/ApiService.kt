@@ -99,4 +99,10 @@ interface ApiService {
 
     @POST("/api/v1/customer/order")
     suspend fun sendOrder(@Body body: CreateOrderRequest): BaseDataResponseWithItem<Order>
+
+    @GET("/api/v1/customer/orders")
+    suspend fun fetchOrders(
+        @Query("status") query: String? = null,
+        @Query("page") page: Int? = null,
+        @Query("per_page") pageSize: Int? = null): BaseDataResponse<PaginationModel<Order>>
 }

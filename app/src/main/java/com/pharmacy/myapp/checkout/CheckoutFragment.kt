@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.actionCheckoutToPromoCodeDialog
@@ -17,6 +16,7 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.data.DummyData
 import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryInfoOrderData
+import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {
@@ -27,7 +27,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     private val radioButtonPadding by lazy { resources.getDimension(R.dimen._8sdp).toInt() }
 
     private val Boolean.deliveryType
-        get() = if (this) "delivery_address" else "pickup"
+        get() = if (this) DeliveryType.DELIVERY else DeliveryType.PICKUP
 
     private val Boolean.deliveryAddress
         get() = if (this) viewBuyerDeliveryAddressCheckout.obtainDeliveryAddress() else null

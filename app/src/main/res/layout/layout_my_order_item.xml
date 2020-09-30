@@ -83,24 +83,14 @@
             tools:text="№ 12583" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/dateTimeMyOrder"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            app:layout_constraintStart_toStartOf="@id/idMyOrder"
-            app:layout_constraintTop_toBottomOf="@id/idMyOrder"
-            tools:text="21:12 05.06.20" />
-
-        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/addressMyOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/_12ssp"
-            app:layout_constraintStart_toStartOf="@id/dateTimeMyOrder"
-            app:layout_constraintTop_toBottomOf="@id/dateTimeMyOrder"
+            app:layout_constraintStart_toStartOf="@id/idMyOrder"
+            app:layout_constraintTop_toBottomOf="@id/idMyOrder"
             tools:text="🏠 ул. Горная 23а, Харьков 🚪дом 4г • кв. 56" />
 
         <View
@@ -112,6 +102,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/addressMyOrder" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProductCount"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:gravity="center"
+            android:textColor="@color/darkBlue"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/priceMyOrder"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myOrderSeparator"
+            tools:text="5 товаров"
+            tools:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/imagesContainerMyOrder"
@@ -133,21 +139,24 @@
                 android:layout_width="@dimen/_36sdp"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_marginEnd="@dimen/_6sdp"
-                android:contentDescription="@string/firstItemInOrderContentDescription" />
+                android:contentDescription="@string/firstItemInOrderContentDescription"
+                tools:src="@drawable/default_product_image" />
 
             <ImageView
                 android:id="@+id/secondItemPreview"
                 android:layout_width="@dimen/_36sdp"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_marginEnd="@dimen/_6sdp"
-                android:contentDescription="@string/secondItemInOrderContentDescription" />
+                android:contentDescription="@string/secondItemInOrderContentDescription"
+                tools:src="@drawable/default_product_image" />
 
             <ImageView
                 android:id="@+id/thirdItemPreview"
                 android:layout_width="@dimen/_36sdp"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_marginEnd="@dimen/_6sdp"
-                android:contentDescription="@string/thirdItemInOrderContentDescription" />
+                android:contentDescription="@string/thirdItemInOrderContentDescription"
+                tools:src="@drawable/default_product_image" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/restImagesCount"

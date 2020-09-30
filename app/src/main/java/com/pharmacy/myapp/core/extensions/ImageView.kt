@@ -6,12 +6,14 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.cart.model.CartProduct
 import com.pharmacy.myapp.model.Picture
 import com.pharmacy.myapp.util.ColorFilterUtil
 
@@ -32,7 +34,19 @@ fun ImageView.loadGlide(url: String?, block: (RequestBuilder<Drawable>.() -> Uni
     block?.let { glide.apply(it).into(this) } ?: glide.into(this)
 }
 
-fun ImageView.loadGlideDrugstore(url: String?)= loadGlide(url) {
+fun ImageView.loadGlideOrder(product: CartProduct) {
+    visible()
+    product.firstPictureUrl?.let {
+        val options: RequestBuilder<Drawable>.() -> Unit = {
+            transition(DrawableTransitionOptions.withCrossFade())
+            override(300)
+            transform(MultiTransformation(CenterCrop(), RoundedCorners(resources.getDimensionPixelSize(R.dimen._6sdp))))
+        }
+        loadGlide(it, options)
+    }
+}
+
+fun ImageView.loadGlideDrugstore(url: String?) = loadGlide(url) {
     placeholder(R.drawable.ic_drugstore_base)
     RequestOptions.bitmapTransform(CircleCrop())
     transition(DrawableTransitionOptions().crossFade())
