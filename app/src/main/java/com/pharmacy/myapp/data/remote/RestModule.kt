@@ -3,10 +3,10 @@ package com.pharmacy.myapp.data.remote
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.pharmacy.myapp.BuildConfig
-import com.pharmacy.myapp.data.remote.api.RESTApi
-import com.pharmacy.myapp.data.remote.api.RESTApiRefresh
-import com.pharmacy.myapp.data.remote.authenticator.RESTAuthenticator
-import com.pharmacy.myapp.data.remote.interceptor.RESTHeaderInterceptor
+import com.pharmacy.myapp.data.remote.api.RestApi
+import com.pharmacy.myapp.data.remote.api.RestApiRefresh
+import com.pharmacy.myapp.data.remote.authenticator.RestAuthenticator
+import com.pharmacy.myapp.data.remote.interceptor.RestHeaderInterceptor
 import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
 import com.pharmacy.myapp.data.remote.rest.serializer.DeliveryTypeDeserializer
 import com.pharmacy.myapp.data.remote.rest.serializer.DeliveryTypeSerializer
@@ -22,8 +22,8 @@ import java.util.concurrent.TimeUnit
 
 val RESTModule = module {
 
-    single { get<Retrofit>().create(RESTApi::class.java) }
-    single { get<Retrofit>().create(RESTApiRefresh::class.java) }
+    single { get<Retrofit>().create(RestApi::class.java) }
+    single { get<Retrofit>().create(RestApiRefresh::class.java) }
 
     single {
 
@@ -43,8 +43,8 @@ val RESTModule = module {
             readTimeout(60, TimeUnit.SECONDS)
             retryOnConnectionFailure(true)
 
-            authenticator(RESTAuthenticator())
-            addInterceptor(RESTHeaderInterceptor(get()))
+            authenticator(RestAuthenticator())
+            addInterceptor(RestHeaderInterceptor(get()))
 
             if (BuildConfig.DEBUG) {
                 interceptors().add(HttpLoggingInterceptor().apply {

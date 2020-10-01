@@ -9,57 +9,57 @@ import com.pharmacy.myapp.data.remote.RestConstants.NAME
 import com.pharmacy.myapp.data.remote.RestConstants.PHONE
 import com.pharmacy.myapp.data.remote.RestConstants.REFRESH_TOKEN
 import com.pharmacy.myapp.data.remote.RestConstants.REGION_ID
-import com.pharmacy.myapp.data.remote.api.RESTApi
+import com.pharmacy.myapp.data.remote.api.RestApi
 import com.pharmacy.myapp.data.remote.model.order.CreateOrderRequest
 import okhttp3.MultipartBody
 
 @Deprecated("")
-class RestManager(private val sp: SPManager, private val RESTApi: RESTApi) {
+class RestManager(private val sp: SPManager, private val RestApi: RestApi) {
     suspend fun signUp(name: String, phone: String, email: String) =
-        RESTApi.signUp(mapOf(NAME to name, EMAIL to email, PHONE to phone))
+        RestApi.signUp(mapOf(NAME to name, EMAIL to email, PHONE to phone))
 
-    suspend fun auth(phone: String) = RESTApi.auth(mapOf(PHONE to phone))
+    suspend fun auth(phone: String) = RestApi.auth(mapOf(PHONE to phone))
 
     suspend fun login(phone: String, code: String) =
-        RESTApi.login(mapOf(PHONE to phone, CODE to code))
+        RestApi.login(mapOf(PHONE to phone, CODE to code))
 
     suspend fun updateCustomerInfo(name: String, email: String, avatarUuid: String) =
-        RESTApi.updateCustomerInfo(mapOf(NAME to name, EMAIL to email, AVATAR_UUID to avatarUuid))
+        RestApi.updateCustomerInfo(mapOf(NAME to name, EMAIL to email, AVATAR_UUID to avatarUuid))
 
-    suspend fun logout(refreshToken: String) = RESTApi.logout(mapOf(REFRESH_TOKEN to refreshToken))
+    suspend fun logout(refreshToken: String) = RestApi.logout(mapOf(REFRESH_TOKEN to refreshToken))
 
-    suspend fun uploadImage(partBody: MultipartBody.Part) = RESTApi.uploadImage(partBody)
+    suspend fun uploadImage(partBody: MultipartBody.Part) = RestApi.uploadImage(partBody)
 
-    suspend fun fetchCustomer() = safeApiCall { RESTApi.fetchCustomer() }
+    suspend fun fetchCustomer() = safeApiCall { RestApi.fetchCustomer() }
 
     suspend fun productSearch(page: Int? = null, pageSize: Int? = null, barCode: String? = null, categoryCode: String? = null, name: String? = null) =
-        safeApiCall { RESTApi.productSearch(page, pageSize, sp.regionId, barCode, categoryCode, name) }
+        safeApiCall { RestApi.productSearch(page, pageSize, sp.regionId, barCode, categoryCode, name) }
 
-    suspend fun getProductById(globalProductId: Int) = safeApiCall { RESTApi.getProductById(globalProductId) }
+    suspend fun getProductById(globalProductId: Int) = safeApiCall { RestApi.getProductById(globalProductId) }
 
-    suspend fun setToWishList(globalProductId: Int) = safeApiCall { RESTApi.setToWishList(globalProductId) }
+    suspend fun setToWishList(globalProductId: Int) = safeApiCall { RestApi.setToWishList(globalProductId) }
 
-    suspend fun removeFromWishList(globalProductId: Int) = safeApiCall { RESTApi.removeFromWishList(globalProductId) }
+    suspend fun removeFromWishList(globalProductId: Int) = safeApiCall { RestApi.removeFromWishList(globalProductId) }
 
-    suspend fun getWishList(page: Int? = null, pageSize: Int? = null) = safeApiCall { RESTApi.getWishList(page, pageSize) }
+    suspend fun getWishList(page: Int? = null, pageSize: Int? = null) = safeApiCall { RestApi.getWishList(page, pageSize) }
 
-    suspend fun regions() = safeApiCall { RESTApi.regions() }
+    suspend fun regions() = safeApiCall { RestApi.regions() }
 
-    suspend fun updateRegion(id: Int) = safeApiCall { RESTApi.updateRegion(mapOf(REGION_ID to id)) }
+    suspend fun updateRegion(id: Int) = safeApiCall { RestApi.updateRegion(mapOf(REGION_ID to id)) }
 
-    suspend fun getCategories() = safeApiCall { RESTApi.categories() }
+    suspend fun getCategories() = safeApiCall { RestApi.categories() }
 
     suspend fun getPharmacyList(globalProductId: Int, page: Int? = null, pageSize: Int? = null) =
-        safeApiCall { RESTApi.pharmacyList(globalProductId, sp.regionId, page, pageSize) }
+        safeApiCall { RestApi.pharmacyList(globalProductId, sp.regionId, page, pageSize) }
 
-    suspend fun getCartProducts() = safeApiCall { RESTApi.cartProducts() }
+    suspend fun getCartProducts() = safeApiCall { RestApi.cartProducts() }
 
-    suspend fun addProductToCart(globalProductId: Int) = safeApiCall { RESTApi.addProductToCart(globalProductId) }
+    suspend fun addProductToCart(globalProductId: Int) = safeApiCall { RestApi.addProductToCart(globalProductId) }
 
-    suspend fun removeProductFromCart(globalProductId: Int) = safeApiCall { RESTApi.removeProductFromCart(globalProductId) }
+    suspend fun removeProductFromCart(globalProductId: Int) = safeApiCall { RestApi.removeProductFromCart(globalProductId) }
 
-    suspend fun sendOrder(body: CreateOrderRequest) = safeApiCall { RESTApi.sendOrder(body) }
+    suspend fun sendOrder(body: CreateOrderRequest) = safeApiCall { RestApi.sendOrder(body) }
 
-    suspend fun fetchOrders(query: String, page: Int? = null, pageSize: Int? = null) = safeApiCall { RESTApi.fetchOrders(query, page, pageSize) }
+    suspend fun fetchOrders(query: String, page: Int? = null, pageSize: Int? = null) = safeApiCall { RestApi.fetchOrders(query, page, pageSize) }
 
 }

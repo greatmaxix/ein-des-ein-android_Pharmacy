@@ -1,13 +1,12 @@
 package com.pharmacy.myapp.data.remote.api
 
 import com.pharmacy.myapp.cart.model.CartItem
-import com.pharmacy.myapp.core.network.safeApiCall
 import com.pharmacy.myapp.data.remote.model.order.CreateOrderRequest
-import com.pharmacy.myapp.model.auth.StartInfo
 import com.pharmacy.myapp.model.BaseDataResponse
 import com.pharmacy.myapp.model.BaseDataResponseWithItem
 import com.pharmacy.myapp.model.ListItemsModel
 import com.pharmacy.myapp.model.PaginationModel
+import com.pharmacy.myapp.model.auth.StartInfo
 import com.pharmacy.myapp.model.category.Category
 import com.pharmacy.myapp.model.order.Order
 import com.pharmacy.myapp.model.region.Region
@@ -21,7 +20,7 @@ import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.*
 
-interface RESTApi {
+interface RestApi {
 
     @POST("/api/v1/customer/registration")
     suspend fun signUp(@Body arguments: Map<String, String>): BaseDataResponse<StartInfo>

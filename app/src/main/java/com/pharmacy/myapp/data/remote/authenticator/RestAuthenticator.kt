@@ -1,15 +1,15 @@
 package com.pharmacy.myapp.data.remote.authenticator
 
-import com.pharmacy.myapp.data.remote.repository.RESTRepository
+import com.pharmacy.myapp.data.remote.repository.RestRepository
 import okhttp3.Authenticator
 import okhttp3.Response
 import okhttp3.Route
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class RESTAuthenticator : Authenticator, KoinComponent {
+class RestAuthenticator : Authenticator, KoinComponent {
 
-    private val repository: RESTRepository by inject()
+    private val repository: RestRepository by inject()
 
     override fun authenticate(route: Route?, response: Response) = with(response) {
         if (isContainsAuthorization) {
