@@ -2,7 +2,7 @@ package com.pharmacy.myapp.region.repository
 
 import com.pharmacy.myapp.model.region.LocalRegion
 import com.pharmacy.myapp.model.region.Region
-import com.pharmacy.myapp.user.model.customerInfo.Customer
+import com.pharmacy.myapp.user.model.customer.Customer
 import com.pharmacy.myapp.user.repository.UserLocalDataSource
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.KoinComponent

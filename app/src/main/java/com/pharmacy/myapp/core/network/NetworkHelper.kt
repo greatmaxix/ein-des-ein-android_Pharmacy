@@ -12,11 +12,10 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 suspend fun <T> safeApiCall(
-    tokenRefreshCall: suspend () -> ResponseWrapper<Any>,
     apiCall: suspend () -> T
 ): ResponseWrapper<T> =
     try {
-        ResponseWrapper.Success(apiCall.invoke())
+        ResponseWrapper.Success(apiCall())
     } catch (throwable: Exception) {
         Timber.e(throwable)
         when (throwable) {
@@ -24,22 +23,7 @@ suspend fun <T> safeApiCall(
             is UnknownHostException,
             is SocketTimeoutException -> ResponseWrapper.Error(R.string.error_serverNotResponding)
             is IOException -> ResponseWrapper.Error(R.string.error_networkErrorMessage)
-            is HttpException -> {
-                val code = throwable.code()
-                if (code == HttpURLConnection.HTTP_UNAUTHORIZED) {
-                    if (tokenRefreshCall.invoke() is ResponseWrapper.Success) {
-                        safeApiCall(tokenRefreshCall, apiCall)
-                    } else {
-                        ResponseWrapper.Error(R.string.error_networkErrorMessage)
-                    }
-                } else {
-                    ResponseWrapper.Error(
-                        R.string.error_networkErrorMessage,
-                        getErrorMessage(throwable.response()?.errorBody()),
-                        code
-                    )
-                }
-            }
+            is HttpException -> ResponseWrapper.Error(R.string.error_networkErrorMessage)
             is ApiException -> ResponseWrapper.Error(
                 R.string.error_errorGettingData,
                 throwable.message

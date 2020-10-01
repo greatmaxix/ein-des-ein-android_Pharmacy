@@ -8,8 +8,8 @@ import com.pharmacy.myapp.model.product.RecentlyViewedDAO
 import com.pharmacy.myapp.model.region.RegionDAO
 import com.pharmacy.myapp.model.region.LocalRegion
 import com.pharmacy.myapp.product.model.Product
-import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
-import com.pharmacy.myapp.user.model.customerInfo.Customer
+import com.pharmacy.myapp.user.model.customer.CustomerDAO
+import com.pharmacy.myapp.user.model.customer.Customer
 
 class DBManager(context: Context) : ManagerInterface {
 

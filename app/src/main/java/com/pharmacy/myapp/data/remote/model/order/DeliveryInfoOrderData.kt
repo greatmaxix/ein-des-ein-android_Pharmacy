@@ -1,7 +1,8 @@
-package com.pharmacy.myapp.data.remote.rest.request.order
+package com.pharmacy.myapp.data.remote.model.order
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

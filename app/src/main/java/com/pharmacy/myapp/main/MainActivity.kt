@@ -14,7 +14,7 @@ import com.pharmacy.myapp.core.general.behavior.ProgressViewBehavior
 import com.pharmacy.myapp.core.general.interfaces.MessagesCallback
 import com.pharmacy.myapp.core.general.interfaces.ProgressCallback
 import com.pharmacy.myapp.ui.SelectableBottomNavView
-import com.pharmacy.myapp.user.model.customerInfo.Customer
+import com.pharmacy.myapp.user.model.customer.Customer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_progress.*
 

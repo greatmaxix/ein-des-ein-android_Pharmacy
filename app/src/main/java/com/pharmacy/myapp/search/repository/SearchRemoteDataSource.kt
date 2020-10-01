@@ -1,6 +1,6 @@
 package com.pharmacy.myapp.search.repository
 
-import com.pharmacy.myapp.data.remote.rest.RestManager
+import com.pharmacy.myapp.data.remote.RestManager
 
 class SearchRemoteDataSource(private val rm: RestManager) {
 

@@ -1,8 +1,8 @@
 package com.pharmacy.myapp.splash.repository
 
 import com.pharmacy.myapp.data.local.SPManager
-import com.pharmacy.myapp.user.model.customerInfo.Customer
-import com.pharmacy.myapp.user.model.customerInfo.CustomerDAO
+import com.pharmacy.myapp.user.model.customer.Customer
+import com.pharmacy.myapp.user.model.customer.CustomerDAO
 
 class SplashLocalDataSource(private val sp: SPManager, private val dao: CustomerDAO) {
 

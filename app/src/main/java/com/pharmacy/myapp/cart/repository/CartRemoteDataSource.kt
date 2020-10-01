@@ -1,6 +1,6 @@
 package com.pharmacy.myapp.cart.repository
 
-import com.pharmacy.myapp.data.remote.rest.RestManager
+import com.pharmacy.myapp.data.remote.RestManager
 
 class CartRemoteDataSource(private val rm: RestManager) {
     suspend fun getCartProducts() = rm.getCartProducts()

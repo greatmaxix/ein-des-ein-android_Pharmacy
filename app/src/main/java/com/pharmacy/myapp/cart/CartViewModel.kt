@@ -1,7 +1,6 @@
 package com.pharmacy.myapp.cart
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.cart.model.CartItem
 import com.pharmacy.myapp.cart.repository.CartRepository

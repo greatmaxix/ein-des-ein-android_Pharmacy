@@ -1,6 +1,6 @@
 package com.pharmacy.myapp.user.wishlist.repository
 
-import com.pharmacy.myapp.data.remote.rest.RestManager
+import com.pharmacy.myapp.data.remote.RestManager
 
 class WishRemoteDataSource(private val rm: RestManager) {
 

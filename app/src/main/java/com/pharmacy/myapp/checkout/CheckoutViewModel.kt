@@ -7,9 +7,9 @@ import com.pharmacy.myapp.checkout.CheckoutFragmentDirections.Companion.fromChec
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.core.network.ResponseWrapper
-import com.pharmacy.myapp.data.remote.rest.request.order.CreateOrderRequest
-import com.pharmacy.myapp.data.remote.rest.request.order.CustomerOrderData
-import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryInfoOrderData
+import com.pharmacy.myapp.data.remote.model.order.CreateOrderRequest
+import com.pharmacy.myapp.data.remote.model.order.CustomerOrderData
+import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
 import timber.log.Timber
 
 class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewModel() {
