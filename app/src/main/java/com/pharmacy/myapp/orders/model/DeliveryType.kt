@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.data.remote.rest.request.order
+package com.pharmacy.myapp.orders.model
 
 import com.pharmacy.myapp.R
 
@@ -11,6 +11,9 @@ enum class DeliveryType(val type: String) {
 
     val isPickup
         get() = this == PICKUP
+
+    val isDelivery
+        get() = this == DELIVERY
 
     val textRes
         get() = if (isPickup) R.string.pickup else R.string.delivery

@@ -15,8 +15,8 @@ import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.data.DummyData
-import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryInfoOrderData
-import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
+import com.pharmacy.myapp.orders.model.DeliveryInfoOrderData
+import com.pharmacy.myapp.orders.model.DeliveryType
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {
@@ -63,9 +63,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     }
 
     private fun setPharmacyInfo() = with(args.cartItem) {
-        ivPharmacyLogoCheckout.loadGlideDrugstore(logo.url)
-        tvPharmacyNameCheckout.text = name
-        tvPharmacyAddressOrder.text = getString(R.string.cityStreetHolder, location.address)
+        pharmacyAddressCheckout.setData(Triple(logo.url, name, location.address))
     }
 
     private fun validateFieldsAndSendOrder() {

@@ -3,7 +3,7 @@ package com.pharmacy.myapp.data.remote.rest.serializer
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
+import com.pharmacy.myapp.orders.model.DeliveryType
 import java.lang.reflect.Type
 
 class DeliveryTypeDeserializer : JsonDeserializer<DeliveryType> {

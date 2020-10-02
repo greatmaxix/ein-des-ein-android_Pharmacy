@@ -14,6 +14,12 @@ enum class OrderStatus(val status: String) {
     private val isInProgress
         get() = this == IN_PROGRESS
 
+    val isCanceled
+        get() = this == CANCELED
+
+    val isNew
+        get() = this == NEW
+
     val statusColor
         get() = if (isInProgress) R.color.green else R.color.primaryBlue
 
@@ -30,6 +36,8 @@ enum class OrderStatus(val status: String) {
 
     companion object {
         fun getOrderStatus(status: String) = values().find { it.status == status } ?: NEW
+
+        fun getStatusesList() = values().asList().subList(0, 4)
     }
 
 }

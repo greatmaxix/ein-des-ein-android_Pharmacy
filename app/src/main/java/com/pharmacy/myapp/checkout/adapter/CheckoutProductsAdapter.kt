@@ -12,7 +12,7 @@ import com.pharmacy.myapp.core.extensions.setTextHtml
 import com.pharmacy.myapp.core.extensions.stringRes
 import kotlinx.android.synthetic.main.item_checkout_product.view.*
 
-class CheckoutProductsAdapter(list: MutableList<CartProduct>) : BaseRecyclerAdapter<CartProduct, CheckoutProductsAdapter.RecommendedViewHolder>(list) {
+class CheckoutProductsAdapter(list: MutableList<CartProduct>) : BaseRecyclerAdapter<CartProduct, CheckoutProductsAdapter.RecommendedViewHolder>(list) { // todo rename or move to base
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendedViewHolder = RecommendedViewHolder.newInstance(parent)
 

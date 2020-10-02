@@ -1,19 +1,22 @@
 package com.pharmacy.myapp.data.remote.rest
 
 import com.pharmacy.myapp.cart.model.CartItem
-import com.pharmacy.myapp.data.remote.rest.request.order.CreateOrderRequest
 import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
 import com.pharmacy.myapp.data.remote.rest.response.AuthResponse
-import com.pharmacy.myapp.model.order.Order
 import com.pharmacy.myapp.data.remote.rest.response.TokenRefreshResponse
 import com.pharmacy.myapp.data.remote.rest.response.UploadImageResponse
-import com.pharmacy.myapp.model.*
+import com.pharmacy.myapp.model.BaseDataResponse
+import com.pharmacy.myapp.model.BaseDataResponseWithItem
+import com.pharmacy.myapp.model.ListItemsModel
+import com.pharmacy.myapp.model.PaginationModel
 import com.pharmacy.myapp.model.category.Category
-import com.pharmacy.myapp.user.model.customerInfo.CustomerItem
+import com.pharmacy.myapp.model.order.Order
 import com.pharmacy.myapp.model.region.Region
+import com.pharmacy.myapp.orders.model.CreateOrderRequest
 import com.pharmacy.myapp.pharmacy.model.Pharmacy
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.product.model.ProductLite
+import com.pharmacy.myapp.user.model.customerInfo.CustomerItem
 import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Response
@@ -105,4 +108,10 @@ interface ApiService {
         @Query("status") query: String? = null,
         @Query("page") page: Int? = null,
         @Query("per_page") pageSize: Int? = null): BaseDataResponse<PaginationModel<Order>>
+
+    @GET("/api/v1/customer/order/{id}/order-card")
+    suspend fun getOrderDetail(@Path("id") id: Int): BaseDataResponseWithItem<Order>
+
+    @PATCH("/api/v1/customer/order/{id}/cancel")
+    suspend fun cancelOrder(@Path("id") id: Int): BaseDataResponse<Unit>
 }

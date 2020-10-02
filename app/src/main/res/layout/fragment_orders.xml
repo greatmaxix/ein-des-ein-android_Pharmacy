@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/greyLight"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="?actionBarSize">
 
     <include
         android:id="@+id/toolbar"
@@ -25,28 +26,28 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipMyAll"
-            style="@style/ChipMyOrders"
-            android:text="@string/allChipMyOrders" />
+            style="@style/ChipOrders"
+            android:text="@string/allChipOrders" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipMyInProcess"
-            style="@style/ChipMyOrders"
-            android:text="@string/inProcessChipMyOrder" />
+            style="@style/ChipOrders"
+            android:text="@string/inProcessChipOrders" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipMyDone"
-            style="@style/ChipMyOrders"
-            android:text="@string/doneChipMyOrder" />
+            style="@style/ChipOrders"
+            android:text="@string/doneChipOrders" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipMyCanceled"
-            style="@style/ChipMyOrders"
-            android:text="@string/canceledChipMyOrder" />
+            style="@style/ChipOrders"
+            android:text="@string/canceledChipOrders" />
 
     </com.google.android.material.chip.ChipGroup>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvOrdersListMyOrders"
+        android:id="@+id/rvOrdersList"
         style="@style/Recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

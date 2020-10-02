@@ -16,13 +16,13 @@ import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.PHONE
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REFRESH_TOKEN
 import com.pharmacy.myapp.data.remote.rest.RestConstants.Companion.REGION_ID
 import com.pharmacy.myapp.data.remote.rest.request.TokenRefreshRequest
-import com.pharmacy.myapp.data.remote.rest.request.order.CreateOrderRequest
-import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
 import com.pharmacy.myapp.data.remote.rest.serializer.DeliveryTypeDeserializer
 import com.pharmacy.myapp.data.remote.rest.serializer.DeliveryTypeSerializer
 import com.pharmacy.myapp.data.remote.rest.serializer.OrderStatusDeserializer
 import com.pharmacy.myapp.data.remote.rest.serializer.OrderStatusSerializer
 import com.pharmacy.myapp.model.order.OrderStatus
+import com.pharmacy.myapp.orders.model.CreateOrderRequest
+import com.pharmacy.myapp.orders.model.DeliveryType
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -148,4 +148,8 @@ class RestManager(private val sp: SPManager) {
     suspend fun sendOrder(body: CreateOrderRequest) = safeApiCall(tokenRefreshCall) { api.sendOrder(body) }
 
     suspend fun fetchOrders(query: String, page: Int? = null, pageSize: Int? = null) = safeApiCall(tokenRefreshCall) { api.fetchOrders(query, page, pageSize) }
+
+    suspend fun getOrderDetail(id: Int) = safeApiCall(tokenRefreshCall) { api.getOrderDetail(id) }
+
+    suspend fun cancelOrder(id: Int) = safeApiCall(tokenRefreshCall) { api.cancelOrder(id) }
 }

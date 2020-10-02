@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.myOrders.adapter
+package com.pharmacy.myapp.orders.adapter
 
 import android.content.res.ColorStateList
 import android.view.View
@@ -10,39 +10,40 @@ import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.model.order.Order
 import kotlinx.android.synthetic.main.layout_my_order_item.view.*
 
-class MyOrdersAdapter : PagingDataAdapter<Order, MyOrdersAdapter.MyOrderViewHolder>(OrderDiffUtil) {
+class OrdersAdapter(private val click :(Int) -> Unit) : PagingDataAdapter<Order, OrdersAdapter.OrdersViewHolder>(OrderDiffUtil) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MyOrderViewHolder.newInstance(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = OrdersViewHolder.newInstance(parent, click)
 
-    override fun onBindViewHolder(holder: MyOrderViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: OrdersViewHolder, position: Int) {
         holder.bind(getItem(position) ?: return)
     }
 
-    class MyOrderViewHolder(view: View) : BaseViewHolder<Order>(view) {
+    class OrdersViewHolder(view: View, private val click :(Int) -> Unit) : BaseViewHolder<Order>(view) {
 
         override fun bind(item: Order) = with(itemView) {
+            setDebounceOnClickListener { click(item.id) }
             val isPickup = item.deliveryInfo.deliveryType?.isPickup.falseIfNull()
 
-            stateMyOrder.backgroundTintList = ColorStateList.valueOf(colorCompat(item.orderStatus.statusColor))
-            stateMyOrder.text = stringRes(item.orderStatus.getStatusRes)
+            tvOrderState.backgroundTintList = ColorStateList.valueOf(colorCompat(item.orderStatus.statusColor))
+            tvOrderState.text = stringRes(item.orderStatus.getStatusRes)
             item.deliveryInfo.deliveryType?.backgroundColor?.let {
                 deliveryTypeContainer.setCardBackgroundColor(colorCompat(it))
             }
-            item.deliveryInfo.deliveryType?.textRes?.let { deliveryTypeMyOrder.text = stringRes(it) }
-            item.deliveryInfo.deliveryType?.icon?.let(ivDeliveryTypeMyOrder::setImageResource)
-            idMyOrder.text = stringRes(R.string.orderNumber, item.id)
+            item.deliveryInfo.deliveryType?.textRes?.let { deliveryTypeOrders.text = stringRes(it) }
+            item.deliveryInfo.deliveryType?.icon?.let(ivDeliveryTypeOrders::setImageResource)
+            idOrders.text = stringRes(R.string.orderNumber, item.id)
 
             if (isPickup) {
-                addressMyOrder.text = item.pharmacy.location.address
+                addressOrders.text = item.pharmacy.location.address
             } else {
                 val cityAndStreet = item.deliveryInfo.addressOrderData?.streetAndCity
                 val house = item.deliveryInfo.addressOrderData?.houseAndApartment
-                addressMyOrder.text = stringRes(R.string.orderAddressDelivery, cityAndStreet, house)
+                addressOrders.text = stringRes(R.string.orderAddressDelivery, cityAndStreet, house)
             }
 
             tvProductCount.visibleOrGone(item.isShowProductCount)
             tvProductCount.text = stringRes(item.productCountString, item.productCount)
-            imagesContainerMyOrder.visibleOrGone(!item.isShowProductCount)
+            imagesContainerOrders.visibleOrGone(!item.isShowProductCount)
             with(item.pharmacyProductOrderDataList) {
                 getOrNull(0)?.let(firstItemPreview::loadGlideOrder) ?: run { firstItemPreview.gone() }
                 getOrNull(1)?.let(secondItemPreview::loadGlideOrder) ?: run { secondItemPreview.gone() }
@@ -50,12 +51,12 @@ class MyOrdersAdapter : PagingDataAdapter<Order, MyOrdersAdapter.MyOrderViewHold
             }
             restImagesCount.visibleOrGone(item.isProductCountVisible)
             restImagesCount.text = item.getRestImagesCount
-            priceMyOrder.text = stringRes(R.string.orderCost, item.pharmacyProductsTotalPrice.formatPrice())
+            priceOrders.text = stringRes(R.string.orderCost, item.pharmacyProductsTotalPrice.formatPrice())
         }
 
         companion object {
 
-            fun newInstance(parent: ViewGroup) = MyOrderViewHolder(parent.inflate(R.layout.layout_my_order_item))
+            fun newInstance(parent: ViewGroup, click :(Int) -> Unit) = OrdersViewHolder(parent.inflate(R.layout.layout_my_order_item), click)
         }
     }
 }

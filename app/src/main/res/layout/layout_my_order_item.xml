@@ -13,11 +13,11 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/stateMyOrder"
+            android:id="@+id/tvOrderState"
             android:layout_width="@dimen/_96sdp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_12sdp"
-            android:background="@drawable/my_order_state_background"
+            android:background="@drawable/order_state_background"
             android:gravity="center"
             android:paddingStart="@dimen/_10sdp"
             android:paddingTop="@dimen/_4sdp"
@@ -33,7 +33,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/deliveryTypeContainer"
-            style="@style/MyOrderDeliveryCardView"
+            style="@style/OrdersDeliveryCardView"
             android:layout_width="@dimen/_112sdp"
             android:layout_height="@dimen/_32sdp"
             android:layout_marginTop="@dimen/_12sdp"
@@ -50,7 +50,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/deliveryTypeMyOrder"
+                    android:id="@+id/deliveryTypeOrders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_6sdp"
@@ -59,7 +59,7 @@
                     tools:text="Самовывоз" />
 
                 <ImageView
-                    android:id="@+id/ivDeliveryTypeMyOrder"
+                    android:id="@+id/ivDeliveryTypeOrders"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
@@ -71,37 +71,37 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/idMyOrder"
+            android:id="@+id/idOrders"
             style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:textColor="@color/darkBlue"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/stateMyOrder"
-            app:layout_constraintTop_toBottomOf="@id/stateMyOrder"
+            app:layout_constraintStart_toStartOf="@id/tvOrderState"
+            app:layout_constraintTop_toBottomOf="@id/tvOrderState"
             tools:text="№ 12583" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/addressMyOrder"
+            android:id="@+id/addressOrders"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/_12ssp"
-            app:layout_constraintStart_toStartOf="@id/idMyOrder"
-            app:layout_constraintTop_toBottomOf="@id/idMyOrder"
+            app:layout_constraintStart_toStartOf="@id/idOrders"
+            app:layout_constraintTop_toBottomOf="@id/idOrders"
             tools:text="🏠 ул. Горная 23а, Харьков 🚪дом 4г • кв. 56" />
 
         <View
-            android:id="@+id/myOrderSeparator"
+            android:id="@+id/ordersSeparator"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="@dimen/_8sdp"
             android:background="@color/grey20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addressMyOrder" />
+            app:layout_constraintTop_toBottomOf="@id/addressOrders" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvProductCount"
@@ -112,15 +112,15 @@
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/priceMyOrder"
+            app:layout_constraintEnd_toStartOf="@id/priceOrders"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/myOrderSeparator"
+            app:layout_constraintTop_toBottomOf="@id/ordersSeparator"
             tools:text="5 товаров"
             tools:visibility="gone" />
 
         <LinearLayout
-            android:id="@+id/imagesContainerMyOrder"
+            android:id="@+id/imagesContainerOrders"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_36sdp"
             android:layout_marginStart="@dimen/_8sdp"
@@ -129,10 +129,10 @@
             android:layout_marginBottom="@dimen/_8sdp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/priceMyOrder"
+            app:layout_constraintEnd_toStartOf="@id/priceOrders"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/myOrderSeparator">
+            app:layout_constraintTop_toBottomOf="@id/ordersSeparator">
 
             <ImageView
                 android:id="@+id/firstItemPreview"
@@ -172,7 +172,7 @@
         </LinearLayout>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/priceMyOrder"
+            android:id="@+id/priceOrders"
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
             android:layout_marginEnd="@dimen/_8sdp"
             android:textColor="@color/primaryBlue"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/myOrderSeparator"
+            app:layout_constraintTop_toBottomOf="@id/ordersSeparator"
             tools:text="6568 ₸" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

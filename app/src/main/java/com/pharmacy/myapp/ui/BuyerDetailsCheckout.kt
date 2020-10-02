@@ -10,7 +10,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.debug
 import com.pharmacy.myapp.core.extensions.inflate
 import com.pharmacy.myapp.core.extensions.text
-import com.pharmacy.myapp.data.remote.rest.request.order.CustomerOrderData
+import com.pharmacy.myapp.orders.model.CustomerOrderData
 import com.pharmacy.myapp.ui.text.*
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_buyer_details_checkout.view.*

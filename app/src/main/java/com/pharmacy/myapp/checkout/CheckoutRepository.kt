@@ -2,7 +2,7 @@ package com.pharmacy.myapp.checkout
 
 import com.pharmacy.myapp.checkout.repository.CheckoutLocalDataSource
 import com.pharmacy.myapp.checkout.repository.CheckoutRemoteDataSource
-import com.pharmacy.myapp.data.remote.rest.request.order.CreateOrderRequest
+import com.pharmacy.myapp.orders.model.CreateOrderRequest
 
 class CheckoutRepository(
     private val crds: CheckoutRemoteDataSource,
