@@ -6,6 +6,7 @@ import com.pharmacy.myapp.MainGraphDirections.Companion.globalToRegion
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onClick
+import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
 import com.pharmacy.myapp.user.profile.guest.GuestProfileFragmentDirections.Companion.actionGuestToSignIn
 import kotlinx.android.synthetic.main.fragment_guest_profile.*
 
@@ -15,6 +16,7 @@ class GuestProfileFragment(private val viewModel: GuestProfileViewModel) : BaseM
         super.onViewCreated(view, savedInstanceState)
         btnAuthorizeProfileGuest.onClick { doNav(actionGuestToSignIn()) }
         itemRegionProfile.setOnClick { doNav(globalToRegion()) }
+        itemAboutProfile.onClick { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
     }
 
     override fun onBindLiveData() {

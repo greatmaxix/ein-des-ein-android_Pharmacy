@@ -344,4 +344,10 @@
     <string name="forCheckCart">Для того что бы просмотреть продукты в Корзине нужно авторизироваться</string>
     <string name="exit">Выйти</string>
 
+    <!--About-->
+    <string name="versionAbout">Версия: %s</string>
+    <string name="userAgreementTitle">Пользовательское соглашение</string>
+    <string name="personalDataTitle">О Персональных данных</string>
+    <string name="termsOfDataUseTitle">Условия использования данных</string>
+    <string name="cashbackTitle">Про кешбек</string>
 </resources>

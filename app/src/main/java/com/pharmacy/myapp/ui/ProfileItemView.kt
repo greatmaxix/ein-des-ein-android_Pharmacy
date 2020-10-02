@@ -3,6 +3,7 @@ package com.pharmacy.myapp.ui
 import android.content.Context
 import android.graphics.PorterDuff
 import android.util.AttributeSet
+import android.view.View
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import com.pharmacy.myapp.R
@@ -29,8 +30,8 @@ class ProfileItemView @JvmOverloads constructor(
             context.theme.obtainStyledAttributes(it, R.styleable.ProfileItemView, defStyleAttr, -1)
                 .getData {
                     icon = getResourceId(R.styleable.ProfileItemView_iconProfile, -1)
-                    title = getString(R.styleable.ProfileItemView_titleProfile)?:""
-                    detailText = getString(R.styleable.ProfileItemView_detailTextProfile)?:""
+                    title = getString(R.styleable.ProfileItemView_titleProfile) ?: ""
+                    detailText = getString(R.styleable.ProfileItemView_detailTextProfile) ?: ""
                     arrowVisibility = getBoolean(R.styleable.ProfileItemView_arrowVisibilityProfile, true)
                     mainColor = getResourceId(R.styleable.ProfileItemView_mainColorProfile, R.color.darkBlue)
                 }
@@ -41,15 +42,19 @@ class ProfileItemView @JvmOverloads constructor(
         super.onFinishInflate()
         ivIconProfileItem.setImageResource(icon)
         mtvTitleProfileItem.text = title
-        mtvDetailProfileItem.text = detailText
+        if (detailText.isNotEmpty()) {
+            mtvDetailProfileItem.text = detailText
+            mtvDetailProfileItem.visible()
+        }
         ivArrowProfileItem.visibleOrGone(arrowVisibility)
         ivIconProfileItem.setColorFilter(ContextCompat.getColor(context, mainColor), PorterDuff.Mode.SRC_IN)
         mtvTitleProfileItem.textColor(mainColor)
     }
 
-    fun setOnClick(f: () -> Unit) = profileItemContainer.onClick(f)
+    fun setOnClick(f: View.() -> Unit) = profileItemContainer.setDebounceOnClickListener(listener = f)
 
     fun setDetailText(text: String?) {
         mtvDetailProfileItem.text = text
+        mtvDetailProfileItem.visible()
     }
 }

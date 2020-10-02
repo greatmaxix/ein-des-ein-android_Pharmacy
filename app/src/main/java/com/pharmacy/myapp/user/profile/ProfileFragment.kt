@@ -26,6 +26,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         analyzesContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_profile) }
         recipesContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
         orderContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_my_orders, null, R.id.nav_profile) }
+        itemAboutProfile.onClick { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
     }
 
     override fun onBindLiveData() {

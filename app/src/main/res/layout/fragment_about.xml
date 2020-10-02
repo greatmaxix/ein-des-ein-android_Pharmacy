@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layoutDirection="locale" />
+
+    <ImageView
+        android:id="@+id/ivAbout"
+        android:layout_width="@dimen/_64sdp"
+        android:layout_height="@dimen/_64sdp"
+        android:layout_margin="@dimen/_16sdp"
+        android:src="@drawable/main_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvVersionAbout"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:textColor="@color/darkBlue"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivAbout"
+        app:layout_constraintTop_toTopOf="@id/ivAbout"
+        tools:text="Версия 1.1.24" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvAddressAbout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:text="1208742, г. Астана, ул. Бейбитшилик, 33, подьезд 6, этаж 5, помещение 730"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivAbout"
+        app:layout_constraintTop_toBottomOf="@id/tvVersionAbout" />
+
+    <com.pharmacy.myapp.ui.ProfileItemView
+        android:id="@+id/itemUserAgreement"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:iconProfile="@drawable/ic_user_agreement"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivAbout"
+        app:titleProfile="@string/userAgreementTitle" />
+
+    <com.pharmacy.myapp.ui.ProfileItemView
+        android:id="@+id/itemPersonalData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:iconProfile="@drawable/ic_personal_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemUserAgreement"
+        app:titleProfile="@string/personalDataTitle" />
+
+    <com.pharmacy.myapp.ui.ProfileItemView
+        android:id="@+id/itemDataUsage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:iconProfile="@drawable/ic_vector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemPersonalData"
+        app:titleProfile="@string/termsOfDataUseTitle" />
+
+    <com.pharmacy.myapp.ui.ProfileItemView
+        android:id="@+id/itemCashback"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:iconProfile="@drawable/ic_dollar_sign"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemDataUsage"
+        app:titleProfile="@string/cashbackTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
