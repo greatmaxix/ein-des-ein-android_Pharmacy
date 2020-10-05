@@ -3,9 +3,9 @@ package com.pharmacy.myapp.ui
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import androidx.core.content.ContextCompat
 import com.google.android.material.card.MaterialCardView
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.core.extensions.colorCompat
 import com.pharmacy.myapp.core.extensions.inflate
 import com.pharmacy.myapp.core.extensions.loadGlideDrugstore
 import kotlinx.android.extensions.LayoutContainer
@@ -21,10 +21,14 @@ class PharmacyAddressOrder @JvmOverloads constructor(
 
     private val contentPadding by lazy { resources.getDimension(R.dimen._16sdp).toInt() }
 
-    private var pharmacy: Triple<String, String, String>? = null
+    var pharmacy: PharmacyInfo? = null
+        set(value) {
+            field = value
+            field?.let(::updatePharmacy)
+        }
 
     init {
-        setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorGlobalWhite))
+        setCardBackgroundColor(colorCompat(R.color.colorGlobalWhite))
         setContentPadding(contentPadding, contentPadding, contentPadding, contentPadding)
         radius = resources.getDimension(R.dimen._10sdp)
         clipToPadding = false
@@ -32,19 +36,12 @@ class PharmacyAddressOrder @JvmOverloads constructor(
         cardElevation = 0F
     }
 
-    fun setData(address: Triple<String, String, String>? = null) {
-        if (address != null) {
-            this.pharmacy = address
-        }
-        updatePharmacy()
+    private fun updatePharmacy(info: PharmacyInfo) = with(info) {
+        ivPharmacyLogoCheckout.loadGlideDrugstore(logo)
+        tvPharmacyNameCheckout.text = name
+        tvPharmacyAddressOrder.text = context.getString(R.string.cityStreetHolder, info.address)
     }
 
-    private fun updatePharmacy() {
-        with(pharmacy ?: return) {
-            ivPharmacyLogoCheckout.loadGlideDrugstore(first)
-            tvPharmacyNameCheckout.text = second
-            tvPharmacyAddressOrder.text = context.getString(R.string.cityStreetHolder, third)
-        }
-    }
+    data class PharmacyInfo(val logo: String, val name: String, val address: String)
 
 }

@@ -26,21 +26,20 @@ class BuyerDetailsOrder @JvmOverloads constructor(
         setPadding(padding, padding, padding, bottomPadding)
     }
 
-    var customer : CustomerOrderData? = null
+    var customer: CustomerOrderData? = null
+        set(value) {
+            field = value
+            field?.let(::updateContent)
+        }
 
-    private fun updateContent() {
-        tvBuyerFullNameOrder.text = customer?.name
-        val phoneHolder = "\uD83D\uDCF1 ${customer?.phone}"
+    private fun updateContent(customer: CustomerOrderData) {
+        tvBuyerFullNameOrder.text = customer.name
+        val phoneHolder = "\uD83D\uDCF1 ${customer.phone}"
         tvBuyerPhoneOrder.text = phoneHolder
-        val emailHolder = "\uD83D\uDCEA ${customer?.email}"
+        val emailHolder = "\uD83D\uDCEA ${customer.email}"
         tvBuyerEmailOrder.text = emailHolder
-        if (customer?.email.isNullOrEmpty()) {
+        if (customer.email.isNullOrEmpty()) {
             tvBuyerEmailOrder.gone()
         }
-    }
-
-    fun setData(customer : CustomerOrderData) {
-        this.customer = customer
-        updateContent()
     }
 }

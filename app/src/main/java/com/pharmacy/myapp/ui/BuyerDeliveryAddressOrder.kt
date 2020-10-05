@@ -21,21 +21,20 @@ class BuyerDeliveryAddressOrder @JvmOverloads constructor(
     private val sidePadding by lazy { resources.getDimension(R.dimen._16sdp).toInt() }
     private val bottomPadding by lazy { resources.getDimension(R.dimen._4sdp).toInt() }
 
-    private var deliveryAddress: AddressOrderData? = null
+    var deliveryAddress: AddressOrderData? = null
+        set(value) {
+            if (value != null) {
+                field = value
+                updateFieldsContent(field)
+            }
+        }
 
     init {
         setPadding(sidePadding, 0, sidePadding, bottomPadding)
         orientation = VERTICAL
     }
 
-    fun setData(address: AddressOrderData? = null) {
-        if (address != null) {
-            this.deliveryAddress = address
-        }
-        updateFieldsContent()
-    }
-
-    private fun updateFieldsContent() = with(deliveryAddress) {
+    private fun updateFieldsContent(address: AddressOrderData? = null) = with(address) {
         val cityAndStreetHolder = "\uD83C\uDFE0 ${this?.streetAndCity}"
         tvPharmacyAddressOrder.text = cityAndStreetHolder
         val houseAndApartmentHolder = "\uD83D\uDEAA ${this?.houseAndApartment}"

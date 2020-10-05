@@ -191,6 +191,7 @@
     <string name="checkoutNoteTitle">Комментарий к заказу:</string>
     <string name="deliveryCost">🚛 %1$d ₸</string>
     <string name="cityStreetHolder">🚛🏠 %1$s</string>
+    <string name="productCount">x %1$d</string>
 
     <!-- Order -->
     <string name="orderStepsTestText">Шаг</string>

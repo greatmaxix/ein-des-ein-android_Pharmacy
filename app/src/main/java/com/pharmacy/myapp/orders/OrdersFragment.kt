@@ -13,13 +13,12 @@ import kotlinx.android.synthetic.main.fragment_orders.*
 
 class OrdersFragment(private val viewModel: OrdersViewModel) : BaseMVVMFragment(R.layout.fragment_orders) {
 
-    private val adapter by lazy { OrdersAdapter(viewModel::getOrderDetail) }
+    private val ordersAdapter by lazy { OrdersAdapter(viewModel::getOrderDetail) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showBackButton()
-        rvOrdersList.addItemDecorator()
-        rvOrdersList.adapter = adapter
+        initRecyclerView()
         cgState.setOnCheckedChangeListener { _, checkedId ->
             val state = when (checkedId) {
                 R.id.chipMyInProcess -> IN_PROGRESS
@@ -29,7 +28,12 @@ class OrdersFragment(private val viewModel: OrdersViewModel) : BaseMVVMFragment(
             }
             viewModel.setStateQuery(state)
         }
-        adapter.addStateListener { progressCallback?.setInProgress(it) }
+        ordersAdapter.addStateListener { progressCallback?.setInProgress(it) }
+    }
+
+    private fun initRecyclerView() = rvOrdersList.apply {
+        addItemDecorator()
+        adapter = ordersAdapter
     }
 
     override fun onBindLiveData() {
@@ -37,7 +41,7 @@ class OrdersFragment(private val viewModel: OrdersViewModel) : BaseMVVMFragment(
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
 
         observe(viewModel.directionLiveData, navController::navigate)
-        observe(viewModel.ordersLiveData) { adapter.submitData(lifecycle, it) }
+        observe(viewModel.ordersLiveData) { ordersAdapter.submitData(lifecycle, it) }
         observe(viewModel.orderLiveData) { doNav(fromOrderToOrderDetails(it)) }
     }
 

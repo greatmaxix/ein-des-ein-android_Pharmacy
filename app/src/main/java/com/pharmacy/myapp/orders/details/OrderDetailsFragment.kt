@@ -17,6 +17,7 @@ import com.pharmacy.myapp.data.remote.DummyData.paymentMethod
 import com.pharmacy.myapp.model.order.Order
 import com.pharmacy.myapp.model.order.OrderStatus
 import com.pharmacy.myapp.ui.OrderSteps
+import com.pharmacy.myapp.ui.PharmacyAddressOrder
 import kotlinx.android.synthetic.main.fragment_order_details.*
 
 class OrderDetailsFragment(private val viewModel: OrderDetailsViewModel) : BaseMVVMFragment(R.layout.fragment_order_details) {
@@ -56,19 +57,19 @@ class OrderDetailsFragment(private val viewModel: OrderDetailsViewModel) : BaseM
         statusTitleOrderDetails.visibleOrGone(isCancelled)
         statusDescriptionOrderDetails.visibleOrGone(isCancelled)
 
-        viewBuyerInfoOrderDetails.setData(order.contactInfo)
+        viewBuyerInfoOrderDetails.customer = order.contactInfo
         val comment = order.deliveryInfo.comment
         if (comment.isNullOrEmpty()) {
             mcvNoteOrderDetails.gone()
         }
 
-        with(args.order.pharmacy) { pharmacyAddressOrder.setData(Triple(logo.url, name, location.address)) }
+        with(args.order.pharmacy) { pharmacyAddressOrder.pharmacy = PharmacyAddressOrder.PharmacyInfo(logo.url, name, location.address) }
 
         tvNoteOrderDetails.text = comment
 
         if (order.deliveryInfo.deliveryType?.isDelivery.falseIfNull()) {
             viewBuyerDeliveryAddressOrderDetails.visible()
-            viewBuyerDeliveryAddressOrderDetails.setData(order.deliveryInfo.addressOrderData)
+            viewBuyerDeliveryAddressOrderDetails.deliveryAddress = order.deliveryInfo.addressOrderData
         }
 
         tvTotalPayableOrderDetails.text = getString(R.string.orderCost, order.pharmacyProductsTotalPrice.formatPrice())

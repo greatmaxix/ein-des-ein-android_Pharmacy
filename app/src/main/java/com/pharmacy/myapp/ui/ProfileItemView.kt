@@ -43,7 +43,7 @@ class ProfileItemView @JvmOverloads constructor(
         mtvTitleProfileItem.text = title
         mtvDetailProfileItem.text = detailText
         ivArrowProfileItem.visibleOrGone(arrowVisibility)
-        ivIconProfileItem.setColorFilter(ContextCompat.getColor(context, mainColor), PorterDuff.Mode.SRC_IN)
+        ivIconProfileItem.setColorFilter(colorCompat(mainColor), PorterDuff.Mode.SRC_IN)
         mtvTitleProfileItem.textColor(mainColor)
     }
 

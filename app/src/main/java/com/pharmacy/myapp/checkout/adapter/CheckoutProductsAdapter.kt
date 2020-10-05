@@ -24,7 +24,7 @@ class CheckoutProductsAdapter(list: MutableList<CartProduct>) : BaseRecyclerAdap
                 tvProductTitleCheckout.setTextHtml(item.rusName)
                 tvProductDescriptionCheckout.setTextHtml(item.releaseForm)
                 tvProductIssuerCheckout.text = item.manufacture.producer
-                tvCountCheckout.text = String.format("x %d", item.count)
+                tvCountCheckout.text = stringRes(R.string.productCount, item.count)
                 fabProductPriceCheckout.text = stringRes(R.string.price, item.price)
             }
         }
