@@ -31,7 +31,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         get() = if (this) DeliveryType.DELIVERY else DeliveryType.PICKUP
 
     private val Boolean.deliveryAddress
-        get() = if (this) viewBuyerDeliveryAddressCheckout.obtainDeliveryAddress() else null
+        get() = if (this) viewBuyerDeliveryAddressCheckout.obtainAddress() else null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

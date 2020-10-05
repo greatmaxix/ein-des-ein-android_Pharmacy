@@ -27,6 +27,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         recipesContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
         orderContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_orders, null, R.id.nav_profile) }
         itemAboutProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
+        itemAddressProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_address, null, R.id.nav_profile) }
     }
 
     override fun onBindLiveData() {

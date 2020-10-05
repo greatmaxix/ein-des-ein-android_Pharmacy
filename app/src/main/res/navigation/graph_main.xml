@@ -432,6 +432,12 @@
         android:label="@string/aboutAppTitle"
         tools:layout="@layout/fragment_about" />
 
+    <fragment
+        android:id="@+id/nav_address"
+        android:name="com.pharmacy.myapp.user.address.AddressFragment"
+        android:label="@string/addressTitle"
+        tools:layout="@layout/fragment_address" />
+
     <action
         android:id="@+id/fromOrderToOrderDetails"
         app:destination="@id/nav_order"
