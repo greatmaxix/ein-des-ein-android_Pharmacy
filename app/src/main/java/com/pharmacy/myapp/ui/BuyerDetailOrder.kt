@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.core.extensions.gone
 import com.pharmacy.myapp.core.extensions.inflate
 import com.pharmacy.myapp.orders.model.CustomerOrderData
 import kotlinx.android.extensions.LayoutContainer
@@ -33,6 +34,9 @@ class BuyerDetailsOrder @JvmOverloads constructor(
         tvBuyerPhoneOrder.text = phoneHolder
         val emailHolder = "\uD83D\uDCEA ${customer?.email}"
         tvBuyerEmailOrder.text = emailHolder
+        if (customer?.email.isNullOrEmpty()) {
+            tvBuyerEmailOrder.gone()
+        }
     }
 
     fun setData(customer : CustomerOrderData) {

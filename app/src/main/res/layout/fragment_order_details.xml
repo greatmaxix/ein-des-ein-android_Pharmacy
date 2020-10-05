@@ -152,9 +152,13 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProductsOrderDetails"
+                style="@style/Recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp" />
+                android:layout_marginTop="@dimen/_16sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:layout_height="@dimen/_164sdp"
+                tools:listitem="@layout/item_checkout_product" />
 
             <LinearLayout
                 android:layout_width="match_parent"

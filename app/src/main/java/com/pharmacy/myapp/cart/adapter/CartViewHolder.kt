@@ -63,7 +63,7 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
             tvTitle.setTextHtml(product.rusName)
             tvSubTitle.setTextHtml(product.releaseForm)
 
-            mbCounter.text = product.cartProductInfo.count.toString()
+            mbCounter.text = product.count.toString()
 
             fun setNewCounterValue(newValue: Int) {
                 mbCounter.text = newValue.toString()

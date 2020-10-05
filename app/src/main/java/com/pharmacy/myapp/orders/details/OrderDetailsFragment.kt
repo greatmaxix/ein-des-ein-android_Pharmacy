@@ -112,7 +112,6 @@ class OrderDetailsFragment(private val viewModel: OrderDetailsViewModel) : BaseM
 
     private fun initOrderProducts() {
         rvProductsOrderDetails.setHasFixedSize(true)
-        rvProductsOrderDetails.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         rvProductsOrderDetails.adapter = CheckoutProductsAdapter(args.order.pharmacyProductOrderDataList.toMutableList())
     }
 }
