@@ -14,8 +14,7 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.adapter.CheckoutProductsAdapter
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
-import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.core.extensions.toast
+import com.pharmacy.myapp.core.extensions.mockToast
 import com.pharmacy.myapp.core.extensions.visibleOrGone
 import com.pharmacy.myapp.data.remote.DummyData.paymentMethod
 import com.pharmacy.myapp.ui.OrderSteps
@@ -49,9 +48,9 @@ class OrderFragment(private val viewModel: OrderViewModel) : BaseMVVMFragment(R.
         viewBuyerDetailsOrder.setData("Some full name", "+3801231231231", "test@exapmle.com")
         tvNoteOrder.text = "Оставьте у двери, предварительно позвонив 4 раза в дверь"
 
-        tvPaymentTypeEditOrder.onClick { requireContext().toast("TODO edit payment method") }
-        tvOrdersListEditOrder.onClick { requireContext().toast("TODO edit order list") }
-        btnCheckoutOrder.onClick { requireContext().toast("TODO order") }
+        tvPaymentTypeEditOrder.mockToast("TODO edit payment method")
+        tvOrdersListEditOrder.mockToast("TODO edit order list")
+        btnCheckoutOrder.mockToast("TODO order")
 
         tvTotalAmountOrder.text = "123 ₸"
         tvDiscountOrder.text = "321 ₸"

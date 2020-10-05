@@ -5,8 +5,7 @@ import android.view.View
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
-import com.pharmacy.myapp.core.extensions.setDebounceOnClickListener
-import com.pharmacy.myapp.core.extensions.toast
+import com.pharmacy.myapp.core.extensions.mockToast
 import kotlinx.android.synthetic.main.fragment_about.*
 
 class AboutFragment : BaseMVVMFragment(R.layout.fragment_about) {
@@ -18,9 +17,9 @@ class AboutFragment : BaseMVVMFragment(R.layout.fragment_about) {
 
         tvVersionAbout.text = getString(R.string.versionAbout, BuildConfig.VERSION_NAME)
 
-        itemUserAgreement.setDebounceOnClickListener { requireContext().toast("Пользовательское соглашение") }
-        itemPersonalData.setDebounceOnClickListener { requireContext().toast("О Персональных данных") }
-        itemDataUsage.setDebounceOnClickListener { requireContext().toast("Условия использования данных") }
-        itemCashback.setDebounceOnClickListener { requireContext().toast("Про кешбек") }
+        itemUserAgreement.mockToast("Пользовательское соглашение")
+        itemPersonalData.mockToast("О Персональных данных")
+        itemDataUsage.mockToast("Условия использования данных")
+        itemCashback.mockToast("Про кешбек")
     }
 }

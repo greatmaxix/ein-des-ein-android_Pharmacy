@@ -44,9 +44,9 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
 
         setProductInfo()
 
-        mcvAnalog.setDebounceOnClickListener { onAnalog() }
-        mcvCategory.setDebounceOnClickListener { onCategory() }
-        mcvInstruction.setDebounceOnClickListener { onInstruction() }
+        mcvAnalog.mockToast(getString(R.string.expectSoonMock))
+        mcvCategory.mockToast("TODO: Category")
+        mcvInstruction.mockToast(getString(R.string.expectSoonMock))
         mcvQuestions.setDebounceOnClickListener { navController.navigate(R.id.fromProductToChat) }
         fbWish.setDebounceOnClickListener { viewModel.setOrRemoveWish(!args.product.isInWish to args.product.globalProductId) }
         args.product.aggregation?.let {
@@ -67,12 +67,6 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         }
         navController.popBackStack()
     }
-
-    private fun onAnalog() = requireContext().toast(getString(R.string.expectSoonMock))
-
-    private fun onCategory() = requireContext().toast("TODO: Category")
-
-    private fun onInstruction() = requireContext().toast(getString(R.string.expectSoonMock))
 
     private fun setProductInfo() = with(args.product) {
         tvTitle.setTextHtml(rusName)
