@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.orders.model
+package com.pharmacy.myapp.data.remote.model.order
 
 import com.google.gson.annotations.SerializedName
 

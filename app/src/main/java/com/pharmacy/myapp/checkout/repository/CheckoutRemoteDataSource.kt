@@ -1,7 +1,7 @@
 package com.pharmacy.myapp.checkout.repository
 
-import com.pharmacy.myapp.data.remote.rest.RestManager
-import com.pharmacy.myapp.orders.model.CreateOrderRequest
+import com.pharmacy.myapp.data.remote.RestManager
+import com.pharmacy.myapp.data.remote.model.order.CreateOrderRequest
 
 class CheckoutRemoteDataSource(private val rm: RestManager) {
 

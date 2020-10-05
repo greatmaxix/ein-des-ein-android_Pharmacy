@@ -8,7 +8,7 @@ import androidx.navigation.NavDirections
 import com.pharmacy.myapp.chat.model.ChatMessage
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
-import com.pharmacy.myapp.data.DummyData
+import com.pharmacy.myapp.data.remote.DummyData
 import com.pharmacy.myapp.util.Constants
 import timber.log.Timber
 import java.io.File

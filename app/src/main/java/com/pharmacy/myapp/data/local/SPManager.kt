@@ -8,6 +8,7 @@ import com.pharmacy.myapp.core.extensions.SharedPreferenceContext
 import com.pharmacy.myapp.core.extensions.get
 import com.pharmacy.myapp.core.extensions.put
 import com.pharmacy.myapp.core.general.interfaces.ManagerInterface
+import com.pharmacy.myapp.model.auth.token.TokenModel
 
 class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterface {
 
@@ -37,6 +38,11 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
     var regionId: Int?
         get() = get(Keys.REGION_ID)
         set(value) { value?.let { put(Keys.REGION_ID, it) } }
+
+    fun saveTokens(new: TokenModel){
+        token = new.token
+        refreshToken = new.refreshToken
+    }
 
     override fun clear() = sp.edit {
         sp.all.forEach {

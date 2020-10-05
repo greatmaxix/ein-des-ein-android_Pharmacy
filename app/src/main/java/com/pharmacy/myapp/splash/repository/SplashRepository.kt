@@ -1,7 +1,7 @@
 package com.pharmacy.myapp.splash.repository
 
 import com.pharmacy.myapp.core.network.ResponseWrapper
-import com.pharmacy.myapp.user.model.customerInfo.Customer
+import com.pharmacy.myapp.user.model.customer.Customer
 
 class SplashRepository(private val rds: SplashRemoteDataSource, private val lds: SplashLocalDataSource) {
 

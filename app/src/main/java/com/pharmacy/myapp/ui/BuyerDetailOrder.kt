@@ -7,7 +7,7 @@ import android.widget.FrameLayout
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.gone
 import com.pharmacy.myapp.core.extensions.inflate
-import com.pharmacy.myapp.orders.model.CustomerOrderData
+import com.pharmacy.myapp.data.remote.model.order.CustomerOrderData
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_buyer_details_order.view.*
 

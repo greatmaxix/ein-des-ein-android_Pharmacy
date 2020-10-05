@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.orders.model
+package com.pharmacy.myapp.data.remote.rest.request.order
 
 import com.pharmacy.myapp.R
 

@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.user.model.customerInfo
+package com.pharmacy.myapp.user.model.customer
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

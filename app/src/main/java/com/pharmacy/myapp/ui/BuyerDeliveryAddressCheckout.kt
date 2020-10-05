@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import androidx.core.widget.doAfterTextChanged
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.inflate
-import com.pharmacy.myapp.orders.model.AddressOrderData
+import com.pharmacy.myapp.data.remote.model.order.AddressOrderData
 import com.pharmacy.myapp.ui.text.isAddressLengthValid
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_buyer_deliver_address_checkout.view.*

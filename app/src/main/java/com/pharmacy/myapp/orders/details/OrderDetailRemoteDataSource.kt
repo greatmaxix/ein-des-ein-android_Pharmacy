@@ -1,6 +1,7 @@
 package com.pharmacy.myapp.orders.details
 
-import com.pharmacy.myapp.data.remote.rest.RestManager
+import com.pharmacy.myapp.data.remote.RestManager
+
 
 class OrderDetailRemoteDataSource(private val rm: RestManager) {
 

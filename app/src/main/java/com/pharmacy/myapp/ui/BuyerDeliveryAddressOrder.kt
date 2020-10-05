@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.inflate
-import com.pharmacy.myapp.orders.model.AddressOrderData
+import com.pharmacy.myapp.data.remote.model.order.AddressOrderData
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_buyer_deliver_address_order.view.*
 

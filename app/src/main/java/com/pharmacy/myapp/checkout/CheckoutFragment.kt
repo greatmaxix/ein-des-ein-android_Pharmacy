@@ -14,9 +14,9 @@ import com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment.Companion.PROM
 import com.pharmacy.myapp.checkout.model.TempPaymentMethod
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
-import com.pharmacy.myapp.data.DummyData
-import com.pharmacy.myapp.orders.model.DeliveryInfoOrderData
-import com.pharmacy.myapp.orders.model.DeliveryType
+import com.pharmacy.myapp.data.remote.DummyData
+import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
+import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {

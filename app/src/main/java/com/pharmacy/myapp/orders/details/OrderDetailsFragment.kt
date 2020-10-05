@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -15,7 +13,7 @@ import com.pharmacy.myapp.R
 import com.pharmacy.myapp.checkout.adapter.CheckoutProductsAdapter
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
-import com.pharmacy.myapp.data.DummyData.paymentMethod
+import com.pharmacy.myapp.data.remote.DummyData.paymentMethod
 import com.pharmacy.myapp.model.order.Order
 import com.pharmacy.myapp.model.order.OrderStatus
 import com.pharmacy.myapp.ui.OrderSteps
