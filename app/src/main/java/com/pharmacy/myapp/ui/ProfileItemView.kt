@@ -3,9 +3,8 @@ package com.pharmacy.myapp.ui
 import android.content.Context
 import android.graphics.PorterDuff
 import android.util.AttributeSet
-import android.view.View
-import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
+import com.google.android.material.card.MaterialCardView
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.*
 import kotlinx.android.extensions.LayoutContainer
@@ -15,7 +14,7 @@ class ProfileItemView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr), LayoutContainer {
+) : MaterialCardView(context, attrs, defStyleAttr), LayoutContainer {
 
     private var icon: Int = -1
     private var title: String = ""
@@ -26,6 +25,11 @@ class ProfileItemView @JvmOverloads constructor(
     override val containerView = inflate(R.layout.layout_profile_item, true)
 
     init {
+        setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorGlobalWhite))
+        radius = getDimensionPixelSize(R.dimen._7sdp).toFloat()
+        cardElevation = 0F
+        useCompatPadding = true
+        setRippleColorResource(R.color.colorRippleBlue)
         attrs?.let {
             context.theme.obtainStyledAttributes(it, R.styleable.ProfileItemView, defStyleAttr, -1)
                 .getData {
@@ -50,8 +54,6 @@ class ProfileItemView @JvmOverloads constructor(
         ivIconProfileItem.setColorFilter(ContextCompat.getColor(context, mainColor), PorterDuff.Mode.SRC_IN)
         mtvTitleProfileItem.textColor(mainColor)
     }
-
-    fun setOnClick(f: View.() -> Unit) = profileItemContainer.setDebounceOnClickListener(listener = f)
 
     fun setDetailText(text: String?) {
         mtvDetailProfileItem.text = text

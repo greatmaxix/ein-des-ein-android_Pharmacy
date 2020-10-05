@@ -18,15 +18,15 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fabEditProfile.onClick { doNav(actionFromProfileToEdit()) }
-        itemRegionProfile.setOnClick { doNav(globalToRegion()) }
-        itemLogoutProfile.setOnClick { showLogoutDialog() }
+        fabEditProfile.setDebounceOnClickListener { doNav(actionFromProfileToEdit()) }
+        itemRegionProfile.setDebounceOnClickListener { doNav(globalToRegion()) }
+        itemLogoutProfile.setDebounceOnClickListener { showLogoutDialog() }
 
-        wishContainerProfile.onClick { doNav(actionFromProfileToWish()) }
-        analyzesContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_profile) }
-        recipesContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
-        orderContainerProfile.onClick { navController.onNavDestinationSelected(R.id.nav_my_orders, null, R.id.nav_profile) }
-        itemAboutProfile.onClick { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
+        wishContainerProfile.setDebounceOnClickListener { doNav(actionFromProfileToWish()) }
+        analyzesContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_profile) }
+        recipesContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
+        orderContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_my_orders, null, R.id.nav_profile) }
+        itemAboutProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
     }
 
     override fun onBindLiveData() {
