@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.myOrders
+package com.pharmacy.myapp.orders
 
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
@@ -7,9 +7,13 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
-import com.pharmacy.myapp.myOrders.repository.MyOrdersPagingSource
+import com.pharmacy.myapp.core.network.ResponseWrapper.Success
+import com.pharmacy.myapp.core.network.ResponseWrapper.Error
+import com.pharmacy.myapp.model.order.Order
+import com.pharmacy.myapp.orders.repository.OrdersPagingSource
+import com.pharmacy.myapp.orders.repository.OrdersRepository
 
-class MyOrdersViewModel : BaseViewModel() {
+class OrdersViewModel(private val repository: OrdersRepository) : BaseViewModel() {
 
     private val _errorLiveData by lazy { SingleLiveEvent<String>() }
     val errorLiveData: LiveData<String> by lazy { _errorLiveData }
@@ -20,17 +24,31 @@ class MyOrdersViewModel : BaseViewModel() {
     private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
 
+    private val _orderLiveData by lazy { SingleLiveEvent<Order>() }
+    val orderLiveData: LiveData<Order> by lazy { _orderLiveData }
+
     private val stateQueryLiveData by lazy { MutableLiveData(StateQuery.ALL) }
 
-    val myOrdersLiveData by lazy {
+    val ordersLiveData by lazy {
         stateQueryLiveData.distinctUntilChanged().switchMap {
-            Pager(PagingConfig(ORDER_PAGE_SIZE, initialLoadSize = ORDER_INIT_LOAD_SIZE)) { MyOrdersPagingSource(it.stateQuery) }
+            Pager(PagingConfig(ORDER_PAGE_SIZE, initialLoadSize = ORDER_INIT_LOAD_SIZE)) { OrdersPagingSource(it.stateQuery) }
                 .flow.cachedIn(viewModelScope)
                 .asLiveData()
         }
     }
 
     fun setStateQuery(state: StateQuery) = stateQueryLiveData.postValue(state)
+
+    fun getOrderDetail(id: Int) {
+        _progressLiveData.value = true
+        launchIO {
+            when (val response = repository.getOrderDetail(id)) {
+                is Success -> _orderLiveData.postValue(response.value.data.item)
+                is Error -> _errorLiveData.postValue(response.errorMessage)
+            }
+            _progressLiveData.postValue(false)
+        }
+    }
 
     companion object {
         private const val ORDER_PAGE_SIZE = 10

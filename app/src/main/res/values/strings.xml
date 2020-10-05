@@ -191,6 +191,7 @@
     <string name="checkoutNoteTitle">Комментарий к заказу:</string>
     <string name="deliveryCost">🚛 %1$d ₸</string>
     <string name="cityStreetHolder">🚛🏠 %1$s</string>
+    <string name="productCount">x %1$d</string>
 
     <!-- Order -->
     <string name="orderStepsTestText">Шаг</string>
@@ -208,13 +209,16 @@
     <string name="statusInDelivery">Доставляется</string>
     <string name="statusDone">Выполнен</string>
     <string name="statusCanceled">Отменен</string>
+    <string name="cancelOrderDetails">Отменить заказ</string>
+    <string name="orderWithIdCanceled">Ваш заказ № %1$d отменен</string>
+    <string name="orderCanceled">Отменен аптекой</string>
 
-    <!-- My orders-->
-    <string name="myOrdersLabel">Мои заказы</string>
-    <string name="allChipMyOrders">Все</string>
-    <string name="inProcessChipMyOrder">В обработке</string>
-    <string name="doneChipMyOrder">Выполнен</string>
-    <string name="canceledChipMyOrder">Отменен</string>
+    <!-- Orders-->
+    <string name="ordersLabel">Мои заказы</string>
+    <string name="allChipOrders">Все</string>
+    <string name="inProcessChipOrders">В обработке</string>
+    <string name="doneChipOrders">Выполнен</string>
+    <string name="canceledChipOrders">Отменен</string>
     <string name="iconDeliveryTypeContentDescription">Иконка типа доставки</string>
     <string name="firstItemInOrderContentDescription">Иконка первого товара в корзине</string>
     <string name="secondItemInOrderContentDescription">Иконка второго товара в корзине</string>

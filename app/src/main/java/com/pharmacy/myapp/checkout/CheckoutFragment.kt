@@ -17,6 +17,7 @@ import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.data.remote.DummyData
 import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
 import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
+import com.pharmacy.myapp.ui.PharmacyAddressOrder
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {
@@ -63,9 +64,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     }
 
     private fun setPharmacyInfo() = with(args.cartItem) {
-        ivPharmacyLogoCheckout.loadGlideDrugstore(logo.url)
-        tvPharmacyNameCheckout.text = name
-        tvPharmacyAddressOrder.text = getString(R.string.cityStreetHolder, location.address)
+        pharmacyAddressCheckout.pharmacy = PharmacyAddressOrder.PharmacyInfo(logo.url, name, location.address)
     }
 
     private fun validateFieldsAndSendOrder() {

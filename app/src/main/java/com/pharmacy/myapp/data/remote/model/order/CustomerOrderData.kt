@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class CustomerOrderData(
-    @SerializedName("name") private val name: String?,
-    @SerializedName("phone") private val phone: String?,
-    @SerializedName("email") private val email: String?
+    @SerializedName("name") val name: String?,
+    @SerializedName("phone") val phone: String?,
+    @SerializedName("email") val email: String?
 ) : Parcelable

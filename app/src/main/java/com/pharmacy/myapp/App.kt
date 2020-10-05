@@ -1,14 +1,11 @@
 package com.pharmacy.myapp
 
 import android.app.Application
-import com.google.android.gms.maps.MapsInitializer
+import com.pharmacy.myapp.util.HyperlinkedDebugTree
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.android.logger.AndroidLogger
 import org.koin.androidx.fragment.koin.fragmentFactory
 import org.koin.core.context.startKoin
 import org.koin.core.logger.EmptyLogger
-import org.koin.core.logger.Level
 import timber.log.Timber
 import java.util.*
 
@@ -29,7 +26,7 @@ class App : Application() {
         }
 
         if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
+            Timber.plant(HyperlinkedDebugTree())
         }
     }
 
