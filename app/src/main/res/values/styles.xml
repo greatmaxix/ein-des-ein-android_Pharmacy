@@ -145,7 +145,7 @@
         <item name="strokeColor">@color/primaryBlue</item>
     </style>
 
-    <style name="Recycler">
+    <style name="ScrollStyle">
         <item name="android:scrollbars">none</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:splitMotionEvents">false</item>

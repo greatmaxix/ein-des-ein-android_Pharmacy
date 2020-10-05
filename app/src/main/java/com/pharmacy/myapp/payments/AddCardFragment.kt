@@ -10,7 +10,7 @@ import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.textfield.TextInputLayout
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.isLetterAndSpace
-import com.pharmacy.myapp.core.extensions.setDebounceOnClickListener
+import com.pharmacy.myapp.core.extensions.mockToast
 import com.pharmacy.myapp.core.extensions.toast
 import com.pharmacy.myapp.util.CreditCardExpiryInputFilter
 import com.pharmacy.myapp.util.CreditCardInputFilter
@@ -72,9 +72,8 @@ class AddCardFragment : PaymentsBaseFragment(R.layout.fragment_add_card) {
             }
         }
 
-        btnAddCard.setDebounceOnClickListener {
-            requireContext().toast("TODO add card") // TODO add card
-        }
+        btnAddCard.mockToast("TODO add card") // TODO add card
+
     }
 
     private fun updateButtonState() {

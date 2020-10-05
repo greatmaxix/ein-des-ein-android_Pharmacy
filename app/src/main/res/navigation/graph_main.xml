@@ -426,6 +426,12 @@
             app:argType="com.pharmacy.myapp.pharmacy.model.Pharmacy" />
     </dialog>
 
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.pharmacy.myapp.about.AboutFragment"
+        android:label="@string/aboutAppTitle"
+        tools:layout="@layout/fragment_about" />
+
     <action
         android:id="@+id/fromOrderToOrderDetails"
         app:destination="@id/nav_order"
