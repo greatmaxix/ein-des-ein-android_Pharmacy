@@ -25,7 +25,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         wishContainerProfile.setDebounceOnClickListener { doNav(actionFromProfileToWish()) }
         analyzesContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_profile) }
         recipesContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
-        orderContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_my_orders, null, R.id.nav_profile) }
+        orderContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_orders, null, R.id.nav_profile) }
         itemAboutProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
     }
 

@@ -1,24 +1,24 @@
-package com.pharmacy.myapp.myOrders
+package com.pharmacy.myapp.orders
 
 import android.os.Bundle
 import android.view.View
+import com.pharmacy.myapp.MainGraphDirections.Companion.fromOrderToOrderDetails
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.addItemDecorator
 import com.pharmacy.myapp.core.extensions.addStateListener
-import com.pharmacy.myapp.myOrders.StateQuery.*
-import com.pharmacy.myapp.myOrders.adapter.MyOrdersAdapter
-import kotlinx.android.synthetic.main.fragment_my_orders.*
+import com.pharmacy.myapp.orders.StateQuery.*
+import com.pharmacy.myapp.orders.adapter.OrdersAdapter
+import kotlinx.android.synthetic.main.fragment_orders.*
 
-class MyOrdersFragment(private val viewModel: MyOrdersViewModel) : BaseMVVMFragment(R.layout.fragment_my_orders) {
+class OrdersFragment(private val viewModel: OrdersViewModel) : BaseMVVMFragment(R.layout.fragment_orders) {
 
-    private val adapter by lazy { MyOrdersAdapter() }
+    private val ordersAdapter by lazy { OrdersAdapter(viewModel::getOrderDetail) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showBackButton()
-        rvOrdersListMyOrders.addItemDecorator()
-        rvOrdersListMyOrders.adapter = adapter
+        initRecyclerView()
         cgState.setOnCheckedChangeListener { _, checkedId ->
             val state = when (checkedId) {
                 R.id.chipMyInProcess -> IN_PROGRESS
@@ -28,7 +28,12 @@ class MyOrdersFragment(private val viewModel: MyOrdersViewModel) : BaseMVVMFragm
             }
             viewModel.setStateQuery(state)
         }
-        adapter.addStateListener { progressCallback?.setInProgress(it) }
+        ordersAdapter.addStateListener { progressCallback?.setInProgress(it) }
+    }
+
+    private fun initRecyclerView() = rvOrdersList.apply {
+        addItemDecorator()
+        adapter = ordersAdapter
     }
 
     override fun onBindLiveData() {
@@ -36,7 +41,8 @@ class MyOrdersFragment(private val viewModel: MyOrdersViewModel) : BaseMVVMFragm
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
 
         observe(viewModel.directionLiveData, navController::navigate)
-        observe(viewModel.myOrdersLiveData) { adapter.submitData(lifecycle, it) }
+        observe(viewModel.ordersLiveData) { ordersAdapter.submitData(lifecycle, it) }
+        observe(viewModel.orderLiveData) { doNav(fromOrderToOrderDetails(it)) }
     }
 
 }

@@ -2,7 +2,6 @@ package com.pharmacy.myapp.cart.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.pharmacy.myapp.core.extensions.formatPrice
 import com.pharmacy.myapp.model.Location
 import com.pharmacy.myapp.model.Logo
 import kotlinx.android.parcel.Parcelize
@@ -17,15 +16,15 @@ data class CartItem(
 ) : Parcelable {
 
     val totalPrice
-        get() = products.sumByDouble { it.price * it.cartProductInfo.count }
+        get() = products.sumByDouble { it.price * it.count }
 
     val totalCount
-        get() = products.sumBy { it.cartProductInfo.count }
+        get() = products.sumBy { it.count }
 
     val productOrderList
         get() = products.map { it.productOrderData }
 
     fun updateCount(count: Int, position: Int) {
-        products[position].cartProductInfo.count = count
+        products[position].count = count
     }
 }

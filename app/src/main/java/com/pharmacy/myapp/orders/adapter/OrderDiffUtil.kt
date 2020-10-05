@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.myOrders.adapter
+package com.pharmacy.myapp.orders.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.pharmacy.myapp.model.order.Order

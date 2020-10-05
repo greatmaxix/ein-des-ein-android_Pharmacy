@@ -51,7 +51,7 @@ class ProfileItemView @JvmOverloads constructor(
             mtvDetailProfileItem.visible()
         }
         ivArrowProfileItem.visibleOrGone(arrowVisibility)
-        ivIconProfileItem.setColorFilter(ContextCompat.getColor(context, mainColor), PorterDuff.Mode.SRC_IN)
+        ivIconProfileItem.setColorFilter(colorCompat(mainColor), PorterDuff.Mode.SRC_IN)
         mtvTitleProfileItem.textColor(mainColor)
     }
 
