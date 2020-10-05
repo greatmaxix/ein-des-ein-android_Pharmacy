@@ -161,7 +161,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProductsListCheckout"
-                style="@style/Recycler"
+                style="@style/ScrollStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"

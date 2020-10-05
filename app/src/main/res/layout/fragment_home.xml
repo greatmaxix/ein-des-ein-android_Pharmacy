@@ -91,7 +91,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <ScrollView
-        style="@style/Recycler"
+        style="@style/ScrollStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
