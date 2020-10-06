@@ -10,7 +10,6 @@ import com.pharmacy.myapp.core.network.ResponseWrapper
 import com.pharmacy.myapp.data.remote.model.order.CreateOrderRequest
 import com.pharmacy.myapp.data.remote.model.order.CustomerOrderData
 import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
-import timber.log.Timber
 
 class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewModel() {
 
@@ -27,7 +26,7 @@ class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewMo
     val addressLiveData = repository.address
 
     fun handlePromoCodeResult(code: String) {
-        Timber.e("PROMO CODE = $code")
+        // todo add on demand
     }
 
     fun sendOrder(customerInfo: CustomerOrderData, deliveryInfo: DeliveryInfoOrderData, cartItem: CartItem) {
