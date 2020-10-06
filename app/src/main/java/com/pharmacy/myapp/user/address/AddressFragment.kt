@@ -29,6 +29,7 @@ class AddressFragment(private val viewModel: AddressViewModel) : BaseMVVMFragmen
         observe(viewModel.addressLiveData, {
             it.addressOrderData?.let(customerAddress::setAddress)
             etNoteAddress.setText(it.comment)
+            tilNoteAddress.isEndIconVisible = false
         })
     }
 

@@ -59,5 +59,9 @@ class BuyerDeliveryAddress @JvmOverloads constructor(
         etStreetAddress.setText(street)
         etHouseAddress.setText(house)
         etApartmentAddress.setText(apartment)
+        tilCityAddress.isEndIconVisible = false
+        tilStreetAddress.isEndIconVisible = false
+        tilHouseAddress.isEndIconVisible = false
+        tilApartmentAddress.isEndIconVisible = false
     }
 }
