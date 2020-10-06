@@ -53,4 +53,11 @@ class BuyerDeliveryAddress @JvmOverloads constructor(
     }
 
     fun obtainAddress() = address
+
+    fun setAddress(data: AddressOrderData) = with(data) {
+        etCityAddress.setText(city)
+        etStreetAddress.setText(street)
+        etHouseAddress.setText(house)
+        etApartmentAddress.setText(apartment)
+    }
 }

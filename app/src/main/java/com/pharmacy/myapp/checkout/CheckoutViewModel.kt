@@ -24,6 +24,7 @@ class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewMo
     val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
 
     val customerInfoLiveData = repository.getCustomerInfo()
+    val addressLiveData = repository.address
 
     fun handlePromoCodeResult(code: String) {
         Timber.e("PROMO CODE = $code")
@@ -33,6 +34,7 @@ class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewMo
         val orderRequest = CreateOrderRequest(customerInfo, deliveryInfo, cartItem.id, cartItem.productOrderList, cartItem.totalPrice)
         _progressLiveData.value = true
         launchIO {
+            repository.saveAddress(deliveryInfo)
             when (val response = repository.sendOrder(orderRequest)) {
                 is ResponseWrapper.Success -> _directionLiveData.postValue(fromCheckoutToOrder(response.value.data.item))
                 is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorMessage)

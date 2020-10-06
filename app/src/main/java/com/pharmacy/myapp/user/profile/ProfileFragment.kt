@@ -32,15 +32,15 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-        viewModel.customerInfoLiveData.observeExt {
-            mtvNameProfile.text = it.name
-            mtvPhoneProfile.text = it.phone.addPlusSignIfNeeded().formatPhone()
-            itemRegionProfile.setDetailText(it.region?.regionName ?: "")
+        observe(viewModel.customerInfoLiveData) {
+            mtvNameProfile.text = it?.name
+            mtvPhoneProfile.text = it?.phone?.addPlusSignIfNeeded()?.formatPhone()
+            itemRegionProfile.setDetailText(it?.region?.regionName ?: "")
         }
-        viewModel.directionLiveData.observeExt(navController::navigate)
-        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
-        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
-        viewModel.avatarLiveData.observeNullableExt {
+        observe(viewModel.directionLiveData, navController::navigate)
+        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        observeNullable(viewModel.avatarLiveData) {
             ivProfile.loadGlide(it) {
                 placeholder(R.drawable.ic_avatar)
                 apply(RequestOptions.circleCropTransform())

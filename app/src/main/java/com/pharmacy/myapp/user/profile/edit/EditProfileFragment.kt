@@ -88,9 +88,9 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
     override fun onBindLiveData() {
         super.onBindLiveData()
         viewModel.customerInfoLiveData.observeExt {
-            etEmailEditProfile.setText(it.email)
-            etPhoneEditProfile.setText(it.phone.addPlusSignIfNeeded())
-            etNameEditProfile.setText(it.name)
+            etEmailEditProfile.setText(it?.email)
+            etPhoneEditProfile.setText(it?.phone?.addPlusSignIfNeeded())
+            etNameEditProfile.setText(it?.name)
 
             etNameEditProfile.addTextChangedListener { userDataChanged = true }
             etEmailEditProfile.addTextChangedListener { userDataChanged = true }

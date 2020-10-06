@@ -7,6 +7,7 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.backPress
 import com.pharmacy.myapp.core.extensions.setDebounceOnClickListener
 import com.pharmacy.myapp.core.extensions.text
+import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
 import kotlinx.android.synthetic.main.fragment_address.*
 
 class AddressFragment(private val viewModel: AddressViewModel) : BaseMVVMFragment(R.layout.fragment_address) {
@@ -18,11 +19,17 @@ class AddressFragment(private val viewModel: AddressViewModel) : BaseMVVMFragmen
 
         btnSaveAddress.setDebounceOnClickListener {
             if (customerAddress.validateFields()) {
-                viewModel.saveAddressAndComment(customerAddress.obtainAddress(), tilNoteAddress.text())
+                viewModel.saveAddress(DeliveryInfoOrderData(tilNoteAddress.text(), customerAddress.obtainAddress()))
                 backPress()
             }
         }
+    }
 
+    override fun onBindLiveData() {
+        observe(viewModel.addressLiveData, {
+            it.addressOrderData?.let(customerAddress::setAddress)
+            etNoteAddress.setText(it.comment)
+        })
     }
 
 }

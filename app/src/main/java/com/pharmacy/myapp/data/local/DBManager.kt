@@ -3,11 +3,13 @@ package com.pharmacy.myapp.data.local
 import android.content.Context
 import androidx.room.*
 import com.pharmacy.myapp.core.general.interfaces.ManagerInterface
+import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
 import com.pharmacy.myapp.model.Picture
 import com.pharmacy.myapp.model.product.RecentlyViewedDAO
 import com.pharmacy.myapp.model.region.RegionDAO
 import com.pharmacy.myapp.model.region.LocalRegion
 import com.pharmacy.myapp.product.model.Product
+import com.pharmacy.myapp.user.model.addressAndNote.AddressDAO
 import com.pharmacy.myapp.user.model.customer.CustomerDAO
 import com.pharmacy.myapp.user.model.customer.Customer
 
@@ -24,7 +26,7 @@ class DBManager(context: Context) : ManagerInterface {
         .build()
 
 
-    @Database(entities = [Customer::class, LocalRegion::class, Product::class], version = VERSION, exportSchema = false)
+    @Database(entities = [Customer::class, LocalRegion::class, Product::class, DeliveryInfoOrderData::class], version = VERSION, exportSchema = false)
     @TypeConverters(StringListConverter::class, PicturesListConverter::class)
     abstract class LocalDB : RoomDatabase() {
 
@@ -33,6 +35,8 @@ class DBManager(context: Context) : ManagerInterface {
         abstract fun regionDAO(): RegionDAO
 
         abstract fun recentlyViewedDAO(): RecentlyViewedDAO
+
+        abstract fun addressDAO(): AddressDAO
 
     }
 
@@ -44,6 +48,9 @@ class DBManager(context: Context) : ManagerInterface {
 
     val recentlyViewedDAO
         get() = db.recentlyViewedDAO()
+
+    val addressDAO
+        get() = db.addressDAO()
 
     class StringListConverter {
         @TypeConverter

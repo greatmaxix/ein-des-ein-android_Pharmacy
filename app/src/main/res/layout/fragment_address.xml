@@ -24,6 +24,7 @@
         app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNoteAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
