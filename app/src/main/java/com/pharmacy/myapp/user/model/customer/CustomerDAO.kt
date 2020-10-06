@@ -8,7 +8,7 @@ import com.pharmacy.myapp.core.db.BaseDao
 interface CustomerDAO : BaseDao<Customer> {
 
     @Query("select * from customer limit 1")
-    fun customerLiveData(): LiveData<Customer>
+    fun customerLiveData(): LiveData<Customer?>
 
     @Query("select * from customer limit 1")
     suspend fun getCustomer(): Customer?

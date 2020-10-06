@@ -27,19 +27,20 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         recipesContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
         orderContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_orders, null, R.id.nav_profile) }
         itemAboutProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
+        itemAddressProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_address, null, R.id.nav_profile) }
     }
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-        viewModel.customerInfoLiveData.observeExt {
-            mtvNameProfile.text = it.name
-            mtvPhoneProfile.text = it.phone.addPlusSignIfNeeded().formatPhone()
-            itemRegionProfile.setDetailText(it.region?.regionName ?: "")
+        observe(viewModel.customerInfoLiveData) {
+            mtvNameProfile.text = it?.name
+            mtvPhoneProfile.text = it?.phone?.addPlusSignIfNeeded()?.formatPhone()
+            itemRegionProfile.setDetailText(it?.region?.regionName ?: "")
         }
-        viewModel.directionLiveData.observeExt(navController::navigate)
-        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
-        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
-        viewModel.avatarLiveData.observeNullableExt {
+        observe(viewModel.directionLiveData, navController::navigate)
+        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        observeNullable(viewModel.avatarLiveData) {
             ivProfile.loadGlide(it) {
                 placeholder(R.drawable.ic_avatar)
                 apply(RequestOptions.circleCropTransform())

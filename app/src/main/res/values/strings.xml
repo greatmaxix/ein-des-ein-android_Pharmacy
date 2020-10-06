@@ -354,4 +354,7 @@
     <string name="personalDataTitle">О Персональных данных</string>
     <string name="termsOfDataUseTitle">Условия использования данных</string>
     <string name="cashbackTitle">Про кешбек</string>
+
+    <!--Address-->
+    <string name="addressTitle">Адрес доставки</string>
 </resources>

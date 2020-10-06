@@ -111,7 +111,16 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginEnd="@dimen/_16sdp" />
 
-            <com.pharmacy.myapp.ui.BuyerDeliveryAddressCheckout
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvBuyerDeliveryAddressTitleCheckout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:text="@string/deliveryAddress"
+                android:textAppearance="@style/Text.BlockHeaderBold" />
+
+            <com.pharmacy.myapp.ui.BuyerDeliveryAddress
                 android:id="@+id/viewBuyerDeliveryAddressCheckout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -189,6 +198,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etOrderNote"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start|top"

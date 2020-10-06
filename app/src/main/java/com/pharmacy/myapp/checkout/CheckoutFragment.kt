@@ -16,7 +16,7 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.data.remote.DummyData
 import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
-import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
+import com.pharmacy.myapp.data.remote.model.order.DeliveryType
 import com.pharmacy.myapp.ui.PharmacyAddressOrder
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
@@ -31,7 +31,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         get() = if (this) DeliveryType.DELIVERY else DeliveryType.PICKUP
 
     private val Boolean.deliveryAddress
-        get() = if (this) viewBuyerDeliveryAddressCheckout.obtainDeliveryAddress() else null
+        get() = if (this) viewBuyerDeliveryAddressCheckout.obtainAddress() else null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,7 +70,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     private fun validateFieldsAndSendOrder() {
         val isDelivery = cardMethodDeliveryCheckout.isSelected
         if (viewBuyerDetailsCheckout.isFieldsValid() && (!isDelivery || viewBuyerDeliveryAddressCheckout.validateFields())) {
-            val deliveryInfo = DeliveryInfoOrderData(isDelivery.deliveryType, tilOrderNote.text(), isDelivery.deliveryAddress)
+            val deliveryInfo = DeliveryInfoOrderData(tilOrderNote.text(), isDelivery.deliveryAddress, isDelivery.deliveryType)
             viewModel.sendOrder(viewBuyerDetailsCheckout.getDetail(), deliveryInfo, args.cartItem)
         }
     }
@@ -81,7 +81,11 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         observe(viewModel.directionLiveData, navController::navigate)
 
         observe(viewModel.customerInfoLiveData) {
-            viewBuyerDetailsCheckout.setData(it.name, it.phone.addPlusSignIfNeeded(), it.email)
+            viewBuyerDetailsCheckout.setData(it?.name, it?.phone?.addPlusSignIfNeeded(), it?.email)
+        }
+        observe(viewModel.addressLiveData) {
+            it.addressOrderData?.let(viewBuyerDeliveryAddressCheckout::setAddress)
+            etOrderNote.setText(it.comment)
         }
     }
 

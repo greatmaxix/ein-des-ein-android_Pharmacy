@@ -87,17 +87,17 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-        viewModel.customerInfoLiveData.observeExt {
-            etEmailEditProfile.setText(it.email)
-            etPhoneEditProfile.setText(it.phone.addPlusSignIfNeeded())
-            etNameEditProfile.setText(it.name)
+        observe(viewModel.customerInfoLiveData) {
+            etEmailEditProfile.setText(it?.email)
+            etPhoneEditProfile.setText(it?.phone?.addPlusSignIfNeeded())
+            etNameEditProfile.setText(it?.name)
 
             etNameEditProfile.addTextChangedListener { userDataChanged = true }
             etEmailEditProfile.addTextChangedListener { userDataChanged = true }
         }
-        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
-        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
-        viewModel.avatarLiveData.observeNullableExt {
+        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+        observeNullable(viewModel.avatarLiveData) {
             ivProfileEdit.loadGlide(it) {
                 placeholder(R.drawable.ic_avatar)
                 skipMemoryCache(true)

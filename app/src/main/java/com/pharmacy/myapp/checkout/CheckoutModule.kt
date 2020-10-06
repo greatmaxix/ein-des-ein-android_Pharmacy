@@ -12,7 +12,7 @@ val checkoutModule = module {
 
     single { CheckoutRepository(get(), get()) }
     single { CheckoutRemoteDataSource(get()) }
-    single { CheckoutLocalDataSource(get<DBManager>().customerDAO) }
+    single { CheckoutLocalDataSource(get<DBManager>().customerDAO, get<DBManager>().addressDAO) }
 
     viewModel { CheckoutViewModel(get()) }
 

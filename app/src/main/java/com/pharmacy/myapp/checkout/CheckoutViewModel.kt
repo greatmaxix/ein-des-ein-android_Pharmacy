@@ -10,7 +10,6 @@ import com.pharmacy.myapp.core.network.ResponseWrapper
 import com.pharmacy.myapp.data.remote.model.order.CreateOrderRequest
 import com.pharmacy.myapp.data.remote.model.order.CustomerOrderData
 import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
-import timber.log.Timber
 
 class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewModel() {
 
@@ -24,15 +23,17 @@ class CheckoutViewModel(private val repository: CheckoutRepository) : BaseViewMo
     val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
 
     val customerInfoLiveData = repository.getCustomerInfo()
+    val addressLiveData = repository.address
 
     fun handlePromoCodeResult(code: String) {
-        Timber.e("PROMO CODE = $code")
+        // todo add on demand
     }
 
     fun sendOrder(customerInfo: CustomerOrderData, deliveryInfo: DeliveryInfoOrderData, cartItem: CartItem) {
         val orderRequest = CreateOrderRequest(customerInfo, deliveryInfo, cartItem.id, cartItem.productOrderList, cartItem.totalPrice)
         _progressLiveData.value = true
         launchIO {
+            repository.saveAddress(deliveryInfo)
             when (val response = repository.sendOrder(orderRequest)) {
                 is ResponseWrapper.Success -> _directionLiveData.postValue(fromCheckoutToOrder(response.value.data.item))
                 is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorMessage)
