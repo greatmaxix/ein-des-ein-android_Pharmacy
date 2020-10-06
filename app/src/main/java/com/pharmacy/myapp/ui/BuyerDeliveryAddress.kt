@@ -35,9 +35,9 @@ class BuyerDeliveryAddress @JvmOverloads constructor(
         setPadding(sidePadding, 0, sidePadding, bottomPadding)
     }
 
-    private fun assignWithClearError(returnedValue: Editable?.() -> Unit) = { editable: Editable? ->
+    private fun assignWithClearError(action: Editable?.() -> Unit) = { text: Editable? ->
         clearError()
-        returnedValue(editable)
+        action(text)
     }
 
     private fun clearError() {

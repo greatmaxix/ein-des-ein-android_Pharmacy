@@ -2,11 +2,11 @@ package com.pharmacy.myapp.user.address.repository
 
 import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
 
-class AddressRepository(private val alds: AddressLocalDataSource) {
+class AddressRepository(private val lds: AddressLocalDataSource) {
 
     val address
-        get() = alds.address
+        get() = lds.address
 
-    suspend fun saveAddress(address: DeliveryInfoOrderData) = alds.saveAddress(address)
+    suspend fun saveAddress(address: DeliveryInfoOrderData) = lds.saveAddress(address)
 
 }

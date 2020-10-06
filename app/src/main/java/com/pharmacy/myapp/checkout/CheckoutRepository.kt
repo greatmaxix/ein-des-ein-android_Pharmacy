@@ -7,19 +7,19 @@ import com.pharmacy.myapp.data.remote.model.order.CreateOrderRequest
 import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
 
 class CheckoutRepository(
-    private val crds: CheckoutRemoteDataSource,
-    private val clds: CheckoutLocalDataSource
+    private val rds: CheckoutRemoteDataSource,
+    private val lds: CheckoutLocalDataSource
 ) {
 
-    val address = clds.addressLiveData
+    val address = lds.addressLiveData
 
-    fun getCustomerInfo() = clds.getCustomerInfo()
+    fun getCustomerInfo() = lds.getCustomerInfo()
 
-    suspend fun sendOrder(body: CreateOrderRequest) = crds.sendOrder(body)
+    suspend fun sendOrder(body: CreateOrderRequest) = rds.sendOrder(body)
 
     suspend fun saveAddress(deliveryInfo: DeliveryInfoOrderData) {
-        if (deliveryInfo.deliveryType?.isDelivery.falseIfNull() && clds.address == null) {
-            clds.saveAddress(deliveryInfo)
+        if (deliveryInfo.deliveryType?.isDelivery.falseIfNull() && lds.address == null) {
+            lds.saveAddress(deliveryInfo)
         }
     }
 
