@@ -13,6 +13,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.core.text.buildSpannedString
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.textfield.TextInputLayout
 import com.pharmacy.myapp.R
@@ -127,15 +128,15 @@ fun EditText.setAsteriskHint(text: String, start: Int, end: Int, darkCode: Boole
 }
 
 fun EditText.setHintSpan(text: String, start: Int, end: Int, darkCode: Boolean = true) {
-    val hintSpan = SpannableString(text).apply {
+    hint = buildSpannedString {
+        append(text)
         setExclusiveSpan(colorCompat(R.color.hintColor), 0, start)
         setExclusiveSpan(Color.RED, start, end)
         if (darkCode) setExclusiveSpan(colorCompat(R.color.darkBlue), 0, 2)
     }
-    hint = hintSpan
 }
 
-fun SpannableString.setExclusiveSpan(color: Int, start: Int, end: Int) = setSpan(ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+fun SpannableStringBuilder.setExclusiveSpan(color: Int, start: Int, end: Int) = setSpan(ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
 /* TextInputLayout */
 

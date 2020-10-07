@@ -11,7 +11,7 @@ import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.model.category.Category
 
-class CategoriesViewModel(private val repository: CategoriesRepository) : BaseViewModel() {
+class CategoriesViewModel(private val repository: CategoriesRepository, private var selectedCategory: Category?) : BaseViewModel() {
 
     private val _errorLiveData by lazy { SingleLiveEvent<String>() }
     val errorLiveData: LiveData<String> by lazy { _errorLiveData }
@@ -31,10 +31,9 @@ class CategoriesViewModel(private val repository: CategoriesRepository) : BaseVi
     private val _navigateBackLiveData by lazy { MutableLiveData<Unit>() }
     val navigateBackLiveData: LiveData<Unit> by lazy { _navigateBackLiveData }
 
-    private var selectedCategory: Category? = null
     private var originalList: List<Category>? = null
 
-    fun initialLoad(selectedCategory: Category?) {
+    init {
         _progressLiveData.value = true
         launchIO {
             when (val response = repository.getCategories()) {
