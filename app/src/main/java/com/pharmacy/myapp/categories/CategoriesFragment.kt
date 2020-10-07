@@ -3,6 +3,7 @@ package com.pharmacy.myapp.categories
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pharmacy.myapp.R
@@ -19,7 +20,9 @@ import kotlinx.coroutines.launch
 
 class CategoriesFragment(private val viewModel: CategoriesViewModel) : BaseMVVMFragment(R.layout.fragment_categories) {
 
-    private val clickAction = viewModel::adapterClicked
+    private val args by navArgs<CategoriesFragmentArgs>()
+
+    private val clickAction = viewModel::selectCategory
     private val spacing by lazy { resources.getDimensionPixelSize(R.dimen._4sdp) }
     private var adapter: BaseFilterRecyclerAdapter<Category, *>? = null
 
@@ -31,6 +34,7 @@ class CategoriesFragment(private val viewModel: CategoriesViewModel) : BaseMVVMF
         searchViewCategories.setSearchListener { value ->
             viewLifecycleOwner.lifecycleScope.launch { adapter?.filter { it.name.contains(value, true) } }
         }
+        viewModel.initialLoad(args.StringCategoryArgument)
     }
 
     override fun onBindLiveData() {

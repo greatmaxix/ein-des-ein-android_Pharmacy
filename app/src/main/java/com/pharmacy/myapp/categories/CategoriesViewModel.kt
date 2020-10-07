@@ -34,18 +34,21 @@ class CategoriesViewModel(private val repository: CategoriesRepository) : BaseVi
     private var selectedCategory: Category? = null
     private var originalList: List<Category>? = null
 
-    init {
+    fun initialLoad(selectedCategory: Category?) {
         _progressLiveData.value = true
         launchIO {
-            val response = repository.getCategories()
-            _progressLiveData.postValue(false)
-            when (response) {
+            when (val response = repository.getCategories()) {
                 is Success -> {
-                    _parentCategoriesLiveData.postValue(response.value.data.items)
                     originalList = response.value.data.items
+                    selectedCategory?.let {
+                        selectCategory(it)
+                    } ?: run {
+                        _parentCategoriesLiveData.postValue(response.value.data.items)
+                    }
                 }
                 is Error -> _errorLiveData.postValue(response.errorMessage)
             }
+            _progressLiveData.postValue(false)
         }
     }
 
@@ -61,7 +64,7 @@ class CategoriesViewModel(private val repository: CategoriesRepository) : BaseVi
         _nestedCategoriesLiveData.postValue(findParentCategories(originalList, code))
     }
 
-    fun adapterClicked(category: Category) {
+    fun selectCategory(category: Category) {
         if (category.nodes.isNotEmpty()) {
             selectedCategory = category
             _nestedCategoriesLiveData.postValue(category.nodes)

@@ -367,6 +367,12 @@
             app:popExitAnim="@anim/nav_exit_pop_anim"
             app:popUpTo="@id/nav_catalog" />
 
+        <argument
+            android:name="category"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.pharmacy.myapp.model.category.Category" />
+
     </fragment>
 
     <fragment
