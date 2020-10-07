@@ -3,6 +3,7 @@ package com.pharmacy.myapp.categories
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pharmacy.myapp.R
@@ -16,10 +17,15 @@ import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.model.category.Category
 import kotlinx.android.synthetic.main.fragment_categories.*
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
-class CategoriesFragment(private val viewModel: CategoriesViewModel) : BaseMVVMFragment(R.layout.fragment_categories) {
+class CategoriesFragment : BaseMVVMFragment(R.layout.fragment_categories) {
 
-    private val clickAction = viewModel::adapterClicked
+    private val args by navArgs<CategoriesFragmentArgs>()
+    private val viewModel: CategoriesViewModel by viewModel { parametersOf(args.category) }
+
+    private val clickAction by lazy { return@lazy viewModel::selectCategory }
     private val spacing by lazy { resources.getDimensionPixelSize(R.dimen._4sdp) }
     private var adapter: BaseFilterRecyclerAdapter<Category, *>? = null
 

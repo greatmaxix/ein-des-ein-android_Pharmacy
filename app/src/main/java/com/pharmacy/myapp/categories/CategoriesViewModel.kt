@@ -11,7 +11,7 @@ import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.model.category.Category
 
-class CategoriesViewModel(private val repository: CategoriesRepository) : BaseViewModel() {
+class CategoriesViewModel(private val repository: CategoriesRepository, private var selectedCategory: Category?) : BaseViewModel() {
 
     private val _errorLiveData by lazy { SingleLiveEvent<String>() }
     val errorLiveData: LiveData<String> by lazy { _errorLiveData }
@@ -31,21 +31,23 @@ class CategoriesViewModel(private val repository: CategoriesRepository) : BaseVi
     private val _navigateBackLiveData by lazy { MutableLiveData<Unit>() }
     val navigateBackLiveData: LiveData<Unit> by lazy { _navigateBackLiveData }
 
-    private var selectedCategory: Category? = null
     private var originalList: List<Category>? = null
 
     init {
         _progressLiveData.value = true
         launchIO {
-            val response = repository.getCategories()
-            _progressLiveData.postValue(false)
-            when (response) {
+            when (val response = repository.getCategories()) {
                 is Success -> {
-                    _parentCategoriesLiveData.postValue(response.value.data.items)
                     originalList = response.value.data.items
+                    selectedCategory?.let {
+                        selectCategory(it)
+                    } ?: run {
+                        _parentCategoriesLiveData.postValue(response.value.data.items)
+                    }
                 }
                 is Error -> _errorLiveData.postValue(response.errorMessage)
             }
+            _progressLiveData.postValue(false)
         }
     }
 
@@ -61,7 +63,7 @@ class CategoriesViewModel(private val repository: CategoriesRepository) : BaseVi
         _nestedCategoriesLiveData.postValue(findParentCategories(originalList, code))
     }
 
-    fun adapterClicked(category: Category) {
+    fun selectCategory(category: Category) {
         if (category.nodes.isNotEmpty()) {
             selectedCategory = category
             _nestedCategoriesLiveData.postValue(category.nodes)
