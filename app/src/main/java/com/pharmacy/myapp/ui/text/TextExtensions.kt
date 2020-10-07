@@ -122,18 +122,18 @@ fun EditText.addAfterTextWatcher(doAfter: (String) -> Unit): TextWatcher {
 }
 
 fun EditText.setAsteriskHint(text: String, start: Int, end: Int, darkCode: Boolean = true) {
-    fun setHint(text: String, start: Int, end: Int, darkCode: Boolean) {
-        val hintSpan = SpannableString(text).apply {
-            setExclusiveSpan(colorCompat(R.color.hintColor), 0, start)
-            setExclusiveSpan(Color.RED, start, end)
-            if (darkCode) setExclusiveSpan(colorCompat(R.color.darkBlue), 0, 2)
-        }
-        hint = hintSpan
-    }
-    focusChanges().onEach { if (it) hint = "" else setHint(text, start, end, darkCode) }
+    focusChanges().onEach { if (it) hint = "" else setHintSpan(text, start, end, darkCode) }
         .launchIn(CoroutineScope(Dispatchers.Main.immediate + SupervisorJob()))
 }
 
+fun EditText.setHintSpan(text: String, start: Int, end: Int, darkCode: Boolean = true) {
+    val hintSpan = SpannableString(text).apply {
+        setExclusiveSpan(colorCompat(R.color.hintColor), 0, start)
+        setExclusiveSpan(Color.RED, start, end)
+        if (darkCode) setExclusiveSpan(colorCompat(R.color.darkBlue), 0, 2)
+    }
+    hint = hintSpan
+}
 
 fun SpannableString.setExclusiveSpan(color: Int, start: Int, end: Int) = setSpan(ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 

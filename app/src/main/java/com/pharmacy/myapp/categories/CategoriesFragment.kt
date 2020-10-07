@@ -34,7 +34,7 @@ class CategoriesFragment(private val viewModel: CategoriesViewModel) : BaseMVVMF
         searchViewCategories.setSearchListener { value ->
             viewLifecycleOwner.lifecycleScope.launch { adapter?.filter { it.name.contains(value, true) } }
         }
-        viewModel.initialLoad(args.StringCategoryArgument)
+        viewModel.initialLoad(args.category)
     }
 
     override fun onBindLiveData() {
