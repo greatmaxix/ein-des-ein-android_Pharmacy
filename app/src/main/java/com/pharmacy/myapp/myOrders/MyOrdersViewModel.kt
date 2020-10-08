@@ -8,7 +8,9 @@ import androidx.paging.cachedIn
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.myOrders.repository.MyOrdersPagingSource
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class MyOrdersViewModel : BaseViewModel() {
 
     private val _errorLiveData by lazy { SingleLiveEvent<String>() }

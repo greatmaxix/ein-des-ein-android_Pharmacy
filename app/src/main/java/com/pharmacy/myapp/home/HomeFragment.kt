@@ -14,7 +14,9 @@ import com.pharmacy.myapp.product.BaseProductFragment
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.ui.RecentlyViewedView
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<HomeViewModel>(R.layout.fragment_home, viewModel) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

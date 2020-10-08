@@ -3,10 +3,7 @@ package com.pharmacy.myapp.cart.adapter
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.button.MaterialButton
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.cart.model.CartItem
@@ -63,7 +60,7 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
             tvTitle.setTextHtml(product.rusName)
             tvSubTitle.setTextHtml(product.releaseForm)
 
-            mbCounter.text = product.cartProductInfo.count.toString()
+            mbCounter.text = product.count.toString()
 
             fun setNewCounterValue(newValue: Int) {
                 mbCounter.text = newValue.toString()

@@ -7,7 +7,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.pharmacy.myapp.product.BaseProductViewModel
 import com.pharmacy.myapp.user.wishlist.repository.WishPagingSource
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class WishViewModel : BaseProductViewModel() {
 
     val wishLiveData by lazy {

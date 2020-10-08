@@ -14,9 +14,12 @@ import com.pharmacy.myapp.scanner.ScannerListFragment
 import com.pharmacy.myapp.search.SearchFragment
 import com.pharmacy.myapp.search.SearchFragmentDirections.Companion.fromSearchToProduct
 import com.pharmacy.myapp.user.wishlist.WishFragment
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private val layoutResourceId: Int, private val viewModel: VM) : BaseMVVMFragment(layoutResourceId) {
 
+    @KoinApiExtension
     override fun onBindLiveData() {
         observe(viewModel.errorLiveData, ::errorOrAuth)
         observe(viewModel.wishLiteLiveData, ::notifyWish)

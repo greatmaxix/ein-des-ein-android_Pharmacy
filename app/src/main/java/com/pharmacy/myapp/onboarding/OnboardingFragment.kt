@@ -8,14 +8,16 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.sharedGraphViewModel
 import com.pharmacy.myapp.region.RegionFragment.Companion.REGION_SELECTION_FINISHED_KEY
 import kotlinx.android.synthetic.main.fragment_onboarding.*
+import org.koin.core.component.KoinApiExtension
 
 class OnboardingFragment : BaseMVVMFragment(R.layout.fragment_onboarding) {
 
     private val viewModel: OnboardingViewModel by sharedGraphViewModel(R.id.onboarding_graph)
 
+    @KoinApiExtension
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vpOnboarding.adapter = OnboardingPagerAdapter(this)
+        vpOnboarding.adapter = OnBoardingPagerAdapter(this)
         setFragmentResultListener(REGION_SELECTION_FINISHED_KEY) { _, _ -> viewModel.skipRegion(true) }
         attachBackPressCallback {
             if (vpOnboarding.currentItem == 1) {

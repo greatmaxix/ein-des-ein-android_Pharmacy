@@ -2,10 +2,12 @@ package com.pharmacy.myapp.onboarding
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import org.koin.core.KoinComponent
-import org.koin.core.get
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
 
-class OnboardingPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment), KoinComponent {
+@KoinApiExtension
+class OnBoardingPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment), KoinComponent {
 
     override fun getItemCount() = 2
 

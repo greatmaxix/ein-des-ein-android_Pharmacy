@@ -3,14 +3,16 @@ package com.pharmacy.myapp.search
 import android.os.Bundle
 import android.view.View
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.SignInFragmentArgs
+import com.pharmacy.myapp.auth.AuthSignInFragmentArgs
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.spanSearchCount
 import com.pharmacy.myapp.core.extensions.visibleOrGone
 import com.pharmacy.myapp.productList.BaseProductListFragment
 import com.pharmacy.myapp.search.SearchFragmentDirections.Companion.fromSearchToScanner
 import kotlinx.android.synthetic.main.fragment_search.*
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class SearchFragment(private val viewModel: SearchViewModel) : BaseProductListFragment<SearchViewModel>(R.layout.fragment_search, viewModel) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,7 +31,7 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseProductListFr
         }
     }
 
-    override fun needToLogin() = navController.navigate(R.id.fromSearchToAuth, SignInFragmentArgs(R.id.nav_search).toBundle())
+    override fun needToLogin() = navController.navigate(R.id.fromSearchToAuth, AuthSignInFragmentArgs(R.id.nav_search).toBundle())
 
     override val productLiveData
         get() = viewModel.pagedSearchLiveData

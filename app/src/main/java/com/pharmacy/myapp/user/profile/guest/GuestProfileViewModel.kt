@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.region.repository.RegionRepository
 import kotlinx.coroutines.Dispatchers
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class GuestProfileViewModel(repository: RegionRepository) : BaseViewModel() {
 
     var tempRegionLiveData = repository.getTemporaryRegion().asLiveData(viewModelScope.coroutineContext + Dispatchers.IO)

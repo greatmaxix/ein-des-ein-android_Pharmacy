@@ -6,14 +6,17 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.NavDirections
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.auth.model.SignUp
 import com.pharmacy.myapp.core.extensions.*
+import com.pharmacy.myapp.core.general.Event
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
 import com.pharmacy.myapp.ui.text.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
-class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
+class AuthSignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,7 +31,7 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
             val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
             val isEmailValid = if (tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
-                viewModel.signUp(tilNameSignUp.text(), tilPhoneSignUp.phoneCodePrefix + tilPhoneSignUp.text(), tilEmailSignUp.text())
+                vm.signUp(SignUp.newInstance(tilNameSignUp.text(), tilPhoneSignUp.phoneCodePrefix + tilPhoneSignUp.text(), tilEmailSignUp.text()))
             }
         }
         val clearError: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit =
@@ -69,6 +72,14 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
                 positiveAction = { navController.navigate(globalToHome()) }
                 negative = R.string.common_closeButton
             }
+        }
+    }
+
+    override fun onBindLiveData() {
+        super.onBindLiveData()
+        observeRestResult<Event<NavDirections>> {
+            liveData = vm.signUpLiveData
+            onEmmit = { contentOrNull?.let(navController::navigate) }
         }
     }
 }

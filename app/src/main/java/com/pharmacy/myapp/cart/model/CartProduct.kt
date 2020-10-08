@@ -17,14 +17,15 @@ data class CartProduct(
     @SerializedName("pictures") val pictures: List<Picture>,
     @SerializedName("productCartPharmacyProduct") val cartProductInfo: CartProductInfo,
     @SerializedName("manufacturerData") val manufacture: Manufacture,
-    @SerializedName("price") val price: Double
+    @SerializedName("price") val price: Double,
+    @SerializedName("productCount") var count: Int
 ) : Parcelable {
     //TODO Create global "Local helper"
     val productLocale: String?
         get() = App.localeMap[manufacture.isoCode]?.getDisplayCountry(Locale("RU"))
 
     val productOrderData
-        get() = ProductOrderData(productId, price, cartProductInfo.count)
+        get() = ProductOrderData(productId, price, count)
 
     val firstPictureUrl
         get() = pictures.firstOrNull()?.url

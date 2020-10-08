@@ -8,9 +8,11 @@ import com.pharmacy.myapp.core.base.adapter.BaseViewHolderInterface
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.KoinComponent
 import timber.log.Timber
 
+@KoinApiExtension
 abstract class CoViewHolder<T>(containerView: View) : BaseViewHolder<T>(containerView), BaseViewHolderInterface, KoinComponent {
 
     private var viewHolderJob: CompletableJob? = null

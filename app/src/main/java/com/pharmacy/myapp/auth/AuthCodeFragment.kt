@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.widget.editorActionEvents
 import reactivecircus.flowbinding.android.widget.textChanges
 
-class CodeFragment : AuthBaseFragment(R.layout.fragment_code) {
+class AuthCodeFragment : AuthBaseFragment(R.layout.fragment_code) {
 
     @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,21 +33,25 @@ class CodeFragment : AuthBaseFragment(R.layout.fragment_code) {
             .filter { etCode.isCodeLength && it.actionId == EditorInfo.IME_ACTION_DONE }
             .onEach { checkSmsCode() }
             .launchIn(viewLifecycleOwner.lifecycleScope)
+
         btnBackCode.onClick { navigationBack() }
         if (BuildConfig.DEBUG) etCode.setText("11111")
         btnSendCodeAgain.underlineSpan()
-        btnSendCodeAgain.onClick { viewModel.resendCode() }
+        btnSendCodeAgain.onClick { vm.resendCode() }
     }
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-        viewModel.customerPhoneLiveData.observeExt { mtvPhoneCode.text = it }
+        observe(vm.customerPhoneLiveData) { /*mtvPhoneCode.text = it*/ }
+        observeRestResult<Unit> {
+            liveData = vm.codeLiveData
+        }
     }
 
     private fun checkSmsCode() {
         hideKeyboard()
         if (etCode.isCodeLength) {
-            viewModel.login(etCode.text.toString())
+            vm.checkCode(etCode.text.toString())
         } else {
             messageCallback?.showError(R.string.enterTheCode)
         }

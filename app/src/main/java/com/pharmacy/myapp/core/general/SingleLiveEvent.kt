@@ -1,9 +1,9 @@
 package com.pharmacy.myapp.core.general
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.annotation.MainThread
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -17,6 +17,8 @@ import java.util.concurrent.atomic.AtomicBoolean
  *
  * Note that only one observer is going to be notified of changes.
  */
+
+@Deprecated("")
 class SingleLiveEvent<T> : MutableLiveData<T>() {
 
     private val pending = AtomicBoolean(false)
@@ -27,7 +29,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
             Timber.w("Multiple observers registered but only one will be notified of changes.")
         }
         // Observe the internal MutableLiveData
-        super.observe(owner, Observer { t ->
+        super.observe(owner, { t ->
             if (pending.compareAndSet(true, false)) {
                 observer.onChanged(t)
             }

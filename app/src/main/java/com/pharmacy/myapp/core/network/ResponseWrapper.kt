@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.StringRes
 import com.pharmacy.myapp.R
 
+@Deprecated("")
 sealed class ResponseWrapper<out T> {
 
     data class Success<out T>(val value: T) : ResponseWrapper<T>()

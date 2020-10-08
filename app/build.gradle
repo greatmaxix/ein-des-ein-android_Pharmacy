@@ -163,6 +163,8 @@ dependencies {
 
 
     implementation "androidx.recyclerview:recyclerview:1.2.0-alpha06"
+    implementation "ru.ar2code.mutableliveevent:MutableLiveEvent:1.0.1"
+    //implementation "com.github.hadilq.liveevent:liveevent:1.2.0"
 
     implementation "$room.runtime"
     implementation "$room.ktx"

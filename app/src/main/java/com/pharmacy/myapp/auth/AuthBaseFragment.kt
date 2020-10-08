@@ -7,13 +7,10 @@ import com.pharmacy.myapp.core.extensions.sharedGraphViewModel
 
 abstract class AuthBaseFragment(@LayoutRes layoutResourceId: Int) : BaseMVVMFragment(layoutResourceId) {
 
-    protected val viewModel: AuthViewModel by sharedGraphViewModel(R.id.auth_graph)
+    protected val vm: AuthViewModel by sharedGraphViewModel(R.id.auth_graph)
 
     override fun onBindLiveData() {
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
-
-        observe(viewModel.directionLiveData, navController::navigate)
-        observe(viewModel.directionPopBackLiveData) { navController.popBackStack(it, false) }
+        observe(vm.directionLiveData, navController::navigate)
+        observe(vm.directionPopBackLiveData) { navController.popBackStack(it, false) }
     }
 }

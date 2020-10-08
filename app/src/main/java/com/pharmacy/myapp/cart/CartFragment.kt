@@ -5,7 +5,7 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.ConcatAdapter
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.SignInFragmentArgs
+import com.pharmacy.myapp.auth.AuthSignInFragmentArgs
 import com.pharmacy.myapp.cart.CartFragmentDirections.Companion.fromCartToCheckout
 import com.pharmacy.myapp.cart.CartFragmentDirections.Companion.fromCartToSearch
 import com.pharmacy.myapp.cart.adapter.CartAdapter
@@ -78,7 +78,7 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
                 cancelable = false
                 positive = getString(R.string.signIn)
                 negative = getString(R.string.cancel)
-                positiveAction = { navController.navigate(R.id.fromCartToAuth, SignInFragmentArgs(R.id.nav_cart).toBundle()) }
+                positiveAction = { navController.navigate(R.id.fromCartToAuth, AuthSignInFragmentArgs(R.id.nav_cart).toBundle()) }
                 negativeAction = { navController.onNavDestinationSelected(R.id.nav_home, inclusive = true) }
             }
         } else {

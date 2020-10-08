@@ -6,6 +6,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class CartProductInfo(
-    @SerializedName("id") val id: Int,
-    @SerializedName("count") var count: Int
+    @SerializedName("id") val id: Int
 ) : Parcelable

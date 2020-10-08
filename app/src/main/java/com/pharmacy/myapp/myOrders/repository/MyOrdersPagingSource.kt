@@ -4,9 +4,11 @@ import androidx.paging.PagingSource
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
 import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.model.order.Order
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
+@KoinApiExtension
 class MyOrdersPagingSource(val query: String) : PagingSource<Int, Order>(), KoinComponent {
 
     private val repository: MyOrdersRepository by inject()

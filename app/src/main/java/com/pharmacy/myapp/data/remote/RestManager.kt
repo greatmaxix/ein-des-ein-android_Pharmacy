@@ -18,10 +18,10 @@ class RestManager(private val sp: SPManager, private val RestApi: RestApi) {
     suspend fun signUp(name: String, phone: String, email: String) =
         RestApi.signUp(mapOf(NAME to name, EMAIL to email, PHONE to phone))
 
-    suspend fun auth(phone: String) = RestApi.auth(mapOf(PHONE to phone))
+    suspend fun auth(phone: String) = RestApi.signIn(mapOf(PHONE to phone))
 
     suspend fun login(phone: String, code: String) =
-        RestApi.login(mapOf(PHONE to phone, CODE to code))
+        RestApi.checkCode(mapOf(PHONE to phone, CODE to code))
 
     suspend fun updateCustomerInfo(name: String, email: String, avatarUuid: String) =
         RestApi.updateCustomerInfo(mapOf(NAME to name, EMAIL to email, AVATAR_UUID to avatarUuid))
