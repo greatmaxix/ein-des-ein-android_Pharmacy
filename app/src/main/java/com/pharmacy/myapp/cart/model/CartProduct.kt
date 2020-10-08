@@ -15,7 +15,6 @@ data class CartProduct(
     @SerializedName("rusName") val rusName: String,
     @SerializedName("releaseForm") val releaseForm: String,
     @SerializedName("pictures") val pictures: List<Picture>,
-    @SerializedName("productCartPharmacyProduct") val cartProductInfo: CartProductInfo,
     @SerializedName("manufacturerData") val manufacture: Manufacture,
     @SerializedName("price") val price: Double,
     @SerializedName("productCount") var count: Int

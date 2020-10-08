@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/profileItemContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/colorGlobalWhite"
-    app:cardCornerRadius="@dimen/_7sdp"
-    app:cardElevation="1dp"
-    app:cardMaxElevation="0dp"
-    app:cardUseCompatPadding="true"
-    app:rippleColor="@color/colorRippleBlue">
+    tools:parentTag="com.google.android.material.card.MaterialCardView">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileItemContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/ivIconProfileItem"
@@ -28,6 +24,10 @@
             android:background="@drawable/oval"
             android:backgroundTint="@color/profileIconBackground"
             android:padding="@dimen/_6sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/mtvTitleProfileItem"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/darkBlue"
             tools:src="@drawable/ic_logout" />
 
@@ -36,11 +36,15 @@
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/_12ssp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivIconProfileItem"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Выйти из аккаунта" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -56,17 +60,24 @@
             android:lines="1"
             android:textColor="@color/primaryBlue"
             android:textSize="@dimen/_12ssp"
-            tools:text="Нур-Султан (Астана)" />
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivArrowProfileItem"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Нур-Султан (Астана)"
+            tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/ivArrowProfileItem"
             android:layout_width="@dimen/_16sdp"
             android:layout_height="@dimen/_16sdp"
-            android:layout_gravity="center"
+            android:layout_gravity="end|center"
             android:layout_marginEnd="@dimen/_8sdp"
             android:adjustViewBounds="true"
-            android:src="@drawable/ic_next" />
+            android:src="@drawable/ic_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-</com.google.android.material.card.MaterialCardView>
+</merge>

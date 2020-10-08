@@ -13,9 +13,9 @@ import com.pharmacy.myapp.data.remote.RestManager
 import com.pharmacy.myapp.devTools.devToolsModule
 import com.pharmacy.myapp.home.homeModule
 import com.pharmacy.myapp.main.mainModule
-import com.pharmacy.myapp.myOrders.myOrdersModule
 import com.pharmacy.myapp.onboarding.onboardingModule
-import com.pharmacy.myapp.order.orderModule
+import com.pharmacy.myapp.orders.details.orderModule
+import com.pharmacy.myapp.orders.ordersModule
 import com.pharmacy.myapp.payments.paymentsModule
 import com.pharmacy.myapp.pharmacy.checkoutMapModule
 import com.pharmacy.myapp.product.productCardModule
@@ -23,6 +23,7 @@ import com.pharmacy.myapp.region.regionModule
 import com.pharmacy.myapp.scanner.qrCodeScannerModule
 import com.pharmacy.myapp.search.searchModule
 import com.pharmacy.myapp.splash.splashModule
+import com.pharmacy.myapp.user.address.addressModule
 import com.pharmacy.myapp.user.profile.guest.guestProfileModule
 import com.pharmacy.myapp.user.profile.profileModule
 import com.pharmacy.myapp.user.userModule
@@ -55,7 +56,8 @@ object Modules {
         wishModule,
         guestProfileModule,
         categoriesModule,
-        myOrdersModule,
+        ordersModule,
+        addressModule,
         RESTModule
     )
 

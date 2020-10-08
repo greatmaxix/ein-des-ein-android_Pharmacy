@@ -11,28 +11,28 @@ import com.pharmacy.myapp.auth.model.SignUp
 import com.pharmacy.myapp.auth.repository.AuthRepository
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.extensions.formatPhone
-import com.pharmacy.myapp.core.general.SingleLiveEvent
+import com.pharmacy.myapp.core.general.Event
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
-import timber.log.Timber
 
 class AuthViewModel(private val repository: AuthRepository, private val workManager: WorkManager) : BaseViewModel() {
 
     private var phone = ""
 
-    val directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
-    val directionPopBackLiveData by lazy { SingleLiveEvent<Int>() }
+    val directionLiveData by lazy { MutableLiveData<Event<NavDirections>>() }
+    val directionPopBackLiveData by lazy { MutableLiveData<Event<Int>>() }
 
     var popBackId: Int = -1
 
     /* check exist customer */
     val customerPhoneLiveData by lazy { MutableLiveData<String>() }
 
-    val signInLiveData = customerPhoneLiveData.switchMap { phone ->
-        requestEventLiveData {
-            repository.signIn(phone)
-            actionFromSignInToCode()
+    val signInLiveData = customerPhoneLiveData
+        .switchMap { phone ->
+            requestEventLiveData {
+                repository.signIn(phone)
+                actionFromSignInToCode()
+            }
         }
-    }
 
     /* sms code check */
     private val _codeLiveData by lazy { MutableLiveData<String>() }
@@ -51,20 +51,23 @@ class AuthViewModel(private val repository: AuthRepository, private val workMana
             .build()
     )
 
+    private fun homeOrPopBack() {
+        if (popBackId == -1) directionLiveData.postValue(Event(globalToHome())) else directionPopBackLiveData.postValue(Event(popBackId))
+    }
+
     /* creating new customer */
     private val _signUpLiveData by lazy { MutableLiveData<SignUp>() }
 
-    val signUpLiveData = _signUpLiveData.switchMap { signUp ->
-        requestEventLiveData {
-            repository.signUp(signUp)
-            actionFromSignUpToCode()
+    val signUpLiveData = _signUpLiveData
+        .switchMap { signUp ->
+            requestEventLiveData {
+                repository.signUp(signUp)
+                actionFromSignUpToCode()
+            }
         }
-    }
 
-    override fun onCleared() {
-        super.onCleared()
-        Timber.e("Cleared")
-    }
+    /* login again */
+
 
     fun signUp(signUp: SignUp) {
         this.phone = signUp.phone.formatPhone()
@@ -80,11 +83,8 @@ class AuthViewModel(private val repository: AuthRepository, private val workMana
         _codeLiveData.value = code
     }
 
-    private fun homeOrPopBack() {
-        if (popBackId == -1) directionLiveData.postValue(globalToHome()) else directionPopBackLiveData.postValue(popBackId)
-    }
-
-    fun resendCode() {
+    fun signInAgain() {
+        signIn(phone)
         /* progressLiveData.value = true
          launchIO {
              val response = repository.auth(customerPhone)

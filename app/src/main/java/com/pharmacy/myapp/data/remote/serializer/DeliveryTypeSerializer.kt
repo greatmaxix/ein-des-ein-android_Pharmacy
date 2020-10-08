@@ -1,9 +1,9 @@
-package com.pharmacy.myapp.data.remote.rest.serializer
+package com.pharmacy.myapp.data.remote.serializer
 
 import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
-import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
+import com.pharmacy.myapp.data.remote.model.order.DeliveryType
 import java.lang.reflect.Type
 
 class DeliveryTypeSerializer : JsonSerializer<DeliveryType> {

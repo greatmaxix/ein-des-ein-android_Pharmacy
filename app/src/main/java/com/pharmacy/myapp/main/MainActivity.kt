@@ -32,7 +32,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
 
     override fun onBindLiveData() {
         observe(viewModel.directionLiveData) { navController.onNavDestinationSelected(this) }
-        observe(viewModel.customerInfoLiveData, ::setBottomNavItems)
+        observeNullable(viewModel.customerInfoLiveData, ::setBottomNavItems)
     }
 
     private fun setBottomNavItems(customer: Customer?) {

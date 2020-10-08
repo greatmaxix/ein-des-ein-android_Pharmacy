@@ -15,6 +15,12 @@ import com.pharmacy.myapp.core.general.Event
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
 import com.pharmacy.myapp.ui.text.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.android.view.focusChanges
 
 class AuthSignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
 
@@ -24,9 +30,8 @@ class AuthSignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
         tilPhoneSignUp.setPhoneRule()
         debug { tilPhoneSignUp.prefixText = "+3" }
         val hint = if (BuildConfig.DEBUG) R.string.authPhoneDebugHint else R.string.authPhoneHint
-        etPhoneSignUp.setAsteriskHint(hint.toString, 18, 19)
         etNameSignUp.setAsteriskHint(R.string.yourNameAuth.toString, 8, 9, false)
-        llButtonContainerSignUp.onClick {
+        llButtonContainerSignUp.setDebounceOnClickListener {
             val isNameValid = tilNameSignUp.checkLength(getString(R.string.nameErrorAuth))
             val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
             val isEmailValid = if (tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
@@ -61,8 +66,8 @@ class AuthSignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
             }, 26, 46, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 */
         }
-        btnBackSignUp.onClick { navigationBack() }
-        mbGoToSignIn.onClick { navigationBack() }
+        btnBackSignUp.setDebounceOnClickListener { navigationBack() }
+        mbGoToSignIn.setDebounceOnClickListener { navigationBack() }
 
         tvSkipAuth.setDebounceOnClickListener {
             showAlertRes(getString(R.string.messageEndAuthDialog)) {
@@ -73,6 +78,10 @@ class AuthSignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
                 negative = R.string.common_closeButton
             }
         }
+        tilPhoneSignUp.editText?.focusChanges()?.onEach {
+            tilPhoneSignUp.prefixText = if (it) if (BuildConfig.DEBUG) "+3" else "+7" else ""
+            if (it) etPhoneSignUp.hint = null else etPhoneSignUp.setHintSpan(hint.toString, 18, 19)
+        }?.launchIn(CoroutineScope(Dispatchers.Main.immediate + SupervisorJob()))
     }
 
     override fun onBindLiveData() {

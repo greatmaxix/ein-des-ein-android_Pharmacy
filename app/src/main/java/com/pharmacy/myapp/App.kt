@@ -1,6 +1,7 @@
 package com.pharmacy.myapp
 
 import android.app.Application
+import com.pharmacy.myapp.util.HyperlinkedDebugTree
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.koin.fragmentFactory
 import org.koin.core.context.startKoin
@@ -25,7 +26,7 @@ class App : Application() {
         }
 
         if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
+            Timber.plant(HyperlinkedDebugTree())
         }
     }
 

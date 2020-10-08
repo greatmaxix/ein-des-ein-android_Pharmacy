@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.data.remote.rest.serializer
+package com.pharmacy.myapp.data.remote.serializer
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer

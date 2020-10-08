@@ -6,11 +6,11 @@ import com.pharmacy.myapp.data.remote.api.RestApi
 import com.pharmacy.myapp.data.remote.api.RestApiRefresh
 import com.pharmacy.myapp.data.remote.authenticator.RestAuthenticator
 import com.pharmacy.myapp.data.remote.interceptor.RestHeaderInterceptor
-import com.pharmacy.myapp.data.remote.rest.request.order.DeliveryType
-import com.pharmacy.myapp.data.remote.rest.serializer.DeliveryTypeDeserializer
-import com.pharmacy.myapp.data.remote.rest.serializer.DeliveryTypeSerializer
-import com.pharmacy.myapp.data.remote.rest.serializer.OrderStatusDeserializer
-import com.pharmacy.myapp.data.remote.rest.serializer.OrderStatusSerializer
+import com.pharmacy.myapp.data.remote.model.order.DeliveryType
+import com.pharmacy.myapp.data.remote.serializer.DeliveryTypeDeserializer
+import com.pharmacy.myapp.data.remote.serializer.DeliveryTypeSerializer
+import com.pharmacy.myapp.data.remote.serializer.OrderStatusDeserializer
+import com.pharmacy.myapp.data.remote.serializer.OrderStatusSerializer
 import com.pharmacy.myapp.model.order.OrderStatus
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

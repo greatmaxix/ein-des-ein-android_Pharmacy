@@ -25,6 +25,7 @@
     <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="boxBackgroundColor">@color/colorGlobalWhite</item>
         <item name="boxCornerRadiusBottomEnd">@dimen/_20sdp</item>
         <item name="boxCornerRadiusBottomStart">@dimen/_20sdp</item>
         <item name="boxCornerRadiusTopEnd">@dimen/_20sdp</item>
@@ -87,7 +88,7 @@
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>
     </style>
 
-    <style name="ShapeAppearanceOverlayMyOrderDelivery.MaterialCardView.Cut" parent="">
+    <style name="ShapeAppearanceOverlayOrdersDelivery.MaterialCardView.Cut" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">0dp</item>
         <item name="cornerSizeTopLeft">@dimen/_16sdp</item>
@@ -95,8 +96,8 @@
         <item name="cornerSizeBottomLeft">@dimen/_16sdp</item>
     </style>
 
-    <style name="MyOrderDeliveryCardView" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlayMyOrderDelivery.MaterialCardView.Cut
+    <style name="OrdersDeliveryCardView" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlayOrdersDelivery.MaterialCardView.Cut
         </item>
     </style>
 
@@ -144,7 +145,7 @@
         <item name="strokeColor">@color/primaryBlue</item>
     </style>
 
-    <style name="Recycler">
+    <style name="ScrollStyle">
         <item name="android:scrollbars">none</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:splitMotionEvents">false</item>
@@ -161,14 +162,14 @@
         <item name="android:textColorPrimary">@color/colorSearch</item>
     </style>
 
-    <style name="ChipMyOrders" parent="Widget.MaterialComponents.Chip.Choice">
+    <style name="ChipOrders" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/chip_text_color_my_orders</item>
         <item name="android:gravity">center</item>
         <item name="chipBackgroundColor">@color/chip_background_color_my_orders</item>
         <item name="chipCornerRadius">@dimen/_6sdp</item>
-        <item name="chipSurfaceColor">@color/defaultChipBackgroundMyOrder</item>
+        <item name="chipSurfaceColor">@color/defaultChipBackgroundOrders</item>
         <item name="rippleColor">@color/chip_ripple_color_my_orders</item>
     </style>
 

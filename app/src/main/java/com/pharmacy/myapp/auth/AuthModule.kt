@@ -12,13 +12,10 @@ val authModule = module {
     single { AuthRepository(get(), get<DBManager>().customerDAO, get()) }
     single { AuthRemoteDataSource(get()) }
 
-
-
     viewModel { AuthViewModel(get(), get()) }
 
     fragment { AuthSignInFragment() }
     fragment { AuthSignUpFragment() }
     fragment { AuthCodeFragment() }
-
 
 }

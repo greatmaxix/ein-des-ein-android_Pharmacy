@@ -258,9 +258,9 @@
 
     <fragment
         android:id="@+id/nav_order"
-        android:name="com.pharmacy.myapp.order.OrderFragment"
+        android:name="com.pharmacy.myapp.orders.details.OrderDetailsFragment"
         android:label="@null"
-        tools:layout="@layout/fragment_order">
+        tools:layout="@layout/fragment_order_details">
 
         <argument
             android:name="order"
@@ -367,6 +367,12 @@
             app:popExitAnim="@anim/nav_exit_pop_anim"
             app:popUpTo="@id/nav_catalog" />
 
+        <argument
+            android:name="category"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.pharmacy.myapp.model.category.Category" />
+
     </fragment>
 
     <fragment
@@ -426,4 +432,25 @@
             app:argType="com.pharmacy.myapp.pharmacy.model.Pharmacy" />
     </dialog>
 
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.pharmacy.myapp.about.AboutFragment"
+        android:label="@string/aboutAppTitle"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/nav_address"
+        android:name="com.pharmacy.myapp.user.address.AddressFragment"
+        android:label="@string/addressTitle"
+        tools:layout="@layout/fragment_address" />
+
+    <action
+        android:id="@+id/fromOrderToOrderDetails"
+        app:destination="@id/nav_order"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim"
+        app:popUpTo="@+id/nav_orders"
+        app:popUpToInclusive="true" />
 </navigation>

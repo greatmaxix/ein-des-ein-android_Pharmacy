@@ -305,6 +305,10 @@ fun View.setTopRoundCornerBackground(radius: Float = resources.getDimension(R.di
     ViewCompat.setBackground(this, shape)
 }
 
+fun View.mockToast(text: String) = setDebounceOnClickListener {
+    context.toast(text)
+}
+
 fun TextView.hideKeyboardOnEditorAction() {
     setOnEditorActionListener { _, _, _ ->
         hideKeyboard()

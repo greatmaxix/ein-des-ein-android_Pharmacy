@@ -5,11 +5,12 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
-import com.pharmacy.myapp.BuildConfig
+import androidx.navigation.NavDirections
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.hideKeyboard
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.underlineSpan
+import com.pharmacy.myapp.core.general.Event
 import kotlinx.android.synthetic.main.fragment_code.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filter
@@ -35,16 +36,24 @@ class AuthCodeFragment : AuthBaseFragment(R.layout.fragment_code) {
             .launchIn(viewLifecycleOwner.lifecycleScope)
 
         btnBackCode.onClick { navigationBack() }
-        if (BuildConfig.DEBUG) etCode.setText("11111")
+
+        //if (BuildConfig.DEBUG) etCode.setText("11111")
+
         btnSendCodeAgain.underlineSpan()
-        btnSendCodeAgain.onClick { vm.resendCode() }
+        btnSendCodeAgain.onClick { vm.signInAgain() }
     }
 
     override fun onBindLiveData() {
         super.onBindLiveData()
-        observe(vm.customerPhoneLiveData) { /*mtvPhoneCode.text = it*/ }
-        observeRestResult<Unit> {
-            liveData = vm.codeLiveData
+        observe(vm.customerPhoneLiveData) { mtvPhoneCode.text = it }
+
+        observeRestResult<Unit> { liveData = vm.codeLiveData }
+
+        observeRestResult<Event<NavDirections>> {
+            liveData = vm.signInLiveData
+            onEmmit = {
+                //TODO snackbar
+            }
         }
     }
 

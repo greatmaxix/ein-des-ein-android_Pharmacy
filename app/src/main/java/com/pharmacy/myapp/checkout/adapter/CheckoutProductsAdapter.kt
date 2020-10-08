@@ -12,7 +12,8 @@ import com.pharmacy.myapp.core.extensions.setTextHtml
 import com.pharmacy.myapp.core.extensions.stringRes
 import kotlinx.android.synthetic.main.item_checkout_product.view.*
 
-class CheckoutProductsAdapter(list: MutableList<CartProduct>) : BaseRecyclerAdapter<CartProduct, CheckoutProductsAdapter.RecommendedViewHolder>(list) {
+class CheckoutProductsAdapter(list: MutableList<CartProduct>) :
+    BaseRecyclerAdapter<CartProduct, CheckoutProductsAdapter.RecommendedViewHolder>(list) { // todo rename or move to base
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendedViewHolder = RecommendedViewHolder.newInstance(parent)
 
@@ -24,7 +25,7 @@ class CheckoutProductsAdapter(list: MutableList<CartProduct>) : BaseRecyclerAdap
                 tvProductTitleCheckout.setTextHtml(item.rusName)
                 tvProductDescriptionCheckout.setTextHtml(item.releaseForm)
                 tvProductIssuerCheckout.text = item.manufacture.producer
-                tvCountCheckout.text = String.format("x %d", item.count)
+                tvCountCheckout.text = stringRes(R.string.productCount, item.count)
                 fabProductPriceCheckout.text = stringRes(R.string.price, item.price)
             }
         }

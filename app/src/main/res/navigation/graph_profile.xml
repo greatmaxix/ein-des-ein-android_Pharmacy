@@ -42,8 +42,8 @@
             app:popUpToInclusive="true" />
 
         <action
-            android:id="@+id/actionFromProfileToMyOorders"
-            app:destination="@id/nav_my_orders"
+            android:id="@+id/actionFromProfileToOrders"
+            app:destination="@id/nav_orders"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
@@ -81,10 +81,10 @@
     </dialog>
 
     <fragment
-        android:id="@+id/nav_my_orders"
-        android:name="com.pharmacy.myapp.myOrders.MyOrdersFragment"
-        android:label="@string/myOrdersLabel"
-        tools:layout="@layout/fragment_my_orders" />
+        android:id="@+id/nav_orders"
+        android:name="com.pharmacy.myapp.orders.OrdersFragment"
+        android:label="@string/ordersLabel"
+        tools:layout="@layout/fragment_orders" />
 
     <fragment
         android:id="@+id/nav_wish"

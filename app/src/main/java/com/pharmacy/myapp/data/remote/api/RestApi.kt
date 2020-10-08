@@ -102,5 +102,12 @@ interface RestApi {
     suspend fun fetchOrders(
         @Query("status") query: String? = null,
         @Query("page") page: Int? = null,
-        @Query("per_page") pageSize: Int? = null): BaseDataResponse<PaginationModel<Order>>
+        @Query("per_page") pageSize: Int? = null
+    ): BaseDataResponse<PaginationModel<Order>>
+
+    @GET("/api/v1/customer/order/{id}/order-card")
+    suspend fun getOrderDetail(@Path("id") id: Int): BaseDataResponseWithItem<Order>
+
+    @PATCH("/api/v1/customer/order/{id}/cancel")
+    suspend fun cancelOrder(@Path("id") id: Int): BaseDataResponse<Unit>
 }

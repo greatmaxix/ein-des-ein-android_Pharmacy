@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivPharmacyLogoCheckout"
+        android:layout_width="@dimen/_48sdp"
+        android:layout_height="@dimen/_48sdp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/_4sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_drugstore_base" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvProductAvailabilityCheckout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/_8ssp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPharmacyNameCheckout"
+        app:layout_constraintStart_toStartOf="@+id/tvPharmacyNameCheckout"
+        tools:text="Some User Name" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvPharmacyNameCheckout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/_13ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPharmacyLogoCheckout"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Some User Name" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvPharmacyAddressOrder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Text.Filled"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPharmacyLogoCheckout"
+        app:layout_constraintTop_toBottomOf="@+id/tvPharmacyNameCheckout"
+        tools:text="Some User Name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
