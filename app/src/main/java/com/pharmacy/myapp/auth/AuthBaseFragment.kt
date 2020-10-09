@@ -9,14 +9,4 @@ abstract class AuthBaseFragment(@LayoutRes layoutResourceId: Int) : BaseMVVMFrag
 
     protected val vm: AuthViewModel by sharedGraphViewModel(R.id.auth_graph)
 
-    override fun onBindLiveData() {
-        observe(vm.directionLiveData) {
-            it.contentOrNull?.let(navController::navigate)
-        }
-        observe(vm.directionPopBackLiveData) {
-            it.contentOrNull?.let { popBackId ->
-                navController.popBackStack(popBackId, false)
-            }
-        }
-    }
 }

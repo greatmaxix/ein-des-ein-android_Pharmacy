@@ -38,25 +38,9 @@ abstract class BaseAvatarWorker(private val context: Context, params: WorkerPara
                 }
 
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-
                     File(context.externalCacheDir, Constants.AVATAR_FILE_NAME).writeBitmap(resource, Bitmap.CompressFormat.PNG, 85)
-
-                    //resource?.let { ImageFileUtil.saveImageDrawable(it, File(context.externalCacheDir, Constants.AVATAR_FILE_NAME)) }
                 }
             })
-
-        /* Glide.get(context).clearDiskCache()
-         Glide.with(context)
-             .asDrawable()
-             .listener(object : RequestListener<Drawable?> {
-                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable?>?, isFirstResource: Boolean) = true
-                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable?>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                     resource?.let { ImageFileUtil.saveImageDrawable(it, File(context.externalCacheDir, Constants.AVATAR_FILE_NAME)) }
-                     return true
-                 }
-             })
-             .load(url)
-             .submit()*/
         return Result.success()
     }
 

@@ -37,7 +37,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
                 true
             }
         }
-        viewModel.loadInitialData()
+        //viewModel.loadInitialData()
     }
 
     override fun onBindLiveData() {

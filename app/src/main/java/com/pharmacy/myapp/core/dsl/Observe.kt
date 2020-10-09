@@ -9,5 +9,5 @@ open class ObserveGeneral<DATA>(
     var onEmmit: (DATA.() -> Unit) = {},
     var onError: ((GeneralException) -> Unit)? = null,
     var liveData: LiveData<Resource<DATA>> = MutableLiveData(),
-    var onProgress: (() -> Unit)? = null
+    var onProgress: ((Boolean) -> Unit)? = null
 )

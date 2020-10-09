@@ -29,7 +29,7 @@ interface RestApi {
     suspend fun signIn(@Body arguments: Map<String, String>): BaseDataResponse<Unit>
 
     @POST("/api/v1/customer/login")
-    suspend fun checkCode(@Body arguments: Map<String, String>): BaseDataResponse<StartInfo>
+    suspend fun signCode(@Body arguments: Map<String, String>): BaseDataResponse<StartInfo>
 
     @PUT("/api/v1/customer/customer")
     suspend fun updateCustomerInfo(@Body arguments: Map<String, String>): BaseDataResponse<CustomerItem>

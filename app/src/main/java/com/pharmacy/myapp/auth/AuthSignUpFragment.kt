@@ -9,7 +9,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.navigation.NavDirections
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.model.SignUp
+import com.pharmacy.myapp.auth.model.Auth
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.core.general.Event
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
@@ -36,7 +36,7 @@ class AuthSignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
             val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
             val isEmailValid = if (tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
-                vm.signUp(SignUp.newInstance(tilNameSignUp.text(), tilPhoneSignUp.phoneCodePrefix + tilPhoneSignUp.text(), tilEmailSignUp.text()))
+                vm.signUp(Auth.singUpInstance(tilNameSignUp.text(), tilPhoneSignUp.phoneCodePrefix + tilPhoneSignUp.text(), tilEmailSignUp.text()))
             }
         }
         val clearError: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit =
@@ -85,8 +85,7 @@ class AuthSignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
     }
 
     override fun onBindLiveData() {
-        super.onBindLiveData()
-        observeRestResult<Event<NavDirections>> {
+        observeResult<Event<NavDirections>> {
             liveData = vm.signUpLiveData
             onEmmit = { contentOrNull?.let(navController::navigate) }
         }

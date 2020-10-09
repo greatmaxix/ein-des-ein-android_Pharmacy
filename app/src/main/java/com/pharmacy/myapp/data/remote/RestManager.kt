@@ -21,7 +21,7 @@ class RestManager(private val sp: SPManager, private val RestApi: RestApi) {
     suspend fun auth(phone: String) = RestApi.signIn(mapOf(PHONE to phone))
 
     suspend fun login(phone: String, code: String) =
-        RestApi.checkCode(mapOf(PHONE to phone, CODE to code))
+        RestApi.signCode(mapOf(PHONE to phone, CODE to code))
 
     suspend fun updateCustomerInfo(name: String, email: String, avatarUuid: String) =
         RestApi.updateCustomerInfo(mapOf(NAME to name, EMAIL to email, AVATAR_UUID to avatarUuid))

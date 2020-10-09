@@ -7,6 +7,7 @@ import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.auth.model.AuthResult
 import com.pharmacy.myapp.core.extensions.hideKeyboard
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.underlineSpan
@@ -45,15 +46,17 @@ class AuthCodeFragment : AuthBaseFragment(R.layout.fragment_code) {
 
     override fun onBindLiveData() {
         super.onBindLiveData()
+
         observe(vm.customerPhoneLiveData) { mtvPhoneCode.text = it }
 
-        observeRestResult<Unit> { liveData = vm.codeLiveData }
+        observeResult<AuthResult> {
+            liveData = vm.codeLiveData
+            onEmmit = { navigate(this) }
+        }
 
-        observeRestResult<Event<NavDirections>> {
+        observeResult<Event<NavDirections>> {
             liveData = vm.signInLiveData
-            onEmmit = {
-                //TODO snackbar
-            }
+            onEmmit = { contentOrNull?.let { messageCallback?.showError(R.string.smsResendAgain) } }
         }
     }
 
@@ -64,6 +67,10 @@ class AuthCodeFragment : AuthBaseFragment(R.layout.fragment_code) {
         } else {
             messageCallback?.showError(R.string.enterTheCode)
         }
+    }
+
+    private fun navigate(authResult: AuthResult) {
+        authResult.direction?.let(navController::navigate) ?: authResult.popBackId?.let { navController.popBackStack(it, false) }
     }
 
     private val EditText.isCodeLength

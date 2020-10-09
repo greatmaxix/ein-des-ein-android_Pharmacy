@@ -42,8 +42,7 @@ class AuthSignInFragment : AuthBaseFragment(R.layout.fragment_sign_in) {
     }
 
     override fun onBindLiveData() {
-        super.onBindLiveData()
-        observeRestResult<Event<NavDirections>> {
+        observeResult<Event<NavDirections>> {
             liveData = vm.signInLiveData
             onEmmit = { contentOrNull?.let(navController::navigate) }
         }

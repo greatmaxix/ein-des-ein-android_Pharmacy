@@ -26,7 +26,6 @@ abstract class BaseViewModel : ViewModel() {
             try {
                 emit(Success(request()))
             } catch (e: Exception) {
-                emit(Progress(false))
                 emit(Error(errorHandler.checkThrowable(e)))
             }
         }
@@ -39,7 +38,6 @@ abstract class BaseViewModel : ViewModel() {
             try {
                 emit(Success(Event(request())))
             } catch (e: Exception) {
-                emit(Progress(false))
                 emit(Error(errorHandler.checkThrowable(e)))
             }
         }
