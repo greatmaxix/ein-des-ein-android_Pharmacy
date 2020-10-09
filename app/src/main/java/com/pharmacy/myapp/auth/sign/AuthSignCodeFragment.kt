@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.auth
+package com.pharmacy.myapp.auth.sign
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
+import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.auth.model.AuthResult
 import com.pharmacy.myapp.core.extensions.hideKeyboard
@@ -20,7 +21,7 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.widget.editorActionEvents
 import reactivecircus.flowbinding.android.widget.textChanges
 
-class AuthCodeFragment : AuthBaseFragment(R.layout.fragment_code) {
+class AuthSignCodeFragment : AuthSignBaseFragment(R.layout.fragment_code) {
 
     @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ class AuthCodeFragment : AuthBaseFragment(R.layout.fragment_code) {
 
         btnBackCode.onClick { navigationBack() }
 
-        //if (BuildConfig.DEBUG) etCode.setText("11111")
+        if (BuildConfig.DEBUG) etCode.setText("11111")
 
         btnSendCodeAgain.underlineSpan()
         btnSendCodeAgain.onClick { vm.signInAgain() }

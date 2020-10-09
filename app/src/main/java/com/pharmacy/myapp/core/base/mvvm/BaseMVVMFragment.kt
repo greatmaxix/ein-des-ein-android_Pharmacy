@@ -25,11 +25,9 @@ abstract class BaseMVVMFragment(@LayoutRes private val layoutResourceId: Int) : 
         //Optional
     }
 
-    protected fun <T, LD : LiveData<T>> observeNullable(liveData: LD, onChanged: (T?) -> Unit) {
-        liveData.observe(viewLifecycleOwner, { onChanged(it) })
-    }
-
     protected fun <T, LD : LiveData<T>> observe(liveData: LD, onChanged: (T) -> Unit) = liveData.observe(viewLifecycleOwner, { it?.let(onChanged) })
+
+    protected fun <T, LD : LiveData<T>> observeNullable(liveData: LD, onChanged: (T?) -> Unit) = liveData.observe(viewLifecycleOwner, { onChanged(it) })
 
     protected fun <T> observeResult(block: ObserveGeneral<T>.() -> Unit) {
         ObserveGeneral<T>().apply(block).apply {
@@ -53,15 +51,5 @@ abstract class BaseMVVMFragment(@LayoutRes private val layoutResourceId: Int) : 
 
     protected fun <T> observeSavedStateHandler(key: String, onChanged: (T) -> Unit) {
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<T>(key)?.let { observe(it, onChanged) }
-    }
-
-    @Deprecated(
-        "Use observe() member function, because we should invoke this class function and not use extension function",
-        replaceWith = ReplaceWith("observe()", "com.pharmacy.myapp.core.base.mvvm")
-    )
-    protected fun <T> LiveData<T>.observeExt(onChanged: (T) -> Unit) {
-        observe(viewLifecycleOwner, {
-            it?.let(onChanged)
-        })
     }
 }

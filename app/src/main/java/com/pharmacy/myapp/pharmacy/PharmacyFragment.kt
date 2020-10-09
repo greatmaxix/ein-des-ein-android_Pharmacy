@@ -6,7 +6,7 @@ import androidx.annotation.StringRes
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.AuthSignInFragmentArgs
+import com.pharmacy.myapp.auth.sign.AuthSignInFragmentArgs
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
 import com.pharmacy.myapp.core.extensions.showAlert

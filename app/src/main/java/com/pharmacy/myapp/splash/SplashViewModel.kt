@@ -9,7 +9,7 @@ import androidx.work.WorkManager
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.fromSplashToHome
-import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.fromSplashToOnboarding
+import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.fromSplashToOnBoarding
 import com.pharmacy.myapp.splash.repository.SplashRepository
 import kotlinx.coroutines.delay
 import org.koin.core.component.KoinApiExtension
@@ -37,6 +37,6 @@ class SplashViewModel(private val repository: SplashRepository, private val work
 
     companion object {
         private val toHome = fromSplashToHome()
-        private val toOnBoarding = fromSplashToOnboarding()
+        private val toOnBoarding = fromSplashToOnBoarding()
     }
 }

@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.auth
+package com.pharmacy.myapp.auth.sign
 
 import android.os.Bundle
 import android.text.SpannableString
@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.focusChanges
 
-class AuthSignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
+class AuthSignUpFragment : AuthSignBaseFragment(R.layout.fragment_sign_up) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,7 +36,7 @@ class AuthSignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
             val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
             val isEmailValid = if (tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
-                vm.signUp(Auth.singUpInstance(tilNameSignUp.text(), tilPhoneSignUp.phoneCodePrefix + tilPhoneSignUp.text(), tilEmailSignUp.text()))
+                vm.signUp(Auth.newInstance(tilNameSignUp.text(), tilPhoneSignUp.phoneCodePrefix + tilPhoneSignUp.text(), tilEmailSignUp.text()))
             }
         }
         val clearError: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit =

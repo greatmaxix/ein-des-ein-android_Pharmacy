@@ -3,12 +3,12 @@ package com.pharmacy.myapp.auth
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
 import androidx.work.*
-import com.pharmacy.myapp.auth.AuthSignInFragmentDirections.Companion.actionFromSignInToCode
-import com.pharmacy.myapp.auth.AuthSignUpFragmentDirections.Companion.actionFromSignUpToCode
 import com.pharmacy.myapp.auth.AuthWorker.Companion.AUTH_WORKER_KEY
 import com.pharmacy.myapp.auth.model.Auth
 import com.pharmacy.myapp.auth.model.AuthResult
 import com.pharmacy.myapp.auth.repository.AuthRepository
+import com.pharmacy.myapp.auth.sign.AuthSignInFragmentDirections.Companion.actionFromSignInToCode
+import com.pharmacy.myapp.auth.sign.AuthSignUpFragmentDirections.Companion.actionFromSignUpToCode
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
@@ -35,7 +35,7 @@ class AuthViewModel(private val repository: AuthRepository, private val workMana
 
     val codeLiveData = _codeLiveData.switchMap { code ->
         requestLiveData {
-            repository.checkCode(phone, code)?.let(::invokeAuthWorker)
+            repository.signCode(phone, code)?.let(::invokeAuthWorker)
             homeOrPopBack
         }
     }

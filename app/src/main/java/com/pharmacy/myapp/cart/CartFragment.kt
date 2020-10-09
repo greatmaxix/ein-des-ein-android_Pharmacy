@@ -5,7 +5,7 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.ConcatAdapter
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.AuthSignInFragmentArgs
+import com.pharmacy.myapp.auth.sign.AuthSignInFragmentArgs
 import com.pharmacy.myapp.cart.CartFragmentDirections.Companion.fromCartToCheckout
 import com.pharmacy.myapp.cart.CartFragmentDirections.Companion.fromCartToSearch
 import com.pharmacy.myapp.cart.adapter.CartAdapter

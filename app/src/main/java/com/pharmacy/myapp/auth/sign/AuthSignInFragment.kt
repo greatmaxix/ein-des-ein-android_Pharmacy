@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.auth
+package com.pharmacy.myapp.auth.sign
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.navArgs
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.AuthSignInFragmentDirections.Companion.actionFromSignInToSignUp
+import com.pharmacy.myapp.auth.sign.AuthSignInFragmentDirections.Companion.actionFromSignInToSignUp
 import com.pharmacy.myapp.core.extensions.debug
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.onDoneImeAction
@@ -19,7 +19,7 @@ import com.pharmacy.myapp.ui.text.setAsteriskHint
 import com.pharmacy.myapp.ui.text.setPhoneRule
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 
-class AuthSignInFragment : AuthBaseFragment(R.layout.fragment_sign_in) {
+class AuthSignInFragment : AuthSignBaseFragment(R.layout.fragment_sign_in) {
 
     private val args by navArgs<AuthSignInFragmentArgs>()
 

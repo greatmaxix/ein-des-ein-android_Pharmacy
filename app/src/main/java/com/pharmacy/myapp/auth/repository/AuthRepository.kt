@@ -11,7 +11,7 @@ class AuthRepository(private val spManager: SPManager, private val dao: Customer
 
     suspend fun signIn(phone: String) = rds.signIn(phone).dataOrThrow()
 
-    suspend fun checkCode(phone: String, code: String) = with(rds.signCode(phone, code).dataOrThrow()) {
+    suspend fun signCode(phone: String, code: String) = with(rds.signCode(phone, code).dataOrThrow()) {
         saveToken(token, refreshToken)
         saveCustomer(customer)
     }

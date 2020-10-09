@@ -17,11 +17,11 @@ import java.io.File
 
 abstract class BaseAvatarWorker(private val context: Context, params: WorkerParameters) : CoroutineWorker(context, params) {
 
-    abstract val avatarUrl: String?
+    abstract suspend fun avatarUrl(): String?
 
     override suspend fun doWork() = withContext(IO) {
         try {
-            avatarUrl?.let(::saveAvatar) ?: Result.failure()
+            avatarUrl()?.let(::saveAvatar) ?: Result.failure()
         } catch (e: Exception) {
             Timber.e(e)
             Result.failure()

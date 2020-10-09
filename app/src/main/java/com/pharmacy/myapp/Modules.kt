@@ -13,7 +13,7 @@ import com.pharmacy.myapp.data.remote.RestManager
 import com.pharmacy.myapp.devTools.devToolsModule
 import com.pharmacy.myapp.home.homeModule
 import com.pharmacy.myapp.main.mainModule
-import com.pharmacy.myapp.onboarding.onboardingModule
+import com.pharmacy.myapp.onboarding.onBoardingModule
 import com.pharmacy.myapp.orders.details.orderModule
 import com.pharmacy.myapp.orders.ordersModule
 import com.pharmacy.myapp.payments.paymentsModule
@@ -38,7 +38,7 @@ object Modules {
         devToolsModule,
         mainModule,
         splashModule,
-        onboardingModule,
+        onBoardingModule,
         profileModule,
         homeModule,
         authModule,
