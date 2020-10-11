@@ -10,7 +10,7 @@ import java.net.SocketException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-@Deprecated("")
+@Deprecated("Now we are @GeneralErrorHandler@ for ")
 suspend fun <T> safeApiCall(
     apiCall: suspend () -> T
 ): ResponseWrapper<T> =

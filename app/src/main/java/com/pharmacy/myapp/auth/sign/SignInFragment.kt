@@ -6,7 +6,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.navArgs
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.sign.AuthSignInFragmentDirections.Companion.actionFromSignInToSignUp
+import com.pharmacy.myapp.auth.sign.SignInFragmentDirections.Companion.actionFromSignInToSignUp
 import com.pharmacy.myapp.core.extensions.debug
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.onDoneImeAction
@@ -19,9 +19,9 @@ import com.pharmacy.myapp.ui.text.setAsteriskHint
 import com.pharmacy.myapp.ui.text.setPhoneRule
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 
-class AuthSignInFragment : AuthSignBaseFragment(R.layout.fragment_sign_in) {
+class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
 
-    private val args by navArgs<AuthSignInFragmentArgs>()
+    private val args by navArgs<SignInFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

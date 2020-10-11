@@ -19,7 +19,6 @@ import org.koin.core.component.KoinApiExtension
 @KoinApiExtension
 abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private val layoutResourceId: Int, private val viewModel: VM) : BaseMVVMFragment(layoutResourceId) {
 
-    @KoinApiExtension
     override fun onBindLiveData() {
         observe(viewModel.errorLiveData, ::errorOrAuth)
         observe(viewModel.wishLiteLiveData, ::notifyWish)

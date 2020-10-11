@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.widget.editorActionEvents
 import reactivecircus.flowbinding.android.widget.textChanges
 
-class AuthSignCodeFragment : AuthSignBaseFragment(R.layout.fragment_code) {
+class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
 
     @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,7 +71,10 @@ class AuthSignCodeFragment : AuthSignBaseFragment(R.layout.fragment_code) {
     }
 
     private fun navigate(authResult: AuthResult) {
-        authResult.direction?.let(navController::navigate) ?: authResult.popBackId?.let { navController.popBackStack(it, false) }
+        when (authResult) {
+            is AuthResult.PopBack -> navController.popBackStack(authResult.popBackId, false)
+            is AuthResult.Direction -> navController.navigate(authResult.direction)
+        }
     }
 
     private val EditText.isCodeLength

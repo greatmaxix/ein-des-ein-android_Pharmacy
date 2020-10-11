@@ -3,7 +3,7 @@ package com.pharmacy.myapp.search
 import android.os.Bundle
 import android.view.View
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.sign.AuthSignInFragmentArgs
+import com.pharmacy.myapp.auth.sign.SignInFragmentArgs
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.core.extensions.spanSearchCount
 import com.pharmacy.myapp.core.extensions.visibleOrGone
@@ -31,7 +31,7 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseProductListFr
         }
     }
 
-    override fun needToLogin() = navController.navigate(R.id.fromSearchToAuth, AuthSignInFragmentArgs(R.id.nav_search).toBundle())
+    override fun needToLogin() = navController.navigate(R.id.fromSearchToAuth, SignInFragmentArgs(R.id.nav_search).toBundle())
 
     override val productLiveData
         get() = viewModel.pagedSearchLiveData

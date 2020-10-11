@@ -33,13 +33,9 @@ abstract class BaseAvatarWorker(private val context: Context, params: WorkerPara
             .asBitmap()
             .load(url)
             .into(object : CustomTarget<Bitmap>() {
-                override fun onLoadCleared(placeholder: Drawable?) {
-
-                }
-
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    File(context.externalCacheDir, Constants.AVATAR_FILE_NAME).writeBitmap(resource, Bitmap.CompressFormat.PNG, 85)
-                }
+                override fun onLoadCleared(placeholder: Drawable?) = Unit
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) = File(context.externalCacheDir, Constants.AVATAR_FILE_NAME)
+                    .writeBitmap(resource, Bitmap.CompressFormat.PNG, 85)
             })
         return Result.success()
     }

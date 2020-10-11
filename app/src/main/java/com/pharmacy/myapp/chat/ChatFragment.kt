@@ -27,7 +27,7 @@ import com.fondesa.kpermissions.extension.addListener
 import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.sign.AuthSignInFragmentArgs
+import com.pharmacy.myapp.auth.sign.SignInFragmentArgs
 import com.pharmacy.myapp.chat.ChatFragmentDirections.Companion.actionChatToChatReviewBottomSheet
 import com.pharmacy.myapp.chat.ChatFragmentDirections.Companion.actionChatToHome
 import com.pharmacy.myapp.chat.ChatFragmentDirections.Companion.actionChatToSendImageBottomSheet
@@ -75,7 +75,7 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
                 doNav(actionChatToChatReviewBottomSheet())
             }
             RESUME_CHAT -> viewModel.removeEndChatMessage()
-            AUTHORIZE -> navController.navigate(R.id.fromChatToSignIn, AuthSignInFragmentArgs(R.id.nav_chat).toBundle())
+            AUTHORIZE -> navController.navigate(R.id.fromChatToSignIn, SignInFragmentArgs(R.id.nav_chat).toBundle())
         }
     }
 

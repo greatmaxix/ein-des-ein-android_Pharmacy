@@ -7,8 +7,8 @@ import com.pharmacy.myapp.auth.AuthWorker.Companion.AUTH_WORKER_KEY
 import com.pharmacy.myapp.auth.model.Auth
 import com.pharmacy.myapp.auth.model.AuthResult
 import com.pharmacy.myapp.auth.repository.AuthRepository
-import com.pharmacy.myapp.auth.sign.AuthSignInFragmentDirections.Companion.actionFromSignInToCode
-import com.pharmacy.myapp.auth.sign.AuthSignUpFragmentDirections.Companion.actionFromSignUpToCode
+import com.pharmacy.myapp.auth.sign.SignInFragmentDirections.Companion.actionFromSignInToCode
+import com.pharmacy.myapp.auth.sign.SignUpFragmentDirections.Companion.actionFromSignUpToCode
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.extensions.formatPhone
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
@@ -48,7 +48,7 @@ class AuthViewModel(private val repository: AuthRepository, private val workMana
     )
 
     private val homeOrPopBack
-        get() = if (popBackId == -1) AuthResult.newInstanceDirection(globalToHome()) else AuthResult.newInstancePopBack(popBackId)
+        get() = if (popBackId == -1) AuthResult.Direction(globalToHome()) else AuthResult.PopBack(popBackId)
 
     /* creating new customer */
     private val _signUpLiveData by lazy { MutableLiveData<Auth>() }
