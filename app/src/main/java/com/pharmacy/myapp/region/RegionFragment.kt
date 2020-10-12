@@ -12,12 +12,13 @@ import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.animateVisibleOrGoneIfNot
 import com.pharmacy.myapp.core.extensions.falseIfNull
 import com.pharmacy.myapp.core.extensions.onClick
-import com.pharmacy.myapp.model.region.RegionWithHeader
 import com.pharmacy.myapp.region.adapter.RegionAdapter
 import kotlinx.android.synthetic.main.fragment_region.*
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(R.layout.fragment_region) {
 
     private val regionAdapter = RegionAdapter({

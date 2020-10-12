@@ -17,7 +17,7 @@ data class Customer(
     @SerializedName("avatar") val avatarInfo: Avatar?,
     @SerializedName("avatarUuid") val avatarUuid: String?,
     @SerializedName("createdAt") val createdAt: String,
-    @SerializedName("email") val email: String,
+    @SerializedName("email") val email: String?,
     @SerializedName("phone") val phone: String,
     @SerializedName("name") val name: String,
     @SerializedName("uuid") val uuid: String,

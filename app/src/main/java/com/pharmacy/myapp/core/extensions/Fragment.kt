@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.Intent.ACTION_DIAL
 import android.content.Intent.ACTION_VIEW
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.Window
@@ -16,11 +15,9 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.annotation.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
@@ -28,13 +25,10 @@ import androidx.navigation.fragment.findNavController
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.base.BaseActivity
-import com.pharmacy.myapp.core.base.fragment.BaseFragment
 import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogData
 import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogDataRes
-import com.pharmacy.myapp.core.base.fragment.dialog.AlertDialogFragment
 import com.pharmacy.myapp.core.flow.CountDownFlow
 import com.pharmacy.myapp.core.keyboard.KeyboardObserver
-import com.pharmacy.myapp.pharmacy.tabs.BaseTabFragment
 import com.pharmacy.myapp.search.SearchFragment
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
@@ -45,6 +39,7 @@ import kotlinx.coroutines.flow.onStart
 import org.koin.android.ext.android.getKoin
 import org.koin.androidx.viewmodel.ViewModelParameter
 import org.koin.androidx.viewmodel.koin.getViewModel
+import org.koin.core.component.KoinApiExtension
 import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.qualifier.Qualifier
 import timber.log.Timber
@@ -214,6 +209,7 @@ fun <T : Fragment> Fragment.setFragment(
     }
 }
 
+@KoinApiExtension
 fun Fragment.setFragmentIfNeed(fragment: Fragment, @IdRes containerId: Int = R.id.container, needBackStack: Boolean = false) {
     if (findFragment<SearchFragment>(containerId) == null) {
         setFragment(fragment, containerId, needBackStack)
@@ -285,7 +281,7 @@ inline fun <reified VM : ViewModel> Fragment.sharedGraphViewModel(
     noinline parameters: ParametersDefinition? = null
 ) = lazy {
     val store = findNavController().getViewModelStoreOwner(navGraphId).viewModelStore
-    getKoin().getViewModel(ViewModelParameter(VM::class, qualifier, parameters, null, store, null))
+    getKoin().getViewModel(ViewModelParameter(VM::class, qualifier, parameters, Bundle(), store, null))
 }
 
 fun <T> Fragment.notifySavedStateHandle(key: String, value: T) {

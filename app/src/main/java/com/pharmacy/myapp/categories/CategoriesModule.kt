@@ -9,8 +9,10 @@ import com.pharmacy.myapp.data.local.DBManager
 import com.pharmacy.myapp.model.category.Category
 import org.koin.androidx.fragment.dsl.fragment
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
 
+@OptIn(KoinApiExtension::class)
 val categoriesModule = module {
 
     fragment { CategoriesFragment() }

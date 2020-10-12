@@ -6,7 +6,9 @@ import com.pharmacy.myapp.core.network.ResponseWrapper
 import com.pharmacy.myapp.home.repository.HomeRepository
 import com.pharmacy.myapp.model.category.Category
 import com.pharmacy.myapp.product.BaseProductViewModel
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class HomeViewModel(private val repository: HomeRepository) : BaseProductViewModel() {
 
     private val _categoriesLiveData by lazy { SingleLiveEvent<List<Category>>() }

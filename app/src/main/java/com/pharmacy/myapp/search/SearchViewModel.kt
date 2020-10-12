@@ -6,7 +6,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.pharmacy.myapp.product.BaseProductViewModel
 import com.pharmacy.myapp.search.repository.SearchPagingSource
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class SearchViewModel : BaseProductViewModel() {
 
     private val searchLiveData by lazy { MutableLiveData("") }

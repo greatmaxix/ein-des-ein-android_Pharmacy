@@ -6,11 +6,11 @@ import org.json.JSONObject
 import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
-import java.net.HttpURLConnection
 import java.net.SocketException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
+@Deprecated("Now we are @GeneralErrorHandler@ for ")
 suspend fun <T> safeApiCall(
     apiCall: suspend () -> T
 ): ResponseWrapper<T> =

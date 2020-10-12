@@ -5,8 +5,10 @@ import com.pharmacy.myapp.model.region.Region
 import com.pharmacy.myapp.user.model.customer.Customer
 import com.pharmacy.myapp.user.repository.UserLocalDataSource
 import kotlinx.coroutines.flow.Flow
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.KoinComponent
 
+@KoinApiExtension
 class RegionRepository(private val rrds: RegionRemoteDataSource, private val rlds: RegionLocalDataSource, private val lds: UserLocalDataSource) : KoinComponent {
 
     suspend fun getRegions() = rrds.getRegions()

@@ -5,7 +5,6 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.LiveData
-import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.myapp.R
@@ -15,7 +14,9 @@ import com.pharmacy.myapp.product.BaseProductFragment
 import com.pharmacy.myapp.product.BaseProductViewModel
 import com.pharmacy.myapp.product.model.ProductLite
 import com.pharmacy.myapp.productList.adapter.ProductListAdapter
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 abstract class BaseProductListFragment<VM : BaseProductViewModel>(@LayoutRes private val layoutResourceId: Int, private val viewModel: VM) :
     BaseProductFragment<VM>(layoutResourceId, viewModel) {
 

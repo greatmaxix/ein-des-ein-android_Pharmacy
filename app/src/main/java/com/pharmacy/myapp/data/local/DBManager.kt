@@ -17,7 +17,6 @@ import com.pharmacy.myapp.user.model.addressAndNote.AddressDAO
 import com.pharmacy.myapp.user.model.customer.Customer
 import com.pharmacy.myapp.user.model.customer.CustomerDAO
 
-
 class DBManager(context: Context) : ManagerInterface {
 
     companion object {

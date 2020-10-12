@@ -9,7 +9,9 @@ import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
 import com.pharmacy.myapp.core.extensions.setDebounceOnClickListener
 import com.pharmacy.myapp.user.profile.guest.GuestProfileFragmentDirections.Companion.actionGuestToSignIn
 import kotlinx.android.synthetic.main.fragment_guest_profile.*
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class GuestProfileFragment(private val viewModel: GuestProfileViewModel) : BaseMVVMFragment(R.layout.fragment_guest_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

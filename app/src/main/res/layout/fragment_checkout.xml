@@ -103,6 +103,7 @@
 
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
+
             <com.pharmacy.myapp.ui.PharmacyAddressOrder
                 android:id="@+id/pharmacyAddressCheckout"
                 android:layout_width="match_parent"

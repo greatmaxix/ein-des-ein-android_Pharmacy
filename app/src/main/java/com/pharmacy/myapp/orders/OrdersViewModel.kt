@@ -7,11 +7,14 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
-import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.core.network.ResponseWrapper.Error
+import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.model.order.Order
 import com.pharmacy.myapp.orders.repository.OrdersPagingSource
 import com.pharmacy.myapp.orders.repository.OrdersRepository
+import org.koin.core.component.KoinApiExtension
+
+@KoinApiExtension
 
 class OrdersViewModel(private val repository: OrdersRepository) : BaseViewModel() {
 

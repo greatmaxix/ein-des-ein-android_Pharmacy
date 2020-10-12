@@ -17,9 +17,9 @@ abstract class PaymentsBaseFragment(@LayoutRes layoutResourceId: Int) : BaseMVVM
     }
 
     override fun onBindLiveData() {
-        super.onBindLiveData()
-        viewModel.directionLiveData.observeExt(navController::navigate)
-        viewModel.errorLiveData.observeExt { messageCallback?.showError(it) }
-        viewModel.progressLiveData.observeExt { progressCallback?.setInProgress(it) }
+        observe(viewModel.directionLiveData, navController::navigate)
+
+        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
+        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
     }
 }

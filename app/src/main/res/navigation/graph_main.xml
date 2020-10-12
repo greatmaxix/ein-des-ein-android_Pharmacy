@@ -9,7 +9,6 @@
     <include app:graph="@navigation/graph_profile" />
     <include app:graph="@navigation/graph_profile_guest" />
     <include app:graph="@navigation/graph_payments" />
-    <include app:graph="@navigation/graph_onboarding" />
 
     <fragment
         android:id="@+id/nav_splash"
@@ -38,14 +37,39 @@
             app:popUpToInclusive="true" />
 
         <action
-            android:id="@+id/fromSplashToOnboarding"
-            app:destination="@id/onboarding_graph"
+            android:id="@+id/fromSplashToOnBoarding"
+            app:destination="@id/nav_on_boarding"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim"
             app:popUpTo="@id/nav_splash"
             app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_on_boarding"
+        android:name="com.pharmacy.myapp.onboarding.OnBoardingFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_onboarding">
+
+        <action
+            android:id="@+id/actionFromOnBoardingToAuth"
+            app:destination="@id/auth_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_on_boarding"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/actionFromOnBoardingToHome"
+            app:destination="@id/nav_home"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
     </fragment>
 
     <fragment
@@ -370,8 +394,8 @@
         <argument
             android:name="category"
             android:defaultValue="@null"
-            app:nullable="true"
-            app:argType="com.pharmacy.myapp.model.category.Category" />
+            app:argType="com.pharmacy.myapp.model.category.Category"
+            app:nullable="true" />
 
     </fragment>
 

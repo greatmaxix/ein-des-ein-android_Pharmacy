@@ -10,9 +10,11 @@ import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.product.repository.ProductRepository
 import com.pharmacy.myapp.user.repository.UserRepository
 import com.pharmacy.myapp.user.wishlist.repository.WishRepository
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
+@KoinApiExtension
 abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
 
     private val repositoryWish by inject<WishRepository>()

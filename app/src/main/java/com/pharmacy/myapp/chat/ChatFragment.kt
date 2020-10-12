@@ -27,7 +27,7 @@ import com.fondesa.kpermissions.extension.addListener
 import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.SignInFragmentArgs
+import com.pharmacy.myapp.auth.sign.SignInFragmentArgs
 import com.pharmacy.myapp.chat.ChatFragmentDirections.Companion.actionChatToChatReviewBottomSheet
 import com.pharmacy.myapp.chat.ChatFragmentDirections.Companion.actionChatToHome
 import com.pharmacy.myapp.chat.ChatFragmentDirections.Companion.actionChatToSendImageBottomSheet
