@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.auth
+package com.pharmacy.myapp.auth.sign
 
 import android.os.Bundle
 import android.text.SpannableString
@@ -6,9 +6,12 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.NavDirections
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.R
+import com.pharmacy.myapp.auth.model.Auth
 import com.pharmacy.myapp.core.extensions.*
+import com.pharmacy.myapp.core.general.Event
 import com.pharmacy.myapp.splash.SplashFragmentDirections.Companion.globalToHome
 import com.pharmacy.myapp.ui.text.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
@@ -19,7 +22,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.focusChanges
 
-class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
+class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,7 +36,7 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
             val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
             val isEmailValid = if (tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
             if (isNameValid && isPhoneValid && isEmailValid) {
-                viewModel.signUp(tilNameSignUp.text(), tilPhoneSignUp.phoneCodePrefix + tilPhoneSignUp.text(), tilEmailSignUp.text())
+                vm.signUp(Auth(tilNameSignUp.text(), tilPhoneSignUp.phoneCodePrefix + tilPhoneSignUp.text(), tilEmailSignUp.text()))
             }
         }
         val clearError: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit =
@@ -79,5 +82,12 @@ class SignUpFragment : AuthBaseFragment(R.layout.fragment_sign_up) {
             tilPhoneSignUp.prefixText = if (it) if (BuildConfig.DEBUG) "+3" else "+7" else ""
             if (it) etPhoneSignUp.hint = null else etPhoneSignUp.setHintSpan(hint.toString, 18, 19)
         }?.launchIn(CoroutineScope(Dispatchers.Main.immediate + SupervisorJob()))
+    }
+
+    override fun onBindLiveData() {
+        observeResult<Event<NavDirections>> {
+            liveData = vm.signUpLiveData
+            onEmmit = { contentOrNull?.let(navController::navigate) }
+        }
     }
 }

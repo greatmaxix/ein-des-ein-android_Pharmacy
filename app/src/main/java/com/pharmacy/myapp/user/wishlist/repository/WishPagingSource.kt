@@ -3,9 +3,11 @@ package com.pharmacy.myapp.user.wishlist.repository
 import androidx.paging.PagingSource
 import com.pharmacy.myapp.core.network.ResponseWrapper
 import com.pharmacy.myapp.product.model.ProductLite
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
+@KoinApiExtension
 class WishPagingSource : PagingSource<Int, ProductLite>(), KoinComponent {
 
     private val repository: WishRepository by inject()

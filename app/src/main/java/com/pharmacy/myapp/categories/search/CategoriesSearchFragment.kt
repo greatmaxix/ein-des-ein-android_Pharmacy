@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.SignInFragmentArgs
+import com.pharmacy.myapp.auth.sign.SignInFragmentArgs
 import com.pharmacy.myapp.core.extensions.spanSearchCount
 import com.pharmacy.myapp.core.extensions.visibleOrGone
 import com.pharmacy.myapp.productList.BaseProductListFragment
 import kotlinx.android.synthetic.main.fragment_categories_search.*
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class CategoriesSearchFragment(private val viewModel: CategoriesSearchViewModel) :
     BaseProductListFragment<CategoriesSearchViewModel>(R.layout.fragment_categories_search, viewModel) {
 

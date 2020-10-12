@@ -8,7 +8,9 @@ import com.pharmacy.myapp.core.extensions.animateVisibleOrGone
 import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
 import com.pharmacy.myapp.productList.BaseProductListFragment
 import kotlinx.android.synthetic.main.fragment_wish.*
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class WishFragment(private val viewModel: WishViewModel) : BaseProductListFragment<WishViewModel>(R.layout.fragment_wish, viewModel) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

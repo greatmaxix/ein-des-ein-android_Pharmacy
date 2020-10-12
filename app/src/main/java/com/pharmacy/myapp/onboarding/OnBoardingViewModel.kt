@@ -5,12 +5,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
 import com.pharmacy.myapp.core.general.SingleLiveEvent
-import com.pharmacy.myapp.onboarding.OnboardingFragmentDirections.Companion.actionFromOnboardingToAuth
-import com.pharmacy.myapp.onboarding.OnboardingFragmentDirections.Companion.actionFromOnboardingToHome
+import com.pharmacy.myapp.onboarding.OnBoardingFragmentDirections.Companion.actionFromOnBoardingToAuth
+import com.pharmacy.myapp.onboarding.OnBoardingFragmentDirections.Companion.actionFromOnBoardingToHome
+import com.pharmacy.myapp.onboarding.repository.OnBoardingRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class OnboardingViewModel(repository: OnboardingRepository) : BaseViewModel() {
+class OnBoardingViewModel(repository: OnBoardingRepository) : BaseViewModel() {
 
     private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
@@ -19,7 +20,7 @@ class OnboardingViewModel(repository: OnboardingRepository) : BaseViewModel() {
     val skipRegionLiveData: LiveData<Unit> by lazy { _skipRegionLiveData }
 
     init {
-        repository.setOnboardingShown()
+        repository.setOnBoardingShown()
     }
 
     fun skipRegion(needDelay: Boolean = false) {
@@ -29,7 +30,7 @@ class OnboardingViewModel(repository: OnboardingRepository) : BaseViewModel() {
         }
     }
 
-    fun goToAuth() = _directionLiveData.postValue(actionFromOnboardingToAuth())
+    fun goToAuth() = _directionLiveData.postValue(actionFromOnBoardingToAuth())
 
-    fun goToHome() = _directionLiveData.postValue(actionFromOnboardingToHome())
+    fun goToHome() = _directionLiveData.postValue(actionFromOnBoardingToHome())
 }

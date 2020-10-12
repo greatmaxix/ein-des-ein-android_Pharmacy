@@ -10,7 +10,9 @@ import com.pharmacy.myapp.model.region.Region
 import com.pharmacy.myapp.model.region.RegionWithHeader
 import com.pharmacy.myapp.region.repository.RegionRepository
 import kotlinx.coroutines.delay
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class RegionViewModel(private val repository: RegionRepository) : BaseViewModel() {
 
     private val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }

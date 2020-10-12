@@ -26,8 +26,10 @@ import com.pharmacy.myapp.scanner.ScannerFragmentDirections.Companion.fromScanne
 import kotlinx.android.synthetic.main.fragment_qr_code_scanner.*
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinApiExtension
 import timber.log.Timber
 
+@KoinApiExtension
 class ScannerFragment(private val viewModel: ScannerViewModel) : BaseProductFragment<ScannerViewModel>(R.layout.fragment_qr_code_scanner, viewModel) {
 
     private var codeScanner: CodeScanner? = null

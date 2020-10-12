@@ -4,9 +4,11 @@ import com.pharmacy.myapp.data.remote.repository.RestRepository
 import okhttp3.Authenticator
 import okhttp3.Response
 import okhttp3.Route
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
+@KoinApiExtension
 class RestAuthenticator : Authenticator, KoinComponent {
 
     private val repository: RestRepository by inject()

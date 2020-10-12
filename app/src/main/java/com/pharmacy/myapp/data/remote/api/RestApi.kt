@@ -23,13 +23,13 @@ import retrofit2.http.*
 interface RestApi {
 
     @POST("/api/v1/customer/registration")
-    suspend fun signUp(@Body arguments: Map<String, String>): BaseDataResponse<StartInfo>
+    suspend fun signUp(@Body arguments: Map<String, String>): BaseDataResponse<Unit>
 
     @POST("/api/v1/customer/auth")
-    suspend fun auth(@Body arguments: Map<String, String>): JSONObject
+    suspend fun signIn(@Body arguments: Map<String, String>): BaseDataResponse<Unit>
 
     @POST("/api/v1/customer/login")
-    suspend fun login(@Body arguments: Map<String, String>): BaseDataResponse<StartInfo>
+    suspend fun signCode(@Body arguments: Map<String, String>): BaseDataResponse<StartInfo>
 
     @PUT("/api/v1/customer/customer")
     suspend fun updateCustomerInfo(@Body arguments: Map<String, String>): BaseDataResponse<CustomerItem>
@@ -102,7 +102,8 @@ interface RestApi {
     suspend fun fetchOrders(
         @Query("status") query: String? = null,
         @Query("page") page: Int? = null,
-        @Query("per_page") pageSize: Int? = null): BaseDataResponse<PaginationModel<Order>>
+        @Query("per_page") pageSize: Int? = null
+    ): BaseDataResponse<PaginationModel<Order>>
 
     @GET("/api/v1/customer/order/{id}/order-card")
     suspend fun getOrderDetail(@Path("id") id: Int): BaseDataResponseWithItem<Order>

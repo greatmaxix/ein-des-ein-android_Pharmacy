@@ -10,7 +10,9 @@ import com.pharmacy.myapp.core.extensions.addStateListener
 import com.pharmacy.myapp.orders.StateQuery.*
 import com.pharmacy.myapp.orders.adapter.OrdersAdapter
 import kotlinx.android.synthetic.main.fragment_orders.*
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class OrdersFragment(private val viewModel: OrdersViewModel) : BaseMVVMFragment(R.layout.fragment_orders) {
 
     private val ordersAdapter by lazy { OrdersAdapter(viewModel::getOrderDetail) }

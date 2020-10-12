@@ -6,14 +6,16 @@ import androidx.annotation.StringRes
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.SignInFragmentArgs
+import com.pharmacy.myapp.auth.sign.SignInFragmentArgs
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.onNavDestinationSelected
 import com.pharmacy.myapp.core.extensions.showAlert
 import kotlinx.android.synthetic.main.fragment_pharmacy.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.KoinApiExtension
 import org.koin.core.parameter.parametersOf
 
+@KoinApiExtension
 class PharmacyFragment : BaseMVVMFragment(R.layout.fragment_pharmacy) {
 
     private val args: PharmacyFragmentArgs by navArgs()

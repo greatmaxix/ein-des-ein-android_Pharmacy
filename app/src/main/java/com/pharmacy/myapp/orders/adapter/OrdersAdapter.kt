@@ -10,7 +10,7 @@ import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.model.order.Order
 import kotlinx.android.synthetic.main.layout_my_order_item.view.*
 
-class OrdersAdapter(private val click :(Int) -> Unit) : PagingDataAdapter<Order, OrdersAdapter.OrdersViewHolder>(OrderDiffUtil) {
+class OrdersAdapter(private val click: (Int) -> Unit) : PagingDataAdapter<Order, OrdersAdapter.OrdersViewHolder>(OrderDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = OrdersViewHolder.newInstance(parent, click)
 
@@ -18,7 +18,7 @@ class OrdersAdapter(private val click :(Int) -> Unit) : PagingDataAdapter<Order,
         holder.bind(getItem(position) ?: return)
     }
 
-    class OrdersViewHolder(view: View, private val click :(Int) -> Unit) : BaseViewHolder<Order>(view) {
+    class OrdersViewHolder(view: View, private val click: (Int) -> Unit) : BaseViewHolder<Order>(view) {
 
         override fun bind(item: Order) = with(itemView) {
             setDebounceOnClickListener { click(item.id) }
@@ -56,7 +56,7 @@ class OrdersAdapter(private val click :(Int) -> Unit) : PagingDataAdapter<Order,
 
         companion object {
 
-            fun newInstance(parent: ViewGroup, click :(Int) -> Unit) = OrdersViewHolder(parent.inflate(R.layout.layout_my_order_item), click)
+            fun newInstance(parent: ViewGroup, click: (Int) -> Unit) = OrdersViewHolder(parent.inflate(R.layout.layout_my_order_item), click)
         }
     }
 }

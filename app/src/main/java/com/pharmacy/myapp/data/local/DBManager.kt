@@ -6,12 +6,12 @@ import com.pharmacy.myapp.core.general.interfaces.ManagerInterface
 import com.pharmacy.myapp.data.remote.model.order.DeliveryInfoOrderData
 import com.pharmacy.myapp.model.Picture
 import com.pharmacy.myapp.model.product.RecentlyViewedDAO
-import com.pharmacy.myapp.model.region.RegionDAO
 import com.pharmacy.myapp.model.region.LocalRegion
+import com.pharmacy.myapp.model.region.RegionDAO
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.user.model.addressAndNote.AddressDAO
-import com.pharmacy.myapp.user.model.customer.CustomerDAO
 import com.pharmacy.myapp.user.model.customer.Customer
+import com.pharmacy.myapp.user.model.customer.CustomerDAO
 
 class DBManager(context: Context) : ManagerInterface {
 

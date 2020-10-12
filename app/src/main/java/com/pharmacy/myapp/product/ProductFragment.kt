@@ -7,7 +7,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.auth.SignInFragmentArgs
+import com.pharmacy.myapp.auth.sign.SignInFragmentArgs
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.product.ProductFragmentDirections.Companion.fromProductToPharmacy
 import com.pharmacy.myapp.product.adapter.ProductsImageAdapter
@@ -16,7 +16,9 @@ import kotlinx.android.synthetic.main.fragment_product.*
 import kotlinx.android.synthetic.main.layout_product_card_additional_info.*
 import kotlinx.android.synthetic.main.layout_product_card_image_pager.*
 import kotlinx.android.synthetic.main.layout_product_card_main_info.*
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFragment<ProductViewModel>(R.layout.fragment_product, viewModel) {
 
     private val args: ProductFragmentArgs by navArgs()
@@ -51,7 +53,7 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         fbWish.setDebounceOnClickListener { viewModel.setOrRemoveWish(!args.product.isInWish to args.product.globalProductId) }
         args.product.aggregation?.let {
             mbToPharmacy.setDebounceOnClickListener { navController.navigate(fromProductToPharmacy(args.product.globalProductId)) }
-        }?: run {
+        } ?: run {
             mbToPharmacy.isEnabled = false
         }
 

@@ -6,7 +6,9 @@ import com.pharmacy.myapp.core.network.ResponseWrapper
 import com.pharmacy.myapp.product.BaseProductViewModel
 import com.pharmacy.myapp.product.model.ProductLite
 import com.pharmacy.myapp.scanner.repository.ScannerRepository
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class ScannerViewModel(private val repository: ScannerRepository) : BaseProductViewModel() {
 
     private val _resultLiveData by lazy { SingleLiveEvent<List<ProductLite>>() }

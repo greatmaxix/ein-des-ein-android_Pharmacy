@@ -26,6 +26,7 @@
     <string name="orSignInWithAuth">Или войдите с помощью</string>
     <string name="enterTheCode">Введите код</string>
     <string name="tokenIsEmpty">Ошибка запроса</string>
+    <string name="smsResendAgain">СМС отправленно успешно !</string>
     <string name="signIn">Войти</string>
     <string name="signUp">Регистрация</string>
     <string name="orSignInVia">Или войти с помощью</string>
@@ -42,6 +43,7 @@
     <string name="signInSubTitle">Что бы войти в систему, введите зарегестрированный номер телефона</string>
     <string name="authPhoneHint">+7 (•••) •••–••–••*</string>
     <string name="authPhoneDebugHint">+3 (•••) •••–••–••*</string>
+    <string name="authCustomerWithThisPhoneNumber">Пользователь с таким номером телефона не найдет, проверте правильность ввода или зарегестрируйтесь</string>
 
     <string name="menuTitleMain">Главная</string>
     <string name="menuTitleCategories">Каталог</string>

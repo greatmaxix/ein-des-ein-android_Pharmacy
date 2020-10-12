@@ -1,7 +1,8 @@
 package com.pharmacy.myapp.user.model.customer
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Query
 import com.pharmacy.myapp.core.db.BaseDao
 
 @Dao

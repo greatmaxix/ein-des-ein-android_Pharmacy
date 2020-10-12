@@ -1,6 +1,5 @@
 package com.pharmacy.myapp.data.remote
 
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.pharmacy.myapp.BuildConfig
 import com.pharmacy.myapp.data.remote.api.RestApi
@@ -15,11 +14,13 @@ import com.pharmacy.myapp.data.remote.serializer.OrderStatusSerializer
 import com.pharmacy.myapp.model.order.OrderStatus
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+@OptIn(KoinApiExtension::class)
 val RESTModule = module {
 
     single { get<Retrofit>().create(RestApi::class.java) }
@@ -31,7 +32,7 @@ val RESTModule = module {
 
         Retrofit.Builder()
             .baseUrl(baseURL)
-            .addConverterFactory(GsonConverterFactory.create(get<Gson>()))
+            .addConverterFactory(GsonConverterFactory.create(get()))
             .client(get())
             .build()
     }
