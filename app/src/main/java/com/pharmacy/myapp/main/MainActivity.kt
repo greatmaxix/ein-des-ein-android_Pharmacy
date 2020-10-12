@@ -55,6 +55,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     override fun onBackPressed() {
         navController.currentDestination?.apply {
             when {
+                isCategories -> super.onBackPressed()
                 isTopDestinationAndHome -> finish()
                 isTopLevelDestination -> navController.navigate(R.id.nav_home)
                 else -> super.onBackPressed()
@@ -83,4 +84,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
 
     private val NavDestination.isTopDestinationAndHome
         get() = isTopLevelDestination && id == R.id.nav_home
+
+    private val NavDestination.isCategories
+        get() = id == R.id.nav_catalog
 }

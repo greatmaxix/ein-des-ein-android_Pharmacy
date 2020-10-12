@@ -17,7 +17,7 @@ class HomeViewModel(private val repository: HomeRepository) : BaseProductViewMod
     fun loadInitialData() {
         launchIO {
             when (val response = repository.getCategories()) {
-                is ResponseWrapper.Success -> _categoriesLiveData.postValue(response.value.data.items.subList(0, 4))
+                is ResponseWrapper.Success -> _categoriesLiveData.postValue(response.value)
                 is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
             }
         }

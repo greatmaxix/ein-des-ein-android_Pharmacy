@@ -19,6 +19,8 @@ import org.koin.core.component.KoinApiExtension
 @KoinApiExtension
 class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<HomeViewModel>(R.layout.fragment_home, viewModel) {
 
+    private var isCategoryLoaded = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mcvScanHome.onClick { doNav(fromHomeToScanner()) }
@@ -38,6 +40,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
             }
         }
         viewModel.loadInitialData()
+        progressBarCategories.visibleOrGone(!isCategoryLoaded)
     }
 
     override fun onBindLiveData() {
@@ -48,11 +51,15 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         observe(viewModel.categoriesLiveData, ::setCategories)
     }
 
-    private fun setCategories(categories: List<Category>) = categories.forEachIndexed { index, category ->
-        (llCategoriesContainer.getChildAt(index) as? CategoryHomeView)?.apply {
-            setCategory(category)
-            setDebounceOnClickListener {
-                navController.onNavDestinationSelected(R.id.nav_catalog, bundleOf("category" to category), R.id.nav_home)
+    private fun setCategories(categories: List<Category>) {
+        progressBarCategories.gone()
+        llCategoriesContainer.visible()
+        categories.forEachIndexed { index, category ->
+            (llCategoriesContainer.getChildAt(index) as? CategoryHomeView)?.apply {
+                setCategory(category)
+                setDebounceOnClickListener {
+                    navController.onNavDestinationSelected(R.id.nav_catalog, bundleOf("category" to category), R.id.nav_home)
+                }
             }
         }
     }

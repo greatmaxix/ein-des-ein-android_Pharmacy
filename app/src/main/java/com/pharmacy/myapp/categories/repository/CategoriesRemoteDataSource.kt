@@ -1,4 +1,4 @@
-package com.pharmacy.myapp.categories
+package com.pharmacy.myapp.categories.repository
 
 import com.pharmacy.myapp.data.remote.RestManager
 
