@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
 import com.pharmacy.myapp.categories.CategoriesFragmentDirections.Companion.globalToSearchWithCategory
+import com.pharmacy.myapp.categories.repository.CategoriesRepository
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
+import com.pharmacy.myapp.core.extensions.falseIfNull
 import com.pharmacy.myapp.core.general.SingleLiveEvent
-import com.pharmacy.myapp.core.network.ResponseWrapper.Error
-import com.pharmacy.myapp.core.network.ResponseWrapper.Success
 import com.pharmacy.myapp.model.category.Category
 
 class CategoriesViewModel(private val repository: CategoriesRepository, private var selectedCategory: Category?) : BaseViewModel() {
@@ -32,22 +32,17 @@ class CategoriesViewModel(private val repository: CategoriesRepository, private 
     val navigateBackLiveData: LiveData<Unit> by lazy { _navigateBackLiveData }
 
     private var originalList: List<Category>? = null
+    private var parentList: List<Category>? = null
 
     init {
-        _progressLiveData.value = true
         launchIO {
-            when (val response = repository.getCategories()) {
-                is Success -> {
-                    originalList = response.value.data.items
-                    selectedCategory?.let {
-                        selectCategory(it)
-                    } ?: run {
-                        _parentCategoriesLiveData.postValue(response.value.data.items)
-                    }
-                }
-                is Error -> _errorLiveData.postValue(response.errorMessage)
+            originalList = repository.getLocalCategories()
+            parentList = originalList?.filter { it.code.trimmedLength() == 1 }
+            selectedCategory?.let {
+                selectCategory(it)
+            } ?: run {
+                _parentCategoriesLiveData.postValue(parentList)
             }
-            _progressLiveData.postValue(false)
         }
     }
 
@@ -57,14 +52,18 @@ class CategoriesViewModel(private val repository: CategoriesRepository, private 
             return
         }
         if (code.trimmedLength() == 1) {
-            _parentCategoriesLiveData.postValue(originalList)
+            _parentCategoriesLiveData.postValue(parentList)
             selectedCategory = null
+        } else {
+            _nestedCategoriesLiveData.postValue(findParentCategories())
         }
-        _nestedCategoriesLiveData.postValue(findParentCategories(originalList, code))
     }
 
     fun selectCategory(category: Category) {
-        if (category.nodes.isNotEmpty()) {
+        category.apply {
+            nodes = originalList?.filter { category.nestedCategories?.contains(it.code).falseIfNull() }
+        }
+        if (category.nodes?.isNotEmpty().falseIfNull()) {
             selectedCategory = category
             _nestedCategoriesLiveData.postValue(category.nodes)
         } else {
@@ -72,13 +71,10 @@ class CategoriesViewModel(private val repository: CategoriesRepository, private 
         }
     }
 
-    private fun findParentCategories(list: List<Category>?, code: String): List<Category>? {
-        return list?.find { code.startsWith(it.code) }?.run {
-            return nodes.find { it.code == code }?.let {
-                selectedCategory = this
-                return this.nodes
-            } ?: run { findParentCategories(nodes, code) }
-        }
+    private fun findParentCategories(): List<Category>? {
+        val find = originalList?.find { it.nestedCategories?.contains(selectedCategory?.code).falseIfNull() }
+        selectedCategory = find
+        return originalList?.filter { find?.nestedCategories?.contains(it.code).falseIfNull() }
     }
 
 }

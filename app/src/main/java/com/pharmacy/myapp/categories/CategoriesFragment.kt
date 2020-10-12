@@ -13,6 +13,7 @@ import com.pharmacy.myapp.core.base.adapter.BaseFilterRecyclerAdapter
 import com.pharmacy.myapp.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.myapp.core.extensions.addGridItemDecorator
 import com.pharmacy.myapp.core.extensions.addItemDecorator
+import com.pharmacy.myapp.core.extensions.falseIfNull
 import com.pharmacy.myapp.core.extensions.onClick
 import com.pharmacy.myapp.model.category.Category
 import kotlinx.android.synthetic.main.fragment_categories.*
@@ -35,7 +36,7 @@ class CategoriesFragment : BaseMVVMFragment(R.layout.fragment_categories) {
         ivBackCategories.onClick { viewModel.handleBackPress() }
 
         searchViewCategories.setSearchListener { value ->
-            viewLifecycleOwner.lifecycleScope.launch { adapter?.filter { it.name.contains(value, true) } }
+            viewLifecycleOwner.lifecycleScope.launch { adapter?.filter { it.name?.contains(value, true).falseIfNull() } }
         }
     }
 

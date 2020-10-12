@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.core.extensions.animateVisible
 import com.pharmacy.myapp.core.extensions.inflate
+import com.pharmacy.myapp.core.extensions.visible
 import com.pharmacy.myapp.model.category.Category
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_category_home.view.*
@@ -26,7 +26,8 @@ class CategoryHomeView @JvmOverloads constructor(
 
     fun setCategory(category: Category) {
         tvCategoryHome.text = category.name
-        tvCategoryHome.animateVisible()
+        tvCategoryHome.visible()
+        ivCategoryHome.visible()
     }
 
 }
