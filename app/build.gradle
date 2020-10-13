@@ -9,7 +9,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.pharmacy.myapp"
+        applicationId "com.pharmacy"
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
@@ -20,8 +20,6 @@ android {
                 outputFileName = "${variant.applicationId}-v.${variant.versionName}(${variant.versionCode})-${variant.getName()}.apk"
             }
         }
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -59,7 +57,7 @@ android {
     }
 
     compileOptions {
-        coreLibraryDesugaringEnabled true
+        //coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -116,16 +114,15 @@ buildscript {
     androidx.collection = "androidx.collection:collection-ktx:$rootProject.ext.deps.versions.collection"
     androidx.viewpager = "androidx.viewpager2:viewpager2:$rootProject.ext.deps.versions.viewpager"
     androidx.paging = "androidx.paging:paging-runtime-ktx:$rootProject.ext.deps.versions.paging"
-    androidx.exifinterface = "androidx.exifinterface:exifinterface:$rootProject.ext.deps.versions.exifinterface"
     ext.androidx = androidx
 
-    def lifecycle = [:]
+  /*  def lifecycle = [:]
     lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$rootProject.ext.deps.versions.lifecycle"
     lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$rootProject.ext.deps.versions.lifecycle"
     lifecycle.livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.ext.deps.versions.lifecycle"
     lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$rootProject.ext.deps.versions.lifecycle"
     lifecycle.viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.ext.deps.versions.lifecycle"
-    ext.lifecycle = lifecycle
+    ext.lifecycle = lifecycle*/
 
     def room = [:]
     room.runtime = "androidx.room:room-runtime:$rootProject.ext.deps.versions.room"
@@ -137,14 +134,14 @@ buildscript {
 dependencies {
     api fileTree(dir: "libs", include: ["*.jar"])
 
-    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:${rootProject.ext.deps.versions.desugaring}"
+    //coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:${rootProject.ext.deps.versions.desugaring}"
 
     flow.each { entry -> implementation("$entry.value") }
     rest.each { entry -> implementation("$entry.value") }
     koin.each { entry -> implementation("$entry.value") }
     kotlin.each { entry -> implementation("$entry.value") }
     androidx.each { entry -> implementation("$entry.value") }
-    lifecycle.each { entry -> implementation("$entry.value") }
+//    lifecycle.each { entry -> implementation("$entry.value") }
     navigation.each { entry -> implementation("$entry.value") }
 
     implementation "org.apache.commons:commons-lang3:$rootProject.ext.deps.versions.apacheCommons" // for Date extensions only
@@ -162,6 +159,12 @@ dependencies {
     implementation "com.google.android.gms:play-services-maps:$rootProject.ext.deps.versions.maps"
 
     implementation "androidx.recyclerview:recyclerview:1.2.0-alpha06"
+
+    implementation "androidx.lifecycle:lifecycle-runtime:$rootProject.ext.deps.versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.ext.deps.versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.ext.deps.versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.ext.deps.versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.ext.deps.versions.lifecycle"
 
     implementation "$room.runtime"
     implementation "$room.ktx"

@@ -45,7 +45,7 @@
         app:layout_constraintStart_toEndOf="@id/ivAbout"
         app:layout_constraintTop_toBottomOf="@id/tvVersionAbout" />
 
-    <com.pharmacy.myapp.ui.ProfileItemView
+    <com.pharmacy.ui.ProfileItemView
         android:id="@+id/itemUserAgreement"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@id/ivAbout"
         app:titleProfile="@string/userAgreementTitle" />
 
-    <com.pharmacy.myapp.ui.ProfileItemView
+    <com.pharmacy.ui.ProfileItemView
         android:id="@+id/itemPersonalData"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@id/itemUserAgreement"
         app:titleProfile="@string/personalDataTitle" />
 
-    <com.pharmacy.myapp.ui.ProfileItemView
+    <com.pharmacy.ui.ProfileItemView
         android:id="@+id/itemDataUsage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@id/itemPersonalData"
         app:titleProfile="@string/termsOfDataUseTitle" />
 
-    <com.pharmacy.myapp.ui.ProfileItemView
+    <com.pharmacy.ui.ProfileItemView
         android:id="@+id/itemCashback"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

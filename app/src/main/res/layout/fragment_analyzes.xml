@@ -10,7 +10,7 @@
         layout="@layout/toolbar"
         android:layoutDirection="locale" />
 
-    <com.pharmacy.myapp.ui.EmptyContainerView
+    <com.pharmacy.ui.EmptyContainerView
         android:id="@+id/emptyContentAnalyzes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
