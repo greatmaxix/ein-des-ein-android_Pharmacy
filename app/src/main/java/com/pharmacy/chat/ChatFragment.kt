@@ -27,7 +27,6 @@ import com.fondesa.kpermissions.extension.addListener
 import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.pharmacy.BuildConfig
 import com.pharmacy.R
-import com.pharmacy.auth.sign.SignInFragmentArgs
 import com.pharmacy.chat.ChatFragmentDirections.Companion.actionChatToChatReviewBottomSheet
 import com.pharmacy.chat.ChatFragmentDirections.Companion.actionChatToHome
 import com.pharmacy.chat.ChatFragmentDirections.Companion.actionChatToSendImageBottomSheet
@@ -41,6 +40,7 @@ import com.pharmacy.chat.dialog.SendBottomSheetDialogFragment
 import com.pharmacy.chat.dialog.SendBottomSheetDialogFragment.Companion.RESULT_BUTTON_EXTRA_KEY
 import com.pharmacy.chat.dialog.SendBottomSheetDialogFragment.Companion.SEND_PHOTO_KEY
 import com.pharmacy.chat.model.ChatMessage
+import com.pharmacy.components.auth.sign.SignInFragmentArgs
 import com.pharmacy.core.base.mvvm.BaseMVVMFragment
 import com.pharmacy.core.extensions.*
 import kotlinx.android.synthetic.main.fragment_chat.*

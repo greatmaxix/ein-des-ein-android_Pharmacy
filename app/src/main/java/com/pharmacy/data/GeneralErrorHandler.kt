@@ -19,7 +19,6 @@ class GeneralErrorHandler : KoinComponent {
         is SocketException, is UnknownHostException, is SocketTimeoutException -> networkError
         is HttpException -> httpError(throwable)
         is GeneralException -> {
-            Timber.e("wlghgjewjgewjrgjeig: $this")
             throwable
         }
         else -> unknownError

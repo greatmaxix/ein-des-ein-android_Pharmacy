@@ -9,7 +9,6 @@ import com.pharmacy.core.base.fragment.BaseFragment
 import com.pharmacy.core.dsl.ObserveGeneral
 import com.pharmacy.core.network.Resource
 import com.pharmacy.core.network.Resource.*
-import timber.log.Timber
 
 abstract class BaseMVVMFragment(@LayoutRes private val layoutResourceId: Int) : BaseFragment(layoutResourceId) {
 
@@ -44,7 +43,6 @@ abstract class BaseMVVMFragment(@LayoutRes private val layoutResourceId: Int) : 
                             onProgress?.invoke(it.isLoading) ?: progressCallback?.setInProgress(it.isLoading)
                         }
                         is Error -> {
-                            Timber.e("dskaljakljslfadj: $it")
                             progressCallback?.setInProgress(false)
                             onError?.invoke(it.exception) ?: messageCallback?.showError(it.exception.resId)
                         }

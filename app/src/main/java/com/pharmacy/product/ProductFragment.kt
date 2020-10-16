@@ -7,7 +7,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pharmacy.R
-import com.pharmacy.auth.sign.SignInFragmentArgs
+import com.pharmacy.components.auth.sign.SignInFragmentArgs
 import com.pharmacy.core.extensions.*
 import com.pharmacy.product.ProductFragmentDirections.Companion.fromProductToPharmacy
 import com.pharmacy.product.adapter.ProductsImageAdapter

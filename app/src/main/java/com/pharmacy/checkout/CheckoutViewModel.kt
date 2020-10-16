@@ -2,8 +2,8 @@ package com.pharmacy.checkout
 
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavDirections
-import com.pharmacy.cart.model.CartItem
 import com.pharmacy.checkout.CheckoutFragmentDirections.Companion.fromCheckoutToOrder
+import com.pharmacy.components.cart.model.CartItem
 import com.pharmacy.core.base.mvvm.BaseViewModel
 import com.pharmacy.core.general.SingleLiveEvent
 import com.pharmacy.core.network.ResponseWrapper

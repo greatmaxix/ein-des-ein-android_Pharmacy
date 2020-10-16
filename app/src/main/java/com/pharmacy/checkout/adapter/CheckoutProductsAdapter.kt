@@ -3,7 +3,7 @@ package com.pharmacy.checkout.adapter
 import android.view.View
 import android.view.ViewGroup
 import com.pharmacy.R
-import com.pharmacy.cart.model.CartProduct
+import com.pharmacy.components.cart.model.CartProduct
 import com.pharmacy.core.base.adapter.BaseRecyclerAdapter
 import com.pharmacy.core.base.adapter.BaseViewHolder
 import com.pharmacy.core.extensions.inflate

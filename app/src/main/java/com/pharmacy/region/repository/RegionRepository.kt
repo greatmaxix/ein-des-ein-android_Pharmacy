@@ -3,13 +3,13 @@ package com.pharmacy.region.repository
 import com.pharmacy.model.region.LocalRegion
 import com.pharmacy.model.region.Region
 import com.pharmacy.user.model.customer.Customer
-import com.pharmacy.user.repository.UserLocalDataSource
+import com.pharmacy.user.repository.CustomerLocalDataSource
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 
 @KoinApiExtension
-class RegionRepository(private val rrds: RegionRemoteDataSource, private val rlds: RegionLocalDataSource, private val lds: UserLocalDataSource) : KoinComponent {
+class RegionRepository(private val rrds: RegionRemoteDataSource, private val rlds: RegionLocalDataSource, private val lds: CustomerLocalDataSource) : KoinComponent {
 
     suspend fun getRegions() = rrds.getRegions()
 

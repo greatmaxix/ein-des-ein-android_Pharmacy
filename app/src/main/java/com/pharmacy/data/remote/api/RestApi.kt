@@ -1,6 +1,7 @@
 package com.pharmacy.data.remote.api
 
-import com.pharmacy.cart.model.CartItem
+import com.pharmacy.components.cart.model.CartItem
+import com.pharmacy.components.pharmacy.model.Pharmacy
 import com.pharmacy.data.remote.model.order.CreateOrderRequest
 import com.pharmacy.model.BaseDataResponse
 import com.pharmacy.model.BaseDataResponseWithItem
@@ -10,7 +11,6 @@ import com.pharmacy.model.auth.StartInfo
 import com.pharmacy.model.category.Category
 import com.pharmacy.model.order.Order
 import com.pharmacy.model.region.Region
-import com.pharmacy.pharmacy.model.Pharmacy
 import com.pharmacy.product.model.Product
 import com.pharmacy.product.model.ProductLite
 import com.pharmacy.user.model.avatar.AvatarItem

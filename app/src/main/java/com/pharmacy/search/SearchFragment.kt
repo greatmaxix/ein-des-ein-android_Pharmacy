@@ -3,7 +3,7 @@ package com.pharmacy.search
 import android.os.Bundle
 import android.view.View
 import com.pharmacy.R
-import com.pharmacy.auth.sign.SignInFragmentArgs
+import com.pharmacy.components.auth.sign.SignInFragmentArgs
 import com.pharmacy.core.extensions.onClick
 import com.pharmacy.core.extensions.spanSearchCount
 import com.pharmacy.core.extensions.visibleOrGone

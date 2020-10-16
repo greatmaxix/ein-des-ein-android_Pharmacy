@@ -118,13 +118,13 @@ fun <FRAGMENT : Fragment> FRAGMENT.getStringArg(key: String, defValue: String?) 
 
 fun Fragment.alert(message: String, block: AlertDialogData.() -> Unit) = requireActivity().alert(message, block)
 
-fun Fragment.showAlert(message: String, block: AlertDialogData.() -> Unit) = requireActivity().showAlert(message, block)
+fun Fragment.showAlert(message: String, block: AlertDialogData.() -> Unit) = requireActivity().showAlert(message, block, childFragmentManager)
 
-fun Fragment.showAlert(@StringRes resId: Int, block: AlertDialogData.() -> Unit) = requireActivity().showAlert(getString(resId), block)
+fun Fragment.showAlert(@StringRes resId: Int, block: AlertDialogData.() -> Unit) = requireActivity().showAlert(getString(resId), block, childFragmentManager)
 
 fun Fragment.showAlertRes(@StringRes resId: Int, block: AlertDialogDataRes.() -> Unit) = requireActivity().showAlertRes(getString(resId), block)
 
-fun Fragment.showAlertRes(message: String, block: AlertDialogDataRes.() -> Unit) = requireActivity().showAlertRes(message, block)
+fun Fragment.showAlertRes(message: String, block: AlertDialogDataRes.() -> Unit) = requireActivity().showAlertRes(message, block, childFragmentManager)
 
 fun Fragment.browser(url: String, block: (BrowserIntent.() -> Unit)? = null) = requireActivity().browser(url, block)
 

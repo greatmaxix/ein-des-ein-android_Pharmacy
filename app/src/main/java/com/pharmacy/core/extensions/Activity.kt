@@ -11,10 +11,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.net.toUri
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.commit
-import androidx.fragment.app.commitNow
+import androidx.fragment.app.*
 import com.pharmacy.R
 import com.pharmacy.core.base.BaseActivity.Companion.ANIM_ENTER
 import com.pharmacy.core.base.BaseActivity.Companion.ANIM_EXIT
@@ -118,14 +115,14 @@ fun Activity.alertRes(message: String, block: AlertDialogDataRes.() -> Unit) = A
         }
 }
 
-fun FragmentActivity.showAlert(message: String, block: AlertDialogData.() -> Unit) =
-    AlertDialogData().apply(block).run { alert(message, block).show(supportFragmentManager) }
+fun FragmentActivity.showAlert(message: String, block: AlertDialogData.() -> Unit, fm: FragmentManager = supportFragmentManager) =
+    AlertDialogData().apply(block).run { alert(message, block).show(fm) }
 
-fun FragmentActivity.showAlertRes(message: String, block: AlertDialogDataRes.() -> Unit) =
-    AlertDialogDataRes().apply(block).run { alertRes(message, block).show(supportFragmentManager) }
+fun FragmentActivity.showAlertRes(message: String, block: AlertDialogDataRes.() -> Unit, fm: FragmentManager = supportFragmentManager) =
+    AlertDialogDataRes().apply(block).run { alertRes(message, block).show(fm) }
 
 fun FragmentActivity.setFragment(fragment: Fragment, containerId: Int = R.id.container, needBackStack: Boolean = false, defaultNavHost: Boolean = false) {
-    supportFragmentManager.commit{
+    supportFragmentManager.commit {
         supportFragmentManager.findFragmentById(containerId)?.let(::detach)
         replace(containerId, fragment)
         if (needBackStack) {

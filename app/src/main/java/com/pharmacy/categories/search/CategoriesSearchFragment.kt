@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.pharmacy.R
-import com.pharmacy.auth.sign.SignInFragmentArgs
+import com.pharmacy.components.auth.sign.SignInFragmentArgs
 import com.pharmacy.core.extensions.spanSearchCount
 import com.pharmacy.core.extensions.visibleOrGone
 import com.pharmacy.productList.BaseProductListFragment

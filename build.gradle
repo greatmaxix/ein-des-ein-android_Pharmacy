@@ -13,9 +13,10 @@ buildscript {
         classpath deps.gradle_plugin
         classpath deps.kotlin_plugin
         classpath deps.navigation_plugin
-        classpath deps.google_plugin
+        classpath 'com.google.gms:google-services:4.3.4'
         classpath deps.fabric_plugin
         classpath deps.koin_plugin
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
     }
 }
 

@@ -1,11 +1,12 @@
 package com.pharmacy
 
 import androidx.work.WorkManager
-import com.pharmacy.auth.authModule
-import com.pharmacy.cart.cartModule
 import com.pharmacy.categories.categoriesModule
 import com.pharmacy.chat.chatModule
 import com.pharmacy.checkout.checkoutModule
+import com.pharmacy.components.auth.authModule
+import com.pharmacy.components.cart.cartModule
+import com.pharmacy.components.pharmacy.checkoutMapModule
 import com.pharmacy.data.local.DBManager
 import com.pharmacy.data.local.SPManager
 import com.pharmacy.data.remote.RESTModule
@@ -17,7 +18,6 @@ import com.pharmacy.onboarding.onBoardingModule
 import com.pharmacy.orders.details.orderModule
 import com.pharmacy.orders.ordersModule
 import com.pharmacy.payments.paymentsModule
-import com.pharmacy.pharmacy.checkoutMapModule
 import com.pharmacy.product.productCardModule
 import com.pharmacy.region.regionModule
 import com.pharmacy.scanner.qrCodeScannerModule

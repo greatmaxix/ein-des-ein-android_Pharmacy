@@ -13,7 +13,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.pharmacy.R
-import com.pharmacy.cart.model.CartProduct
+import com.pharmacy.components.cart.model.CartProduct
 import com.pharmacy.model.Picture
 import com.pharmacy.util.ColorFilterUtil
 

@@ -8,7 +8,9 @@ data class GeneralException(override val message: String, @StringRes val resId: 
     companion object {
         fun someException() = GeneralException("some exception", R.string.error_networkErrorMessage)
 
-        val needToLoginCart = GeneralException("cart exception", R.string.forCheckCart)
+        val needToLoginCart = GeneralException("Items from cart", R.string.forCheckCart)
+
+        val needToLoginAdd = GeneralException("Add to cart", R.string.forAddingToCart)
     }
 
 }

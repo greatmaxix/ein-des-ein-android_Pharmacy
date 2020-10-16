@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_sign_in"
-        android:name="com.pharmacy.auth.sign.SignInFragment"
+        android:name="com.pharmacy.components.auth.sign.SignInFragment"
         android:label="@null"
         tools:layout="@layout/fragment_sign_in">
 
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/nav_sign_up"
-        android:name="com.pharmacy.auth.sign.SignUpFragment"
+        android:name="com.pharmacy.components.auth.sign.SignUpFragment"
         android:label="@null"
         tools:layout="@layout/fragment_sign_up">
 
@@ -53,7 +53,7 @@
 
     <fragment
         android:id="@+id/nav_code"
-        android:name="com.pharmacy.auth.sign.SignCodeFragment"
+        android:name="com.pharmacy.components.auth.sign.SignCodeFragment"
         android:label="@null"
         tools:layout="@layout/fragment_code" />
 

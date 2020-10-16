@@ -11,14 +11,13 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 abstract class BaseViewModel : ViewModel() {
 
     fun launchIO(block: suspend CoroutineScope.() -> Unit) =
         viewModelScope.launch(IO, block = block)
 
-    private val errorHandler by lazy { GeneralErrorHandler() }
+    protected val errorHandler by lazy { GeneralErrorHandler() }
 
     protected fun <R> requestLiveData(needLoading: Boolean = true, dispatcher: CoroutineDispatcher = IO, request: suspend () -> R) =
         liveData(viewModelScope.coroutineContext + dispatcher) {
@@ -27,16 +26,10 @@ abstract class BaseViewModel : ViewModel() {
             }
             try {
                 emit(Success(request()))
-            }/* catch (e: Exception) {
-                Timber.e("sfkagjajsgjagg: catch ")
-
-
+            } catch (e: GeneralException) {
                 emit(Error(errorHandler.checkThrowable(e)))
-            }*/ catch (dd: GeneralException) {
-                Timber.e("sfkagjajsgjagg: catch ")
-                emit(Error(errorHandler.checkThrowable(dd)))
             } catch (e: Exception) {
-
+                emit(Error(errorHandler.checkThrowable(e)))
             }
         }
 
@@ -47,6 +40,8 @@ abstract class BaseViewModel : ViewModel() {
             }
             try {
                 emit(Success(Event(request())))
+            } catch (e: GeneralException) {
+                emit(Error(errorHandler.checkThrowable(e)))
             } catch (e: Exception) {
                 emit(Error(errorHandler.checkThrowable(e)))
             }

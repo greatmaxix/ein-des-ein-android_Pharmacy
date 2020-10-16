@@ -114,7 +114,7 @@
 
     <fragment
         android:id="@+id/nav_cart"
-        android:name="com.pharmacy.cart.CartFragment"
+        android:name="com.pharmacy.components.cart.CartFragment"
         android:label="@string/cartLabel"
         tools:layout="@layout/fragment_cart">
         <action
@@ -253,7 +253,7 @@
 
         <argument
             android:name="cartItem"
-            app:argType="com.pharmacy.cart.model.CartItem" />
+            app:argType="com.pharmacy.components.cart.model.CartItem" />
 
         <action
             android:id="@+id/actionCheckoutToPromoCodeDialog"
@@ -412,7 +412,7 @@
 
     <fragment
         android:id="@+id/nav_pharmacy"
-        android:name="com.pharmacy.pharmacy.PharmacyFragment"
+        android:name="com.pharmacy.components.pharmacy.PharmacyFragment"
         android:label="@string/pharmacyMapLabel"
         tools:layout="@layout/fragment_pharmacy">
 
@@ -449,11 +449,11 @@
 
     <dialog
         android:id="@+id/nav_pharmacy_product_info"
-        android:name="com.pharmacy.pharmacy.tabs.map.PharmacyMapBottomSheet"
+        android:name="com.pharmacy.components.pharmacy.tabs.map.PharmacyMapBottomSheet"
         tools:layout="@layout/dialog_promo_code">
         <argument
             android:name="pharmacy"
-            app:argType="com.pharmacy.pharmacy.model.Pharmacy" />
+            app:argType="com.pharmacy.components.pharmacy.model.Pharmacy" />
     </dialog>
 
     <fragment

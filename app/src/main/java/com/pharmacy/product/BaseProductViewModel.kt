@@ -8,7 +8,7 @@ import com.pharmacy.core.network.ResponseWrapper.Error
 import com.pharmacy.core.network.ResponseWrapper.Success
 import com.pharmacy.product.model.Product
 import com.pharmacy.product.repository.ProductRepository
-import com.pharmacy.user.repository.UserRepository
+import com.pharmacy.user.repository.CustomerRepository
 import com.pharmacy.user.wishlist.repository.WishRepository
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
@@ -18,7 +18,7 @@ import org.koin.core.component.inject
 abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
 
     private val repositoryWish by inject<WishRepository>()
-    private val repositoryUser by inject<UserRepository>()
+    private val repositoryUser by inject<CustomerRepository>()
     private val repositoryProduct by inject<ProductRepository>()
 
     protected val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
