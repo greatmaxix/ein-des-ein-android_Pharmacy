@@ -4,12 +4,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.shape.CornerFamily
 import com.pharmacy.myapp.R
-import com.pharmacy.myapp.chat.model.ChatMessage
+import com.pharmacy.myapp.chat.model.message.MessageItem
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
 import com.pharmacy.myapp.core.extensions.*
 import kotlinx.android.synthetic.main.item_chat_product.view.*
 
-class ProductViewHolder(itemView: View) : BaseViewHolder<ChatMessage>(itemView) {
+class ProductViewHolder(itemView: View) : BaseViewHolder<MessageItem>(itemView) {
 
     init {
         val radius = resources.getDimension(R.dimen._8sdp)
@@ -22,16 +22,18 @@ class ProductViewHolder(itemView: View) : BaseViewHolder<ChatMessage>(itemView) 
             .build()
     }
 
-    override fun bind(item: ChatMessage) {
+    override fun bind(item: MessageItem) {
         with(itemView) {
-            val productMessage = item.asProduct()
-            tvChatProductRecipe.text = productMessage.product.recipeTitle
-            fabAddToCartChatProduct.onClick { itemView.context.toast("TODO: Add to cart") }
-            tvChatProductDescription.text = productMessage.product.description
-            tvChatProductPrice.text = productMessage.product.price
-            tvChatProductTitle.text = productMessage.product.name
-            ivWish.onClick { itemView.context.toast("TODO: Wish") }
-            ivChatProduct.loadGlide(productMessage.product.imageUrl)
+            tvChatProductRecipe.text = "Рецепт" // TODO
+            tvChatProductDescription.setTextHtml(item.product?.releaseForm)
+            item.product?.pharmacyProductsAggregationData?.let {
+                tvChatProductPrice.text = context.getString(R.string.price, it.minPrice.toString())
+            }
+            tvChatProductTitle.setTextHtml(item.product?.rusName)
+            item.product?.pictures?.firstOrNull()?.url?.let(ivChatProduct::loadGlide)
+
+            fabAddToCartChatProduct.onClick { itemView.context.toast("TODO: Add to cart") } // TODO add to cart
+            ivWish.onClick { itemView.context.toast("TODO: Wish") } // TODO add to wish
         }
     }
 

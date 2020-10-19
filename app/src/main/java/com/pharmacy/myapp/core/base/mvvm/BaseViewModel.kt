@@ -16,7 +16,7 @@ abstract class BaseViewModel : ViewModel() {
     fun launchIO(block: suspend CoroutineScope.() -> Unit) =
         viewModelScope.launch(IO, block = block)
 
-    private val errorHandler by lazy { GeneralErrorHandler() }
+    protected val errorHandler by lazy { GeneralErrorHandler() }
 
     protected fun <R> requestLiveData(needLoading: Boolean = true, dispatcher: CoroutineDispatcher = IO, request: suspend () -> R) =
         liveData(viewModelScope.coroutineContext + dispatcher) {

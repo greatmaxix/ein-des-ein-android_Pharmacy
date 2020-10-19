@@ -1,5 +1,6 @@
 package com.pharmacy.myapp.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.AssetFileDescriptor
 import android.graphics.Bitmap
@@ -9,7 +10,7 @@ import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.os.Build
+import androidx.annotation.WorkerThread
 import androidx.exifinterface.media.ExifInterface
 import timber.log.Timber
 import java.io.*
@@ -19,6 +20,8 @@ object ImageFileUtil {
     private const val MAX_IMAGE_SIDE_SIZE = 300
     private const val MAX_IMAGE_FILE_SIZE = 5 * 1024 * 1024
 
+    @SuppressLint("ExifInterface")
+    @WorkerThread
     @Throws(IOException::class)
     fun compressImage(context: Context, src: File, imageUri: Uri) {
         val optionOriginalBmp = BitmapFactory.Options()
@@ -27,18 +30,13 @@ object ImageFileUtil {
         var pictureOrientation = -1
         var inputStream: InputStream? = null
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                inputStream = context.contentResolver.openInputStream(imageUri)
-                inputStream?.let {
-                    val exifInterface = ExifInterface(it)
-                    pictureOrientation = exifInterface.getAttributeInt(
-                        android.media.ExifInterface.TAG_ORIENTATION,
-                        android.media.ExifInterface.ORIENTATION_NORMAL
-                    )
-                }
-            } else {
-                val exif = ExifInterface(src.absolutePath)
-                pictureOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+            inputStream = context.contentResolver.openInputStream(imageUri)
+            inputStream?.let {
+                val exifInterface = ExifInterface(it)
+                pictureOrientation = exifInterface.getAttributeInt(
+                    android.media.ExifInterface.TAG_ORIENTATION,
+                    android.media.ExifInterface.ORIENTATION_NORMAL
+                )
             }
         } catch (e: IOException) {
             Timber.e(e, "ExifInterface exception")

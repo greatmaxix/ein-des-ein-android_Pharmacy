@@ -3,7 +3,6 @@ package com.pharmacy.myapp.home
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import com.pharmacy.myapp.MainGraphDirections.Companion.globalToChat
 import com.pharmacy.myapp.R
 import com.pharmacy.myapp.core.extensions.*
 import com.pharmacy.myapp.home.HomeFragmentDirections.Companion.fromHomeToScanner
@@ -24,7 +23,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mcvScanHome.onClick { doNav(fromHomeToScanner()) }
-        mcvAskHome.onClick { doNav(globalToChat()) }
+        mcvAskHome.onClick { viewModel.performAskPharmacist() }
         mcvAnalyzeHome.onClick { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_home) }
         uploadRecipes.onClick { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_home) }
         mcvSearchHome.onClick { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_home) }
@@ -49,6 +48,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
         observe(viewModel.recentlyViewedLiveData, ::populateRecentViewed)
         observe(viewModel.categoriesLiveData, ::setCategories)
+        observe(viewModel.directionLiveData, ::doNav)
     }
 
     private fun setCategories(categories: List<Category>) {

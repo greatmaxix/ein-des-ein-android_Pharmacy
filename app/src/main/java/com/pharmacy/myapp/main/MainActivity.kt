@@ -1,6 +1,7 @@
 package com.pharmacy.myapp.main
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.navigation.NavDestination
 import androidx.navigation.ui.setupWithNavController
 import com.pharmacy.myapp.R
@@ -75,6 +76,10 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
         setOnNavigationItemReselectedListener {}
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.isTopLevelDestination) showNav() else hideNav()
+            window.setSoftInputMode(
+                if (destination.id == R.id.nav_chat) WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                else WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+            )
             changeSelection(destination)
         }
     }

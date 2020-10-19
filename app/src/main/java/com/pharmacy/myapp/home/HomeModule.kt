@@ -12,7 +12,7 @@ import org.koin.dsl.module
 @OptIn(KoinApiExtension::class)
 val homeModule = module {
 
-    single { HomeLocalDataSource(get<DBManager>().categoryDAO) }
+    single { HomeLocalDataSource(get(), get<DBManager>().categoryDAO) }
     single { HomeRemoteDataSource(get()) }
     single { HomeRepository(get(), get()) }
 

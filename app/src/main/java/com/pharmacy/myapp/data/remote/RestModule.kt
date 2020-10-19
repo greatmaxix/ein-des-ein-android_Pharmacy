@@ -7,10 +7,7 @@ import com.pharmacy.myapp.data.remote.api.RestApiRefresh
 import com.pharmacy.myapp.data.remote.authenticator.RestAuthenticator
 import com.pharmacy.myapp.data.remote.interceptor.RestHeaderInterceptor
 import com.pharmacy.myapp.data.remote.model.order.DeliveryType
-import com.pharmacy.myapp.data.remote.serializer.DeliveryTypeDeserializer
-import com.pharmacy.myapp.data.remote.serializer.DeliveryTypeSerializer
-import com.pharmacy.myapp.data.remote.serializer.OrderStatusDeserializer
-import com.pharmacy.myapp.data.remote.serializer.OrderStatusSerializer
+import com.pharmacy.myapp.data.remote.serializer.*
 import com.pharmacy.myapp.model.order.OrderStatus
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,6 +15,7 @@ import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
 
 @OptIn(KoinApiExtension::class)
@@ -57,10 +55,12 @@ val RESTModule = module {
 
     single {
         GsonBuilder().apply {
+            registerTypeAdapter(String::class.java, StringDeserializer())
             registerTypeAdapter(DeliveryType::class.java, DeliveryTypeDeserializer())
             registerTypeAdapter(DeliveryType::class.java, DeliveryTypeSerializer())
             registerTypeAdapter(OrderStatus::class.java, OrderStatusDeserializer())
             registerTypeAdapter(OrderStatus::class.java, OrderStatusSerializer())
+            registerTypeAdapter(LocalDateTime::class.java, DateTimeSerializer())
             setLenient()
         }.create()
     }

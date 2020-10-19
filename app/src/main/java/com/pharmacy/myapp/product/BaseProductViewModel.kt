@@ -18,7 +18,7 @@ import org.koin.core.component.inject
 abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
 
     private val repositoryWish by inject<WishRepository>()
-    private val repositoryUser by inject<UserRepository>()
+    protected val repositoryUser by inject<UserRepository>()
     private val repositoryProduct by inject<ProductRepository>()
 
     protected val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }

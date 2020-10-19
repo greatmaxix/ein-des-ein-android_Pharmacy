@@ -26,6 +26,7 @@ class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vm.popBackId = args.popBackId
+        vm.nextDestinationId = args.nextDestinationId
 
         tilPhoneSignIn.setPhoneRule()
         debug { tilPhoneSignIn.prefixText = "+3" }

@@ -2,15 +2,19 @@ package com.pharmacy.myapp
 
 import android.app.Application
 import com.pharmacy.myapp.util.HyperlinkedDebugTree
+import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.koin.fragmentFactory
+import org.koin.core.KoinExperimentalAPI
 import org.koin.core.context.startKoin
 import org.koin.core.logger.EmptyLogger
 import timber.log.Timber
 import java.util.*
 
+@KoinExperimentalAPI
 class App : Application() {
 
+    @FlowPreview
     override fun onCreate() {
         super.onCreate()
 
@@ -22,7 +26,7 @@ class App : Application() {
             /*androidLogger(Level.DEBUG)*/ //TODO Too many logs in the console
             logger(EmptyLogger())
             fragmentFactory()
-            modules(Modules.getListOfModules())
+            modules(Modules.listOfModules)
         }
 
         if (BuildConfig.DEBUG) {

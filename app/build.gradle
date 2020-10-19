@@ -66,6 +66,10 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
+        freeCompilerArgs += [
+                "-Xopt-in=kotlin.RequiresOptIn",
+                "-Xopt-in=kotlin.OptIn"
+        ]
     }
 
     lintOptions {
@@ -160,6 +164,7 @@ dependencies {
     implementation "com.github.onimur:handle-path-oz:$rootProject.ext.deps.versions.handlePathOz"
 
     implementation "com.google.android.gms:play-services-maps:$rootProject.ext.deps.versions.maps"
+    implementation "com.github.heremaps:oksse:$rootProject.ext.deps.versions.oksse"
 
     implementation "androidx.recyclerview:recyclerview:1.2.0-alpha06"
 
