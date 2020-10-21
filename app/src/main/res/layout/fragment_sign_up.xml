@@ -12,7 +12,7 @@
         android:background="@color/colorBackground"
         android:orientation="vertical"
         android:paddingBottom="@dimen/_16sdp"
-        tools:context="com.pharmacy.main.MainActivity">
+        tools:context="com.pulse.main.MainActivity">
 
         <ImageButton
             android:id="@+id/btnBackSignUp"

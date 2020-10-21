@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightGrey">
 
-    <com.pharmacy.ui.EmptyContainerView
+    <com.pulse.ui.EmptyContainerView
         android:id="@+id/llRegionNotFoundContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,7 +38,7 @@
             android:padding="@dimen/_6sdp"
             android:src="@drawable/ic_arrow_back" />
 
-        <com.pharmacy.ui.AppSearchView
+        <com.pulse.ui.AppSearchView
             android:id="@+id/searchViewRegion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
