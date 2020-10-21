@@ -6,6 +6,7 @@ import org.koin.dsl.module
 
 val mainModule = module {
 
+    single { MainRepository(get(), get(), get<DBManager>().customerDAO) }
+
     viewModel { MainViewModel(get()) }
-    factory { MainRepository(get<DBManager>().customerDAO) }
 }

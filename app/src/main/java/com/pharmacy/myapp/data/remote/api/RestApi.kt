@@ -1,11 +1,13 @@
 package com.pharmacy.myapp.data.remote.api
 
+import androidx.annotation.WorkerThread
 import com.pharmacy.myapp.cart.model.CartItem
+import com.pharmacy.myapp.chat.model.message.MessageItem
+import com.pharmacy.myapp.data.remote.model.chat.ChatItem
+import com.pharmacy.myapp.data.remote.model.chat.CreateChatRequest
+import com.pharmacy.myapp.data.remote.model.chat.SendMessageBody
 import com.pharmacy.myapp.data.remote.model.order.CreateOrderRequest
-import com.pharmacy.myapp.model.BaseDataResponse
-import com.pharmacy.myapp.model.BaseDataResponseWithItem
-import com.pharmacy.myapp.model.ListItemsModel
-import com.pharmacy.myapp.model.PaginationModel
+import com.pharmacy.myapp.model.*
 import com.pharmacy.myapp.model.auth.StartInfo
 import com.pharmacy.myapp.model.category.Category
 import com.pharmacy.myapp.model.order.Order
@@ -13,7 +15,7 @@ import com.pharmacy.myapp.model.region.Region
 import com.pharmacy.myapp.pharmacy.model.Pharmacy
 import com.pharmacy.myapp.product.model.Product
 import com.pharmacy.myapp.product.model.ProductLite
-import com.pharmacy.myapp.user.model.avatar.AvatarItem
+import com.pharmacy.myapp.user.model.avatar.Avatar
 import com.pharmacy.myapp.user.model.customer.CustomerItem
 import okhttp3.MultipartBody
 import org.json.JSONObject
@@ -37,9 +39,10 @@ interface RestApi {
     @POST("/api/v1/customer/logout")
     suspend fun logout(@Body arguments: Map<String, String>): Response<JSONObject>
 
+    @WorkerThread
     @Multipart
     @POST("/api/v1/customer/image")
-    suspend fun uploadImage(@Part file: MultipartBody.Part): BaseDataResponse<AvatarItem>
+    suspend fun uploadImage(@Part file: MultipartBody.Part): BaseDataResponse<SingleItemModel<Avatar>>
 
     @GET("/api/v1/customer/customer")
     suspend fun fetchCustomer(): BaseDataResponse<CustomerItem>
@@ -110,4 +113,30 @@ interface RestApi {
 
     @PATCH("/api/v1/customer/order/{id}/cancel")
     suspend fun cancelOrder(@Path("id") id: Int): BaseDataResponse<Unit>
+
+    @POST("/api/v1/customer/chat")
+    suspend fun createChat(@Body body: CreateChatRequest): BaseDataResponse<SingleItemModel<ChatItem>>
+
+    @PATCH("/api/v1/customer/chat/{chatId}/close")
+    suspend fun closeChat(@Path("chatId") chatId: Int): BaseDataResponse<SingleItemModel<ChatItem>>
+
+    @GET("/api/v1/chat/chat/{chatId}")
+    suspend fun getChat(@Path("chatId") chatId: Int): BaseDataResponse<SingleItemModel<ChatItem>>
+
+    @WorkerThread
+    @GET("/api/v1/chat/chat/{chatId}/messages")
+    suspend fun messagesList(
+        @Path("chatId") chatId: Int,
+        @Query("per_page") pageSize: Int? = null,
+        @Query("afterMessageNumber") afterMessageNumber: Int? = null,
+        @Query("beforeMessageNumber") beforeMessageNumber: Int? = null
+    ): BaseDataResponse<PaginationModel<MessageItem>>
+
+    @WorkerThread
+    @POST("/api/v1/chat/chat/{chatId}/message")
+    suspend fun sendMessage(@Path("chatId") chatId: Int, @Body body: SendMessageBody): BaseDataResponse<SingleItemModel<MessageItem>>
+
+    @WorkerThread
+    @POST("/api/v1/chat/chat/{chatId}/application/{imageUuid}")
+    suspend fun sendImageMessage(@Path("chatId") chatId: Int, @Path("imageUuid") imageUuid: String): BaseDataResponse<SingleItemModel<MessageItem>>
 }

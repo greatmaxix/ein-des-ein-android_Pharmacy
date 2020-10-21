@@ -24,13 +24,13 @@ class ProductViewHolder(itemView: View) : BaseViewHolder<MessageItem>(itemView) 
 
     override fun bind(item: MessageItem) {
         with(itemView) {
-            tvChatProductRecipe.text = "Рецепт" // TODO
+//            tvChatProductRecipe.text = "Рецепт" // TODO set value and make visible
             tvChatProductDescription.setTextHtml(item.product?.releaseForm)
             item.product?.pharmacyProductsAggregationData?.let {
                 tvChatProductPrice.text = context.getString(R.string.price, it.minPrice.toString())
             }
             tvChatProductTitle.setTextHtml(item.product?.rusName)
-            item.product?.pictures?.firstOrNull()?.url?.let(ivChatProduct::loadGlide)
+            item.product?.let(ivChatProduct::setProductImage)
 
             fabAddToCartChatProduct.onClick { itemView.context.toast("TODO: Add to cart") } // TODO add to cart
             ivWish.onClick { itemView.context.toast("TODO: Wish") } // TODO add to wish

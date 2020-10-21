@@ -359,4 +359,16 @@
 
     <!--Address-->
     <string name="addressTitle">Адрес доставки</string>
+
+    <!--Chat type-->
+    <string name="chooseConsultationType">Пожалуйста, выберите, с кем вы хотите начать консультацию</string>
+    <string name="pharmacistType">Фармацевт</string>
+    <string name="doctorType">Доктор</string>
+    <string name="next">Далее</string>
+    <string name="pharmacistTypeContentDescription">Иконка выбора фармацевта</string>
+    <string name="doctorTypeContentDescription">Иконка выбора доктора</string>
+    <string name="chatTypeLabel">Чат</string>
+    <string name="attachment_image">Изображение</string>
+    <string name="attachment_product">Продукт</string>
+
 </resources>

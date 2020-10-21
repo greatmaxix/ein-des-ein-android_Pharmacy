@@ -1,18 +1,18 @@
 package com.pharmacy.myapp.chat.adapter
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import com.pharmacy.myapp.chat.adapter.viewHolder.*
-import com.pharmacy.myapp.chat.model.ChatMessage
-import com.pharmacy.myapp.core.base.adapter.BaseRecyclerAdapter
+import com.pharmacy.myapp.chat.model.message.MessageItem
 import com.pharmacy.myapp.core.base.adapter.BaseViewHolder
 
-class ChatMessageAdapter(private val listener: (Action) -> Unit) : BaseRecyclerAdapter<ChatMessage, BaseViewHolder<ChatMessage>>() {
+class ChatMessageAdapter(private val listener: (Action) -> Unit) : PagingDataAdapter<MessageItem, BaseViewHolder<MessageItem>>(ChatMessagesDiff) {
 
-    fun setList(list: MutableList<ChatMessage>) {
-        items = list
+    override fun onBindViewHolder(holder: BaseViewHolder<MessageItem>, position: Int) {
+        getItem(position)?.let { holder.bind(it) }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<ChatMessage> =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         when (viewType) {
             TYPE_MESSAGE_USER -> UserMessageViewHolder.newInstance(parent)
             TYPE_MESSAGE_PHARMACY -> PharmacyMessageViewHolder.newInstance(parent)
@@ -23,9 +23,7 @@ class ChatMessageAdapter(private val listener: (Action) -> Unit) : BaseRecyclerA
             else -> EndChatViewHolder.newInstance(parent, listener)
         }
 
-    override fun getItemViewType(position: Int): Int {
-        return items[position].itemType
-    }
+    override fun getItemViewType(position: Int) = getItem(position)?.messageType ?: -1
 
     companion object {
 

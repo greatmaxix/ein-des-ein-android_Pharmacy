@@ -24,7 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="@dimen/_12sdp" />
+            android:paddingBottom="@dimen/_12sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:reverseLayout="true" />
 
     </FrameLayout>
 
@@ -51,24 +53,27 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/_34sdp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilMessageChat"
                 style="@style/TextInputStyle"
+                android:layout_height="@dimen/_34sdp"
                 android:layout_marginStart="@dimen/_7sdp"
+                android:gravity="center_vertical"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="start|top"
+                    android:gravity="start|center_vertical"
                     android:hint="@string/chatMessageFieldHint"
                     android:imeOptions="actionSend"
                     android:inputType="textCapSentences"
                     android:maxLines="10"
                     android:paddingEnd="@dimen/_40sdp"
-                    android:textSize="@dimen/_11ssp" />
+                    android:textSize="@dimen/_11ssp"
+                    tools:ignore="RtlSymmetry" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -37,12 +37,28 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
 
     var regionId: Int?
         get() = get(Keys.REGION_ID)
-        set(value) { value?.let { put(Keys.REGION_ID, it) } }
+        set(value) {
+            value?.let { put(Keys.REGION_ID, it) }
+        }
 
-    fun saveTokens(new: TokenModel){
+    fun saveTokens(new: TokenModel) {
         token = new.token
         refreshToken = new.refreshToken
     }
+
+    var openedChatId: Int?
+        get() = get(Keys.OPENED_CHAT_ID)
+        set(value) {
+            put(Keys.OPENED_CHAT_ID, value)
+        }
+
+    fun clearChatId() {
+        sp.edit { remove(Keys.OPENED_CHAT_ID.name) }
+    }
+
+    var isChatForeground: Boolean?
+        get() = get(Keys.IS_CHAT_FOREGROUND)
+        set(value) = put(Keys.IS_CHAT_FOREGROUND, value)
 
     override fun clear() = sp.edit {
         sp.all.forEach {
@@ -51,6 +67,6 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
     }
 
     private enum class Keys {
-        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, REGION_ID, REGION_NAME
+        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, REGION_ID, OPENED_CHAT_ID, IS_CHAT_FOREGROUND
     }
 }

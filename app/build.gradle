@@ -13,7 +13,7 @@ android {
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
-        versionName "0.1"
+        versionName "0.1.1"
 
         android.applicationVariants.all { variant ->
             variant.outputs.all { output ->
@@ -161,11 +161,11 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.deps.versions.glide"
     implementation "androidx.work:work-runtime-ktx:$rootProject.ext.deps.versions.workmanager"
     implementation "com.budiyev.android:code-scanner:$rootProject.ext.deps.versions.qrCodeScanner"
-    implementation "com.github.onimur:handle-path-oz:$rootProject.ext.deps.versions.handlePathOz"
 
     implementation "com.google.android.gms:play-services-maps:$rootProject.ext.deps.versions.maps"
     implementation "com.github.heremaps:oksse:$rootProject.ext.deps.versions.oksse"
-
+    implementation "com.kirich1409.android-notification-dsl:core:$rootProject.ext.deps.versions.notificationsDsl"
+    implementation "com.kirich1409.android-notification-dsl:extensions:$rootProject.ext.deps.versions.notificationsDsl"
     implementation "androidx.recyclerview:recyclerview:1.2.0-alpha06"
 
     implementation "$room.runtime"

@@ -22,4 +22,12 @@ class MainViewModel(private val repository: MainRepository) : BaseViewModel() {
         get() = repository.customerLiveData()
 
     fun navSelected(@IdRes id: Int) = destIdLiveData.postValue(id)
+
+    fun setChatForeground(isForeground: Boolean) {
+        repository.setChatForeground(isForeground)
+    }
+
+    fun goToChat(chatId: Int) = requestLiveData {
+        repository.getChat(chatId)
+    }
 }

@@ -1,76 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/_4sdp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/ivAttachment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="@dimen/_24sdp"
-        android:layout_marginEnd="@dimen/_12sdp">
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintDimensionRatio="2.1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivAttachment1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="2.1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/ivAttachment2"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_90sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:layout_constraintEnd_toStartOf="@+id/ivAttachment3"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivAttachment1" />
-
-        <ImageView
-            android:id="@+id/ivAttachment3"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_90sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivAttachment2"
-            app:layout_constraintTop_toBottomOf="@+id/ivAttachment1" />
-
-        <ImageView
-            android:id="@+id/ivAttachment4"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:layout_constraintEnd_toStartOf="@+id/ivAttachment5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivAttachment3" />
-
-        <ImageView
-            android:id="@+id/ivAttachment5"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:layout_constraintEnd_toStartOf="@+id/ivAttachment6"
-            app:layout_constraintStart_toEndOf="@+id/ivAttachment4"
-            app:layout_constraintTop_toBottomOf="@+id/ivAttachment3" />
-
-        <ImageView
-            android:id="@+id/ivAttachment6"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivAttachment5"
-            app:layout_constraintTop_toBottomOf="@+id/ivAttachment3" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,23 +3,35 @@ package com.pharmacy.myapp.chat
 import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.distinctUntilChanged
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.pharmacy.myapp.chat.model.ChatMessage
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.pharmacy.myapp.chat.repository.ChatMessagesRemoteMediator
+import com.pharmacy.myapp.chat.repository.ChatRepository
+import com.pharmacy.myapp.chat.repository.ChatStubPagingSource
 import com.pharmacy.myapp.core.base.mvvm.BaseViewModel
+import com.pharmacy.myapp.core.extensions.getMultipartBody
 import com.pharmacy.myapp.core.general.SingleLiveEvent
-import com.pharmacy.myapp.data.remote.DummyData
+import com.pharmacy.myapp.data.remote.model.chat.ChatItem
 import com.pharmacy.myapp.util.Constants
+import com.pharmacy.myapp.util.ImageFileUtil
+import org.koin.core.component.KoinApiExtension
 import timber.log.Timber
 import java.io.File
-import java.time.LocalDateTime
-import java.util.*
 
+@KoinApiExtension
 class ChatViewModel(
     private val context: Context,
-    private val repository: ChatRepository
+    private val repository: ChatRepository,
+    private val chat: ChatItem?
 ) : BaseViewModel() {
 
+    private val chatId = chat?.id ?: -1
     private val _errorLiveData by lazy { SingleLiveEvent<String>() }
     val errorLiveData: LiveData<String> by lazy { _errorLiveData }
 
@@ -32,80 +44,62 @@ class ChatViewModel(
     private val _isUserLoggedInLiveData by lazy { SingleLiveEvent<Boolean>() }
     val isUserLoggedInLiveData: LiveData<Boolean> by lazy { _isUserLoggedInLiveData }
 
-    private val _chatMessagesLiveData by lazy { MutableLiveData<MutableList<ChatMessage>>() }
-    val chatMessagesLiveData: LiveData<MutableList<ChatMessage>> by lazy { _chatMessagesLiveData }
+    private val defaultPagingConfig by lazy { PagingConfig(Constants.PAGE_SIZE, enablePlaceholders = false, prefetchDistance = 1, initialLoadSize = Constants.PAGE_SIZE / 2) }
+
+    val lastMessageLiveData = repository.getLastMessageLiveData(chatId)
+        .distinctUntilChanged()
+
+    @ExperimentalPagingApi
+    val chatMessagesLiveData by lazy {
+        if (repository.isUserLoggedIn && chat != null) {
+            Pager(
+                config = defaultPagingConfig,
+                remoteMediator = ChatMessagesRemoteMediator(repository, errorHandler, chat),
+                pagingSourceFactory = { repository.getMessagePagingSource(chat.id) }
+            )
+        } else {
+            Pager(
+                config = defaultPagingConfig,
+                pagingSourceFactory = { ChatStubPagingSource(context) }
+            )
+        }.flow
+            .cachedIn(viewModelScope)
+            .asLiveData()
+    }
 
     val tempPhotoFile = File(context.externalCacheDir, Constants.TEMP_PHOTO_FILE_NAME)
 
     fun checkUserLoggedIn() {
-        _chatMessagesLiveData.value = mutableListOf()
         val userLoggedIn = repository.isUserLoggedIn
         _isUserLoggedInLiveData.value = userLoggedIn
-
-        mockPharmacyResponse(userLoggedIn)
     }
 
-    fun sendMessage(message: String) {
-        addMessageToChatList(message)
-
-        // TODO send message to server
+    fun sendMessage(message: String) = requestLiveData {
+        repository.sendMessage(chatId, message)
     }
 
-    private fun addMessageToChatList(message: String? = null, images: MutableList<String>? = null) {
-        val list = chatMessagesLiveData.value ?: arrayListOf()
-        if (list.isEmpty()) list.add(0, ChatMessage.DateHeader(LocalDateTime.now()))
-        if (!message.isNullOrBlank()) {
-            list.add(0, ChatMessage.UserMessage(message))
-        } else if (!images.isNullOrEmpty()) {
-            list.add(0, ChatMessage.Attachment(images))
-        }
+    fun sendPhoto(uri: Uri) = requestLiveData {
+        ImageFileUtil.saveImageByUriToFile(context, tempPhotoFile, uri)
+        ImageFileUtil.compressImage(context, tempPhotoFile, uri)
 
-        _chatMessagesLiveData.value = list
-
-        mockPharmacyResponse()
-    }
-
-    fun sendPhotos(uriList: List<Uri>) {
-        addMessageToChatList(images = uriList.map { it.toString() }.toMutableList())
-        // TODO send photos
-        Timber.e(uriList.toString())
-    }
-
-    // TODO remove
-    @Deprecated("Mock data method")
-    private fun mockPharmacyResponse(startMessages: Boolean = false) {
-        val list = chatMessagesLiveData.value ?: arrayListOf()
-        if (startMessages) {
-            list.add(0, ChatMessage.DateHeader(LocalDateTime.now()))
-            list.add(0, ChatMessage.PharmacyMessage("Добрый день! Меня зовут Эстер"))
-            list.add(0, ChatMessage.PharmacyMessage("Чем я могу Вам помочь?"))
-        } else {
-            if (list.size > 10 && !list.contains(ChatMessage.EndChat)) {
-                list.add(0, ChatMessage.PharmacyMessage("У Вас есть еще какие либо вопросы?"))
-                list.add(0, ChatMessage.EndChat)
-            } else {
-                if (Random().nextBoolean()) {
-                    list.add(0, ChatMessage.PharmacyMessage(DummyData.pharmacyResponses.random()))
-                } else {
-                    list.add(0, ChatMessage.Product(DummyData.getRecommended().random()))
-                }
-            }
-        }
-
-        _chatMessagesLiveData.value = list
-    }
-
-    fun setNotAuthorizedChatMessages(list: MutableList<ChatMessage>) {
-        _chatMessagesLiveData.value = list
+        val multipart = tempPhotoFile.getMultipartBody("file")
+        val response = repository.uploadImage(multipart)
+        tempPhotoFile.delete()
+        repository.sendImageMessage(chatId, response.uuid)
     }
 
     fun removeEndChatMessage() {
-        val list = chatMessagesLiveData.value ?: arrayListOf()
-        list.removeIf { it is ChatMessage.EndChat }
-        _chatMessagesLiveData.value = list
+        launchIO {
+            repository.removeEndChatMessage(chatId)
+        }
     }
 
     fun sendReview(rating: Int, note: String?) {
+        // TODO implement flow
         Timber.e("SEND REVIEW $rating >>> $note")
+    }
+
+    fun closeChat() = requestLiveData {
+        repository.closeChat(chatId)
     }
 }
