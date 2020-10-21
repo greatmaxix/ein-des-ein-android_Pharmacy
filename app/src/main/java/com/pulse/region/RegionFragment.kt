@@ -55,8 +55,8 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
     }
 
     private fun setFragmentResult(value: Boolean) = setFragmentResult(
-        com.pulse.region.RegionFragment.Companion.REGION_SELECTION_FINISHED_KEY,
-        bundleOf(com.pulse.region.RegionFragment.Companion.REGION_SELECTION_FINISHED_DATA to value)
+        REGION_SELECTION_FINISHED_KEY,
+        bundleOf(REGION_SELECTION_FINISHED_DATA to value)
     )
 
     companion object {

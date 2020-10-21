@@ -18,9 +18,7 @@ class GeneralErrorHandler : KoinComponent {
     fun checkThrowable(throwable: Throwable) = when (throwable) {
         is SocketException, is UnknownHostException, is SocketTimeoutException -> networkError
         is HttpException -> httpError(throwable)
-        is GeneralException -> {
-            throwable
-        }
+        is GeneralException -> throwable
         else -> unknownError
     }.also { Timber.e(throwable) }
 

@@ -17,6 +17,7 @@ import com.pulse.core.extensions.*
 import com.pulse.data.remote.DummyData
 import com.pulse.data.remote.model.order.DeliveryInfoOrderData
 import com.pulse.data.remote.model.order.DeliveryType
+import com.pulse.ui.PharmacyAddressOrder
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {
@@ -63,7 +64,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     }
 
     private fun setPharmacyInfo() = with(args.cartItem) {
-        pharmacyAddressCheckout.pharmacy = com.pulse.ui.PharmacyAddressOrder.PharmacyInfo(logo.url, name, location.address)
+        pharmacyAddressCheckout.pharmacy = PharmacyAddressOrder.PharmacyInfo(logo.url, name, location.address)
     }
 
     private fun validateFieldsAndSendOrder() {

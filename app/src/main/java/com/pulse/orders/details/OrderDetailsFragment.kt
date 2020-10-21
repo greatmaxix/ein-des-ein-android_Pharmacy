@@ -17,6 +17,7 @@ import com.pulse.data.remote.DummyData.paymentMethod
 import com.pulse.model.order.Order
 import com.pulse.model.order.OrderStatus
 import com.pulse.ui.OrderSteps
+import com.pulse.ui.PharmacyAddressOrder
 import kotlinx.android.synthetic.main.fragment_order_details.*
 
 class OrderDetailsFragment(private val viewModel: OrderDetailsViewModel) : BaseMVVMFragment(R.layout.fragment_order_details) {
@@ -62,7 +63,7 @@ class OrderDetailsFragment(private val viewModel: OrderDetailsViewModel) : BaseM
             mcvNoteOrderDetails.gone()
         }
 
-        with(args.order.pharmacy) { pharmacyAddressOrder.pharmacy = com.pulse.ui.PharmacyAddressOrder.PharmacyInfo(logo.url, name, location.address) }
+        with(args.order.pharmacy) { pharmacyAddressOrder.pharmacy = PharmacyAddressOrder.PharmacyInfo(logo.url, name, location.address) }
 
         tvNoteOrderDetails.text = comment
 

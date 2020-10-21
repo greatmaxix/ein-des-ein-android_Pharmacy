@@ -27,36 +27,36 @@ class AddCardFragment : PaymentsBaseFragment(R.layout.fragment_add_card) {
         super.onViewCreated(view, savedInstanceState)
 
         with(tilCardNumber) {
-            editText?.filters = arrayOf(LengthFilter(com.pulse.payments.AddCardFragment.CREDIT_CARD_NUMBER_LENGTH), CreditCardInputFilter())
+            editText?.filters = arrayOf(LengthFilter(CREDIT_CARD_NUMBER_LENGTH), CreditCardInputFilter())
             updateStateAfterTextChanged {
-                it.length == com.pulse.payments.AddCardFragment.CREDIT_CARD_NUMBER_LENGTH
+                it.length == CREDIT_CARD_NUMBER_LENGTH
             }
             setEndIconOnClickListener {
-                if (tilCardNumber.editText?.text?.length != com.pulse.payments.AddCardFragment.CREDIT_CARD_NUMBER_LENGTH) tilCardNumber.editText?.text = null
+                if (tilCardNumber.editText?.text?.length != CREDIT_CARD_NUMBER_LENGTH) tilCardNumber.editText?.text = null
             }
         }
         with(tilCardExpDate) {
             editText?.filters = arrayOf<InputFilter>(CreditCardExpiryInputFilter())
             updateStateAfterTextChanged {
-                it.length == com.pulse.payments.AddCardFragment.CREDIT_CARD_EXP_DATE_LENGTH
+                it.length == CREDIT_CARD_EXP_DATE_LENGTH
             }
             setEndIconOnClickListener {
                 if (tilCardExpDate.tag == null) {
                     requireContext().toast("TODO show info") // TODO what to show
                 } else if (tilCardExpDate.tag as Boolean) {
-                    if (tilCardExpDate.editText?.text?.length != com.pulse.payments.AddCardFragment.CREDIT_CARD_EXP_DATE_LENGTH) tilCardExpDate.editText?.text = null
+                    if (tilCardExpDate.editText?.text?.length != CREDIT_CARD_EXP_DATE_LENGTH) tilCardExpDate.editText?.text = null
                 }
             }
         }
         with(tilCardCVV) {
             updateStateAfterTextChanged {
-                it.length == com.pulse.payments.AddCardFragment.CREDIT_CARD_CVV_LENGTH
+                it.length == CREDIT_CARD_CVV_LENGTH
             }
             setEndIconOnClickListener {
                 if (tilCardCVV.tag == null) {
                     requireContext().toast("TODO show info") // TODO what to show
                 } else {
-                    if (tilCardCVV.editText?.text?.length != com.pulse.payments.AddCardFragment.CREDIT_CARD_CVV_LENGTH) tilCardCVV.editText?.text = null
+                    if (tilCardCVV.editText?.text?.length != CREDIT_CARD_CVV_LENGTH) tilCardCVV.editText?.text = null
                 }
             }
         }
