@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.pharmacy.myapp.ui.EmptyContainerView
+    <com.pulse.ui.EmptyContainerView
         android:id="@+id/generalInfoRegion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

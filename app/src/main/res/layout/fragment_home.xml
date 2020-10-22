@@ -341,19 +341,19 @@
                     android:visibility="invisible"
                     tools:visibility="visible">
 
-                    <com.pharmacy.myapp.ui.CategoryHomeView
+                    <com.pulse.ui.CategoryHomeView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <com.pharmacy.myapp.ui.CategoryHomeView
+                    <com.pulse.ui.CategoryHomeView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <com.pharmacy.myapp.ui.CategoryHomeView
+                    <com.pulse.ui.CategoryHomeView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <com.pharmacy.myapp.ui.CategoryHomeView
+                    <com.pulse.ui.CategoryHomeView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -410,7 +410,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvRecentlyViewedTitle"
                 tools:visibility="visible">
 
-                <com.pharmacy.myapp.ui.RecentlyViewedView
+                <com.pulse.ui.RecentlyViewedView
                     android:id="@+id/firstRecentlyViewedView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -418,7 +418,7 @@
                     android:layout_weight="1"
                     tools:visibility="visible" />
 
-                <com.pharmacy.myapp.ui.RecentlyViewedView
+                <com.pulse.ui.RecentlyViewedView
                     android:id="@+id/secondRecentlyViewedView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

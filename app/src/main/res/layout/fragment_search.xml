@@ -7,7 +7,7 @@
     android:layout_marginBottom="?actionBarSize"
     android:background="@color/colorSearchBackground">
 
-    <com.pharmacy.myapp.ui.EmptyContainerView
+    <com.pulse.ui.EmptyContainerView
         android:id="@+id/ecvPharmacy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.pharmacy.myapp.ui.AppSearchView
+        <com.pulse.ui.AppSearchView
             android:id="@+id/searchView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -21,7 +21,7 @@
             layout="@layout/toolbar"
             android:layoutDirection="locale" />
 
-        <com.pharmacy.myapp.ui.OrderSteps
+        <com.pulse.ui.OrderSteps
             android:id="@+id/orderDetailsSteps"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_95sdp" />
@@ -66,12 +66,12 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/_24sdp">
 
-            <com.pharmacy.myapp.ui.BuyerDetailsOrder
+            <com.pulse.ui.BuyerDetailsOrder
                 android:id="@+id/viewBuyerInfoOrderDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <com.pharmacy.myapp.ui.PharmacyAddressOrder
+            <com.pulse.ui.PharmacyAddressOrder
                 android:id="@+id/pharmacyAddressOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <com.pharmacy.myapp.ui.BuyerDeliveryAddressOrder
+            <com.pulse.ui.BuyerDeliveryAddressOrder
                 android:id="@+id/viewBuyerDeliveryAddressOrderDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

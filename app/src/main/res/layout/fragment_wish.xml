@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <com.pharmacy.myapp.ui.EmptyContainerView
+    <com.pulse.ui.EmptyContainerView
         android:id="@+id/emptyContentWish"
         android:layout_width="0dp"
         android:layout_height="0dp"

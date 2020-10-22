@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pharmacy</string>
+    <string name="app_name">Pulse</string>
 
     <string name="common_closeButton">@android:string/cancel</string>
     <string name="common_okButton">@android:string/ok</string>
