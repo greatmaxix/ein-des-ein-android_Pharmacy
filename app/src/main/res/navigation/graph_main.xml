@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/nav_splash"
-        android:name="com.pharmacy.myapp.splash.SplashFragment"
+        android:name="com.pulse.splash.SplashFragment"
         android:label="@null"
         tools:layout="@layout/fragment_splash">
 
@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/nav_on_boarding"
-        android:name="com.pharmacy.myapp.onboarding.OnBoardingFragment"
+        android:name="com.pulse.onboarding.OnBoardingFragment"
         android:label="@null"
         tools:layout="@layout/fragment_onboarding">
 
@@ -74,7 +74,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.pharmacy.myapp.home.HomeFragment"
+        android:name="com.pulse.home.HomeFragment"
         android:label="@null"
         tools:layout="@layout/fragment_home">
 
@@ -108,13 +108,13 @@
 
     <fragment
         android:id="@+id/nav_dev_tools"
-        android:name="com.pharmacy.myapp.devTools.DevToolsFragment"
+        android:name="com.pulse.devTools.DevToolsFragment"
         android:label="@string/devToolsLabel"
         tools:layout="@layout/fragment_dev_tools" />
 
     <fragment
         android:id="@+id/nav_cart"
-        android:name="com.pharmacy.myapp.cart.CartFragment"
+        android:name="com.pulse.components.cart.CartFragment"
         android:label="@string/cartLabel"
         tools:layout="@layout/fragment_cart">
         <action
@@ -155,7 +155,7 @@
 
     <fragment
         android:id="@+id/nav_chat"
-        android:name="com.pharmacy.myapp.chat.ChatFragment"
+        android:name="com.pulse.chat.ChatFragment"
         android:label="@string/chatLabel"
         tools:layout="@layout/fragment_chat">
 
@@ -197,31 +197,31 @@
 
     <dialog
         android:id="@+id/nav_chat_review"
-        android:name="com.pharmacy.myapp.chat.dialog.ChatReviewBottomSheetDialogFragment"
+        android:name="com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment"
         android:label="ChatReviewBottomSheet"
         tools:layout="@layout/dialog_chat_review" />
 
     <dialog
         android:id="@+id/nav_send_image"
-        android:name="com.pharmacy.myapp.chat.dialog.SendBottomSheetDialogFragment"
+        android:name="com.pulse.chat.dialog.SendBottomSheetDialogFragment"
         android:label="SendBottomSheet"
         tools:layout="@layout/dialog_send_photo_bottom_sheet" />
 
     <fragment
         android:id="@+id/nav_recipes"
-        android:name="com.pharmacy.myapp.recipes.RecipesFragment"
+        android:name="com.pulse.recipes.RecipesFragment"
         android:label="@string/recipesLabel"
         tools:layout="@layout/fragment_recipes" />
 
     <fragment
         android:id="@+id/nav_analyzes"
-        android:name="com.pharmacy.myapp.analyzes.AnalyzesFragment"
+        android:name="com.pulse.analyzes.AnalyzesFragment"
         android:label="@string/analyzesLabel"
         tools:layout="@layout/fragment_analyzes" />
 
     <fragment
         android:id="@+id/nav_scanner"
-        android:name="com.pharmacy.myapp.scanner.ScannerFragment"
+        android:name="com.pulse.scanner.ScannerFragment"
         android:label="@string/qrCodeLabel"
         tools:layout="@layout/fragment_qr_code_scanner">
 
@@ -236,24 +236,24 @@
 
     <fragment
         android:id="@+id/nav_scanner_list"
-        android:name="com.pharmacy.myapp.scanner.ScannerListFragment"
+        android:name="com.pulse.scanner.ScannerListFragment"
         android:label="@string/qrCodeLabel"
         tools:layout="@layout/fragment_scanner_result">
 
         <argument
             android:name="products"
-            app:argType="com.pharmacy.myapp.product.model.ProductLite[]" />
+            app:argType="com.pulse.product.model.ProductLite[]" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_checkout"
-        android:name="com.pharmacy.myapp.checkout.CheckoutFragment"
+        android:name="com.pulse.checkout.CheckoutFragment"
         android:label="@string/checkoutLabel"
         tools:layout="@layout/fragment_checkout">
 
         <argument
             android:name="cartItem"
-            app:argType="com.pharmacy.myapp.cart.model.CartItem" />
+            app:argType="com.pulse.components.cart.model.CartItem" />
 
         <action
             android:id="@+id/actionCheckoutToPromoCodeDialog"
@@ -277,24 +277,24 @@
 
     <dialog
         android:id="@+id/nav_checkout_dialog_promo_code"
-        android:name="com.pharmacy.myapp.checkout.dialog.PromoCodeDialogFragment"
+        android:name="com.pulse.checkout.dialog.PromoCodeDialogFragment"
         tools:layout="@layout/dialog_promo_code" />
 
     <fragment
         android:id="@+id/nav_order"
-        android:name="com.pharmacy.myapp.orders.details.OrderDetailsFragment"
+        android:name="com.pulse.orders.details.OrderDetailsFragment"
         android:label="@null"
         tools:layout="@layout/fragment_order_details">
 
         <argument
             android:name="order"
-            app:argType="com.pharmacy.myapp.model.order.Order" />
+            app:argType="com.pulse.model.order.Order" />
 
     </fragment>
 
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.pharmacy.myapp.search.SearchFragment"
+        android:name="com.pulse.search.SearchFragment"
         android:label="@null"
         tools:layout="@layout/fragment_search">
 
@@ -333,12 +333,12 @@
 
     <fragment
         android:id="@+id/nav_product"
-        android:name="com.pharmacy.myapp.product.ProductFragment"
+        android:name="com.pulse.product.ProductFragment"
         android:label="@null"
         tools:layout="@layout/fragment_product">
         <argument
             android:name="product"
-            app:argType="com.pharmacy.myapp.product.model.Product" />
+            app:argType="com.pulse.product.model.Product" />
         <action
             android:id="@+id/fromProductToAuth"
             app:destination="@id/auth_graph"
@@ -372,13 +372,13 @@
 
     <fragment
         android:id="@+id/nav_region"
-        android:name="com.pharmacy.myapp.region.RegionFragment"
+        android:name="com.pulse.region.RegionFragment"
         android:label="@string/regionLabel"
         tools:layout="@layout/fragment_region" />
 
     <fragment
         android:id="@+id/nav_catalog"
-        android:name="com.pharmacy.myapp.categories.CategoriesFragment"
+        android:name="com.pulse.categories.CategoriesFragment"
         android:label="@string/categoriesTitleHome"
         tools:layout="@layout/fragment_categories">
 
@@ -394,25 +394,25 @@
         <argument
             android:name="category"
             android:defaultValue="@null"
-            app:argType="com.pharmacy.myapp.model.category.Category"
+            app:argType="com.pulse.model.category.Category"
             app:nullable="true" />
 
     </fragment>
 
     <fragment
         android:id="@+id/nav_categories_search"
-        android:name="com.pharmacy.myapp.categories.search.CategoriesSearchFragment"
+        android:name="com.pulse.categories.search.CategoriesSearchFragment"
         android:label="@string/categoriesTitleHome"
         tools:layout="@layout/fragment_categories_search">
 
         <argument
             android:name="category"
-            app:argType="com.pharmacy.myapp.model.category.Category" />
+            app:argType="com.pulse.model.category.Category" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_pharmacy"
-        android:name="com.pharmacy.myapp.pharmacy.PharmacyFragment"
+        android:name="com.pulse.components.pharmacy.PharmacyFragment"
         android:label="@string/pharmacyMapLabel"
         tools:layout="@layout/fragment_pharmacy">
 
@@ -449,22 +449,22 @@
 
     <dialog
         android:id="@+id/nav_pharmacy_product_info"
-        android:name="com.pharmacy.myapp.pharmacy.tabs.map.PharmacyMapBottomSheet"
+        android:name="com.pulse.components.pharmacy.tabs.map.PharmacyMapBottomSheet"
         tools:layout="@layout/dialog_promo_code">
         <argument
             android:name="pharmacy"
-            app:argType="com.pharmacy.myapp.pharmacy.model.Pharmacy" />
+            app:argType="com.pulse.components.pharmacy.model.Pharmacy" />
     </dialog>
 
     <fragment
         android:id="@+id/nav_about"
-        android:name="com.pharmacy.myapp.about.AboutFragment"
+        android:name="com.pulse.about.AboutFragment"
         android:label="@string/aboutAppTitle"
         tools:layout="@layout/fragment_about" />
 
     <fragment
         android:id="@+id/nav_address"
-        android:name="com.pharmacy.myapp.user.address.AddressFragment"
+        android:name="com.pulse.user.address.AddressFragment"
         android:label="@string/addressTitle"
         tools:layout="@layout/fragment_address" />
 

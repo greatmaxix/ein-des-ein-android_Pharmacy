@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/paymentsFragment"
-        android:name="com.pharmacy.myapp.payments.PaymentsFragment"
+        android:name="com.pulse.payments.PaymentsFragment"
         android:label="PaymentsFragment"
         tools:layout="@layout/fragment_payments">
 
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/addPaymentMethodFragment"
-        android:name="com.pharmacy.myapp.payments.AddPaymentMethodFragment"
+        android:name="com.pulse.payments.AddPaymentMethodFragment"
         android:label="AddPaymentMethodFragment"
         tools:layout="@layout/fragment_add_payment_method">
 
@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/addCardFragment"
-        android:name="com.pharmacy.myapp.payments.AddCardFragment"
+        android:name="com.pulse.payments.AddCardFragment"
         android:label="AddCardFragment"
         tools:layout="@layout/fragment_add_card" />
 

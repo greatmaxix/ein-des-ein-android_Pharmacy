@@ -79,7 +79,7 @@
                 app:layout_constraintTop_toBottomOf="@id/btnAuthorizeProfileGuest"
                 app:layout_constraintVertical_bias="0">
 
-                <com.pharmacy.myapp.ui.ProfileItemView
+                <com.pulse.ui.ProfileItemView
                     android:id="@+id/itemRegionProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
                     app:iconProfile="@drawable/ic_location"
                     app:titleProfile="@string/myRegionTitle" />
 
-                <com.pharmacy.myapp.ui.ProfileItemView
+                <com.pulse.ui.ProfileItemView
                     android:id="@+id/itemNotificationProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                     app:iconProfile="@drawable/ic_notification"
                     app:titleProfile="@string/notificationsTitle" />
 
-                <com.pharmacy.myapp.ui.ProfileItemView
+                <com.pulse.ui.ProfileItemView
                     android:id="@+id/itemAboutProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                     app:iconProfile="@drawable/ic_about"
                     app:titleProfile="@string/aboutAppTitle" />
 
-                <com.pharmacy.myapp.ui.ProfileItemView
+                <com.pulse.ui.ProfileItemView
                     android:id="@+id/itemHelpProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

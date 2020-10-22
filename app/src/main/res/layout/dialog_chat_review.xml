@@ -43,7 +43,7 @@
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/_12ssp" />
 
-        <com.pharmacy.myapp.ui.RatingBarSvg
+        <com.pulse.ui.RatingBarSvg
             android:id="@+id/ratingChatReview"
             style="@style/CustomRating"
             android:layout_width="wrap_content"

@@ -23,7 +23,7 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/_24sdp">
 
-            <com.pharmacy.myapp.ui.BuyerDetailsCheckout
+            <com.pulse.ui.BuyerDetailsCheckout
                 android:id="@+id/viewBuyerDetailsCheckout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
-            <com.pharmacy.myapp.ui.PharmacyAddressOrder
+            <com.pulse.ui.PharmacyAddressOrder
                 android:id="@+id/pharmacyAddressCheckout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 android:text="@string/deliveryAddress"
                 android:textAppearance="@style/Text.BlockHeaderBold" />
 
-            <com.pharmacy.myapp.ui.BuyerDeliveryAddress
+            <com.pulse.ui.BuyerDeliveryAddress
                 android:id="@+id/viewBuyerDeliveryAddressCheckout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

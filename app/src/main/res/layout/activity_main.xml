@@ -9,14 +9,14 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navHost"
-        android:name="com.pharmacy.myapp.main.MainNavHostFragment"
+        android:name="com.pulse.main.MainNavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
         app:defaultNavHost="true"
         app:navGraph="@navigation/graph_main" />
 
-    <com.pharmacy.myapp.ui.SelectableBottomNavView
+    <com.pulse.ui.SelectableBottomNavView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"

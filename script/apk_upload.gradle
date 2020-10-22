@@ -1,0 +1,3 @@
+task uploadFirebaseQa(type: GradleBuild) {
+    tasks = ['assembleQa', 'appDistributionUploadQa']
+}

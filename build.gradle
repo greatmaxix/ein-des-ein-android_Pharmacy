@@ -1,23 +1,22 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     apply from: "versions.gradle"
     repositories {
         google()
         jcenter()
-        maven {
-            url 'https://maven.fabric.io/public'
-        }
     }
 
     dependencies {
-        classpath deps.gradle_plugin
-        classpath deps.kotlin_plugin
-        classpath deps.navigation_plugin
-        classpath deps.google_plugin
-        classpath deps.fabric_plugin
-        classpath deps.koin_plugin
+        classpath "com.android.tools.build:gradle:4.1.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$deps.versions.kotlin"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$deps.versions.navigation"
+        classpath "com.google.gms:google-services:4.3.4"
+        classpath "org.koin:koin-gradle-plugin:$deps.versions.koin"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:2.3.0"
+        classpath 'com.google.firebase:firebase-appdistribution-gradle:2.0.1'
     }
 }
+
+apply from: "$project.rootDir/script/apk_upload.gradle"
 
 allprojects {
     repositories {
@@ -30,10 +29,30 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+def gitNotes = 'git log --pretty=format:"%s" -20 --merges'.execute()
+        .text
+        .split("\n")
+        .findAll {
+            it.contains("fix/") || it.contains("feature/") || it.contains("hotfix/")
+        }
+        .collect {
+            it.replaceAll("(.*/+)", "")
+                    .replaceAll("release(.)*\n", "")
+                    .replaceAll("\"", "")
+                    .replaceAll("('.*')", "")
+        }
+        .join("\n")
+
 ext {
     minSdk = 26
     targetSdk = 30
     compileSdk = 30
     versionCode = 1
     versionName = "1.0.0"
+    releaseNotes = gitNotes
+
+    alias = "pulse"
+    keystore = "../keys/Pharmacy.jks"
+    password_key = "2Pz5Pr4smGK6X59K"
+    password_store = "k5jMLLnxBG6BeRNs"
 }

@@ -27,7 +27,7 @@
             android:padding="@dimen/_6sdp"
             android:src="@drawable/ic_arrow_back" />
 
-        <com.pharmacy.myapp.ui.AppSearchView
+        <com.pulse.ui.AppSearchView
             android:id="@+id/searchViewCategories"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
