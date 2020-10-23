@@ -11,7 +11,6 @@ import com.pulse.core.general.SingleLiveEvent
 import com.pulse.splash.SplashFragmentDirections.Companion.fromSplashToHome
 import com.pulse.splash.SplashFragmentDirections.Companion.fromSplashToOnBoarding
 import com.pulse.splash.repository.SplashRepository
-import kotlinx.coroutines.delay
 import org.koin.core.component.KoinApiExtension
 
 class SplashViewModel(private val repository: SplashRepository, private val workManager: WorkManager) : BaseViewModel() {
@@ -27,7 +26,6 @@ class SplashViewModel(private val repository: SplashRepository, private val work
                     .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
                     .build()
             )
-            delay(1500)
             _directionLiveData.postValue(repository.isNeedOnBoarding.toNavDirection)
         }
     }

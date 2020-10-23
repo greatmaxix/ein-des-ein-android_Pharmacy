@@ -27,7 +27,7 @@
 
         <activity
             android:name="com.pulse.main.MainActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

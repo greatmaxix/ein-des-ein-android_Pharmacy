@@ -18,9 +18,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.textfield.TextInputLayout
 import com.pulse.R
 import com.pulse.core.extensions.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.focusChanges
@@ -41,6 +39,8 @@ fun EditText.phoneRule(prefix: (() -> String)? = null) {
         InputFilter { source, start, end, dest, dstart, dend ->
             if (!generateResult(source, start, end, dest, dstart, dend).startsWith(prefix?.invoke() ?: "")) setTextWithCursorToEnd("${text()}$source") else null
         })
+
+    importantForAutofill = View.IMPORTANT_FOR_AUTOFILL_NO
 }
 
 fun EditText.generateResult(source: CharSequence, start: Int, end: Int, dest: Spanned, dstart: Int, dend: Int) =
@@ -124,7 +124,7 @@ fun EditText.addAfterTextWatcher(doAfter: (String) -> Unit): TextWatcher {
 
 fun EditText.setAsteriskHint(text: String, start: Int, end: Int, darkCode: Boolean = true) {
     focusChanges().onEach { if (it) hint = "" else setHintSpan(text, start, end, darkCode) }
-        .launchIn(CoroutineScope(Dispatchers.Main.immediate + SupervisorJob()))
+        .launchIn(MainScope())
 }
 
 fun EditText.setHintSpan(text: String, start: Int, end: Int, darkCode: Boolean = true) {
@@ -194,7 +194,7 @@ fun TextInputLayout.isPhoneNumberValid(message: String? = null) = when {
     isEmptyWithError(message) -> errorAction()
     editText?.text()?.length ?: 0 < MIN_PHONE_LENGTH -> errorAction { showError(context.getString(R.string.MinLengthIsCharacters)) }
     else -> {
-        this.error = null
+        error = null
         true
     }
 }

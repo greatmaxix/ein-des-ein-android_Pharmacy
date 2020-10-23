@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvText"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:textColor="@color/darkBlue"
+        android:textStyle="bold"
+        tools:text="@string/signIn" />
+
+    <ImageView
+        android:layout_width="@dimen/_42sdp"
+        android:layout_height="@dimen/_42sdp"
+        android:background="@drawable/oval"
+        android:backgroundTint="@color/primaryBlue"
+        android:padding="@dimen/_12sdp"
+        android:rotation="180"
+        android:src="@drawable/ic_arrow_back" />
+
+</merge>
