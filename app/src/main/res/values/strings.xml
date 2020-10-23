@@ -21,7 +21,7 @@
     <string name="welcomeBackAuth">С возвращением!</string>
     <string name="pleaseAuth">Для создания аккаунта, укажите Ваше имя, номер телефона и имейл ( по желанию )</string>
     <string name="accountCreationAuth">Давайте начнем !</string>
-    <string name="yourNameAuth">Ваше имя*</string>
+    <string name="yourName">Ваше имя*</string>
     <string name="emailHintAuth">Email для уведомлений о статусе заказа</string>
     <string name="orSignInWithAuth">Или войдите с помощью</string>
     <string name="enterTheCode">Введите код</string>

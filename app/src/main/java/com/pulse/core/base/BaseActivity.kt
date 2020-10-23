@@ -40,7 +40,7 @@ abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivit
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
-        overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
+        //overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
         super.onCreate(savedInstanceState)
     }
 
@@ -91,12 +91,12 @@ abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivit
 
     override fun finish() {
         super.finish()
-        overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
+        //overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
     }
 
     override fun startActivity(intent: Intent?) {
         super.startActivity(intent)
-        overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
+        //overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
     }
 
     fun setToolbarContentColor(@ColorRes color: Int) {

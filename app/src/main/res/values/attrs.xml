@@ -31,4 +31,14 @@
         <attr name="buttonTextEmpty" format="string" />
         <attr name="isButtonVisible" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="AuthNextView">
+        <attr name="text" format="string" />
+    </declare-styleable>
+
+
+    <declare-styleable name="AuthFooter">
+        <attr name="textDescription" format="string" />
+        <attr name="textAction" format="string" />
+    </declare-styleable>
 </resources>

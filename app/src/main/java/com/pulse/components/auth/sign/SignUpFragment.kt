@@ -6,80 +6,88 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.widget.doOnTextChanged
-import com.pulse.BuildConfig
+import androidx.lifecycle.lifecycleScope
+import com.pulse.BuildConfig.DEBUG
 import com.pulse.R
 import com.pulse.components.auth.model.Auth
 import com.pulse.core.extensions.*
 import com.pulse.splash.SplashFragmentDirections.Companion.globalToHome
 import com.pulse.ui.text.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.focusChanges
 
 class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
 
+    private val phoneHint by lazy { (if (DEBUG) R.string.authPhoneDebugHint else R.string.authPhoneHint).toString }
+    private val nameHint by lazy { R.string.yourName.toString }
+
+    private val fields by lazy { listOf(tilName, tilPhone, tilEmail) }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        etEmailSignUp.onDoneImeAction { llButtonContainerSignUp.performClick() }
-        tilPhoneSignUp.setPhoneRule()
-        debug { tilPhoneSignUp.prefixText = "+3" }
-        val hint = if (BuildConfig.DEBUG) R.string.authPhoneDebugHint else R.string.authPhoneHint
-        etNameSignUp.setAsteriskHint(R.string.yourNameAuth.toString, 8, 9, false)
-        llButtonContainerSignUp.setDebounceOnClickListener {
-            val isNameValid = tilNameSignUp.checkLength(getString(R.string.nameErrorAuth))
-            val isPhoneValid = tilPhoneSignUp.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
-            val isEmailValid = if (tilEmailSignUp.text().isNotEmpty()) tilEmailSignUp.checkEmail(getString(R.string.emailErrorAuth)) else true
-            if (isNameValid && isPhoneValid && isEmailValid) {
-                vm.signUp(Auth(tilNameSignUp.text(), tilPhoneSignUp.phoneCodePrefix + tilPhoneSignUp.text(), tilEmailSignUp.text()))
+        btnBack.onClick { navigationBack() }
+
+        etEmail.onDoneImeAction { registerOrError() }
+        tilPhone.setPhoneRule()
+
+        etName.setAsteriskHint(nameHint, nameHint.length - 1, nameHint.length, false)
+
+        btnRegister.onClick { registerOrError() }
+
+        fields.onEach {
+            it.editText?.doOnTextChanged { _, _, _, _ ->
+                tilName.error = null
+                tilPhone.error = null
+                tilEmail.error = null
             }
         }
-        val clearError: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit =
-            { _, _, _, _ ->
-                tilNameSignUp.error = null
-                tilPhoneSignUp.error = null
-                tilEmailSignUp.error = null
-            }
-        listOf(tilNameSignUp, tilPhoneSignUp, tilEmailSignUp).onEach {
-            it.editText?.doOnTextChanged(clearError)
-        }
+
         mtvToss.text = SpannableString(R.string.toss.toString).apply {
             setSpan(ForegroundColorSpan(R.color.darkBlue.toColor), 0, 76, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
             setSpan(ForegroundColorSpan(R.color.primaryBlue.toColor), 26, 46, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
             setSpan(ForegroundColorSpan(R.color.primaryBlue.toColor), 49, 76, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-/*
-            setSpan(object : ClickableSpan() {
-                override fun updateDrawState(ds: TextPaint) {
-                    super.updateDrawState(ds)
-                    ds.isUnderlineText = false
-                }
-
-                override fun onClick(widget: View) {
-                    Timber.d("onClick")
-                    // todo go to proper screen
-                }
-            }, 26, 46, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-*/
         }
-        btnBackSignUp.setDebounceOnClickListener { navigationBack() }
-        mbGoToSignIn.setDebounceOnClickListener { navigationBack() }
 
-        tvSkipAuth.setDebounceOnClickListener {
-            showAlertRes(getString(R.string.messageEndAuthDialog)) {
-                cancelable = false
-                title = R.string.titleEndAuthDialog
-                positive = R.string.buttonEndAuth
-                positiveAction = { navController.navigate(globalToHome()) }
-                negative = R.string.common_closeButton
-            }
+        tilPhone.editText
+            ?.focusChanges()
+            ?.onEach(::notifyHint)
+            ?.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        vFooter
+            .setOnActionClickListener { navigationBack() }
+            .setOnSkipClickListener { askConfirm() }
+    }
+
+    private fun registerOrError() {
+        if (isFieldsValid()) {
+            hideKeyboard()
+            vm.signUp(Auth(tilName.text(), if (DEBUG) "+3" else "+7" + tilPhone.text(), tilEmail.text()))
         }
-        tilPhoneSignUp.editText?.focusChanges()?.onEach {
-            tilPhoneSignUp.prefixText = if (it) if (BuildConfig.DEBUG) "+3" else "+7" else ""
-            if (it) etPhoneSignUp.hint = null else etPhoneSignUp.setHintSpan(hint.toString, 18, 19)
-        }?.launchIn(CoroutineScope(Dispatchers.Main.immediate + SupervisorJob()))
+    }
+
+    private fun isFieldsValid(): Boolean {
+        val isNameValid = tilName.checkLength(getString(R.string.nameErrorAuth))
+        val isPhoneValid = tilPhone.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
+        val isEmailValid = if (tilEmail.text().isNotEmpty()) tilEmail.checkEmail(getString(R.string.emailErrorAuth)) else true
+
+        return isNameValid && isPhoneValid && isEmailValid
+    }
+
+    private fun askConfirm() {
+        showAlertRes(getString(R.string.messageEndAuthDialog)) {
+            cancelable = false
+            title = R.string.titleEndAuthDialog
+            positive = R.string.buttonEndAuth
+            positiveAction = { navController.navigate(globalToHome()) }
+            negative = R.string.common_closeButton
+        }
+    }
+
+    private fun notifyHint(focused: Boolean) {
+        tilPhone.prefixText = if (focused) if (DEBUG) "+3" else "+7" else ""
+        if (focused) etPhoneSignUp.hint = null else etPhoneSignUp.setHintSpan(phoneHint, phoneHint.length - 1, phoneHint.length)
     }
 
     override fun onBindLiveData() {

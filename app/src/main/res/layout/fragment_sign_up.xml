@@ -1,43 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ScrollStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/colorBackground"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:paddingStart="@dimen/_16sdp"
+    android:paddingEnd="@dimen/_16sdp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackground"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/_16sdp"
-        tools:context="com.pulse.main.MainActivity">
+        android:layout_height="match_parent">
 
         <ImageButton
-            android:id="@+id/btnBackSignUp"
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="@dimen/_36sdp"
-            android:layout_margin="@dimen/_4sdp"
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
             android:background="@drawable/background_default_ripple_selector_circle"
             android:contentDescription="@string/back_button"
             android:src="@drawable/ic_arrow_back"
-            android:tint="@color/primaryBlue" />
+            android:tint="@color/primaryBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".4">
-
-            <ImageView
-                android:id="@+id/ivLogoSignUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/logo"
-                android:src="@drawable/mock_logo" />
-        </FrameLayout>
+        <ImageView
+            android:id="@+id/ivLogoSignUp"
+            style="@style/Logo"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_24sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnBack" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTitleSignUp"
@@ -48,34 +45,40 @@
             android:gravity="center"
             android:text="@string/accountCreationAuth"
             android:textColor="@color/darkBlue"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/ivLogoSignUp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvSubTitleSignUp"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginEnd="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_6sdp"
             android:gravity="center"
             android:text="@string/pleaseAuth"
-            android:textColor="@color/darkBlue" />
+            android:textColor="@color/darkBlue"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleSignUp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilNameSignUp"
-            style="@style/TextInputAuthStyle"
+            android:id="@+id/tilName"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_18sdp"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:errorTextColor="@android:color/holo_red_light"
             app:hintAnimationEnabled="false"
-            app:hintEnabled="false">
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSubTitleSignUp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNameSignUp"
+                android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/yourNameAuth"
+                android:hint="@string/yourName"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName"
                 android:lines="1"
@@ -85,13 +88,18 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPhoneSignUp"
-            style="@style/TextInputAuthStyle"
+            android:id="@+id/tilPhone"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:errorTextColor="@android:color/holo_red_light"
             app:hintAnimationEnabled="false"
             app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilName"
             app:prefixText="+7">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -109,14 +117,19 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmailSignUp"
-            style="@style/TextInputAuthStyle"
+            android:id="@+id/tilEmail"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:endIconMode="clear_text"
             app:hintAnimationEnabled="false"
-            app:hintEnabled="false">
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilPhone">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmailSignUp"
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -129,92 +142,41 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:id="@+id/llButtonContainerSignUp"
+        <com.pulse.ui.auth.AuthNextView
+            android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:background="@drawable/background_default_ripple_selector_rect"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_8sdp">
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:text="@string/signUp"
-                android:textColor="@color/darkBlue"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="@dimen/_42sdp"
-                android:layout_height="@dimen/_42sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:background="@drawable/oval"
-                android:backgroundTint="@color/primaryBlue"
-                android:contentDescription="@string/registerButtonContentDescriptionSignUp"
-                android:padding="@dimen/_12sdp"
-                android:rotation="180"
-                android:src="@drawable/ic_arrow_back" />
-        </LinearLayout>
+            android:layout_marginTop="@dimen/_16sdp"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilEmail"
+            app:text="@string/signUp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/mtvToss"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:layout_weight=".2"
-            android:gravity="center|top"
-            android:textSize="@dimen/_10ssp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:gravity="center"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnRegister"
             tools:text="Регистрируясь я принимаю Условия обслуживания и Политику конфиденциальности" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <com.pulse.ui.auth.AuthFooter
+            android:id="@+id/vFooter"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginBottom="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mtvToss"
+            app:layout_constraintVertical_bias="1.0"
+            app:textAction="@string/backToSignIn"
+            app:textDescription="@string/alreadyHaveAnAccount" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mtvAlreadyHaveAnAccount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_4sdp"
-                android:text="@string/alreadyHaveAnAccount"
-                android:textColor="@color/darkBlue"
-                android:textSize="@dimen/_11ssp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/mbGoToSignIn"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingHorizontal="@dimen/_3sdp"
-                android:paddingVertical="@dimen/_4sdp"
-                android:text="@string/backToSignIn"
-                android:textAllCaps="false"
-                android:textColor="@color/primaryBlue"
-                android:textSize="@dimen/_11ssp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvSkipAuth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/background_default_ripple_selector_rect"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_8sdp"
-            android:text="@string/skip" />
-
-    </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

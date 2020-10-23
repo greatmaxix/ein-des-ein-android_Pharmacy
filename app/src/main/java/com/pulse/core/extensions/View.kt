@@ -32,10 +32,45 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.textfield.TextInputLayout
 import com.pulse.R
+import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Default
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Dispatchers.Main
 import timber.log.Timber
 import java.math.BigDecimal
+
+inline fun <T, reified R : View> R.singleAsyncTask(
+    crossinline task: suspend () -> T?,
+    crossinline result: R.(T?) -> Unit
+) {
+
+    val job = CoroutineScope(Default)
+
+    val attachListener = object : OnAttachStateChangeListener {
+        override fun onViewAttachedToWindow(p0: View?) {}
+        override fun onViewDetachedFromWindow(p0: View?) {
+            job.cancel()
+        }
+    }
+
+    addOnAttachStateChangeListener(attachListener)
+
+    job.launch {
+        val data = try {
+            task()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+        if (isActive) {
+            try {
+                withContext(Main) { result(data) }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        removeOnAttachStateChangeListener(attachListener)
+    }
+}
 
 fun View.freeze(duration: Long = 300) {
     isEnabled = false
@@ -286,7 +321,10 @@ fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> U
     }
 }
 
-fun View.setTopRoundCornerBackground(radius: Float = resources.getDimension(R.dimen._8sdp), elevation: Float = resources.getDimension(R.dimen._4sdp), @ColorInt tintColor: Int = ContextCompat.getColor(context, R.color.colorGlobalWhite)
+fun View.setTopRoundCornerBackground(
+    radius: Float = resources.getDimension(R.dimen._8sdp),
+    elevation: Float = resources.getDimension(R.dimen._4sdp),
+    @ColorInt tintColor: Int = ContextCompat.getColor(context, R.color.colorGlobalWhite)
 ) {
     val appearanceModel = ShapeAppearanceModel()
         .toBuilder()
