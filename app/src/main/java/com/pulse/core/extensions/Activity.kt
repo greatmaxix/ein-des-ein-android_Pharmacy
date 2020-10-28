@@ -37,6 +37,20 @@ val Activity.isKeyboardNotOpen
 
 val Activity.softInputMode get() = window?.attributes?.softInputMode
 
+
+fun Activity.setNavigationBarColor(@ColorRes colorRes: Int, withAnim: Boolean = false) {
+    setNavigationBarColorInt(getCompatColor(colorRes), withAnim)
+}
+
+fun Activity.setNavigationBarColorInt(@ColorInt color: Int, withAnim: Boolean = false) {
+    if (withAnim) {
+        val colorFrom = window.navigationBarColor
+        animatorMedium { window.navigationBarColor = colorFrom.mixColorWith(color, it) }
+    } else {
+        window.navigationBarColor = color
+    }
+}
+
 fun Activity.setStatusBarColor(@ColorRes colorRes: Int, withAnim: Boolean = false) {
     setStatusBarColorInt(getCompatColor(colorRes), withAnim)
 }

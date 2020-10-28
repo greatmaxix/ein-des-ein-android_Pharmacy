@@ -16,11 +16,15 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
 
     var token: String?
         get() = get(Keys.TOKEN)
-        set(value) { put(Keys.TOKEN, value) }
+        set(value) {
+            put(Keys.TOKEN, value)
+        }
 
     var refreshToken: String?
         get() = get(Keys.REFRESH_TOKEN)
-        set(value) { put(Keys.REFRESH_TOKEN, value) }
+        set(value) {
+            put(Keys.REFRESH_TOKEN, value)
+        }
 
     val isTokenExists: Boolean get() = !token.isNullOrEmpty() && !refreshToken.isNullOrEmpty()
 
@@ -31,15 +35,21 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
     val isUserLogin
         get() = refreshToken?.isNotEmpty() ?: false
 
-    var isNeedOnBoarding: Boolean
-        get() = get(Keys.IS_ONBOARDING_SHOWN) ?: false
+    var isNeedOnboarding: Boolean
+        get() = get(Keys.IS_ONBOARDING_SHOWN) ?: true
         set(value) = put(Keys.IS_ONBOARDING_SHOWN, value)
+
+    var isNeedRegionSelection: Boolean
+        get() = get(Keys.IS_REGION_SELECTED) ?: false
+        set(value) = put(Keys.IS_REGION_SELECTED, value)
 
     var regionId: Int?
         get() = get(Keys.REGION_ID)
-        set(value) { value?.let { put(Keys.REGION_ID, it) } }
+        set(value) {
+            value?.let { put(Keys.REGION_ID, it) }
+        }
 
-    fun saveTokens(new: TokenModel){
+    fun saveTokens(new: TokenModel) {
         token = new.token
         refreshToken = new.refreshToken
     }
@@ -51,6 +61,6 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
     }
 
     private enum class Keys {
-        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, REGION_ID, REGION_NAME
+        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, IS_REGION_SELECTED, REGION_ID
     }
 }
