@@ -3,7 +3,6 @@ package com.pulse.region
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.pulse.R
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.animateVisibleOrGoneIfNot
@@ -18,15 +17,17 @@ import org.koin.core.component.KoinApiExtension
 @KoinApiExtension
 class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(R.layout.fragment_region) {
 
-    private val regionAdapter = RegionAdapter({
-        searchViewRegion.clearFocus()
-        viewModel.regionSelected(it)
-    }, llRegionNotFoundContainer::animateVisibleOrGoneIfNot)
+    private val regionAdapter by lazy {
+        RegionAdapter({
+            searchViewRegion.clearFocus()
+            viewModel.regionSelected(it)
+        }, llRegionNotFoundContainer::animateVisibleOrGoneIfNot)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvRegions.layoutManager = LinearLayoutManager(requireContext())
         rvRegions.adapter = regionAdapter
+
         ivBackRegion.onClick { requireActivity().onBackPressed() }
 
         searchViewRegion.setSearchListener { text ->
@@ -34,6 +35,7 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
                 regionAdapter.filter { it.region?.name?.contains(text, true).falseIfNull() || it.header != 0.toChar() }
             }
         }
+
         attachBackPressCallback { viewModel.handleBackPress() }
     }
 
@@ -48,8 +50,6 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
     }
 
     companion object {
-
         const val REGION_KEY = "regionKey"
-
     }
 }
