@@ -6,7 +6,7 @@ versions.okhttp = "4.9.0"
 versions.kotlin = "1.4.10"
 versions.retrofit = "2.9.0"
 versions.lifecycle = "2.2.0"
-versions.coroutines = "1.4.0-M1"
+versions.coroutines = "1.4.0"
 
 versions.navigation = "2.3.1"
 

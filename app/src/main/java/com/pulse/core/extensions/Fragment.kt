@@ -148,6 +148,10 @@ fun Fragment.setStatusBarColor(@ColorRes colorRes: Int, withAnim: Boolean = fals
     requireActivity().setStatusBarColor(colorRes, withAnim)
 }
 
+fun Fragment.setNavigationBarColor(@ColorRes colorRes: Int, withAnim: Boolean = false) {
+    requireActivity().setNavigationBarColor(colorRes, withAnim)
+}
+
 fun Fragment.setLightStatusBar(light: Boolean) {
     requireActivity().setLightStatusBar(light)
 }

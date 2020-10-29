@@ -22,6 +22,16 @@
         <item name="android:background">@color/colorProgressBackground</item>
     </style>
 
+    <style name="BaseTextSkip">
+        <item name="android:padding">@dimen/_4sdp</item>
+        <item name="android:background">@drawable/background_default_ripple_selector_rect</item>
+        <item name="android:text">@string/skip</item>
+    </style>
+
+    <style name="TextSkipOnboarding" parent="BaseTextSkip">
+        <item name="android:textColor">@color/colorGlobalWhite</item>
+    </style>
+
     <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

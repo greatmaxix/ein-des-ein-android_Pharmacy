@@ -31,7 +31,6 @@ class PharmacyViewModel(globalProductId: Int, private val useCase: PharmacyUseCa
         get() = _addProductItemLiveData.switchMap { productId ->
             requestLiveData {
                 useCase.addProductOrThrow(productId)
-                Unit
             }
         }
 
