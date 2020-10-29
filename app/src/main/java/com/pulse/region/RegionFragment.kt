@@ -28,6 +28,7 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
         rvRegions.layoutManager = LinearLayoutManager(requireContext())
         rvRegions.adapter = regionAdapter
         ivBackRegion.onClick { requireActivity().onBackPressed() }
+
         searchViewRegion.setSearchListener { text ->
             viewLifecycleOwner.lifecycleScope.launch {
                 regionAdapter.filter { it.region?.name?.contains(text, true).falseIfNull() || it.header != 0.toChar() }
