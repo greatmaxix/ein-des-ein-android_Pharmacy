@@ -49,12 +49,12 @@
 
     <fragment
         android:id="@+id/nav_on_boarding"
-        android:name="com.pulse.onboarding.OnBoardingFragment"
+        android:name="com.pulse.onboarding.OnboardingFragment"
         android:label="@null"
         tools:layout="@layout/fragment_onboarding">
 
         <action
-            android:id="@+id/actionFromOnBoardingToAuth"
+            android:id="@+id/actionFromOnboardingToAuth"
             app:destination="@id/auth_graph"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
@@ -64,12 +64,24 @@
             app:popUpToInclusive="true" />
 
         <action
-            android:id="@+id/actionFromOnBoardingToHome"
+            android:id="@+id/actionFromOnboardingToHome"
             app:destination="@id/nav_home"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
-            app:popExitAnim="@anim/nav_exit_pop_anim" />
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_on_boarding"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/actionFromOnboardingToRegion"
+            app:destination="@id/nav_region"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_on_boarding" />
+
     </fragment>
 
     <fragment

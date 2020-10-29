@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="?actionBarSize"
-    android:background="@color/greyLight">
+    android:background="@color/colorGreyLight">
 
     <include
         android:id="@+id/toolbar"

@@ -21,6 +21,7 @@ class EmptyContainerView @JvmOverloads constructor(context: Context, attrs: Attr
     private var subtitle = ""
     private var buttonText = ""
     private var isButtonVisible = true
+    private var src = R.drawable.main_icon
 
     init {
         attrs?.let {
@@ -30,6 +31,7 @@ class EmptyContainerView @JvmOverloads constructor(context: Context, attrs: Attr
                     subtitle = getString(R.styleable.EmptyContainerView_subtitleEmpty) ?: ""
                     buttonText = getString(R.styleable.EmptyContainerView_buttonTextEmpty) ?: ""
                     isButtonVisible = getBoolean(R.styleable.EmptyContainerView_isButtonVisible, true)
+                    src = getResourceId(R.styleable.EmptyContainerView_src, R.drawable.main_icon)
                 }
         }
         gravity = CENTER
@@ -38,6 +40,7 @@ class EmptyContainerView @JvmOverloads constructor(context: Context, attrs: Attr
 
     override fun onFinishInflate() {
         super.onFinishInflate()
+        ivPicture.setImageResource(src)
         titleEmptyContainer.text = title
         subtitleEmptyContainer.text = subtitle
 

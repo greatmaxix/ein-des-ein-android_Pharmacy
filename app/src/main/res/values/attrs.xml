@@ -30,6 +30,7 @@
         <attr name="subtitleEmpty" format="string" />
         <attr name="buttonTextEmpty" format="string" />
         <attr name="isButtonVisible" format="boolean" />
+        <attr name="src" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="AuthNextView">

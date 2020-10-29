@@ -5,13 +5,11 @@ import android.view.View
 import androidx.annotation.ColorRes
 import androidx.navigation.NavDirections
 import com.pulse.R
-import com.pulse.components.onboarding.model.Onboarding
+import com.pulse.components.onboarding.model.Splash
 import com.pulse.core.base.mvvm.BaseMVVMFragment
-import com.pulse.core.extensions.setNavigationBarColor
-import com.pulse.core.extensions.setStatusBarColor
 import com.pulse.core.extensions.visible
 import com.pulse.core.general.Event
-import com.pulse.splash.adapter.OnboardingPagerAdapter
+import com.pulse.splash.adapter.SplashPagerAdapter
 import kotlinx.android.synthetic.main.fragment_splash.*
 import org.koin.core.component.KoinApiExtension
 
@@ -19,9 +17,9 @@ import org.koin.core.component.KoinApiExtension
 class SplashFragment(private val viewModel: SplashViewModel) : BaseMVVMFragment(R.layout.fragment_splash) {
 
     private val items = listOf(
-        Onboarding("onboarding_1", R.string.onboarding_title_1, R.string.onboarding_subtitle_1),
-        Onboarding("onboarding_2", R.string.onboarding_title_2, R.string.onboarding_subtitle_2),
-        Onboarding("onboarding_3", R.string.onboarding_title_3, R.string.onboarding_subtitle_3)
+        Splash("onboarding_1", R.string.onboarding_title_1, R.string.onboarding_subtitle_1),
+        Splash("onboarding_2", R.string.onboarding_title_2, R.string.onboarding_subtitle_2),
+        Splash("onboarding_3", R.string.onboarding_title_3, R.string.onboarding_subtitle_3)
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,14 +44,14 @@ class SplashFragment(private val viewModel: SplashViewModel) : BaseMVVMFragment(
         changeBarsColor(R.color.darkBlue)
         with(vpSplash) {
             adapter =
-                OnboardingPagerAdapter(items, { viewModel.notifyOnboarding() }, { if (currentItem == 2) viewModel.notifyOnboarding() else setCurrentItem(currentItem + 1, true) })
+                SplashPagerAdapter(items, { viewModel.notifyOnboarding() }, { if (currentItem == 2) viewModel.notifyOnboarding() else setCurrentItem(currentItem + 1, true) })
             offscreenPageLimit = 3
             visible()
         }
     }
 
     private fun changeBarsColor(@ColorRes colorRes: Int) {
-        setStatusBarColor(colorRes)
-        setNavigationBarColor(colorRes)
+        //setStatusBarColor(colorRes)
+        //setNavigationBarColor(colorRes)
     }
 }

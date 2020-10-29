@@ -2,19 +2,16 @@ package com.pulse.region
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
-import androidx.fragment.app.clearFragmentResult
-import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pulse.R
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.animateVisibleOrGoneIfNot
 import com.pulse.core.extensions.falseIfNull
+import com.pulse.core.extensions.notifySavedStateHandle
 import com.pulse.core.extensions.onClick
 import com.pulse.region.adapter.RegionAdapter
 import kotlinx.android.synthetic.main.fragment_region.*
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinApiExtension
 
@@ -24,24 +21,19 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
     private val regionAdapter = RegionAdapter({
         searchViewRegion.clearFocus()
         viewModel.regionSelected(it)
-    }, {
-        viewLifecycleOwner.lifecycleScope.launch(Main) {
-            llRegionNotFoundContainer.animateVisibleOrGoneIfNot(it)
-        }
-    })
+    }, llRegionNotFoundContainer::animateVisibleOrGoneIfNot)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvRegions.layoutManager = LinearLayoutManager(requireContext())
         rvRegions.adapter = regionAdapter
-        attachBackPressCallback { viewModel.handleBackPress() }
-        clearFragmentResult(REGION_SELECTION_FINISHED_KEY)
         ivBackRegion.onClick { requireActivity().onBackPressed() }
         searchViewRegion.setSearchListener { text ->
             viewLifecycleOwner.lifecycleScope.launch {
                 regionAdapter.filter { it.region?.name?.contains(text, true).falseIfNull() || it.header != 0.toChar() }
             }
         }
+        attachBackPressCallback { viewModel.handleBackPress() }
     }
 
     override fun onBindLiveData() {
@@ -49,19 +41,14 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
         observe(viewModel.regionsLiveData, regionAdapter::notifyDataSet)
         observe(viewModel.regionSavedLiveData) {
-            setFragmentResult(it)
+            notifySavedStateHandle(REGION_KEY, it)
             navigationBack()
         }
     }
 
-    private fun setFragmentResult(value: Boolean) = setFragmentResult(
-        REGION_SELECTION_FINISHED_KEY,
-        bundleOf(REGION_SELECTION_FINISHED_DATA to value)
-    )
-
     companion object {
 
-        const val REGION_SELECTION_FINISHED_KEY = "REGION_SELECTION_FINISHED"
-        const val REGION_SELECTION_FINISHED_DATA = "REGION_SELECTION_FINISHED_DATA"
+        const val REGION_KEY = "regionKey"
+
     }
 }
