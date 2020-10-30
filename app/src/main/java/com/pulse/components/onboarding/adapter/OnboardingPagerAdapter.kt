@@ -1,8 +1,8 @@
-package com.pulse.onboarding.adapter
+package com.pulse.components.onboarding.adapter
 
 import android.view.ViewGroup
+import com.pulse.components.onboarding.model.Onboarding
 import com.pulse.core.base.adapter.BaseRecyclerAdapter
-import com.pulse.onboarding.model.Onboarding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension

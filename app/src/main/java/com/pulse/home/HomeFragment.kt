@@ -2,6 +2,7 @@ package com.pulse.home
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
 import androidx.core.os.bundleOf
 import com.pulse.MainGraphDirections.Companion.globalToChat
 import com.pulse.R
@@ -23,6 +24,8 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setSoftInputMode(SOFT_INPUT_ADJUST_PAN)
+
         mcvScanHome.onClick { doNav(fromHomeToScanner()) }
         mcvAskHome.onClick { doNav(globalToChat()) }
         mcvAnalyzeHome.onClick { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_home) }
@@ -30,7 +33,6 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         mcvSearchHome.onClick { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_home) }
         btnSeeAllCategoriesHome.onClick { navController.onNavDestinationSelected(R.id.nav_catalog, null, R.id.nav_home) }
         //mcvMapHome.onClick { navController.navigate(fromHomeToCheckout(true)) }
-        mcvOrderContainer.onClick { }
 
         // Developers screen for convenient features access
         debug {
@@ -39,6 +41,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
                 true
             }
         }
+
         viewModel.loadInitialData()
         progressBarCategories.visibleOrGone(!isCategoryLoaded)
     }

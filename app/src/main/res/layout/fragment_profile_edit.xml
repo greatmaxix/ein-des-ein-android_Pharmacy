@@ -19,7 +19,7 @@
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_24sdp"
         android:contentDescription="@string/profileImage"
-        android:src="@drawable/main_icon"
+        android:src="@drawable/ic_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
@@ -30,7 +30,7 @@
         android:adjustViewBounds="true"
         android:focusable="false"
         android:src="@drawable/ic_camera"
-        android:tint="@color/colorGlobalWhite"
+        app:tint="@color/colorGlobalWhite"
         app:layout_constraintBottom_toBottomOf="@id/ivProfileEdit"
         app:layout_constraintEnd_toEndOf="@id/ivProfileEdit"
         app:layout_constraintStart_toStartOf="@id/ivProfileEdit"

@@ -1,4 +1,4 @@
-package com.pulse.onboarding.model
+package com.pulse.components.onboarding.model
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

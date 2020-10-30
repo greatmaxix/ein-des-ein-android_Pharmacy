@@ -1,4 +1,4 @@
-package com.pulse.onboarding
+package com.pulse.components.onboarding
 
 import org.koin.androidx.fragment.dsl.fragment
 import org.koin.core.component.KoinApiExtension

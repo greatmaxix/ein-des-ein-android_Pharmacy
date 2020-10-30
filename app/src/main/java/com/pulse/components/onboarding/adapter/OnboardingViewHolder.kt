@@ -1,12 +1,12 @@
-package com.pulse.onboarding.adapter
+package com.pulse.components.onboarding.adapter
 
 import android.view.View
 import android.view.ViewGroup
 import com.pulse.R
+import com.pulse.components.onboarding.model.Onboarding
 import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.inflate
 import com.pulse.core.extensions.onClick
-import com.pulse.onboarding.model.Onboarding
 import kotlinx.android.synthetic.main.item_onboarding.view.*
 
 class OnboardingViewHolder(view: View, private val skip: (Onboarding.OnboardingType) -> Unit, private val next: (Onboarding.OnboardingType) -> Unit) :
