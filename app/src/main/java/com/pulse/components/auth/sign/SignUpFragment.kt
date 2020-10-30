@@ -63,7 +63,7 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
     private fun registerOrError() {
         if (isFieldsValid()) {
             hideKeyboard()
-            vm.signUp(Auth(tilName.text(), if (DEBUG) "+3" else "+7" + tilPhone.text(), tilEmail.text()))
+            vm.signUp(Auth(tilName.text(), (if (DEBUG) "+3" else "+7") + tilPhone.text(), tilEmail.text()))
         }
     }
 
