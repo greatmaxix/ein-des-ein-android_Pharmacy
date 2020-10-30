@@ -30,15 +30,19 @@ import com.pulse.R
 import com.pulse.chat.ChatFragmentDirections.Companion.actionChatToChatReviewBottomSheet
 import com.pulse.chat.ChatFragmentDirections.Companion.actionChatToHome
 import com.pulse.chat.ChatFragmentDirections.Companion.actionChatToSendImageBottomSheet
+import com.pulse.chat.ChatFragmentDirections.Companion.fromChatToProductCard
 import com.pulse.chat.adapter.ChatMessageAdapter
 import com.pulse.chat.adapter.ChatMessageAdapter.Action.*
+import com.pulse.chat.adapter.viewHolder.ProductViewHolder
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_FILLED
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_KEY
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_NOTE_KEY
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_RATING_KEY
+import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_TAGS_KEY
 import com.pulse.chat.dialog.SendBottomSheetDialogFragment
 import com.pulse.chat.dialog.SendBottomSheetDialogFragment.Companion.RESULT_BUTTON_EXTRA_KEY
 import com.pulse.chat.dialog.SendBottomSheetDialogFragment.Companion.SEND_PHOTO_KEY
+import com.pulse.chat.model.message.MessageItem
 import com.pulse.components.auth.sign.SignInFragmentArgs
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
@@ -65,25 +69,38 @@ class ChatFragment : BaseMVVMFragment(R.layout.fragment_chat) {
     private val takePhotoLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) {
         if (it) sendPhotoMessage(uri)
     }
-    private val chatAdapter = ChatMessageAdapter {
-        when (it) {
-            END_CHAT -> {
-                observeResult(vm.closeChat()) {
-                    onEmmit = {
-                        hideKeyboard()
-                        if (requireContext().isServiceRunning(MercureEventListenerService::class.java)) {
-                            requireContext().stopService(Intent(requireContext(), MercureEventListenerService::class.java))
+    private val chatAdapter = ChatMessageAdapter(
+        { action ->
+            when (action) {
+                END_CHAT -> {
+                    observeResult(vm.closeChat()) {
+                        onEmmit = {
+                            hideKeyboard()
+                            if (requireContext().isServiceRunning(MercureEventListenerService::class.java)) {
+                                requireContext().stopService(Intent(requireContext(), MercureEventListenerService::class.java))
+                            }
+                            doNav(actionChatToChatReviewBottomSheet())
                         }
-                        doNav(actionChatToChatReviewBottomSheet())
                     }
                 }
+                RESUME_CHAT -> observeResult(vm.resumeChat())
+                AUTHORIZE -> navController.navigate(R.id.fromChatToSignIn, SignInFragmentArgs(nextDestinationId = R.id.nav_chat_type).toBundle())
             }
-            RESUME_CHAT -> vm.removeEndChatMessage()
-            AUTHORIZE -> navController.navigate(R.id.fromChatToSignIn, SignInFragmentArgs(nextDestinationId = R.id.nav_chat_type).toBundle())
-        }
-    }
-    private var scrollerJob: Job? = null
-    private val chatAdapterDataObserver = object : RecyclerView.AdapterDataObserver() {
+        },
+        { action: ProductViewHolder.Action, pair: Pair<MessageItem, Int> ->
+            when (action) {
+                ProductViewHolder.Action.ITEM -> {
+                    vm.getProductInfo(pair.second)
+                }
+                ProductViewHolder.Action.WISH -> vm.setOrRemoveWish(pair)
+            }
+        })
+
+    private
+    var scrollerJob: Job? = null
+
+    private
+    val chatAdapterDataObserver = object : RecyclerView.AdapterDataObserver() {
         override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
             super.onItemRangeChanged(positionStart, itemCount)
             scrollToLastMessage()
@@ -129,10 +146,14 @@ class ChatFragment : BaseMVVMFragment(R.layout.fragment_chat) {
         setFragmentResultListener(CHAT_REVIEW_KEY) { _, bundle ->
             if (bundle.getBoolean(CHAT_REVIEW_FILLED)) {
                 val rating = bundle.getInt(CHAT_REVIEW_RATING_KEY)
+                val tags = bundle.getStringArrayList(CHAT_REVIEW_TAGS_KEY)
                 val note = bundle.getString(CHAT_REVIEW_NOTE_KEY)
-                vm.sendReview(rating, note)
+                observeResult(vm.sendReview(rating, tags, note)) {
+                    onEmmit = { showChatEndDialog() }
+                }
+            } else {
+                showChatEndDialog()
             }
-            showChatEndDialog()
         }
         setFragmentResultListener(SEND_PHOTO_KEY) { _, bundle ->
             when (bundle.getString(RESULT_BUTTON_EXTRA_KEY)) {
@@ -152,10 +173,11 @@ class ChatFragment : BaseMVVMFragment(R.layout.fragment_chat) {
                 requireContext().startService(intent)
             }
         }
+        vm.checkIsWishSaved()
     }
 
-    private fun showChatEndDialog() {
-        showAlertRes(getString(R.string.chatEndedMessage)) {
+    private fun showChatEndDialog(isAutoClosed: Boolean = false) {
+        showAlertRes(getString(if (isAutoClosed) R.string.chat_ended_automatically_message else R.string.chatEndedMessage)) {
             cancelable = false
             title = R.string.chatEndedTitle
             positive = R.string.common_okButton
@@ -163,7 +185,7 @@ class ChatFragment : BaseMVVMFragment(R.layout.fragment_chat) {
         }
     }
 
-    fun onActivityResult(result: ActivityResult) {
+    private fun onActivityResult(result: ActivityResult) {
         val data = result.data?.data
         if (result.resultCode == Activity.RESULT_OK && data != null) {
             sendPhotoMessage(data)
@@ -171,9 +193,7 @@ class ChatFragment : BaseMVVMFragment(R.layout.fragment_chat) {
     }
 
     private fun sendPhotoMessage(uri: Uri) {
-        observeResult(vm.sendPhoto(uri)) {
-
-        }
+        observeResult(vm.sendPhoto(uri))
     }
 
     private fun requestPickPhoto() {
@@ -225,9 +245,7 @@ class ChatFragment : BaseMVVMFragment(R.layout.fragment_chat) {
     private fun sendMessage() {
         val message = tilMessageChat.editText?.text?.toString()?.trim().orEmpty()
         tilMessageChat.editText?.text = null
-        observeResult(vm.sendMessage(message)) {
-
-        }
+        observeResult(vm.sendMessage(message))
     }
 
     @ExperimentalPagingApi
@@ -235,18 +253,18 @@ class ChatFragment : BaseMVVMFragment(R.layout.fragment_chat) {
         super.onBindLiveData()
 
         observe(vm.directionLiveData, navController::navigate)
-        observe(vm.errorLiveData) { messageCallback?.showError(it) }
-        observe(vm.progressLiveData) { progressCallback?.setInProgress(it) }
         observe(vm.isUserLoggedInLiveData) { if (it) llMessageFieldChat.visible() }
         observe(vm.chatMessagesLiveData) { chatAdapter.submitData(lifecycle, it) }
-        observe(vm.lastMessageLiveData) {
-            scrollToLastMessage()
+        observe(vm.lastMessageLiveData) { scrollToLastMessage() }
+        observe(vm.chatLiveData) {
+            if (it?.isAutomaticClosed.falseIfNull()) showChatEndDialog(true)
         }
+        observe(vm.productLiteLiveData) { navController.navigate(fromChatToProductCard(it)) }
+        observe(vm.wishLiteLiveData) { chatAdapter.notifyWish(it) }
     }
 
-    private fun initAdapter() {
-        rvMessagesChat.adapter = chatAdapter
-        rvMessagesChat.setHasFixedSize(true)
+    private fun initAdapter() = with(rvMessagesChat) {
+        adapter = chatAdapter
         chatAdapter.registerAdapterDataObserver(chatAdapterDataObserver)
     }
 

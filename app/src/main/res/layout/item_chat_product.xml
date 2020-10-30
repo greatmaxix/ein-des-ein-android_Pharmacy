@@ -67,17 +67,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvChatProductTitle"
                 tools:text="Название товара" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabAddToCartChatProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:src="@drawable/ic_shopping_cart"
-                app:backgroundTint="@color/primaryBlue"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvChatProductDescription" />
-
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvPricePrefix"
                 android:layout_width="wrap_content"
@@ -93,11 +82,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:textColor="@color/primaryBlue"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/tvPricePrefix"
                 app:layout_constraintStart_toEndOf="@+id/tvPricePrefix"
+                app:layout_constraintTop_toBottomOf="@+id/tvChatProductDescription"
                 tools:text="568 ₽" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

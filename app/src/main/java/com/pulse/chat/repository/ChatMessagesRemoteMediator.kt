@@ -5,10 +5,10 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import com.pulse.chat.adapter.ChatMessageAdapter
+import com.pulse.chat.model.chat.ChatItem
 import com.pulse.chat.model.message.MessageItem
 import com.pulse.chat.model.remoteKeys.RemoteKeys
 import com.pulse.data.GeneralErrorHandler
-import com.pulse.data.remote.model.chat.ChatItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinApiExtension

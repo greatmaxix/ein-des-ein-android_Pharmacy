@@ -1,5 +1,6 @@
 package com.pulse.chat.repository
 
+import com.pulse.chat.model.chat.ChatItemDAO
 import com.pulse.chat.model.message.MessageDAO
 import com.pulse.chat.model.message.MessageItem
 import com.pulse.chat.model.remoteKeys.RemoteKeys.Companion.createRemoteKey
@@ -13,6 +14,7 @@ class ChatLocalDataSource(
     private val customerDao: CustomerDAO,
     private val remoteKeysDAO: RemoteKeysDAO,
     private val messageDAO: MessageDAO,
+    private val chatItemDAO: ChatItemDAO
 ) {
 
     val isUserLoggedIn
@@ -43,7 +45,13 @@ class ChatLocalDataSource(
     suspend fun isHeaderExist(chatId: Int, createdAt: LocalDateTime) = messageDAO.getHeaderMessages(chatId)
         .find { it.createdAt.year == createdAt.year && it.createdAt.month == createdAt.month && it.createdAt.dayOfMonth == createdAt.dayOfMonth } != null
 
-    suspend fun removeEndChatMessage(chatId: Int) = messageDAO.getEndChatMessage(chatId)?.let { messageDAO.delete(it) }
+    suspend fun removeEndChatMessage(chatId: Int) = messageDAO.getEndChatMessages(chatId)
+        ?.let {
+            remoteKeysDAO.deleteById(chatId, it.id)
+            messageDAO.delete(it)
+        }
 
-    fun closeChat() = sp.clearChatId()
+    fun clearChat() = sp.clearChatId()
+
+    fun getChatLiveData(chatId: Int) = chatItemDAO.getChatLiveData(chatId)
 }

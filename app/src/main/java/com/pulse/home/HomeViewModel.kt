@@ -3,10 +3,9 @@ package com.pulse.home
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavDirections
 import com.pulse.MainGraphDirections.Companion.globalToChat
+import com.pulse.chat.model.chat.ChatItem.Companion.STATUS_CLOSED
 import com.pulse.core.general.SingleLiveEvent
 import com.pulse.core.network.ResponseWrapper
-import com.pulse.data.remote.model.chat.ChatItem.Companion.STATUS_CLOSED
-import com.pulse.data.remote.model.chat.ChatItem.Companion.STATUS_RATED
 import com.pulse.home.HomeFragmentDirections.Companion.fromHomeToChatType
 import com.pulse.home.repository.HomeRepository
 import com.pulse.model.category.Category
@@ -38,10 +37,16 @@ class HomeViewModel(private val repository: HomeRepository) : BaseProductViewMod
                 globalToChat()
             } else {
                 _progressLiveData.postValue(true)
-                val chatItem = repository.getCurrentChat()
-                if (chatItem?.status != null && chatItem.status != STATUS_CLOSED && chatItem.status != STATUS_RATED) {
-                    globalToChat(chatItem)
-                } else {
+                try {
+                    val chatItem = repository.getCurrentChat()
+                    if (chatItem?.status != null && chatItem.status != STATUS_CLOSED) {
+                        globalToChat(chatItem)
+                    } else {
+                        repository.clearSavedChatId()
+                        fromHomeToChatType()
+                    }
+                } catch (e: Exception) {
+                    repository.clearSavedChatId()
                     fromHomeToChatType()
                 }
             }

@@ -1,6 +1,8 @@
 package com.pulse.mercureService.repository
 
 import androidx.room.Transaction
+import com.pulse.chat.model.chat.ChatItem
+import com.pulse.chat.model.chat.ChatItemDAO
 import com.pulse.chat.model.message.MessageDAO
 import com.pulse.chat.model.message.MessageItem
 import com.pulse.chat.model.remoteKeys.RemoteKeys.Companion.createRemoteKey
@@ -14,6 +16,7 @@ class MercureLocalDataSource(
     private val customerDao: CustomerDAO,
     private val remoteKeysDAO: RemoteKeysDAO,
     private val messageDAO: MessageDAO,
+    private val chatItemDAO: ChatItemDAO
 ) {
 
     val isChatForeground: Boolean
@@ -33,4 +36,8 @@ class MercureLocalDataSource(
 
     suspend fun isHeaderExist(chatId: Int, createdAt: LocalDateTime) = messageDAO.getHeaderMessages(chatId)
         .find { it.createdAt.year == createdAt.year && it.createdAt.month == createdAt.month && it.createdAt.dayOfMonth == createdAt.dayOfMonth } != null
+
+    suspend fun getChat(chatId: Int) = chatItemDAO.getChat(chatId)
+
+    suspend fun insertChat(chat: ChatItem) = chatItemDAO.insert(chat)
 }

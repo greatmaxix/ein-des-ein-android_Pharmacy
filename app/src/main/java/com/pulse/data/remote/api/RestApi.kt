@@ -1,12 +1,13 @@
 package com.pulse.data.remote.api
 
 import androidx.annotation.WorkerThread
+import com.pulse.chat.model.chat.ChatItem
 import com.pulse.chat.model.message.MessageItem
 import com.pulse.components.cart.model.CartItem
 import com.pulse.components.pharmacy.model.Pharmacy
-import com.pulse.data.remote.model.chat.ChatItem
 import com.pulse.data.remote.model.chat.CreateChatRequest
 import com.pulse.data.remote.model.chat.SendMessageBody
+import com.pulse.data.remote.model.chat.SendReviewRequest
 import com.pulse.data.remote.model.order.CreateOrderRequest
 import com.pulse.model.*
 import com.pulse.model.auth.StartInfo
@@ -120,6 +121,9 @@ interface RestApi {
     @PATCH("/api/v1/customer/chat/{chatId}/close")
     suspend fun closeChat(@Path("chatId") chatId: Int): BaseDataResponse<SingleItemModel<ChatItem>>
 
+    @PATCH("/api/v1/customer/chat/{chatId}/continue")
+    suspend fun continueChat(@Path("chatId") chatId: Int): BaseDataResponse<SingleItemModel<ChatItem>>
+
     @GET("/api/v1/chat/chat/{chatId}")
     suspend fun getChat(@Path("chatId") chatId: Int): BaseDataResponse<SingleItemModel<ChatItem>>
 
@@ -139,4 +143,8 @@ interface RestApi {
     @WorkerThread
     @POST("/api/v1/chat/chat/{chatId}/application/{imageUuid}")
     suspend fun sendImageMessage(@Path("chatId") chatId: Int, @Path("imageUuid") imageUuid: String): BaseDataResponse<SingleItemModel<MessageItem>>
+
+    @WorkerThread
+    @PATCH("/api/v1/customer/chat/{chatId}/evaluate")
+    suspend fun sendReview(@Path("chatId") chatId: Int, @Body body: SendReviewRequest): BaseDataResponse<Any?>
 }

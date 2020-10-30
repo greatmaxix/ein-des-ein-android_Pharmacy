@@ -249,7 +249,7 @@
     <string name="chat_description_message5">Ничего сложного, просто укажите свою контактуню информацию</string>
     <string name="readDateHolder">Прочитано %s</string>
     <string name="chatEndedTitle">Чат завершен</string>
-    <string name="chatEndedMessage">A short, complete sentence that takes up the first and the second line.</string>
+    <string name="chatEndedMessage">Спасибо за использование наших услуг</string>
     <string name="chatReviewDialogTitle">Как прошла консультация?</string>
     <string name="chatReviewBadDialogTitle">Жаль слышать это 😔</string>
     <string name="chatReviewDialogDescription">Насколько фармацевт был заинтересован в решении Вашего вопроса?</string>
@@ -377,5 +377,8 @@
     <string name="chatTypeLabel">Чат</string>
     <string name="attachment_image">Изображение</string>
     <string name="attachment_product">Продукт</string>
+    <string name="chat_ended_automatically_title">Чат завершен</string>
+    <string name="chat_ended_automatically_message">Вы были неактивны слишком длительное время. Сессия была автоматически завершена</string>
+    <string name="chat">Чат</string>
 
 </resources>

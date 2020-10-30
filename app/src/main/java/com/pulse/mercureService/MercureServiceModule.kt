@@ -17,6 +17,6 @@ val mercureModule = module {
         OkSse(client)
     }
 
-    single { MercureLocalDataSource(get(), get<DBManager>().customerDAO, get<DBManager>().remoteKeysDAO, get<DBManager>().messageDAO) }
+    single { MercureLocalDataSource(get(), get<DBManager>().customerDAO, get<DBManager>().remoteKeysDAO, get<DBManager>().messageDAO, get<DBManager>().chatItemDAO) }
     single { MercureRepository(get()) }
 }

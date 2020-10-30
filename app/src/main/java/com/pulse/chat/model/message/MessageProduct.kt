@@ -14,5 +14,10 @@ data class MessageProduct(
     @SerializedName("releaseForm") val releaseForm: String,
     @SerializedName("pictures") val pictures: List<Picture> = listOf(),
     @Embedded
-    @SerializedName("pharmacyProductsAggregationData") val pharmacyProductsAggregationData: Aggregation?
-) : Parcelable
+    @SerializedName("pharmacyProductsAggregationData") val pharmacyProductsAggregationData: Aggregation?,
+    @SerializedName("liked") var wish: Boolean?,
+) : Parcelable {
+
+    val isInWish
+        get() = wish ?: false
+}

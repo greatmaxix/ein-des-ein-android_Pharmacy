@@ -13,6 +13,8 @@ class HomeLocalDataSource(private val sp: SPManager, private val dao: CategoryDA
 
     suspend fun isCategoriesPresent() = dao.categoriesSize() > 0
 
+    fun clearSavedChatId() = sp.clearChatId()
+
     var openedChatId: Int? = null
         get() = sp.openedChatId
         set(value) {

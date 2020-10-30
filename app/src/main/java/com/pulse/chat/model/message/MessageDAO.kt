@@ -25,6 +25,6 @@ interface MessageDAO : BaseDao<MessageItem> {
     @Query("SELECT * FROM MessageItem WHERE chatId = :chatId AND messageType = ${ChatMessageAdapter.TYPE_DATE_HEADER}")
     suspend fun getHeaderMessages(chatId: Int): List<MessageItem>
 
-    @Query("SELECT * FROM MessageItem WHERE chatId = :chatId AND messageType = 7 LIMIT 1")
-    fun getEndChatMessage(chatId: Int): MessageItem?
+    @Query("SELECT * FROM MessageItem WHERE chatId = :chatId AND messageType = ${ChatMessageAdapter.TYPE_END_CHAT} LIMIT 1")
+    fun getEndChatMessages(chatId: Int): MessageItem?
 }

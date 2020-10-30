@@ -14,8 +14,8 @@ class EndChatViewHolder(itemView: View, listener: (ChatMessageAdapter.Action) ->
 
     init {
         with(itemView) {
-            btnResumeChat.setDebounceOnClickListener { listener.invoke(ChatMessageAdapter.Action.RESUME_CHAT) }
-            btnEndChat.setDebounceOnClickListener { listener.invoke(ChatMessageAdapter.Action.END_CHAT) }
+            btnResumeChat.setDebounceOnClickListener { listener(ChatMessageAdapter.Action.RESUME_CHAT) }
+            btnEndChat.setDebounceOnClickListener { listener(ChatMessageAdapter.Action.END_CHAT) }
         }
     }
 

@@ -3,6 +3,8 @@ package com.pulse.data.local
 import android.content.Context
 import androidx.room.*
 import com.pulse.categories.model.CategoryDAO
+import com.pulse.chat.model.chat.ChatItem
+import com.pulse.chat.model.chat.ChatItemDAO
 import com.pulse.chat.model.message.MessageDAO
 import com.pulse.chat.model.message.MessageItem
 import com.pulse.chat.model.remoteKeys.RemoteKeys
@@ -46,7 +48,8 @@ class DBManager(context: Context) : ManagerInterface {
             DeliveryInfoOrderData::class,
             Category::class,
             MessageItem::class,
-            RemoteKeys::class
+            RemoteKeys::class,
+            ChatItem::class
         ],
         version = VERSION,
         exportSchema = false
@@ -71,6 +74,8 @@ class DBManager(context: Context) : ManagerInterface {
         abstract fun messageDAO(): MessageDAO
 
         abstract fun remoteKeysDAO(): RemoteKeysDAO
+
+        abstract fun chatItemDAO(): ChatItemDAO
     }
 
     val customerDAO
@@ -93,6 +98,9 @@ class DBManager(context: Context) : ManagerInterface {
 
     val remoteKeysDAO
         get() = db.remoteKeysDAO()
+
+    val chatItemDAO
+        get() = db.chatItemDAO()
 
     class StringListConverter {
         @TypeConverter

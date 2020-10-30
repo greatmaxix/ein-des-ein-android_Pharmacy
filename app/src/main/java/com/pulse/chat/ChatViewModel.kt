@@ -11,29 +11,36 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import com.pulse.chat.model.chat.ChatItem
+import com.pulse.chat.model.message.MessageItem
 import com.pulse.chat.repository.ChatMessagesRemoteMediator
 import com.pulse.chat.repository.ChatRepository
 import com.pulse.chat.repository.ChatStubPagingSource
 import com.pulse.core.base.mvvm.BaseViewModel
 import com.pulse.core.extensions.getMultipartBody
 import com.pulse.core.general.SingleLiveEvent
-import com.pulse.data.remote.model.chat.ChatItem
+import com.pulse.core.network.ResponseWrapper
+import com.pulse.data.remote.model.chat.SendReviewRequest
+import com.pulse.product.model.Product
+import com.pulse.product.repository.ProductRepository
+import com.pulse.user.wishlist.repository.WishRepository
 import com.pulse.util.Constants
 import com.pulse.util.ImageFileUtil
 import org.koin.core.component.KoinApiExtension
-import timber.log.Timber
 import java.io.File
 
 @KoinApiExtension
 class ChatViewModel(
     private val context: Context,
     private val repository: ChatRepository,
-    private val chat: ChatItem?
+    private val chat: ChatItem?,
+    private val repositoryWish: WishRepository,
+    private val repositoryProduct: ProductRepository
 ) : BaseViewModel() {
 
     private val chatId = chat?.id ?: -1
-    private val _errorLiveData by lazy { SingleLiveEvent<String>() }
-    val errorLiveData: LiveData<String> by lazy { _errorLiveData }
+    private val _errorLiveData by lazy { SingleLiveEvent<Int>() }
+    val errorLiveData: LiveData<Int> by lazy { _errorLiveData }
 
     private val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
     val progressLiveData: LiveData<Boolean> by lazy { _progressLiveData }
@@ -48,6 +55,14 @@ class ChatViewModel(
 
     val lastMessageLiveData = repository.getLastMessageLiveData(chatId)
         .distinctUntilChanged()
+    val chatLiveData = repository.getChatLiveData(chatId)
+        .distinctUntilChanged()
+
+    private var wishToSave: Pair<MessageItem, Int>? = null
+    private val _wishLiveData by lazy { SingleLiveEvent<Int>() }
+    val wishLiteLiveData: LiveData<Int> by lazy { _wishLiveData }
+    private val _productLiveData by lazy { SingleLiveEvent<Product>() }
+    val productLiteLiveData: LiveData<Product> by lazy { _productLiveData }
 
     @ExperimentalPagingApi
     val chatMessagesLiveData by lazy {
@@ -88,18 +103,51 @@ class ChatViewModel(
         repository.sendImageMessage(chatId, response.uuid)
     }
 
-    fun removeEndChatMessage() {
-        launchIO {
-            repository.removeEndChatMessage(chatId)
-        }
-    }
-
-    fun sendReview(rating: Int, note: String?) {
-        // TODO implement flow
-        Timber.e("SEND REVIEW $rating >>> $note")
+    fun sendReview(rating: Int, tags: List<String>?, note: String?) = requestLiveData {
+        val request = SendReviewRequest(rating, tags, note)
+        repository.sendReview(chatId, request)
     }
 
     fun closeChat() = requestLiveData {
         repository.closeChat(chatId)
+    }
+
+    fun resumeChat() = requestLiveData {
+        repository.continueChat(chatId)
+    }
+
+    fun getProductInfo(globalProductId: Int) {
+        _progressLiveData.value = true
+        launchIO {
+            when (val response = repositoryProduct.productById(globalProductId)) {
+                is ResponseWrapper.Success -> saveToRecentlyViewedAndProceed(response.value.data.item)
+                is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
+            }
+            _progressLiveData.postValue(false)
+        }
+    }
+
+    private suspend fun saveToRecentlyViewedAndProceed(product: Product) {
+        repositoryProduct.saveRecentlyViewed(product)
+        _productLiveData.postValue(product)
+    }
+
+    fun setOrRemoveWish(setOrRemove: Pair<MessageItem, Int>) {
+        launchIO {
+            _progressLiveData.postValue(true)
+            when (val response = repositoryWish.setOrRemoveWish(!(setOrRemove.first.product!!.isInWish) to setOrRemove.second)) {
+                is ResponseWrapper.Success -> {
+                    _wishLiveData.postValue(setOrRemove.second)
+                    repository.insertMessagesWithKeys(arrayListOf(setOrRemove.first))
+                    wishToSave = null
+                }
+                is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
+            }
+            _progressLiveData.postValue(false)
+        }
+    }
+
+    fun checkIsWishSaved() {
+        wishToSave?.let(::setOrRemoveWish)
     }
 }

@@ -1,4 +1,4 @@
-package com.pulse.data.remote.model.chat
+package com.pulse.chat.model.chat
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

@@ -1,6 +1,7 @@
 package com.pulse.chat.repository
 
 import com.pulse.chat.model.message.MessageItem
+import com.pulse.data.remote.model.chat.SendReviewRequest
 import okhttp3.MultipartBody
 import java.time.LocalDateTime
 
@@ -21,8 +22,16 @@ class ChatRepository(
 
     suspend fun closeChat(chatId: Int) = rds.closeChat(chatId)
         .also {
-            lds.closeChat()
+            lds.clearChat()
+            lds.removeEndChatMessage(chatId)
         }
+
+    suspend fun continueChat(chatId: Int) = rds.continueChat(chatId)
+        .also {
+            if (!it.isClosed) lds.removeEndChatMessage(chatId)
+        }
+
+    suspend fun sendReview(chatId: Int, sendReviewRequest: SendReviewRequest) = rds.sendReview(chatId, sendReviewRequest)
 
     fun getLastMessageLiveData(chatId: Int) = lds.getLastMessageLiveData(chatId)
 
@@ -42,5 +51,5 @@ class ChatRepository(
 
     suspend fun isHeaderExist(chatId: Int, createdAt: LocalDateTime) = lds.isHeaderExist(chatId, createdAt)
 
-    suspend fun removeEndChatMessage(chatId: Int) = lds.removeEndChatMessage(chatId)
+    fun getChatLiveData(chatId: Int) = lds.getChatLiveData(chatId)
 }

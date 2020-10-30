@@ -17,9 +17,9 @@ import com.kirich1409.androidnotificationdsl.channels.createNotificationChannels
 import com.kirich1409.androidnotificationdsl.notification
 import com.pulse.R
 import com.pulse.chat.adapter.ChatMessageAdapter
+import com.pulse.chat.model.chat.ChatItem
 import com.pulse.chat.model.message.MessageItem
 import com.pulse.core.extensions.notificationManager
-import com.pulse.data.remote.model.chat.ChatItem
 import com.pulse.main.MainActivity
 import com.pulse.mercureService.model.MercureResponse
 import com.pulse.mercureService.repository.MercureRepository
@@ -86,36 +86,56 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
                             if (!repository.isHeaderExist(chatId, header.createdAt)) repository.insertMessageWithKey(header)
                         }
                         repository.insertMessageWithKey(this)
-
-                        if (!repository.isChatForeground || !isAppForeground) {
-                            val intent = getActionIntent().apply { putExtra(EXTRA_CHAT_ID, chatId) }
-                            val notification = notification(
-                                this@MercureEventListenerService,
-                                MERCURE_NOTIFICATION_CHANNEL_ID,
-                                smallIcon = R.drawable.ic_logo_stub
-                            ) {
-                                // TODO get chat from db else get chat from server and get user name from it
-                                contentTitle("Message")
-                                contentText(text ?: getString(if (file != null) R.string.attachment_image else R.string.attachment_product))
-                                priority(NotificationCompat.PRIORITY_HIGH)
-                                contentIntent(PendingIntent.getActivity(applicationContext, chatId, intent, PendingIntent.FLAG_UPDATE_CURRENT))
-                                autoCancel(true)
-                            }
-
-                            notificationManager.notify(chatId, notification)
-                        }
+                        if (!repository.isChatForeground || !isAppForeground) postMessageNotification()
                     }
                 }
                 MESSAGE_TYPE_CHANGE_STATUS -> {
                     val typeToken: TypeToken<SingleItemModel<ChatItem>> = object : TypeToken<SingleItemModel<ChatItem>>() {}
                     val item: SingleItemModel<ChatItem> = gson.fromJson(message.body, typeToken.type)
-                    if (item.item.status == ChatItem.STATUS_CLOSE_REQUEST) {
+                    repository.insertChat(item.item)
+                    if (item.item.isCloseRequest) {
                         repository.insertMessageWithKey(MessageItem.getStubItem(null, null, ChatMessageAdapter.TYPE_END_CHAT, item.item.id))
+                    }
+                    if (item.item.isClosedByTimer) {
+                        postEndChatNotification(item.item.id)
                     }
                 }
                 else -> Timber.e("Unknown message type: ${message.type} >>> ${message.body}")
             }
         }
+    }
+
+    private suspend fun MessageItem.postMessageNotification() {
+        val intent = getActionIntent().apply { putExtra(EXTRA_CHAT_ID, chatId) }
+        val notification = notification(
+            this@MercureEventListenerService,
+            MERCURE_NOTIFICATION_CHANNEL_ID,
+            smallIcon = R.drawable.ic_logo_stub
+        ) {
+            val chat = repository.getChat(chatId)
+            contentTitle(getString(chat?.typeNameResId ?: R.string.chat))
+            contentText(text ?: getString(if (file != null) R.string.attachment_image else R.string.attachment_product))
+            priority(NotificationCompat.PRIORITY_HIGH)
+            contentIntent(PendingIntent.getActivity(applicationContext, chatId, intent, PendingIntent.FLAG_UPDATE_CURRENT))
+            autoCancel(true)
+        }
+
+        notificationManager.notify(chatId, notification)
+    }
+
+    private fun postEndChatNotification(chatId: Int) {
+        val notification = notification(
+            this@MercureEventListenerService,
+            MERCURE_NOTIFICATION_CHANNEL_ID,
+            smallIcon = R.drawable.ic_logo_stub
+        ) {
+            contentTitle(getString(R.string.chat_ended_automatically_title))
+            contentText(getString(R.string.chat_ended_automatically_message))
+            priority(NotificationCompat.PRIORITY_HIGH)
+            autoCancel(true)
+        }
+
+        notificationManager.notify(chatId, notification)
     }
 
     private fun getActionIntent(): Intent {
@@ -150,13 +170,6 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
         }
     }
 
-    // TODO research
-    override fun stopService(name: Intent?): Boolean {
-        Timber.d("stopService called")
-        return super.stopService(name)
-    }
-
-    // TODO research
     override fun onDestroy() {
         isRunning = false
         sse?.close()

@@ -171,7 +171,7 @@
 
         <argument
             android:name="chat"
-            app:argType="com.pulse.data.remote.model.chat.ChatItem"
+            app:argType="com.pulse.chat.model.chat.ChatItem"
             android:defaultValue="@null"
             app:nullable="true" />
 
@@ -204,6 +204,14 @@
         <action
             android:id="@+id/actionChatToSendImageBottomSheet"
             app:destination="@id/nav_send_image"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+        <action
+            android:id="@+id/fromChatToProductCard"
+            app:destination="@id/nav_product"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"

@@ -1,5 +1,6 @@
 package com.pulse.mercureService.repository
 
+import com.pulse.chat.model.chat.ChatItem
 import com.pulse.chat.model.message.MessageItem
 import java.time.LocalDateTime
 
@@ -18,4 +19,8 @@ class MercureRepository(private val lds: MercureLocalDataSource) {
     suspend fun getLastMessage(chatId: Int) = lds.getLastMessage(chatId)
 
     suspend fun isHeaderExist(chatId: Int, createdAt: LocalDateTime) = lds.isHeaderExist(chatId, createdAt)
+
+    suspend fun getChat(chatId: Int) = lds.getChat(chatId)
+
+    suspend fun insertChat(chat: ChatItem) = lds.insertChat(chat)
 }
