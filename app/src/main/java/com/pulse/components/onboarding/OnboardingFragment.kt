@@ -14,7 +14,6 @@ import com.pulse.data.local.SPManager
 import com.pulse.region.RegionFragment.Companion.REGION_KEY
 import kotlinx.android.synthetic.main.fragment_onboarding.*
 import org.koin.core.component.KoinApiExtension
-import timber.log.Timber
 
 @KoinApiExtension
 class OnboardingFragment(sp: SPManager) : BaseMVVMFragment(R.layout.fragment_onboarding) {
@@ -48,24 +47,17 @@ class OnboardingFragment(sp: SPManager) : BaseMVVMFragment(R.layout.fragment_onb
             adapter = OnboardingPagerAdapter(items, ::onSkip, ::onNext)
             offscreenPageLimit = 2
             attachBackPressCallback { if (currentItem == AUTH) currentItem = REGION else navigationBack() }
-
             observeSavedStateHandler<Boolean>(REGION_KEY) {
-                Timber.e("REGION_")
-                doWithDelay(1000) {
+                doWithDelay(500) {
                     currentItem = 1
                 }
             }
         }
-
-    }
-
-    override fun onBindLiveData() {
-
     }
 
     private fun onSkip(type: Onboarding.OnboardingType) = when (type) {
         Onboarding.OnboardingType.AUTH -> navController.navigate(actionFromOnboardingToHome())
-        Onboarding.OnboardingType.REGION -> vpOnboarding.currentItem = 1//moveToAuth()
+        Onboarding.OnboardingType.REGION -> moveToAuth()
     }
 
     private fun onNext(type: Onboarding.OnboardingType) = when (type) {

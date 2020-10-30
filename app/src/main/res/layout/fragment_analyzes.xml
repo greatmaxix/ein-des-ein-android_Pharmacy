@@ -8,15 +8,14 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layoutDirection="locale" />
+        layout="@layout/toolbar" />
 
     <com.pulse.ui.EmptyContainerView
         android:id="@+id/emptyContentAnalyzes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:buttonTextEmpty="@string/analyzesEmptyContainerAction"
-        app:src="@drawable/ic_plaseholder_analyzes"
+        app:src="@drawable/ic_placeholder_analyzes"
         app:subtitleEmpty="@string/analyzesEmptyContainerSubtitle"
         app:titleEmpty="@string/analyzesEmptyContainerTitle" />
 
