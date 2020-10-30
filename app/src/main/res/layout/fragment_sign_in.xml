@@ -1,156 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsvContainer"
+    style="@style/ScrollStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    android:orientation="vertical"
-    tools:context="com.pulse.main.MainActivity">
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:paddingStart="@dimen/_16sdp"
+    android:paddingEnd="@dimen/_16sdp">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mlContainer"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".3"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground">
 
         <ImageView
             android:id="@+id/ivLogoSignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:src="@drawable/mock_logo" />
-
-    </FrameLayout>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvTitleSignIn"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_12sdp"
-        android:gravity="center"
-        android:text="@string/welcomeBackAuth"
-        android:textColor="@color/darkBlue"
-        android:textStyle="bold" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvSubTitleSignIn"
-        style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_24sdp"
-        android:gravity="center"
-        android:text="@string/signInSubTitle"
-        android:textColor="@color/darkBlue" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPhoneSignIn"
-        style="@style/TextInputAuthStyle"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:paddingTop="@dimen/_8sdp"
-        app:endIconMode="clear_text"
-        app:errorEnabled="true"
-        app:prefixText="+7"
-        app:errorTextColor="@android:color/holo_red_light"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPhoneSignIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:digits="0123456789+"
-            android:imeOptions="actionDone"
-            android:inputType="phone"
-            android:lines="1"
-            android:maxLines="1"
-            android:singleLine="true"
-            tools:hint="@string/authPhoneHint" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".2">
-
-        <LinearLayout
-            android:id="@+id/llButtonContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:background="@drawable/background_default_ripple_selector_rect"
-            android:paddingTop="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_8sdp">
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:text="@string/signIn"
-                android:textColor="@color/darkBlue"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="@dimen/_42sdp"
-                android:layout_height="@dimen/_42sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:background="@drawable/oval"
-                android:backgroundTint="@color/primaryBlue"
-                android:padding="@dimen/_12sdp"
-                android:rotation="180"
-                android:src="@drawable/ic_arrow_back" />
-        </LinearLayout>
-
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+            style="@style/Logo"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_24sdp"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitleSignIn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvDontHaveAnAccount"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvTitleSignIn"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/dontHaveAnAccountAuth"
+            android:layout_margin="@dimen/_12sdp"
+            android:gravity="center"
+            android:text="@string/welcomeBackAuth"
             android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_11ssp" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvSubTitleSignIn" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbCreateAccount"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSubTitleSignIn"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_18sdp"
+            android:gravity="center"
+            android:text="@string/signInSubTitle"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintBottom_toTopOf="@+id/tilPhoneSignIn" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPhoneSignIn"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_100sdp"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:errorTextColor="@android:color/holo_red_light"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:prefixText="+7">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhoneSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="0123456789"
+                android:imeOptions="actionDone"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:hint="@string/authPhoneHint" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.pulse.ui.auth.AuthNextView
+            android:id="@+id/nvNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_4sdp"
-            android:paddingHorizontal="@dimen/_3sdp"
-            android:text="@string/registrationAuth"
-            android:textAllCaps="false"
-            android:textColor="@color/primaryBlue"
-            android:textSize="@dimen/_11ssp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilPhoneSignIn"
+            app:text="@string/signIn" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvSkipAuth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/_16sdp"
-        android:background="@drawable/background_default_ripple_selector_rect"
-        android:paddingHorizontal="@dimen/_16sdp"
-        android:paddingVertical="@dimen/_8sdp"
-        android:text="@string/skip" />
+        <com.pulse.ui.auth.AuthFooter
+            android:id="@+id/vFooter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nvNext"
+            app:layout_constraintVertical_bias="1.0"
+            app:textAction="@string/registrationAuth"
+            app:textDescription="@string/dontHaveAnAccountAuth" />
 
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

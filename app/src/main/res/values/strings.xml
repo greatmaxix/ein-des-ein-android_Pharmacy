@@ -8,6 +8,13 @@
     <string name="error_errorGettingData">Ошибка получения данных</string>
     <string name="error_serverNotResponding">Сервер не отвечает</string>
 
+    <string name="onboarding_title_1">Все в одном месте</string>
+    <string name="onboarding_subtitle_1">Нужно обезболивающее, вата и бинт?\nЗакажите все</string>
+    <string name="onboarding_title_2">@string/delivery</string>
+    <string name="onboarding_subtitle_2">Впервые стала возможна доставка\nрецептурных препаратов</string>
+    <string name="onboarding_title_3">Чат с медиком</string>
+    <string name="onboarding_subtitle_3">Неуверенны какое лучше лекарство\nприобрести? Спросите в чате у медика!</string>
+
     <!-- Common -->
     <string name="phoneHint">+7(•••) •••-••-••</string>
 
@@ -21,7 +28,7 @@
     <string name="welcomeBackAuth">С возвращением!</string>
     <string name="pleaseAuth">Для создания аккаунта, укажите Ваше имя, номер телефона и имейл ( по желанию )</string>
     <string name="accountCreationAuth">Давайте начнем !</string>
-    <string name="yourNameAuth">Ваше имя*</string>
+    <string name="yourName">Ваше имя*</string>
     <string name="emailHintAuth">Email для уведомлений о статусе заказа</string>
     <string name="orSignInWithAuth">Или войдите с помощью</string>
     <string name="enterTheCode">Введите код</string>

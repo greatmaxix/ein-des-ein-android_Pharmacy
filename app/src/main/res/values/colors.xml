@@ -6,7 +6,7 @@
 
     <color name="colorMainStart">@color/colorAccent</color>
 
-    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorBackground">@color/colorGlobalWhite</color>
     <color name="colorGlobalWhite">#ffffffff</color>
     <color name="colorGlobalWhite50">#80FFFFFF</color>
     <color name="colorGlobalBlack">#ff000000</color>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvDescription"
+        style="@style/TextAuthFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dontHaveAnAccountAuth"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAction"
+        app:layout_constraintEnd_toStartOf="@+id/tvAction"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAction" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvAction"
+        style="@style/TextAuthFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_default_ripple_selector_rect"
+        android:text="@string/registrationAuth"
+        android:textColor="@color/primaryBlue"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvSkip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvDescription" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSkip"
+        style="@style/BaseTextSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</merge>

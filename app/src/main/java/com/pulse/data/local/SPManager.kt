@@ -16,11 +16,15 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
 
     var token: String?
         get() = get(Keys.TOKEN)
-        set(value) { put(Keys.TOKEN, value) }
+        set(value) {
+            put(Keys.TOKEN, value)
+        }
 
     var refreshToken: String?
         get() = get(Keys.REFRESH_TOKEN)
-        set(value) { put(Keys.REFRESH_TOKEN, value) }
+        set(value) {
+            put(Keys.REFRESH_TOKEN, value)
+        }
 
     val isTokenExists: Boolean get() = !token.isNullOrEmpty() && !refreshToken.isNullOrEmpty()
 
@@ -28,12 +32,13 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
         get() = get(Keys.QR_CODE_DESCRIPTION_SHOWN)
         set(value) = put(Keys.QR_CODE_DESCRIPTION_SHOWN, value)
 
-    val isUserLogin
-        get() = refreshToken?.isNotEmpty() ?: false
-
-    var isNeedOnBoarding: Boolean
-        get() = get(Keys.IS_ONBOARDING_SHOWN) ?: false
+    var isNeedOnboarding: Boolean
+        get() = get(Keys.IS_ONBOARDING_SHOWN) ?: true
         set(value) = put(Keys.IS_ONBOARDING_SHOWN, value)
+
+    var isNeedRegionSelection: Boolean
+        get() = get(Keys.IS_REGION_SELECTED) ?: false
+        set(value) = put(Keys.IS_REGION_SELECTED, value)
 
     var regionId: Int?
         get() = get(Keys.REGION_ID)
@@ -67,6 +72,6 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
     }
 
     private enum class Keys {
-        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, REGION_ID, OPENED_CHAT_ID, IS_CHAT_FOREGROUND
+        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, IS_REGION_SELECTED, REGION_ID, OPENED_CHAT_ID, IS_CHAT_FOREGROUND
     }
 }

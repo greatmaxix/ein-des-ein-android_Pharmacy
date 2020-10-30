@@ -36,6 +36,12 @@ fun ImageView.loadGlide(url: String?, block: (RequestBuilder<Drawable>.() -> Uni
     block?.let { glide.apply(it).into(this) } ?: glide.into(this)
 }
 
+fun ImageView.loadGlide(drawableName: String) {
+    Glide.with(this)
+        .load(resources.getIdentifier(drawableName, "drawable", context.packageName))
+        .into(this)
+}
+
 fun ImageView.loadGlideOrder(product: CartProduct) {
     visible()
     product.firstPictureUrl?.let {
