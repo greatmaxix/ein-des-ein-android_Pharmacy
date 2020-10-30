@@ -6,6 +6,7 @@ import com.pulse.chat.chatModule
 import com.pulse.checkout.checkoutModule
 import com.pulse.components.auth.authModule
 import com.pulse.components.cart.cartModule
+import com.pulse.components.onboarding.onboardingModule
 import com.pulse.components.pharmacy.checkoutMapModule
 import com.pulse.data.local.DBManager
 import com.pulse.data.local.SPManager
@@ -14,7 +15,6 @@ import com.pulse.data.remote.RestManager
 import com.pulse.devTools.devToolsModule
 import com.pulse.home.homeModule
 import com.pulse.main.mainModule
-import com.pulse.onboarding.onBoardingModule
 import com.pulse.orders.details.orderModule
 import com.pulse.orders.ordersModule
 import com.pulse.payments.paymentsModule
@@ -38,7 +38,7 @@ object Modules {
         devToolsModule,
         mainModule,
         splashModule,
-        onBoardingModule,
+        onboardingModule,
         profileModule,
         homeModule,
         authModule,

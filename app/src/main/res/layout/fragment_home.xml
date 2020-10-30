@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="?actionBarSize"
+    android:background="@color/colorGreyLight"
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
@@ -101,82 +102,6 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvOrderContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_6sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:backgroundTint="@color/green"
-                android:visibility="gone"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:cardElevation="@dimen/_6sdp"
-                app:cardUseCompatPadding="true"
-                app:contentPadding="@dimen/_8sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/ivOrderLogoHome"
-                        android:layout_width="@dimen/_32sdp"
-                        android:layout_height="@dimen/_32sdp"
-                        android:contentDescription="@string/orderLogoContentDescriptionHome"
-                        android:src="@drawable/main_icon"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/mtvTitleOrderHome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="Ваш заказ №23567 готов"
-                        android:textColor="@color/colorGlobalWhite"
-                        android:textSize="@dimen/_11ssp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@id/mtvSubtitleOrderHome"
-                        app:layout_constraintEnd_toStartOf="@id/ivBoxOrderHome"
-                        app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintStart_toEndOf="@id/ivOrderLogoHome"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/mtvSubtitleOrderHome"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:text="@string/orderSubtitleHome"
-                        android:textColor="@color/colorGlobalWhite"
-                        android:textSize="@dimen/_11ssp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/ivBoxOrderHome"
-                        app:layout_constraintStart_toEndOf="@id/ivOrderLogoHome"
-                        app:layout_constraintTop_toBottomOf="@id/mtvTitleOrderHome" />
-
-                    <ImageView
-                        android:id="@+id/ivBoxOrderHome"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:contentDescription="@string/orderSmallIconContentDescriptionHome"
-                        android:src="@drawable/ic_box"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/colorGlobalWhite" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/mcvAskHome"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -189,8 +114,7 @@
                 app:layout_constraintEnd_toStartOf="@id/mcvAnalyzeHome"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mcvOrderContainer"
-                app:layout_constraintWidth_percent="0.31"
+                app:layout_constraintTop_toTopOf="parent"
                 app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
                 <ImageView
@@ -225,7 +149,6 @@
                 app:layout_constraintEnd_toStartOf="@id/mcvMapHome"
                 app:layout_constraintStart_toEndOf="@id/mcvAskHome"
                 app:layout_constraintTop_toTopOf="@id/mcvAskHome"
-                app:layout_constraintWidth_percent="0.31"
                 app:rippleColor="@color/colorRippleBlue">
 
                 <ImageView
@@ -261,7 +184,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mcvAnalyzeHome"
                 app:layout_constraintTop_toTopOf="@id/mcvAskHome"
-                app:layout_constraintWidth_percent="0.31"
                 app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
                 <ImageView

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="?actionBarSize"
-    android:background="@color/greyLight">
+    android:background="@color/colorGreyLight">
 
     <include
         android:id="@+id/toolbar"
@@ -32,6 +32,7 @@
         android:background="@color/colorGlobalWhite"
         android:visibility="gone"
         app:buttonTextEmpty="@string/startSearch"
+        app:src="@drawable/ic_placeholder_cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

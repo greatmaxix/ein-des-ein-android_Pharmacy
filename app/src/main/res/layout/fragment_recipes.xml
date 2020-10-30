@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGlobalWhite"
     android:orientation="vertical">
 
     <include
@@ -15,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:buttonTextEmpty="@string/recipesEmptyContainerAction"
+        app:src="@drawable/ic_placeholder_recipes"
         app:subtitleEmpty="@string/recipesEmptyContainerSubtitle"
         app:titleEmpty="@string/recipesEmptyContainerTitle" />
 

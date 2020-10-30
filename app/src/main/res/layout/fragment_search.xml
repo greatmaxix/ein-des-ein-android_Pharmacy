@@ -15,6 +15,7 @@
         android:visibility="gone"
         app:isButtonVisible="false"
         app:layout_constraintTop_toBottomOf="@+id/llToolbar"
+        app:src="@drawable/ic_placeholder_search"
         app:subtitleEmpty="@string/noGoodsFoundSubtitle"
         app:titleEmpty="@string/noGoodsFoundTitle" />
 
@@ -32,11 +33,11 @@
             android:id="@+id/searchView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_6sdp"
-            android:layout_gravity="center"
             android:layout_weight="1"
             app:cardCornerRadius="@dimen/_16sdp" />
 

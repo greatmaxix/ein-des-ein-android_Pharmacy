@@ -325,11 +325,11 @@
     <!--Onboarding-->
     <string name="regionLabel">Регион</string>
     <string name="onboardingAuthTitle">Приступаем к покупкам</string>
-    <string name="onboardingAuthSubtitle">Авторизируйтесь, что бы совершать покупки и записи на анализы быстрее</string>
+    <string name="onboardingAuthDescription">Авторизируйтесь, что бы совершать покупки и записи на анализы быстрее</string>
     <string name="onboardingAuthAction">Авторизироваться</string>
     <string name="onboardingAuthSkip">Продолжить без регистрации</string>
     <string name="onboardingRegionTitle">Ваш город</string>
-    <string name="onboardingRegionSubtitle">Выберите регион из списка доступных для актуального отображения контента</string>
+    <string name="onboardingRegionDescription">Выберите регион из списка доступных для актуального отображения контента</string>
     <string name="onboardingRegionActionText">Выбрать регион</string>
 
     <!--Region-->
