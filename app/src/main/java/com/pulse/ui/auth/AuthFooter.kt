@@ -34,7 +34,7 @@ class AuthFooter @JvmOverloads constructor(context: Context, attrs: AttributeSet
     }
 
     fun setOnSkipClickListener(action: () -> Unit): AuthFooter {
-        tvSkip.onClick(action)
+        mtvSkip.onClick(action)
         return this
     }
 

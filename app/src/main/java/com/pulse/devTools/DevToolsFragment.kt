@@ -13,10 +13,6 @@ class DevToolsFragment(private val viewModel: DevToolsViewModel) : BaseMVVMFragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toProductCard.onClick {
-            //navController.navigate(globalToProductCard())
-        }
-
         toPayments.onClick {
             navController.navigate(globalToPayments())
         }

@@ -7,6 +7,8 @@
     <color name="colorMainStart">@color/colorAccent</color>
 
     <color name="colorBackground">@color/colorGlobalWhite</color>
+    <color name="colorBackgroundRegion">@color/colorGreyLight</color>
+
     <color name="colorGlobalWhite">#ffffffff</color>
     <color name="colorGlobalWhite50">#80FFFFFF</color>
     <color name="colorGlobalBlack">#ff000000</color>
@@ -51,10 +53,9 @@
     <color name="greyText">#64738C</color>
     <color name="grey">#A5B4CC</color>
     <color name="grey20">#33A5B4CC</color>
-    <color name="greyLight">#F6F8FA</color>
     <color name="mediumGrey">#DBE1EB</color>
     <color name="mediumGrey50">#80DBE1EB</color>
-    <color name="lightGrey">#F6F8FA</color>
+    <color name="colorGreyLight">#F6F8FA</color>
     <color name="green">#29D986</color>
     <color name="purple">#6E7DF1</color>
     <color name="orange">#FD8A02</color>

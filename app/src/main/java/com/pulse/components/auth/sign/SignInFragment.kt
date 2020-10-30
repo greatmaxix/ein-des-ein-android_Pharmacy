@@ -2,15 +2,13 @@ package com.pulse.components.auth.sign
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.pulse.BuildConfig.DEBUG
 import com.pulse.R
 import com.pulse.components.auth.sign.SignInFragmentDirections.Companion.actionFromSignInToSignUp
-import com.pulse.core.extensions.hideKeyboard
-import com.pulse.core.extensions.onClick
-import com.pulse.core.extensions.onDoneImeAction
-import com.pulse.core.extensions.text
+import com.pulse.core.extensions.*
 import com.pulse.splash.SplashFragmentDirections.Companion.globalToHome
 import com.pulse.ui.text.isPhoneNumberValid
 import com.pulse.ui.text.setHintSpan
@@ -28,6 +26,8 @@ class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setSoftInputMode(SOFT_INPUT_ADJUST_RESIZE)
+
         vm.popBackId = args.popBackId
         vm.nextDestinationId = args.nextDestinationId
 

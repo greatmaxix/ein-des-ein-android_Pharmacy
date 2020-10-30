@@ -3,16 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    android:clipToPadding="false"
-    android:paddingStart="@dimen/_12sdp"
-    android:paddingEnd="@dimen/_12sdp">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
         android:textColor="@color/darkBlue"
         android:textSize="@dimen/_18ssp"
         android:textStyle="bold"
@@ -25,6 +23,8 @@
         android:id="@+id/tvSubTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
         android:textColor="@color/darkBlue"
         android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,9 @@
         android:id="@+id/tvManufacture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
         android:textColor="@color/greyText"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,8 +51,8 @@
         style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/temporaryUnavailable"
         android:layout_marginTop="@dimen/_24sdp"
+        android:text="@string/temporaryUnavailable"
         android:textColor="@color/greyText"
         android:textSize="@dimen/_13ssp"
         android:visibility="gone"
@@ -62,6 +64,7 @@
         style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_24sdp"
         android:layout_marginBottom="@dimen/_8sdp"
         android:text="@string/from"
@@ -111,21 +114,26 @@
         layout="@layout/view_product_card_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_goneMarginTop="@dimen/_48sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPriceFromPrefix" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPriceFromPrefix"
+        app:layout_goneMarginTop="@dimen/_48sdp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcvAnalog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
         app:cardBackgroundColor="@color/purple"
         app:cardCornerRadius="@dimen/_8sdp"
         app:cardElevation="0dp"
         app:contentPadding="@dimen/_12sdp"
+
         app:layout_constraintTop_toBottomOf="@+id/productMainDivider"
         app:rippleColor="@color/colorRippleBlue">
 
@@ -176,10 +184,15 @@
         android:id="@+id/mcvCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
         app:cardBackgroundColor="@color/colorGlobalWhite"
         app:cardCornerRadius="@dimen/_8sdp"
+        app:cardElevation="@dimen/_6sdp"
         app:contentPadding="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mcvAnalog"
         app:rippleColor="@color/colorRippleBlue">
 
@@ -187,7 +200,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- TODO add corners when need -->
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivCategory"
                 android:layout_width="@dimen/_48sdp"
@@ -225,6 +237,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupPriceFields"
         android:layout_width="wrap_content"

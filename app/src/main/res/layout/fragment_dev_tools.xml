@@ -5,12 +5,6 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/toProductCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To product card" />
-
-    <Button
         android:id="@+id/toPayments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

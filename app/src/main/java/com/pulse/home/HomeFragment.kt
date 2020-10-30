@@ -2,6 +2,7 @@ package com.pulse.home
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
 import androidx.core.os.bundleOf
 import com.pulse.R
 import com.pulse.core.extensions.*
@@ -22,6 +23,8 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setSoftInputMode(SOFT_INPUT_ADJUST_PAN)
+
         mcvScanHome.setDebounceOnClickListener { doNav(fromHomeToScanner()) }
         mcvAskHome.setDebounceOnClickListener { viewModel.performAskPharmacist() }
         mcvAnalyzeHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_home) }
@@ -29,7 +32,6 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         mcvSearchHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_home) }
         btnSeeAllCategoriesHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_catalog, null, R.id.nav_home) }
         //mcvMapHome.setDebounceOnClickListener { navController.navigate(fromHomeToCheckout(true)) }
-        mcvOrderContainer.setDebounceOnClickListener { }
 
         // Developers screen for convenient features access
         debug {
@@ -38,6 +40,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
                 true
             }
         }
+
         viewModel.loadInitialData()
         progressBarCategories.visibleOrGone(!isCategoryLoaded)
     }
