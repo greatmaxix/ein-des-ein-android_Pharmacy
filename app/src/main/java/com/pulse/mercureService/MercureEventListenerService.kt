@@ -110,7 +110,7 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
         val notification = notification(
             this@MercureEventListenerService,
             MERCURE_NOTIFICATION_CHANNEL_ID,
-            smallIcon = R.drawable.ic_logo_stub
+            smallIcon = R.drawable.ic_logo
         ) {
             val chat = repository.getChat(chatId)
             contentTitle(getString(chat?.typeNameResId ?: R.string.chat))
@@ -127,7 +127,7 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
         val notification = notification(
             this@MercureEventListenerService,
             MERCURE_NOTIFICATION_CHANNEL_ID,
-            smallIcon = R.drawable.ic_logo_stub
+            smallIcon = R.drawable.ic_logo
         ) {
             contentTitle(getString(R.string.chat_ended_automatically_title))
             contentText(getString(R.string.chat_ended_automatically_message))
