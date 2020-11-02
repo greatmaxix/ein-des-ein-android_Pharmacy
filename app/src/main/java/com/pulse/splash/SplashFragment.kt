@@ -2,7 +2,6 @@ package com.pulse.splash
 
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.ColorRes
 import androidx.navigation.NavDirections
 import com.pulse.R
 import com.pulse.components.onboarding.model.Splash
@@ -40,18 +39,11 @@ class SplashFragment(private val viewModel: SplashViewModel) : BaseMVVMFragment(
         if (isOnboarding) showOnboarding() else viewModel.regionsOrMain()
     }
 
-    private fun showOnboarding() {
-        changeBarsColor(R.color.darkBlue)
+    private fun showOnboarding() =
         with(vpSplash) {
             adapter =
                 SplashPagerAdapter(items, { viewModel.notifyOnboarding() }, { if (currentItem == 2) viewModel.notifyOnboarding() else setCurrentItem(currentItem + 1, true) })
             offscreenPageLimit = 3
             visible()
         }
-    }
-
-    private fun changeBarsColor(@ColorRes colorRes: Int) {
-        //setStatusBarColor(colorRes)
-        //setNavigationBarColor(colorRes)
-    }
 }

@@ -27,6 +27,7 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         btnBack.onClick { navigationBack() }
 
         etEmail.onDoneImeAction { registerOrError() }
@@ -63,7 +64,7 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
     private fun registerOrError() {
         if (isFieldsValid()) {
             hideKeyboard()
-            vm.signUp(Auth(tilName.text(), (if (DEBUG) "+3" else "+7") + tilPhone.text(), tilEmail.text()))
+            vm.signUp(Auth(tilName.text(), (if (DEBUG) "3" else "7") + tilPhone.text(), tilEmail.text()))
         }
     }
 
@@ -81,7 +82,7 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
             title = R.string.titleEndAuthDialog
             positive = R.string.buttonEndAuth
             positiveAction = { navController.navigate(globalToHome()) }
-            negative = R.string.common_closeButton
+            negative = R.string.cancel
         }
     }
 
@@ -92,7 +93,7 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
 
     override fun onBindLiveData() {
         observeResult(vm.signUpLiveData) {
-            onEmmit = { contentOrNull?.let(navController::navigate) }
+            onEmmit = { this?.let(navController::navigate) }
         }
     }
 }

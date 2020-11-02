@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.pulse.R
+import com.pulse.core.dsl.Bar
 import com.pulse.core.extensions.*
 import com.pulse.core.general.behavior.IBehavior
 import com.pulse.core.general.interfaces.MessagesCallback
@@ -120,6 +121,14 @@ abstract class BaseFragment(@LayoutRes private val layoutResourceId: Int) : Frag
     protected fun showBackButton(@DrawableRes drawable: Int = R.drawable.ic_arrow_back, navigation: ((View) -> Unit)? = null) {
         changeNavigationIcon(drawable)
         navigation?.let { toolbar?.setNavigationOnClickListener(it::invoke) }
+    }
+
+    protected fun changeBarColors(block: Bar.() -> Unit) {
+        Bar().apply(block).apply {
+            lightStatusBar?.let(::setLightStatusBar)
+            statusBarColorRes?.let(::setStatusBarColor)
+            navigationBarColorRes?.let(::setNavigationBarColor)
+        }
     }
 
     protected fun doNav(directions: NavDirections) = navController.onNavDestinationSelected(directions)

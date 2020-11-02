@@ -1,7 +1,7 @@
 ext.deps = [:]
 def versions = [:]
 versions.sdp = "1.0.6"
-versions.koin = "2.2.0-rc-3"
+versions.koin = "2.2.0-rc-4"
 versions.okhttp = "4.9.0"
 versions.kotlin = "1.4.10"
 versions.retrofit = "2.9.0"

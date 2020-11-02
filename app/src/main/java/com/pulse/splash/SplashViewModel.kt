@@ -45,10 +45,10 @@ class SplashViewModel(private val sp: SPManager, private val workManager: WorkMa
     }
 
     private val Boolean.toNavDirection
-        get() = if (this) toHome else toOnBoarding
+        get() = if (this) toHome else toOnboarding
 
     companion object {
         private val toHome = fromSplashToHome()
-        private val toOnBoarding = fromSplashToOnBoarding()
+        private val toOnboarding = fromSplashToOnBoarding()
     }
 }
