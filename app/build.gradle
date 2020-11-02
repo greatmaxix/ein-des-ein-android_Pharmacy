@@ -81,6 +81,10 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
+        freeCompilerArgs += [
+                "-Xopt-in=kotlin.RequiresOptIn",
+                "-Xopt-in=kotlin.OptIn"
+        ]
     }
 
     lintOptions {
@@ -91,14 +95,14 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
+    implementation("org.apache.commons:commons-lang3:3.11") // for Date extensions only
     implementation("com.jakewharton.timber:timber:4.7.1")
-    implementation("org.apache.commons:commons-lang3:3.9") // for Date extensions only
     implementation("com.github.fondesa:kpermissions:3.1.2")
     implementation("com.budiyev.android:code-scanner:2.1.0")
     implementation("com.github.onimur:handle-path-oz:1.0.7")
     // Google
     implementation("com.google.android.material:material:1.2.1")
-    implementation("com.google.firebase:firebase-analytics:17.6.0")
+    implementation("com.google.firebase:firebase-analytics:18.0.0")
     implementation("com.google.firebase:firebase-crashlytics:17.2.2")
     implementation("com.google.android.gms:play-services-maps:17.0.0")
     // Flow
@@ -129,7 +133,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:$rootProject.ext.deps.versions.retrofit")
     implementation("com.squareup.retrofit2:converter-gson:$rootProject.ext.deps.versions.retrofit")
     implementation("com.squareup.okhttp3:okhttp:$rootProject.ext.deps.versions.okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor:$rootProject.ext.deps.versions.okhttp")
+    implementation("com.github.ihsanbal:LoggingInterceptor:3.1.0")
     // Navigation
     implementation("androidx.navigation:navigation-ui-ktx:$rootProject.ext.deps.versions.navigation")
     implementation("androidx.navigation:navigation-runtime-ktx:$rootProject.ext.deps.versions.navigation")
@@ -150,4 +154,8 @@ dependencies {
     // SDP/SSP
     implementation("com.intuit.sdp:sdp-android:$rootProject.ext.deps.versions.sdp")
     implementation("com.intuit.ssp:ssp-android:$rootProject.ext.deps.versions.sdp")
+
+    implementation "com.github.heremaps:oksse:$rootProject.ext.deps.versions.oksse"
+    implementation "com.kirich1409.android-notification-dsl:core:$rootProject.ext.deps.versions.notificationsDsl"
+    implementation "com.kirich1409.android-notification-dsl:extensions:$rootProject.ext.deps.versions.notificationsDsl"
 }

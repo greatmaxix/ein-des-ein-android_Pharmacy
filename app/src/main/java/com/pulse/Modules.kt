@@ -3,6 +3,7 @@ package com.pulse
 import androidx.work.WorkManager
 import com.pulse.categories.categoriesModule
 import com.pulse.chat.chatModule
+import com.pulse.chatType.chatTypeModule
 import com.pulse.checkout.checkoutModule
 import com.pulse.components.auth.authModule
 import com.pulse.components.cart.cartModule
@@ -15,6 +16,7 @@ import com.pulse.data.remote.RestManager
 import com.pulse.devTools.devToolsModule
 import com.pulse.home.homeModule
 import com.pulse.main.mainModule
+import com.pulse.mercureService.mercureModule
 import com.pulse.orders.details.orderModule
 import com.pulse.orders.ordersModule
 import com.pulse.payments.paymentsModule
@@ -28,12 +30,21 @@ import com.pulse.user.profile.guest.guestProfileModule
 import com.pulse.user.profile.profileModule
 import com.pulse.user.userModule
 import com.pulse.user.wishlist.wishModule
+import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
+@FlowPreview
 object Modules {
 
-    fun getListOfModules() = mutableListOf(
+    private val managerModule = module(true) {
+        single { SPManager(androidApplication()) }
+        single { RestManager(get(), get()) }
+        single { WorkManager.getInstance(androidApplication()) }
+        single { DBManager(androidApplication()) }
+    }
+
+    val listOfModules = mutableListOf(
         managerModule,
         devToolsModule,
         mainModule,
@@ -49,6 +60,7 @@ object Modules {
         searchModule,
         cartModule,
         chatModule,
+        chatTypeModule,
         checkoutMapModule,
         regionModule,
         paymentsModule,
@@ -58,13 +70,7 @@ object Modules {
         categoriesModule,
         ordersModule,
         addressModule,
-        RESTModule
+        RESTModule,
+        mercureModule
     )
-
-    private val managerModule = module(true) {
-        single { SPManager(androidApplication()) }
-        single { RestManager(get(), get()) }
-        single { WorkManager.getInstance(androidApplication()) }
-        single { DBManager(androidApplication()) }
-    }
 }

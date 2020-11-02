@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.MultiTransformation
@@ -13,6 +14,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.pulse.R
+import com.pulse.chat.model.message.MessageProduct
 import com.pulse.components.cart.model.CartProduct
 import com.pulse.model.Picture
 import com.pulse.util.ColorFilterUtil
@@ -68,4 +70,15 @@ fun ImageView.setProductImage(list: List<Picture>, hasAggregation: Boolean = fal
     val hasPictures = list.isNotEmpty()
     background = if (hasPictures) null else context.getCompatDrawable(R.drawable.bg_product_default_background)
     colorFilter = (if (hasAggregation && !hasPictures) ColorFilterUtil.blackWhiteFilter else null)
+}
+
+// TODO refactor this
+fun ImageView.setProductImage(product: MessageProduct) {
+    loadGlide(product.pictures.firstOrNull()?.url) {
+        transform(CenterCrop(), RoundedCorners(resources.getDimensionPixelSize(R.dimen._8sdp)))
+        error(R.drawable.default_product_image)
+    }
+    val hasPictures = product.pictures.isNotEmpty()
+    setBackgroundColor(if (hasPictures) 0 else ContextCompat.getColor(context, R.color.mediumGrey50))
+    colorFilter = (if (product.pharmacyProductsAggregationData == null && !hasPictures) ColorFilterUtil.blackWhiteFilter else null)
 }

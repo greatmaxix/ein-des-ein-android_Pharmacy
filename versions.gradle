@@ -10,7 +10,10 @@ versions.coroutines = "1.4.0"
 
 versions.navigation = "2.3.1"
 
-versions.room = "2.2.5"
+versions.room = "2.3.0-alpha03"
 versions.glide = "4.11.0"
+
+versions.oksse = "0.9.0"
+versions.notificationsDsl = "0.1.0"
 
 ext.deps.versions = versions

@@ -1,10 +1,15 @@
 package com.pulse.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
+import androidx.lifecycle.LiveData
 import androidx.navigation.NavDestination
 import androidx.navigation.ui.setupWithNavController
+import com.pulse.MainGraphDirections.Companion.globalToChat
 import com.pulse.R
 import com.pulse.core.base.mvvm.BaseMVVMActivity
+import com.pulse.core.dsl.ObserveGeneral
 import com.pulse.core.extensions.hideNav
 import com.pulse.core.extensions.onNavDestinationSelected
 import com.pulse.core.extensions.setTopRoundCornerBackground
@@ -13,6 +18,9 @@ import com.pulse.core.general.behavior.DialogMessagesBehavior
 import com.pulse.core.general.behavior.ProgressViewBehavior
 import com.pulse.core.general.interfaces.MessagesCallback
 import com.pulse.core.general.interfaces.ProgressCallback
+import com.pulse.core.network.Resource
+import com.pulse.core.network.Resource.*
+import com.pulse.mercureService.MercureEventListenerService.Companion.EXTRA_CHAT_ID
 import com.pulse.ui.SelectableBottomNavView
 import com.pulse.user.model.customer.Customer
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,6 +36,24 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupNavigation()
+
+        checkIntentChatId(intent)
+    }
+
+    private fun checkIntentChatId(intent: Intent?) {
+        intent?.extras?.let {
+            val chatId = it.getInt(EXTRA_CHAT_ID, -1)
+            if (chatId != -1) {
+                observeResult(viewModel.goToChat(chatId)) {
+                    onEmmit = { navController.navigate(globalToChat(this)) }
+                }
+            }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        checkIntentChatId(intent)
     }
 
     override fun onBindLiveData() {
@@ -52,6 +78,38 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
 
     override fun showError(strResId: Int, action: (() -> Unit)?) = messagesBehavior.showError(strResId, action)
 
+    // TODO maybe need to move to BaseMVVMActivity but need to move behaviors...
+    protected fun <T> observeResult(liveData: LiveData<Resource<T>>, block: (ObserveGeneral<T>.() -> Unit)? = null) {
+        block?.let {
+            ObserveGeneral<T>().apply(block).apply {
+                observe(liveData) {
+                    when (this) {
+                        is Success<T> -> {
+                            setInProgress(false)
+                            onEmmit(data)
+                        }
+                        is Progress -> {
+                            onProgress?.invoke(isLoading) ?: setInProgress(isLoading)
+                        }
+                        is Error -> {
+                            setInProgress(false)
+                            onError?.invoke(exception) ?: showError(exception.resId)
+                        }
+                    }
+                }
+            }
+        } ?: observe(liveData) {
+            when (this) {
+                is Success<T> -> setInProgress(false)
+                is Progress -> setInProgress(isLoading)
+                is Error -> {
+                    setInProgress(false)
+                    showError(exception.resId)
+                }
+            }
+        }
+    }
+
     override fun onBackPressed() {
         navController.currentDestination?.apply {
             when {
@@ -75,6 +133,12 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
         setOnNavigationItemReselectedListener {}
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.isTopLevelDestination) showNav() else hideNav()
+            val isChatForeground = destination.id == R.id.nav_chat
+            viewModel.setChatForeground(isChatForeground)
+            window.setSoftInputMode(
+                if (isChatForeground) WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                else WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+            )
             changeSelection(destination)
         }
     }

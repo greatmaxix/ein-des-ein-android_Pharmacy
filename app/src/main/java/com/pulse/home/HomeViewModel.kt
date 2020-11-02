@@ -1,8 +1,12 @@
 package com.pulse.home
 
 import androidx.lifecycle.LiveData
+import androidx.navigation.NavDirections
+import com.pulse.MainGraphDirections.Companion.globalToChat
+import com.pulse.chat.model.chat.ChatItem.Companion.STATUS_CLOSED
 import com.pulse.core.general.SingleLiveEvent
 import com.pulse.core.network.ResponseWrapper
+import com.pulse.home.HomeFragmentDirections.Companion.fromHomeToChatType
 import com.pulse.home.repository.HomeRepository
 import com.pulse.model.category.Category
 import com.pulse.product.BaseProductViewModel
@@ -24,4 +28,30 @@ class HomeViewModel(private val repository: HomeRepository) : BaseProductViewMod
         getRecentlyViewed()
     }
 
+    private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
+    val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
+
+    fun performAskPharmacist() {
+        launchIO {
+            val direction = if (!repositoryUser.isCustomerExist()) {
+                globalToChat()
+            } else {
+                _progressLiveData.postValue(true)
+                try {
+                    val chatItem = repository.getCurrentChat()
+                    if (chatItem?.status != null && chatItem.status != STATUS_CLOSED) {
+                        globalToChat(chatItem)
+                    } else {
+                        repository.clearSavedChatId()
+                        fromHomeToChatType()
+                    }
+                } catch (e: Exception) {
+                    repository.clearSavedChatId()
+                    fromHomeToChatType()
+                }
+            }
+            _progressLiveData.postValue(false)
+            _directionLiveData.postValue(direction)
+        }
+    }
 }

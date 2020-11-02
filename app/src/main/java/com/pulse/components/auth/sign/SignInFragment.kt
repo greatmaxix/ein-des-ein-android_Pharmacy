@@ -29,6 +29,7 @@ class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
         setSoftInputMode(SOFT_INPUT_ADJUST_RESIZE)
 
         vm.popBackId = args.popBackId
+        vm.nextDestinationId = args.nextDestinationId
 
         tilPhoneSignIn.setPhoneRule()
 

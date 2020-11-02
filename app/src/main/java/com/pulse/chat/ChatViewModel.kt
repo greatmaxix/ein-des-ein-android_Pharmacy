@@ -3,25 +3,44 @@ package com.pulse.chat
 import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.distinctUntilChanged
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.pulse.chat.model.ChatMessage
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.pulse.chat.model.chat.ChatItem
+import com.pulse.chat.model.message.MessageItem
+import com.pulse.chat.repository.ChatMessagesRemoteMediator
+import com.pulse.chat.repository.ChatRepository
+import com.pulse.chat.repository.ChatStubPagingSource
 import com.pulse.core.base.mvvm.BaseViewModel
+import com.pulse.core.extensions.getMultipartBody
 import com.pulse.core.general.SingleLiveEvent
-import com.pulse.data.remote.DummyData
+import com.pulse.core.network.ResponseWrapper
+import com.pulse.data.remote.model.chat.SendReviewRequest
+import com.pulse.product.model.Product
+import com.pulse.product.repository.ProductRepository
+import com.pulse.user.wishlist.repository.WishRepository
 import com.pulse.util.Constants
-import timber.log.Timber
+import com.pulse.util.ImageFileUtil
+import org.koin.core.component.KoinApiExtension
 import java.io.File
-import java.time.LocalDateTime
-import java.util.*
 
+@KoinApiExtension
 class ChatViewModel(
     private val context: Context,
-    private val repository: ChatRepository
+    private val repository: ChatRepository,
+    private val chat: ChatItem?,
+    private val repositoryWish: WishRepository,
+    private val repositoryProduct: ProductRepository
 ) : BaseViewModel() {
 
-    private val _errorLiveData by lazy { SingleLiveEvent<String>() }
-    val errorLiveData: LiveData<String> by lazy { _errorLiveData }
+    private val chatId = chat?.id ?: -1
+    private val _errorLiveData by lazy { SingleLiveEvent<Int>() }
+    val errorLiveData: LiveData<Int> by lazy { _errorLiveData }
 
     private val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
     val progressLiveData: LiveData<Boolean> by lazy { _progressLiveData }
@@ -32,80 +51,103 @@ class ChatViewModel(
     private val _isUserLoggedInLiveData by lazy { SingleLiveEvent<Boolean>() }
     val isUserLoggedInLiveData: LiveData<Boolean> by lazy { _isUserLoggedInLiveData }
 
-    private val _chatMessagesLiveData by lazy { MutableLiveData<MutableList<ChatMessage>>() }
-    val chatMessagesLiveData: LiveData<MutableList<ChatMessage>> by lazy { _chatMessagesLiveData }
+    private val defaultPagingConfig by lazy { PagingConfig(Constants.PAGE_SIZE, enablePlaceholders = false, prefetchDistance = 1, initialLoadSize = Constants.PAGE_SIZE / 2) }
+
+    val lastMessageLiveData = repository.getLastMessageLiveData(chatId)
+        .distinctUntilChanged()
+    val chatLiveData = repository.getChatLiveData(chatId)
+        .distinctUntilChanged()
+
+    private var wishToSave: Pair<MessageItem, Int>? = null
+    private val _wishLiveData by lazy { SingleLiveEvent<Int>() }
+    val wishLiteLiveData: LiveData<Int> by lazy { _wishLiveData }
+    private val _productLiveData by lazy { SingleLiveEvent<Product>() }
+    val productLiteLiveData: LiveData<Product> by lazy { _productLiveData }
+
+    @ExperimentalPagingApi
+    val chatMessagesLiveData by lazy {
+        if (repository.isUserLoggedIn && chat != null) {
+            Pager(
+                config = defaultPagingConfig,
+                remoteMediator = ChatMessagesRemoteMediator(repository, errorHandler, chat),
+                pagingSourceFactory = { repository.getMessagePagingSource(chat.id) }
+            )
+        } else {
+            Pager(
+                config = defaultPagingConfig,
+                pagingSourceFactory = { ChatStubPagingSource(context) }
+            )
+        }.flow
+            .cachedIn(viewModelScope)
+            .asLiveData()
+    }
 
     val tempPhotoFile = File(context.externalCacheDir, Constants.TEMP_PHOTO_FILE_NAME)
 
     fun checkUserLoggedIn() {
-        _chatMessagesLiveData.value = mutableListOf()
         val userLoggedIn = repository.isUserLoggedIn
         _isUserLoggedInLiveData.value = userLoggedIn
-
-        mockPharmacyResponse(userLoggedIn)
     }
 
-    fun sendMessage(message: String) {
-        addMessageToChatList(message)
-
-        // TODO send message to server
+    fun sendMessage(message: String) = requestLiveData {
+        repository.sendMessage(chatId, message)
     }
 
-    private fun addMessageToChatList(message: String? = null, images: MutableList<String>? = null) {
-        val list = chatMessagesLiveData.value ?: arrayListOf()
-        if (list.isEmpty()) list.add(0, ChatMessage.DateHeader(LocalDateTime.now()))
-        if (!message.isNullOrBlank()) {
-            list.add(0, ChatMessage.UserMessage(message))
-        } else if (!images.isNullOrEmpty()) {
-            list.add(0, ChatMessage.Attachment(images))
-        }
+    fun sendPhoto(uri: Uri) = requestLiveData {
+        ImageFileUtil.saveImageByUriToFile(context, tempPhotoFile, uri)
+        ImageFileUtil.compressImage(context, tempPhotoFile, uri)
 
-        _chatMessagesLiveData.value = list
-
-        mockPharmacyResponse()
+        val multipart = tempPhotoFile.getMultipartBody("file")
+        val response = repository.uploadImage(multipart)
+        tempPhotoFile.delete()
+        repository.sendImageMessage(chatId, response.uuid)
     }
 
-    fun sendPhotos(uriList: List<Uri>) {
-        addMessageToChatList(images = uriList.map { it.toString() }.toMutableList())
-        // TODO send photos
-        Timber.e(uriList.toString())
+    fun sendReview(rating: Int, tags: List<String>?, note: String?) = requestLiveData {
+        val request = SendReviewRequest(rating, tags, note)
+        repository.sendReview(chatId, request)
     }
 
-    // TODO remove
-    @Deprecated("Mock data method")
-    private fun mockPharmacyResponse(startMessages: Boolean = false) {
-        val list = chatMessagesLiveData.value ?: arrayListOf()
-        if (startMessages) {
-            list.add(0, ChatMessage.DateHeader(LocalDateTime.now()))
-            list.add(0, ChatMessage.PharmacyMessage("Добрый день! Меня зовут Эстер"))
-            list.add(0, ChatMessage.PharmacyMessage("Чем я могу Вам помочь?"))
-        } else {
-            if (list.size > 10 && !list.contains(ChatMessage.EndChat)) {
-                list.add(0, ChatMessage.PharmacyMessage("У Вас есть еще какие либо вопросы?"))
-                list.add(0, ChatMessage.EndChat)
-            } else {
-                if (Random().nextBoolean()) {
-                    list.add(0, ChatMessage.PharmacyMessage(DummyData.pharmacyResponses.random()))
-                } else {
-                    list.add(0, ChatMessage.Product(DummyData.getRecommended().random()))
-                }
+    fun closeChat() = requestLiveData {
+        repository.closeChat(chatId)
+    }
+
+    fun resumeChat() = requestLiveData {
+        repository.continueChat(chatId)
+    }
+
+    fun getProductInfo(globalProductId: Int) {
+        _progressLiveData.value = true
+        launchIO {
+            when (val response = repositoryProduct.productById(globalProductId)) {
+                is ResponseWrapper.Success -> saveToRecentlyViewedAndProceed(response.value.data.item)
+                is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
             }
+            _progressLiveData.postValue(false)
         }
-
-        _chatMessagesLiveData.value = list
     }
 
-    fun setNotAuthorizedChatMessages(list: MutableList<ChatMessage>) {
-        _chatMessagesLiveData.value = list
+    private suspend fun saveToRecentlyViewedAndProceed(product: Product) {
+        repositoryProduct.saveRecentlyViewed(product)
+        _productLiveData.postValue(product)
     }
 
-    fun removeEndChatMessage() {
-        val list = chatMessagesLiveData.value ?: arrayListOf()
-        list.removeIf { it is ChatMessage.EndChat }
-        _chatMessagesLiveData.value = list
+    fun setOrRemoveWish(setOrRemove: Pair<MessageItem, Int>) {
+        launchIO {
+            _progressLiveData.postValue(true)
+            when (val response = repositoryWish.setOrRemoveWish(!(setOrRemove.first.product!!.isInWish) to setOrRemove.second)) {
+                is ResponseWrapper.Success -> {
+                    _wishLiveData.postValue(setOrRemove.second)
+                    repository.insertMessagesWithKeys(arrayListOf(setOrRemove.first))
+                    wishToSave = null
+                }
+                is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)
+            }
+            _progressLiveData.postValue(false)
+        }
     }
 
-    fun sendReview(rating: Int, note: String?) {
-        Timber.e("SEND REVIEW $rating >>> $note")
+    fun checkIsWishSaved() {
+        wishToSave?.let(::setOrRemoveWish)
     }
 }

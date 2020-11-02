@@ -1,5 +1,6 @@
 package com.pulse.user.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -8,6 +9,7 @@ import com.pulse.MainGraphDirections.Companion.globalToRegion
 import com.pulse.R
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
+import com.pulse.mercureService.MercureEventListenerService
 import com.pulse.user.profile.ProfileFragmentDirections.Companion.actionFromProfileToEdit
 import com.pulse.user.profile.ProfileFragmentDirections.Companion.actionFromProfileToWish
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -53,7 +55,12 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
     private fun showLogoutDialog() = showAlertRes(getString(R.string.areYouSureToExit)) {
         cancelable = false
         positive = R.string.exit
-        positiveAction = { viewModel.logout() }
+        positiveAction = {
+            viewModel.logout()
+            if (!requireContext().isServiceRunning(MercureEventListenerService::class.java)) {
+                requireContext().stopService(Intent(requireContext(), MercureEventListenerService::class.java))
+            }
+        }
         negative = R.string.cancel
     }
 

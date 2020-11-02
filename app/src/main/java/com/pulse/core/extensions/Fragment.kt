@@ -260,7 +260,7 @@ fun Fragment.launch(action: KSuspendFunction0<Unit>) = viewLifecycleOwner.lifecy
 
 fun Fragment.launch(action: (CoroutineScope) -> Unit) = viewLifecycleOwner.lifecycleScope.launch { action(this) }
 
-fun Fragment.sendEmail(email: String = "support@emfex.com", subject: String? = null, message: String? = null, @StringRes intentTitle: Int) =
+fun Fragment.sendEmail(email: String, subject: String? = null, message: String? = null, @StringRes intentTitle: Int) =
     run {
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:")

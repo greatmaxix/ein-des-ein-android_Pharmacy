@@ -1,31 +1,56 @@
 package com.pulse.chat.adapter
 
 import android.view.ViewGroup
+import androidx.paging.ItemSnapshotList
+import androidx.paging.PagingDataAdapter
 import com.pulse.chat.adapter.viewHolder.*
-import com.pulse.chat.model.ChatMessage
-import com.pulse.core.base.adapter.BaseRecyclerAdapter
+import com.pulse.chat.model.message.MessageItem
 import com.pulse.core.base.adapter.BaseViewHolder
 
-class ChatMessageAdapter(private val listener: (Action) -> Unit) : BaseRecyclerAdapter<ChatMessage, BaseViewHolder<ChatMessage>>() {
+class ChatMessageAdapter(
+    private val listener: (Action) -> Unit,
+    private val productClickListener: (ProductViewHolder.Action, Pair<MessageItem, Int>) -> Unit
+) : PagingDataAdapter<MessageItem, BaseViewHolder<MessageItem>>(ChatMessagesDiff) {
 
-    fun setList(list: MutableList<ChatMessage>) {
-        items = list
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<ChatMessage> =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         when (viewType) {
             TYPE_MESSAGE_USER -> UserMessageViewHolder.newInstance(parent)
             TYPE_MESSAGE_PHARMACY -> PharmacyMessageViewHolder.newInstance(parent)
             TYPE_DATE_HEADER -> DateHeaderViewHolder.newInstance(parent)
             TYPE_ATTACHMENT -> AttachmentViewHolder.newInstance(parent)
-            TYPE_PRODUCT -> ProductViewHolder.newInstance(parent)
+            TYPE_PRODUCT -> ProductViewHolder.newInstance(parent, productClickListener)
             TYPE_AUTH_BUTTON -> AuthorizeButtonViewHolder.newInstance(parent, listener)
             else -> EndChatViewHolder.newInstance(parent, listener)
         }
 
-    override fun getItemViewType(position: Int): Int {
-        return items[position].itemType
+    override fun getItemViewType(position: Int) = getItem(position)?.messageType ?: -1
+
+    override fun onBindViewHolder(holder: BaseViewHolder<MessageItem>, position: Int) {
+        getItem(position)?.let { holder.bind(it) }
     }
+
+    override fun onBindViewHolder(holder: BaseViewHolder<MessageItem>, position: Int, payloads: MutableList<Any>) {
+        if (holder is ProductViewHolder && payloads.isNotEmpty()) {
+            val payload = payloads[0]
+            if (payload is Boolean) {
+                holder.notifyHeart(payload)
+            }
+        } else {
+            super.onBindViewHolder(holder, position, payloads)
+        }
+    }
+
+    fun notifyWish(globalProductId: Int) {
+        snapshot().findItemWithPosition { it?.product?.globalProductId == globalProductId }.let {
+            val (product, position) = it
+            product?.product?.apply {
+                wish = !isInWish
+                notifyItemChanged(position, isInWish)
+            }
+        }
+    }
+
+    private fun <T> ItemSnapshotList<T>.findItemWithPosition(predicate: (T?) -> Boolean) = find(predicate).run { this to indexOf(this) }
 
     companion object {
 

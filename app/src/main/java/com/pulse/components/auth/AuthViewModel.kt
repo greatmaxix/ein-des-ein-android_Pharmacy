@@ -18,6 +18,7 @@ class AuthViewModel(private val repository: AuthRepository, private val workMana
     private var phone = ""
 
     var popBackId: Int = -1
+    var nextDestinationId: Int = -1
 
     /* check exist customer */
     val customerPhoneLiveData by lazy { MutableLiveData<String>() }
@@ -39,7 +40,7 @@ class AuthViewModel(private val repository: AuthRepository, private val workMana
         _codeLiveData.switchMap { code ->
             requestLiveData {
                 repository.signCode(phone, code)?.let(::invokeAuthWorker)
-                homeOrPopBack
+                destinationOrPopBack
             }
         }
     }
@@ -51,8 +52,12 @@ class AuthViewModel(private val repository: AuthRepository, private val workMana
             .build()
     )
 
-    private val homeOrPopBack
-        get() = if (popBackId == -1) AuthResult.Direction(globalToHome()) else AuthResult.PopBack(popBackId)
+    private val destinationOrPopBack
+        get() = when {
+            nextDestinationId != -1 -> AuthResult.DirectionId(nextDestinationId)
+            popBackId == -1 -> AuthResult.Direction(globalToHome())
+            else -> AuthResult.PopBack(popBackId)
+        }
 
     /* creating new customer */
     private val _signUpLiveData by lazy { MutableLiveData<Auth>() }

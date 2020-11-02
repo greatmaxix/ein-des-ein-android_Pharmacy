@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
 import androidx.core.os.bundleOf
-import com.pulse.MainGraphDirections.Companion.globalToChat
 import com.pulse.R
 import com.pulse.core.extensions.*
 import com.pulse.home.HomeFragmentDirections.Companion.fromHomeToScanner
@@ -26,13 +25,13 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         super.onViewCreated(view, savedInstanceState)
         setSoftInputMode(SOFT_INPUT_ADJUST_PAN)
 
-        mcvScanHome.onClick { doNav(fromHomeToScanner()) }
-        mcvAskHome.onClick { doNav(globalToChat()) }
-        mcvAnalyzeHome.onClick { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_home) }
-        uploadRecipes.onClick { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_home) }
-        mcvSearchHome.onClick { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_home) }
-        btnSeeAllCategoriesHome.onClick { navController.onNavDestinationSelected(R.id.nav_catalog, null, R.id.nav_home) }
-        //mcvMapHome.onClick { navController.navigate(fromHomeToCheckout(true)) }
+        mcvScanHome.setDebounceOnClickListener { doNav(fromHomeToScanner()) }
+        mcvAskHome.setDebounceOnClickListener { viewModel.performAskPharmacist() }
+        mcvAnalyzeHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_home) }
+        uploadRecipes.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_home) }
+        mcvSearchHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_home) }
+        btnSeeAllCategoriesHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_catalog, null, R.id.nav_home) }
+        //mcvMapHome.setDebounceOnClickListener { navController.navigate(fromHomeToCheckout(true)) }
 
         // Developers screen for convenient features access
         debug {
@@ -52,6 +51,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
         observe(viewModel.recentlyViewedLiveData, ::populateRecentViewed)
         observe(viewModel.categoriesLiveData, ::setCategories)
+        observe(viewModel.directionLiveData, ::doNav)
     }
 
     private fun setCategories(categories: List<Category>) {

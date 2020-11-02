@@ -22,5 +22,6 @@ data class Customer(
     @SerializedName("name") val name: String,
     @SerializedName("uuid") val uuid: String,
     @Embedded
-    @SerializedName("region") val region: RegionInfo?
+    @SerializedName("region") val region: RegionInfo?,
+    @SerializedName("topicName") val topicName: String?
 )

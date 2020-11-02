@@ -32,9 +32,6 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
         get() = get(Keys.QR_CODE_DESCRIPTION_SHOWN)
         set(value) = put(Keys.QR_CODE_DESCRIPTION_SHOWN, value)
 
-    val isUserLogin
-        get() = refreshToken?.isNotEmpty() ?: false
-
     var isNeedOnboarding: Boolean
         get() = get(Keys.IS_ONBOARDING_SHOWN) ?: true
         set(value) = put(Keys.IS_ONBOARDING_SHOWN, value)
@@ -54,6 +51,20 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
         refreshToken = new.refreshToken
     }
 
+    var openedChatId: Int?
+        get() = get(Keys.OPENED_CHAT_ID)
+        set(value) {
+            put(Keys.OPENED_CHAT_ID, value)
+        }
+
+    fun clearChatId() {
+        sp.edit { remove(Keys.OPENED_CHAT_ID.name) }
+    }
+
+    var isChatForeground: Boolean?
+        get() = get(Keys.IS_CHAT_FOREGROUND)
+        set(value) = put(Keys.IS_CHAT_FOREGROUND, value)
+
     override fun clear() = sp.edit {
         sp.all.forEach {
             remove(it.key)
@@ -61,6 +72,6 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
     }
 
     private enum class Keys {
-        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, IS_REGION_SELECTED, REGION_ID
+        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, IS_REGION_SELECTED, REGION_ID, OPENED_CHAT_ID, IS_CHAT_FOREGROUND
     }
 }

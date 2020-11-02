@@ -10,10 +10,14 @@ class HomeRepository(private val rds: HomeRemoteDataSource, private val lds: Hom
         if (lds.isCategoriesPresent()) {
             lds.getCategories().homeCategories
         } else {
-            val categories = rds.getCategories().data.items
+            val categories = rds.getCategories()
             lds.saveCategories(categories.flattenCategories)
             categories.subList(0, 4)
         }
     }
 
+    suspend fun getCurrentChat() = lds.openedChatId
+        ?.let { rds.getChat(it) }
+
+    fun clearSavedChatId() = lds.clearSavedChatId()
 }

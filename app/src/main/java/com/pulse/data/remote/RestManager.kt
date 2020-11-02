@@ -65,5 +65,4 @@ class RestManager(private val sp: SPManager, private val RestApi: RestApi) {
     suspend fun getOrderDetail(id: Int) = safeApiCall { RestApi.getOrderDetail(id) }
 
     suspend fun cancelOrder(id: Int) = safeApiCall { RestApi.cancelOrder(id) }
-
 }

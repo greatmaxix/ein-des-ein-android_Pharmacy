@@ -73,6 +73,7 @@ class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
         when (authResult) {
             is AuthResult.PopBack -> navController.popBackStack(authResult.popBackId, false)
             is AuthResult.Direction -> navController.navigate(authResult.direction)
+            is AuthResult.DirectionId -> navController.navigate(authResult.directionId)
         }
     }
 

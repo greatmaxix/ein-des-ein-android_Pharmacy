@@ -1,23 +1,23 @@
 package com.pulse.data.remote
 
 import com.google.gson.GsonBuilder
+import com.ihsanbal.logging.Level
+import com.ihsanbal.logging.LoggingInterceptor
 import com.pulse.BuildConfig
 import com.pulse.data.remote.api.RestApi
 import com.pulse.data.remote.api.RestApiRefresh
 import com.pulse.data.remote.authenticator.RestAuthenticator
 import com.pulse.data.remote.interceptor.RestHeaderInterceptor
 import com.pulse.data.remote.model.order.DeliveryType
-import com.pulse.data.remote.serializer.DeliveryTypeDeserializer
-import com.pulse.data.remote.serializer.DeliveryTypeSerializer
-import com.pulse.data.remote.serializer.OrderStatusDeserializer
-import com.pulse.data.remote.serializer.OrderStatusSerializer
+import com.pulse.data.remote.serializer.*
 import com.pulse.model.order.OrderStatus
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.internal.platform.Platform
 import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
 
 @OptIn(KoinApiExtension::class)
@@ -37,6 +37,12 @@ val RESTModule = module {
             .build()
     }
 
+    fun makeLoggingInterceptor() = LoggingInterceptor.Builder()
+        .setLevel(Level.BASIC)
+        .log(Platform.INFO)
+        .tag("OkHttp")
+        .build()
+
     single {
         OkHttpClient.Builder().apply {
             connectTimeout(30, TimeUnit.SECONDS)
@@ -48,19 +54,19 @@ val RESTModule = module {
             addInterceptor(RestHeaderInterceptor(get()))
 
             if (BuildConfig.DEBUG) {
-                interceptors().add(HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                })
+                interceptors().add(makeLoggingInterceptor())
             }
         }.build()
     }
 
     single {
         GsonBuilder().apply {
+            registerTypeAdapter(String::class.java, StringDeserializer())
             registerTypeAdapter(DeliveryType::class.java, DeliveryTypeDeserializer())
             registerTypeAdapter(DeliveryType::class.java, DeliveryTypeSerializer())
             registerTypeAdapter(OrderStatus::class.java, OrderStatusDeserializer())
             registerTypeAdapter(OrderStatus::class.java, OrderStatusSerializer())
+            registerTypeAdapter(LocalDateTime::class.java, DateTimeSerializer())
             setLenient()
         }.create()
     }

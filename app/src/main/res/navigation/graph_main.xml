@@ -98,6 +98,16 @@
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
 
+        <action
+            android:id="@+id/fromHomeToChatType"
+            app:destination="@id/nav_chat_type"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <action
@@ -171,6 +181,12 @@
         android:label="@string/chatLabel"
         tools:layout="@layout/fragment_chat">
 
+        <argument
+            android:name="chat"
+            app:argType="com.pulse.chat.model.chat.ChatItem"
+            android:defaultValue="@null"
+            app:nullable="true" />
+
         <action
             android:id="@+id/fromChatToSignIn"
             app:destination="@id/auth_graph"
@@ -204,6 +220,32 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+        <action
+            android:id="@+id/fromChatToProductCard"
+            app:destination="@id/nav_product"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_chat_type"
+        android:name="com.pulse.chatType.ChatTypeFragment"
+        android:label="@string/chatTypeLabel"
+        tools:layout="@layout/fragment_chat_type">
+
+        <action
+            android:id="@+id/fromChatTypeToChat"
+            app:destination="@id/nav_chat"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
 
     </fragment>
 

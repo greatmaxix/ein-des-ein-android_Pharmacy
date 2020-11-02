@@ -14,7 +14,7 @@ class Product(
 ) : ProductLite(), Parcelable {
 
     val substance
-        get() = if (substances.isEmpty()) "" else substances.first()
+        get() = if (substances.isEmpty()) "" else substances.firstOrNull()
 
     val getFullManufacture
         get() = "${manufacture.producer} , $productLocale"

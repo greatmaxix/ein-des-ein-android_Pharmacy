@@ -1,6 +1,7 @@
 package com.pulse.chat
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -9,16 +10,15 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResultListener
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
+import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.RecyclerView
-import br.com.onimur.handlepathoz.HandlePathOz
-import br.com.onimur.handlepathoz.HandlePathOzListener
-import br.com.onimur.handlepathoz.model.PathOz
-import br.com.onimur.handlepathoz.utils.extension.getListUri
 import com.fondesa.kpermissions.allGranted
 import com.fondesa.kpermissions.anyDenied
 import com.fondesa.kpermissions.anyPermanentlyDenied
@@ -30,59 +30,89 @@ import com.pulse.R
 import com.pulse.chat.ChatFragmentDirections.Companion.actionChatToChatReviewBottomSheet
 import com.pulse.chat.ChatFragmentDirections.Companion.actionChatToHome
 import com.pulse.chat.ChatFragmentDirections.Companion.actionChatToSendImageBottomSheet
+import com.pulse.chat.ChatFragmentDirections.Companion.fromChatToProductCard
 import com.pulse.chat.adapter.ChatMessageAdapter
 import com.pulse.chat.adapter.ChatMessageAdapter.Action.*
+import com.pulse.chat.adapter.viewHolder.ProductViewHolder
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_FILLED
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_KEY
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_NOTE_KEY
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_RATING_KEY
+import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_TAGS_KEY
 import com.pulse.chat.dialog.SendBottomSheetDialogFragment
 import com.pulse.chat.dialog.SendBottomSheetDialogFragment.Companion.RESULT_BUTTON_EXTRA_KEY
 import com.pulse.chat.dialog.SendBottomSheetDialogFragment.Companion.SEND_PHOTO_KEY
-import com.pulse.chat.model.ChatMessage
+import com.pulse.chat.model.message.MessageItem
 import com.pulse.components.auth.sign.SignInFragmentArgs
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
+import com.pulse.mercureService.MercureEventListenerService
 import kotlinx.android.synthetic.main.fragment_chat.*
 import kotlinx.coroutines.FlowPreview
-import java.time.LocalDateTime
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.parameter.parametersOf
 
+@KoinApiExtension
 @FlowPreview
-class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.layout.fragment_chat) {
+class ChatFragment : BaseMVVMFragment(R.layout.fragment_chat) {
 
-    private val uri by lazy { FileProvider.getUriForFile(requireContext(), "${BuildConfig.APPLICATION_ID}.fileprovider", viewModel.tempPhotoFile) }
-
+    private val args by navArgs<ChatFragmentArgs>()
+    private val vm: ChatViewModel by viewModel(parameters = { parametersOf(args.chat) })
+    private val uri by lazy { FileProvider.getUriForFile(requireContext(), "${BuildConfig.APPLICATION_ID}.fileprovider", vm.tempPhotoFile) }
     private val choosePhotoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        handlePathOz.getListRealPath(it.data.getListUri())
+        if (it.resultCode == Activity.RESULT_OK) onActivityResult(it)
     }
-
-    private val takePhotoLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { viewModel.sendPhotos(listOf(uri)) }
-    private val handlePathOz by lazy { HandlePathOz(requireContext(), listener) }
-    private val listener = object : HandlePathOzListener.MultipleUri {
-        override fun onRequestHandlePathOz(listPathOz: List<PathOz>, tr: Throwable?) {
-            if (tr != null) {
-                messageCallback?.showError(getString(R.string.sendPhotoError))
-            } else {
-                viewModel.sendPhotos(listPathOz.map { uri -> Uri.parse(uri.path) })
-            }
-        }
+    private val takePhotoLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) {
+        if (it) sendPhotoMessage(uri)
     }
-
-    private val adapter = ChatMessageAdapter {
-        when (it) {
-            END_CHAT -> {
-                hideKeyboard()
-                doNav(actionChatToChatReviewBottomSheet())
+    private val chatAdapter = ChatMessageAdapter(
+        { action ->
+            when (action) {
+                END_CHAT -> {
+                    observeResult(vm.closeChat()) {
+                        onEmmit = {
+                            hideKeyboard()
+                            if (requireContext().isServiceRunning(MercureEventListenerService::class.java)) {
+                                requireContext().stopService(Intent(requireContext(), MercureEventListenerService::class.java))
+                            }
+                            doNav(actionChatToChatReviewBottomSheet())
+                        }
+                    }
+                }
+                RESUME_CHAT -> observeResult(vm.resumeChat())
+                AUTHORIZE -> navController.navigate(R.id.fromChatToSignIn, SignInFragmentArgs(nextDestinationId = R.id.nav_chat_type).toBundle())
             }
-            RESUME_CHAT -> viewModel.removeEndChatMessage()
-            AUTHORIZE -> navController.navigate(R.id.fromChatToSignIn, SignInFragmentArgs(R.id.nav_chat).toBundle())
+        },
+        { action: ProductViewHolder.Action, pair: Pair<MessageItem, Int> ->
+            when (action) {
+                ProductViewHolder.Action.ITEM -> {
+                    vm.getProductInfo(pair.second)
+                }
+                ProductViewHolder.Action.WISH -> vm.setOrRemoveWish(pair)
+            }
+        })
+
+    private
+    var scrollerJob: Job? = null
+
+    private
+    val chatAdapterDataObserver = object : RecyclerView.AdapterDataObserver() {
+        override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
+            super.onItemRangeChanged(positionStart, itemCount)
+            scrollToLastMessage()
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton()
+        showBackButton {
+            doNav(actionChatToHome())
+        }
         initMenu(R.menu.info) {
             if (it.itemId == R.id.menu_info) {
                 // TODO menu func
@@ -116,10 +146,14 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
         setFragmentResultListener(CHAT_REVIEW_KEY) { _, bundle ->
             if (bundle.getBoolean(CHAT_REVIEW_FILLED)) {
                 val rating = bundle.getInt(CHAT_REVIEW_RATING_KEY)
+                val tags = bundle.getStringArrayList(CHAT_REVIEW_TAGS_KEY)
                 val note = bundle.getString(CHAT_REVIEW_NOTE_KEY)
-                viewModel.sendReview(rating, note)
+                observeResult(vm.sendReview(rating, tags, note)) {
+                    onEmmit = { showChatEndDialog() }
+                }
+            } else {
+                showChatEndDialog()
             }
-            showChatEndDialog()
         }
         setFragmentResultListener(SEND_PHOTO_KEY) { _, bundle ->
             when (bundle.getString(RESULT_BUTTON_EXTRA_KEY)) {
@@ -127,11 +161,23 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
                 SendBottomSheetDialogFragment.Button.CAMERA.name -> requestTakePhoto()
             }
         }
-        viewModel.checkUserLoggedIn()
+        vm.checkUserLoggedIn()
     }
 
-    private fun showChatEndDialog() {
-        showAlertRes(getString(R.string.chatEndedMessage)) {
+    override fun onResume() {
+        super.onResume()
+
+        if (args.chat != null) {
+            if (!requireContext().isServiceRunning(MercureEventListenerService::class.java)) {
+                val intent = Intent(requireContext(), MercureEventListenerService::class.java)
+                requireContext().startService(intent)
+            }
+        }
+        vm.checkIsWishSaved()
+    }
+
+    private fun showChatEndDialog(isAutoClosed: Boolean = false) {
+        showAlertRes(getString(if (isAutoClosed) R.string.chat_ended_automatically_message else R.string.chatEndedMessage)) {
             cancelable = false
             title = R.string.chatEndedTitle
             positive = R.string.common_okButton
@@ -139,9 +185,19 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
         }
     }
 
+    private fun onActivityResult(result: ActivityResult) {
+        val data = result.data?.data
+        if (result.resultCode == Activity.RESULT_OK && data != null) {
+            sendPhotoMessage(data)
+        }
+    }
+
+    private fun sendPhotoMessage(uri: Uri) {
+        observeResult(vm.sendPhoto(uri))
+    }
+
     private fun requestPickPhoto() {
         val pickIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        pickIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         choosePhotoLauncher.launch(pickIntent)
     }
 
@@ -189,46 +245,41 @@ class ChatFragment(private val viewModel: ChatViewModel) : BaseMVVMFragment(R.la
     private fun sendMessage() {
         val message = tilMessageChat.editText?.text?.toString()?.trim().orEmpty()
         tilMessageChat.editText?.text = null
-        viewModel.sendMessage(message)
+        observeResult(vm.sendMessage(message))
     }
 
+    @ExperimentalPagingApi
     override fun onBindLiveData() {
         super.onBindLiveData()
 
-        observe(viewModel.directionLiveData, navController::navigate)
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
-        observe(viewModel.isUserLoggedInLiveData) {
-            if (it.not()) {
-                setNotAuthorizedChatMessages()
-            } else {
-                llMessageFieldChat.visible()
+        observe(vm.directionLiveData, navController::navigate)
+        observe(vm.isUserLoggedInLiveData) { if (it) llMessageFieldChat.visible() }
+        observe(vm.chatMessagesLiveData) { chatAdapter.submitData(lifecycle, it) }
+        observe(vm.lastMessageLiveData) { scrollToLastMessage() }
+        observe(vm.chatLiveData) {
+            if (it?.isAutomaticClosed.falseIfNull()) showChatEndDialog(true)
+        }
+        observe(vm.productLiteLiveData) { navController.navigate(fromChatToProductCard(it)) }
+        observe(vm.wishLiteLiveData) { chatAdapter.notifyWish(it) }
+    }
+
+    private fun initAdapter() = with(rvMessagesChat) {
+        adapter = chatAdapter
+        chatAdapter.registerAdapterDataObserver(chatAdapterDataObserver)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        chatAdapter.unregisterAdapterDataObserver(chatAdapterDataObserver)
+    }
+
+    private fun scrollToLastMessage() {
+        scrollerJob?.cancel()
+        if (chatAdapter.itemCount != 0) {
+            scrollerJob = viewLifecycleOwner.lifecycleScope.launch {
+                delay(500)
+                rvMessagesChat.smoothScrollToPosition(0)
             }
         }
-        observe(viewModel.chatMessagesLiveData) {
-            adapter.setList(it)
-            rvMessagesChat.postDelayed({
-                rvMessagesChat.smoothScrollToPosition(0)
-            }, 100)
-        }
-    }
-
-    private fun setNotAuthorizedChatMessages() {
-        val list = mutableListOf(
-            ChatMessage.AuthorizeButton,
-            ChatMessage.PharmacyMessage(getString(R.string.chat_description_message5)),
-            ChatMessage.UserMessage(getString(R.string.chat_description_message4), LocalDateTime.now()),
-            ChatMessage.UserMessage(getString(R.string.chat_description_message3)),
-            ChatMessage.PharmacyMessage(getString(R.string.chat_description_message2)),
-            ChatMessage.PharmacyMessage(getString(R.string.chat_description_message1)),
-            ChatMessage.DateHeader(LocalDateTime.now())
-        )
-        viewModel.setNotAuthorizedChatMessages(list)
-    }
-
-    private fun initAdapter() {
-        rvMessagesChat.adapter = adapter
-        rvMessagesChat.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, true)
-        rvMessagesChat.setHasFixedSize(true)
     }
 }

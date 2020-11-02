@@ -5,8 +5,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class AvatarItem(@SerializedName("item") val avatar: Avatar)
-
 @Entity
 data class Avatar(
     @ColumnInfo(name = "createdAtAvatar")

@@ -3,22 +3,20 @@ package com.pulse.chat.adapter.viewHolder
 import android.view.View
 import android.view.ViewGroup
 import com.pulse.R
-import com.pulse.chat.model.ChatMessage
+import com.pulse.chat.model.message.MessageItem
 import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.visibleOrGone
 import kotlinx.android.synthetic.main.item_chat_message_user.view.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class UserMessageViewHolder(itemView: View) : BaseViewHolder<ChatMessage>(itemView) {
+class UserMessageViewHolder(itemView: View) : BaseViewHolder<MessageItem>(itemView) {
 
-    override fun bind(item: ChatMessage) {
+    override fun bind(item: MessageItem) {
         with(itemView) {
-            val message = item.asUserMessage()
-            tvMessageChat.text = message.message
-            tvReadTimeChat.text = message.readDate?.toReadDate()
-            tvReadTimeChat.visibleOrGone(message.readDate != null)
+            tvMessageChat.text = item.text
+//            tvReadTimeChat.text = message.readDate?.toReadDate() TODO
+//            tvReadTimeChat.visibleOrGone(message.readDate != null)
         }
     }
 

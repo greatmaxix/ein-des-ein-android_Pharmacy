@@ -34,6 +34,7 @@ class ChatReviewBottomSheetDialogFragment : BottomSheetDialogFragment() {
                     bundleOf(
                         CHAT_REVIEW_FILLED to true,
                         CHAT_REVIEW_RATING_KEY to view.ratingChatReview.rating.toInt(),
+                        CHAT_REVIEW_TAGS_KEY to view.chipGroupReviewReason.checkedChipIds.map { DummyData.reviewReasons[it - 1] },
                         CHAT_REVIEW_NOTE_KEY to view.tilChatReview.editText?.text?.trim()?.toString().orEmpty()
                     )
                 )
@@ -42,7 +43,7 @@ class ChatReviewBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 view.tvChatReviewTitle.text = getString(R.string.chatReviewBadDialogTitle)
                 view.tvChatReviewDescription.text = getString(R.string.chatReviewBadDialogDescription)
 
-                DummyData.getReviewReasons().forEachIndexed { index, label ->
+                DummyData.reviewReasons.forEachIndexed { index, label ->
                     view.chipGroupReviewReason.addView(inflater.inflate(R.layout.item_review_tag, null)
                         .apply {
                             with(this as Chip) {
@@ -77,6 +78,7 @@ class ChatReviewBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         const val CHAT_REVIEW_FILLED = "CHAT_REVIEW_FILLED"
         const val CHAT_REVIEW_RATING_KEY = "CHAT_REVIEW_RATING_KEY"
+        const val CHAT_REVIEW_TAGS_KEY = "CHAT_REVIEW_TAGS_KEY"
         const val CHAT_REVIEW_NOTE_KEY = "CHAT_REVIEW_NOTE_KEY"
     }
 }

@@ -15,7 +15,7 @@ fun File.inputStreamToFile(inputStream: InputStream) {
 
 fun Context.assetFile(fileName: String): File = File.createTempFile(fileName, null).apply { inputStreamToFile(assets.open(fileName)) }
 
-@Deprecated("Use @use from com.pharmacy.myapp.core.extensions")
+@Deprecated("Use @use from com.pulse.core.extensions")
 fun TypedArray.getData(action: TypedArray.() -> Unit) {
     try {
         action.invoke(this)

@@ -3,15 +3,15 @@ package com.pulse.chat.adapter.viewHolder
 import android.view.View
 import android.view.ViewGroup
 import com.pulse.R
-import com.pulse.chat.model.ChatMessage
+import com.pulse.chat.model.message.MessageItem
 import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.inflate
 import kotlinx.android.synthetic.main.item_chat_message_pharmacy.view.*
 
-class PharmacyMessageViewHolder(itemView: View) : BaseViewHolder<ChatMessage>(itemView) {
+class PharmacyMessageViewHolder(itemView: View) : BaseViewHolder<MessageItem>(itemView) {
 
-    override fun bind(item: ChatMessage) {
-        itemView.tvMessageChat.text = item.asPharmacyMessage().message
+    override fun bind(item: MessageItem) {
+        itemView.tvMessageChat.text = item.text
     }
 
     companion object {

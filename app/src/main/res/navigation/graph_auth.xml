@@ -16,6 +16,11 @@
             android:defaultValue="-1"
             app:argType="integer" />
 
+        <argument
+            android:name="nextDestinationId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
         <action
             android:id="@+id/actionFromSignInToSignUp"
             app:destination="@id/nav_sign_up"
