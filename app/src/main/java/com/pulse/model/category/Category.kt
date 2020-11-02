@@ -18,5 +18,4 @@ data class Category(
     @SerializedName("nodes") var nodes: List<Category>? = null
 ) : Parcelable {
     constructor() : this("")
-
 }

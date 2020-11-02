@@ -2,32 +2,25 @@ package com.pulse.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
-import android.widget.LinearLayout
+import com.google.android.material.card.MaterialCardView
 import com.pulse.R
 import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.visible
-import com.pulse.model.category.Category
+import com.pulse.core.extensions.loadGlide
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.view_category_home.view.*
+import kotlinx.android.synthetic.main.view_home_category.view.*
 
-class CategoryHomeView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr), LayoutContainer {
+class CategoryHomeView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : MaterialCardView(context, attrs, defStyleAttr),
+    LayoutContainer {
 
-    override val containerView: View? = inflate(R.layout.view_category_home, true)
+    override val containerView = inflate(R.layout.view_home_category, true)
 
     init {
-        setBackgroundResource(R.drawable.background_default_ripple_selector_rect)
-        orientation = VERTICAL
+        setRippleColorResource(R.color.colorRippleBlue)
     }
 
-    fun setCategory(category: Category) {
-        tvCategoryHome.text = category.name
-        tvCategoryHome.visible()
-        ivCategoryHome.visible()
+    fun setCategory(pair: Pair<String?, Int>) {
+        val (text, index) = pair
+        ivCategoryHome.loadGlide("ic_category_${index + 1}")
+        tvCategoryHome.text = text
     }
-
 }

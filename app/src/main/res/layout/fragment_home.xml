@@ -215,8 +215,8 @@
                 android:text="@string/categoriesTitleHome"
                 android:textColor="@color/darkBlue"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/btnSeeAllCategoriesHome"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcvAskHome" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSeeAllCategoriesHome"
@@ -229,12 +229,12 @@
                 android:paddingStart="@dimen/_8sdp"
                 android:paddingEnd="@dimen/_8sdp"
                 android:text="@string/seeAllCategoriesHome"
-                android:textAllCaps="false"
-                android:textColor="@color/primaryBlue"
                 android:textSize="@dimen/_9ssp"
-                app:layout_constraintBottom_toBottomOf="@id/mtvCategoryTitleHome"
+                android:textColor="@color/primaryBlue"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="@+id/mtvCategoryTitleHome"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mcvAskHome" />
+                app:layout_constraintTop_toTopOf="@+id/mtvCategoryTitleHome" />
 
             <FrameLayout
                 android:id="@+id/flCategoriesContainer"
@@ -246,6 +246,46 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mtvCategoryTitleHome">
 
+                <LinearLayout
+                    android:id="@+id/llCategoriesContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="invisible"
+                    tools:visibility="visible">
+
+                    <com.pulse.ui.CategoryHomeView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorGlobalWhite"
+                        app:cardCornerRadius="@dimen/_6sdp"
+                        app:cardElevation="@dimen/_6sdp"
+                        app:cardUseCompatPadding="true" />
+
+                    <com.pulse.ui.CategoryHomeView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorGlobalWhite"
+                        app:cardCornerRadius="@dimen/_6sdp"
+                        app:cardElevation="@dimen/_6sdp"
+                        app:cardUseCompatPadding="true" />
+
+                    <com.pulse.ui.CategoryHomeView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorGlobalWhite"
+                        app:cardCornerRadius="@dimen/_6sdp"
+                        app:cardElevation="@dimen/_6sdp"
+                        app:cardUseCompatPadding="true" />
+
+                </LinearLayout>
+
                 <ProgressBar
                     android:id="@+id/progressBarCategories"
                     style="?android:attr/progressBarStyle"
@@ -253,32 +293,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center" />
 
-                <LinearLayout
-                    android:id="@+id/llCategoriesContainer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:visibility="invisible"
-                    tools:visibility="visible">
-
-                    <com.pulse.ui.CategoryHomeView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <com.pulse.ui.CategoryHomeView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <com.pulse.ui.CategoryHomeView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <com.pulse.ui.CategoryHomeView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
             </FrameLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -286,11 +300,10 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_32sdp"
+                android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_32sdp"
-                android:backgroundTint="@color/orange"
-                android:gravity="center"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:backgroundTint="@color/green"
                 android:padding="@dimen/_8sdp"
                 android:text="@string/uploadRecipesHome"
                 android:textAllCaps="false"

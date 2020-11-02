@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGlobalWhite"
     android:orientation="vertical"
     tools:parentTag="android.widget.LinearLayout">
 
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_100sdp"
-        tools:src="@drawable/main_icon" />
+        tools:src="@drawable/ic_placeholder_recipes" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/titleEmptyContainer"
