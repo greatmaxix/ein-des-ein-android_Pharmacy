@@ -29,6 +29,7 @@ class App : Application() {
             modules(Modules.listOfModules)
         }
 
+
         if (BuildConfig.DEBUG) {
             Timber.plant(HyperlinkedDebugTree())
         }

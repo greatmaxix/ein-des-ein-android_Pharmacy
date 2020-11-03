@@ -1,8 +1,6 @@
 package com.pulse.core.base
 
-import android.content.Intent
 import android.graphics.PorterDuff
-import android.os.Bundle
 import androidx.annotation.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -36,12 +34,6 @@ abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivit
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException("${this::class.java.simpleName} does not use \"navController\"")
         }
-    }
-
-    @CallSuper
-    override fun onCreate(savedInstanceState: Bundle?) {
-        //overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
-        super.onCreate(savedInstanceState)
     }
 
     override fun setContentView(@LayoutRes layoutResId: Int) {
@@ -87,16 +79,6 @@ abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivit
         behaviors.forEach { it?.detach() }
         behaviors.clear()
         super.onDestroy()
-    }
-
-    override fun finish() {
-        super.finish()
-        //overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
-    }
-
-    override fun startActivity(intent: Intent?) {
-        super.startActivity(intent)
-        //overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
     }
 
     fun setToolbarContentColor(@ColorRes color: Int) {

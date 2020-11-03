@@ -12,7 +12,7 @@ class HomeRepository(private val rds: HomeRemoteDataSource, private val lds: Hom
         } else {
             val categories = rds.getCategories()
             lds.saveCategories(categories.flattenCategories)
-            categories.subList(0, 4)
+            categories.subList(0, 3)
         }
     }
 

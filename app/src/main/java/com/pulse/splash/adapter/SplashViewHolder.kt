@@ -6,14 +6,14 @@ import com.pulse.R
 import com.pulse.components.onboarding.model.Splash
 import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.loadGlide
+import com.pulse.core.extensions.loadGlideDrawableByName
 import com.pulse.core.extensions.onClick
 import kotlinx.android.synthetic.main.item_splash.view.*
 
 class SplashViewHolder(view: View, private val skip: () -> Unit, private val next: () -> Unit) : BaseViewHolder<Splash>(view) {
 
     override fun bind(item: Splash) = with(itemView) {
-        ivBackground.loadGlide(item.bg)
+        ivBackground.loadGlideDrawableByName(item.bg)
         tvTitle.setText(item.title)
         tvSubTitle.setText(item.subTitle)
 

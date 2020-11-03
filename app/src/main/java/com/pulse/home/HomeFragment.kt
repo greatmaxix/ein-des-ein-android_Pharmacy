@@ -59,7 +59,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         llCategoriesContainer.visible()
         categories.forEachIndexed { index, category ->
             (llCategoriesContainer.getChildAt(index) as? CategoryHomeView)?.apply {
-                setCategory(category)
+                setCategory(category.name to index)
                 setDebounceOnClickListener {
                     navController.onNavDestinationSelected(R.id.nav_catalog, bundleOf("category" to category), R.id.nav_home)
                 }

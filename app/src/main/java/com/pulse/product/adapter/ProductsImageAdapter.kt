@@ -6,7 +6,7 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.ImageView
 import com.pulse.core.base.adapter.BaseRecyclerAdapter
 import com.pulse.core.base.adapter.BaseViewHolder
-import com.pulse.core.extensions.loadGlide
+import com.pulse.core.extensions.loadGlideDrawableByURL
 import com.pulse.model.Picture
 
 class ProductsImageAdapter(items: List<Picture>) : BaseRecyclerAdapter<Picture, ProductsImageAdapter.ImageViewHolder>(items) {
@@ -15,7 +15,7 @@ class ProductsImageAdapter(items: List<Picture>) : BaseRecyclerAdapter<Picture, 
 
     class ImageViewHolder(view: View) : BaseViewHolder<Picture>(view) {
 
-        override fun bind(item: Picture) = (itemView as ImageView).loadGlide(item.url)
+        override fun bind(item: Picture) = (itemView as ImageView).loadGlideDrawableByURL(item.url)
 
         companion object {
             fun newInstance(parent: ViewGroup) = ImageViewHolder(ImageView(parent.context)

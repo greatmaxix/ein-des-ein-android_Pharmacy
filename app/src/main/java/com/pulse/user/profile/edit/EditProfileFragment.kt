@@ -78,7 +78,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
                 cancelable = false
                 positive = R.string.common_okButton
                 positiveAction = { navController.popBackStack() }
-                negative = R.string.common_closeButton
+                negative = R.string.cancel
             }
         } else {
             navController.popBackStack()
@@ -98,7 +98,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
         observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
         observeNullable(viewModel.avatarLiveData) {
-            ivProfileEdit.loadGlide(it) {
+            ivProfileEdit.loadGlideDrawableByURL(it) {
                 placeholder(R.drawable.ic_avatar)
                 skipMemoryCache(true)
                 apply(RequestOptions().transform(MultiTransformation(BlurTransformation(requireContext()), CircleCrop())))
@@ -139,7 +139,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
                             cancelable = false
                             positive = R.string.common_okButton
                             positiveAction = { request.send() }
-                            negative = R.string.common_closeButton
+                            negative = R.string.cancel
                         }
                     }
                     result.anyDenied() -> messageCallback?.showError(getString(R.string.cameraPermissionDenied))

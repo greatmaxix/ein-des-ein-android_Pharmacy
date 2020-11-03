@@ -17,7 +17,7 @@ class PharmacyMapBottomSheet : BaseMVVMFragmentDialogBottomSheet(R.layout.item_p
         super.onViewCreated(view, savedInstanceState)
 
         with(args.pharmacy) {
-            ivPharmacy.loadGlide(logo.url)
+            ivPharmacy.loadGlideDrawableByURL(logo.url)
             tvPharmacyName.text = name
             tvPharmacyAddress.text = location.address
             tvPharmacyPhone.text = getString(R.string.pharmacyPhoneWith, phone)

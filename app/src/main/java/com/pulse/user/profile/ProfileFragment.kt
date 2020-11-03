@@ -43,7 +43,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
         observeNullable(viewModel.avatarLiveData) {
-            ivProfile.loadGlide(it) {
+            ivProfile.loadGlideDrawableByURL(it) {
                 placeholder(R.drawable.ic_avatar)
                 apply(RequestOptions.circleCropTransform())
                 skipMemoryCache(true)

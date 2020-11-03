@@ -5,7 +5,6 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
-import com.pulse.BuildConfig
 import com.pulse.R
 import com.pulse.components.auth.model.AuthResult
 import com.pulse.core.extensions.doWithDelay
@@ -39,7 +38,7 @@ class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
         btnBackCode.onClick { navigationBack() }
 
         doWithDelay(1000) {
-            if (BuildConfig.DEBUG) etCode.setText("11111")
+            //if (BuildConfig.DEBUG) etCode.setText("11111")
         }
 
         btnSendCodeAgain.underlineSpan()
@@ -47,16 +46,14 @@ class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
     }
 
     override fun onBindLiveData() {
-        super.onBindLiveData()
-
-        observe(vm.customerPhoneLiveData) { mtvPhoneCode.text = it }
+        observe(vm.customerPhoneLiveData) { mtvPhoneCode.text = it.peekContent }
 
         observeResult(vm.codeLiveData) {
-            onEmmit = { navigate(this) }
+            onEmmit = { this?.let(::navigate) }
         }
 
         observeResult(vm.signInLiveData) {
-            onEmmit = { contentOrNull?.let { messageCallback?.showError(R.string.smsResendAgain) } }
+            onEmmit = { this?.let { messageCallback?.showError(R.string.smsResendAgain) } }
         }
     }
 
@@ -79,4 +76,5 @@ class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
 
     private val EditText.isCodeLength
         get() = length() == 5
+
 }

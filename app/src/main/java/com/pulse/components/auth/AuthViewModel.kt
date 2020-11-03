@@ -11,6 +11,7 @@ import com.pulse.components.auth.sign.SignInFragmentDirections.Companion.actionF
 import com.pulse.components.auth.sign.SignUpFragmentDirections.Companion.actionFromSignUpToCode
 import com.pulse.core.base.mvvm.BaseViewModel
 import com.pulse.core.extensions.formatPhone
+import com.pulse.core.general.Event
 import com.pulse.splash.SplashFragmentDirections.Companion.globalToHome
 
 class AuthViewModel(private val repository: AuthRepository, private val workManager: WorkManager) : BaseViewModel() {
@@ -21,29 +22,45 @@ class AuthViewModel(private val repository: AuthRepository, private val workMana
     var nextDestinationId: Int = -1
 
     /* check exist customer */
-    val customerPhoneLiveData by lazy { MutableLiveData<String>() }
+    val customerPhoneLiveData by lazy { MutableLiveData<Event<String>>() }
 
-    val signInLiveData by lazy {
-        customerPhoneLiveData
-            .switchMap { phone ->
-                requestEventLiveData {
-                    repository.signIn(phone)
-                    actionFromSignInToCode()
+    val signInLiveData
+        get() = customerPhoneLiveData
+            .switchMap { auth ->
+                requestLiveData {
+                    auth?.contentOrNull?.let {
+                        repository.signIn(phone)
+                        actionFromSignInToCode()
+                    }
                 }
             }
-    }
+
+    /* creating new customer */
+    private val _signUpLiveData by lazy { MutableLiveData<Event<Auth>>() }
+
+    val signUpLiveData
+        get() = _signUpLiveData
+            .switchMap { auth ->
+                requestLiveData {
+                    auth?.contentOrNull?.let {
+                        repository.signUp(it)
+                        actionFromSignUpToCode()
+                    }
+                }
+            }
 
     /* sms code check */
-    private val _codeLiveData by lazy { MutableLiveData<String>() }
+    private val _codeLiveData by lazy { MutableLiveData<Event<String>>() }
 
-    val codeLiveData by lazy {
-        _codeLiveData.switchMap { code ->
+    val codeLiveData
+        get() = _codeLiveData.switchMap { auth ->
             requestLiveData {
-                repository.signCode(phone, code)?.let(::invokeAuthWorker)
-                destinationOrPopBack
+                auth?.contentOrNull?.let {
+                    repository.signCode(phone, it)?.let(::invokeAuthWorker)
+                    destinationOrPopBack
+                }
             }
         }
-    }
 
     private fun invokeAuthWorker(url: String) = workManager.enqueue(
         OneTimeWorkRequestBuilder<AuthWorker>()
@@ -59,31 +76,18 @@ class AuthViewModel(private val repository: AuthRepository, private val workMana
             else -> AuthResult.PopBack(popBackId)
         }
 
-    /* creating new customer */
-    private val _signUpLiveData by lazy { MutableLiveData<Auth>() }
-
-    val signUpLiveData by lazy {
-        _signUpLiveData
-            .switchMap { signUp ->
-                requestEventLiveData {
-                    repository.signUp(signUp)
-                    actionFromSignUpToCode()
-                }
-            }
-    }
-
     fun signUp(auth: Auth) {
         this.phone = auth.phone.formatPhone()
-        _signUpLiveData.value = auth
+        _signUpLiveData.value = Event(auth)
     }
 
     fun signIn(phone: String) {
         this.phone = phone.formatPhone()
-        customerPhoneLiveData.value = this.phone
+        customerPhoneLiveData.value = Event(this.phone)
     }
 
     fun checkCode(code: String) {
-        _codeLiveData.value = code
+        _codeLiveData.value = Event(code)
     }
 
     fun signInAgain() = signIn(phone)

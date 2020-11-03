@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Pulse</string>
 
-    <string name="common_closeButton">@android:string/cancel</string>
-    <string name="common_okButton">@android:string/ok</string>
+    <string name="common_okButton">OK</string>
 
     <string name="error_networkErrorMessage">Ошибка соединения</string>
     <string name="error_errorGettingData">Ошибка получения данных</string>
@@ -51,6 +50,7 @@
     <string name="authPhoneHint">+7 (•••) •••–••–••*</string>
     <string name="authPhoneDebugHint">+3 (•••) •••–••–••*</string>
     <string name="authCustomerWithThisPhoneNumber">Пользователь с таким номером телефона не найдет, проверте правильность ввода или зарегестрируйтесь</string>
+    <string name="authCustomerAlreadyExist">Пользователь с таким номером телефона уже существует, проверте правильность ввода или войдите</string>
 
     <string name="menuTitleMain">Главная</string>
     <string name="menuTitleCategories">Каталог</string>

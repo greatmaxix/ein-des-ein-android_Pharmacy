@@ -52,7 +52,7 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
             val (product, notifyCounter) = item
 
             if (product.pictures.isNotEmpty()) {
-                ivProduct.loadGlide(product.pictures.first().url) {
+                ivProduct.loadGlideDrawableByURL(product.pictures.first().url) {
                     transform(CenterCrop(), RoundedCorners(R.dimen._8sdp.toPixelSize))
                 }
             }

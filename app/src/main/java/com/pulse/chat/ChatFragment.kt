@@ -215,7 +215,7 @@ class ChatFragment : BaseMVVMFragment(R.layout.fragment_chat) {
                             cancelable = false
                             positive = R.string.common_okButton
                             positiveAction = { request.send() }
-                            negative = R.string.common_closeButton
+                            negative = R.string.cancel
                         }
                     }
                     result.anyDenied() -> messageCallback?.showError(getString(R.string.cameraPermissionDenied))

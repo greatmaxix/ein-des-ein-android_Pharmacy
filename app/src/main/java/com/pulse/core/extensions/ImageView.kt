@@ -7,12 +7,16 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 import com.pulse.R
 import com.pulse.chat.model.message.MessageProduct
 import com.pulse.components.cart.model.CartProduct
@@ -31,14 +35,21 @@ fun ImageView.setFilterRes(@ColorRes colorRes: Int) {
 val ImageView.createGlide
     get() = Glide.with(this)
 
-fun ImageView.loadGlide(url: String?, block: (RequestBuilder<Drawable>.() -> Unit)? = null) {
+fun ImageView.loadGlideDrawableByURL(url: String?, block: (RequestBuilder<Drawable>.() -> Unit)? = null) {
     val glide = createGlide.load(url)
     block?.let { glide.apply(it).into(this) } ?: glide.into(this)
 }
 
-fun ImageView.loadGlide(drawableName: String) {
-    Glide.with(this)
+fun ImageView.loadGlideDrawableByName(drawableName: String, onResourceReady: ((ImageView) -> Unit)? = null) {
+    createGlide
         .load(resources.getIdentifier(drawableName, "drawable", context.packageName))
+        .listener(object : RequestListener<Drawable> {
+            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean) = false
+            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                onResourceReady?.invoke(this@loadGlideDrawableByName)
+                return false
+            }
+        })
         .into(this)
 }
 
@@ -50,11 +61,11 @@ fun ImageView.loadGlideOrder(product: CartProduct) {
             override(300)
             transform(MultiTransformation(CenterCrop(), RoundedCorners(resources.getDimensionPixelSize(R.dimen._6sdp))))
         }
-        loadGlide(it, options)
+        loadGlideDrawableByURL(it, options)
     }
 }
 
-fun ImageView.loadGlideDrugstore(url: String?) = loadGlide(url) {
+fun ImageView.loadGlideDrugstore(url: String?) = loadGlideDrawableByURL(url) {
     placeholder(R.drawable.ic_drugstore_base)
     RequestOptions.bitmapTransform(CircleCrop())
     transition(DrawableTransitionOptions().crossFade())
@@ -63,7 +74,7 @@ fun ImageView.loadGlideDrugstore(url: String?) = loadGlide(url) {
 fun ImageView.setWish(isWish: Boolean) = setImageResource(isWish.wishResId)
 
 fun ImageView.setProductImage(list: List<Picture>, hasAggregation: Boolean = false) {
-    loadGlide(list.firstOrNull()?.url) {
+    loadGlideDrawableByURL(list.firstOrNull()?.url) {
         transform(CenterCrop(), RoundedCorners(resources.getDimensionPixelSize(R.dimen._8sdp)))
         error(R.drawable.default_product_image)
     }
@@ -74,7 +85,7 @@ fun ImageView.setProductImage(list: List<Picture>, hasAggregation: Boolean = fal
 
 // TODO refactor this
 fun ImageView.setProductImage(product: MessageProduct) {
-    loadGlide(product.pictures.firstOrNull()?.url) {
+    loadGlideDrawableByURL(product.pictures.firstOrNull()?.url) {
         transform(CenterCrop(), RoundedCorners(resources.getDimensionPixelSize(R.dimen._8sdp)))
         error(R.drawable.default_product_image)
     }
