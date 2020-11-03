@@ -39,7 +39,7 @@ abstract class GenerateNavArgsProguardRulesTask : DefaultTask() {
                     .mapNotNull { arguments.item(it).attributes.getNamedItemNS(APP_NAMESPACE, "argType")?.nodeValue }
                     .filter { it.contains('.') }
                     .toSet()
-                    .map { "-keepnames class $it" }
+                    .map { "-keepnames class ${it.replace('[', '{').replace(']', '}')}" }
                     .forEach(writer::println)
             }
         }

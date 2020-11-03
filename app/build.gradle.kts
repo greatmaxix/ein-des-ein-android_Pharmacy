@@ -138,42 +138,44 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha08")
     implementation("androidx.recyclerview:recyclerview:1.2.0-alpha06")
-    // Koin
-    implementation("org.koin:koin-androidx-scope:${Versions.koin}")
-    implementation("org.koin:koin-androidx-fragment:${Versions.koin}")
-    implementation("org.koin:koin-androidx-viewmodel:${Versions.koin}")
-    // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}")
-    // REST
-    implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
-    implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
-    implementation("com.squareup.okhttp3:okhttp:${Versions.okhttp}")
-    implementation("com.github.ihsanbal:LoggingInterceptor:3.1.0")
-    // Navigation
-    implementation("androidx.navigation:navigation-ui-ktx:${Versions.navigation}")
-    implementation("androidx.navigation:navigation-runtime-ktx:${Versions.navigation}")
-    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.navigation}")
-    // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}")
-    // Room
-    implementation("androidx.room:room-runtime:${Versions.room}")
-    implementation("androidx.room:room-ktx:${Versions.room}")
-    kapt("androidx.room:room-compiler:${Versions.room}")
-    // Glide
-    implementation("com.github.bumptech.glide:glide:${Versions.glide}")
-    kapt("com.github.bumptech.glide:compiler:${Versions.glide}")
-    // SDP/SSP
-    implementation("com.intuit.sdp:sdp-android:${Versions.sdp}")
-    implementation("com.intuit.ssp:ssp-android:${Versions.sdp}")
+    with(Versions) {
+        // Koin
+        implementation("org.koin:koin-androidx-scope:$koin")
+        implementation("org.koin:koin-androidx-fragment:$koin")
+        implementation("org.koin:koin-androidx-viewmodel:$koin")
+        // Kotlin
+        implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines")
+        // REST
+        implementation("com.squareup.retrofit2:retrofit:$retrofit")
+        implementation("com.squareup.retrofit2:converter-gson:$retrofit")
+        implementation("com.squareup.okhttp3:okhttp:$okhttp")
+        implementation("com.github.ihsanbal:LoggingInterceptor:3.1.0")
+        // Navigation
+        implementation("androidx.navigation:navigation-ui-ktx:$navigation")
+        implementation("androidx.navigation:navigation-runtime-ktx:$navigation")
+        implementation("androidx.navigation:navigation-fragment-ktx:$navigation")
+        // Lifecycle
+        implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle")
+        implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle")
+        implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle")
+        implementation("androidx.lifecycle:lifecycle-extensions:$lifecycle")
+        implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle")
+        // Room
+        implementation("androidx.room:room-runtime:$room")
+        implementation("androidx.room:room-ktx:$room")
+        kapt("androidx.room:room-compiler:$room")
+        // Glide
+        implementation("com.github.bumptech.glide:glide:$glide")
+        kapt("com.github.bumptech.glide:compiler:$glide")
+        // SDP/SSP
+        implementation("com.intuit.sdp:sdp-android:$sdp")
+        implementation("com.intuit.ssp:ssp-android:$sdp")
 
-    implementation("com.github.heremaps:oksse:${Versions.oksse}")
-    implementation("com.kirich1409.android-notification-dsl:core:${Versions.notificationsDsl}")
-    implementation("com.kirich1409.android-notification-dsl:extensions:${Versions.notificationsDsl}")
+        implementation("com.github.heremaps:oksse:$oksse")
+        implementation("com.kirich1409.android-notification-dsl:core:$notificationsDsl")
+        implementation("com.kirich1409.android-notification-dsl:extensions:$notificationsDsl")
+    }
 }
