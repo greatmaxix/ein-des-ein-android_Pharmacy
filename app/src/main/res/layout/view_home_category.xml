@@ -13,13 +13,14 @@
 
         <ImageView
             android:id="@+id/ivCategoryHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_74sdp"
+            android:layout_height="@dimen/_74sdp"
+            android:layout_gravity="center"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_4sdp"
             android:layout_marginEnd="@dimen/_8sdp"
-            android:adjustViewBounds="true"
             android:padding="@dimen/_4sdp"
+            android:visibility="invisible"
             tools:src="@drawable/ic_category_1" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -27,14 +28,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
-            android:gravity="center"
+            android:gravity="center|top"
             android:maxLines="2"
+            android:minLines="2"
             android:paddingStart="@dimen/_4sdp"
             android:paddingEnd="@dimen/_4sdp"
             android:paddingBottom="@dimen/_4sdp"
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/_8ssp"
-            tools:text="Пищеварительный\nтракт" />
+            android:visibility="invisible"
+            tools:text="Пищеварительный" />
 
     </LinearLayout>
 </merge>

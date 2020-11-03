@@ -6,7 +6,7 @@ import com.pulse.R
 import com.pulse.components.pharmacy.model.Pharmacy
 import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.loadGlide
+import com.pulse.core.extensions.loadGlideDrawableByURL
 import com.pulse.core.extensions.onClick
 import com.pulse.core.extensions.stringRes
 import kotlinx.android.synthetic.main.item_pharmacy.view.*
@@ -21,7 +21,7 @@ class PharmacyListViewHolder(
 
     //TODO check why @synthetic@ dont work
     override fun bind(item: Pharmacy) = with(itemView) {
-        ivPharmacy.loadGlide(item.logo.url)
+        ivPharmacy.loadGlideDrawableByURL(item.logo.url)
         tvPharmacyName.text = item.name
         tvPharmacyAddress.text = item.location.address
         tvPharmacyPhone.text = stringRes(R.string.pharmacyPhoneWith, item.phone)

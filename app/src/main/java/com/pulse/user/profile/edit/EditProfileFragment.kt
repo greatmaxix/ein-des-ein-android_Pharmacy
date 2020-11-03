@@ -98,7 +98,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
         observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
         observeNullable(viewModel.avatarLiveData) {
-            ivProfileEdit.loadGlide(it) {
+            ivProfileEdit.loadGlideDrawableByURL(it) {
                 placeholder(R.drawable.ic_avatar)
                 skipMemoryCache(true)
                 apply(RequestOptions().transform(MultiTransformation(BlurTransformation(requireContext()), CircleCrop())))

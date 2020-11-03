@@ -13,7 +13,7 @@ import com.pulse.R
 import com.pulse.chat.model.message.MessageItem
 import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.loadGlide
+import com.pulse.core.extensions.loadGlideDrawableByURL
 import com.pulse.core.extensions.resources
 import kotlinx.android.synthetic.main.item_chat_attachment.view.*
 
@@ -28,7 +28,7 @@ class AttachmentViewHolder(itemView: View) : BaseViewHolder<MessageItem>(itemVie
 
     override fun bind(item: MessageItem) {
         with(itemView) {
-            ivAttachment.loadGlide(item.file?.url) {
+            ivAttachment.loadGlideDrawableByURL(item.file?.url) {
                 apply(requestOptions)
             }
         }

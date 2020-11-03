@@ -4,8 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import com.google.android.material.card.MaterialCardView
 import com.pulse.R
+import com.pulse.core.extensions.animateVisible
 import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.loadGlide
+import com.pulse.core.extensions.loadGlideDrawableByName
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_home_category.view.*
 
@@ -20,7 +21,10 @@ class CategoryHomeView @JvmOverloads constructor(context: Context, attrs: Attrib
 
     fun setCategory(pair: Pair<String?, Int>) {
         val (text, index) = pair
-        ivCategoryHome.loadGlide("ic_category_${index + 1}")
         tvCategoryHome.text = text
+        ivCategoryHome.loadGlideDrawableByName("ic_category_${index + 1}") {
+            it.animateVisible()
+            tvCategoryHome.animateVisible()
+        }
     }
 }
