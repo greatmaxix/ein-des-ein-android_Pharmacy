@@ -7,9 +7,11 @@ import com.pulse.BuildConfig
 import com.pulse.data.remote.api.RestApi
 import com.pulse.data.remote.api.RestApiRefresh
 import com.pulse.data.remote.authenticator.RestAuthenticator
+import com.pulse.data.remote.deserializer.CategoryDeserializer
 import com.pulse.data.remote.interceptor.RestHeaderInterceptor
 import com.pulse.data.remote.model.order.DeliveryType
 import com.pulse.data.remote.serializer.*
+import com.pulse.model.category.Category
 import com.pulse.model.order.OrderStatus
 import okhttp3.OkHttpClient
 import okhttp3.internal.platform.Platform
@@ -67,6 +69,7 @@ val RESTModule = module {
             registerTypeAdapter(OrderStatus::class.java, OrderStatusDeserializer())
             registerTypeAdapter(OrderStatus::class.java, OrderStatusSerializer())
             registerTypeAdapter(LocalDateTime::class.java, DateTimeSerializer())
+            registerTypeAdapter(Category::class.java, CategoryDeserializer())
             setLenient()
         }.create()
     }
