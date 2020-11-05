@@ -23,12 +23,13 @@ class SplashFragment(private val viewModel: SplashViewModel) : BaseMVVMFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.updateCustomer()
+        //viewModel.updateCustomer()
+        progressCallback?.setInProgress(true)
     }
 
     override fun onBindLiveData() {
-        observe(viewModel.directionLiveData, ::moveByDirection)
-        observe(viewModel.onboardingLiveData, ::onboardingOrRegionsOrMain)
+        //observe(viewModel.directionLiveData, ::moveByDirection)
+        //observe(viewModel.onboardingLiveData, ::onboardingOrRegionsOrMain)
     }
 
     private fun moveByDirection(event: Event<NavDirections>) {
