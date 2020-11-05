@@ -155,7 +155,6 @@
     <string name="orderLogoContentDescriptionHome">Лого заказа</string>
     <string name="orderSmallIconContentDescriptionHome">Иконка заказа</string>
     <string name="askTileContentDescriptionHome">Спроси фармацевта</string>
-    <string name="analyzeTitleContentDescriptionHome">Анализы и диагностика</string>
     <string name="mapIconContentDescriptionHome">Карта аптек</string>
     <string name="cameraIconContentDescription">Иконка камеры</string>
     <string name="recentlyViewedTitle">Вы недавно смотрели</string>
