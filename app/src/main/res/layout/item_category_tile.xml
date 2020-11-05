@@ -8,7 +8,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcvCategoryTile"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:backgroundTint="@color/colorGlobalWhite"
         app:cardCornerRadius="@dimen/_6sdp"
         app:cardElevation="@dimen/_2sdp"
@@ -31,7 +31,7 @@
             android:layout_margin="@dimen/_8sdp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/analyzeTitleContentDescriptionHome"
-            android:src="@drawable/ic_vaccine" />
+            tools:src="@drawable/ic_catalog_1" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvCategoryNameTile"
@@ -42,10 +42,10 @@
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_12sdp"
             android:gravity="bottom"
-            android:text="Гормоны для системного применения (исключая половые гормоны и инсулины)"
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/_10ssp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Гормоны для системного применения (исключая половые гормоны и инсулины)" />
 
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

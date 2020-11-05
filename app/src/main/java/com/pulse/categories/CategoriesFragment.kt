@@ -32,6 +32,7 @@ class CategoriesFragment : BaseMVVMFragment(R.layout.fragment_categories) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         attachBackPressCallback { viewModel.handleBackPress() }
         ivBackCategories.onClick { viewModel.handleBackPress() }
 
@@ -43,6 +44,7 @@ class CategoriesFragment : BaseMVVMFragment(R.layout.fragment_categories) {
     override fun onBindLiveData() {
         observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
         observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
+
         observe(viewModel.directionLiveData, navController::navigate)
 
         observe(viewModel.navigateBackLiveData) { navigationBack() }
