@@ -156,7 +156,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_margin="@dimen/_8sdp"
-                    android:contentDescription="@string/analyzeTitleContentDescriptionHome"
                     android:src="@drawable/ic_vector" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -229,9 +228,9 @@
                 android:paddingStart="@dimen/_8sdp"
                 android:paddingEnd="@dimen/_8sdp"
                 android:text="@string/seeAllCategoriesHome"
-                android:textSize="@dimen/_9ssp"
-                android:textColor="@color/primaryBlue"
                 android:textAllCaps="false"
+                android:textColor="@color/primaryBlue"
+                android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/mtvCategoryTitleHome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/mtvCategoryTitleHome" />
