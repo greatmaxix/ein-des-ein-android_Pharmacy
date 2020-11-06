@@ -3,7 +3,6 @@ package com.pulse.checkout
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.radiobutton.MaterialRadioButton
@@ -107,8 +106,8 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         text = it.name
         val drawable = getDrawable(it.icon)?.apply { if (!it.isChecked) colorFilter = ColorFilterUtil.blackWhiteFilter }
         setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
-        setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.selector_text_payment))
-        buttonTintList = ContextCompat.getColorStateList(requireContext(), R.color.selector_tint_button_payment)
+        setTextColor(colorListFrom(R.color.selector_text_payment))
+        buttonTintList = colorListFrom(R.color.selector_tint_button_payment)
         isEnabled = it.isChecked
         isChecked = it.isChecked
     }

@@ -271,10 +271,12 @@ fun View.rotate(angle: Float, endAction: () -> Unit, duration: Long = 300) = ani
     .setDuration(duration)
     .start()
 
+@Deprecated("Replace to colorFrom", ReplaceWith("colorFrom()"))
 fun View.colorCompat(colorRes: Int) = context.getCompatColor(colorRes)
 
-@RequiresApi(Build.VERSION_CODES.M)
 fun View.colorFrom(@ColorRes colorRes: Int) = context.getColor(colorRes)
+
+fun View.colorListFrom(@ColorRes colorRes: Int) = context.getColorStateList(colorRes)
 
 fun View.moveHorizontal(progress: Float, alpha: Float? = null) {
     translationX = progress
@@ -357,7 +359,7 @@ fun Shapeable.setBottomRoundCornerBackground(radius: Float) {
     shapeAppearanceModel = shape.shapeAppearanceModel
 }
 
-fun View.mockToast(text: String) = setDebounceOnClickListener {
+fun View.mockToast(text: String = context.getString(R.string.expectSoonMock)) = setDebounceOnClickListener {
     context.toast(text)
 }
 

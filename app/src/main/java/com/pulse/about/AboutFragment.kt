@@ -17,9 +17,9 @@ class AboutFragment : BaseMVVMFragment(R.layout.fragment_about) {
 
         tvVersionAbout.text = getString(R.string.versionAbout, BuildConfig.VERSION_NAME)
 
-        itemUserAgreement.mockToast("Пользовательское соглашение")
-        itemPersonalData.mockToast("О Персональных данных")
-        itemDataUsage.mockToast("Условия использования данных")
-        itemCashback.mockToast("Про кешбек")
+        itemUserAgreement.mockToast()
+        itemPersonalData.mockToast()
+        itemDataUsage.mockToast()
+        itemCashback.mockToast()
     }
 }

@@ -47,9 +47,9 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
 
         setProductInfo()
 
-        mcvAnalog.mockToast(getString(R.string.expectSoonMock))
-        mcvCategory.mockToast("TODO: Category")
-        mcvInstruction.mockToast(getString(R.string.expectSoonMock))
+        mcvAnalog.mockToast()
+        mcvCategory.mockToast()
+        mcvInstruction.mockToast()
         mcvQuestions.setDebounceOnClickListener { navController.navigate(R.id.fromProductToChat) }
         fbWish.setDebounceOnClickListener { viewModel.setOrRemoveWish(!args.product.isInWish to args.product.globalProductId) }
         args.product.aggregation?.let {

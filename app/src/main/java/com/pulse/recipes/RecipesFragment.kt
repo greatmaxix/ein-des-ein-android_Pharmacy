@@ -12,7 +12,7 @@ class RecipesFragment : BaseMVVMFragment(R.layout.fragment_recipes) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showBackButton()
-        emptyContentRecipes.mockToast("Todo: записаться на прийом")
+        emptyContentRecipes.mockToast()
     }
 
 }
