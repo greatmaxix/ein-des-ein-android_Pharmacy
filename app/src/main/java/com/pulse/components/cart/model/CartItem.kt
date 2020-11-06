@@ -11,6 +11,7 @@ data class CartItem(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
     @SerializedName("location") val location: Location,
+    @SerializedName("phone") val phone: String,
     @SerializedName("logo") val logo: Logo,
     @SerializedName("pharmacyProducts") val products: MutableList<CartProduct>
 ) : Parcelable {

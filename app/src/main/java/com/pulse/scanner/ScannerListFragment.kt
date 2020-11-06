@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.pulse.R
+import com.pulse.core.extensions.gone
+import com.pulse.core.extensions.visible
 import com.pulse.product.BaseProductFragment
 import com.pulse.product.ProductViewModel
 import kotlinx.android.synthetic.main.fragment_scanner_result.*
@@ -20,6 +22,12 @@ class ScannerListFragment(private val viewModel: ProductViewModel) : BaseProduct
         super.onViewCreated(view, savedInstanceState)
 
         showBackButton()
+        if (args.products.isEmpty()) {
+            ecvProductResult.visible()
+            ecvProductResult.setButtonAction { navigationBack() }
+            rvProducts.gone()
+        }
+
         rvProducts.adapter = adapter
     }
 

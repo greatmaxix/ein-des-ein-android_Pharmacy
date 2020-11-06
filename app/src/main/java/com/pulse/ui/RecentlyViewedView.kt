@@ -17,20 +17,30 @@ class RecentlyViewedView @JvmOverloads constructor(
 
     override val containerView = inflate(R.layout.layout_recently_viewed_item, true)
 
+    private val cornerRadius by lazy { resources.getDimension(R.dimen._7sdp) }
+
     init {
         setCardBackgroundColor(colorCompat(R.color.colorGlobalWhite))
-        radius = resources.getDimensionPixelSize(R.dimen._7sdp).toFloat()
+        radius = 0F
         cardElevation = resources.getDimensionPixelSize(R.dimen._1sdp).toFloat()
         useCompatPadding = true
         setRippleColorResource(R.color.colorRippleBlue)
+        setBottomRoundCornerBackground(cornerRadius)
     }
 
     fun setProduct(product: Product) {
-        ivRecentlyViewed.setProductImage(product.pictures, product.aggregation == null)
+        ivRecentlyViewed.setProductImage(product.pictures, product.aggregation == null, false, R.drawable.bg_product_bottom_corners_background)
+        ivRecentlyViewed.setBottomRoundCornerBackground(cornerRadius)
         tvNameRecentlyViewed.setTextHtml(product.rusName)
         tvDescriptionRecentlyViewed.setTextHtml(product.releaseForm)
+        val colorResId = if (product.isAggregationEmpty) R.color.greyText else R.color.darkBlue
+        tvDescriptionRecentlyViewed.textColor(colorResId)
+        tvNameRecentlyViewed.textColor(colorResId)
         product.aggregation?.let {
             tvPriceFromRecentlyViewed.text = context.getString(R.string.price, it.minPrice.toString())
-        } ?: run { tvPriceFromPrefixRecentlyViewed.gone() }
+        } ?: run {
+            tvPriceFromPrefixRecentlyViewed.gone()
+            tvPriceUnavailableRecentlyViewed.visible()
+        }
     }
 }

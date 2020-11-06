@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
+import com.google.android.material.shape.Shapeable
 import com.google.android.material.textfield.TextInputLayout
 import com.pulse.R
 import kotlinx.coroutines.*
@@ -270,10 +271,12 @@ fun View.rotate(angle: Float, endAction: () -> Unit, duration: Long = 300) = ani
     .setDuration(duration)
     .start()
 
+@Deprecated("Replace to colorFrom", ReplaceWith("colorFrom()"))
 fun View.colorCompat(colorRes: Int) = context.getCompatColor(colorRes)
 
-@RequiresApi(Build.VERSION_CODES.M)
 fun View.colorFrom(@ColorRes colorRes: Int) = context.getColor(colorRes)
+
+fun View.colorListFrom(@ColorRes colorRes: Int) = context.getColorStateList(colorRes)
 
 fun View.moveHorizontal(progress: Float, alpha: Float? = null) {
     translationX = progress
@@ -343,7 +346,20 @@ fun View.setTopRoundCornerBackground(
     ViewCompat.setBackground(this, shape)
 }
 
-fun View.mockToast(text: String) = setDebounceOnClickListener {
+fun Shapeable.setBottomRoundCornerBackground(radius: Float) {
+    val appearanceModel = ShapeAppearanceModel()
+        .toBuilder()
+        .setBottomRightCorner(CornerFamily.ROUNDED, radius)
+        .setBottomLeftCorner(CornerFamily.ROUNDED, radius)
+        .build()
+
+    val shape = MaterialShapeDrawable(appearanceModel).apply {
+        paintStyle = Paint.Style.FILL
+    }
+    shapeAppearanceModel = shape.shapeAppearanceModel
+}
+
+fun View.mockToast(text: String = context.getString(R.string.expectSoonMock)) = setDebounceOnClickListener {
     context.toast(text)
 }
 

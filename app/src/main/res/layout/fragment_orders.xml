@@ -31,7 +31,7 @@
         <com.google.android.material.chip.Chip
             android:id="@+id/chipMyInProcess"
             style="@style/ChipOrders"
-            android:text="@string/inProcessChipOrders" />
+            android:text="@string/newChipOrders" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipMyDone"

@@ -19,15 +19,13 @@ class CheckoutProductsAdapter(list: MutableList<CartProduct>) :
 
     class RecommendedViewHolder(view: View) : BaseViewHolder<CartProduct>(view) {
 
-        override fun bind(item: CartProduct) {
-            with(itemView) {
-                ivProductImageCheckout.setProductImage(item.pictures)
-                tvProductTitleCheckout.setTextHtml(item.rusName)
-                tvProductDescriptionCheckout.setTextHtml(item.releaseForm)
-                tvProductIssuerCheckout.text = item.manufacture.producer
-                tvCountCheckout.text = stringRes(R.string.productCount, item.count)
-                fabProductPriceCheckout.text = stringRes(R.string.price, item.price)
-            }
+        override fun bind(item: CartProduct) = with(itemView) {
+            ivProductImageCheckout.setProductImage(item.pictures)
+            tvProductTitleCheckout.setTextHtml(item.rusName)
+            tvProductDescriptionCheckout.setTextHtml(item.releaseForm)
+            tvProductIssuerCheckout.text = item.manufacture.producer
+            tvCountCheckout.text = stringRes(R.string.productCount, item.count)
+            fabProductPriceCheckout.text = stringRes(R.string.price, item.price)
         }
 
         companion object {

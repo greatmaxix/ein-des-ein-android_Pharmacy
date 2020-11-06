@@ -173,8 +173,8 @@
 
         <argument
             android:name="chat"
-            app:argType="com.pulse.chat.model.chat.ChatItem"
             android:defaultValue="@null"
+            app:argType="com.pulse.chat.model.chat.ChatItem"
             app:nullable="true" />
 
         <action

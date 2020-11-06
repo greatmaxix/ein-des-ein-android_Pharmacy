@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="together"
+    android:repeatMode="restart">
+    <objectAnimator
+        android:duration="2000"
+        android:propertyName="trimPathStart"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:startOffset="0"
+        android:valueFrom="1"
+        android:valueTo="0"
+        android:valueType="floatType" />
+</set>

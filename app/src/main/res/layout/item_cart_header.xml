@@ -7,10 +7,12 @@
     android:layout_marginTop="@dimen/_24sdp"
     android:background="@drawable/bg_corners_top"
     android:clickable="true"
+    android:elevation="@dimen/_1sdp"
     android:focusable="true"
     android:foreground="@drawable/background_default_ripple_selector_rect"
     android:paddingStart="@dimen/_8sdp"
     android:paddingTop="@dimen/_16sdp"
+    android:paddingBottom="@dimen/_8sdp"
     android:paddingEnd="@dimen/_8sdp">
 
     <ImageView
@@ -18,6 +20,7 @@
         android:layout_width="@dimen/_48sdp"
         android:layout_height="@dimen/_48sdp"
         android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_drugstore_base" />
@@ -43,12 +46,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
         android:ellipsize="end"
         android:gravity="center|start"
         android:maxLines="1"
+        app:layout_constraintBottom_toTopOf="@id/tvSubTitle"
         app:layout_constraintEnd_toStartOf="@+id/ivArrow"
         app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toTopOf="@+id/ivLogo"
+        app:layout_constraintVertical_bias=".2"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="Название товара..." />
 
     <TextView
@@ -59,22 +66,10 @@
         android:layout_marginBottom="@dimen/_4sdp"
         android:ellipsize="end"
         android:maxLines="1"
-        app:layout_constraintBottom_toTopOf="@+id/vDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvTitle"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         tools:text="Таблетки шипучие, 20 мг Таблетки" />
-
-    <View
-        android:id="@+id/vDivider"
-        android:layout_width="0dp"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/grey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/ivLogo"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="@dimen/_8sdp"
         app:layout_constraintBottom_toBottomOf="@+id/productImagePager"
         app:layout_constraintEnd_toEndOf="@+id/productImagePager"
         app:layout_constraintStart_toStartOf="@+id/productImagePager"

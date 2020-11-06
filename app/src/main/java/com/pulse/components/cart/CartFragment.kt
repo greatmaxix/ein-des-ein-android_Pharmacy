@@ -56,7 +56,8 @@ class CartFragment(private val vm: CartViewModel) : BaseMVVMFragment(R.layout.fr
         val isListEmpty = items.isEmpty()
 
         if (!isListEmpty) {
-            items.forEach { concatAdapter.addAdapter(CartAdapter(it, ::askConfirmation, ::startDeliveryProcess)) }
+            val listWithDivider = items.onEach { item -> item.products.last().needShowDivider = true }
+            listWithDivider.forEach { concatAdapter.addAdapter(CartAdapter(it, ::askConfirmation, ::startDeliveryProcess)) }
         }
 
         ecvPharmacy.visibleOrGone(isListEmpty)

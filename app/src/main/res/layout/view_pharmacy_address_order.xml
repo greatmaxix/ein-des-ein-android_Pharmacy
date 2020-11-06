@@ -11,6 +11,7 @@
         android:layout_height="@dimen/_48sdp"
         android:adjustViewBounds="true"
         android:padding="@dimen/_4sdp"
+        app:layout_constraintBottom_toTopOf="@id/tvPharmacyPhoneOrder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_drugstore_base" />
@@ -45,6 +46,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivPharmacyLogoCheckout"
         app:layout_constraintTop_toBottomOf="@+id/tvPharmacyNameCheckout"
+        tools:text="Some User Name" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvPharmacyPhoneOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:background="@drawable/background_default_ripple_selector_rect"
+        android:padding="@dimen/_6sdp"
+        android:textAppearance="@style/Text.Filled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPharmacyAddressOrder"
         tools:text="Some User Name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,16 +41,7 @@ class OrdersAdapter(private val click: (Int) -> Unit) : PagingDataAdapter<Order,
                 addressOrders.text = stringRes(R.string.orderAddressDelivery, cityAndStreet, house)
             }
 
-            tvProductCount.visibleOrGone(item.isShowProductCount)
             tvProductCount.text = stringRes(item.productCountString, item.productCount)
-            imagesContainerOrders.visibleOrGone(!item.isShowProductCount)
-            with(item.pharmacyProductOrderDataList) {
-                getOrNull(0)?.let(firstItemPreview::loadGlideOrder) ?: run { firstItemPreview.gone() }
-                getOrNull(1)?.let(secondItemPreview::loadGlideOrder) ?: run { secondItemPreview.gone() }
-                getOrNull(2)?.let(thirdItemPreview::loadGlideOrder) ?: run { thirdItemPreview.gone() }
-            }
-            restImagesCount.visibleOrGone(item.isProductCountVisible)
-            restImagesCount.text = item.getRestImagesCount
             priceOrders.text = stringRes(R.string.orderCost, item.pharmacyProductsTotalPrice.formatPrice())
         }
 

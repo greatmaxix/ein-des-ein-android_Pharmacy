@@ -27,7 +27,7 @@ class PharmacyMapBottomSheet : BaseMVVMFragmentDialogBottomSheet(R.layout.item_p
 
             ivPharmacyLocation.onClick { showDirection(location.lat, location.lng) }
 
-            mbProductAddToCart.onClick { notifySavedStateHandle(PHARMACY_KEY, args.pharmacy.pharmacyProducts.first().pharmacyProductId) }
+            mbProductAddToCart.onClick { notifySavedStateHandle(PHARMACY_KEY, args.pharmacy.pharmacyProducts?.first()?.pharmacyProductId) }
         }
     }
 }

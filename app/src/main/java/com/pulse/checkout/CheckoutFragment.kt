@@ -18,6 +18,7 @@ import com.pulse.data.remote.DummyData
 import com.pulse.data.remote.model.order.DeliveryInfoOrderData
 import com.pulse.data.remote.model.order.DeliveryType
 import com.pulse.ui.PharmacyAddressOrder
+import com.pulse.util.ColorFilterUtil
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_checkout), View.OnClickListener {
@@ -64,7 +65,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
     }
 
     private fun setPharmacyInfo() = with(args.cartItem) {
-        pharmacyAddressCheckout.pharmacy = PharmacyAddressOrder.PharmacyInfo(logo.url, name, location.address)
+        pharmacyAddressCheckout.pharmacy = PharmacyAddressOrder.PharmacyInfo(logo.url, name, location.address, phone)
     }
 
     private fun validateFieldsAndSendOrder() {
@@ -101,9 +102,12 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         it: TempPaymentMethod
     ) = MaterialRadioButton(requireContext()).apply {
         this.layoutParams = layoutParams
-        setPadding(radioButtonPadding, radioButtonPadding, radioButtonPadding, radioButtonPadding)
+        setPadding(radioButtonPadding, (radioButtonPadding * 1.5).toInt(), radioButtonPadding, (radioButtonPadding * 1.5).toInt())
         text = it.name
-        setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
+        val drawable = getDrawable(it.icon)?.apply { if (!it.isChecked) colorFilter = ColorFilterUtil.blackWhiteFilter }
+        setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+        setTextColor(colorListFrom(R.color.selector_text_payment))
+        buttonTintList = colorListFrom(R.color.selector_tint_button_payment)
         isEnabled = it.isChecked
         isChecked = it.isChecked
     }
@@ -119,6 +123,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
             cardMethodDeliveryCheckout.isSelected = !isPickup
             cardMethodPickupCheckout.isSelected = isPickup
             viewBuyerDeliveryAddressCheckout.visibleOrGone(!isPickup)
+            tvBuyerDeliveryAddressTitleCheckout.visibleOrGone(!isPickup)
         }
 
         when (v?.id) {
