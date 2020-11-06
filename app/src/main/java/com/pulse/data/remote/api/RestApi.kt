@@ -18,6 +18,8 @@ import com.pulse.product.model.Product
 import com.pulse.product.model.ProductLite
 import com.pulse.user.model.avatar.Avatar
 import com.pulse.user.model.customer.CustomerItem
+import com.pulse.util.Constants.Companion.CHAT_LIST_PAGE
+import com.pulse.util.Constants.Companion.CHAT_LIST_PAGE_SIZE
 import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Response
@@ -156,8 +158,8 @@ interface RestApi {
     @WorkerThread
     @GET("/api/v1/chat/chats")
     suspend fun chatList(
-        @Query("page") page: Int? = 1,
-        @Query("per_page") pageSize: Int? = 50,
+        @Query("page") page: Int? = CHAT_LIST_PAGE,
+        @Query("per_page") pageSize: Int? = CHAT_LIST_PAGE_SIZE,
         @Query("all") all: Boolean = false,
         @Query("active") active: Boolean = true,
         @Query("order") order: String? = "desc"
