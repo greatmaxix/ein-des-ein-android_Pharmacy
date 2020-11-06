@@ -23,7 +23,7 @@
     <color name="colorSearchBackground">#F3F6F9</color>
     <color name="colorSearchDivider">@color/grey</color>
 
-    <color name="colorProgressBackground">#a0000000</color>
+    <color name="colorProgressBackground">#102566F9</color>
 
     <color name="colorPinNormal">#20ffffff</color>
     <color name="colorPinPrimary">@color/colorGlobalWhite</color>

@@ -64,7 +64,9 @@ abstract class BaseFragment(@LayoutRes private val layoutResourceId: Int) : Frag
         if (isKeyboardOpen) {
             hideKeyboard()
         } else {
-            navController.popBackStack()
+            if (!navController.popBackStack()) {
+                requireActivity().finish()
+            }
         }
     }
 
