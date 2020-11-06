@@ -77,6 +77,7 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
             tvProductPrice.text = stringRes(R.string.price, product.price.formatPrice())
 
             ivRemove.onClick { removeClick(product.productId) }
+            cartDivider.visibleOrInvisible(!product.needShowDivider)
         }
 
         companion object {

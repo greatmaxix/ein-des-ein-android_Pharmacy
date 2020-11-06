@@ -21,8 +21,10 @@ import androidx.core.content.ContextCompat
 import com.pulse.BuildConfig
 
 @ColorInt
+@Deprecated("Replace to colorFrom")
 fun Context.getCompatColor(@ColorRes colorRes: Int): Int = ContextCompat.getColor(this, colorRes)
 
+@Deprecated("Figure out what to replace, meaby ReourceCompat")
 fun Context.getCompatDrawable(@DrawableRes drawableRes: Int): Drawable? = ContextCompat.getDrawable(this, drawableRes)
 
 fun Context.inflate(@LayoutRes resId: Int, root: ViewGroup? = null, attachToRoot: Boolean = false): View =

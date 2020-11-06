@@ -34,10 +34,4 @@ data class Order(
             2, 3, 4 -> R.string.coupleOfGoods
             else -> R.string.multipleGoods
         }
-
-    val isProductCountVisible
-        get() = productCount > 3
-
-    val getRestImagesCount
-        get() = "+" + (pharmacyProductOrderDataList.size - 3).toString()
 }

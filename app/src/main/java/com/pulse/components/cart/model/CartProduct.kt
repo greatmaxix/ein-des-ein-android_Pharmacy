@@ -17,7 +17,8 @@ data class CartProduct(
     @SerializedName("pictures") val pictures: List<Picture>,
     @SerializedName("manufacturerData") val manufacture: Manufacture,
     @SerializedName("price") val price: Double,
-    @SerializedName("productCount") var count: Int
+    @SerializedName("productCount") var count: Int,
+    var needShowDivider: Boolean
 ) : Parcelable {
     //TODO Create global "Local helper"
     val productLocale: String?

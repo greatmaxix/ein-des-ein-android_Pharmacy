@@ -10,10 +10,7 @@ import com.pulse.MainGraphDirections.Companion.globalToChat
 import com.pulse.R
 import com.pulse.core.base.mvvm.BaseMVVMActivity
 import com.pulse.core.dsl.ObserveGeneral
-import com.pulse.core.extensions.hideNav
-import com.pulse.core.extensions.onNavDestinationSelected
-import com.pulse.core.extensions.setTopRoundCornerBackground
-import com.pulse.core.extensions.showNav
+import com.pulse.core.extensions.*
 import com.pulse.core.general.behavior.DialogMessagesBehavior
 import com.pulse.core.general.behavior.ProgressViewBehavior
 import com.pulse.core.general.interfaces.MessagesCallback
@@ -32,6 +29,9 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     private val messagesBehavior by lazy { attachBehavior(DialogMessagesBehavior(this)) }
 
     private val topLevelDestinations = intArrayOf(R.id.nav_home, R.id.nav_catalog, R.id.nav_search, R.id.nav_cart, R.id.nav_profile, R.id.nav_guest_profile)
+    private val authDestinations = intArrayOf(R.id.nav_sign_in, R.id.nav_sign_up, R.id.nav_code)
+    private val onboardingDestinations = intArrayOf(R.id.nav_on_boarding)
+    private val splashDestinations = intArrayOf(R.id.nav_splash)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -132,6 +132,16 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
         }
         setOnNavigationItemReselectedListener {}
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            val isLightStatusBar = destination.isAuthDestination || destination.isOnboardingDestination
+            val statusBarColor = when {
+                destination.isAuthDestination -> R.color.colorGlobalWhite
+                destination.isOnboardingDestination -> R.color.colorGreyLight
+                destination.isSplashDestination -> R.color.darkBlue
+                else -> R.color.primaryBlue
+            }
+            setStatusBarColor(statusBarColor)
+            setLightStatusBar(isLightStatusBar)
+
             if (destination.isTopLevelDestination) showNav() else hideNav()
             val isChatForeground = destination.id == R.id.nav_chat
             viewModel.setChatForeground(isChatForeground)
@@ -142,6 +152,15 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
             changeSelection(destination)
         }
     }
+
+    private val NavDestination.isAuthDestination
+        get() = authDestinations.contains(id)
+
+    private val NavDestination.isOnboardingDestination
+        get() = onboardingDestinations.contains(id)
+
+    private val NavDestination.isSplashDestination
+        get() = splashDestinations.contains(id)
 
     private val NavDestination.isTopLevelDestination
         get() = topLevelDestinations.contains(id)

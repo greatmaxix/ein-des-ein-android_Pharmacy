@@ -34,7 +34,7 @@ class BuyerDetailsOrder @JvmOverloads constructor(
 
     private fun updateContent(customer: CustomerOrderData) {
         tvBuyerFullNameOrder.text = customer.name
-        val phoneHolder = "\uD83D\uDCF1 ${customer.phone}"
+        val phoneHolder = "\uD83D\uDCF1${customer.phone}"
         tvBuyerPhoneOrder.text = phoneHolder
         val emailHolder = "\uD83D\uDCEA ${customer.email}"
         tvBuyerEmailOrder.text = emailHolder

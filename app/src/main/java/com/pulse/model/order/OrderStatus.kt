@@ -21,7 +21,15 @@ enum class OrderStatus(val status: String) {
         get() = this == NEW
 
     val statusColor
-        get() = if (isInProgress) R.color.green else R.color.primaryBlue
+        get() = when (this) {
+            NEW -> R.color.blueStatus
+            IN_PROGRESS -> R.color.orangeStatus
+            READY -> R.color.yellowStatus
+            TO_DELIVERY -> R.color.purpleStatus
+            IN_DELIVERY -> R.color.violetStatus
+            DONE -> R.color.greenStatus
+            else -> R.color.redStatus
+        }
 
     val getStatusRes
         get() = when (this) {
@@ -37,7 +45,7 @@ enum class OrderStatus(val status: String) {
     companion object {
         fun getOrderStatus(status: String) = values().find { it.status == status } ?: NEW
 
-        fun getStatusesList() = values().asList().subList(0, 4)
+        fun getStatusesList() = listOf(NEW, IN_PROGRESS, DONE)
     }
 
 }

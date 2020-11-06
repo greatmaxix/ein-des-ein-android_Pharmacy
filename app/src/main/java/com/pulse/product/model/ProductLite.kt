@@ -33,6 +33,9 @@ open class ProductLite(
     val productLocale: String?
         get() = App.localeMap[manufacture.isoCode]?.getDisplayCountry(Locale("RU"))
 
+    val isAggregationEmpty
+        get() = aggregation == null
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

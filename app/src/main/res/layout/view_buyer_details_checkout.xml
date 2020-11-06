@@ -11,7 +11,7 @@
         android:id="@+id/tvBuyerDetailsTitleCheckout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/yourDetails"
+        android:text="@string/buyerDetails"
         android:textAppearance="@style/Text.BlockHeaderBold" />
 
     <com.google.android.material.textfield.TextInputLayout

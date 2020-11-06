@@ -72,7 +72,7 @@ class AddCardFragment : PaymentsBaseFragment(R.layout.fragment_add_card) {
             }
         }
 
-        btnAddCard.mockToast("TODO add card") // TODO add card
+        btnAddCard.mockToast()
 
     }
 
