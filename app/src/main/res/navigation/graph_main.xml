@@ -88,16 +88,6 @@
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
 
-        <action
-            android:id="@+id/fromHomeToChatType"
-            app:destination="@id/nav_chat_type"
-            app:enterAnim="@anim/nav_enter_anim"
-            app:exitAnim="@anim/nav_exit_anim"
-            app:popEnterAnim="@anim/nav_enter_pop_anim"
-            app:popExitAnim="@anim/nav_exit_pop_anim"
-            app:popUpTo="@id/nav_home"
-            app:popUpToInclusive="true" />
-
     </fragment>
 
     <action
@@ -160,6 +150,14 @@
     <action
         android:id="@+id/globalToChat"
         app:destination="@id/nav_chat"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    <action
+        android:id="@+id/globalToChatType"
+        app:destination="@id/nav_chat_type"
         app:enterAnim="@anim/nav_enter_anim"
         app:exitAnim="@anim/nav_exit_anim"
         app:popEnterAnim="@anim/nav_enter_pop_anim"
@@ -380,9 +378,11 @@
         android:name="com.pulse.product.ProductFragment"
         android:label="@null"
         tools:layout="@layout/fragment_product">
+
         <argument
             android:name="product"
             app:argType="com.pulse.product.model.Product" />
+
         <action
             android:id="@+id/fromProductToAuth"
             app:destination="@id/auth_graph"
@@ -390,6 +390,7 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+
         <action
             android:id="@+id/fromProductToChat"
             app:destination="@id/nav_chat"
@@ -397,6 +398,7 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+
         <action
             android:id="@+id/fromProductToPharmacy"
             app:destination="@id/nav_pharmacy"
@@ -404,6 +406,7 @@
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
+
     </fragment>
 
     <action
