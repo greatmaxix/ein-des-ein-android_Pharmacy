@@ -248,7 +248,7 @@
     <string name="chat_description_message5">Ничего сложного, просто укажите свою контактуню информацию</string>
     <string name="readDateHolder">Прочитано %s</string>
     <string name="chatEndedTitle">Чат завершен</string>
-    <string name="chatEndedMessage">Благодарим за использования нашего сервиса! Оставайтесь здоровыми :slightly_smiling_face:</string>
+    <string name="chatEndedMessage">Благодарим за использования нашего сервиса! Оставайтесь здоровыми</string>
     <string name="chatReviewDialogTitle">Как прошла консультация?</string>
     <string name="chatReviewBadDialogTitle">Жаль слышать это 😔</string>
     <string name="chatReviewDialogDescription">Насколько фармацевт был заинтересован в решении Вашего вопроса?</string>
