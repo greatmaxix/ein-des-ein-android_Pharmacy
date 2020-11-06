@@ -42,9 +42,7 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
             adapter = ProductsImageAdapter(args.product.pictures)
             TabLayoutMediator(productImagePagerIndicator, this) { _, _ -> }.attach()
             if (args.product.pictures.isEmpty()) ivProductDetailAbsent.visible()
-            if(args.product.pictures.size < 2) {
-                productImagePagerIndicator.gone()
-            }
+            if(args.product.pictures.size < 2) productImagePagerIndicator.gone()
         }
 
         setProductInfo()

@@ -10,29 +10,29 @@ import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductListViewHolder(override val containerView: View, private val wishClick: (Pair<Boolean, Int>) -> Unit) : BaseViewHolder<ProductLite>(containerView) {
 
-    override fun bind(item: ProductLite) = with(item) {
+    override fun bind(item: ProductLite) = with(itemView) {
 
-        itemView.ivProduct.setProductImage(pictures, isAggregationEmpty)
+        ivProduct.setProductImage(item.pictures, item.isAggregationEmpty)
 
-        itemView.tvTitle.setTextHtml(rusName)
-        itemView.tvSubTitle.setTextHtml(releaseForm)
+        tvTitle.setTextHtml(item.rusName)
+        tvSubTitle.setTextHtml(item.releaseForm)
 
-        itemView.tvManufacture.setTextHtml(stringRes(R.string.manufacture, productLocale))
+        tvManufacture.setTextHtml(stringRes(R.string.manufacture, item.productLocale))
 
-        aggregation?.let {
-            itemView.tvProductPrice.text = stringRes(R.string.price, it.minPrice.formatPrice())
-            itemView.tvProductPrice.visible()
-        } ?: run { itemView.tvProductPrice.gone() }
-        itemView.tvPricePrefix.visibleOrGone(aggregation != null)
-        itemView.tvPriceUnavailable.visibleOrGone(isAggregationEmpty)
-        val colorResId = if (isAggregationEmpty) R.color.greyText else R.color.darkBlue
-        itemView.tvTitle.textColor(colorResId)
-        itemView.tvSubTitle.textColor(colorResId)
-        itemView.tvManufacture.textColor(colorResId)
+        item.aggregation?.let {
+            tvProductPrice.text = stringRes(R.string.price, it.minPrice.formatPrice())
+            tvProductPrice.visible()
+        } ?: run { tvProductPrice.gone() }
+        tvPricePrefix.visibleOrGone(!item.isAggregationEmpty)
+        tvPriceUnavailable.visibleOrGone(item.isAggregationEmpty)
+        val colorResId = if (item.isAggregationEmpty) R.color.greyText else R.color.darkBlue
+        tvTitle.textColor(colorResId)
+        tvSubTitle.textColor(colorResId)
+        tvManufacture.textColor(colorResId)
 
-        with(itemView.ivWish) {
-            setDebounceOnClickListener(2000) { wishClick(!isInWish to globalProductId) }
-            notifyHeart(isInWish)
+        with(ivWish) {
+            setDebounceOnClickListener(2000) { wishClick(!item.isInWish to item.globalProductId) }
+            notifyHeart(item.isInWish)
         }
     }
 
