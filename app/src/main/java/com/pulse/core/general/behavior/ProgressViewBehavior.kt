@@ -26,6 +26,7 @@ class ProgressViewBehavior(private var progressRoot: View?) : IProgressBehavior 
 
     override fun hideProgress() {
         progressRoot?.animateGone(50)
+        anim?.clearAnimationCallbacks()
     }
 
     override fun detach() {
