@@ -27,16 +27,6 @@
             app:popUpToInclusive="true" />
 
         <action
-            android:id="@+id/fromSplashToAuth"
-            app:destination="@id/auth_graph"
-            app:enterAnim="@anim/nav_enter_anim"
-            app:exitAnim="@anim/nav_exit_anim"
-            app:popEnterAnim="@anim/nav_enter_pop_anim"
-            app:popExitAnim="@anim/nav_exit_pop_anim"
-            app:popUpTo="@id/nav_splash"
-            app:popUpToInclusive="true" />
-
-        <action
             android:id="@+id/fromSplashToOnBoarding"
             app:destination="@id/nav_on_boarding"
             app:enterAnim="@anim/nav_enter_anim"

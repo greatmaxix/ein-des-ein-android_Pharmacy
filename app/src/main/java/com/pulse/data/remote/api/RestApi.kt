@@ -25,18 +25,23 @@ import retrofit2.http.*
 
 interface RestApi {
 
+    @WorkerThread
     @POST("/api/v1/customer/registration")
     suspend fun signUp(@Body arguments: Map<String, String>): BaseDataResponse<Unit>
 
+    @WorkerThread
     @POST("/api/v1/customer/auth")
     suspend fun signIn(@Body arguments: Map<String, String>): BaseDataResponse<Unit>
 
+    @WorkerThread
     @POST("/api/v1/customer/login")
     suspend fun signCode(@Body arguments: Map<String, String>): BaseDataResponse<StartInfo>
 
+    @WorkerThread
     @PUT("/api/v1/customer/customer")
     suspend fun updateCustomerInfo(@Body arguments: Map<String, String>): BaseDataResponse<CustomerItem>
 
+    @WorkerThread
     @POST("/api/v1/customer/logout")
     suspend fun logout(@Body arguments: Map<String, String>): Response<JSONObject>
 
@@ -45,9 +50,11 @@ interface RestApi {
     @POST("/api/v1/customer/image")
     suspend fun uploadImage(@Part file: MultipartBody.Part): BaseDataResponse<SingleItemModel<Avatar>>
 
+    @WorkerThread
     @GET("/api/v1/customer/customer")
     suspend fun fetchCustomer(): BaseDataResponse<CustomerItem>
 
+    @WorkerThread
     @GET("/api/v1/public/products/search")
     suspend fun productSearch(
         @Query("page") page: Int? = null,
@@ -58,30 +65,38 @@ interface RestApi {
         @Query("name") name: String? = null
     ): BaseDataResponse<PaginationModel<ProductLite>>
 
+    @WorkerThread
     @GET("/api/v1/public/regions")
     suspend fun regions(): BaseDataResponse<ListItemsModel<Region>>
 
+    @WorkerThread
     @GET("/api/v1/public/products/global-product/{id}")
     suspend fun getProductById(@Path("id") globalProductId: Int): BaseDataResponseWithItem<Product>
 
+    @WorkerThread
     @PATCH("/api/v1/customer/customer/region")
     suspend fun updateRegion(@Body arguments: Map<String, Int>): BaseDataResponse<CustomerItem>
 
+    @WorkerThread
     @POST("/api/v1/customer/wishlist/global-product/{id}")
     suspend fun setToWishList(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
 
+    @WorkerThread
     @DELETE("/api/v1/customer/wishlist/global-product/{id}")
     suspend fun removeFromWishList(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
 
+    @WorkerThread
     @GET("/api/v1/customer/wishlist")
     suspend fun getWishList(
         @Query("page") page: Int? = null,
         @Query("per_page") pageSize: Int? = null
     ): BaseDataResponse<PaginationModel<ProductLite>>
 
+    @WorkerThread
     @GET("/api/v1/public/categories")
     suspend fun categories(): BaseDataResponse<ListItemsModel<Category>>
 
+    @WorkerThread
     @GET("/api/v1/public/pharmacies/global-product/{id}/pharmacy-products")
     suspend fun pharmacyList(
         @Path("id") globalProductId: Int,
@@ -90,18 +105,23 @@ interface RestApi {
         @Query("per_page") pageSize: Int? = null
     ): BaseDataResponse<PaginationModel<Pharmacy>>
 
+    @WorkerThread
     @GET("/api/v1/customer/product-cart")
     suspend fun cartProducts(): BaseDataResponse<PaginationModel<CartItem>>
 
+    @WorkerThread
     @POST("/api/v1/customer/product-cart/pharmacy-product/{id}")
     suspend fun addProductToCart(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
 
+    @WorkerThread
     @DELETE("/api/v1/customer/product-cart/pharmacy-product/{id}")
     suspend fun removeProductFromCart(@Path("id") globalProductId: Int): BaseDataResponse<Unit>
 
+    @WorkerThread
     @POST("/api/v1/customer/order")
     suspend fun sendOrder(@Body body: CreateOrderRequest): BaseDataResponseWithItem<Order>
 
+    @WorkerThread
     @GET("/api/v1/customer/orders")
     suspend fun fetchOrders(
         @Query("status") query: String? = null,
@@ -109,23 +129,39 @@ interface RestApi {
         @Query("per_page") pageSize: Int? = null
     ): BaseDataResponse<PaginationModel<Order>>
 
+    @WorkerThread
     @GET("/api/v1/customer/order/{id}/order-card")
     suspend fun getOrderDetail(@Path("id") id: Int): BaseDataResponseWithItem<Order>
 
+    @WorkerThread
     @PATCH("/api/v1/customer/order/{id}/cancel")
     suspend fun cancelOrder(@Path("id") id: Int): BaseDataResponse<Unit>
 
+    @WorkerThread
     @POST("/api/v1/customer/chat")
     suspend fun createChat(@Body body: CreateChatRequest): BaseDataResponse<SingleItemModel<ChatItem>>
 
+    @WorkerThread
     @PATCH("/api/v1/customer/chat/{chatId}/close")
     suspend fun closeChat(@Path("chatId") chatId: Int): BaseDataResponse<SingleItemModel<ChatItem>>
 
+    @WorkerThread
     @PATCH("/api/v1/customer/chat/{chatId}/continue")
     suspend fun continueChat(@Path("chatId") chatId: Int): BaseDataResponse<SingleItemModel<ChatItem>>
 
+    @WorkerThread
     @GET("/api/v1/chat/chat/{chatId}")
     suspend fun getChat(@Path("chatId") chatId: Int): BaseDataResponse<SingleItemModel<ChatItem>>
+
+    @WorkerThread
+    @GET("/api/v1/chat/chats")
+    suspend fun chatList(
+        @Query("page") page: Int? = 1,
+        @Query("per_page") pageSize: Int? = 50,
+        @Query("all") all: Boolean = false,
+        @Query("active") active: Boolean = true,
+        @Query("order") order: String? = "desc"
+    ): BaseDataResponse<PaginationModel<ChatItem>>
 
     @WorkerThread
     @GET("/api/v1/chat/chat/{chatId}/messages")

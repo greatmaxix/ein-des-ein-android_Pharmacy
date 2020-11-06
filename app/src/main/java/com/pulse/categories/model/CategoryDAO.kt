@@ -19,5 +19,4 @@ interface CategoryDAO : BaseDao<Category> {
 
     @Query("DELETE FROM category")
     fun clear()
-
 }

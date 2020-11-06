@@ -51,7 +51,7 @@ class ChatViewModel(
     private val _isUserLoggedInLiveData by lazy { SingleLiveEvent<Boolean>() }
     val isUserLoggedInLiveData: LiveData<Boolean> by lazy { _isUserLoggedInLiveData }
 
-    private val defaultPagingConfig by lazy { PagingConfig(Constants.PAGE_SIZE, enablePlaceholders = false, prefetchDistance = 1, initialLoadSize = Constants.PAGE_SIZE / 2) }
+    private val defaultPagingConfig by lazy { PagingConfig(Constants.PAGE_SIZE, enablePlaceholders = false) }
 
     val lastMessageLiveData = repository.getLastMessageLiveData(chatId)
         .distinctUntilChanged()
@@ -138,7 +138,6 @@ class ChatViewModel(
             when (val response = repositoryWish.setOrRemoveWish(!(setOrRemove.first.product!!.isInWish) to setOrRemove.second)) {
                 is ResponseWrapper.Success -> {
                     _wishLiveData.postValue(setOrRemove.second)
-                    repository.insertMessagesWithKeys(arrayListOf(setOrRemove.first))
                     wishToSave = null
                 }
                 is ResponseWrapper.Error -> _errorLiveData.postValue(response.errorResId)

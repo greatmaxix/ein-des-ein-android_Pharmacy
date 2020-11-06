@@ -1,15 +1,15 @@
 object Versions {
 
     const val kotlin = "1.4.20-RC"
-    const val coroutines = "1.4.0"
+    const val coroutines = "1.4.1"
 
     const val sdp = "1.0.6"
     const val koin = "2.2.0-rc-4"
     const val glide = "4.11.0"
-    const val okhttp = "4.9.0"
+    const val okhttp = "4.10.0-RC1"
     const val retrofit = "2.9.0"
 
-    const val lifecycle = "2.2.0"
+    const val lifecycle = "2.3.0-beta01"
     const val navigation = "2.3.1"
     const val room = "2.3.0-alpha03"
 

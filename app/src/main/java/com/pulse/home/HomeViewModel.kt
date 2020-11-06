@@ -38,7 +38,8 @@ class HomeViewModel(private val repository: HomeRepository) : BaseProductViewMod
             } else {
                 _progressLiveData.postValue(true)
                 try {
-                    val chatItem = repository.getCurrentChat()
+                    val activeChats = repository.getActiveChats()
+                    val chatItem = activeChats.firstOrNull()
                     if (chatItem?.status != null && chatItem.status != STATUS_CLOSED) {
                         globalToChat(chatItem)
                     } else {
