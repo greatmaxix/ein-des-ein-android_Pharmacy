@@ -27,4 +27,7 @@ interface MessageDAO : BaseDao<MessageItem> {
 
     @Query("SELECT * FROM MessageItem WHERE chatId = :chatId AND messageType = ${ChatMessageAdapter.TYPE_END_CHAT} LIMIT 1")
     fun getEndChatMessages(chatId: Int): MessageItem?
+
+    @Query("SELECT * FROM MessageItem WHERE globalProductId = :globalProductId")
+    suspend fun getProductMessages(globalProductId: Int): List<MessageItem>
 }

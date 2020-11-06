@@ -32,12 +32,12 @@ class ProductViewHolder(itemView: View, private val productClickListener: (Actio
         with(itemView) {
             tag = item
 //            tvChatProductRecipe.text = "Рецепт" // TODO set value and make visible
-            tvChatProductDescription.setTextHtml(item.product?.releaseForm)
-            item.product?.pharmacyProductsAggregationData?.let {
-                tvChatProductPrice.text = context.getString(R.string.price, it.minPrice.toString())
-            }
-            tvChatProductTitle.setTextHtml(item.product?.rusName)
             item.product?.let {
+                tvChatProductDescription.setTextHtml(item.product?.releaseForm)
+                tvChatProductTitle.setTextHtml(item.product?.rusName)
+                it.pharmacyProductsAggregationData?.let {
+                    tvChatProductPrice.text = context.getString(R.string.price, it.minPrice.toString())
+                }
                 ivChatProduct.setProductImage(it)
                 ivWish.setDebounceOnClickListener(2000) {
                     productClickListener(Action.WISH, item to it.globalProductId)

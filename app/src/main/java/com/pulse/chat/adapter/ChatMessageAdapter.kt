@@ -1,11 +1,11 @@
 package com.pulse.chat.adapter
 
 import android.view.ViewGroup
-import androidx.paging.ItemSnapshotList
 import androidx.paging.PagingDataAdapter
 import com.pulse.chat.adapter.viewHolder.*
 import com.pulse.chat.model.message.MessageItem
 import com.pulse.core.base.adapter.BaseViewHolder
+import com.pulse.core.extensions.falseIfNull
 
 class ChatMessageAdapter(
     private val listener: (Action) -> Unit,
@@ -41,16 +41,16 @@ class ChatMessageAdapter(
     }
 
     fun notifyWish(globalProductId: Int) {
-        snapshot().findItemWithPosition { it?.product?.globalProductId == globalProductId }.let {
-            val (product, position) = it
-            product?.product?.apply {
-                wish = !isInWish
-                notifyItemChanged(position, isInWish)
+        val inWish = snapshot().find { it?.product?.globalProductId == globalProductId }?.product?.isInWish.falseIfNull()
+        snapshot().forEachIndexed { position, messageItem ->
+            messageItem?.let {
+                if (it.product?.globalProductId == globalProductId) {
+                    it.product.wish = !inWish
+                    notifyItemChanged(position, it.product.isInWish)
+                }
             }
         }
     }
-
-    private fun <T> ItemSnapshotList<T>.findItemWithPosition(predicate: (T?) -> Boolean) = find(predicate).run { this to indexOf(this) }
 
     companion object {
 

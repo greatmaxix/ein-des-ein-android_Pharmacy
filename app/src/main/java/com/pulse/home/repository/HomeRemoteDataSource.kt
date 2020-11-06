@@ -8,6 +8,10 @@ class HomeRemoteDataSource(private val restApi: RestApi) {
         .dataOrThrow()
         .items
 
+    suspend fun getActiveChats() = restApi.chatList()
+        .dataOrThrow()
+        .items
+
     suspend fun getChat(chatId: Int) = restApi.getChat(chatId)
         .dataOrThrow()
         .item

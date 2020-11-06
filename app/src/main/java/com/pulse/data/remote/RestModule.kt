@@ -30,7 +30,8 @@ val RESTModule = module {
 
     single {
 
-        val baseURL = "https://api.pharmacies.fmc-dev.com" /*"https://api.pharmacies.release.fmc-dev.com"*/ //TODO change to release in future
+        // DEV - "https://api.pharmacies.fmc-dev.com" RELEASE - "https://api.pharmacies.release.fmc-dev.com"
+        val baseURL = "https://api.pharmacies.release.fmc-dev.com"
 
         Retrofit.Builder()
             .baseUrl(baseURL)

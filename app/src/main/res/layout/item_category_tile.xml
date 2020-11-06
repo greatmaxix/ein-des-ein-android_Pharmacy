@@ -37,5 +37,4 @@
             tools:text="Гормоны для системного применения (исключая половые гормоны и инсулины)" />
 
     </LinearLayout>
-
 </com.pulse.ui.CatalogCardView>

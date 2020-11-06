@@ -34,6 +34,8 @@ import com.pulse.chat.ChatFragmentDirections.Companion.fromChatToProductCard
 import com.pulse.chat.adapter.ChatMessageAdapter
 import com.pulse.chat.adapter.ChatMessageAdapter.Action.*
 import com.pulse.chat.adapter.viewHolder.ProductViewHolder
+import com.pulse.chat.adapter.viewHolder.ProductViewHolder.Action.ITEM
+import com.pulse.chat.adapter.viewHolder.ProductViewHolder.Action.WISH
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_FILLED
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_KEY
 import com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment.Companion.CHAT_REVIEW_NOTE_KEY
@@ -89,10 +91,8 @@ class ChatFragment : BaseMVVMFragment(R.layout.fragment_chat) {
         },
         { action: ProductViewHolder.Action, pair: Pair<MessageItem, Int> ->
             when (action) {
-                ProductViewHolder.Action.ITEM -> {
-                    vm.getProductInfo(pair.second)
-                }
-                ProductViewHolder.Action.WISH -> vm.setOrRemoveWish(pair)
+                ITEM -> vm.getProductInfo(pair.second)
+                WISH -> vm.setOrRemoveWish(pair)
             }
         })
 

@@ -76,5 +76,4 @@ class CategoriesViewModel(private val repository: CategoriesRepository, private 
         selectedCategory = find
         return originalList?.filter { find?.nestedCategories?.contains(it.code).falseIfNull() }
     }
-
 }

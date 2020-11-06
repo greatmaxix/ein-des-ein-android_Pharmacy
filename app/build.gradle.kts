@@ -124,14 +124,14 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics:17.2.2")
     implementation("com.google.android.gms:play-services-maps:17.0.0")
     // Flow
-    implementation("io.github.reactivecircus.flowbinding:flowbinding-android:1.0.0-beta01")
+    implementation("io.github.reactivecircus.flowbinding:flowbinding-android:1.0.0-beta02")
     // AndroidX
     implementation("androidx.core:core-ktx:1.5.0-alpha04")
-    implementation("androidx.browser:browser:1.2.0")
+    implementation("androidx.browser:browser:1.3.0-beta01")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
-    implementation("androidx.work:work-runtime-ktx:2.4.0")
+    implementation("androidx.work:work-runtime-ktx:2.5.0-beta01")
     implementation("androidx.collection:collection-ktx:1.1.0")
     implementation("androidx.activity:activity-ktx:1.2.0-beta01")
     implementation("androidx.fragment:fragment-ktx:1.3.0-beta01")
@@ -161,7 +161,7 @@ dependencies {
         implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle")
         implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle")
         implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle")
-        implementation("androidx.lifecycle:lifecycle-extensions:$lifecycle")
+        implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
         implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle")
         // Room
         implementation("androidx.room:room-runtime:$room")

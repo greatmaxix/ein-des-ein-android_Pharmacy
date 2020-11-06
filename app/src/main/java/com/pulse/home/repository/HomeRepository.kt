@@ -16,8 +16,7 @@ class HomeRepository(private val rds: HomeRemoteDataSource, private val lds: Hom
         }
     }
 
-    suspend fun getCurrentChat() = lds.openedChatId
-        ?.let { rds.getChat(it) }
+    suspend fun getActiveChats() = rds.getActiveChats()
 
     fun clearSavedChatId() = lds.clearSavedChatId()
 }

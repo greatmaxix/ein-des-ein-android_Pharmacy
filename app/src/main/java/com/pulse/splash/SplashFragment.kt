@@ -41,8 +41,11 @@ class SplashFragment(private val viewModel: SplashViewModel) : BaseMVVMFragment(
 
     private fun showOnboarding() =
         with(vpSplash) {
-            adapter =
-                SplashPagerAdapter(items, { viewModel.notifyOnboarding() }, { if (currentItem == 2) viewModel.notifyOnboarding() else setCurrentItem(currentItem + 1, true) })
+            adapter = SplashPagerAdapter(
+                items,
+                { viewModel.notifyOnboarding() },
+                { if (currentItem == 2) viewModel.notifyOnboarding() else setCurrentItem(currentItem + 1, true) }
+            )
             offscreenPageLimit = 3
             visible()
         }

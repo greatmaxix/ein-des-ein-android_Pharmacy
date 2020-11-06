@@ -85,6 +85,11 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
                             val header = MessageItem.getStubItem(null, this, ChatMessageAdapter.TYPE_DATE_HEADER, chatId)
                             if (!repository.isHeaderExist(chatId, header.createdAt)) repository.insertMessageWithKey(header)
                         }
+
+                        // TODO get items from DB with product
+                        // get product from with
+                        // update items
+
                         repository.insertMessageWithKey(this)
                         if (!repository.isChatForeground || !isAppForeground) postMessageNotification()
                     }
@@ -189,7 +194,8 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
 
     companion object {
 
-        private const val SERVICE_BASE_URL = "https:/mercure.pharmacies.fmc-dev.com/.well-known/mercure"
+        // DEV https:/mercure.pharmacies.fmc-dev.com/ RELEASE https://mercure.pharmacies.release.fmc-dev.com/
+        private const val SERVICE_BASE_URL = "https://mercure.pharmacies.release.fmc-dev.com/.well-known/mercure"
         private val MERCURE_NOTIFICATION_CHANNEL_ID = UUID.randomUUID().toString()
         private const val MERCURE_NOTIFICATION_CHANNEL_NAME = "Chat notification channel" // TODO set proper value
 
