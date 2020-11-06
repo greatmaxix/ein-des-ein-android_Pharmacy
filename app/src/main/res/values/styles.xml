@@ -63,7 +63,7 @@
     <style name="Logo">
         <item name="android:layout_width">@dimen/_78sdp</item>
         <item name="android:layout_height">@dimen/_78sdp</item>
-        <item name="android:src">@drawable/ic_logo_with_bg</item>
+        <item name="android:src">@drawable/ic_logo</item>
     </style>
 
     <style name="AppToolbarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

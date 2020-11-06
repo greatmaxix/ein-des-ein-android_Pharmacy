@@ -6,7 +6,7 @@
     <item
         android:width="@dimen/_78sdp"
         android:height="@dimen/_78sdp"
-        android:drawable="@drawable/ic_logo_with_bg"
+        android:drawable="@drawable/ic_logo"
         android:gravity="center" />
 
 </layer-list>
