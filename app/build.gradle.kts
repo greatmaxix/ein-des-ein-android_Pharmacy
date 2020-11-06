@@ -1,5 +1,7 @@
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.android.build.gradle.internal.tasks.factory.dependsOn
+import io.github.rockerhieu.versionberg.Git.getCommitCount
+import io.github.rockerhieu.versionberg.Git.getCommitSha
 
 plugins {
     id("com.android.application")
@@ -11,12 +13,20 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.appdistribution")
+    id("io.github.rockerhieu.versionberg")
 }
 
 apply(from = "${project.rootDir}/script/experimentalExtensions.gradle")
 
 tasks {
     named("preBuild").dependsOn(register("generateNavArgsProguardRules", GenerateNavArgsProguardRulesTask::class))
+}
+
+versionberg {
+    setMajor(DefaultConfig.versionMajor)
+    setMinor(DefaultConfig.versionMinor)
+    nameTemplate = "$major.$minor.${getCommitCount(gitDir)}.${getCommitSha(gitDir)}"
+    codeTemplate = "((($major * 100) + $minor) * 100) * 100000 + $build"
 }
 
 android {
@@ -30,27 +40,24 @@ android {
         with(DefaultConfig) {
             minSdkVersion(minSdk)
             targetSdkVersion(targetSdk)
-            versionCode(versionCode)
-            versionName(versionName)
+            versionCode = versionberg.code
+            versionName = versionberg.name
         }
 
         proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
 
-        android.applicationVariants.all {
+        applicationVariants.all {
             outputs.all {
-                (this as BaseVariantOutputImpl).outputFileName = "$applicationId-v.$versionName($versionCode)-$name.apk"
+                if (name.contains("release")) (this as BaseVariantOutputImpl).outputFileName =
+                    "../../apk/$applicationId-$name-$versionName($versionCode).apk"
             }
         }
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments(
-                    mapOf(
-                        "room.schemaLocation" to "$projectDir/schemas",
-                        "room.incremental" to "true",
-                        "room.expandProjection" to "true"
-                    )
-                )
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+                arg("room.incremental", "true")
+                arg("room.expandProjection", "true")
             }
         }
     }
