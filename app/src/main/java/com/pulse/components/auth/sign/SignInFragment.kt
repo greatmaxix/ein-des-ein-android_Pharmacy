@@ -56,7 +56,7 @@ class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
     }
 
     private fun notifyHint(focused: Boolean) {
-        tilPhoneSignIn.prefixText = if (focused) if (DEBUG) "+3" else "+7" else ""
+        tilPhoneSignIn.prefixText = if (DEBUG) "+3" else "+7"
         if (focused) etPhoneSignIn.hint = null else etPhoneSignIn.setHintSpan(hint, hint.length - 1, hint.length)
     }
 

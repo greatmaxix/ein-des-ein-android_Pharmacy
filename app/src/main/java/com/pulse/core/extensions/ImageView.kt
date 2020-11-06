@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
@@ -53,18 +54,6 @@ fun ImageView.loadGlideDrawableByName(drawableName: String, onResourceReady: ((I
         .into(this)
 }
 
-fun ImageView.loadGlideOrder(product: CartProduct) {
-    visible()
-    product.firstPictureUrl?.let {
-        val options: RequestBuilder<Drawable>.() -> Unit = {
-            transition(DrawableTransitionOptions.withCrossFade())
-            override(300)
-            transform(MultiTransformation(CenterCrop(), RoundedCorners(resources.getDimensionPixelSize(R.dimen._6sdp))))
-        }
-        loadGlideDrawableByURL(it, options)
-    }
-}
-
 fun ImageView.loadGlideDrugstore(url: String?) = loadGlideDrawableByURL(url) {
     placeholder(R.drawable.ic_drugstore_base)
     RequestOptions.bitmapTransform(CircleCrop())
@@ -73,14 +62,16 @@ fun ImageView.loadGlideDrugstore(url: String?) = loadGlideDrawableByURL(url) {
 
 fun ImageView.setWish(isWish: Boolean) = setImageResource(isWish.wishResId)
 
-fun ImageView.setProductImage(list: List<Picture>, hasAggregation: Boolean = false) {
+fun ImageView.setProductImage(list: List<Picture>, hasAggregation: Boolean = false, needRoundCorners: Boolean = true, @DrawableRes defaultBackground: Int = R.drawable.bg_product_default_background) {
     loadGlideDrawableByURL(list.firstOrNull()?.url) {
-        transform(CenterCrop(), RoundedCorners(resources.getDimensionPixelSize(R.dimen._8sdp)))
+        transform(CenterCrop())
+        if (needRoundCorners) {
+            transform(RoundedCorners(resources.getDimensionPixelSize(R.dimen._8sdp)))
+        }
         error(R.drawable.default_product_image)
     }
-    val hasPictures = list.isNotEmpty()
-    background = if (hasPictures) null else context.getCompatDrawable(R.drawable.bg_product_default_background)
-    colorFilter = (if (hasAggregation && !hasPictures) ColorFilterUtil.blackWhiteFilter else null)
+    background = if (list.isNotEmpty()) null else context.getCompatDrawable(defaultBackground)
+    colorFilter = (if (hasAggregation) ColorFilterUtil.blackWhiteFilter else null)
 }
 
 // TODO refactor this

@@ -50,6 +50,7 @@
         android:layout_margin="@dimen/_12sdp"
         android:backgroundTint="@color/primaryBlue"
         android:gravity="center"
+        android:textAllCaps="false"
         android:paddingStart="@dimen/_16sdp"
         android:paddingTop="@dimen/_8sdp"
         android:paddingEnd="@dimen/_16sdp"

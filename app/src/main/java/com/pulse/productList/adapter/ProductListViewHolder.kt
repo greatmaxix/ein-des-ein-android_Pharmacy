@@ -12,7 +12,7 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
 
     override fun bind(item: ProductLite) = with(item) {
 
-        itemView.ivProduct.setProductImage(pictures, aggregation == null)
+        itemView.ivProduct.setProductImage(pictures, isAggregationEmpty)
 
         itemView.tvTitle.setTextHtml(rusName)
         itemView.tvSubTitle.setTextHtml(releaseForm)
@@ -24,7 +24,11 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
             itemView.tvProductPrice.visible()
         } ?: run { itemView.tvProductPrice.gone() }
         itemView.tvPricePrefix.visibleOrGone(aggregation != null)
-        itemView.tvPriceUnavailable.visibleOrGone(aggregation == null)
+        itemView.tvPriceUnavailable.visibleOrGone(isAggregationEmpty)
+        val colorResId = if (isAggregationEmpty) R.color.greyText else R.color.darkBlue
+        itemView.tvTitle.textColor(colorResId)
+        itemView.tvSubTitle.textColor(colorResId)
+        itemView.tvManufacture.textColor(colorResId)
 
         with(itemView.ivWish) {
             setDebounceOnClickListener(2000) { wishClick(!isInWish to globalProductId) }

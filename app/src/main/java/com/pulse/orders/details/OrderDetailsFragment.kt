@@ -63,7 +63,10 @@ class OrderDetailsFragment(private val viewModel: OrderDetailsViewModel) : BaseM
             mcvNoteOrderDetails.gone()
         }
 
-        with(args.order.pharmacy) { pharmacyAddressOrder.pharmacy = PharmacyAddressOrder.PharmacyInfo(logo.url, name, location.address) }
+        with(args.order.pharmacy) {
+            pharmacyAddressOrder.makeDial { showDial(it) }
+            pharmacyAddressOrder.pharmacy = PharmacyAddressOrder.PharmacyInfo(logo.url, name, location.address, phone)
+        }
 
         tvNoteOrderDetails.text = comment
 

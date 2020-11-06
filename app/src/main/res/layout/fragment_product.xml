@@ -60,9 +60,9 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mbToPharmacy"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_52sdp"
             android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
             android:paddingVertical="@dimen/_8sdp"
             android:stateListAnimator="@null"
             android:text="@string/findInPharmacies"

@@ -67,7 +67,7 @@ fun Activity.setStatusBarColorInt(@ColorInt color: Int, withAnim: Boolean = fals
 fun Activity.setLightStatusBar(light: Boolean) {
     val flags = window.decorView.systemUiVisibility
     val lightStatusFlag = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-    window.decorView.systemUiVisibility = if (light) flags or lightStatusFlag else flags xor lightStatusFlag
+    window.decorView.systemUiVisibility = if (light) flags or lightStatusFlag else 0
 }
 
 fun Activity.animatorMedium(tick: (Float) -> Unit) {

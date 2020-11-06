@@ -84,11 +84,16 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/addressOrders"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@id/idOrders"
             app:layout_constraintTop_toBottomOf="@id/idOrders"
             tools:text="🏠 ул. Горная 23а, Харьков 🚪дом 4г • кв. 56" />
@@ -116,69 +121,17 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ordersSeparator"
-            tools:text="5 товаров"
-            tools:visibility="gone" />
-
-        <LinearLayout
-            android:id="@+id/imagesContainerOrders"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_36sdp"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/priceOrders"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ordersSeparator">
-
-            <ImageView
-                android:id="@+id/firstItemPreview"
-                android:layout_width="@dimen/_36sdp"
-                android:layout_height="@dimen/_36sdp"
-                android:layout_marginEnd="@dimen/_6sdp"
-                android:contentDescription="@string/firstItemInOrderContentDescription"
-                tools:src="@drawable/default_product_image" />
-
-            <ImageView
-                android:id="@+id/secondItemPreview"
-                android:layout_width="@dimen/_36sdp"
-                android:layout_height="@dimen/_36sdp"
-                android:layout_marginEnd="@dimen/_6sdp"
-                android:contentDescription="@string/secondItemInOrderContentDescription"
-                tools:src="@drawable/default_product_image" />
-
-            <ImageView
-                android:id="@+id/thirdItemPreview"
-                android:layout_width="@dimen/_36sdp"
-                android:layout_height="@dimen/_36sdp"
-                android:layout_marginEnd="@dimen/_6sdp"
-                android:contentDescription="@string/thirdItemInOrderContentDescription"
-                tools:src="@drawable/default_product_image" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/restImagesCount"
-                android:layout_width="@dimen/_36sdp"
-                android:layout_height="match_parent"
-                android:background="@drawable/roundcorner"
-                android:backgroundTint="@color/grey20"
-                android:gravity="center"
-                android:visibility="gone"
-                tools:text="+2"
-                tools:visibility="visible" />
-
-        </LinearLayout>
+            tools:text="5 товаров" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/priceOrders"
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
             android:textColor="@color/primaryBlue"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ordersSeparator"
             tools:text="6568 ₸" />

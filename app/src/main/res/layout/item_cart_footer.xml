@@ -23,6 +23,7 @@
             android:layout_marginStart="@dimen/_2sdp"
             android:stateListAnimator="@null"
             android:text="@string/checkout"
+            android:textAllCaps="false"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
             app:cornerRadius="@dimen/_90sdp"
@@ -30,7 +31,7 @@
             app:layout_constraintStart_toEndOf="@+id/tvDelivery"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTotalPrice"
             style="@style/Text.Edit"
             android:layout_width="0dp"
@@ -44,23 +45,24 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="5000 ₸" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvNumberProducts"
             style="@style/Text.Filled"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="@+id/tvDelivery"
             app:layout_constraintStart_toStartOf="@+id/tvTotalPrice"
             app:layout_constraintTop_toBottomOf="@+id/tvTotalPrice"
             tools:text="2 товара (ов)" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDelivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/deliveryPrice"
+            android:textSize="@dimen/_10ssp"
             android:textColor="@color/purple"
             app:layout_constraintStart_toStartOf="@+id/tvTotalPrice"
             app:layout_constraintTop_toBottomOf="@+id/tvNumberProducts" />

@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
+import com.google.android.material.shape.Shapeable
 import com.google.android.material.textfield.TextInputLayout
 import com.pulse.R
 import kotlinx.coroutines.*
@@ -341,6 +342,19 @@ fun View.setTopRoundCornerBackground(
         }
 
     ViewCompat.setBackground(this, shape)
+}
+
+fun Shapeable.setBottomRoundCornerBackground(radius: Float) {
+    val appearanceModel = ShapeAppearanceModel()
+        .toBuilder()
+        .setBottomRightCorner(CornerFamily.ROUNDED, radius)
+        .setBottomLeftCorner(CornerFamily.ROUNDED, radius)
+        .build()
+
+    val shape = MaterialShapeDrawable(appearanceModel).apply {
+        paintStyle = Paint.Style.FILL
+    }
+    shapeAppearanceModel = shape.shapeAppearanceModel
 }
 
 fun View.mockToast(text: String) = setDebounceOnClickListener {

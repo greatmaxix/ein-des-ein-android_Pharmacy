@@ -202,7 +202,7 @@
         <item name="android:gravity">center</item>
         <item name="chipBackgroundColor">@color/chip_background_color_my_orders</item>
         <item name="chipCornerRadius">@dimen/_6sdp</item>
-        <item name="chipSurfaceColor">@color/defaultChipBackgroundOrders</item>
+        <item name="chipSurfaceColor">@color/colorTransparent</item>
         <item name="rippleColor">@color/chip_ripple_color_my_orders</item>
     </style>
 

@@ -13,10 +13,10 @@ data class Pharmacy(
     @SerializedName("name") val name: String,
     @SerializedName("location") val location: Location,
     @SerializedName("logo") val logo: Logo,
-    @SerializedName("pharmacyProducts") val pharmacyProducts: List<PharmacyProducts>
+    @SerializedName("pharmacyProducts") val pharmacyProducts: List<PharmacyProducts>?
 ) : Parcelable {
 
     val firstProductPrice
-        get() = pharmacyProducts.first().price.toString()
+        get() = pharmacyProducts?.first()?.price.toString()
 
 }

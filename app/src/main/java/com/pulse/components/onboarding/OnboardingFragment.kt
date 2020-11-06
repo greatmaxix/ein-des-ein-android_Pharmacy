@@ -44,6 +44,7 @@ class OnboardingFragment(sp: SPManager) : BaseMVVMFragment(R.layout.fragment_onb
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(vpOnboarding) {
+            isUserInputEnabled = false
             adapter = OnboardingPagerAdapter(items, ::onSkip, ::onNext)
             offscreenPageLimit = 2
             attachBackPressCallback { if (currentItem == AUTH) currentItem = REGION else navigationBack() }

@@ -250,6 +250,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
                     android:orientation="horizontal"
                     android:visibility="invisible"
                     tools:visibility="visible">
@@ -257,31 +258,17 @@
                     <com.pulse.ui.CategoryHomeView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_12sdp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/colorGlobalWhite"
-                        app:cardCornerRadius="@dimen/_6sdp"
-                        app:cardElevation="@dimen/_6sdp"
-                        app:cardUseCompatPadding="true" />
+                        android:layout_weight="1" />
 
                     <com.pulse.ui.CategoryHomeView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/colorGlobalWhite"
-                        app:cardCornerRadius="@dimen/_6sdp"
-                        app:cardElevation="@dimen/_6sdp"
-                        app:cardUseCompatPadding="true" />
+                        android:layout_weight="1" />
 
                     <com.pulse.ui.CategoryHomeView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_12sdp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/colorGlobalWhite"
-                        app:cardCornerRadius="@dimen/_6sdp"
-                        app:cardElevation="@dimen/_6sdp"
-                        app:cardUseCompatPadding="true" />
+                        android:layout_weight="1" />
 
                 </LinearLayout>
 

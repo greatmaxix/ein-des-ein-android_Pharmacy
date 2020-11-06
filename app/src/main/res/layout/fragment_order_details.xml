@@ -71,6 +71,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvBuyerDetailsTitleOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/pharmacyAddress"
+                android:textAppearance="@style/Text.BlockHeaderBold"
+                app:layout_constraintEnd_toStartOf="@+id/tvBuyerDetailsEditOrder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.pulse.ui.PharmacyAddressOrder
                 android:id="@+id/pharmacyAddressOrder"
                 android:layout_width="match_parent"

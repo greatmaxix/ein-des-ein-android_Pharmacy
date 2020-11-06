@@ -140,11 +140,12 @@
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <View
+        android:id="@+id/cartDivider"
         android:layout_width="0dp"
         android:layout_height="0.5dp"
         android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginBottom="10dp"
-        android:background="@color/grey"
+        android:background="@color/lightGrey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"

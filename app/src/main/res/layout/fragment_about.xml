@@ -13,8 +13,8 @@
 
     <ImageView
         android:id="@+id/ivAbout"
-        android:layout_width="@dimen/_64sdp"
-        android:layout_height="@dimen/_64sdp"
+        android:layout_width="@dimen/_72sdp"
+        android:layout_height="@dimen/_72sdp"
         android:layout_margin="@dimen/_16sdp"
         android:src="@drawable/ic_logo_with_bg"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_16sdp"
-        android:text="1208742, г. Астана, ул. Бейбитшилик, 33, подьезд 6, этаж 5, помещение 730"
+        android:text="@string/aboutAddress"
         android:textColor="@color/darkBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivAbout"
@@ -50,7 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_12sdp"
         app:iconProfile="@drawable/ic_user_agreement"
         app:layout_constraintEnd_toEndOf="parent"
