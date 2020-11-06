@@ -1,7 +1,6 @@
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 import io.github.rockerhieu.versionberg.Git.getCommitCount
-import io.github.rockerhieu.versionberg.Git.getCommitSha
 
 plugins {
     id("com.android.application")
@@ -25,7 +24,7 @@ tasks {
 versionberg {
     setMajor(DefaultConfig.versionMajor)
     setMinor(DefaultConfig.versionMinor)
-    nameTemplate = "$major.$minor.${getCommitCount(gitDir)}.${getCommitSha(gitDir)}"
+    nameTemplate = "$major.$minor.${getCommitCount(gitDir)}}"
     codeTemplate = "((($major * 100) + $minor) * 100) * 100000 + $build"
 }
 
@@ -48,8 +47,7 @@ android {
 
         applicationVariants.all {
             outputs.all {
-                if (name.contains("release")) (this as BaseVariantOutputImpl).outputFileName =
-                    "../../apk/$applicationId-$name-$versionName($versionCode).apk"
+                (this as BaseVariantOutputImpl).outputFileName = "../../apk/$applicationId-$name-$versionName($versionCode).apk"
             }
         }
 
