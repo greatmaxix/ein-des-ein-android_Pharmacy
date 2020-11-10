@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--todo возможно это лаяут лишний-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,8 +16,8 @@
         android:maxWidth="@dimen/_260sdp"
         android:paddingHorizontal="@dimen/_16sdp"
         android:paddingVertical="@dimen/_8sdp"
+        android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/darkBlue"
-        android:textSize="@dimen/_11sdp"
-        tools:text="Some text message Some text message Some text message Some text message Some text message " />
+        tools:text="Да, от лимона у меня краснеют щеки и от мяты глаза чешуться и слезяться иногда" />
 
 </LinearLayout>

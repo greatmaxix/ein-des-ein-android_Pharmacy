@@ -8,13 +8,12 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvText"
-        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/_12sdp"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
         android:textColor="@color/darkBlue"
-        android:textStyle="bold"
         tools:text="@string/signIn" />
 
     <ImageView

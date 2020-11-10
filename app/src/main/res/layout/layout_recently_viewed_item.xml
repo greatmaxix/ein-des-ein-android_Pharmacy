@@ -18,19 +18,17 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvNameRecentlyViewed"
-            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_8sdp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceButton"
             android:textColor="@color/darkBlue"
-            android:textStyle="bold"
             tools:text="Название товара" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDescriptionRecentlyViewed"
-            style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
@@ -38,6 +36,7 @@
             android:layout_marginBottom="@dimen/_8sdp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceCaption"
             android:textColor="@color/darkBlue"
             tools:text="Таблетки шипучие , 20 мг" />
 
@@ -50,30 +49,28 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvPriceFromPrefixRecentlyViewed"
-                style="@style/Text.Edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/from"
-                android:textSize="@dimen/_11ssp" />
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/primaryBlue" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvPriceFromRecentlyViewed"
-                style="@style/Text.Edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4sdp"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/primaryBlue"
                 tools:text="580 ₸" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvPriceUnavailableRecentlyViewed"
-                style="@style/Text.Edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/temporaryUnavailable"
+                android:textAppearance="?attr/textAppearanceCaption"
                 android:textColor="@color/greyText"
-                android:textSize="@dimen/_10ssp"
                 android:visibility="gone"
                 tools:visibility="visible" />
 

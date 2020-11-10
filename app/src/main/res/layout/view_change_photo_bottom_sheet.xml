@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/_12sdp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/change_photo_bottom_sheet_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,12 +15,12 @@
         android:background="@drawable/background_default_ripple_selector_rect"
         android:padding="@dimen/_12sdp"
         android:text="@string/changePhotoGallery"
-        android:textSize="@dimen/_11ssp"
+        android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/change_photo_bottom_sheet_camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,10 +28,10 @@
         android:background="@drawable/background_default_ripple_selector_rect"
         android:padding="@dimen/_12sdp"
         android:text="@string/changePhotoCamera"
-        android:textSize="@dimen/_11ssp"
+        android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constraintTop_toBottomOf="@id/change_photo_bottom_sheet_gallery" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/change_photo_bottom_sheet_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         android:background="@drawable/background_default_ripple_selector_rect"
         android:padding="@dimen/_12sdp"
         android:text="@string/changePhotoDelete"
-        android:textSize="@dimen/_11ssp"
+        android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constraintTop_toBottomOf="@id/change_photo_bottom_sheet_camera" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

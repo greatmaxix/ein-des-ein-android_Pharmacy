@@ -23,7 +23,8 @@
             android:inputType="textCapSentences"
             android:lines="1"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,7 +47,8 @@
             android:lines="1"
             android:maxLines="1"
             android:paddingEnd="@dimen/_40sdp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,6 +78,7 @@
                 android:lines="1"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceBody2"
                 app:endIconMode="clear_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -101,6 +104,7 @@
                 android:lines="1"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceBody2"
                 app:endIconMode="clear_text" />
 
         </com.google.android.material.textfield.TextInputLayout>

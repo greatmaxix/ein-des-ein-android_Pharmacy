@@ -15,7 +15,6 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/mtvRegionName"
-        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -23,6 +22,7 @@
         android:gravity="center_vertical"
         android:maxLines="1"
         android:padding="@dimen/_10sdp"
+        android:textAppearance="?attr/textAppearanceBody1"
         android:textColor="@color/darkBlue"
         tools:text="Нур султан" />
 

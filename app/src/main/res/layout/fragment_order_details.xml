@@ -32,9 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_23sdp"
             android:gravity="center"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
             android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_11ssp"
-            android:textStyle="bold"
             android:visibility="gone"
             tools:text="@string/orderWithIdCanceled"
             tools:visibility="visible" />
@@ -46,8 +45,8 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_24sdp"
             android:gravity="center"
+            android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_11ssp"
             android:visibility="gone"
             tools:text="@string/orderCanceled"
             tools:visibility="visible" />
@@ -73,12 +72,12 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvBuyerDetailsTitleOrder"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:text="@string/pharmacyAddress"
-                android:textAppearance="@style/Text.BlockHeaderBold"
+                android:textAppearance="?attr/textAppearanceButton"
                 app:layout_constraintEnd_toStartOf="@+id/tvBuyerDetailsEditOrder"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -99,6 +98,7 @@
                 android:layout_marginTop="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:elevation="0dp"
+                android:textAppearance="?attr/textAppearanceBody2"
                 app:cardBackgroundColor="@color/primaryBlueLight20"
                 app:cardCornerRadius="@dimen/_8sdp"
                 app:contentPadding="@dimen/_16sdp"
@@ -109,8 +109,8 @@
                     android:id="@+id/tvNoteOrderDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceCaption"
                     android:textColor="@color/darkBlue"
-                    android:textSize="@dimen/_12ssp"
                     tools:text="Оставьте у двери, предварительно позвонив 4 раза в дверь" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -130,7 +130,7 @@
                 android:layout_marginTop="@dimen/_32sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:text="@string/paymentType"
-                android:textAppearance="@style/Text.BlockHeaderBold" />
+                android:textAppearance="?attr/textAppearanceButton" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -148,6 +148,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_8sdp"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/darkBlue"
                     tools:drawableEnd="@drawable/ic_google_pay"
                     tools:text="Google Pay" />
 
@@ -160,7 +162,7 @@
                 android:layout_marginTop="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:text="@string/orderList"
-                android:textAppearance="@style/Text.BlockHeaderBold" />
+                android:textAppearance="?attr/textAppearanceButton" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProductsOrderDetails"
@@ -185,17 +187,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/totalPayable"
-                    android:textColor="@color/darkBlue"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold" />
+                    android:textAppearance="?attr/textAppearanceButton"
+                    android:textColor="@color/darkBlue" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvTotalPayableOrderDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
                     android:textColor="@color/primaryBlue"
-                    android:textSize="@dimen/_18sdp"
-                    android:textStyle="bold"
                     tools:text="382 ₸" />
 
             </LinearLayout>
@@ -210,9 +210,8 @@
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:gravity="center"
                 android:text="@string/cancelOrderDetails"
+                android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/primaryBlue"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold"
                 android:visibility="gone"
                 app:backgroundTint="@color/colorGlobalWhite"
                 app:cornerRadius="@dimen/_20sdp"

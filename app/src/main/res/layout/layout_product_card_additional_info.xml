@@ -13,8 +13,7 @@
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
         android:text="@string/productDescription"
-
-        android:textAppearance="@style/Text.BlockHeaderBold"
+        android:textAppearance="?attr/textAppearanceButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,9 +25,8 @@
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
+        android:textAppearance="?attr/textAppearanceBody1"
         android:textColor="@color/darkBlue"
-        android:textSize="@dimen/_13ssp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mtvDescriptionTitle"
@@ -55,9 +53,10 @@
             android:drawableStart="@drawable/ic_file_text"
             android:drawableEnd="@drawable/ic_download"
             android:drawablePadding="@dimen/_8sdp"
+            android:gravity="center_vertical"
             android:text="@string/instruction"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
             android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />
@@ -85,8 +84,8 @@
             android:drawableStart="@drawable/ic_about"
             android:drawablePadding="@dimen/_8sdp"
             android:text="@string/instructionAttention"
+            android:textAppearance="?attr/textAppearanceOverline"
             android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_9ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />
@@ -125,8 +124,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/remainQuestions"
+                    android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_10ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />
@@ -136,9 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/askPharmacist"
+                    android:textAppearance="?attr/textAppearanceButton"
                     android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />

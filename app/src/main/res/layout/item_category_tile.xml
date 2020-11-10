@@ -31,9 +31,8 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/_4sdp"
             android:gravity="bottom"
+            android:textAppearance="?attr/textAppearanceCaption"
             android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_10ssp"
-            android:textStyle="bold"
             tools:text="Гормоны для системного применения (исключая половые гормоны и инсулины)" />
 
     </LinearLayout>

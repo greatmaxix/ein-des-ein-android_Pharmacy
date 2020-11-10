@@ -37,24 +37,23 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTitleSignUp"
-            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_12sdp"
             android:gravity="center"
             android:text="@string/accountCreationAuth"
+            android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/darkBlue"
-            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/ivLogoSignUp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvSubTitleSignUp"
-            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_6sdp"
             android:gravity="center"
             android:text="@string/pleaseAuth"
+            android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="@color/darkBlue"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleSignUp" />
 
@@ -82,7 +81,8 @@
                 android:inputType="textPersonName"
                 android:lines="1"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceBody2" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +99,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilName"
-            app:prefixText="+7">
+            app:prefixText="+7"
+            app:prefixTextAppearance="?attr/textAppearanceBody2">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPhoneSignUp"
@@ -111,6 +112,7 @@
                 android:lines="1"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceBody2"
                 tools:hint="@string/authPhoneHint" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -137,7 +139,8 @@
                 android:inputType="textWebEmailAddress"
                 android:lines="1"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceBody2" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -157,7 +160,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
             android:gravity="center"
-            android:textSize="@dimen/_11ssp"
+            android:textAppearance="?attr/textAppearanceCaption"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnRegister"
