@@ -8,88 +8,162 @@
     android:background="@color/colorGreyLight"
     android:orientation="vertical">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvToolbarHome"
-        style="@style/SearchCardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clToolbarContainerHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/primaryBlue"
+        android:background="@drawable/bg_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background_home_toolbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTitleToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:text="@string/startSearching"
+            android:textColor="@color/colorGlobalWhite"
+            android:textSize="@dimen/_28ssp"
+            app:layout_constraintBottom_toTopOf="@+id/cardSearchHome"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSearchHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTitleToolbar"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:backgroundTint="@color/colorRippleWhiteSemiTransparent"
+            app:cardCornerRadius="@dimen/_16sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cardScanHome"
+            app:layout_constraintEnd_toStartOf="@id/cardScanHome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cardScanHome"
+            app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvTitleToolbar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:text="@string/startSearching"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="@dimen/_8sdp"
+                android:text="@string/searchHintHome"
                 android:textColor="@color/colorGlobalWhite"
-                android:textSize="@dimen/_18ssp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvSearchHome"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvTitleToolbar"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:backgroundTint="@color/colorRippleWhiteSemiTransparent"
-                app:cardCornerRadius="@dimen/_16sdp"
-                app:cardElevation="0dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintEnd_toStartOf="@id/mcvScanHome"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTitleToolbar"
-                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:layout_marginBottom="@dimen/_6sdp"
-                    android:drawableStart="@drawable/ic_search"
-                    android:text="@string/searchHintHome"
-                    android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_14ssp" />
 
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvScanHome"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardScanHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:backgroundTint="@color/green"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/mcvSearchHome"
-                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+                android:layout_alignTop="@id/cardSearchHome"
+                android:layout_alignBottom="@id/cardSearchHome"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_barcode" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/mcvSearchHome"
-                    android:layout_alignBottom="@id/mcvSearchHome"
-                    android:contentDescription="@string/scanDrugsContentDescription"
-                    android:padding="@dimen/_6sdp"
-                    android:src="@drawable/ic_barcode" />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </com.google.android.material.card.MaterialCardView>
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content">-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    <!--            <com.google.android.material.textview.MaterialTextView-->
+    <!--                android:id="@+id/tvTitleToolbar"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="@dimen/_12sdp"-->
+    <!--                android:layout_marginTop="@dimen/_16sdp"-->
+    <!--                android:text="@string/startSearching"-->
+    <!--                android:textColor="@color/colorGlobalWhite"-->
+    <!--                android:textSize="@dimen/_18ssp"-->
+    <!--                android:textStyle="bold"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--            <com.google.android.material.card.MaterialCardView-->
+    <!--                android:id="@+id/mcvSearchHome"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_below="@id/tvTitleToolbar"-->
+    <!--                android:layout_marginEnd="@dimen/_8sdp"-->
+    <!--                android:backgroundTint="@color/colorRippleWhiteSemiTransparent"-->
+    <!--                app:cardCornerRadius="@dimen/_16sdp"-->
+    <!--                app:cardElevation="0dp"-->
+    <!--                app:cardUseCompatPadding="true"-->
+    <!--                app:layout_constraintEnd_toStartOf="@id/mcvScanHome"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@id/tvTitleToolbar"-->
+    <!--                app:rippleColor="@color/colorRippleWhiteSemiTransparent">-->
+
+    <!--                <com.google.android.material.textview.MaterialTextView-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="center_vertical"-->
+    <!--                    android:layout_marginStart="@dimen/_8sdp"-->
+    <!--                    android:layout_marginTop="@dimen/_6sdp"-->
+    <!--                    android:layout_marginBottom="@dimen/_6sdp"-->
+    <!--                    android:drawableStart="@drawable/ic_search"-->
+    <!--                    android:text="@string/searchHintHome"-->
+    <!--                    android:textColor="@color/colorGlobalWhite"-->
+    <!--                    android:textSize="@dimen/_12ssp" />-->
+
+    <!--            </com.google.android.material.card.MaterialCardView>-->
+
+    <!--            <com.google.android.material.card.MaterialCardView-->
+    <!--                android:id="@+id/mcvScanHome"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginEnd="@dimen/_8sdp"-->
+    <!--                android:backgroundTint="@color/green"-->
+    <!--                app:cardCornerRadius="@dimen/_8sdp"-->
+    <!--                app:cardElevation="0dp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="@id/mcvSearchHome"-->
+    <!--                app:rippleColor="@color/colorRippleWhiteSemiTransparent">-->
+
+    <!--                <ImageView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_alignTop="@id/mcvSearchHome"-->
+    <!--                    android:layout_alignBottom="@id/mcvSearchHome"-->
+    <!--                    android:contentDescription="@string/scanDrugsContentDescription"-->
+    <!--                    android:padding="@dimen/_6sdp"-->
+    <!--                    android:src="@drawable/ic_barcode" />-->
+
+    <!--            </com.google.android.material.card.MaterialCardView>-->
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     <ScrollView
         style="@style/ScrollStyle"
