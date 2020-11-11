@@ -18,5 +18,4 @@ object CategoryWrapper {
         "Противопаразитарные препараты, инсектициды и репелленты" to R.drawable.ic_catalog_11,
         "Дыхательная система" to R.drawable.ic_catalog_12,
     )
-
 }

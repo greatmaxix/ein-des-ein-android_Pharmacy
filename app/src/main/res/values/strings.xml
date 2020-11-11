@@ -147,9 +147,9 @@
     <string name="startSearching">Начните поиск</string>
     <string name="searchHintHome">Ношпа</string>
     <string name="orderSubtitleHome">Вы можете использовать их при заказе доставки или самовывоз</string>
-    <string name="askTitleHome">Спроси фармацевта</string>
+    <string name="askTitleHome">Спроси специалиста</string>
     <string name="analyzeTitleHome">Анализы и диагностика</string>
-    <string name="mapTitleHome">Карта\nаптек</string>
+    <string name="mapTitleHome">Аптеки на\nкарте</string>
     <string name="categoriesTitleHome">Категории</string>
     <string name="seeAllCategoriesHome">Смотреть все</string>
     <string name="uploadRecipesHome">Загрузить рецепт</string>

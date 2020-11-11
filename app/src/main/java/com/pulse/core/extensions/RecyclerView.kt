@@ -41,6 +41,11 @@ fun RecyclerView.addAutoKeyboardCloser() {
 
 fun RecyclerView.addItemDecorator(
     needTopSpacing: Boolean = true,
+    space: Int
+) = addItemDecorator(needTopSpacing, space, space, space, space)
+
+fun RecyclerView.addItemDecorator(
+    needTopSpacing: Boolean = true,
     top: Int? = null,
     start: Int? = null,
     end: Int? = null,
