@@ -12,14 +12,6 @@ import kotlinx.android.synthetic.main.item_chat_product.view.*
 class ProductViewHolder(itemView: View, private val productClickListener: (Action, Pair<MessageItem, Int>) -> Unit) : BaseViewHolder<MessageItem>(itemView) {
 
     init {
-        val radius = resources.getDimension(R.dimen._8sdp)
-        itemView.cardChatProduct.shapeAppearanceModel = itemView.cardChatProduct.shapeAppearanceModel
-            .toBuilder()
-            .setTopLeftCorner(CornerFamily.ROUNDED, 0f)
-            .setTopRightCorner(CornerFamily.ROUNDED, 0f)
-            .setBottomRightCorner(CornerFamily.ROUNDED, radius)
-            .setBottomLeftCorner(CornerFamily.ROUNDED, radius)
-            .build()
         itemView.setDebounceOnClickListener {
             val item = tag as MessageItem?
             if (item?.product != null) {
