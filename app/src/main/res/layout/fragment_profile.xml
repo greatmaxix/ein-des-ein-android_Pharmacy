@@ -40,13 +40,12 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtvNameProfile"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
                 android:textColor="@color/darkBlue"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/mtvPhoneProfile"
                 app:layout_constraintStart_toEndOf="@id/ivProfile"
                 app:layout_constraintTop_toTopOf="@id/ivProfile"
@@ -54,10 +53,10 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtvPhoneProfile"
-                style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
+                android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/darkBlue"
                 app:layout_constraintBottom_toBottomOf="@id/ivProfile"
                 app:layout_constraintStart_toEndOf="@id/ivProfile"
@@ -127,8 +126,8 @@
                             android:layout_gravity="center"
                             android:layout_marginBottom="@dimen/_8sdp"
                             android:text="@string/wishProfile"
-                            android:textColor="@color/darkBlue"
-                            android:textSize="@dimen/_10ssp" />
+                            android:textAppearance="?attr/textAppearanceCaption"
+                            android:textColor="@color/darkBlue" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -162,8 +161,8 @@
                             android:layout_gravity="center"
                             android:layout_marginBottom="@dimen/_8sdp"
                             android:text="@string/orderProfile"
-                            android:textColor="@color/darkBlue"
-                            android:textSize="@dimen/_10ssp" />
+                            android:textAppearance="?attr/textAppearanceCaption"
+                            android:textColor="@color/darkBlue" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -197,8 +196,8 @@
                             android:layout_gravity="center"
                             android:layout_marginBottom="@dimen/_8sdp"
                             android:text="@string/analysesProfile"
-                            android:textColor="@color/darkBlue"
-                            android:textSize="@dimen/_10ssp" />
+                            android:textAppearance="?attr/textAppearanceCaption"
+                            android:textColor="@color/darkBlue" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -232,8 +231,8 @@
                             android:layout_gravity="center"
                             android:layout_marginBottom="@dimen/_8sdp"
                             android:text="@string/recipesProfile"
-                            android:textColor="@color/darkBlue"
-                            android:textSize="@dimen/_10ssp" />
+                            android:textAppearance="?attr/textAppearanceCaption"
+                            android:textColor="@color/darkBlue" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

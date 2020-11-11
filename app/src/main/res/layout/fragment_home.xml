@@ -29,9 +29,8 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:text="@string/startSearching"
+                android:textAppearance="?attr/textAppearanceHeadline4"
                 android:textColor="@color/colorGlobalWhite"
-                android:textSize="@dimen/_18ssp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,8 +58,8 @@
                     android:layout_marginBottom="@dimen/_6sdp"
                     android:drawableStart="@drawable/ic_search"
                     android:text="@string/searchHintHome"
-                    android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/colorGlobalWhite" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -131,8 +130,8 @@
                     android:layout_gravity="bottom"
                     android:layout_margin="@dimen/_8sdp"
                     android:text="@string/askTitleHome"
-                    android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_9ssp" />
+                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:textColor="@color/colorGlobalWhite" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -164,8 +163,8 @@
                     android:layout_gravity="bottom"
                     android:layout_margin="@dimen/_8sdp"
                     android:text="@string/analyzeTitleHome"
-                    android:textColor="@color/primaryBlue"
-                    android:textSize="@dimen/_9ssp" />
+                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:textColor="@color/primaryBlue" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -199,21 +198,20 @@
                     android:layout_gravity="bottom"
                     android:layout_margin="@dimen/_8sdp"
                     android:text="@string/mapTitleHome"
-                    android:textColor="@color/colorGlobalWhite"
-                    android:textSize="@dimen/_9ssp" />
+                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:textColor="@color/colorGlobalWhite" />
 
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtvCategoryTitleHome"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:text="@string/categoriesTitleHome"
+                android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/darkBlue"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mcvAskHome" />
 
@@ -229,8 +227,8 @@
                 android:paddingEnd="@dimen/_8sdp"
                 android:text="@string/seeAllCategoriesHome"
                 android:textAllCaps="false"
+                android:textAppearance="?attr/textAppearanceCaption"
                 android:textColor="@color/primaryBlue"
-                android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/mtvCategoryTitleHome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/mtvCategoryTitleHome" />
@@ -292,9 +290,8 @@
                 android:backgroundTint="@color/green"
                 android:padding="@dimen/_8sdp"
                 android:text="@string/uploadRecipesHome"
-                android:textAllCaps="false"
+                android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/colorGlobalWhite"
-                android:textStyle="bold"
                 app:cornerRadius="@dimen/_24sdp"
                 app:icon="@drawable/ic_recipes"
                 app:iconGravity="textStart"
@@ -305,14 +302,13 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvRecentlyViewedTitle"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:text="@string/recentlyViewedTitle"
+                android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/darkBlue"
-                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/uploadRecipes"

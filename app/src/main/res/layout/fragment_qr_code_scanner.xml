@@ -59,9 +59,8 @@
             android:paddingStart="@dimen/_24sdp"
             android:paddingEnd="@dimen/_24sdp"
             android:text="@string/qrCodeDescription"
-            android:textColor="@color/colorGlobalWhite"
-            android:textSize="@dimen/_10ssp"
-            android:textStyle="bold" />
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/colorGlobalWhite" />
 
     </FrameLayout>
 
@@ -84,8 +83,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
         android:text="@string/pointToBarcode"
+        android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/colorGlobalWhite"
-        android:textSize="@dimen/_20ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -122,8 +121,8 @@
         android:layout_marginTop="@dimen/_48sdp"
         android:layout_marginEnd="@dimen/_32sdp"
         android:text="@string/qrCodeDescriptionTop"
+        android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/colorGlobalWhite"
-        android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/qrCodeDescriptionTopIcon"
         app:layout_constraintTop_toBottomOf="@+id/qrCodeDescriptionTitle" />
@@ -158,8 +157,8 @@
         android:layout_marginTop="@dimen/_64sdp"
         android:layout_marginEnd="@dimen/_32sdp"
         android:text="@string/qrCodeDescriptionBottom"
+        android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/colorGlobalWhite"
-        android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/qrCodeDescriptionBottomIcon"
         app:layout_constraintTop_toBottomOf="@+id/qrCodeDescriptionTop" />
@@ -175,9 +174,8 @@
         android:backgroundTint="@color/primaryBlue"
         android:gravity="center"
         android:text="@string/understandScan"
-        android:textAllCaps="false"
+        android:textAppearance="?attr/textAppearanceButton"
         android:textColor="@color/colorGlobalWhite"
-        android:textStyle="bold"
         app:cornerRadius="@dimen/_24sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

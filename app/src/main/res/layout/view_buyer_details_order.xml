@@ -8,10 +8,10 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvBuyerDetailsTitleOrder"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/buyerDetails"
-        android:textAppearance="@style/Text.BlockHeaderBold"
+        android:textAppearance="?attr/textAppearanceButton"
         app:layout_constraintEnd_toStartOf="@+id/tvBuyerDetailsEditOrder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_2sdp"
-                android:textAppearance="@style/Text.Filled"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/darkBlue"
                 tools:text="Some User Name" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -47,7 +48,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:textAppearance="@style/Text.Filled"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/darkBlue"
                 tools:text="+78 012 345 678 90" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -55,7 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:textAppearance="@style/Text.Filled"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/darkBlue"
                 tools:text="some@user.email" />
 
         </LinearLayout>

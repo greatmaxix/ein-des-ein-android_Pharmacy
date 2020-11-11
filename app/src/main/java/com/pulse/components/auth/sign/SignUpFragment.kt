@@ -32,6 +32,7 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
 
         etEmail.onDoneImeAction { registerOrError() }
         tilPhone.setPhoneRule()
+        tilPhone.fixPrefixGravity()
 
         etName.setAsteriskHint(nameHint, nameHint.length - 1, nameHint.length, false)
 

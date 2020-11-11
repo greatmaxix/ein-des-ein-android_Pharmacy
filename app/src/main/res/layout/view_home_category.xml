@@ -42,11 +42,10 @@
             android:gravity="center|top"
             android:maxLines="2"
             android:minLines="2"
-            android:paddingStart="@dimen/_4sdp"
-            android:paddingEnd="@dimen/_4sdp"
+            android:paddingHorizontal="@dimen/_4sdp"
             android:paddingBottom="@dimen/_4sdp"
+            android:textAppearance="?attr/textAppearanceOverline"
             android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_8ssp"
             android:visibility="invisible"
             tools:text="Пищеварительный тракт и обмен вещест"
             tools:visibility="visible" />

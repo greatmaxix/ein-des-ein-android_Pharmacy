@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dontHaveAnAccountAuth"
+        android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/darkBlue"
         app:layout_constraintBottom_toBottomOf="@+id/tvAction"
         app:layout_constraintEnd_toStartOf="@+id/tvAction"
@@ -26,8 +27,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/background_default_ripple_selector_rect"
         android:text="@string/registrationAuth"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
         android:textColor="@color/primaryBlue"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/mtvSkip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvDescription" />
@@ -37,6 +38,8 @@
         style="@style/BaseTextSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="@color/grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

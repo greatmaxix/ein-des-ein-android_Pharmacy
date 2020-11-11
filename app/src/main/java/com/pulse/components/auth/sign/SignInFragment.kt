@@ -12,6 +12,7 @@ import com.pulse.core.extensions.onClick
 import com.pulse.core.extensions.onDoneImeAction
 import com.pulse.core.extensions.text
 import com.pulse.splash.SplashFragmentDirections.Companion.globalToHome
+import com.pulse.ui.text.fixPrefixGravity
 import com.pulse.ui.text.isPhoneNumberValid
 import com.pulse.ui.text.setHintSpan
 import com.pulse.ui.text.setPhoneRule
@@ -33,6 +34,7 @@ class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
         vm.nextDestinationId = args.nextDestinationId
 
         tilPhoneSignIn.setPhoneRule()
+        tilPhoneSignIn.fixPrefixGravity()
 
         etPhoneSignIn.onDoneImeAction { loginOrError() }
 

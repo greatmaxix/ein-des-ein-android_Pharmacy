@@ -11,9 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
+        android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/darkBlue"
-        android:textSize="@dimen/_18ssp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
+        android:textAppearance="?attr/textAppearanceBody1"
         android:textColor="@color/darkBlue"
-        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
@@ -39,73 +38,70 @@
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:layout_marginEnd="@dimen/_12sdp"
+        android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/greyText"
-        android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSubTitle"
         tools:text="Chinoin Pharmaceutical and Chemical Works Co.  Венгрия" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvPriceUnavailable"
-        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_24sdp"
         android:text="@string/temporaryUnavailable"
+        android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/greyText"
-        android:textSize="@dimen/_13ssp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvManufacture" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvPriceFromPrefix"
-        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_24sdp"
         android:layout_marginBottom="@dimen/_8sdp"
         android:text="@string/from"
-        android:textSize="@dimen/_12ssp"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="@color/primaryBlue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvManufacture" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvPriceFrom"
-        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
-        android:textSize="@dimen/_18ssp"
-        android:textStyle="bold"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textColor="@color/primaryBlue"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvPriceFromPrefix"
         app:layout_constraintStart_toEndOf="@+id/tvPriceFromPrefix"
         tools:text="580 ₸" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvPriceToPrefix"
-        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
         android:layout_marginTop="@dimen/_24sdp"
         android:layout_marginBottom="@dimen/_8sdp"
         android:text="@string/to"
-        android:textSize="@dimen/_12ssp"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="@color/primaryBlue"
         app:layout_constraintStart_toEndOf="@+id/tvPriceFrom"
         app:layout_constraintTop_toBottomOf="@+id/tvManufacture" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvPriceTo"
-        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
-        android:textSize="@dimen/_18ssp"
-        android:textStyle="bold"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textColor="@color/primaryBlue"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvPriceToPrefix"
         app:layout_constraintStart_toEndOf="@+id/tvPriceToPrefix"
         tools:text="580 ₸" />
@@ -150,7 +146,6 @@
                 android:maxLines="1"
                 android:text="@string/analoguesAndMain"
                 android:textColor="@color/colorGlobalWhite"
-                android:textSize="@dimen/_10ssp"
                 app:layout_constraintEnd_toStartOf="@id/ivArrow"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -160,9 +155,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
                 android:textColor="@color/colorGlobalWhite"
-                android:textSize="@dimen/_15ssp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/ivArrow"
                 app:layout_constraintStart_toStartOf="parent"
@@ -204,8 +198,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivCategory"
-                android:layout_width="@dimen/_48sdp"
-                android:layout_height="@dimen/_48sdp"
+                android:layout_width="@dimen/_44sdp"
+                android:layout_height="@dimen/_44sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_vaccine" />
@@ -217,8 +211,8 @@
                 android:layout_marginStart="@dimen/_4sdp"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:text="@string/productCategory"
+                android:textAppearance="?attr/textAppearanceCaption"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toEndOf="@+id/ivCategory"
                 app:layout_constraintTop_toTopOf="@+id/ivCategory" />
 
@@ -229,9 +223,8 @@
                 android:layout_marginBottom="@dimen/_4sdp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
                 android:textColor="@color/primaryBlue"
-                android:textSize="@dimen/_13ssp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/ivCategory"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvCategoryTitle"

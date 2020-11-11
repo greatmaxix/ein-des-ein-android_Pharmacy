@@ -7,13 +7,12 @@ import android.graphics.Color
 import android.text.*
 import android.text.InputType.TYPE_CLASS_NUMBER
 import android.text.style.ForegroundColorSpan
-import android.view.GestureDetector
-import android.view.MotionEvent
-import android.view.View
+import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.core.text.buildSpannedString
+import androidx.core.view.updateLayoutParams
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.textfield.TextInputLayout
 import com.pulse.R
@@ -276,4 +275,11 @@ fun TextInputLayout.isAddressLengthValid(): Boolean {
         return false
     }
     return true
+}
+
+fun TextInputLayout.fixPrefixGravity() {
+    prefixTextView.updateLayoutParams {
+        height = ViewGroup.LayoutParams.MATCH_PARENT
+    }
+    prefixTextView.gravity = Gravity.CENTER
 }

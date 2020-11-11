@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainContent"
-    android:clipChildren="false"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipChildren="false">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navHost"
@@ -23,8 +23,8 @@
         android:layout_gravity="bottom"
         android:translationY="?actionBarSize"
         app:itemIconTint="@color/selector_navigation_item"
-        app:itemTextAppearanceActive="@style/Text.Small"
-        app:itemTextAppearanceInactive="@style/Text.Tiny"
+        app:itemTextAppearanceActive="@style/ActiveText"
+        app:itemTextAppearanceInactive="@style/InactiveText"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigation"
         tools:backgroundTint="@color/colorGlobalWhite"
