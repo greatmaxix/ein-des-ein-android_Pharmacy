@@ -383,4 +383,11 @@
     <string name="chat_ended_automatically_message">Вы были неактивны слишком длительное время. Сессия была автоматически завершена</string>
     <string name="chat">Чат</string>
 
+    <!--Help-->
+    <string name="howToOrder">Как заказать?</string>
+    <string name="moneyback">Возврат</string>
+    <string name="recipesHelp">Рецепты</string>
+    <string name="payment">Оплата</string>
+    <string name="deliveryHelp">Доставка</string>
+
 </resources>
