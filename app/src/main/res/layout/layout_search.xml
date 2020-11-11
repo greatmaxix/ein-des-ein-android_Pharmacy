@@ -32,7 +32,7 @@
         android:paddingBottom="@dimen/_6sdp"
         android:singleLine="true"
         android:textAlignment="viewStart"
-        android:textSize="@dimen/_12ssp"
+        android:textAppearance="?attr/textAppearanceBody1"
         android:theme="@style/AuthSearchView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

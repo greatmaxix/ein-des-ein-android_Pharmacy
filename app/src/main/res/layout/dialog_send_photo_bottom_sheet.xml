@@ -8,7 +8,7 @@
     android:paddingBottom="@dimen/_12sdp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/send_photo_bottom_sheet_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,9 +16,9 @@
         android:background="@drawable/background_default_ripple_selector_rect"
         android:padding="@dimen/_12sdp"
         android:text="@string/sendPhotoGallery"
-        android:textSize="@dimen/_11ssp" />
+        android:textAppearance="?attr/textAppearanceCaption" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/send_photo_bottom_sheet_camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,6 +26,6 @@
         android:background="@drawable/background_default_ripple_selector_rect"
         android:padding="@dimen/_12sdp"
         android:text="@string/sendPhotoCamera"
-        android:textSize="@dimen/_11ssp" />
+        android:textAppearance="?attr/textAppearanceCaption" />
 
 </LinearLayout>

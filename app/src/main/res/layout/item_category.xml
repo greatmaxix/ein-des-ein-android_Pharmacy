@@ -27,9 +27,8 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:padding="@dimen/_8sdp"
+        android:textAppearance="?attr/textAppearanceBody1"
         android:textColor="@color/darkBlue"
-        android:textSize="@dimen/_11ssp"
-        android:textStyle="bold"
         tools:text="Гормоны для системного применения (исключая половые гормоны и инсулины)" />
 
 </com.google.android.material.card.MaterialCardView>

@@ -19,12 +19,11 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/mtvTitle"
-        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_6sdp"
+        android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/darkBlue"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/mtvDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,11 +31,11 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/mtvDescription"
-        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_42sdp"
         android:gravity="center"
+        android:textAppearance="?attr/textAppearanceBody1"
         android:textColor="@color/darkBlue"
         app:layout_constraintBottom_toTopOf="@+id/mbNext"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_24sdp"
         android:backgroundTint="@color/primaryBlue"
+        android:textAppearance="?attr/textAppearanceButton"
         app:layout_constraintBottom_toTopOf="@+id/mtvSkip"
         tools:text="@string/onboardingRegionActionText" />
 
@@ -60,6 +60,7 @@
         android:layout_marginBottom="@dimen/_8sdp"
         android:background="@drawable/background_default_ripple_selector_rect"
         android:padding="@dimen/_6sdp"
+        android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

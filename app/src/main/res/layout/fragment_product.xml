@@ -66,10 +66,8 @@
             android:paddingVertical="@dimen/_8sdp"
             android:stateListAnimator="@null"
             android:text="@string/findInPharmacies"
-            android:textAllCaps="false"
+            android:textAppearance="?attr/textAppearanceButton"
             android:textColor="@color/colorGlobalWhite"
-            android:textSize="@dimen/_14ssp"
-            android:textStyle="bold"
             app:cornerRadius="@dimen/_20sdp" />
 
     </LinearLayout>

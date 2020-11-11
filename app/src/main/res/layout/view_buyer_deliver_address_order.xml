@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/deliveryAddress"
-        android:textAppearance="@style/Text.BlockHeaderBold" />
+        android:textAppearance="?attr/textAppearanceButton" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardBuyerDeliveryAddressFilledOrder"
@@ -39,7 +39,7 @@
                 android:id="@+id/tvPharmacyAddressOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/Text.Filled"
+                android:textAppearance="?attr/textAppearanceBody2"
                 tools:text="\uD83C\uDFE0 ул. Горная 23а" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:textAppearance="@style/Text.Filled"
+                android:textAppearance="?attr/textAppearanceBody2"
                 tools:text="подьезд 4г • кв 56" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:textAppearance="@style/Text.Filled"
+                android:textAppearance="?attr/textAppearanceBody2"
                 android:visibility="gone"
                 tools:text="+78 012 345 678 90"
                 tools:visibility="visible" />

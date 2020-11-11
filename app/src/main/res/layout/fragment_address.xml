@@ -33,7 +33,8 @@
             android:hint="@string/noteToOrder"
             android:imeOptions="actionNext"
             android:inputType="textCapSentences|textMultiLine"
-            android:minLines="2" />
+            android:minLines="2"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,10 +49,8 @@
         android:paddingTop="@dimen/_8sdp"
         android:paddingBottom="@dimen/_8sdp"
         android:text="@string/save"
-        android:textAllCaps="false"
+        android:textAppearance="?attr/textAppearanceButton"
         android:textColor="@color/colorGlobalWhite"
-        android:textSize="@dimen/_12ssp"
-        android:textStyle="bold"
         app:backgroundTint="@color/primaryBlue"
         app:cornerRadius="@dimen/_16sdp" />
 

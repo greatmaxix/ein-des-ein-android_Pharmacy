@@ -31,7 +31,8 @@
             android:lines="1"
             android:maxLength="19"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,7 +62,8 @@
             android:lines="1"
             android:maxLength="5"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,7 +93,8 @@
             android:lines="1"
             android:maxLength="3"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,7 +118,8 @@
             android:inputType="textCapWords"
             android:lines="1"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,9 +133,8 @@
         android:enabled="false"
         android:gravity="center"
         android:text="@string/addCreditCard"
+        android:textAppearance="?attr/textAppearanceButton"
         android:textColor="@color/colorGlobalWhite"
-        android:textSize="@dimen/_14ssp"
-        android:textStyle="bold"
         app:backgroundTint="@color/selector_action_button"
         app:cornerRadius="@dimen/_90sdp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -31,6 +31,7 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
     private var email: String? = null
 
     init {
+        tilPhoneCheckout.fixPrefixGravity()
         debug { tilPhoneCheckout.prefixText = "+3" }
         val hint = if (BuildConfig.DEBUG) R.string.authPhoneDebugHint else R.string.authPhoneHint
         etPhoneCheckout.setAsteriskHint(context.getString(hint), 18, 19)

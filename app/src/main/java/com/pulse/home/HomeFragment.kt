@@ -25,17 +25,17 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         super.onViewCreated(view, savedInstanceState)
         setSoftInputMode(SOFT_INPUT_ADJUST_PAN)
 
-        mcvScanHome.setDebounceOnClickListener { doNav(fromHomeToScanner()) }
+        cardScanHome.setDebounceOnClickListener { doNav(fromHomeToScanner()) }
         mcvAskHome.setDebounceOnClickListener { viewModel.performAskPharmacist() }
         mcvAnalyzeHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_home) }
         uploadRecipes.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_home) }
-        mcvSearchHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_home) }
+        cardSearchHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_home) }
         btnSeeAllCategoriesHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_catalog, null, R.id.nav_home) }
         //mcvMapHome.setDebounceOnClickListener { navController.navigate(fromHomeToCheckout(true)) }
 
         // Developers screen for convenient features access
         debug {
-            mcvToolbarHome.setOnLongClickListener {
+            clToolbarContainerHome.setOnLongClickListener {
                 navController.navigate(globalToDevTools())
                 true
             }

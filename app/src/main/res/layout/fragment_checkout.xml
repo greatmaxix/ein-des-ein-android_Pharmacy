@@ -35,8 +35,9 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
+                android:gravity="start"
                 android:text="@string/deliveryMethod"
-                android:textAppearance="@style/Text.BlockHeaderBold"
+                android:textAppearance="?attr/textAppearanceButton"
                 app:layout_constraintEnd_toStartOf="@+id/tvBuyerDeliveryAddressEditCheckout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -72,8 +73,8 @@
                         android:drawablePadding="@dimen/_4sdp"
                         android:drawableTint="@color/selector_delivery_method"
                         android:text="@string/delivery"
-                        android:textColor="@color/selector_delivery_method"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="@color/selector_delivery_method" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -98,8 +99,8 @@
                         android:drawablePadding="@dimen/_4sdp"
                         android:drawableTint="@color/selector_delivery_method"
                         android:text="@string/pickup"
-                        android:textColor="@color/selector_delivery_method"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="@color/selector_delivery_method" />
 
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -118,8 +119,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_24sdp"
+                android:gravity="start"
                 android:text="@string/deliveryAddress"
-                android:textAppearance="@style/Text.BlockHeaderBold" />
+                android:textAppearance="?attr/textAppearanceButton" />
 
             <com.pulse.ui.BuyerDeliveryAddress
                 android:id="@+id/viewBuyerDeliveryAddressCheckout"
@@ -133,8 +135,9 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
+                android:gravity="start"
                 android:text="@string/selectPaymentType"
-                android:textAppearance="@style/Text.BlockHeaderBold"
+                android:textAppearance="?attr/textAppearanceButton"
                 app:layout_constraintEnd_toStartOf="@+id/tvBuyerDeliveryAddressEditCheckout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -166,17 +169,19 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
+                android:gravity="start"
                 android:text="@string/orderList"
-                android:textAppearance="@style/Text.BlockHeaderBold" />
+                android:textAppearance="?attr/textAppearanceButton" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProductsListCheckout"
                 style="@style/ScrollStyle"
-                tools:listitem="@layout/item_checkout_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_checkout_product" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
@@ -185,7 +190,7 @@
                 android:layout_marginTop="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:text="@string/checkoutNoteTitle"
-                android:textAppearance="@style/Text.BlockHeaderBold"
+                android:textAppearance="?attr/textAppearanceButton"
                 app:layout_constraintEnd_toStartOf="@+id/tvBuyerDeliveryAddressEditCheckout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -207,7 +212,8 @@
                     android:hint="@string/noteToOrder"
                     android:imeOptions="actionNext"
                     android:inputType="textCapSentences|textMultiLine"
-                    android:minLines="2" />
+                    android:minLines="2"
+                    android:textAppearance="?attr/textAppearanceBody2" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -225,8 +231,8 @@
                 android:paddingEnd="@dimen/_12sdp"
                 android:paddingBottom="@dimen/_8sdp"
                 android:text="@string/promoCode"
+                android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/colorGlobalWhite"
-                android:textSize="@dimen/_12ssp"
                 android:visibility="gone"
                 app:backgroundTint="@color/purple"
                 app:cornerRadius="@dimen/_90sdp" />
@@ -244,16 +250,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/totalAmount"
-                    android:textColor="@color/darkBlue"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/darkBlue" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvTotalAmountCheckout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceButton"
                     android:textColor="@color/darkBlue"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold"
                     tools:text="382 ₸" />
 
             </LinearLayout>
@@ -272,16 +277,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/discount"
-                    android:textColor="@color/darkBlue"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:textColor="@color/darkBlue" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvDiscountCheckout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceCaption"
                     android:textColor="@color/green"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold"
                     tools:text="382 ₸" />
 
             </LinearLayout>
@@ -300,16 +304,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/deliveryAmount"
-                    android:textColor="@color/darkBlue"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/darkBlue" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvDeliveryAmountCheckout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceButton"
                     android:textColor="@color/darkBlue"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold"
                     tools:text="382 ₸" />
 
             </LinearLayout>
@@ -324,20 +327,19 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="start"
                     android:text="@string/totalPayable"
-                    android:textColor="@color/darkBlue"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold" />
+                    android:textAppearance="?attr/textAppearanceButton"
+                    android:textColor="@color/darkBlue" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvTotalPayableCheckout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
                     android:textColor="@color/primaryBlue"
-                    android:textSize="@dimen/_18sdp"
-                    android:textStyle="bold"
                     tools:text="382 ₸" />
 
             </LinearLayout>
@@ -352,9 +354,8 @@
                 android:backgroundTint="@color/primaryBlue"
                 android:gravity="center"
                 android:text="@string/checkout"
+                android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/colorGlobalWhite"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold"
                 app:cornerRadius="@dimen/_20sdp" />
 
         </LinearLayout>

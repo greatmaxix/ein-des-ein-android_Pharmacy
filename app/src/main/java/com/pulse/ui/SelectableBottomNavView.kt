@@ -40,14 +40,14 @@ class SelectableBottomNavView @JvmOverloads constructor(
                 fabView = null
             }
             updateProfileIconState()
-            val hasFab = value.firstOrNull { it.isFab } != null
-            if (hasFab) {
+            if (value.firstOrNull { it.isFab } != null) {
                 fabView = inflate(R.layout.view_search_fab, false) as BorderFab
                 addView(fabView)
             }
             value.forEach {
                 if (!it.isFab) setItemColor(it, defaultColor) else fabView?.setBorderEnabled(false)
             }
+            setItemColor(if (lastSelectedItem != null) lastSelectedItem!! else value.first(), selectedColor)
         }
 
     private fun setItemColor(it: NavItem, @ColorInt color: Int) {

@@ -38,6 +38,7 @@
     <string name="orSignInVia">Или войти с помощью</string>
     <string name="enterCode">Пожалуйста, введите проверочный код, который мы отправили на</string>
     <string name="codeConfirmation">Подтверждение номера</string>
+    <string name="codeIsNotReceived">Не получили код?</string>
     <string name="imageTextLogo">лого</string>
     <string name="googleContentDescriptionSignUp">Sign in via Google account</string>
     <string name="registerButtonContentDescriptionSignUp">Register image button</string>
@@ -351,7 +352,7 @@
     <string name="checkout">Оформить заказ</string>
     <string name="countCurtProducts">%d товара(ов)</string>
     <string name="deliveryPrice">+ доставка от 150 ₸</string>
-    <string name="yourCartIsEmpty">Оу,ваша корзина пуста</string>
+    <string name="yourCartIsEmpty">Оу, ваша корзина пуста</string>
     <string name="startSearchFor">Начните поиск, что бы  добавить товар в корзину</string>
     <string name="startSearch">Начать поиск</string>
     <string name="forCheckCart">Для того что бы просмотреть продукты в Корзине нужно авторизироваться</string>

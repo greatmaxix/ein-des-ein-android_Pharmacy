@@ -32,9 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTitle"
-        style="@style/Text.BlockHeaderBold"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_8sdp"
@@ -43,33 +42,37 @@
         android:ellipsize="end"
         android:gravity="center|start"
         android:maxLines="1"
+        android:textAppearance="?attr/textAppearanceButton"
+        android:textColor="@color/darkBlue"
         app:layout_constraintBottom_toBottomOf="@+id/ivRemove"
         app:layout_constraintEnd_toStartOf="@+id/ivRemove"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"
         app:layout_constraintTop_toTopOf="@+id/ivRemove"
         tools:text="Название товара..." />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvSubTitle"
-        style="@style/Text.Filled"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_12sdp"
         android:ellipsize="end"
         android:maxLines="2"
-        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         tools:text="Таблетки шипучие, 20 мг" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvManufacture"
-        style="@style/Text.Filled"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textSize="@dimen/_10ssp"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="@color/darkBlue"
         app:layout_constraintBottom_toTopOf="@+id/tvProductPrice"
         app:layout_constraintEnd_toEndOf="@+id/ivRemove"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
@@ -77,29 +80,27 @@
         app:layout_constraintVertical_bias="0.0"
         tools:text="Производитель, Россия" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvPriceUnavailable"
-        style="@style/Text.Edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_4sdp"
         android:text="@string/temporaryUnavailable"
+        android:textAppearance="?attr/textAppearanceCaption"
         android:textColor="@color/greyText"
-        android:textSize="@dimen/_11ssp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/ivProduct"
         app:layout_constraintStart_toStartOf="@+id/tvTitle" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvProductPrice"
-        style="@style/Text.Edit"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textSize="@dimen/_18ssp"
-        android:textStyle="bold"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textColor="@color/primaryBlue"
         app:layout_constraintBottom_toBottomOf="@+id/ivProduct"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"
         tools:text="500000 Р" />
@@ -126,8 +127,8 @@
             android:layout_height="match_parent"
             android:clickable="false"
             android:focusable="false"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
             android:textColor="@color/darkBlue"
-            android:textStyle="bold"
             tools:text="1" />
 
         <com.google.android.material.button.MaterialButton

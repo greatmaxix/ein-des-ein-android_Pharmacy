@@ -22,12 +22,11 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvVersionAbout"
-        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16sdp"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
         android:textColor="@color/darkBlue"
-        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/ivAbout"
         app:layout_constraintTop_toTopOf="@id/ivAbout"
         tools:text="Версия 1.1.24" />
@@ -40,6 +39,7 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:text="@string/aboutAddress"
+        android:textAppearance="?attr/textAppearanceCaption"
         android:textColor="@color/darkBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivAbout"

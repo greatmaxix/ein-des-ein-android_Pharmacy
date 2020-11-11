@@ -16,6 +16,7 @@
             android:id="@+id/tvOrderState"
             android:layout_width="@dimen/_96sdp"
             android:layout_height="wrap_content"
+            android:minHeight="@dimen/_28sdp"
             android:layout_margin="@dimen/_12sdp"
             android:background="@drawable/order_state_background"
             android:gravity="center"
@@ -24,9 +25,8 @@
             android:paddingEnd="@dimen/_10sdp"
             android:paddingBottom="@dimen/_4sdp"
             android:textAllCaps="true"
+            android:textAppearance="?attr/textAppearanceOverline"
             android:textColor="@color/colorGlobalWhite"
-            android:textSize="@dimen/_9ssp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="В обработке" />
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_4sdp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -54,8 +54,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_6sdp"
+                    android:textAppearance="?attr/textAppearanceOverline"
                     android:textColor="@color/darkBlue"
-                    android:textSize="@dimen/_10ssp"
                     tools:text="Самовывоз" />
 
                 <ImageView
@@ -72,12 +72,11 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/idOrders"
-            style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
             android:textColor="@color/darkBlue"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/tvOrderState"
             app:layout_constraintTop_toBottomOf="@id/tvOrderState"
             tools:text="№ 12583" />
@@ -90,8 +89,8 @@
             android:layout_marginEnd="@dimen/_12sdp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@id/idOrders"
@@ -114,8 +113,8 @@
             android:layout_height="@dimen/_48sdp"
             android:layout_marginStart="@dimen/_16sdp"
             android:gravity="center"
+            android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/priceOrders"
             app:layout_constraintHorizontal_bias="0"
@@ -125,12 +124,11 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/priceOrders"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_16sdp"
+            android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/primaryBlue"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ordersSeparator"
