@@ -7,6 +7,7 @@ import com.pulse.chatType.chatTypeModule
 import com.pulse.checkout.checkoutModule
 import com.pulse.components.auth.authModule
 import com.pulse.components.cart.cartModule
+import com.pulse.components.needHelp.needHelpModule
 import com.pulse.components.onboarding.onboardingModule
 import com.pulse.components.pharmacy.checkoutMapModule
 import com.pulse.data.local.DBManager
@@ -71,6 +72,7 @@ object Modules {
         ordersModule,
         addressModule,
         RESTModule,
-        mercureModule
+        mercureModule,
+        needHelpModule
     )
 }

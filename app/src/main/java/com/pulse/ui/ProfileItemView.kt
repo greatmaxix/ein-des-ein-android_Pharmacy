@@ -3,6 +3,7 @@ package com.pulse.ui
 import android.content.Context
 import android.graphics.PorterDuff
 import android.util.AttributeSet
+import android.view.View
 import androidx.core.content.ContextCompat
 import com.google.android.material.card.MaterialCardView
 import com.pulse.R
@@ -16,12 +17,42 @@ class ProfileItemView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr), LayoutContainer {
 
-    private var icon: Int = -1
-    private var title: String = ""
-    private var detailText: String = ""
-    private var arrowVisibility: Boolean = true
-    private var mainColor: Int = -1
-
+    var icon: Int = -1
+        set(value) {
+            field = value
+            if (value != -1) ivIconProfileItem.setImageResource(icon)
+            else ivIconProfileItem.setImageDrawable(null)
+        }
+    var title: String = ""
+        set(value) {
+            field = value
+            mtvTitleProfileItem.text = value
+        }
+    var arrowVisibility: Boolean = true
+        set(value) {
+            field = value
+            ivArrowProfileItem.visibleOrGone(value)
+        }
+    var mainColor: Int = -1
+        set(value) {
+            field = value
+            ivIconProfileItem.setColorFilter(ContextCompat.getColor(context, value), PorterDuff.Mode.SRC_IN)
+            mtvTitleProfileItem.textColor(value)
+        }
+    var secondaryColor: Int = -1
+        set(value) {
+            field = value
+            ivIconProfileItem.backgroundTintList = ContextCompat.getColorStateList(context, value)
+        }
+    val selectColor: Int = R.color.primaryBlue
+    var detailText: String = ""
+        set(value) {
+            field = value
+            if (value.isNotEmpty()) {
+                mtvDetailProfileItem.text = value
+                mtvDetailProfileItem.visible()
+            } else mtvDetailProfileItem.gone()
+        }
     override val containerView = inflate(R.layout.layout_profile_item, true)
 
     init {
@@ -32,31 +63,25 @@ class ProfileItemView @JvmOverloads constructor(
         setRippleColorResource(R.color.colorRippleBlue)
         attrs?.let {
             context.theme.obtainStyledAttributes(it, R.styleable.ProfileItemView, defStyleAttr, -1)
-                .getData {
+                .use {
                     icon = getResourceId(R.styleable.ProfileItemView_iconProfile, -1)
                     title = getString(R.styleable.ProfileItemView_titleProfile) ?: ""
                     detailText = getString(R.styleable.ProfileItemView_detailTextProfile) ?: ""
                     arrowVisibility = getBoolean(R.styleable.ProfileItemView_arrowVisibilityProfile, true)
                     mainColor = getResourceId(R.styleable.ProfileItemView_mainColorProfile, R.color.darkBlue)
+                    secondaryColor = getResourceId(R.styleable.ProfileItemView_secondaryColorProfile, R.color.profileIconBackground)
                 }
         }
     }
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        ivIconProfileItem.setImageResource(icon)
-        mtvTitleProfileItem.text = title
-        if (detailText.isNotEmpty()) {
-            mtvDetailProfileItem.text = detailText
-            mtvDetailProfileItem.visible()
-        }
-        ivArrowProfileItem.visibleOrGone(arrowVisibility)
-        ivIconProfileItem.setColorFilter(colorCompat(mainColor), PorterDuff.Mode.SRC_IN)
-        mtvTitleProfileItem.textColor(mainColor)
-    }
+    fun setOnClick(f: View.() -> Unit) = profileItemContainer.setDebounceOnClickListener(listener = f)
 
-    fun setDetailText(text: String?) {
-        mtvDetailProfileItem.text = text
-        mtvDetailProfileItem.visible()
+    override fun setSelected(selected: Boolean) {
+        super.setSelected(selected)
+
+        ivArrowProfileItem.rotation = if (selected) -90f else 0f
+        ivArrowProfileItem.setColorFilter(colorFrom(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
+        ivIconProfileItem.setColorFilter(colorFrom(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
+        mtvTitleProfileItem.textColor(if (selected) selectColor else mainColor)
     }
 }
