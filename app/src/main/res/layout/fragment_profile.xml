@@ -253,7 +253,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_12sdp"
-                    app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_location"
                     app:titleProfile="@string/myRegionTitle" />
 
@@ -262,7 +261,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_credit_card"
                     app:titleProfile="@string/paymentsTitle" />
 
@@ -271,7 +269,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_truck"
                     app:titleProfile="@string/deliveryAddressTitle" />
 
@@ -280,7 +277,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_notification"
                     app:titleProfile="@string/notificationsTitle" />
 
@@ -291,7 +287,6 @@
                     android:layout_marginStart="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:layout_marginEnd="@dimen/_12sdp"
-                    app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_about"
                     app:titleProfile="@string/aboutAppTitle" />
 
@@ -300,7 +295,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    app:arrowVisibilityProfile="true"
                     app:iconProfile="@drawable/ic_question"
                     app:titleProfile="@string/needHelpTitle" />
 

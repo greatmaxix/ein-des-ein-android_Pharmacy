@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
-        app:arrowVisibilityProfile="true"
         app:iconProfile="@drawable/ic_shopping_cart"
         app:titleProfile="@string/howToOrder" />
 
@@ -25,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        app:arrowVisibilityProfile="true"
         app:iconProfile="@drawable/ic_double_arrow"
         app:titleProfile="@string/moneyback" />
 
@@ -34,7 +32,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        app:arrowVisibilityProfile="true"
         app:iconProfile="@drawable/ic_recipes"
         app:titleProfile="@string/recipesHelp" />
 
@@ -43,7 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        app:arrowVisibilityProfile="true"
         app:iconProfile="@drawable/ic_credit_card"
         app:titleProfile="@string/payment" />
 
@@ -52,7 +48,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        app:arrowVisibilityProfile="true"
         app:iconProfile="@drawable/ic_delivery"
         app:titleProfile="@string/deliveryHelp" />
 
