@@ -463,3 +463,7 @@ fun NestedScrollView.scrollToBottom() {
 fun NestedScrollView.scrollToTop() {
     scrollTo(0, 0)
 }
+
+fun View.dimension(@DimenRes dimenResId: Int) = resources.getDimension(dimenResId)
+
+fun View.dimensionPixelSize(@DimenRes dimenResId: Int) = resources.getDimensionPixelSize(dimenResId)

@@ -4,31 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mcvCategory"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_48sdp"
     android:backgroundTint="@color/colorGlobalWhite"
     app:cardCornerRadius="@dimen/_6sdp"
     app:cardElevation="@dimen/_2sdp"
     app:cardUseCompatPadding="true"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintDimensionRatio="6:5"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
     app:rippleColor="@color/colorRippleBlue">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvCategoryName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_8sdp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:padding="@dimen/_8sdp"
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@color/darkBlue"
-        tools:text="Гормоны для системного применения (исключая половые гормоны и инсулины)" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/ivCategoryIconTile"
+            android:layout_width="@dimen/_37sdp"
+            android:layout_height="@dimen/_37sdp"
+            android:padding="@dimen/_4sdp"
+            tools:src="@drawable/ic_catalog_1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCategoryNameTile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:drawablePadding="@dimen/_8sdp"
+            android:drawableTint="@color/darkBlue"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:padding="@dimen/_8sdp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/darkBlue"
+            tools:text="Гормоны для системного применения (исключая половые гормоны и инсулины)" />
+
+    </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

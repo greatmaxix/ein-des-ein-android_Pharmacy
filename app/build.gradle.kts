@@ -104,10 +104,10 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        freeCompilerArgs += listOf(
-            "-Xopt-in=kotlin.RequiresOptIn",
-            "-Xopt-in=kotlin.OptIn"
-        )
+        freeCompilerArgs = mutableListOf<String>().apply {
+            addAll(freeCompilerArgs)
+            addAll(listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xopt-in=kotlin.OptIn"))
+        }
     }
 
     lintOptions {

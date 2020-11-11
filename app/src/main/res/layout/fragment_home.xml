@@ -27,23 +27,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTitleToolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:text="@string/startSearching"
-            android:textAppearance="?attr/textAppearanceHeadline4"
-            android:textColor="@color/colorGlobalWhite"
-            app:layout_constraintBottom_toTopOf="@+id/cardSearchHome"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardSearchHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvTitleToolbar"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:backgroundTint="@color/searchBackgroundBlue"
             app:cardCornerRadius="@dimen/_16sdp"
@@ -60,6 +47,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_6sdp"
+                android:gravity="center_vertical"
                 android:layout_marginBottom="@dimen/_6sdp"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/_8sdp"
@@ -123,9 +111,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_margin="@dimen/_8sdp"
                     android:contentDescription="@string/askTileContentDescriptionHome"
-                    android:src="@drawable/ic_chat" />
+                    android:src="@drawable/ic_chat_big" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
@@ -157,8 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_margin="@dimen/_8sdp"
-                    android:src="@drawable/ic_vector" />
+                    android:src="@drawable/ic_vector_big" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
@@ -191,9 +177,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_margin="@dimen/_8sdp"
                     android:contentDescription="@string/mapIconContentDescriptionHome"
-                    android:src="@drawable/ic_map" />
+                    android:src="@drawable/ic_map_big" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
