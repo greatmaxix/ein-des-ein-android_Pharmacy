@@ -51,7 +51,7 @@
                 android:layout_marginBottom="@dimen/_6sdp"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/_8sdp"
-                android:text="@string/searchHintHome"
+                android:text="@string/search"
                 android:textAppearance="?attr/textAppearanceBody1"
                 android:textColor="@color/colorGlobalWhite" />
 

@@ -390,5 +390,6 @@
     <string name="payment">Оплата</string>
     <string name="deliveryHelp">Доставка</string>
     <string name="have_questions">Есть вопросы?</string>
+    <string name="search">Поиск</string>
 
 </resources>
