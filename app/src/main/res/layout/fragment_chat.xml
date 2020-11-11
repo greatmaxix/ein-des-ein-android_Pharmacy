@@ -40,7 +40,8 @@
         android:paddingTop="@dimen/_8sdp"
         android:paddingEnd="@dimen/_20sdp"
         android:paddingBottom="@dimen/_12sdp"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/ivAttachment"
