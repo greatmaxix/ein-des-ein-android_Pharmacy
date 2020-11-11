@@ -149,8 +149,6 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
                 if (isChatForeground) WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
                 else WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
             )
-            if (destination.isTopDestinationAndHome) window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS) else window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-
             changeSelection(destination)
         }
     }

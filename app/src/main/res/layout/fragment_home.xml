@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvTitleToolbar"
             android:layout_marginHorizontal="@dimen/_12sdp"
-            android:backgroundTint="@color/colorRippleWhiteSemiTransparent"
+            android:backgroundTint="@color/searchBackgroundBlue"
             app:cardCornerRadius="@dimen/_16sdp"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/cardScanHome"
