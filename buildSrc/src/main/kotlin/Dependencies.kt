@@ -28,6 +28,6 @@ object DefaultConfig {
 object SigningConfigs {
     const val alias = "pulse"
     const val keystore = "./keys/Pharmacy.jks"
-    const val password_key = "2Pz5Pr4smGK6X59K"
     const val password_store = "k5jMLLnxBG6BeRNs"
+    const val password_key = "2Pz5Pr4smGK6X59K"
 }

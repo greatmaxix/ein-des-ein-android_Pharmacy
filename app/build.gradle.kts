@@ -2,9 +2,11 @@ import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 import io.github.rockerhieu.versionberg.Git.getCommitCount
 
+apply(from = "${project.rootDir}/script/experimentalExtensions.gradle")
+
 plugins {
     id("com.android.application")
-    //id("kotlin-parcelize")
+    //id("kotlin-parcelize") // TODO uncomment in future
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
@@ -14,8 +16,6 @@ plugins {
     id("com.google.firebase.appdistribution")
     id("io.github.rockerhieu.versionberg")
 }
-
-apply(from = "${project.rootDir}/script/experimentalExtensions.gradle")
 
 tasks {
     named("preBuild").dependsOn(register("generateNavArgsProguardRules", GenerateNavArgsProguardRulesTask::class))
@@ -39,16 +39,14 @@ android {
         with(DefaultConfig) {
             minSdkVersion(minSdk)
             targetSdkVersion(targetSdk)
-            versionCode = versionberg.code
-            versionName = versionberg.name
         }
+        versionCode = versionberg.code
+        versionName = versionberg.name
 
         proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
 
         applicationVariants.all {
-            outputs.all {
-                (this as BaseVariantOutputImpl).outputFileName = "../../apk/$applicationId-$name-$versionName($versionCode).apk"
-            }
+            outputs.all { (this as BaseVariantOutputImpl).outputFileName = "../../apk/$applicationId-$name-$versionName($versionCode).apk" }
         }
 
         kapt {
@@ -60,6 +58,8 @@ android {
         }
     }
 
+    val debug = "debug"
+    val qa = "qa"
     val release = "release"
 
     signingConfigs {
@@ -79,21 +79,21 @@ android {
             isShrinkResources = true
             signingConfig = signingConfigs.getByName(release)
         }
-        create("qa") {
+        create(qa) {
             isMinifyEnabled = true
             isShrinkResources = true
             signingConfig = signingConfigs.getByName(release)
-            versionNameSuffix = "-qa"
+            versionNameSuffix = "-$qa"
             firebaseAppDistribution {
                 releaseNotes = "Some text"
                 testers = "developereinios@gmail.com, ivan.kovalenko13@gmail.com"
             }
         }
-        getByName("debug") {
+        getByName(debug) {
             isMinifyEnabled = false
             isShrinkResources = false
             signingConfig = signingConfigs.getByName(release)
-            versionNameSuffix = "-dg"
+            versionNameSuffix = "-$debug"
         }
     }
 
@@ -104,15 +104,17 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        freeCompilerArgs = mutableListOf<String>().apply {
-            addAll(freeCompilerArgs)
-            addAll(listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xopt-in=kotlin.OptIn"))
-        }
+        freeCompilerArgs += listOf(
+            "-Xopt-in=kotlin.RequiresOptIn",
+            "-Xopt-in=kotlin.OptIn"
+        )
     }
 
     lintOptions {
         isAbortOnError = false
     }
+
+    // sourceSets["main"].java.srcDir("src/main/kotlin") TODO move java -> kotlin when no other work in branches
 }
 
 dependencies {

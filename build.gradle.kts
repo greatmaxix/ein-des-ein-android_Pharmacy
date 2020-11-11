@@ -4,7 +4,6 @@ plugins {
     id("com.github.ben-manes.versions") version "0.34.0"
 }
 
-
 buildscript {
     repositories {
         google()
@@ -12,7 +11,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:4.1.0")
+        classpath("com.android.tools.build:gradle:4.1.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}")
         classpath("com.google.gms:google-services:4.3.4")
