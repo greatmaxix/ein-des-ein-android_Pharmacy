@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -29,9 +28,7 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:gravity="center"
             android:text="@string/chatReviewDialogTitle"
-            android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_14ssp"
-            android:textStyle="bold" />
+            android:textAppearance="?attr/textAppearanceButton" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvChatReviewDescription"
@@ -40,8 +37,8 @@
             android:layout_marginTop="@dimen/_4sdp"
             android:gravity="center"
             android:text="@string/chatReviewDialogDescription"
-            android:textColor="@color/darkBlue"
-            android:textSize="@dimen/_12ssp" />
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/darkBlue" />
 
         <com.pulse.ui.RatingBarSvg
             android:id="@+id/ratingChatReview"
@@ -78,7 +75,8 @@
                 android:hint="@string/chatReviewHint"
                 android:inputType="textCapSentences|textMultiLine"
                 android:maxLines="7"
-                android:minLines="2" />
+                android:minLines="2"
+                android:textAppearance="?attr/textAppearanceBody2" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,9 +88,8 @@
             android:enabled="false"
             android:gravity="center"
             android:text="@string/continueChatReview"
+            android:textAppearance="?attr/textAppearanceButton"
             android:textColor="@color/colorGlobalWhite"
-            android:textSize="@dimen/_14ssp"
-            android:textStyle="bold"
             app:backgroundTint="@color/selector_action_button"
             app:cornerRadius="@dimen/_90sdp" />
 
@@ -106,8 +103,8 @@
             android:paddingHorizontal="@dimen/_12sdp"
             android:paddingVertical="@dimen/_4sdp"
             android:text="@string/skipChatReviewButton"
-            android:textColor="@color/grey"
-            android:textSize="@dimen/_12ssp" />
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/grey" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

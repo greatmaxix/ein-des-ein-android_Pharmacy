@@ -44,7 +44,6 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/mtvTitleCardAddPayment"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -52,6 +51,7 @@
                     android:gravity="center_vertical"
                     android:maxLines="1"
                     android:text="@string/creditOrDebitCard"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
                     android:textColor="@color/darkBlue" />
 
                 <ImageView
@@ -90,7 +90,6 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/mtvTitleOtherAddPayment"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -98,6 +97,7 @@
                     android:gravity="center_vertical"
                     android:maxLines="1"
                     android:text="@string/otherPayment"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
                     android:textColor="@color/darkBlue" />
 
                 <ImageView

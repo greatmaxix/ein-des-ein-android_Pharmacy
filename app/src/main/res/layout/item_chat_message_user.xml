@@ -16,16 +16,16 @@
         android:maxWidth="@dimen/_260sdp"
         android:paddingHorizontal="@dimen/_16sdp"
         android:paddingVertical="@dimen/_8sdp"
+        android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/colorGlobalWhite"
-        android:textSize="@dimen/_11sdp"
-        tools:text="Some text message Some text message Some text message Some text message Some text message " />
+        tools:text="Да, от лимона у меня краснеют щеки и от мяты глаза чешуться и слезяться иногда" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvReadTimeChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:textColor="@color/grey"
-        android:textSize="@dimen/_8sdp" />
+        android:textAppearance="?attr/textAppearanceOverline"
+        android:textColor="@color/grey" />
 
 </LinearLayout>

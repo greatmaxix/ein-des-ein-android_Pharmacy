@@ -23,9 +23,7 @@
             android:layout_marginStart="@dimen/_2sdp"
             android:stateListAnimator="@null"
             android:text="@string/checkout"
-            android:textAllCaps="false"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceButton"
             app:cornerRadius="@dimen/_90sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvDelivery"
@@ -33,13 +31,11 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTotalPrice"
-            style="@style/Text.Edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textSize="@dimen/_18ssp"
-            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceButton"
             app:layout_constraintEnd_toEndOf="@+id/tvDelivery"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,11 +43,11 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvNumberProducts"
-            style="@style/Text.Filled"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:textSize="@dimen/_11ssp"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textColor="@color/darkBlue"
             app:layout_constraintEnd_toEndOf="@+id/tvDelivery"
             app:layout_constraintStart_toStartOf="@+id/tvTotalPrice"
             app:layout_constraintTop_toBottomOf="@+id/tvTotalPrice"
@@ -62,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/deliveryPrice"
-            android:textSize="@dimen/_10ssp"
+            android:textAppearance="?attr/textAppearanceOverline"
             android:textColor="@color/purple"
             app:layout_constraintStart_toStartOf="@+id/tvTotalPrice"
             app:layout_constraintTop_toBottomOf="@+id/tvNumberProducts" />

@@ -24,12 +24,12 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvSearchResult"
-        style="@style/Text.Filled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16sdp"
-        android:paddingTop="@dimen/_15sdp"
-        android:paddingBottom="@dimen/_15sdp"
+        android:paddingVertical="@dimen/_15sdp"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="@color/darkBlue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         tools:text="@string/countProducts" />

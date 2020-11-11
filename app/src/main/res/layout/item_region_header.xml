@@ -2,11 +2,10 @@
 <com.google.android.material.textview.MaterialTextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tvmHeaderLetter"
-    style="@style/TextAppearance.AppCompat.Medium"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/_10sdp"
     android:layout_marginTop="@dimen/_8sdp"
+    android:textAppearance="?attr/textAppearanceButton"
     android:textColor="@color/darkBlue"
-    android:textStyle="bold"
     tools:text="A" />

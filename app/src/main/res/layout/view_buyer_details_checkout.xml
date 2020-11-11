@@ -9,10 +9,10 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvBuyerDetailsTitleCheckout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/buyerDetails"
-        android:textAppearance="@style/Text.BlockHeaderBold" />
+        android:textAppearance="?attr/textAppearanceButton" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilFirstLastNameCheckout"
@@ -30,7 +30,8 @@
             android:inputType="textPersonName"
             android:lines="1"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -40,9 +41,10 @@
         android:layout_marginTop="@dimen/_16sdp"
         android:imeOptions="actionNext"
         app:endIconMode="clear_text"
-        app:prefixText="+7"
         app:hintAnimationEnabled="false"
-        app:hintEnabled="false">
+        app:hintEnabled="false"
+        app:prefixText="+7"
+        app:prefixTextAppearance="?attr/textAppearanceBody2">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPhoneCheckout"
@@ -54,7 +56,8 @@
             android:inputType="phone"
             android:lines="1"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +78,8 @@
             android:inputType="textWebEmailAddress"
             android:lines="1"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

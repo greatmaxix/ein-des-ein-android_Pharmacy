@@ -13,9 +13,8 @@
         android:gravity="center"
         android:paddingVertical="@dimen/_14sdp"
         android:text="@string/chatAuthorizeButton"
+        android:textAppearance="?attr/textAppearanceButton"
         android:textColor="@color/colorGlobalWhite"
-        android:textSize="@dimen/_14ssp"
-        android:textStyle="bold"
         app:cornerRadius="@dimen/_90sdp" />
 
 </FrameLayout>

@@ -101,6 +101,7 @@ fun String.addPlusSignIfNeeded() = if (contains("+")) this else "+".plus(this)
 
 fun String.spanSearchCount(count: Int) = SpannableString(this).apply {
     setSpan(StyleSpan(Typeface.BOLD), 8, 8 + count.length(), 0)
+    setSpan(RelativeSizeSpan(1.2F), 8, 8 + count.length(), 0)
 }
 
 val Float.isPositive get() = this > 0

@@ -30,12 +30,12 @@
 
             <ImageView
                 android:id="@+id/ivWish"
-                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_default_ripple_selector_circle"
                 android:padding="@dimen/_4sdp"
                 android:src="@drawable/ic_heart_stroke"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,9 +46,8 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/darkBlue"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivChatProduct"
@@ -61,8 +60,8 @@
                 android:layout_marginTop="@dimen/_4sdp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceCaption"
                 android:textColor="@color/darkBlue"
-                android:textSize="@dimen/_10ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvChatProductTitle"
@@ -73,8 +72,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/from"
+                android:textAppearance="?attr/textAppearanceCaption"
                 android:textColor="@color/primaryBlue"
-                android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvChatProductPrice"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -84,15 +83,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4sdp"
                 android:layout_marginTop="@dimen/_16sdp"
+                android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/primaryBlue"
-                android:textSize="@dimen/_15ssp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/tvPricePrefix"
                 app:layout_constraintTop_toBottomOf="@+id/tvChatProductDescription"
                 tools:text="568 ₽" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!--todo не вижу этот элемент в дизайне поэтому не могу применить стиль-->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvChatProductRecipe"
             android:layout_width="wrap_content"

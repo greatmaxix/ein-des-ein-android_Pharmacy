@@ -50,7 +50,7 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
         mcvAnalog.mockToast()
         mcvCategory.mockToast()
         mcvInstruction.mockToast()
-        mcvQuestions.setDebounceOnClickListener { navController.navigate(R.id.fromProductToChat) }
+        mcvQuestions.setDebounceOnClickListener { viewModel.performAskPharmacist() }
         fbWish.setDebounceOnClickListener { viewModel.setOrRemoveWish(!args.product.isInWish to args.product.globalProductId) }
         args.product.aggregation?.let {
             mbToPharmacy.setDebounceOnClickListener { navController.navigate(fromProductToPharmacy(args.product.globalProductId)) }
@@ -102,4 +102,10 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
     }
 
     override fun needToLogin() = navController.navigate(R.id.fromProductToAuth, SignInFragmentArgs(R.id.nav_product).toBundle())
+
+    override fun onBindLiveData() {
+        super.onBindLiveData()
+
+        observe(viewModel.directionLiveData, ::doNav)
+    }
 }

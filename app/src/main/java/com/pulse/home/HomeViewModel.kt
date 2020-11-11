@@ -6,7 +6,7 @@ import com.pulse.MainGraphDirections.Companion.globalToChat
 import com.pulse.chat.model.chat.ChatItem.Companion.STATUS_CLOSED
 import com.pulse.core.general.SingleLiveEvent
 import com.pulse.core.network.ResponseWrapper
-import com.pulse.home.HomeFragmentDirections.Companion.fromHomeToChatType
+import com.pulse.home.HomeFragmentDirections.Companion.globalToChatType
 import com.pulse.home.repository.HomeRepository
 import com.pulse.model.category.Category
 import com.pulse.product.BaseProductViewModel
@@ -44,11 +44,11 @@ class HomeViewModel(private val repository: HomeRepository) : BaseProductViewMod
                         globalToChat(chatItem)
                     } else {
                         repository.clearSavedChatId()
-                        fromHomeToChatType()
+                        globalToChatType()
                     }
                 } catch (e: Exception) {
                     repository.clearSavedChatId()
-                    fromHomeToChatType()
+                    globalToChatType()
                 }
             }
             _progressLiveData.postValue(false)
