@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvHint"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -14,10 +14,10 @@
         android:gravity="center|start"
         android:textColor="@color/colorSearchHint"
         android:textSize="@dimen/_12ssp"
-        app:layout_constraintBottom_toBottomOf="@+id/ivSearch"
+        app:layout_constraintBottom_toBottomOf="@+id/ivBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivSearch"
-        app:layout_constraintTop_toTopOf="@+id/ivSearch" />
+        app:layout_constraintStart_toEndOf="@id/ivBack"
+        app:layout_constraintTop_toTopOf="@+id/ivBack" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etSearch"
@@ -36,16 +36,16 @@
         android:theme="@style/AuthSearchView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivSearch"
+        app:layout_constraintStart_toEndOf="@id/ivBack"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivSearch"
+        android:id="@+id/ivBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
         android:padding="@dimen/_2sdp"
-        android:src="@drawable/ic_search"
+        android:src="@drawable/ic_arrow_back"
         android:tint="@color/darkBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

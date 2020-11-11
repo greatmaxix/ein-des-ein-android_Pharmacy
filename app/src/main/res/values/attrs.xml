@@ -17,12 +17,14 @@
         <attr name="detailTextProfile" format="string" />
         <attr name="arrowVisibilityProfile" format="boolean" />
         <attr name="mainColorProfile" format="reference" />
+        <attr name="secondaryColorProfile" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="AppSearchView">
         <attr name="debounce" format="float" />
         <attr name="animationDuration" format="float" />
         <attr name="hintText" format="reference" />
+        <attr name="withBackButton" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="EmptyContainerView">

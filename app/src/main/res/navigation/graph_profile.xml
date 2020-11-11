@@ -91,4 +91,11 @@
         android:name="com.pulse.user.wishlist.WishFragment"
         android:label="@string/wishLabel"
         tools:layout="@layout/fragment_wish" />
+
+    <fragment
+        android:id="@+id/nav_need_help"
+        android:name="com.pulse.components.needHelp.NeedHelpFragment"
+        android:label="@string/have_questions"
+        tools:layout="@layout/fragment_need_help" />
+
 </navigation>

@@ -30,7 +30,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         orderContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_orders, null, R.id.nav_profile) }
         itemAboutProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
         itemAddressProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_address, null, R.id.nav_profile) }
-        itemHelpProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_help, null, R.id.nav_profile) }
+        itemHelpProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_need_help, null, R.id.nav_profile) }
         itemPaymentProfile.mockToast()
         itemNotificationProfile.mockToast()
     }
@@ -40,7 +40,7 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         observe(viewModel.customerInfoLiveData) {
             mtvNameProfile.text = it?.name
             mtvPhoneProfile.text = it?.phone?.addPlusSignIfNeeded()?.formatPhone()
-            itemRegionProfile.setDetailText(it?.region?.regionName ?: "")
+            itemRegionProfile.detailText = it?.region?.regionName ?: ""
         }
         observe(viewModel.directionLiveData, navController::navigate)
         observe(viewModel.errorLiveData) { messageCallback?.showError(it) }

@@ -2,6 +2,7 @@ package com.pulse.data.remote
 
 import com.pulse.R
 import com.pulse.checkout.model.TempPaymentMethod
+import com.pulse.components.needHelp.model.HelpItem
 import com.pulse.product.model.TempRecommendedModel
 
 @Deprecated("Mock data object")
@@ -79,5 +80,28 @@ object DummyData {
         "Не компетентность",
         "Не спросили рецепт",
         "Советовали очень дорогое"
+    )
+
+    val help = arrayListOf(
+        HelpItem(
+            R.drawable.ic_shield,
+            "Кассовая дисциплина",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor"
+        ),
+        HelpItem(
+            R.drawable.ic_locked,
+            "Возврат",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor"
+        ),
+        HelpItem(
+            R.drawable.ic_locked,
+            "Возврат",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor"
+        ),
+        HelpItem(
+            R.drawable.ic_dollar_sign,
+            "Рецептурные товары",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor"
+        )
     )
 }

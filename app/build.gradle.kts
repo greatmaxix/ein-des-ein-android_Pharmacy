@@ -52,8 +52,8 @@ android {
         kapt {
             arguments {
                 arg("room.schemaLocation", "$projectDir/schemas")
-                arg("room.incremental", "true")
-                arg("room.expandProjection", "true")
+                arg("room.incremental", true)
+                arg("room.expandProjection", true)
             }
         }
     }

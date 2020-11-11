@@ -389,5 +389,6 @@
     <string name="recipesHelp">Рецепты</string>
     <string name="payment">Оплата</string>
     <string name="deliveryHelp">Доставка</string>
+    <string name="have_questions">Есть вопросы?</string>
 
 </resources>
