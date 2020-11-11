@@ -30,6 +30,9 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         orderContainerProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_orders, null, R.id.nav_profile) }
         itemAboutProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
         itemAddressProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_address, null, R.id.nav_profile) }
+        itemHelpProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_help, null, R.id.nav_profile) }
+        itemPaymentProfile.mockToast()
+        itemNotificationProfile.mockToast()
     }
 
     override fun onBindLiveData() {
