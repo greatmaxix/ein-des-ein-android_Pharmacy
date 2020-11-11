@@ -16,7 +16,7 @@ val productCardModule = module {
     single { ProductLocalDataSource(get<DBManager>().recentlyViewedDAO) }
     single { ProductRepository(get(), get()) }
 
-    viewModel { ProductViewModel() }
+    viewModel { ProductViewModel(get()) }
 
     fragment { ProductFragment(get()) }
 }

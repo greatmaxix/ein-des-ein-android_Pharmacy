@@ -8,12 +8,9 @@ import com.pulse.core.general.SingleLiveEvent
 import com.pulse.home.repository.HomeRepository
 import com.pulse.product.ProductFragmentDirections.Companion.globalToChatType
 import org.koin.core.component.KoinApiExtension
-import org.koin.core.component.inject
 
 @KoinApiExtension
-class ProductViewModel : BaseProductViewModel() {
-
-    private val homeRepository: HomeRepository by inject()
+class ProductViewModel(private val homeRepository: HomeRepository) : BaseProductViewModel() {
 
     private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
     val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
