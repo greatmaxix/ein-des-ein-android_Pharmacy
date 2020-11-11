@@ -194,7 +194,7 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
 
     companion object {
 
-        // DEV https:/mercure.pharmacies.fmc-dev.com/ RELEASE https://mercure.pharmacies.release.fmc-dev.com/
+        // DEV https://mercure.pharmacies.fmc-dev.com/ RELEASE https://mercure.pharmacies.release.fmc-dev.com/
         private const val SERVICE_BASE_URL = "https://mercure.pharmacies.release.fmc-dev.com/.well-known/mercure"
         private val MERCURE_NOTIFICATION_CHANNEL_ID = UUID.randomUUID().toString()
         private const val MERCURE_NOTIFICATION_CHANNEL_NAME = "Chat notification channel" // TODO set proper value
