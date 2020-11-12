@@ -1,4 +1,4 @@
-package com.pulse.recipes
+package com.pulse.components.recipes
 
 import android.os.Bundle
 import android.view.View

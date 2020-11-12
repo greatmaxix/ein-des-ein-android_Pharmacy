@@ -37,9 +37,12 @@
         <attr name="text" format="string" />
     </declare-styleable>
 
-
     <declare-styleable name="AuthFooter">
         <attr name="textDescription" format="string" />
         <attr name="textAction" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="Grayscale">
+        <attr name="isDisabled" format="boolean" />
     </declare-styleable>
 </resources>

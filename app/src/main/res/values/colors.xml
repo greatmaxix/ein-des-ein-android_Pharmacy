@@ -82,7 +82,7 @@
     <color name="yellowStatus">#FFE600</color>
     <color name="purpleStatus">#A86EF1</color>
     <color name="violetStatus">#6E7DF1</color>
-    <color name="greenStatus">#29D986</color>
+    <color name="greenStatus">@color/green</color>
     <color name="redStatus">#FF0000</color>
 
 </resources>

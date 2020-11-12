@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_8sdp">
+
+    <com.pulse.ui.layout.GrayscaleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/v_background"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_24sdp"
+            android:background="@drawable/bg_corners_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/mtv_label_active" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_label_active"
+            style="@style/TextAppearance.MaterialComponents.Caption.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorGlobalWhite"
+            app:layout_constraintBottom_toBottomOf="@+id/v_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/v_background"
+            tools:text="Активен до 23.07.2020" />
+
+    </com.pulse.ui.layout.GrayscaleLayout>
+
+</com.google.android.material.card.MaterialCardView>
