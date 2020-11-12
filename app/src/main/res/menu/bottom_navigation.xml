@@ -28,7 +28,7 @@
 
     <item
         android:id="@+id/profile_graph"
-        android:icon="@drawable/ic_box"
+        android:icon="@drawable/ic_avatar"
         android:title="@string/menuTitleProfile"
         app:showAsAction="ifRoom" />
 

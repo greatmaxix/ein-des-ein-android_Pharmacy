@@ -18,7 +18,7 @@ data class DeliveryInfoOrderData(
     @Ignore
     var deliveryType: DeliveryType? = null,
     @PrimaryKey
-    var id: Int = 0,
+    @SerializedName("id") var id: Int = 0,
 ) : Parcelable {
 
     constructor() : this(null, null, null)

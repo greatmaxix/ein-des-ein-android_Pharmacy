@@ -467,3 +467,5 @@ fun NestedScrollView.scrollToTop() {
 fun View.dimension(@DimenRes dimenResId: Int) = resources.getDimension(dimenResId)
 
 fun View.dimensionPixelSize(@DimenRes dimenResId: Int) = resources.getDimensionPixelSize(dimenResId)
+
+fun View.font(@FontRes fontId: Int) = resources.getFont(fontId)

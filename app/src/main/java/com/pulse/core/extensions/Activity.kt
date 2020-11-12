@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.Window.ID_ANDROID_CONTENT
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
+import androidx.annotation.FontRes
 import androidx.annotation.StringRes
 import androidx.core.net.toUri
 import androidx.fragment.app.*
@@ -160,3 +161,5 @@ fun FragmentActivity.setFragmentNow(fragment: Fragment, containerId: Int = R.id.
         }
     }
 }
+
+fun Activity.font(@FontRes fontId: Int) = resources.getFont(fontId)

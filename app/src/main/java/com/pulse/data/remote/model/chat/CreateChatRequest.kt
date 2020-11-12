@@ -1,3 +1,5 @@
 package com.pulse.data.remote.model.chat
 
-data class CreateChatRequest(val type: String)
+import com.google.gson.annotations.SerializedName
+
+data class CreateChatRequest(@SerializedName("type") val type: String)

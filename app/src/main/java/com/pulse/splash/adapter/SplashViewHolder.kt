@@ -3,11 +3,11 @@ package com.pulse.splash.adapter
 import android.view.View
 import android.view.ViewGroup
 import com.pulse.R
-import com.pulse.components.onboarding.model.Splash
 import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.inflate
 import com.pulse.core.extensions.loadGlideDrawableByName
 import com.pulse.core.extensions.onClick
+import com.pulse.splash.model.Splash
 import kotlinx.android.synthetic.main.item_splash.view.*
 
 class SplashViewHolder(view: View, private val skip: () -> Unit, private val next: () -> Unit) : BaseViewHolder<Splash>(view) {

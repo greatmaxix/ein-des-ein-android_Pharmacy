@@ -1,4 +1,4 @@
-package com.pulse.components.onboarding.model
+package com.pulse.splash.model
 
 import androidx.annotation.StringRes
 
