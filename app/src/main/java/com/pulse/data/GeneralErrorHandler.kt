@@ -36,15 +36,22 @@ class GeneralErrorHandler : KoinComponent {
     private fun httpError(error: HttpException): GeneralException {
         val errorModel = errorBody(error, ErrorModel::class.java)
         return when (errorModel?.type) {
-            "validation_error" -> wrapViolations(errorModel.violations.first())
-            "not_found" -> GeneralException(" ", R.string.authCustomerWithThisPhoneNumber)
+            "validation_error" -> errorModel.violations?.first()?.wrapValidationError() ?: unknownError
+            "authentication_failure" -> GeneralException(" ", R.string.authErrorEnteredValue)
+            "not_found" -> {
+                when {
+                    errorModel.message == "This item is currently unavailable" -> GeneralException(" ", R.string.notFoundCurrentlyUnavailable)
+                    errorModel.message.contains("Customer with phone", true) -> GeneralException(" ", R.string.authCustomerWithThisPhoneNumber)
+                    else -> unknownError
+                }
+            }
             else -> unknownError
         }
     }
+}
 
-    private fun wrapViolations(violation: Violation) = when (violation.message) {
-        "This customer exist." -> GeneralException(" ", R.string.authCustomerAlreadyExist)
-        else -> unknownError
-    }
-
+fun Violation.wrapValidationError(): GeneralException = when {
+    propertyPath == "phone" && message == "This customer exist." -> GeneralException(" ", R.string.authCustomerAlreadyExist)
+    propertyPath == "phone" && message == "This value is not valid." -> GeneralException(" ", R.string.authEnteredValueNotValid)
+    else -> GeneralException("unknown", R.string.error_errorGettingData)
 }

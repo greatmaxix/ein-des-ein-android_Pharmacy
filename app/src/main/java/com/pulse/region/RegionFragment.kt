@@ -21,7 +21,9 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
         RegionAdapter({
             searchViewRegion.clearFocus()
             viewModel.regionSelected(it)
-        }, llRegionNotFoundContainer::animateVisibleOrGoneIfNot)
+        }, {
+            viewLifecycleOwner.lifecycleScope.launch { llRegionNotFoundContainer.animateVisibleOrGoneIfNot(it) }
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

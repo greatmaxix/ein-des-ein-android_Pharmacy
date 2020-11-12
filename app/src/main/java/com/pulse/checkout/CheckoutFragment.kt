@@ -27,7 +27,8 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
 
     private val orderProductsAdapter by lazy { CheckoutProductsAdapter(args.cartItem.products) }
     private val radioButtonPadding by lazy { resources.getDimension(R.dimen._8sdp).toInt() }
-
+    private val fontSemibold by lazy { font(R.font.open_sans_semi_bold) }
+    private val fontNormal by lazy { font(R.font.open_sans_regular) }
     private val Boolean.deliveryType
         get() = if (this) DeliveryType.DELIVERY else DeliveryType.PICKUP
 
@@ -40,6 +41,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         showBackButton()
 
         cardMethodDeliveryCheckout.isSelected = true
+        tvMethodDeliveryCheckout.typeface = fontSemibold
         cardMethodDeliveryCheckout.setOnClickListener(this)
         cardMethodPickupCheckout.setOnClickListener(this)
 
@@ -121,7 +123,9 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
 
         fun setDeliveryMethod(isPickup: Boolean) {
             cardMethodDeliveryCheckout.isSelected = !isPickup
+            tvMethodDeliveryCheckout.typeface = if (!isPickup) fontSemibold else fontNormal
             cardMethodPickupCheckout.isSelected = isPickup
+            tvMethodPickupCheckout.typeface = if (isPickup) fontSemibold else fontNormal
             viewBuyerDeliveryAddressCheckout.visibleOrGone(!isPickup)
             tvBuyerDeliveryAddressTitleCheckout.visibleOrGone(!isPickup)
         }

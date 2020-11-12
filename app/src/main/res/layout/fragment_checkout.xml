@@ -66,6 +66,7 @@
                     app:strokeWidth="@dimen/_2sdp">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvMethodDeliveryCheckout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -92,6 +93,7 @@
                     app:strokeWidth="@dimen/_2sdp">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvMethodPickupCheckout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
