@@ -52,6 +52,9 @@
     <string name="authPhoneDebugHint">+3 (•••) •••–••–••*</string>
     <string name="authCustomerWithThisPhoneNumber">Пользователь с таким номером телефона не найдет, проверте правильность ввода или зарегестрируйтесь</string>
     <string name="authCustomerAlreadyExist">Пользователь с таким номером телефона уже существует, проверте правильность ввода или войдите</string>
+    <string name="authEnteredValueNotValid">Введен некорректный номер телефона</string>
+    <string name="authErrorEnteredValue">Ошибка авторизации. Проверьте правильность ввода и повторите попытку</string>
+    <string name="notFoundCurrentlyUnavailable">Этот продукт на данный момент недоступен</string>
 
     <string name="menuTitleMain">Главная</string>
     <string name="menuTitleCategories">Каталог</string>
@@ -389,5 +392,7 @@
     <string name="recipesHelp">Рецепты</string>
     <string name="payment">Оплата</string>
     <string name="deliveryHelp">Доставка</string>
+    <string name="have_questions">Есть вопросы?</string>
+    <string name="search">Поиск</string>
 
 </resources>

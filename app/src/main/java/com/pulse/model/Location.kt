@@ -11,6 +11,7 @@ data class Location(
     @SerializedName("lng") val lng: Double,
     @SerializedName("address") val address: String
 ) : Parcelable {
+
     val mapCoordinates
         get() = LatLng(lat, lng)
 }

@@ -22,7 +22,7 @@ class CategoriesFragment : BaseMVVMFragment(R.layout.fragment_categories) {
     private val viewModel: CategoriesViewModel by viewModel { parametersOf(args.category) }
     private val clickAction by lazy { return@lazy viewModel::selectCategory }
     private val categoryAdapter by lazy { CategoryAdapter(clickAction) }
-    private val spacing = dimensionPixelSize(R.dimen._2sdp)
+    private val spacing by lazy { dimensionPixelSize(R.dimen._2sdp) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

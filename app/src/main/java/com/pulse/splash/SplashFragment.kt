@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavDirections
 import com.pulse.R
-import com.pulse.components.onboarding.model.Splash
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.visible
 import com.pulse.core.general.Event
 import com.pulse.splash.adapter.SplashPagerAdapter
+import com.pulse.splash.model.Splash
 import kotlinx.android.synthetic.main.fragment_splash.*
 import org.koin.core.component.KoinApiExtension
 

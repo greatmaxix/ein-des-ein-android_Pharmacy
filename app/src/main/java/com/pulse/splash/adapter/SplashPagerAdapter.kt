@@ -1,8 +1,8 @@
 package com.pulse.splash.adapter
 
 import android.view.ViewGroup
-import com.pulse.components.onboarding.model.Splash
 import com.pulse.core.base.adapter.BaseRecyclerAdapter
+import com.pulse.splash.model.Splash
 
 class SplashPagerAdapter(items: List<Splash>, private val skip: () -> Unit, private val next: () -> Unit) : BaseRecyclerAdapter<Splash, SplashViewHolder>(items) {
 

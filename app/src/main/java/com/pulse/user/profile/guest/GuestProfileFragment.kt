@@ -19,10 +19,10 @@ class GuestProfileFragment(private val viewModel: GuestProfileViewModel) : BaseM
         btnAuthorizeProfileGuest.setDebounceOnClickListener { doNav(actionGuestToSignIn()) }
         itemRegionProfile.setDebounceOnClickListener { doNav(globalToRegion()) }
         itemAboutProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
-        itemHelpProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_help, null, R.id.nav_profile) }
+        itemHelpProfile.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_need_help, null, R.id.nav_profile) }
     }
 
     override fun onBindLiveData() {
-        observe(viewModel.tempRegionLiveData) { itemRegionProfile.setDetailText(it?.name) }
+        observe(viewModel.tempRegionLiveData) { itemRegionProfile.detailText = it?.name ?: "" }
     }
 }

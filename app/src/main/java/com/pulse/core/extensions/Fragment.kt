@@ -297,3 +297,5 @@ inline fun debug(code: () -> Unit) {
         code()
     }
 }
+
+fun Fragment.font(@FontRes fontId: Int) = resources.getFont(fontId)

@@ -3,7 +3,7 @@ package com.pulse.components.cart.model
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.pulse.model.Location
-import com.pulse.model.Logo
+import com.pulse.model.Picture
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -12,7 +12,7 @@ data class CartItem(
     @SerializedName("name") val name: String,
     @SerializedName("location") val location: Location,
     @SerializedName("phone") val phone: String,
-    @SerializedName("logo") val logo: Logo,
+    @SerializedName("logo") val logo: Picture,
     @SerializedName("pharmacyProducts") val products: MutableList<CartProduct>
 ) : Parcelable {
 
