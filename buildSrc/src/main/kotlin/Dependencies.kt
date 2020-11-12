@@ -4,7 +4,7 @@ object Versions {
     const val coroutines = "1.4.1"
 
     const val sdp = "1.0.6"
-    const val koin = "2.2.0-rc-4"
+    const val koin = "2.2.0"
     const val glide = "4.11.0"
     const val okhttp = "4.10.0-RC1"
     const val retrofit = "2.9.0"
@@ -21,8 +21,7 @@ object DefaultConfig {
     const val minSdk = 26
     const val targetSdk = 30
     const val compileSdk = 30
-    const val versionMajor = 0
-    const val versionMinor = 1
+    const val versionName = "v1.0.0"
 }
 
 object SigningConfigs {

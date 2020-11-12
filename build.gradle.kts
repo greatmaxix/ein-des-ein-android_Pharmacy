@@ -18,7 +18,6 @@ buildscript {
         classpath("org.koin:koin-gradle-plugin:${Versions.koin}")
         classpath("com.google.firebase:firebase-crashlytics-gradle:2.3.0")
         classpath("com.google.firebase:firebase-appdistribution-gradle:2.0.1")
-        classpath("io.github.rockerhieu:versionberg:1.0.2")
     }
 }
 
