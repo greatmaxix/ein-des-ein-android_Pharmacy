@@ -5,7 +5,7 @@ import org.gradle.api.JavaVersion.VERSION_1_8
 
 plugins {
     id("com.android.application")
-    //id("kotlin-parcelize")
+    //id("kotlin-parcelize")  // TODO uncomment in future
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
@@ -39,7 +39,7 @@ android {
 
         proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
 
-        android.applicationVariants.all {
+        applicationVariants.all {
             outputs.all {
                 (this as BaseVariantOutputImpl).outputFileName = "$applicationId-v.$versionName($versionCode)-$name.apk"
             }
@@ -107,6 +107,8 @@ android {
     lintOptions {
         isAbortOnError = false
     }
+
+    // sourceSets["main"].java.srcDir("src/main/kotlin") TODO move java -> kotlin when no other work in branches
 
     kotlinOptions {
         jvmTarget = VERSION_1_8.toString()
