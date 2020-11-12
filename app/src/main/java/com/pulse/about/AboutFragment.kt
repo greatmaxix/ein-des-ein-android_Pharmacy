@@ -2,7 +2,7 @@ package com.pulse.about
 
 import android.os.Bundle
 import android.view.View
-import com.pulse.BuildConfig
+import com.pulse.BuildConfig.VERSION_NAME
 import com.pulse.R
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.mockToast
@@ -15,7 +15,7 @@ class AboutFragment : BaseMVVMFragment(R.layout.fragment_about) {
 
         showBackButton()
 
-        tvVersionAbout.text = getString(R.string.versionAbout, BuildConfig.VERSION_NAME)
+        tvVersionAbout.text = getString(R.string.versionAbout, VERSION_NAME)
 
         itemUserAgreement.mockToast()
         itemPersonalData.mockToast()
