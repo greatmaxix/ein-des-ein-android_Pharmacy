@@ -1,6 +1,7 @@
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.android.build.gradle.internal.tasks.factory.dependsOn
-import  org.gradle.api.JavaVersion.VERSION_1_8
+import org.apache.commons.io.output.ByteArrayOutputStream
+import org.gradle.api.JavaVersion.VERSION_1_8
 
 plugins {
     id("com.android.application")
@@ -29,10 +30,11 @@ android {
         consumerProguardFile(File(buildDir, NAVARGS_PROGUARD_RULES_PATH))
 
         with(DefaultConfig) {
+            val buildCode = "git rev-list --count remotes/origin/master remotes/origin/develop".execute.toInt()
             minSdkVersion(minSdk)
             targetSdkVersion(targetSdk)
-            versionCode(versionCode)
-            versionName(versionName)
+            versionCode(buildCode)
+            versionName(versionName + buildCode)
         }
 
         proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
@@ -77,7 +79,15 @@ android {
             signingConfig = signingConfigs.getByName(release)
             versionNameSuffix = "-qa"
             firebaseAppDistribution {
-                releaseNotes = "Some text"
+                releaseNotes = "git log --pretty=format:${"%s"} -20 --merges".execute
+                    .split("\n")
+                    .filter { it.contains("fix/") || it.contains("feature/") || it.contains("hotfix/") }
+                    .joinToString("\n") {
+                        it.replace("(.*/+)", "")
+                            .replace("release(.)*\n", "")
+                            .replace("\"", "")
+                            .replace("('.*')", "")
+                    }
                 testers = "developereinios@gmail.com, ivan.kovalenko13@gmail.com"
             }
         }
@@ -169,3 +179,12 @@ dependencies {
     implementation("com.kirich1409.android-notification-dsl:core:${Versions.notificationsDsl}")
     implementation("com.kirich1409.android-notification-dsl:extensions:${Versions.notificationsDsl}")
 }
+
+val String.execute
+    get() = ByteArrayOutputStream().run {
+        project.exec {
+            commandLine = split(" ")
+            standardOutput = this@run
+        }
+        String(toByteArray()).trim()
+    }
