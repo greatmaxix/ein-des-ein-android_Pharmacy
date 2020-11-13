@@ -145,6 +145,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/analoguesAndMain"
+                android:textAppearance="?attr/textAppearanceCaption"
                 android:textColor="@color/colorGlobalWhite"
                 app:layout_constraintEnd_toStartOf="@id/ivArrow"
                 app:layout_constraintStart_toStartOf="parent"

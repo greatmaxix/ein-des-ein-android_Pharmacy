@@ -50,6 +50,7 @@
 
     <style name="TextInputAuthStyle" parent="TextInputStyle">
         <item name="android:layout_marginHorizontal">@dimen/_16sdp</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
     </style>
 
     <style name="TextAuthFooter">
@@ -64,7 +65,7 @@
     </style>
 
     <style name="AppToolbarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:fontFamily">@font/font_family</item>
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
         <item name="android:background">@drawable/bg_toolbar</item>
     </style>
 
@@ -171,5 +172,4 @@
         <item name="tabTextColor">?android:textColorSecondary</item>
         <item name="tabTextAppearance">?attr/textAppearanceSubtitle2</item>
     </style>
-
 </resources>
