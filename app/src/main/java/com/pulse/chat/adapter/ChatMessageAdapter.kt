@@ -8,7 +8,7 @@ import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.falseIfNull
 
 class ChatMessageAdapter(
-    private val listener: (Action) -> Unit,
+    private val authClickListener: (Action) -> Unit,
     private val productClickListener: (ProductViewHolder.Action, Pair<MessageItem, Int>) -> Unit
 ) : PagingDataAdapter<MessageItem, BaseViewHolder<MessageItem>>(ChatMessagesDiff) {
 
@@ -19,8 +19,9 @@ class ChatMessageAdapter(
             TYPE_DATE_HEADER -> DateHeaderViewHolder.newInstance(parent)
             TYPE_ATTACHMENT -> AttachmentViewHolder.newInstance(parent)
             TYPE_PRODUCT -> ProductViewHolder.newInstance(parent, productClickListener)
-            TYPE_AUTH_BUTTON -> AuthorizeButtonViewHolder.newInstance(parent, listener)
-            else -> EndChatViewHolder.newInstance(parent, listener)
+            TYPE_AUTH_BUTTON -> AuthorizeButtonViewHolder.newInstance(parent, authClickListener)
+            TYPE_RECIPE -> RecipeViewHolder.newInstance(parent)
+            else -> EndChatViewHolder.newInstance(parent, authClickListener)
         }
 
     override fun getItemViewType(position: Int) = getItem(position)?.messageType ?: -1
@@ -61,6 +62,7 @@ class ChatMessageAdapter(
         const val TYPE_PRODUCT = 5
         const val TYPE_AUTH_BUTTON = 6
         const val TYPE_END_CHAT = 7
+        const val TYPE_RECIPE = 8
     }
 
     enum class Action {

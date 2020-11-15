@@ -27,12 +27,15 @@ class MessageItem(
     @Embedded
     @SerializedName("globalProductCard") val product: MessageProduct? = null,
     @SerializedName("messageType") var messageType: Int? = null,
-    @SerializedName("ownerMessage") var ownerMessage: Boolean? = false
+    @SerializedName("ownerMessage") var ownerMessage: Boolean? = false,
+    @Embedded
+    @SerializedName("recipeImage") val recipeImage: RecipeImage? = null
 ) : Parcelable {
 
     fun updateMessageType(userUuid: String?) {
         if (messageType != ChatMessageAdapter.TYPE_END_CHAT && messageType != ChatMessageAdapter.TYPE_DATE_HEADER) {
             messageType = when {
+                recipeImage != null -> ChatMessageAdapter.TYPE_RECIPE
                 file != null -> ChatMessageAdapter.TYPE_ATTACHMENT
                 product != null -> ChatMessageAdapter.TYPE_PRODUCT
                 ownerUuid == userUuid -> ChatMessageAdapter.TYPE_MESSAGE_USER

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><!--todo возможно это лаяут лишний-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/_16sdp"
+    android:paddingVertical="@dimen/_4sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_message_pharmacy"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:src="@drawable/ic_pdf" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvRecipeNameChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:maxWidth="@dimen/_260sdp"
+            android:paddingVertical="@dimen/_8sdp"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/darkBlue"
+            tools:text="Да, от лимона у меня краснеют щеки и от мяты глаза чешуться и слезяться иногда" />
+
+    </LinearLayout>
+</FrameLayout>

@@ -13,6 +13,7 @@ import com.pulse.data.remote.model.order.DeliveryType
 import com.pulse.data.remote.serializer.*
 import com.pulse.model.category.Category
 import com.pulse.model.order.OrderStatus
+import com.pulse.util.Constants
 import okhttp3.OkHttpClient
 import okhttp3.internal.platform.Platform
 import org.koin.core.component.KoinApiExtension
@@ -30,11 +31,11 @@ val RESTModule = module {
 
     single {
 
-        // DEV - "https://api.pharmacies.fmc-dev.com" RELEASE - "https://api.pharmacies.release.fmc-dev.com"
-        val baseURL = "https://api.pharmacies.release.fmc-dev.com"
+        val developBaseURL = "https://api.pharmacies.fmc-dev.com"
+        val releaseBaseURL = "https://api.pharmacies.release.fmc-dev.com"
 
         Retrofit.Builder()
-            .baseUrl(baseURL)
+            .baseUrl(if (Constants.DEV_ENVIRONMENT) developBaseURL else releaseBaseURL)
             .addConverterFactory(GsonConverterFactory.create(get()))
             .client(get())
             .build()
