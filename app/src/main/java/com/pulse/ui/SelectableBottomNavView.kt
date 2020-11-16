@@ -9,7 +9,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
-import androidx.navigation.NavDestination
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -30,8 +29,8 @@ class SelectableBottomNavView @JvmOverloads constructor(
     private val selectedBorder = resources.getDimensionPixelSize(R.dimen._3sdp).toFloat()
     private val selectedColor = context.getCompatColor(R.color.primaryBlue)
     private val defaultColor = context.getCompatColor(R.color.grey)
-    private var lastSelectedItem: NavItem? = null
     private var fabView: BorderFab? = null
+    private var lastSelectedItem: NavItem? = null
     var navItems: List<NavItem> = listOf()
         set(value) {
             field = value
@@ -39,15 +38,14 @@ class SelectableBottomNavView @JvmOverloads constructor(
                 removeView(fabView)
                 fabView = null
             }
-            updateProfileIconState()
             if (value.firstOrNull { it.isFab } != null) {
                 fabView = inflate(R.layout.view_search_fab, false) as BorderFab
                 addView(fabView)
             }
-            value.forEach {
-                if (!it.isFab) setItemColor(it, defaultColor) else fabView?.setBorderEnabled(false)
-            }
-            setItemColor(if (lastSelectedItem != null) lastSelectedItem!! else value.first(), selectedColor)
+            value.resetSelection()
+
+            val firstItem = value.first()
+            changeSelection(firstItem.navigationItemResId)
         }
 
     private fun setItemColor(it: NavItem, @ColorInt color: Int) {
@@ -87,26 +85,31 @@ class SelectableBottomNavView @JvmOverloads constructor(
         }
     }
 
-    fun changeSelection(destination: NavDestination) {
+    fun changeSelection(@IdRes destinationId: Int) {
         if (navItems.isEmpty()) throw Throwable("You must set navItems first")
 
-        val currentNavItem = navItems.find { it.navigationItemResId == destination.id }
+        val currentNavItem = navItems.find { it.navigationItemResId == destinationId } ?: return
         lastSelectedItem?.let {
             when {
-                it.iconUrl != null -> updateProfileIconState(false)
+                it.isProfileItem -> updateProfileIconState(false)
                 it.isFab -> fabView?.setBorderEnabled(false)
                 else -> setItemColor(it, defaultColor)
             }
         }
-        currentNavItem?.let {
-            when {
-                it.iconUrl != null -> updateProfileIconState(true)
-                it.isFab -> fabView?.setBorderEnabled(true)
-                else -> setItemColor(it, selectedColor)
-            }
+        when {
+            currentNavItem.isProfileItem -> updateProfileIconState(true)
+            currentNavItem.isFab -> fabView?.setBorderEnabled(true)
+            else -> setItemColor(currentNavItem, selectedColor)
         }
-
         lastSelectedItem = currentNavItem
+    }
+
+    private fun List<NavItem>.resetSelection() {
+        forEach {
+            if (it.isFab) fabView?.setBorderEnabled(false)
+            if (it.isProfileItem) updateProfileIconState(false)
+            else setItemColor(it, defaultColor)
+        }
     }
 
     private fun Bitmap.createBitmapWithBorder(borderSize: Float, borderColor: Int): Bitmap {

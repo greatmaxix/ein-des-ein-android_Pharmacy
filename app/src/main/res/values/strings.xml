@@ -380,6 +380,7 @@
     <string name="pharmacistTypeContentDescription">Иконка выбора фармацевта</string>
     <string name="doctorTypeContentDescription">Иконка выбора доктора</string>
     <string name="chatTypeLabel">Чат</string>
+    <string name="attachment_recipe">Рецепт</string>
     <string name="attachment_image">Изображение</string>
     <string name="attachment_product">Продукт</string>
     <string name="chat_ended_automatically_title">Чат завершен</string>

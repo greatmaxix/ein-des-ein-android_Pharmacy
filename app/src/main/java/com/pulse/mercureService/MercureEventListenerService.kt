@@ -24,6 +24,7 @@ import com.pulse.main.MainActivity
 import com.pulse.mercureService.model.MercureResponse
 import com.pulse.mercureService.repository.MercureRepository
 import com.pulse.model.SingleItemModel
+import com.pulse.util.Constants
 import kotlinx.coroutines.*
 import okhttp3.Request
 import okhttp3.Response
@@ -75,7 +76,7 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
             Timber.d("SSE json received: $jsonString")
             val message = gson.fromJson(jsonString, MercureResponse::class.java)
             when (message.type) {
-                MESSAGE_TYPE_MESSAGE, MESSAGE_TYPE_APPLICATION, MESSAGE_TYPE_PRODUCT -> {
+                MESSAGE_TYPE_MESSAGE, MESSAGE_TYPE_APPLICATION, MESSAGE_TYPE_PRODUCT, MESSAGE_TYPE_RECIPE_IMAGE -> {
                     val typeToken: TypeToken<SingleItemModel<MessageItem>> = object : TypeToken<SingleItemModel<MessageItem>>() {}
                     val messageItem: SingleItemModel<MessageItem> = gson.fromJson(message.body, typeToken.type)
 
@@ -119,7 +120,7 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
         ) {
             val chat = repository.getChat(chatId)
             contentTitle(getString(chat?.typeNameResId ?: R.string.chat))
-            contentText(text ?: getString(if (file != null) R.string.attachment_image else R.string.attachment_product))
+            contentText(text ?: getString(if (recipeImage != null) R.string.attachment_recipe else if (file != null) R.string.attachment_image else R.string.attachment_product))
             priority(NotificationCompat.PRIORITY_HIGH)
             contentIntent(PendingIntent.getActivity(applicationContext, chatId, intent, PendingIntent.FLAG_UPDATE_CURRENT))
             autoCancel(true)
@@ -156,7 +157,7 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
             isRunning = true
             launch {
                 val topicName = repository.getTopicName()
-                val path = "$SERVICE_BASE_URL?topic=$topicName"
+                val path = "${if (Constants.DEV_ENVIRONMENT) DEV_SERVICE_BASE_URL else RELEASE_SERVICE_BASE_URL}?topic=$topicName"
                 request = Request.Builder()
                     .url(path)
                     .build()
@@ -194,8 +195,8 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
 
     companion object {
 
-        // DEV https://mercure.pharmacies.fmc-dev.com/ RELEASE https://mercure.pharmacies.release.fmc-dev.com/
-        private const val SERVICE_BASE_URL = "https://mercure.pharmacies.release.fmc-dev.com/.well-known/mercure"
+        private const val DEV_SERVICE_BASE_URL = "https://mercure.pharmacies.fmc-dev.com/.well-known/mercure"
+        private const val RELEASE_SERVICE_BASE_URL = "https://mercure.pharmacies.release.fmc-dev.com/.well-known/mercure"
         private val MERCURE_NOTIFICATION_CHANNEL_ID = UUID.randomUUID().toString()
         private const val MERCURE_NOTIFICATION_CHANNEL_NAME = "Chat notification channel" // TODO set proper value
 
@@ -203,6 +204,7 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
         private const val MESSAGE_TYPE_APPLICATION = "application"
         private const val MESSAGE_TYPE_PRODUCT = "global_product"
         private const val MESSAGE_TYPE_CHANGE_STATUS = "change_status"
+        private const val MESSAGE_TYPE_RECIPE_IMAGE = "recipe"
 
         const val EXTRA_CHAT_ID = "CHAT_ID"
     }

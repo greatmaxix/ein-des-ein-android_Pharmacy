@@ -149,7 +149,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
                 if (isChatForeground) WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
                 else WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
             )
-            changeSelection(destination)
+            changeSelection(destination.id)
         }
     }
 

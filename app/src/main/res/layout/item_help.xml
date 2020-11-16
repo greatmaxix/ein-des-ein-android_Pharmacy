@@ -18,8 +18,7 @@
         android:layout_marginBottom="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:paddingHorizontal="@dimen/_12sdp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2.SmallBody"
-        android:textColor="@color/darkBlue"
-        android:textSize="@dimen/_12ssp" />
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="@color/darkBlue" />
 
 </LinearLayout>
