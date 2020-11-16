@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_16sdp"
+    android:layout_marginTop="@dimen/_16sdp"
+    android:layout_marginEnd="@dimen/_16sdp"
+    app:cardCornerRadius="@dimen/_6sdp">
+
+    <com.pulse.ui.layout.GrayscaleLayout
+        android:id="@+id/gl_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_label_number"
+            style="@style/TextSubhead14Blue"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:ellipsize="end"
+            android:gravity="start|center"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@+id/mtv_label_active"
+            app:layout_constraintEnd_toStartOf="@+id/mtv_label_active"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/mtv_label_active"
+            tools:text="№ 234657" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_label_active"
+            style="@style/TextExtraSmall10White"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:background="@drawable/bg_recipe_status"
+            android:gravity="center"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_14sdp"
+            android:textColor="@color/colorGlobalWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mtv_label_number"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Активен до 23.07.2020" />
+
+        <ImageView
+            android:id="@+id/iv_product"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:src="@drawable/ic_placeholder_product"
+            app:layout_constraintStart_toStartOf="@+id/mtv_label_number"
+            app:layout_constraintTop_toBottomOf="@+id/mtv_label_number" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_description"
+            style="@style/TextBody16BlueLight"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:gravity="start|center"
+            android:maxLines="2"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_product"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_product"
+            app:layout_constraintTop_toTopOf="@+id/iv_product"
+            tools:text="ГІДАЗЕПАМ IC® (GIDAZEPAM IC) 0,05 №10 табл. АТХ N05В А." />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            app:layout_constraintStart_toStartOf="@+id/iv_product"
+            app:layout_constraintTop_toBottomOf="@+id/iv_product"
+            tools:text="QTY: 4" />
+
+        <View
+            android:id="@+id/v_divider"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_32sdp"
+            android:background="@drawable/divider_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mtv_qty" />
+
+        <ImageView
+            android:id="@+id/iv_doctor"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:src="@drawable/ic_placeholder_drugstore"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/mtv_qty"
+            app:layout_constraintTop_toBottomOf="@+id/v_divider" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_doctor_label"
+            style="@style/TextExtraSmall10Gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:text="@string/recipeCreatedBy"
+            app:layout_constraintStart_toEndOf="@+id/iv_doctor"
+            app:layout_constraintTop_toTopOf="@+id/iv_doctor" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_doctor_name"
+            style="@style/TextSubhead14Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_doctor"
+            app:layout_constraintStart_toStartOf="@+id/mtv_doctor_label"
+            tools:text="Иванчук О. А" />
+
+        <ImageView
+            android:id="@+id/iv_recipe_download"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:background="@drawable/background_default_ripple_selector_rect"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_recipe_download"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_doctor"
+            app:layout_constraintEnd_toEndOf="@+id/mtv_description" />
+
+    </com.pulse.ui.layout.GrayscaleLayout>
+
+</com.google.android.material.card.MaterialCardView>

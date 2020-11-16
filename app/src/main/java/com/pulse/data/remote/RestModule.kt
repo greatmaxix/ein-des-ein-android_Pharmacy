@@ -1,20 +1,20 @@
 package com.pulse.data.remote
 
 import com.google.gson.GsonBuilder
-import com.ihsanbal.logging.Level
-import com.ihsanbal.logging.LoggingInterceptor
 import com.pulse.BuildConfig
+import com.pulse.components.recipes.model.RecipeStatus
 import com.pulse.data.remote.api.RestApi
 import com.pulse.data.remote.api.RestApiRefresh
 import com.pulse.data.remote.authenticator.RestAuthenticator
 import com.pulse.data.remote.deserializer.CategoryDeserializer
+import com.pulse.data.remote.deserializer.RecipesStatusDeserializer
 import com.pulse.data.remote.interceptor.RestHeaderInterceptor
 import com.pulse.data.remote.model.order.DeliveryType
 import com.pulse.data.remote.serializer.*
 import com.pulse.model.category.Category
 import com.pulse.model.order.OrderStatus
 import okhttp3.OkHttpClient
-import okhttp3.internal.platform.Platform
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -31,7 +31,7 @@ val RESTModule = module {
     single {
 
         // DEV - "https://api.pharmacies.fmc-dev.com" RELEASE - "https://api.pharmacies.release.fmc-dev.com"
-        val baseURL = "https://api.pharmacies.release.fmc-dev.com"
+        val baseURL = "https://api.pharmacies.fmc-dev.com"
 
         Retrofit.Builder()
             .baseUrl(baseURL)
@@ -40,11 +40,11 @@ val RESTModule = module {
             .build()
     }
 
-    fun makeLoggingInterceptor() = LoggingInterceptor.Builder()
-        .setLevel(Level.BASIC)
-        .log(Platform.INFO)
-        .tag("OkHttp")
-        .build()
+    /* fun makeLoggingInterceptor() = LoggingInterceptor.Builder()
+         .setLevel(Level.BASIC)
+         .log(Platform.INFO)
+         .tag("OkHttp")
+         .build()*/
 
     single {
         OkHttpClient.Builder().apply {
@@ -56,9 +56,13 @@ val RESTModule = module {
             authenticator(RestAuthenticator())
             addInterceptor(RestHeaderInterceptor(get()))
 
-            if (BuildConfig.DEBUG) {
-                interceptors().add(makeLoggingInterceptor())
-            }
+            /*  if (BuildConfig.DEBUG) {
+                  interceptors().add(makeLoggingInterceptor())
+              }*/
+
+            if (BuildConfig.DEBUG) addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
         }.build()
     }
 
@@ -68,6 +72,7 @@ val RESTModule = module {
             registerTypeAdapter(DeliveryType::class.java, DeliveryTypeDeserializer())
             registerTypeAdapter(DeliveryType::class.java, DeliveryTypeSerializer())
             registerTypeAdapter(OrderStatus::class.java, OrderStatusDeserializer())
+            registerTypeAdapter(RecipeStatus::class.java, RecipesStatusDeserializer())
             registerTypeAdapter(OrderStatus::class.java, OrderStatusSerializer())
             registerTypeAdapter(LocalDateTime::class.java, DateTimeSerializer())
             registerTypeAdapter(Category::class.java, CategoryDeserializer())

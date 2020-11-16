@@ -9,7 +9,8 @@ import com.pulse.components.auth.authModule
 import com.pulse.components.cart.cartModule
 import com.pulse.components.needHelp.needHelpModule
 import com.pulse.components.onboarding.onboardingModule
-import com.pulse.components.pharmacy.checkoutMapModule
+import com.pulse.components.pharmacy.pharmacyModule
+import com.pulse.components.recipes.recipesModule
 import com.pulse.data.local.DBManager
 import com.pulse.data.local.SPManager
 import com.pulse.data.remote.RESTModule
@@ -52,6 +53,7 @@ object Modules {
         splashModule,
         onboardingModule,
         profileModule,
+        recipesModule,
         homeModule,
         authModule,
         qrCodeScannerModule,
@@ -62,7 +64,7 @@ object Modules {
         cartModule,
         chatModule,
         chatTypeModule,
-        checkoutMapModule,
+        pharmacyModule,
         regionModule,
         paymentsModule,
         userModule,

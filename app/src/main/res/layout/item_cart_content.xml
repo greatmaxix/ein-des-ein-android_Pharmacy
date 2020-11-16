@@ -16,7 +16,7 @@
         android:layout_height="@dimen/_110sdp"
         android:layout_marginBottom="@dimen/_8sdp"
         android:scaleType="centerInside"
-        android:src="@drawable/default_product_image"
+        android:src="@drawable/ic_placeholder_product"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

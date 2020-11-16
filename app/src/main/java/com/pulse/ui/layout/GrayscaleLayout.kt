@@ -12,7 +12,7 @@ import com.pulse.core.extensions.use
 
 class GrayscaleLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    var disabled = true
+    var disabled = false
         set(value) {
             field = value
             requestLayout()

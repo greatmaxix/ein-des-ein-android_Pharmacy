@@ -159,7 +159,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
     implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
     implementation("com.squareup.okhttp3:okhttp:${Versions.okhttp}")
-    implementation("com.github.ihsanbal:LoggingInterceptor:3.1.0") //TODO check is need
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    //implementation("com.github.ihsanbal:LoggingInterceptor:3.1.0") //TODO check is need
     // Navigation
     implementation("androidx.navigation:navigation-ui-ktx:${Versions.navigation}")
     implementation("androidx.navigation:navigation-runtime-ktx:${Versions.navigation}")

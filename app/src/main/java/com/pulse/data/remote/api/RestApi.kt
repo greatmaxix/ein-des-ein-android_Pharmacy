@@ -5,6 +5,7 @@ import com.pulse.chat.model.chat.ChatItem
 import com.pulse.chat.model.message.MessageItem
 import com.pulse.components.cart.model.CartItem
 import com.pulse.components.pharmacy.model.Pharmacy
+import com.pulse.components.recipes.model.Recipe
 import com.pulse.data.remote.model.chat.CreateChatRequest
 import com.pulse.data.remote.model.chat.SendMessageBody
 import com.pulse.data.remote.model.chat.SendReviewRequest
@@ -93,6 +94,13 @@ interface RestApi {
         @Query("page") page: Int? = null,
         @Query("per_page") pageSize: Int? = null
     ): BaseDataResponse<PaginationModel<ProductLite>>
+
+    @WorkerThread
+    @GET("/api/v1/customer/recipes")
+    suspend fun getRecipes(
+        @Query("page") page: Int? = null,
+        @Query("per_page") pageSize: Int? = null
+    ): BaseDataResponse<PaginationModel<Recipe>>
 
     @WorkerThread
     @GET("/api/v1/public/categories")
