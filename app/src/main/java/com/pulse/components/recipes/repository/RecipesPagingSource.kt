@@ -1,17 +1,23 @@
 package com.pulse.components.recipes.repository
 
 import androidx.paging.PagingSource
+import com.pulse.components.recipes.RecipesUseCase
 import com.pulse.components.recipes.model.Recipe
-import timber.log.Timber
+import com.pulse.core.general.Event
+import com.pulse.data.GeneralException
 
-class RecipesPagingSource(private val repository: RecipesRepository, private val total: (Int) -> Unit) : PagingSource<Int, Recipe>() {
+class RecipesPagingSource(private val useCase: RecipesUseCase, private val count: (Int) -> Unit, private val error: (Event<GeneralException>) -> Unit) :
+    PagingSource<Int, Recipe>() {
 
     override suspend fun load(params: LoadParams<Int>) = try {
-        val response = repository.recipesPaging(params.key ?: 1, params.loadSize)
-        total(response.totalCount)
-        LoadResult.Page(response.items, null, response.currentPageNumber + 1)
-    } catch (e: Exception) {
-        Timber.e("Error: ${e.message}")
+        useCase.getRecipePagerOrThrow(params.key ?: 1, params.loadSize).run {
+            count(totalCount)
+            LoadResult.Page(items, null, currentPageNumber + 1)
+        }
+    } catch (e: Throwable) {
+        if (e is GeneralException) {
+            error(Event(e))
+        }
         LoadResult.Error(Exception(e.message))
     }
 }

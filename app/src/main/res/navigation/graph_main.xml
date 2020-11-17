@@ -253,7 +253,17 @@
         android:id="@+id/nav_recipes"
         android:name="com.pulse.components.recipes.RecipesFragment"
         android:label="@string/recipesLabel"
-        tools:layout="@layout/fragment_recipes" />
+        tools:layout="@layout/fragment_recipes">
+
+        <action
+            android:id="@+id/fromRecipesToAuth"
+            app:destination="@id/auth_graph"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_analyzes"

@@ -11,5 +11,7 @@ data class GeneralException(override val message: String, @StringRes val resId: 
         val needToLoginCart = GeneralException("Items from cart", R.string.forCheckCart)
 
         val needToLoginAdd = GeneralException("Add to cart", R.string.forAddingToCart)
+
+        val needToLoginRecipes = GeneralException("Recipes list", R.string.toSeeYourRecipes)
     }
 }

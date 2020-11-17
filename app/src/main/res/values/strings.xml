@@ -400,5 +400,6 @@
     <string name="activeUntil">Активен до %1$s</string>
     <string name="qty">QTY: %1$d</string>
     <string name="recipeCreatedBy">Рецепт выписан :</string>
+    <string name="toSeeYourRecipes">Для того что бы увидеть Ваши рецепты необходимо залогиниться</string>
 
 </resources>
