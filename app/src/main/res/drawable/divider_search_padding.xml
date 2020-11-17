@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:drawable="@drawable/divider_search"
-            android:left="@dimen/_8sdp"
+            android:drawable="@drawable/divider_grey"
+        android:left="@dimen/_8sdp"
             android:right="@dimen/_8sdp" />
 </layer-list>

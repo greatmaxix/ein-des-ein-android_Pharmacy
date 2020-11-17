@@ -7,14 +7,25 @@ import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.pulse.R
+import com.pulse.core.extensions.use
 
 class GrayscaleLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    var disabled = true
+    var disabled = false
         set(value) {
             field = value
             requestLayout()
         }
+
+    init {
+        attrs?.let {
+            context.theme.obtainStyledAttributes(it, R.styleable.Grayscale, defStyleAttr, -1)
+                .use {
+                    disabled = getBoolean(R.styleable.Grayscale_isDisabled, false)
+                }
+        }
+    }
 
     private val paint = Paint().apply {
         colorFilter = ColorMatrixColorFilter(

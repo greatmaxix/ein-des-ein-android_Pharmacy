@@ -78,6 +78,7 @@ fun View.freeze(duration: Long = 300) {
     Handler().postDelayed({ isEnabled = true }, duration)
 }
 
+@Deprecated("Use @setDebounceOnClickListener or setOnClickListener")
 inline fun View.onClick(crossinline f: () -> Unit) {
     setOnClickListener { f() }
 }
@@ -319,7 +320,7 @@ fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> U
     val lastClickMap = mutableMapOf<Int, Long>()
     setOnClickListener { v ->
         val currentTimestamp = SystemClock.uptimeMillis()
-        if (currentTimestamp - lastClickMap.getOrDefault(v.id, 0) > interval) run { listener.invoke(v) }
+        if (currentTimestamp - lastClickMap.getOrDefault(v.id, 0) > interval) run { listener(v) }
         lastClickMap[v.id] = currentTimestamp
     }
 }

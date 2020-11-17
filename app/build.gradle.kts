@@ -72,11 +72,15 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             signingConfig = signingConfigs.getByName(release)
+            buildConfigField("Boolean", "DEVELOPER_SERVER", "false")
+            buildConfigField("Boolean", "IHSANBAL", "false")
         }
         create("qa") {
             isMinifyEnabled = true
             isShrinkResources = true
             signingConfig = signingConfigs.getByName(release)
+            buildConfigField("Boolean", "DEVELOPER_SERVER", "false")
+            buildConfigField("Boolean", "IHSANBAL", "false")
             versionNameSuffix = "-qa"
             firebaseAppDistribution {
                 releaseNotes = "git log --pretty=format:${"%s"} -20 --merges".execute
@@ -95,6 +99,8 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             signingConfig = signingConfigs.getByName(release)
+            buildConfigField("Boolean", "DEVELOPER_SERVER", "true")
+            buildConfigField("Boolean", "IHSANBAL", "false")
             versionNameSuffix = "-dg"
         }
     }
@@ -112,10 +118,7 @@ android {
 
     kotlinOptions {
         jvmTarget = VERSION_1_8.toString()
-        freeCompilerArgs = mutableListOf<String>().apply {
-            addAll(freeCompilerArgs)
-            addAll(listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xopt-in=kotlin.OptIn"))
-        }
+        freeCompilerArgs = freeCompilerArgs + listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xopt-in=kotlin.OptIn")
     }
 }
 
@@ -129,7 +132,7 @@ dependencies {
     // Google
     implementation("com.google.android.material:material:1.2.1")
     implementation("com.google.firebase:firebase-analytics:18.0.0")
-    implementation("com.google.firebase:firebase-crashlytics:17.2.2")
+    implementation("com.google.firebase:firebase-crashlytics:17.3.0")
     implementation("com.google.android.gms:play-services-maps:17.0.0")
     // Flow
     implementation("io.github.reactivecircus.flowbinding:flowbinding-android:1.0.0-beta02")
@@ -159,6 +162,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
     implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
     implementation("com.squareup.okhttp3:okhttp:${Versions.okhttp}")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
     implementation("com.github.ihsanbal:LoggingInterceptor:3.1.0") //TODO check is need
     // Navigation
     implementation("androidx.navigation:navigation-ui-ktx:${Versions.navigation}")
@@ -194,3 +198,4 @@ val String.execute
         }
         String(toByteArray()).trim()
     }
+

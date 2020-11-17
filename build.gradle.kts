@@ -16,7 +16,7 @@ buildscript {
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}")
         classpath("com.google.gms:google-services:4.3.4")
         classpath("org.koin:koin-gradle-plugin:${Versions.koin}")
-        classpath("com.google.firebase:firebase-crashlytics-gradle:2.3.0")
+        classpath("com.google.firebase:firebase-crashlytics-gradle:2.4.1")
         classpath("com.google.firebase:firebase-appdistribution-gradle:2.0.1")
     }
 }

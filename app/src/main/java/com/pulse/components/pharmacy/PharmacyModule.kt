@@ -11,7 +11,7 @@ import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
 
 @OptIn(KoinApiExtension::class)
-val checkoutMapModule = module {
+val pharmacyModule = module {
     fragment { PharmacyFragment() }
     fragment { PharmacyMapFragment() }
     fragment { PharmacyListFragment() }

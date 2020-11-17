@@ -15,6 +15,7 @@ import com.here.oksse.OkSse
 import com.here.oksse.ServerSentEvent
 import com.kirich1409.androidnotificationdsl.channels.createNotificationChannels
 import com.kirich1409.androidnotificationdsl.notification
+import com.pulse.BuildConfig.DEVELOPER_SERVER
 import com.pulse.R
 import com.pulse.chat.adapter.ChatMessageAdapter
 import com.pulse.chat.model.chat.ChatItem
@@ -24,7 +25,6 @@ import com.pulse.main.MainActivity
 import com.pulse.mercureService.model.MercureResponse
 import com.pulse.mercureService.repository.MercureRepository
 import com.pulse.model.SingleItemModel
-import com.pulse.util.Constants
 import kotlinx.coroutines.*
 import okhttp3.Request
 import okhttp3.Response
@@ -157,7 +157,7 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
             isRunning = true
             launch {
                 val topicName = repository.getTopicName()
-                val path = "${if (Constants.DEV_ENVIRONMENT) DEV_SERVICE_BASE_URL else RELEASE_SERVICE_BASE_URL}?topic=$topicName"
+                val path = "${if (DEVELOPER_SERVER) DEV_SERVICE_BASE_URL else RELEASE_SERVICE_BASE_URL}?topic=$topicName"
                 request = Request.Builder()
                     .url(path)
                     .build()

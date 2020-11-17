@@ -38,7 +38,7 @@
     <color name="colorButtonPrimaryDisable">@color/colorGlobalDisable</color>
     <color name="colorTextInputTextPrimary">@color/colorTextAuth</color>
     <color name="colorTextInputTextPrimaryDisable">#5d5d65</color>
-    <color name="colorBackgroundInputTextPrimary">#F6F8FA</color>
+    <color name="colorBackgroundInputTextPrimary">@color/colorGreyLight</color>
     <color name="colorBackgroundInputTextPrimaryDisable">#42424d</color>
 
     <color name="profileButtonGreyTint">#C7C7CC</color>
@@ -82,7 +82,7 @@
     <color name="yellowStatus">#FFE600</color>
     <color name="purpleStatus">#A86EF1</color>
     <color name="violetStatus">#6E7DF1</color>
-    <color name="greenStatus">#29D986</color>
+    <color name="greenStatus">@color/green</color>
     <color name="redStatus">#FF0000</color>
 
 </resources>

@@ -24,6 +24,27 @@
         <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline.ExtraSmall</item>
     </style>
 
+    <style name="TextSubhead14Blue">
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle2</item>
+        <item name="android:textColor">@color/darkBlue</item>
+    </style>
+
+    <style name="TextExtraSmall10White">
+        <item name="android:textAppearance">?attr/textAppearanceOverline</item>
+        <item name="android:textColor">@color/colorGlobalWhite</item>
+    </style>
+
+    <style name="TextBody16BlueLight">
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textColor">@color/primaryBlue</item>
+    </style>
+
+    <style name="TextExtraSmall10Gray">
+        <item name="android:textAppearance">?attr/textAppearanceOverline</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+
     <style name="ProgressContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

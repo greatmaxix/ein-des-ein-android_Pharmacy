@@ -271,8 +271,8 @@
     <!-- Recipes -->
     <string name="recipesLabel">Рецепты</string>
     <string name="recipesEmptyContainerAction">Записаться на прием</string>
-    <string name="recipesEmptyContainerSubtitle">Обратитесь к Вашему лечащему врачу, что бы загрузить рецепт</string>
-    <string name="recipesEmptyContainerTitle">У Вас пока нет подтвержденных рецептов</string>
+    <string name="recipesEmptyContainerSubtitle">Обратитесь к Вашему лечащему врачу или проконсультируйтесь с врачем в чате</string>
+    <string name="recipesEmptyContainerTitle">У Вас пока нет выписанных рецептов</string>
 
     <!-- Search -->
     <string name="searchLabel">Поиск</string>
@@ -395,5 +395,11 @@
     <string name="deliveryHelp">Доставка</string>
     <string name="have_questions">Есть вопросы?</string>
     <string name="search">Поиск</string>
+
+    <!--Recipes-->
+    <string name="activeUntil">Активен до %1$s</string>
+    <string name="qty">QTY: %1$d</string>
+    <string name="recipeCreatedBy">Рецепт выписан :</string>
+    <string name="toSeeYourRecipes">Для того что бы увидеть Ваши рецепты необходимо залогиниться</string>
 
 </resources>

@@ -21,7 +21,7 @@
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:adjustViewBounds="true"
-            android:src="@drawable/ic_drugstore_base"
+            android:src="@drawable/ic_placeholder_drugstore"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -24,7 +24,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/default_product_image" />
+            tools:src="@drawable/ic_placeholder_product" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTitle"

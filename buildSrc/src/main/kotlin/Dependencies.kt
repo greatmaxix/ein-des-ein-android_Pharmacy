@@ -4,7 +4,7 @@ object Versions {
     const val coroutines = "1.4.1"
 
     const val sdp = "1.0.6"
-    const val koin = "2.2.0"
+    const val koin = "2.2.1"
     const val glide = "4.11.0"
     const val okhttp = "4.10.0-RC1"
     const val retrofit = "2.9.0"
