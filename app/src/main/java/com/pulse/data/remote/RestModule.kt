@@ -1,7 +1,9 @@
 package com.pulse.data.remote
 
 import com.google.gson.GsonBuilder
-import com.pulse.BuildConfig
+import com.ihsanbal.logging.Level
+import com.ihsanbal.logging.LoggingInterceptor
+import com.pulse.BuildConfig.*
 import com.pulse.components.recipes.model.RecipeStatus
 import com.pulse.data.remote.api.RestApi
 import com.pulse.data.remote.api.RestApiRefresh
@@ -13,8 +15,8 @@ import com.pulse.data.remote.model.order.DeliveryType
 import com.pulse.data.remote.serializer.*
 import com.pulse.model.category.Category
 import com.pulse.model.order.OrderStatus
-import com.pulse.util.Constants
 import okhttp3.OkHttpClient
+import okhttp3.internal.platform.Platform
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
@@ -30,24 +32,23 @@ val RESTModule = module {
     single { get<Retrofit>().create(RestApiRefresh::class.java) }
 
     single {
-
-        val developBaseURL = "https://api.pharmacies.fmc-dev.com"
-        val releaseBaseURL = "https://api.pharmacies.fmc-dev.com"
-
         Retrofit.Builder()
-            .baseUrl(if (Constants.DEV_ENVIRONMENT) developBaseURL else releaseBaseURL)
+            .baseUrl(if (DEVELOPER_SERVER) "https://api.pharmacies.fmc-dev.com" else "https://api.pharmacies.release.fmc-dev.com")
             .addConverterFactory(GsonConverterFactory.create(get()))
             .client(get())
             .build()
     }
 
-    /* fun makeLoggingInterceptor() = LoggingInterceptor.Builder()
-         .setLevel(Level.BASIC)
-         .log(Platform.INFO)
-         .tag("OkHttp")
-         .build()*/
-
     single {
+
+        val ihsanbalLoggingInterceptor = LoggingInterceptor.Builder()
+            .setLevel(Level.BASIC)
+            .log(Platform.INFO)
+            .tag("OkHttp")
+            .build()
+
+        val okhttpLoggingInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+
         OkHttpClient.Builder().apply {
             connectTimeout(30, TimeUnit.SECONDS)
             writeTimeout(120, TimeUnit.SECONDS)
@@ -56,14 +57,8 @@ val RESTModule = module {
 
             authenticator(RestAuthenticator())
             addInterceptor(RestHeaderInterceptor(get()))
+            addInterceptor(if (DEBUG && IHSANBAL) ihsanbalLoggingInterceptor else okhttpLoggingInterceptor)
 
-            /*  if (BuildConfig.DEBUG) {
-                  interceptors().add(makeLoggingInterceptor())
-              }*/
-
-            if (BuildConfig.DEBUG) addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
         }.build()
     }
 

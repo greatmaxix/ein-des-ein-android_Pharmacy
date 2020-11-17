@@ -17,7 +17,9 @@ import kotlinx.android.synthetic.main.fragment_recipes.*
 
 class RecipesFragment(private val vm: RecipesViewModel) : BaseMVVMFragment(R.layout.fragment_recipes) {
 
-    private val recipesAdapter = RecipesAdapter {}
+    private val recipesAdapter = RecipesAdapter {
+        //TODO Implement DownloadManager
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,16 +30,16 @@ class RecipesFragment(private val vm: RecipesViewModel) : BaseMVVMFragment(R.lay
     }
 
     override fun onBindLiveData() {
-        observe(vm.recipesLiveData, ::showRecipesOrContainer)
-        observe(vm.recipesErrorLiveData) { it.contentOrNull?.let(::showAlert) }
+        observe(vm.recipesLiveData, ::showRecipes)
+        observe(vm.recipesErrorLiveData) { it.contentOrNull?.let(::showAlertOrNot) }
         observe(vm.recipesCountLiveData) { emptyContentRecipes.visibleOrGone(it <= 0) }
     }
 
-    private fun showRecipesOrContainer(pagingData: PagingData<Recipe>) {
+    private fun showRecipes(pagingData: PagingData<Recipe>) {
         recipesAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
     }
 
-    private fun showAlert(generalException: GeneralException) {
+    private fun showAlertOrNot(generalException: GeneralException) {
         if (generalException.resId == R.string.toSeeYourRecipes) {
             showAlertRes(getString(R.string.toSeeYourRecipes)) {
                 cancelable = false

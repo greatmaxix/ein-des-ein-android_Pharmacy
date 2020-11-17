@@ -24,7 +24,8 @@ class RecipesViewModel(private val useCase: RecipesUseCase) : BaseViewModel() {
         get() = Pager(PagingConfig(PAGE_SIZE, initialLoadSize = INIT_LOAD_SIZE)) {
             RecipesPagingSource(useCase, _recipesCountLiveData::postValue, _recipesErrorLiveData::postValue)
         }
-            .flow.cachedIn(viewModelScope)
+            .flow
+            .cachedIn(viewModelScope)
             .asLiveData()
 
     companion object {

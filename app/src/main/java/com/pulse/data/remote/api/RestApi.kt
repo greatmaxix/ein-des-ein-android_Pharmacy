@@ -19,8 +19,8 @@ import com.pulse.product.model.Product
 import com.pulse.product.model.ProductLite
 import com.pulse.user.model.avatar.Avatar
 import com.pulse.user.model.customer.CustomerItem
-import com.pulse.util.Constants.Companion.CHAT_LIST_PAGE
-import com.pulse.util.Constants.Companion.CHAT_LIST_PAGE_SIZE
+import com.pulse.util.Constants.CHAT_LIST_PAGE
+import com.pulse.util.Constants.CHAT_LIST_PAGE_SIZE
 import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Response

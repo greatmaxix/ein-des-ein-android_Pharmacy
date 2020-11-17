@@ -16,7 +16,7 @@ import com.pulse.core.general.SingleLiveEvent
 import com.pulse.core.network.ResponseWrapper.Error
 import com.pulse.core.network.ResponseWrapper.Success
 import com.pulse.user.profile.ProfileFragmentDirections.Companion.actionFromProfileToSplash
-import com.pulse.util.Constants.Companion.AVATAR_FILE_NAME
+import com.pulse.util.Constants.AVATAR_FILE_NAME
 import com.pulse.util.ImageFileUtil
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
