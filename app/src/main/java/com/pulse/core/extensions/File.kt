@@ -3,6 +3,7 @@ package com.pulse.core.extensions
 import android.content.ContentResolver
 import android.content.ContentValues
 import android.os.Build
+import android.os.Environment
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
 import androidx.annotation.RequiresApi
@@ -41,9 +42,9 @@ fun ContentResolver.downloadFile(inputStream: InputStream, values: ContentValues
         update(it, values, null, null)
     }
 
-fun InputStream.downloadFile(displayName: String, relativePath: String): File? {
-    val directory = relativePath.pathToDirectoryFile
-    val newFile = directory.directoryToFile(displayName)
+fun InputStream.downloadFile(displayName: String, dirName: String): File? {
+    val parent = dirName.makeDocumentsDir
+    val newFile = parent.directoryToFile(displayName)
 
     newFile.outputStream().use {
         return try {
@@ -56,8 +57,8 @@ fun InputStream.downloadFile(displayName: String, relativePath: String): File? {
     }
 }
 
-val String.pathToDirectoryFile
-    get() = File(this)
+val String.makeDocumentsDir
+    get() = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), this)
         .apply {
             if (!isDirectory || !exists()) {
                 mkdirs()

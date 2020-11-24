@@ -33,7 +33,7 @@ class RecipesWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ct
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             applicationContext.contentResolver.downloadPDF(body.byteStream(), displayName, RELATIVE_PATH)
         } else {
-            body.byteStream().downloadFile(displayName, RELATIVE_PATH)
+            body.byteStream().downloadFile(displayName, PULSE_DOCUMENTS_DIR)
         }.toString()
     }
 
@@ -41,6 +41,7 @@ class RecipesWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ct
         const val KEY_VALUE = "value"
         const val KEY_RESULT = "result"
 
-        private val RELATIVE_PATH = "${Environment.DIRECTORY_DOCUMENTS}${File.separator}Pulse Documents"
+        private const val PULSE_DOCUMENTS_DIR = "Pulse Documents"
+        private val RELATIVE_PATH = "${Environment.DIRECTORY_DOCUMENTS}${File.separator}$PULSE_DOCUMENTS_DIR"
     }
 }
