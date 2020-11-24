@@ -22,9 +22,11 @@ import com.pulse.user.model.customer.CustomerItem
 import com.pulse.util.Constants.CHAT_LIST_PAGE
 import com.pulse.util.Constants.CHAT_LIST_PAGE_SIZE
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.*
+
 
 interface RestApi {
 
@@ -193,4 +195,8 @@ interface RestApi {
     @WorkerThread
     @PATCH("/api/v1/customer/chat/{chatId}/evaluate")
     suspend fun sendReview(@Path("chatId") chatId: Int, @Body body: SendReviewRequest): BaseDataResponse<Any?>
+
+    @GET("/api/v1/recipe/file/e9d4f288-bedd-43fc-ba95-9c1aa63d673b")
+    @Streaming
+    suspend fun downloadFile(): ResponseBody
 }

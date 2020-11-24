@@ -9,4 +9,5 @@ object Constants {
 
     const val CHAT_LIST_PAGE = 1
     const val CHAT_LIST_PAGE_SIZE = 50
+
 }

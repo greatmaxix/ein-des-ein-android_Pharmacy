@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val recipesModule = module {
-    fragment { RecipesFragment(get()) }
+    fragment { RecipesFragment(get(), get()) }
 
     single { RecipesUseCase(get(), get()) }
     single { RecipesRemoteDataSource(get()) }
