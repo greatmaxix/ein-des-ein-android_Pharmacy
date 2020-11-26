@@ -15,7 +15,6 @@ import androidx.work.*
 import androidx.work.WorkInfo.State.*
 import com.fondesa.kpermissions.allGranted
 import com.fondesa.kpermissions.extension.permissionsBuilder
-import com.pulse.BuildConfig
 import com.pulse.R
 import com.pulse.components.auth.sign.SignInFragmentArgs
 import com.pulse.components.recipes.RecipesWorker.Companion.KEY_RESULT
@@ -23,10 +22,7 @@ import com.pulse.components.recipes.RecipesWorker.Companion.KEY_VALUE
 import com.pulse.components.recipes.adapter.RecipesAdapter
 import com.pulse.components.recipes.model.Recipe
 import com.pulse.core.base.mvvm.BaseMVVMFragment
-import com.pulse.core.extensions.addStateListener
-import com.pulse.core.extensions.onNavDestinationSelected
-import com.pulse.core.extensions.showAlertRes
-import com.pulse.core.extensions.visibleOrGone
+import com.pulse.core.extensions.*
 import com.pulse.data.GeneralException
 import kotlinx.android.synthetic.main.fragment_recipes.*
 import timber.log.Timber
@@ -118,7 +114,7 @@ class RecipesFragment(private val vm: RecipesViewModel, private val workManager:
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             })
         } catch (e: ActivityNotFoundException) {
-            if (BuildConfig.DEBUG) e.printStackTrace()
+            debug { e.printStackTrace() }
         }
     }
 }

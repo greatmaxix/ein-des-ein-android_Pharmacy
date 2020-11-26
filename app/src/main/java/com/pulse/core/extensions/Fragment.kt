@@ -198,5 +198,8 @@ fun <T> Fragment.notifySavedStateHandle(key: String, value: T) {
     findNavController().previousBackStackEntry?.savedStateHandle?.set(key, value)
 }
 
+fun Fragment.lazyGetString(@StringRes resId: Int) = lazyNotSynchronized { resources.getString(resId) }
+fun Fragment.lazyGetString(@StringRes resId: Int, vararg args: Any?) = lazyNotSynchronized { resources.getString(resId, *args) }
+
 fun Fragment.lazyFont(@FontRes resId: Int) = lazyNotSynchronized { resources.getFont(resId) }
 

@@ -4,12 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.core.widget.doAfterTextChanged
-import com.pulse.BuildConfig
 import com.pulse.R
-import com.pulse.core.extensions.debug
-import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.lazyDimensionPixelSize
-import com.pulse.core.extensions.text
+import com.pulse.core.extensions.*
 import com.pulse.data.remote.model.order.CustomerOrderData
 import com.pulse.ui.text.*
 import kotlinx.android.extensions.LayoutContainer
@@ -33,7 +29,7 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
     init {
         tilPhoneCheckout.fixPrefixGravity()
         debug { tilPhoneCheckout.prefixText = "+3" }
-        val hint = if (BuildConfig.DEBUG) R.string.authPhoneDebugHint else R.string.authPhoneHint
+        val hint = debugIfElse({ R.string.authPhoneDebugHint }, { R.string.authPhoneHint })
         etPhoneCheckout.setAsteriskHint(context.getString(hint), 18, 19)
 
         tilFirstLastNameCheckout.editText?.doAfterTextChanged {

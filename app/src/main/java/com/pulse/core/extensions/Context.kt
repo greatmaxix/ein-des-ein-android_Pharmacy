@@ -21,7 +21,6 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
-import com.pulse.BuildConfig
 
 fun Context.getCompatDrawable(@DrawableRes drawableRes: Int): Drawable? = ContextCompat.getDrawable(this, drawableRes)
 
@@ -93,12 +92,6 @@ fun Context.dimenByName(name: String, defPackage: String = "android") = resource
 fun Context.stringByName(name: String) = resources.getIdentifier(name, "string", packageName)
 
 fun Context.drawableByName(name: String) = resources.getIdentifier(name, "drawable", packageName)
-
-inline fun Context.debug(code: () -> Unit) {
-    if (BuildConfig.DEBUG) {
-        code()
-    }
-}
 
 @Suppress("DEPRECATION") // TODO find solution for API >= 30
 fun <T> Context.isServiceRunning(service: Class<T>): Boolean {

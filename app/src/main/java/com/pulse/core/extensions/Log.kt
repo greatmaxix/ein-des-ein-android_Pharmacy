@@ -11,3 +11,5 @@ inline fun debug(code: () -> Unit) {
         code()
     }
 }
+
+fun <T> debugIfElse(blockIf: () -> T, blockElse: () -> T) = if (BuildConfig.DEBUG) blockIf() else blockElse()

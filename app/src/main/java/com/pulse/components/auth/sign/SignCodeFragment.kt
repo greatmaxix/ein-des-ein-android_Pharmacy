@@ -7,10 +7,7 @@ import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
 import com.pulse.R
 import com.pulse.components.auth.model.AuthResult
-import com.pulse.core.extensions.doWithDelay
-import com.pulse.core.extensions.hideKeyboard
-import com.pulse.core.extensions.setDebounceOnClickListener
-import com.pulse.core.extensions.underlineSpan
+import com.pulse.core.extensions.*
 import kotlinx.android.synthetic.main.fragment_code.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filter
@@ -38,7 +35,7 @@ class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
         btnBackCode.setDebounceOnClickListener { navigationBack() }
 
         doWithDelay(1000) {
-            //if (BuildConfig.DEBUG) etCode.setText("11111")
+            debug { etCode.setText("11111") }
         }
 
         btnSendCodeAgain.underlineSpan()
