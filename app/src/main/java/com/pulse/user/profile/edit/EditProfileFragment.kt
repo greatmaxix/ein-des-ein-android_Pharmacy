@@ -20,7 +20,6 @@ import com.fondesa.kpermissions.allGranted
 import com.fondesa.kpermissions.anyDenied
 import com.fondesa.kpermissions.anyPermanentlyDenied
 import com.fondesa.kpermissions.anyShouldShowRationale
-import com.fondesa.kpermissions.extension.addListener
 import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.pulse.BuildConfig
 import com.pulse.R
@@ -55,7 +54,7 @@ class EditProfileFragment : BaseMVVMFragment(R.layout.fragment_profile_edit) {
         super.onViewCreated(view, savedInstanceState)
         tilPhoneEditProfile.setPhoneRule()
         showBackButton()
-        saveEditProfile.onClick {
+        saveEditProfile.setDebounceOnClickListener {
             val isNameValid = tilNameEditProfile.checkLength(getString(R.string.nameErrorAuth))
             val isPhoneValid = tilPhoneEditProfile.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
             val isEmailValid = if (tilEmailEditProfile.text().isNotEmpty()) tilEmailEditProfile.checkEmail(getString(R.string.emailErrorAuth)) else true

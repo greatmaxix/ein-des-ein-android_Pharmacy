@@ -28,7 +28,7 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnBack.onClick { navigationBack() }
+        btnBack.setDebounceOnClickListener { navigationBack() }
 
         etEmail.onDoneImeAction { registerOrError() }
         tilPhone.setPhoneRule()
@@ -36,7 +36,7 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
 
         etName.setAsteriskHint(nameHint, nameHint.length - 1, nameHint.length, false)
 
-        btnRegister.onClick { registerOrError() }
+        btnRegister.setDebounceOnClickListener { registerOrError() }
 
         fields.onEach {
             it.editText?.doOnTextChanged { _, _, _, _ ->

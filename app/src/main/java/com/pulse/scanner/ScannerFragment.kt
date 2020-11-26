@@ -13,13 +13,12 @@ import com.fondesa.kpermissions.allGranted
 import com.fondesa.kpermissions.anyDenied
 import com.fondesa.kpermissions.anyPermanentlyDenied
 import com.fondesa.kpermissions.anyShouldShowRationale
-import com.fondesa.kpermissions.extension.addListener
 import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.pulse.R
 import com.pulse.core.base.fragment.dialog.AlertDialogFragment
 import com.pulse.core.extensions.animateVisibleOrGone
 import com.pulse.core.extensions.doWithDelay
-import com.pulse.core.extensions.onClick
+import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.core.extensions.toast
 import com.pulse.product.BaseProductFragment
 import com.pulse.scanner.ScannerFragmentDirections.Companion.fromScannerToListResult
@@ -38,7 +37,7 @@ class ScannerFragment(private val viewModel: ScannerViewModel) : BaseProductFrag
         super.onViewCreated(view, savedInstanceState)
 
         showBackButton()
-        goToScanBtn.onClick { viewModel.descriptionViewed() }
+        goToScanBtn.setDebounceOnClickListener { viewModel.descriptionViewed() }
         checkCameraPermission { initQRCamera() }
     }
 

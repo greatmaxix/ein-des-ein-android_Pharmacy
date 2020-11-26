@@ -138,7 +138,6 @@ dependencies {
     implementation("io.github.reactivecircus.flowbinding:flowbinding-android:1.0.0-beta02")
     // AndroidX
     implementation("androidx.core:core-ktx:1.5.0-alpha05")
-    implementation("androidx.browser:browser:1.3.0-rc01")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.viewpager2:viewpager2:1.0.0")

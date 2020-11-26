@@ -26,9 +26,9 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
         tvPricePrefix.visibleOrGone(!item.isAggregationEmpty)
         tvPriceUnavailable.visibleOrGone(item.isAggregationEmpty)
         val colorResId = if (item.isAggregationEmpty) R.color.greyText else R.color.darkBlue
-        tvTitle.textColor(colorResId)
-        tvSubTitle.textColor(colorResId)
-        tvManufacture.textColor(colorResId)
+        tvTitle.setTextColorRes(colorResId)
+        tvSubTitle.setTextColorRes(colorResId)
+        tvManufacture.setTextColorRes(colorResId)
 
         with(ivWish) {
             setDebounceOnClickListener(2000) { wishClick(!item.isInWish to item.globalProductId) }

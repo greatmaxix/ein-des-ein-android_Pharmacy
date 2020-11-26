@@ -8,8 +8,8 @@ import com.pulse.BuildConfig.DEBUG
 import com.pulse.R
 import com.pulse.components.auth.sign.SignInFragmentDirections.Companion.actionFromSignInToSignUp
 import com.pulse.core.extensions.hideKeyboard
-import com.pulse.core.extensions.onClick
 import com.pulse.core.extensions.onDoneImeAction
+import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.core.extensions.text
 import com.pulse.splash.SplashFragmentDirections.Companion.globalToHome
 import com.pulse.ui.text.fixPrefixGravity
@@ -38,7 +38,7 @@ class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
 
         etPhoneSignIn.onDoneImeAction { loginOrError() }
 
-        nvNext.onClick { loginOrError() }
+        nvNext.setDebounceOnClickListener { loginOrError() }
 
         tilPhoneSignIn.editText
             ?.focusChanges()

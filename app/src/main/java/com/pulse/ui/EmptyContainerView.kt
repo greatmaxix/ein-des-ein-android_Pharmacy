@@ -6,7 +6,7 @@ import android.view.Gravity.CENTER
 import android.widget.LinearLayout
 import com.pulse.R
 import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.onClick
+import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.core.extensions.use
 import com.pulse.core.extensions.visibleOrGone
 import kotlinx.android.extensions.LayoutContainer
@@ -54,6 +54,6 @@ class EmptyContainerView @JvmOverloads constructor(context: Context, attrs: Attr
         }
     }
 
-    fun setButtonAction(action: () -> Unit) = actionEmptyContainer.onClick { action() }
+    fun setButtonAction(action: () -> Unit) = actionEmptyContainer.setDebounceOnClickListener { action() }
 
 }

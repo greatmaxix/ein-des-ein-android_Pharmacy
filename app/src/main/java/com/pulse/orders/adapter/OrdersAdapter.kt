@@ -21,13 +21,13 @@ class OrdersAdapter(private val click: (Int) -> Unit) : PagingDataAdapter<Order,
     class OrdersViewHolder(view: View, private val click: (Int) -> Unit) : BaseViewHolder<Order>(view) {
 
         override fun bind(item: Order) = with(itemView) {
-            setDebounceOnClickListener { click(item.id) }
+            this.setDebounceOnClickListener { click(item.id) }
             val isPickup = item.deliveryInfo.deliveryType?.isPickup.falseIfNull()
 
-            tvOrderState.backgroundTintList = ColorStateList.valueOf(colorCompat(item.orderStatus.statusColor))
+            tvOrderState.backgroundTintList = ColorStateList.valueOf(getColor(item.orderStatus.statusColor))
             tvOrderState.text = stringRes(item.orderStatus.getStatusRes)
             item.deliveryInfo.deliveryType?.backgroundColor?.let {
-                deliveryTypeContainer.setCardBackgroundColor(colorCompat(it))
+                deliveryTypeContainer.setCardBackgroundColor(getColor(it))
             }
             item.deliveryInfo.deliveryType?.textRes?.let { deliveryTypeOrders.text = stringRes(it) }
             item.deliveryInfo.deliveryType?.icon?.let(ivDeliveryTypeOrders::setImageResource)

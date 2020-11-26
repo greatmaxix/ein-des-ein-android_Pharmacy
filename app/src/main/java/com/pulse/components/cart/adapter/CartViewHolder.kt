@@ -31,7 +31,7 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
             tvSubTitle.text = cardItem.location.address
 
             ivArrow.rotation = if (item.second) EXPANDED_DEG else COLLAPSED_DEG
-            onClick(item.third)
+            onClickDebounce(item.third)
         }
 
         companion object {
@@ -67,8 +67,8 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
                 notifyCounter(newValue)
             }
 
-            mbPlus.onClick { setNewCounterValue(mbCounter.count + 1) }
-            mbMinus.onClick {
+            mbPlus.setDebounceOnClickListener { setNewCounterValue(mbCounter.count + 1) }
+            mbMinus.setDebounceOnClickListener {
                 val count = mbCounter.count
                 if (count == 1) removeClick(product.productId) else setNewCounterValue(count - 1)
             }
@@ -76,7 +76,7 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
             tvManufacture.setTextHtml(stringRes(R.string.manufacture, product.productLocale))
             tvProductPrice.text = stringRes(R.string.price, product.price.formatPrice())
 
-            ivRemove.onClick { removeClick(product.productId) }
+            ivRemove.setDebounceOnClickListener { removeClick(product.productId) }
             cartDivider.visibleOrInvisible(!product.needShowDivider)
         }
 
@@ -88,7 +88,7 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
     class CartFooterViewHolder(itemView: View, private val notifyCheckout: (CartItem) -> Unit) : CartViewHolder<CartItem>(itemView) {
 
         override fun bind(item: CartItem) = with(itemView) {
-            mbCheckout.onClick { notifyCheckout(item) }
+            mbCheckout.setDebounceOnClickListener { notifyCheckout(item) }
             tvTotalPrice.text = stringRes(R.string.price, item.totalPrice.formatPrice())
             tvNumberProducts.text = stringRes(R.string.countCurtProducts, item.totalCount)
         }

@@ -2,7 +2,6 @@ package com.pulse.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import com.google.android.material.card.MaterialCardView
 import com.pulse.R
 import com.pulse.core.extensions.*
@@ -15,7 +14,7 @@ class PharmacyAddressOrder @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr), LayoutContainer {
 
-    override val containerView: View? = inflate(R.layout.view_pharmacy_address_order, true)
+    override val containerView = inflate(R.layout.view_pharmacy_address_order, true)
 
     private val contentPadding by lazy { resources.getDimension(R.dimen._16sdp).toInt() }
 
@@ -26,7 +25,7 @@ class PharmacyAddressOrder @JvmOverloads constructor(
         }
 
     init {
-        setCardBackgroundColor(colorCompat(R.color.colorGlobalWhite))
+        setCardBackgroundColor(getColor(R.color.colorGlobalWhite))
         setContentPadding(contentPadding, contentPadding, contentPadding, contentPadding)
         radius = resources.getDimension(R.dimen._10sdp)
         clipToPadding = false

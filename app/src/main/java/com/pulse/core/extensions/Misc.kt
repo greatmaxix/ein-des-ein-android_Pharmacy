@@ -1,25 +1,21 @@
 package com.pulse.core.extensions
 
-import android.content.Context
-import android.content.res.TypedArray
-import java.io.File
-import java.io.InputStream
+import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
 
-fun File.inputStreamToFile(inputStream: InputStream) {
-    inputStream.use { input ->
-        this.outputStream().use { out ->
-            input.copyTo(out)
-        }
+fun valueAnimatorMedium(duration: Long = 400, tick: (Float) -> Unit): ValueAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
+    addUpdateListener { tick(it.animatedFraction) }
+    this.duration = duration
+    start()
+}
+
+fun valueAnimatorARGB(from: Int, to: Int, duration: Long, onUpdate: (Int) -> Unit) {
+    ValueAnimator.ofObject(ArgbEvaluator(), from, to).apply {
+        addUpdateListener { onUpdate(it.animatedValue as Int) }
+        this.duration = duration
+        start()
     }
 }
 
-fun Context.assetFile(fileName: String): File = File.createTempFile(fileName, null).apply { inputStreamToFile(assets.open(fileName)) }
-
-@Deprecated("Use @use from com.pulse.core.extensions")
-fun TypedArray.getData(action: TypedArray.() -> Unit) {
-    try {
-        action.invoke(this)
-    } finally {
-        recycle()
-    }
-}
+fun <T> lazyNotSynchronized(initializer: () -> T): Lazy<T> =
+    lazy(LazyThreadSafetyMode.NONE, initializer)

@@ -10,21 +10,17 @@ interface SharedPreferenceContext {
 }
 
 @Suppress("UNCHECKED_CAST")
-inline fun <reified T> SharedPreferences.get(key: String, defaultValue: T): T {
-    when (T::class) {
-        Boolean::class -> return this.getBoolean(key, defaultValue as Boolean) as T
-        Float::class -> return this.getFloat(key, defaultValue as Float) as T
-        Int::class -> return this.getInt(key, defaultValue as Int) as T
-        Long::class -> return this.getLong(key, defaultValue as Long) as T
-        String::class -> return this.getString(key, defaultValue as String) as T
-        else -> {
-            if (defaultValue is Set<*>) {
-                return this.getStringSet(key, defaultValue as Set<String>) as T
-            }
-        }
+inline fun <reified T> SharedPreferences.get(key: String, defaultValue: T) = when (T::class) {
+    Boolean::class -> getBoolean(key, defaultValue as Boolean) as T
+    Float::class -> getFloat(key, defaultValue as Float) as T
+    Int::class -> getInt(key, defaultValue as Int) as T
+    Long::class -> getLong(key, defaultValue as Long) as T
+    String::class -> getString(key, defaultValue as String) as T
+    else -> {
+        if (defaultValue is Set<*>) {
+            getStringSet(key, defaultValue as Set<String>) as T
+        } else defaultValue
     }
-
-    return defaultValue
 }
 
 @Suppress("UNCHECKED_CAST")

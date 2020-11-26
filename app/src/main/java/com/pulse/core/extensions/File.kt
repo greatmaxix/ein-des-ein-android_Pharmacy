@@ -2,6 +2,7 @@ package com.pulse.core.extensions
 
 import android.content.ContentResolver
 import android.content.ContentValues
+import android.content.Context
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
@@ -92,3 +93,13 @@ fun InputStream.bytesFromStream() = ByteArrayOutputStream()
         }
         toByteArray()
     }
+
+fun File.inputStreamToFile(inputStream: InputStream) {
+    inputStream.use { input ->
+        outputStream().use { out ->
+            input.copyTo(out)
+        }
+    }
+}
+
+fun Context.assetFile(fileName: String): File = File.createTempFile(fileName, null).apply { inputStreamToFile(assets.open(fileName)) }

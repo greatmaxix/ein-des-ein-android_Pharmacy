@@ -85,7 +85,7 @@ class OrderDetailsFragment(private val viewModel: OrderDetailsViewModel) : BaseM
         initOrderProducts()
 
         btnCancelOrder.visibleOrGone(order.orderStatus.isNew)
-        btnCancelOrder.onClick { viewModel.cancelOrder(order.id) }
+        btnCancelOrder.setDebounceOnClickListener { viewModel.cancelOrder(order.id) }
     }
 
     private fun initToolbar() {

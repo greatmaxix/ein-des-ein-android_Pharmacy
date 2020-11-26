@@ -6,7 +6,7 @@ import com.pulse.R
 import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.inflate
 import com.pulse.core.extensions.loadGlideDrawableByName
-import com.pulse.core.extensions.onClick
+import com.pulse.core.extensions.onClickDebounce
 import com.pulse.splash.model.Splash
 import kotlinx.android.synthetic.main.item_splash.view.*
 
@@ -17,8 +17,8 @@ class SplashViewHolder(view: View, private val skip: () -> Unit, private val nex
         tvTitle.setText(item.title)
         tvSubTitle.setText(item.subTitle)
 
-        mbNext.onClick(next)
-        mtvSkip.onClick(skip)
+        mbNext.onClickDebounce(next)
+        mtvSkip.onClickDebounce(skip)
     }
 
     companion object {

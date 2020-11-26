@@ -104,22 +104,6 @@ abstract class BaseFragment(@LayoutRes private val layoutResourceId: Int) : Frag
     protected fun initMenu(@MenuRes menu: Int, itemClick: Toolbar.OnMenuItemClickListener? = null) =
         toolbar?.setMenu(menu, itemClick ?: Toolbar.OnMenuItemClickListener { onOptionsItemSelected(it) })
 
-    protected fun setToolbarColorActivityLevel(@ColorRes colorTo: Int, @ColorRes colorFrom: Int? = null) {
-        baseActivity.setToolbarColor(colorTo, colorFrom)
-    }
-
-    protected fun setToolbarContentColorActivityLevel(@ColorRes colorRes: Int) {
-        baseActivity.setToolbarContentColor(colorRes)
-    }
-
-    protected fun initMenuActivityLevel(@MenuRes menu: Int, itemClick: Toolbar.OnMenuItemClickListener? = null) {
-        baseActivity.initMenu(menu, itemClick)
-    }
-
-    protected fun showBackButtonActivityLevel() {
-        baseActivity.showBackButton()
-    }
-
     protected fun showBackButton(@DrawableRes drawable: Int = R.drawable.ic_arrow_back, navigation: ((View) -> Unit)? = null) {
         changeNavigationIcon(drawable)
         navigation?.let { toolbar?.setNavigationOnClickListener(it::invoke) }
@@ -144,9 +128,6 @@ abstract class BaseFragment(@LayoutRes private val layoutResourceId: Int) : Frag
 
     protected val label
         get() = navController.currentDestination?.label
-
-    protected val Int.toPixels
-        get() = dimensionPixelSize(this)
 
     protected val Int.toColor
         get() = getColor(this)

@@ -16,8 +16,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pulse.R
-import com.pulse.core.extensions.getCompatColor
-import com.pulse.core.extensions.getCompatDrawable
+import com.pulse.core.extensions.getColor
 import com.pulse.core.extensions.inflate
 
 class SelectableBottomNavView @JvmOverloads constructor(
@@ -27,8 +26,8 @@ class SelectableBottomNavView @JvmOverloads constructor(
 ) : BottomNavigationView(context, attrs, defStyleAttr) {
 
     private val selectedBorder = resources.getDimensionPixelSize(R.dimen._3sdp).toFloat()
-    private val selectedColor = context.getCompatColor(R.color.primaryBlue)
-    private val defaultColor = context.getCompatColor(R.color.grey)
+    private val selectedColor = getColor(R.color.primaryBlue)
+    private val defaultColor = getColor(R.color.grey)
     private var fabView: BorderFab? = null
     private var lastSelectedItem: NavItem? = null
     var navItems: List<NavItem> = listOf()
@@ -50,7 +49,7 @@ class SelectableBottomNavView @JvmOverloads constructor(
 
     private fun setItemColor(it: NavItem, @ColorInt color: Int) {
         if (it.iconResId != null) {
-            menu.findItem(it.menuItemId)?.icon = context.getCompatDrawable(it.iconResId)?.apply {
+            menu.findItem(it.menuItemId)?.icon = resources.getDrawable(it.iconResId)?.apply {
                 DrawableCompat.setTint(this, color)
             }
         }

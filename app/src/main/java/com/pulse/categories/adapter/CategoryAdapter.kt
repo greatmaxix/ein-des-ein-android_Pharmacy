@@ -3,7 +3,7 @@ package com.pulse.categories.adapter
 import android.view.ViewGroup
 import com.pulse.categories.adapter.viewHolder.CategoryViewHolder
 import com.pulse.core.base.adapter.BaseFilterRecyclerAdapter
-import com.pulse.core.extensions.onClick
+import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.model.category.Category
 
 class CategoryAdapter(private val click: (Category) -> Unit) : BaseFilterRecyclerAdapter<Category, CategoryViewHolder>() {
@@ -12,7 +12,7 @@ class CategoryAdapter(private val click: (Category) -> Unit) : BaseFilterRecycle
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CategoryViewHolder.newInstance(parent)
         .apply {
-            itemView.onClick {
+            itemView.setDebounceOnClickListener {
                 click(getItem(bindingAdapterPosition))
             }
         }

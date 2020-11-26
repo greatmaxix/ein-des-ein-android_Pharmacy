@@ -26,7 +26,7 @@ fun TextView.animateTextColor(
     to: Int,
     duration: Long = resources.getInteger(R.integer.animation_time).toLong()
 ): TextView {
-    colorValueAnimator(currentTextColor, to, duration) { setTextColor(it) }
+    valueAnimatorARGB(currentTextColor, to, duration) { setTextColor(it) }
     return this
 }
 

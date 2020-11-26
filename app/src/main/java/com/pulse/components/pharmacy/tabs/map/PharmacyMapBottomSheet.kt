@@ -21,13 +21,13 @@ class PharmacyMapBottomSheet : BaseMVVMFragmentDialogBottomSheet(R.layout.item_p
             tvPharmacyName.text = name
             tvPharmacyAddress.text = location.address
             tvPharmacyPhone.text = getString(R.string.pharmacyPhoneWith, phone)
-            tvPharmacyPhone.onClick { showDial(phone) }
+            tvPharmacyPhone.setDebounceOnClickListener { showDial(phone) }
 
             tvProductPrice.text = getString(R.string.price, firstProductPrice)
 
-            ivPharmacyLocation.onClick { showDirection(location.lat, location.lng) }
+            ivPharmacyLocation.setDebounceOnClickListener { showDirection(location.lat, location.lng) }
 
-            mbProductAddToCart.onClick { notifySavedStateHandle(PHARMACY_KEY, args.pharmacy.pharmacyProducts?.first()?.pharmacyProductId) }
+            mbProductAddToCart.setDebounceOnClickListener { notifySavedStateHandle(PHARMACY_KEY, args.pharmacy.pharmacyProducts?.first()?.pharmacyProductId) }
         }
     }
 }

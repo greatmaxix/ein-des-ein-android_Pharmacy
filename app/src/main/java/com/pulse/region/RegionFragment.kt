@@ -5,7 +5,10 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.pulse.R
 import com.pulse.core.base.mvvm.BaseMVVMFragment
-import com.pulse.core.extensions.*
+import com.pulse.core.extensions.animateVisibleOrGoneIfNot
+import com.pulse.core.extensions.falseIfNull
+import com.pulse.core.extensions.notifySavedStateHandle
+import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.region.adapter.RegionAdapter
 import kotlinx.android.synthetic.main.fragment_region.*
 import kotlinx.coroutines.launch
@@ -18,14 +21,14 @@ class RegionFragment(private val viewModel: RegionViewModel) : BaseMVVMFragment(
         RegionAdapter({
             searchViewRegion.clearFocus()
             viewModel.regionSelected(it)
-        }, { value -> launch { llRegionNotFoundContainer.animateVisibleOrGoneIfNot(value) } })
+        }, { value -> viewLifecycleOwner.lifecycleScope.launch { llRegionNotFoundContainer.animateVisibleOrGoneIfNot(value) } })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvRegions.adapter = regionAdapter
 
-        ivBackRegion.onClick { requireActivity().onBackPressed() }
+        ivBackRegion.setDebounceOnClickListener { requireActivity().onBackPressed() }
 
         searchViewRegion.setSearchListener { text ->
             viewLifecycleOwner.lifecycleScope.launch {

@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import com.google.android.material.textview.MaterialTextView
 import com.pulse.R
-import com.pulse.core.extensions.textColor
+import com.pulse.core.extensions.setTextColorRes
 
 class OrderSteps @JvmOverloads constructor(
     context: Context,
@@ -145,7 +145,7 @@ class OrderSteps @JvmOverloads constructor(
         MaterialTextView(context).apply {
             id = View.generateViewId()
             layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-            textColor(R.color.colorGlobalWhite)
+            setTextColorRes(R.color.colorGlobalWhite)
             setTextSize(TypedValue.COMPLEX_UNIT_PX, labelTextSize)
             text = context.getString(step.name)
             if (step.currentState) setTypeface(typeface, Typeface.BOLD)

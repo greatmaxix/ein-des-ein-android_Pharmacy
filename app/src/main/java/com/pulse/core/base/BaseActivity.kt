@@ -1,104 +1,24 @@
 package com.pulse.core.base
 
-import android.graphics.PorterDuff
-import androidx.annotation.*
+import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupWithNavController
 import com.pulse.R
-import com.pulse.core.extensions.animatorMedium
-import com.pulse.core.extensions.getCompatColor
-import com.pulse.core.extensions.mixColorWith
-import com.pulse.core.extensions.setMenu
+import com.pulse.core.extensions.lazyNavController
 import com.pulse.core.general.behavior.IBehavior
 
 abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivity(layoutResourceId) {
 
-    companion object {
-        const val ANIM_EXIT = R.anim.nav_exit_anim
-        const val ANIM_ENTER = R.anim.nav_enter_anim
-    }
+    private val behaviors = mutableListOf<IBehavior>()
 
-    var toolbar: Toolbar? = null
-        private set
+    protected val navController by lazyNavController(R.id.navHost)
 
-    private val behaviors = mutableListOf<IBehavior?>()
-
-    protected val navController: NavController by lazy {
-        try {
-            (supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment).navController
-        } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException("${this::class.java.simpleName} does not use \"navController\"")
-        }
-    }
-
-    override fun setContentView(@LayoutRes layoutResId: Int) {
-        super.setContentView(layoutResId)
-        toolbar = findViewById(R.id.toolbar)
-    }
-
-    fun initToolbar(appBarConfiguration: AppBarConfiguration) {
-        toolbar?.setupWithNavController(navController, appBarConfiguration)
-        toolbar?.setNavigationOnClickListener { navController.navigateUp(appBarConfiguration) }
-        navController.addOnDestinationChangedListener { _, _, _ ->
-            toolbar?.let {
-                if (it.menu.size() > 0) {
-                    it.menu.clear()
-                }
-            }
-        }
-    }
-
-    fun showBackButton() {
-        toolbar?.setupWithNavController(navController)
-        toolbar?.setNavigationOnClickListener { navController.navigateUp() }
-    }
-
-    fun initMenu(@MenuRes menu: Int, itemClick: Toolbar.OnMenuItemClickListener? = null) {
-        toolbar?.setMenu(menu, itemClick ?: Toolbar.OnMenuItemClickListener { onOptionsItemSelected(it) })
-    }
-
-    override fun setTitle(title: CharSequence?) {
-        toolbar?.title = title
-    }
-
-    override fun setTitle(titleId: Int) {
-        title = getString(titleId)
-    }
-
-    protected fun <T : IBehavior> attachBehavior(behavior: T) = behavior.also {
-        behaviors.add(it)
-    }
+    protected fun <T : IBehavior> attachBehavior(behavior: T) = behavior.also(behaviors::add)
 
     @CallSuper
     override fun onDestroy() {
-        behaviors.forEach { it?.detach() }
+        behaviors.forEach { it.detach() }
         behaviors.clear()
         super.onDestroy()
-    }
-
-    fun setToolbarContentColor(@ColorRes color: Int) {
-        val colorInt = getCompatColor(color)
-        toolbar?.setTitleTextColor(colorInt)
-        toolbar?.navigationIcon?.setColorFilter(colorInt, PorterDuff.Mode.SRC_ATOP)
-    }
-
-    fun setToolbarColorInt(@ColorInt colorTo: Int, @ColorInt colorFrom: Int? = null) {
-        if (colorFrom != null) {
-            animatorMedium {
-                val color = colorFrom.mixColorWith(colorTo, it)
-                toolbar?.setBackgroundColor(color)
-            }
-        } else {
-            toolbar?.setBackgroundColor(colorTo)
-        }
-    }
-
-    fun setToolbarColor(@ColorRes colorFrom: Int, @ColorRes colorTo: Int? = null) {
-        setToolbarColorInt(getCompatColor(colorFrom), if (colorTo == null) null else getCompatColor(colorTo))
     }
 }

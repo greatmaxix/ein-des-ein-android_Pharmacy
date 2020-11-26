@@ -16,49 +16,50 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.annotation.*
+import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import com.pulse.BuildConfig
 
-@ColorInt
-@Deprecated("Replace to colorFrom")
-fun Context.getCompatColor(@ColorRes colorRes: Int): Int = ContextCompat.getColor(this, colorRes)
-
-@Deprecated("Figure out what to replace, meaby ReourceCompat")
 fun Context.getCompatDrawable(@DrawableRes drawableRes: Int): Drawable? = ContextCompat.getDrawable(this, drawableRes)
+
+val Context.inflater: LayoutInflater
+    get() = LayoutInflater.from(this)
 
 fun Context.inflate(@LayoutRes resId: Int, root: ViewGroup? = null, attachToRoot: Boolean = false): View =
     inflater.inflate(resId, root, attachToRoot)
 
 fun Context.convertDpToPx(dp: Float) = applyDimension(COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
 
-fun Context.convertPxToDp(px: Float?) = px?.let { px / (resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT) }
+fun Context.convertPxToDp(px: Float) = px / (resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
 
 fun Context.toast(message: CharSequence) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 fun Context.toast(@StringRes strResId: Int) = toast(getString(strResId))
 
-val Context.inflater: LayoutInflater
-    get() = LayoutInflater.from(this)
+val Context.windowManager: WindowManager?
+    get() = getSystemService()
 
-val Context.windowManager
-    get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+val Context.notificationManager: NotificationManager?
+    get() = getSystemService()
 
-val Context.notificationManager
-    get() = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+val Context.inputMethodManager: InputMethodManager?
+    get() = getSystemService()
 
-val Context.inputMethodManager
-    get() = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+val Context.activityManager: ActivityManager?
+    get() = getSystemService()
 
 val Context.screenHeight
     get() = Point().run {
-        windowManager.defaultDisplay.getSize(this)
+        windowManager?.defaultDisplay?.getSize(this)
         y
     }
 
 val Context.screenWidth
     get() = Point().run {
-        windowManager.defaultDisplay.getSize(this)
+        windowManager?.defaultDisplay?.getSize(this)
         x
     }
 
@@ -68,12 +69,14 @@ val Context.statusBarHeight
 val Context.navigationBarHeight
     get() = dimenByNameAsPixel("navigation_bar_height")
 
-
-fun Context.themeColor(@AttrRes attrRes: Int): Int {
-    val typedValue = TypedValue()
-    theme.resolveAttribute(attrRes, typedValue, true)
-    return typedValue.data
-}
+val Context.actionBarSize
+    get() = TypedValue().run {
+        if (theme.resolveAttribute(android.R.attr.actionBarSize, this, true)) {
+            TypedValue.complexToDimensionPixelSize(data, resources.displayMetrics)
+        } else {
+            0
+        }
+    }
 
 inline fun <reified T> Context.toIntent(flags: Int?) = Intent(this, T::class.java).apply {
     flags?.let { this.flags = it }
@@ -81,15 +84,15 @@ inline fun <reified T> Context.toIntent(flags: Int?) = Intent(this, T::class.jav
 
 inline fun <reified T> Context.toIntent() = Intent(this, T::class.java)
 
-inline fun <reified T> Context.startActivity(flags: Int?) {
-    startActivity(toIntent<T>(flags))
-}
+inline fun <reified T> Context.startActivity(flags: Int?) = startActivity(toIntent<T>(flags))
 
 fun Context.dimenByNameAsPixel(name: String) = resources.getDimensionPixelSize(dimenByName(name))
 
-fun Context.dimenByName(name: String, defType: String = "dimen", defPackage: String = "android") = resources.getIdentifier(name, defType, defPackage)
+fun Context.dimenByName(name: String, defPackage: String = "android") = resources.getIdentifier(name, "dimen", defPackage)
 
 fun Context.stringByName(name: String) = resources.getIdentifier(name, "string", packageName)
+
+fun Context.drawableByName(name: String) = resources.getIdentifier(name, "drawable", packageName)
 
 inline fun Context.debug(code: () -> Unit) {
     if (BuildConfig.DEBUG) {
@@ -99,7 +102,7 @@ inline fun Context.debug(code: () -> Unit) {
 
 @Suppress("DEPRECATION") // TODO find solution for API >= 30
 fun <T> Context.isServiceRunning(service: Class<T>): Boolean {
-    return (getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
-        .getRunningServices(Integer.MAX_VALUE)
-        .any { it.service.className == service.name }
+    return activityManager
+        ?.getRunningServices(Integer.MAX_VALUE)
+        ?.any { it.service.className == service.name } ?: false
 }

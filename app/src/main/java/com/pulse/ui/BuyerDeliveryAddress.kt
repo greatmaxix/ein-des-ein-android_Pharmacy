@@ -24,7 +24,7 @@ class BuyerDeliveryAddress @JvmOverloads constructor(
     private val sidePadding by lazy { resources.getDimension(R.dimen._16sdp).toInt() }
     private val bottomPadding by lazy { resources.getDimension(R.dimen._4sdp).toInt() }
 
-    private val address by lazy { AddressOrderData() }
+    private val address = AddressOrderData()
 
     init {
         tilCityAddress.editText?.doAfterTextChanged(assignWithClearError { address.city = toString() })
@@ -42,8 +42,8 @@ class BuyerDeliveryAddress @JvmOverloads constructor(
 
     private fun clearError() {
         tilCityAddress.isErrorEnabled = false
-        tilStreetAddress.isErrorEnabled = false
         tilHouseAddress.isErrorEnabled = false
+        tilStreetAddress.isErrorEnabled = false
     }
 
     fun validateFields(): Boolean {
