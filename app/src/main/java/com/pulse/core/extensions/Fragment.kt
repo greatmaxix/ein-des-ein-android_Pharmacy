@@ -18,7 +18,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.pulse.R
-import com.pulse.core.base.BaseActivity
 import com.pulse.core.base.fragment.dialog.AlertDialogData
 import com.pulse.core.base.fragment.dialog.AlertDialogDataRes
 import com.pulse.core.keyboard.KeyboardObserver
@@ -54,13 +53,9 @@ fun Fragment.doWithDelay(delay: Long, action: () -> Unit) {
 
 fun Fragment.doWithDelay(delay: Int, action: () -> Unit) = doWithDelay(delay.toLong(), action)
 
-fun Fragment.dimension(@DimenRes dimenRes: Int) = resources.getDimension(dimenRes)
+fun Fragment.getDimension(@DimenRes dimenRes: Int) = resources.getDimension(dimenRes)
 
-fun Fragment.dimensionPixelSize(@DimenRes dimenRes: Int) = resources.getDimensionPixelSize(dimenRes)
-
-fun Fragment.lazyDimensionPixelSize(@DimenRes resId: Int) = resources.lazyDimensionPixelSize(resId)
-
-val Fragment.baseActivity get() = requireActivity() as BaseActivity
+fun Fragment.getDimensionPixelSize(@DimenRes dimenRes: Int) = resources.getDimensionPixelSize(dimenRes)
 
 fun Fragment.getColor(@ColorRes resId: Int) = requireContext().getColor(resId)
 
@@ -198,8 +193,7 @@ fun <T> Fragment.notifySavedStateHandle(key: String, value: T) {
     findNavController().previousBackStackEntry?.savedStateHandle?.set(key, value)
 }
 
+fun Fragment.lazyGetFont(@FontRes resId: Int) = lazyNotSynchronized { resources.getFont(resId) }
 fun Fragment.lazyGetString(@StringRes resId: Int) = lazyNotSynchronized { resources.getString(resId) }
 fun Fragment.lazyGetString(@StringRes resId: Int, vararg args: Any?) = lazyNotSynchronized { resources.getString(resId, *args) }
-
-fun Fragment.lazyFont(@FontRes resId: Int) = lazyNotSynchronized { resources.getFont(resId) }
-
+fun Fragment.lazyGetDimensionPixelSize(@DimenRes resId: Int) = resources.lazyGetDimensionPixelSize(resId)

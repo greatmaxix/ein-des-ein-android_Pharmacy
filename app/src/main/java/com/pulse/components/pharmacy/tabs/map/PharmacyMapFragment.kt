@@ -15,7 +15,7 @@ import com.pulse.R
 import com.pulse.components.pharmacy.model.Pharmacy
 import com.pulse.components.pharmacy.tabs.BaseTabFragment
 import com.pulse.core.extensions.asyncWithContext
-import com.pulse.core.extensions.dimensionPixelSize
+import com.pulse.core.extensions.getDimensionPixelSize
 import com.pulse.core.extensions.getDrawable
 import kotlinx.android.synthetic.main.fragment_pharmacy_map.*
 
@@ -90,7 +90,7 @@ class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnM
 
     private fun showMarkers(list: List<Pharmacy>) {
         list.forEach { asyncWithContext({ createMarker(it) }, { googleMap?.addMarker(this)?.apply { tag = it.id } }) }
-        googleMap?.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsFromLatLngList(list.map { it.location.mapCoordinates }), dimensionPixelSize(R.dimen._36sdp)))
+        googleMap?.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsFromLatLngList(list.map { it.location.mapCoordinates }), getDimensionPixelSize(R.dimen._36sdp)))
     }
 
     private fun createMarker(pharmacy: Pharmacy) =

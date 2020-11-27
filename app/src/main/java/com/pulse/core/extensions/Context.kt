@@ -5,11 +5,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Point
-import android.graphics.drawable.Drawable
-import android.util.DisplayMetrics
 import android.util.TypedValue
-import android.util.TypedValue.COMPLEX_UNIT_DIP
-import android.util.TypedValue.applyDimension
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,17 +18,11 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 
-fun Context.getCompatDrawable(@DrawableRes drawableRes: Int): Drawable? = ContextCompat.getDrawable(this, drawableRes)
-
 val Context.inflater: LayoutInflater
     get() = LayoutInflater.from(this)
 
 fun Context.inflate(@LayoutRes resId: Int, root: ViewGroup? = null, attachToRoot: Boolean = false): View =
     inflater.inflate(resId, root, attachToRoot)
-
-fun Context.convertDpToPx(dp: Float) = applyDimension(COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
-
-fun Context.convertPxToDp(px: Float) = px / (resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
 
 fun Context.toast(message: CharSequence) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
@@ -63,10 +53,10 @@ val Context.screenWidth
     }
 
 val Context.statusBarHeight
-    get() = dimenByNameAsPixel("status_bar_height")
+    get() = getDimensionPixelSize("status_bar_height")
 
 val Context.navigationBarHeight
-    get() = dimenByNameAsPixel("navigation_bar_height")
+    get() = getDimensionPixelSize("navigation_bar_height")
 
 val Context.actionBarSize
     get() = TypedValue().run {
@@ -85,13 +75,14 @@ inline fun <reified T> Context.toIntent() = Intent(this, T::class.java)
 
 inline fun <reified T> Context.startActivity(flags: Int?) = startActivity(toIntent<T>(flags))
 
-fun Context.dimenByNameAsPixel(name: String) = resources.getDimensionPixelSize(dimenByName(name))
+fun Context.getCompatDrawable(@DrawableRes drawableRes: Int) = ContextCompat.getDrawable(this, drawableRes)
+fun Context.getDimenByName(name: String, defPackage: String = "android") = resources.getDimenByName(name, defPackage)
+fun Context.getDimensionPixelSize(name: String) = resources.getDimensionPixelSize(getDimenByName(name))
+fun Context.getStringByName(name: String) = resources.getStringByName(name, packageName)
+fun Context.getDrawableByName(name: String) = resources.getDrawableByName(name, packageName)
 
-fun Context.dimenByName(name: String, defPackage: String = "android") = resources.getIdentifier(name, "dimen", defPackage)
-
-fun Context.stringByName(name: String) = resources.getIdentifier(name, "string", packageName)
-
-fun Context.drawableByName(name: String) = resources.getIdentifier(name, "drawable", packageName)
+fun Context.convertDpToPx(dp: Float) = resources.convertDpToPx(dp)
+fun Context.convertPxToDp(px: Float) = resources.convertPxToDp(px)
 
 @Suppress("DEPRECATION") // TODO find solution for API >= 30
 fun <T> Context.isServiceRunning(service: Class<T>): Boolean {

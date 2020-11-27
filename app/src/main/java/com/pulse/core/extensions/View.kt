@@ -10,21 +10,16 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewParent
 import android.widget.EditText
-import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.FontRes
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
-import androidx.core.text.PrecomputedTextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isGone
 import androidx.core.view.updateLayoutParams
-import androidx.core.widget.NestedScrollView
-import androidx.core.widget.TextViewCompat
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -35,7 +30,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
 import timber.log.Timber
-import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 
 inline fun <T, reified R : View> R.singleAsyncTask(
@@ -103,20 +97,10 @@ fun View.setWidth(width: Int) = updateLayoutParams { this.width = width }
 fun View.setHeight(height: Int) = updateLayoutParams { this.height = height }
 
 fun View.scaleWidth(to: Int, duration: Long = resources.getInteger(R.integer.animation_time).toLong()) =
-    intValueAnimator(width, to, duration, ::setWidth)
+    valueAnimatorInt(width, to, duration, ::setWidth)
 
 fun View.scaleHeight(to: Int, duration: Long = resources.getInteger(R.integer.animation_time).toLong()) =
-    intValueAnimator(height, to, duration, ::setHeight)
-
-fun View.intValueAnimator(from: Int, to: Int, duration: Long, onUpdate: (Int) -> Unit): View {
-    ValueAnimator.ofInt(from, to).apply {
-        addUpdateListener { onUpdate(it.animatedValue as Int) }
-        interpolator = FastOutSlowInInterpolator()
-        this.duration = duration
-        start()
-    }
-    return this
-}
+    valueAnimatorInt(height, to, duration, ::setHeight)
 
 fun View.gone() {
     if (visibility != GONE) {
@@ -261,10 +245,6 @@ fun View.rotate(angle: Float, endAction: () -> Unit, duration: Long = 300) = ani
     .setDuration(duration)
     .start()
 
-fun View.getColor(@ColorRes colorRes: Int) = context.getColor(colorRes)
-
-fun View.getColorStateList(@ColorRes colorRes: Int) = context.getColorStateList(colorRes)
-
 fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> Unit) {
     val lastClickMap = mutableMapOf<Int, Long>()
     setOnClickListener { v ->
@@ -315,31 +295,6 @@ fun View.mockToast(text: String = context.getString(R.string.expectSoonMock)) = 
     context.toast(text)
 }
 
-fun TextView.hideKeyboardOnEditorAction() {
-    setOnEditorActionListener { _, _, _ ->
-        hideKeyboard()
-        true
-    }
-}
-
-fun TextView.text(): String = text.toString()
-
-fun TextView.underlineSpan(): TextView {
-    text = text().underlineSpan()
-    return this
-}
-
-fun TextView.setTextColorRes(@ColorRes colorResId: Int): TextView {
-    setTextColor(getColor(colorResId))
-    return this
-}
-
-suspend fun TextView.setPrecomputedTextCompat(text: String) =
-    TextViewCompat.setPrecomputedText(this, withContext(Default) { createPrecomputedTextCompat(text) })
-
-fun TextView.createPrecomputedTextCompat(text: String): PrecomputedTextCompat =
-    PrecomputedTextCompat.create(text, TextViewCompat.getTextMetricsParams(this))
-
 /*fun TextInputLayout.setText(text: String?) {
     editText?.run {
         setText(text)
@@ -350,18 +305,13 @@ fun TextInputLayout.text() = editText?.text() ?: ""
 
 fun EditText.isEmpty() = text().isEmpty()
 
-fun NestedScrollView.scrollToBottom() {
-    scrollBy(0, lastChild.bottom + paddingBottom - (scrollY + height))
-}
 
-fun NestedScrollView.scrollToTop() {
-    scrollTo(0, 0)
-}
+fun View.getFont(@FontRes resId: Int) = resources.getFont(resId)
+fun View.getDimension(@DimenRes resId: Int) = resources.getDimension(resId)
+fun View.getDimensionPixelSize(@DimenRes resId: Int) = resources.getDimensionPixelSize(resId)
+fun View.getColor(@ColorRes resId: Int) = context.getColor(resId)
+fun View.getColorStateList(@ColorRes resId: Int) = context.getColorStateList(resId)
 
-fun View.getDimension(@DimenRes dimenResId: Int) = resources.getDimension(dimenResId)
-fun View.lazyDimension(@DimenRes resId: Int) = lazyNotSynchronized { getDimension(resId) }
-
-fun View.getDimensionPixelSize(@DimenRes dimenResId: Int) = resources.getDimensionPixelSize(dimenResId)
-fun View.lazyDimensionPixelSize(@DimenRes resId: Int) = lazyNotSynchronized { getDimensionPixelSize(resId) }
-
-fun View.lazyFont(@FontRes fontId: Int) = resources.getFont(fontId)
+fun View.lazyGetFont(@FontRes resId: Int) = resources.lazyGetFont(resId)
+fun View.lazyGetDimension(@DimenRes resId: Int) = resources.lazyGetDimension(resId)
+fun View.lazyGetDimensionPixelSize(@DimenRes resId: Int) = resources.lazyGetDimensionPixelSize(resId)

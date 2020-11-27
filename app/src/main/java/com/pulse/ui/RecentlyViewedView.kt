@@ -17,7 +17,7 @@ class RecentlyViewedView @JvmOverloads constructor(
 
     override val containerView = inflate(R.layout.layout_recently_viewed_item, true)
 
-    private val cornerRadius by lazyDimension(R.dimen._7sdp)
+    private val cornerRadius by lazyGetDimension(R.dimen._7sdp)
 
     init {
         setCardBackgroundColor(getColor(R.color.colorGlobalWhite))

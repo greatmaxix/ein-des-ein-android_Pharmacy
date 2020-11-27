@@ -25,24 +25,24 @@ class OrdersAdapter(private val click: (Int) -> Unit) : PagingDataAdapter<Order,
             val isPickup = item.deliveryInfo.deliveryType?.isPickup.falseIfNull()
 
             tvOrderState.backgroundTintList = ColorStateList.valueOf(getColor(item.orderStatus.statusColor))
-            tvOrderState.text = stringRes(item.orderStatus.getStatusRes)
+            tvOrderState.text = getString(item.orderStatus.getStatusRes)
             item.deliveryInfo.deliveryType?.backgroundColor?.let {
                 deliveryTypeContainer.setCardBackgroundColor(getColor(it))
             }
-            item.deliveryInfo.deliveryType?.textRes?.let { deliveryTypeOrders.text = stringRes(it) }
+            item.deliveryInfo.deliveryType?.textRes?.let { deliveryTypeOrders.text = getString(it) }
             item.deliveryInfo.deliveryType?.icon?.let(ivDeliveryTypeOrders::setImageResource)
-            idOrders.text = stringRes(R.string.orderNumber, item.id)
+            idOrders.text = getString(R.string.orderNumber, item.id)
 
             if (isPickup) {
                 addressOrders.text = item.pharmacy.location.address
             } else {
                 val cityAndStreet = item.deliveryInfo.addressOrderData?.streetAndCity
                 val house = item.deliveryInfo.addressOrderData?.houseAndApartment
-                addressOrders.text = stringRes(R.string.orderAddressDelivery, cityAndStreet, house)
+                addressOrders.text = getString(R.string.orderAddressDelivery, cityAndStreet, house)
             }
 
-            tvProductCount.text = stringRes(item.productCountString, item.productCount)
-            priceOrders.text = stringRes(R.string.orderCost, item.pharmacyProductsTotalPrice.formatPrice())
+            tvProductCount.text = getString(item.productCountString, item.productCount)
+            priceOrders.text = getString(R.string.orderCost, item.pharmacyProductsTotalPrice.formatPrice())
         }
 
         companion object {

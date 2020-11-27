@@ -21,15 +21,14 @@ class RecipesWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ct
     override suspend fun doWork() = runDownloading()
 
     private suspend fun runDownloading() = try {
-        Result.success(workDataOf(KEY_RESULT to downloadFile(get<RestApi>().downloadFile())))
+        inputData.getString(KEY_VALUE)?.let { Result.success(workDataOf(KEY_RESULT to downloadFile(get<RestApi>().downloadFile(it), it))) } ?: Result.failure()
     } catch (e: IOException) {
         Timber.e(e)
         Result.failure()
     }
 
-    private fun downloadFile(body: ResponseBody): String {
-        val displayName = "${inputData.getString(KEY_VALUE)}.pdf"
-
+    private fun downloadFile(body: ResponseBody, name: String): String {
+        val displayName = "$name.pdf"
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             applicationContext.contentResolver.downloadPDF(body.byteStream(), displayName, RELATIVE_PATH)
         } else {

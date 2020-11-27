@@ -27,8 +27,8 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
 
     private val orderProductsAdapter by lazy { CheckoutProductsAdapter(args.cartItem.products) }
     private val radioButtonPadding by lazy { resources.getDimension(R.dimen._8sdp).toInt() }
-    private val fontSemibold by lazyFont(R.font.open_sans_semi_bold)
-    private val fontNormal by lazyFont(R.font.open_sans_regular)
+    private val fontSemibold by lazyGetFont(R.font.open_sans_semi_bold)
+    private val fontNormal by lazyGetFont(R.font.open_sans_regular)
     private val Boolean.deliveryType
         get() = if (this) DeliveryType.DELIVERY else DeliveryType.PICKUP
 

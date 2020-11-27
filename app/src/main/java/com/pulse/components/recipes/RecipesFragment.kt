@@ -25,7 +25,6 @@ import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
 import com.pulse.data.GeneralException
 import kotlinx.android.synthetic.main.fragment_recipes.*
-import timber.log.Timber
 
 class RecipesFragment(private val vm: RecipesViewModel, private val workManager: WorkManager) : BaseMVVMFragment(R.layout.fragment_recipes) {
 
@@ -80,18 +79,17 @@ class RecipesFragment(private val vm: RecipesViewModel, private val workManager:
     private fun startWorker(recipe: Recipe) {
 
         val work = OneTimeWorkRequestBuilder<RecipesWorker>()
-            .setInputData(Data.Builder().putString(KEY_VALUE, recipe.code).build())
+            .setInputData(Data.Builder().putString(KEY_VALUE, recipe.pdfUrl.path).build())
             .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
             .build()
 
         workManager.enqueue(work)
 
         observeNullable(workManager.getWorkInfoByIdLiveData(work.id)) { workInfo ->
-            workInfo?.let {
-                Timber.e("State: $it")
-                when (it.state) {
+            workInfo?.let { info ->
+                when (info.state) {
                     ENQUEUED -> {
-                    }
+                    } // we don't need any action in preparing state
                     RUNNING -> progressCallback?.setInProgress(true)
                     SUCCEEDED -> workInfo.outputData.getString(KEY_RESULT)?.let { showSucceeded(it.toUri()) }
                     FAILED, BLOCKED, CANCELLED -> progressCallback?.setInProgress(false)

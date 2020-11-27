@@ -19,8 +19,8 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
 
     override val containerView = inflate(R.layout.view_buyer_details_checkout, true)
 
-    private val sidePadding by lazyDimensionPixelSize(R.dimen._16sdp)
-    private val bottomPadding by lazyDimensionPixelSize(R.dimen._4sdp)
+    private val sidePadding by lazyGetDimensionPixelSize(R.dimen._16sdp)
+    private val bottomPadding by lazyGetDimensionPixelSize(R.dimen._4sdp)
 
     private var fullName: String? = null
     private var phone: String? = null

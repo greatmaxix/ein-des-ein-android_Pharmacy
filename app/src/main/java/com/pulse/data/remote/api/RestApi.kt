@@ -196,7 +196,7 @@ interface RestApi {
     @PATCH("/api/v1/customer/chat/{chatId}/evaluate")
     suspend fun sendReview(@Path("chatId") chatId: Int, @Body body: SendReviewRequest): BaseDataResponse<Any?>
 
-    @GET("/api/v1/recipe/file/e9d4f288-bedd-43fc-ba95-9c1aa63d673b")
+    @GET("/api/v1/recipe/file/{code}")
     @Streaming
-    suspend fun downloadFile(): ResponseBody
+    suspend fun downloadFile(@Path("code") code: String): ResponseBody
 }

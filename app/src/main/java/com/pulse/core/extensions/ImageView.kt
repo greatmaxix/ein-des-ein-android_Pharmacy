@@ -39,7 +39,7 @@ fun ImageView.loadGlideDrawableByURL(url: String?, block: (RequestBuilder<Drawab
 
 fun ImageView.loadGlideDrawableByName(drawableName: String, onResourceReady: ((ImageView) -> Unit)? = null) {
     createGlide
-        .load(context.drawableByName(drawableName))
+        .load(context.getDrawableByName(drawableName))
         .listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean) = false
             override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {

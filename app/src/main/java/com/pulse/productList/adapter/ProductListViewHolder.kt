@@ -17,10 +17,10 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
         tvTitle.setTextHtml(item.rusName)
         tvSubTitle.setTextHtml(item.releaseForm)
 
-        tvManufacture.setTextHtml(stringRes(R.string.manufacture, item.productLocale))
+        tvManufacture.setTextHtml(getString(R.string.manufacture, item.productLocale))
 
         item.aggregation?.let {
-            tvProductPrice.text = stringRes(R.string.price, it.minPrice.formatPrice())
+            tvProductPrice.text = getString(R.string.price, it.minPrice.formatPrice())
             tvProductPrice.visible()
         } ?: run { tvProductPrice.gone() }
         tvPricePrefix.visibleOrGone(!item.isAggregationEmpty)

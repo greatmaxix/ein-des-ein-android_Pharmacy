@@ -73,8 +73,8 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
                 if (count == 1) removeClick(product.productId) else setNewCounterValue(count - 1)
             }
 
-            tvManufacture.setTextHtml(stringRes(R.string.manufacture, product.productLocale))
-            tvProductPrice.text = stringRes(R.string.price, product.price.formatPrice())
+            tvManufacture.setTextHtml(getString(R.string.manufacture, product.productLocale))
+            tvProductPrice.text = getString(R.string.price, product.price.formatPrice())
 
             ivRemove.setDebounceOnClickListener { removeClick(product.productId) }
             cartDivider.visibleOrInvisible(!product.needShowDivider)
@@ -89,8 +89,8 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
 
         override fun bind(item: CartItem) = with(itemView) {
             mbCheckout.setDebounceOnClickListener { notifyCheckout(item) }
-            tvTotalPrice.text = stringRes(R.string.price, item.totalPrice.formatPrice())
-            tvNumberProducts.text = stringRes(R.string.countCurtProducts, item.totalCount)
+            tvTotalPrice.text = getString(R.string.price, item.totalPrice.formatPrice())
+            tvNumberProducts.text = getString(R.string.countCurtProducts, item.totalCount)
         }
 
         companion object {
