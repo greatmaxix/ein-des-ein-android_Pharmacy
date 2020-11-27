@@ -14,8 +14,10 @@ class GrayscaleLayout @JvmOverloads constructor(context: Context, attrs: Attribu
 
     var disabled = false
         set(value) {
-            field = value
-            requestLayout()
+            if (field != value) {
+                field = value
+                requestLayout()
+            }
         }
 
     init {

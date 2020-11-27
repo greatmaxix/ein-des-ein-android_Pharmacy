@@ -1,6 +1,6 @@
 object Versions {
 
-    const val kotlin = "1.4.20-RC"
+    const val kotlin = "1.4.20"
     const val coroutines = "1.4.1"
 
     const val sdp = "1.0.6"

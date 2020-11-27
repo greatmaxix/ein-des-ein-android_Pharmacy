@@ -127,7 +127,7 @@ dependencies {
 
     implementation("org.apache.commons:commons-lang3:3.11") // for Date extensions only
     implementation("com.jakewharton.timber:timber:4.7.1")
-    implementation("com.github.fondesa:kpermissions:3.1.2")
+    implementation("com.github.fondesa:kpermissions:3.1.3")
     implementation("com.budiyev.android:code-scanner:2.1.0")
     // Google
     implementation("com.google.android.material:material:1.2.1")
@@ -198,4 +198,3 @@ val String.execute
         }
         String(toByteArray()).trim()
     }
-
