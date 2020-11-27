@@ -17,18 +17,18 @@ class ProductListViewHolder(override val containerView: View, private val wishCl
         tvTitle.setTextHtml(item.rusName)
         tvSubTitle.setTextHtml(item.releaseForm)
 
-        tvManufacture.setTextHtml(stringRes(R.string.manufacture, item.productLocale))
+        tvManufacture.setTextHtml(getString(R.string.manufacture, item.productLocale))
 
         item.aggregation?.let {
-            tvProductPrice.text = stringRes(R.string.price, it.minPrice.formatPrice())
+            tvProductPrice.text = getString(R.string.price, it.minPrice.formatPrice())
             tvProductPrice.visible()
         } ?: run { tvProductPrice.gone() }
         tvPricePrefix.visibleOrGone(!item.isAggregationEmpty)
         tvPriceUnavailable.visibleOrGone(item.isAggregationEmpty)
         val colorResId = if (item.isAggregationEmpty) R.color.greyText else R.color.darkBlue
-        tvTitle.textColor(colorResId)
-        tvSubTitle.textColor(colorResId)
-        tvManufacture.textColor(colorResId)
+        tvTitle.setTextColorRes(colorResId)
+        tvSubTitle.setTextColorRes(colorResId)
+        tvManufacture.setTextColorRes(colorResId)
 
         with(ivWish) {
             setDebounceOnClickListener(2000) { wishClick(!item.isInWish to item.globalProductId) }

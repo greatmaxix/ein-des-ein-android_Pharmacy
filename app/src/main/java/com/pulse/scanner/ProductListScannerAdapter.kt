@@ -2,7 +2,7 @@ package com.pulse.scanner
 
 import android.view.ViewGroup
 import com.pulse.core.base.adapter.BaseRecyclerAdapter
-import com.pulse.core.extensions.onClick
+import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.product.model.ProductLite
 import com.pulse.productList.adapter.ProductListViewHolder
 
@@ -10,7 +10,7 @@ class ProductListScannerAdapter(private val itemClick: (Int) -> Unit, private va
     BaseRecyclerAdapter<ProductLite, ProductListViewHolder>(list) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProductListViewHolder.newInstance(parent, wishClick).apply {
-        itemView.onClick { itemClick(getItem(bindingAdapterPosition).globalProductId) }
+        itemView.setDebounceOnClickListener { itemClick(getItem(bindingAdapterPosition).globalProductId) }
     }
 
     override fun onBindViewHolder(holder: ProductListViewHolder, position: Int) = holder.bind(getItem(position))

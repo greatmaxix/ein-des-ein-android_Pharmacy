@@ -4,13 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.pulse.BuildConfig.DEBUG
 import com.pulse.R
 import com.pulse.components.auth.sign.SignInFragmentDirections.Companion.actionFromSignInToSignUp
-import com.pulse.core.extensions.hideKeyboard
-import com.pulse.core.extensions.onClick
-import com.pulse.core.extensions.onDoneImeAction
-import com.pulse.core.extensions.text
+import com.pulse.core.extensions.*
 import com.pulse.splash.SplashFragmentDirections.Companion.globalToHome
 import com.pulse.ui.text.fixPrefixGravity
 import com.pulse.ui.text.isPhoneNumberValid
@@ -22,8 +18,6 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.focusChanges
 
 class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
-
-    private val hint by lazy { (if (DEBUG) R.string.authPhoneDebugHint else R.string.authPhoneHint).toString }
 
     private val args by navArgs<SignInFragmentArgs>()
 
@@ -38,7 +32,7 @@ class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
 
         etPhoneSignIn.onDoneImeAction { loginOrError() }
 
-        nvNext.onClick { loginOrError() }
+        nvNext.setDebounceOnClickListener { loginOrError() }
 
         tilPhoneSignIn.editText
             ?.focusChanges()
@@ -53,13 +47,15 @@ class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
     private fun loginOrError() {
         if (tilPhoneSignIn.isPhoneNumberValid(getString(R.string.phoneErrorAuth))) {
             hideKeyboard()
-            vm.signIn("${if (DEBUG) +3 else +7}${etPhoneSignIn.text()}")
+
+
+            vm.signIn("${debugIfElse({ "+3" }, { "+7" })}${etPhoneSignIn.text()}")
         }
     }
 
     private fun notifyHint(focused: Boolean) {
-        tilPhoneSignIn.prefixText = if (DEBUG) "+3" else "+7"
-        if (focused) etPhoneSignIn.hint = null else etPhoneSignIn.setHintSpan(hint, hint.length - 1, hint.length)
+        tilPhoneSignIn.prefixText = debugIfElse({ "+3" }, { "+7" })
+        if (focused) etPhoneSignIn.hint = null else etPhoneSignIn.setHintSpan(phoneHint, phoneHint.length - 1, phoneHint.length)
     }
 
     override fun onBindLiveData() {

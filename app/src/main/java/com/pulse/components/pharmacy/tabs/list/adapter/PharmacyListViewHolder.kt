@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import com.pulse.R
 import com.pulse.components.pharmacy.model.Pharmacy
 import com.pulse.core.base.adapter.BaseViewHolder
+import com.pulse.core.extensions.getString
 import com.pulse.core.extensions.inflate
 import com.pulse.core.extensions.loadGlideDrawableByURL
-import com.pulse.core.extensions.onClick
-import com.pulse.core.extensions.stringRes
+import com.pulse.core.extensions.setDebounceOnClickListener
 import kotlinx.android.synthetic.main.item_pharmacy.view.*
 
 class PharmacyListViewHolder(
@@ -24,11 +24,11 @@ class PharmacyListViewHolder(
         ivPharmacy.loadGlideDrawableByURL(item.logo.url)
         tvPharmacyName.text = item.name
         tvPharmacyAddress.text = item.location.address
-        tvPharmacyPhone.text = stringRes(R.string.pharmacyPhoneWith, item.phone)
-        tvPharmacyPhone.onClick { makeCall(item.phone) }
-        tvProductPrice.text = stringRes(R.string.price, item.firstProductPrice)
-        ivPharmacyLocation.onClick { geoNav(item) }
-        mbProductAddToCart.onClick { addToCart(item) }
+        tvPharmacyPhone.text = getString(R.string.pharmacyPhoneWith, item.phone)
+        tvPharmacyPhone.setDebounceOnClickListener { makeCall(item.phone) }
+        tvProductPrice.text = getString(R.string.price, item.firstProductPrice)
+        ivPharmacyLocation.setDebounceOnClickListener { geoNav(item) }
+        mbProductAddToCart.setDebounceOnClickListener { addToCart(item) }
     }
 
     companion object {

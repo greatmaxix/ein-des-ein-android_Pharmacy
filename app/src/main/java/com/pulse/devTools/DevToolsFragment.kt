@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.pulse.R
 import com.pulse.core.base.mvvm.BaseMVVMFragment
-import com.pulse.core.extensions.onClick
+import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.devTools.DevToolsFragmentDirections.Companion.globalToPayments
 import kotlinx.android.synthetic.main.fragment_dev_tools.*
 
@@ -13,7 +13,7 @@ class DevToolsFragment(private val viewModel: DevToolsViewModel) : BaseMVVMFragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toPayments.onClick {
+        toPayments.setDebounceOnClickListener {
             navController.navigate(globalToPayments())
         }
     }

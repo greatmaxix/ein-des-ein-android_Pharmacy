@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.pulse.R
 import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.onClick
+import com.pulse.core.extensions.onClickDebounce
 import com.pulse.core.extensions.use
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_auth_footer.view.*
@@ -34,12 +34,12 @@ class AuthFooter @JvmOverloads constructor(context: Context, attrs: AttributeSet
     }
 
     fun setOnSkipClickListener(action: () -> Unit): AuthFooter {
-        mtvSkip.onClick(action)
+        mtvSkip.onClickDebounce(action)
         return this
     }
 
     fun setOnActionClickListener(action: () -> Unit): AuthFooter {
-        tvAction.onClick(action)
+        tvAction.onClickDebounce(action)
         return this
     }
 }

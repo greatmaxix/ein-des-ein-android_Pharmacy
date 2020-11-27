@@ -35,6 +35,8 @@ import kotlin.coroutines.CoroutineContext
 
 class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver {
 
+    private val _notificationManager by lazy { notificationManager }
+
     private var coroutineJob: Job = SupervisorJob()
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO + coroutineJob
@@ -126,7 +128,7 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
             autoCancel(true)
         }
 
-        notificationManager.notify(chatId, notification)
+        _notificationManager?.notify(chatId, notification)
     }
 
     private fun postEndChatNotification(chatId: Int) {
@@ -141,7 +143,7 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
             autoCancel(true)
         }
 
-        notificationManager.notify(chatId, notification)
+        _notificationManager?.notify(chatId, notification)
     }
 
     private fun getActionIntent(): Intent {

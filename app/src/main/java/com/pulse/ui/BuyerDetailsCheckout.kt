@@ -2,14 +2,10 @@ package com.pulse.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.LinearLayout
 import androidx.core.widget.doAfterTextChanged
-import com.pulse.BuildConfig
 import com.pulse.R
-import com.pulse.core.extensions.debug
-import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.text
+import com.pulse.core.extensions.*
 import com.pulse.data.remote.model.order.CustomerOrderData
 import com.pulse.ui.text.*
 import kotlinx.android.extensions.LayoutContainer
@@ -21,10 +17,10 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr), LayoutContainer {
 
-    override val containerView: View? = inflate(R.layout.view_buyer_details_checkout, true)
+    override val containerView = inflate(R.layout.view_buyer_details_checkout, true)
 
-    private val sidePadding by lazy { resources.getDimension(R.dimen._16sdp).toInt() }
-    private val bottomPadding by lazy { resources.getDimension(R.dimen._4sdp).toInt() }
+    private val sidePadding by lazyGetDimensionPixelSize(R.dimen._16sdp)
+    private val bottomPadding by lazyGetDimensionPixelSize(R.dimen._4sdp)
 
     private var fullName: String? = null
     private var phone: String? = null
@@ -33,7 +29,7 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
     init {
         tilPhoneCheckout.fixPrefixGravity()
         debug { tilPhoneCheckout.prefixText = "+3" }
-        val hint = if (BuildConfig.DEBUG) R.string.authPhoneDebugHint else R.string.authPhoneHint
+        val hint = debugIfElse({ R.string.authPhoneDebugHint }, { R.string.authPhoneHint })
         etPhoneCheckout.setAsteriskHint(context.getString(hint), 18, 19)
 
         tilFirstLastNameCheckout.editText?.doAfterTextChanged {

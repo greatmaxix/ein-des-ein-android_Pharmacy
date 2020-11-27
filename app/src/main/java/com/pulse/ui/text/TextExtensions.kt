@@ -27,11 +27,11 @@ import java.math.BigDecimal
 private const val MIN_PHONE_LENGTH = 11
 private const val MAX_PHONE_LENGTH = 16
 
-fun EditText.generalRule() {
-    inputType = InputType.TYPE_CLASS_TEXT
-}
-
 fun EditText.phoneRule(prefix: (() -> String)? = null) {
+
+    fun generateResult(source: CharSequence, start: Int, end: Int, dest: Spanned, dstart: Int, dend: Int) =
+        StringBuilder(dest).apply { replace(dstart, dend, source.subSequence(start, end).toString()) }
+
     inputType = TYPE_CLASS_NUMBER
     filters = arrayOf(
         InputFilter.LengthFilter(MAX_PHONE_LENGTH),
@@ -41,9 +41,6 @@ fun EditText.phoneRule(prefix: (() -> String)? = null) {
 
     importantForAutofill = View.IMPORTANT_FOR_AUTOFILL_NO
 }
-
-fun EditText.generateResult(source: CharSequence, start: Int, end: Int, dest: Spanned, dstart: Int, dend: Int) =
-    StringBuilder(dest).apply { replace(dstart, dend, source.subSequence(start, end).toString()) }
 
 inline fun EditText.setSingleClick(crossinline click: (View) -> Unit) {
     val detector = GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
@@ -58,10 +55,6 @@ inline fun EditText.setSingleClick(crossinline click: (View) -> Unit) {
     isFocusable = false
     isCursorVisible = false
     setOnTouchListener { _, event -> detector.onTouchEvent(event) }
-}
-
-fun EditText.numberRule() {
-    inputType = TYPE_CLASS_NUMBER
 }
 
 fun EditText.substring(startIndex: Int) = when {
@@ -81,7 +74,7 @@ fun EditText.cursorToEnd() {
 
 fun EditText.openKeyboard() {
     requestFocus()
-    inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+    inputMethodManager?.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
 }
 
 fun EditText.setTextWithCursorToEndAndOpen(text: String) {
@@ -105,22 +98,6 @@ fun EditText.setTextFocusWithCursorToEnd(text: String): String {
     return ""
 }
 
-fun EditText.addAfterTextWatcher(doAfter: (String) -> Unit): TextWatcher {
-    val value = object : TextWatcher {
-        override fun afterTextChanged(s: Editable?) {
-            doAfter(s.toString())
-        }
-
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-        }
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        }
-    }
-    addTextChangedListener(value)
-    return value
-}
-
 fun EditText.setAsteriskHint(text: String, start: Int, end: Int, darkCode: Boolean = true) {
     focusChanges().onEach { if (it) hint = "" else setHintSpan(text, start, end, darkCode) }
         .launchIn(MainScope())
@@ -129,9 +106,9 @@ fun EditText.setAsteriskHint(text: String, start: Int, end: Int, darkCode: Boole
 fun EditText.setHintSpan(text: String, start: Int, end: Int, darkCode: Boolean = true) {
     hint = buildSpannedString {
         append(text)
-        setExclusiveSpan(colorCompat(R.color.hintColor), 0, start)
+        setExclusiveSpan(getColor(R.color.hintColor), 0, start)
         setExclusiveSpan(Color.RED, start, end)
-        if (darkCode) setExclusiveSpan(colorCompat(R.color.darkBlue), 0, 2)
+        if (darkCode) setExclusiveSpan(getColor(R.color.darkBlue), 0, 2)
     }
 }
 
@@ -248,14 +225,14 @@ fun TextInputLayout.onDoneImeAction(clearFocus: Boolean = false, action: () -> U
 fun TextInputLayout.animateEnableOrDisable(enable: Boolean) {
     AnimatorSet().apply {
         playTogether(
-            ValueAnimator.ofObject(ArgbEvaluator(), editText?.currentTextColor, colorCompat(enable.inputTextColor)).apply {
+            ValueAnimator.ofObject(ArgbEvaluator(), editText?.currentTextColor, getColor(enable.inputTextColor)).apply {
                 addUpdateListener {
                     val color = it.animatedValue as Int
                     editText?.setTextColor(color)
                     endIconDrawable?.apply { mutate().setTint(color) }
                 }
             },
-            ValueAnimator.ofObject(ArgbEvaluator(), boxBackgroundColor, colorCompat(enable.inputTextBackground)).apply {
+            ValueAnimator.ofObject(ArgbEvaluator(), boxBackgroundColor, getColor(enable.inputTextBackground)).apply {
                 addUpdateListener { boxBackgroundColor = it.animatedValue as Int }
             })
         duration = resources.getInteger(R.integer.animation_time).toLong()

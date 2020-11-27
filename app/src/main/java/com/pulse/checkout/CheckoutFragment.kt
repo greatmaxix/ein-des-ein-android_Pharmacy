@@ -27,8 +27,8 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
 
     private val orderProductsAdapter by lazy { CheckoutProductsAdapter(args.cartItem.products) }
     private val radioButtonPadding by lazy { resources.getDimension(R.dimen._8sdp).toInt() }
-    private val fontSemibold by lazy { font(R.font.open_sans_semi_bold) }
-    private val fontNormal by lazy { font(R.font.open_sans_regular) }
+    private val fontSemibold by lazyGetFont(R.font.open_sans_semi_bold)
+    private val fontNormal by lazyGetFont(R.font.open_sans_regular)
     private val Boolean.deliveryType
         get() = if (this) DeliveryType.DELIVERY else DeliveryType.PICKUP
 
@@ -47,14 +47,14 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
 
         initPaymentMethods()
         initOrderProducts()
-        btnPromoCodeCheckout.onClick {
+        btnPromoCodeCheckout.setDebounceOnClickListener {
             setFragmentResultListener(PROMO_CODE_REQUEST_KEY) { _, bundle ->
                 val code = bundle[PromoCodeDialogFragment.PROMO_CODE_EXTRA_KEY]
                 viewModel.handlePromoCodeResult(code as String)
             }
             doNav(actionCheckoutToPromoCodeDialog())
         }
-        btnCheckoutOrderCheckout.onClick { validateFieldsAndSendOrder() }
+        btnCheckoutOrderCheckout.setDebounceOnClickListener { validateFieldsAndSendOrder() }
 
         val totalAmount = "${args.cartItem.totalPrice.formatPrice()} ₸"
         tvTotalAmountCheckout.text = totalAmount
@@ -108,8 +108,8 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         text = it.name
         val drawable = getDrawable(it.icon)?.apply { if (!it.isChecked) colorFilter = ColorFilterUtil.blackWhiteFilter }
         setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
-        setTextColor(colorListFrom(R.color.selector_text_payment))
-        buttonTintList = colorListFrom(R.color.selector_tint_button_payment)
+        setTextColor(getColorStateList(R.color.selector_text_payment))
+        buttonTintList = getColorStateList(R.color.selector_tint_button_payment)
         isEnabled = it.isChecked
         isChecked = it.isChecked
     }

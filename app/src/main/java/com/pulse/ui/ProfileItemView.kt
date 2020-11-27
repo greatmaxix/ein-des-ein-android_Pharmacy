@@ -37,7 +37,7 @@ class ProfileItemView @JvmOverloads constructor(
         set(value) {
             field = value
             ivIconProfileItem.setColorFilter(ContextCompat.getColor(context, value), PorterDuff.Mode.SRC_IN)
-            mtvTitleProfileItem.textColor(value)
+            mtvTitleProfileItem.setTextColorRes(value)
         }
     var secondaryColor: Int = -1
         set(value) {
@@ -80,8 +80,8 @@ class ProfileItemView @JvmOverloads constructor(
         super.setSelected(selected)
 
         ivArrowProfileItem.rotation = if (selected) -90f else 0f
-        ivArrowProfileItem.setColorFilter(colorFrom(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
-        ivIconProfileItem.setColorFilter(colorFrom(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
-        mtvTitleProfileItem.textColor(if (selected) selectColor else mainColor)
+        ivArrowProfileItem.setColorFilter(getColor(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
+        ivIconProfileItem.setColorFilter(getColor(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
+        mtvTitleProfileItem.setTextColorRes(if (selected) selectColor else mainColor)
     }
 }

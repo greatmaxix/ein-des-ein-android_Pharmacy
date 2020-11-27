@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.pulse.R
 import com.pulse.components.auth.sign.SignInFragmentArgs
-import com.pulse.core.extensions.onClick
+import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.core.extensions.spanSearchCount
 import com.pulse.core.extensions.visibleOrGone
 import com.pulse.productList.BaseProductListFragment
@@ -18,7 +18,7 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseProductListFr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mcvScanSearch.onClick { navController.navigate(fromSearchToScanner()) }
+        mcvScanSearch.setDebounceOnClickListener { navController.navigate(fromSearchToScanner()) }
 
         searchView.setSearchListener { viewModel.doSearch(it.toString()) }
     }

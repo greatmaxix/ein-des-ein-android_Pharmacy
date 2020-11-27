@@ -12,7 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.AppCompatEditText
-import com.pulse.core.extensions.colorFrom
+import com.pulse.core.extensions.getColor
 import com.pulse.core.extensions.inputTextBackground
 import com.pulse.core.extensions.inputTextColor
 
@@ -25,13 +25,13 @@ class SmsView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
     private val density by lazy { resources.displayMetrics.density }
 
     private val paintText
-        get() = Paint(paint).apply { color = colorFrom(isEnabled.inputTextColor) }
+        get() = Paint(paint).apply { color = getColor(isEnabled.inputTextColor) }
     private val paintLines
         get() = Paint(paint).apply {
             style = Paint.Style.FILL
             isAntiAlias = true
             strokeWidth = density
-            color = colorFrom(isEnabled.inputTextBackground)
+            color = getColor(isEnabled.inputTextBackground)
         }
 
     private val space by lazy { 15f * density }

@@ -1,32 +1,25 @@
 package com.pulse.core.extensions
 
-import android.animation.*
-import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.Canvas
+import android.animation.Animator
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.graphics.Paint
 import android.graphics.Rect
-import android.graphics.drawable.BitmapDrawable
-import android.os.Build
-import android.os.Handler
 import android.os.SystemClock
 import android.view.View
 import android.view.View.*
-import android.view.ViewGroup
 import android.view.ViewParent
 import android.widget.EditText
-import android.widget.TextView
-import androidx.annotation.*
-import androidx.appcompat.widget.Toolbar
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
+import androidx.annotation.FontRes
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
-import androidx.core.text.PrecomputedTextCompat
-import androidx.core.view.*
-import androidx.core.widget.NestedScrollView
-import androidx.core.widget.TextViewCompat
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.view.ViewCompat
+import androidx.core.view.doOnPreDraw
+import androidx.core.view.isGone
+import androidx.core.view.updateLayoutParams
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -37,7 +30,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
 import timber.log.Timber
-import java.math.BigDecimal
+import kotlin.collections.set
 
 inline fun <T, reified R : View> R.singleAsyncTask(
     crossinline task: suspend () -> T?,
@@ -73,16 +66,6 @@ inline fun <T, reified R : View> R.singleAsyncTask(
     }
 }
 
-fun View.freeze(duration: Long = 300) {
-    isEnabled = false
-    Handler().postDelayed({ isEnabled = true }, duration)
-}
-
-@Deprecated("Use @setDebounceOnClickListener or setOnClickListener")
-inline fun View.onClick(crossinline f: () -> Unit) {
-    setOnClickListener { f() }
-}
-
 inline fun <reified T : ViewParent> View.castParent(block: T.() -> Unit) {
     if (parent is T) {
         block(parent as T)
@@ -93,10 +76,10 @@ inline fun <reified T : ViewParent> View.castParent(block: T.() -> Unit) {
 
 fun View.adjustSizePreDraw() {
     doOnPreDraw {
-        val params = layoutParams
-        params.height = height
-        params.width = width
-        layoutParams = params
+        layoutParams = layoutParams.also {
+            it.height = height
+            it.width = width
+        }
     }
 }
 
@@ -114,20 +97,10 @@ fun View.setWidth(width: Int) = updateLayoutParams { this.width = width }
 fun View.setHeight(height: Int) = updateLayoutParams { this.height = height }
 
 fun View.scaleWidth(to: Int, duration: Long = resources.getInteger(R.integer.animation_time).toLong()) =
-    intValueAnimator(width, to, duration, ::setWidth)
+    valueAnimatorInt(width, to, duration, ::setWidth)
 
 fun View.scaleHeight(to: Int, duration: Long = resources.getInteger(R.integer.animation_time).toLong()) =
-    intValueAnimator(height, to, duration, ::setHeight)
-
-fun View.intValueAnimator(from: Int, to: Int, duration: Long, onUpdate: (Int) -> Unit): View {
-    ValueAnimator.ofInt(from, to).apply {
-        addUpdateListener { onUpdate(it.animatedValue as Int) }
-        interpolator = FastOutSlowInInterpolator()
-        this.duration = duration
-        start()
-    }
-    return this
-}
+    valueAnimatorInt(height, to, duration, ::setHeight)
 
 fun View.gone() {
     if (visibility != GONE) {
@@ -236,8 +209,8 @@ val View.inputMethodManager
     get() = context.inputMethodManager
 
 fun View.hideKeyboard(needClearFocus: Boolean = true) =
-    inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
-        .also { if (needClearFocus) clearFocus() }
+    inputMethodManager?.hideSoftInputFromWindow(windowToken, 0)
+        .also { if (needClearFocus) clearFocus() } ?: false
 
 val View.isKeyboardOpen
     get() = Rect().run {
@@ -272,50 +245,6 @@ fun View.rotate(angle: Float, endAction: () -> Unit, duration: Long = 300) = ani
     .setDuration(duration)
     .start()
 
-@Deprecated("Replace to colorFrom", ReplaceWith("colorFrom()"))
-fun View.colorCompat(colorRes: Int) = context.getCompatColor(colorRes)
-
-fun View.colorFrom(@ColorRes colorRes: Int) = context.getColor(colorRes)
-
-fun View.colorListFrom(@ColorRes colorRes: Int) = context.getColorStateList(colorRes)
-
-fun View.moveHorizontal(progress: Float, alpha: Float? = null) {
-    translationX = progress
-    alpha?.let { this.alpha = it }
-}
-
-fun View.distanceTo(view: View): Int {
-    val firstPosition = IntArray(2)
-    val secondPosition = IntArray(2)
-
-    measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-    getLocationOnScreen(firstPosition)
-    view.getLocationOnScreen(secondPosition)
-
-    val b = view.measuredHeight + firstPosition[1]
-    val t = secondPosition[1]
-    return Math.abs(b - t)
-}
-
-fun View.animateRotate() {
-    AnimatorInflater.loadAnimator(context, R.animator.animator_rotate).apply {
-        setTarget(this@animateRotate)
-        start()
-    }
-}
-
-fun View.colorValueAnimator(from: Int, to: Int, duration: Long, onUpdate: (Int) -> Unit): View {
-    ValueAnimator.ofObject(ArgbEvaluator(), from, to).apply {
-        addUpdateListener { onUpdate(it.animatedValue as Int) }
-        this.duration = duration
-        start()
-    }
-    return this
-}
-
-val View.toTransitionGroup
-    get() = this to transitionName
-
 fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> Unit) {
     val lastClickMap = mutableMapOf<Int, Long>()
     setOnClickListener { v ->
@@ -324,6 +253,8 @@ fun View.setDebounceOnClickListener(interval: Long = 400, listener: View.() -> U
         lastClickMap[v.id] = currentTimestamp
     }
 }
+
+inline fun View.onClickDebounce(crossinline f: () -> Unit) = setDebounceOnClickListener { f() }
 
 fun View.setTopRoundCornerBackground(
     radius: Float = resources.getDimension(R.dimen._8sdp),
@@ -360,46 +291,8 @@ fun Shapeable.setBottomRoundCornerBackground(radius: Float) {
     shapeAppearanceModel = shape.shapeAppearanceModel
 }
 
-fun View.mockToast(text: String = context.getString(R.string.expectSoonMock)) = setDebounceOnClickListener {
+fun View.mockToast(text: String = context.getString(R.string.expectSoonMock)) = this.setDebounceOnClickListener {
     context.toast(text)
-}
-
-fun TextView.hideKeyboardOnEditorAction() {
-    setOnEditorActionListener { _, _, _ ->
-        hideKeyboard()
-        true
-    }
-}
-
-fun TextView.text(): String = text.toString()
-
-fun TextView.underlineSpan(): TextView {
-    text = text().underlineSpan()
-    return this
-}
-
-fun TextView.compatTextColor(@ColorRes colorResId: Int) {
-    setTextColor(colorCompat(colorResId))
-}
-
-@RequiresApi(Build.VERSION_CODES.M)
-fun TextView.textColor(@ColorRes colorResId: Int): TextView {
-    setTextColor(colorFrom(colorResId))
-    return this
-}
-
-suspend fun TextView.setPrecomputedTextCompat(text: String) =
-    TextViewCompat.setPrecomputedText(this, withContext(Default) { createPrecomputedTextCompat(text) })
-
-fun TextView.createPrecomputedTextCompat(text: String): PrecomputedTextCompat =
-    PrecomputedTextCompat.create(text, TextViewCompat.getTextMetricsParams(this))
-
-fun Resources.getBitmapDrawableFromVectorDrawable(@DrawableRes drawableRes: Int) = getDrawable(drawableRes, null).let {
-    BitmapDrawable(this, Bitmap.createBitmap(it.intrinsicWidth, it.intrinsicHeight, Bitmap.Config.ARGB_8888).apply {
-        val canvas = Canvas(this)
-        it.setBounds(0, 0, canvas.width, canvas.height)
-        it.draw(canvas)
-    })
 }
 
 /*fun TextInputLayout.setText(text: String?) {
@@ -410,63 +303,15 @@ fun Resources.getBitmapDrawableFromVectorDrawable(@DrawableRes drawableRes: Int)
 
 fun TextInputLayout.text() = editText?.text() ?: ""
 
-fun EditText.updateText(newString: String?) {
-    if (text().trim().isEmpty() || newString != text().trim()) {
-        newString?.let {
-            setText(it)
-            setSelection(it.length)
-        }
-    }
-}
-
-fun EditText.updateText(newString: Any?) {
-    setText(newString.toString())
-    setSelection(text.length)
-}
-
 fun EditText.isEmpty() = text().isEmpty()
 
-fun EditText.textToBigDecimal() = text().toBigDecimal()
 
-fun EditText.setText(bigDecimal: BigDecimal?) = setText(bigDecimal.toString())
+fun View.getFont(@FontRes resId: Int) = resources.getFont(resId)
+fun View.getDimension(@DimenRes resId: Int) = resources.getDimension(resId)
+fun View.getDimensionPixelSize(@DimenRes resId: Int) = resources.getDimensionPixelSize(resId)
+fun View.getColor(@ColorRes resId: Int) = context.getColor(resId)
+fun View.getColorStateList(@ColorRes resId: Int) = context.getColorStateList(resId)
 
-fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attach: Boolean = false) = context.inflate(layoutRes, this, attach)
-
-fun ViewGroup.getDimensionPixelSize(@DimenRes dimenResId: Int) = resources.getDimensionPixelSize(dimenResId)
-
-fun ViewGroup.getDimension(@DimenRes dimenResId: Int) = resources.getDimension(dimenResId)
-
-val ViewGroup.lastChild: View
-    get() = getChildAt(childCount - 1)
-
-fun RecyclerView.addDrawableItemDivider(@DrawableRes drawableRes: Int) {
-    context.getCompatDrawable(drawableRes)?.let {
-        addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL).apply {
-            setDrawable(it)
-        })
-    }
-}
-
-fun Toolbar.setMenu(@MenuRes menu: Int, itemClick: Toolbar.OnMenuItemClickListener? = null) {
-    if (this.menu.isEmpty()) {
-        inflateMenu(menu)
-        setOnMenuItemClickListener(itemClick)
-    }
-}
-
-val Toolbar.titleView: View
-    get() = getChildAt(0)
-
-fun NestedScrollView.scrollToBottom() {
-    scrollBy(0, lastChild.bottom + paddingBottom - (scrollY + height))
-}
-
-fun NestedScrollView.scrollToTop() {
-    scrollTo(0, 0)
-}
-
-fun View.dimension(@DimenRes dimenResId: Int) = resources.getDimension(dimenResId)
-
-fun View.dimensionPixelSize(@DimenRes dimenResId: Int) = resources.getDimensionPixelSize(dimenResId)
-
-fun View.font(@FontRes fontId: Int) = resources.getFont(fontId)
+fun View.lazyGetFont(@FontRes resId: Int) = resources.lazyGetFont(resId)
+fun View.lazyGetDimension(@DimenRes resId: Int) = resources.lazyGetDimension(resId)
+fun View.lazyGetDimensionPixelSize(@DimenRes resId: Int) = resources.lazyGetDimensionPixelSize(resId)

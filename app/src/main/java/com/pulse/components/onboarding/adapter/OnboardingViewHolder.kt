@@ -6,7 +6,7 @@ import com.pulse.R
 import com.pulse.components.onboarding.model.Onboarding
 import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.onClick
+import com.pulse.core.extensions.setDebounceOnClickListener
 import kotlinx.android.synthetic.main.item_onboarding.view.*
 
 class OnboardingViewHolder(view: View, private val skip: (Onboarding.OnboardingType) -> Unit, private val next: (Onboarding.OnboardingType) -> Unit) :
@@ -19,8 +19,8 @@ class OnboardingViewHolder(view: View, private val skip: (Onboarding.OnboardingT
         mbNext.setText(item.next)
         mtvSkip.setText(item.skip)
 
-        mbNext.onClick { next(item.type) }
-        mtvSkip.onClick { skip(item.type) }
+        mbNext.setDebounceOnClickListener { next(item.type) }
+        mtvSkip.setDebounceOnClickListener { skip(item.type) }
     }
 
     companion object {

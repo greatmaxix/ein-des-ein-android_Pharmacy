@@ -1,6 +1,7 @@
 package com.pulse
 
 import android.app.Application
+import com.pulse.core.extensions.debug
 import com.pulse.util.HyperlinkedDebugTree
 import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.koin.androidContext
@@ -30,9 +31,7 @@ class App : Application() {
         }
 
 
-        if (BuildConfig.DEBUG) {
-            Timber.plant(HyperlinkedDebugTree())
-        }
+        debug { Timber.plant(HyperlinkedDebugTree()) }
     }
 
     //TODO Find better solution to get country name from ISO3

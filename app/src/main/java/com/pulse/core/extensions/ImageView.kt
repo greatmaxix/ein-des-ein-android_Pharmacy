@@ -27,10 +27,7 @@ fun ImageView.setFilter(@ColorInt color: Int) {
     drawable?.setFilter(color)
 }
 
-fun ImageView.setFilterRes(@ColorRes colorRes: Int) {
-    val color = context.getColor(colorRes)
-    setFilter(color)
-}
+fun ImageView.setFilterRes(@ColorRes colorRes: Int) = setFilter(getColor(colorRes))
 
 val ImageView.createGlide
     get() = Glide.with(this)
@@ -42,7 +39,7 @@ fun ImageView.loadGlideDrawableByURL(url: String?, block: (RequestBuilder<Drawab
 
 fun ImageView.loadGlideDrawableByName(drawableName: String, onResourceReady: ((ImageView) -> Unit)? = null) {
     createGlide
-        .load(resources.getIdentifier(drawableName, "drawable", context.packageName))
+        .load(context.getDrawableByName(drawableName))
         .listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean) = false
             override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {

@@ -3,10 +3,10 @@ package com.pulse.core.base.adapter
 import android.content.res.Resources.NotFoundException
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.pulse.core.extensions.color
-import com.pulse.core.extensions.dimensionPixelSize
-import com.pulse.core.extensions.drawable
-import com.pulse.core.extensions.stringRes
+import com.pulse.core.extensions.getColor
+import com.pulse.core.extensions.getDimensionPixelSize
+import com.pulse.core.extensions.getDrawable
+import com.pulse.core.extensions.getString
 import kotlinx.android.extensions.LayoutContainer
 import timber.log.Timber
 
@@ -14,17 +14,17 @@ abstract class BaseViewHolder<T>(override val containerView: View) : RecyclerVie
 
     abstract fun bind(item: T)
 
-    protected val Int.toText get() = stringRes(this)
+    protected val Int.toText get() = getString(this)
 
     protected val Int.toDrawable
         get() = try {
-            drawable(this)
+            getDrawable(this)
         } catch (e: NotFoundException) {
             Timber.e(e)
             null
         }
 
-    protected val Int.toColor get() = color(this)
+    protected val Int.toColor get() = getColor(this)
 
-    protected val Int.toPixelSize get() = dimensionPixelSize(this)
+    protected val Int.toPixelSize get() = getDimensionPixelSize(this)
 }

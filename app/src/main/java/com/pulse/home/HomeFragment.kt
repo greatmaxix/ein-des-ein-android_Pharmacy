@@ -60,7 +60,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         categories.forEachIndexed { index, category ->
             (llCategoriesContainer.getChildAt(index) as? CategoryHomeView)?.apply {
                 setCategory(category.name to index)
-                setDebounceOnClickListener {
+                this.setDebounceOnClickListener {
                     navController.onNavDestinationSelected(R.id.nav_catalog, bundleOf("category" to category), R.id.nav_home)
                 }
             }
@@ -79,7 +79,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
     private fun setProduct(product: Product, view: RecentlyViewedView) = with(view) {
         animateVisible()
         setProduct(product)
-        onClick { viewModel.getProductInfo(product.globalProductId) }
+        this.setDebounceOnClickListener { viewModel.getProductInfo(product.globalProductId) }
     }
 
     override fun notifyWish(globalProductId: Int) {

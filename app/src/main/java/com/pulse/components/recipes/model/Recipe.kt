@@ -8,7 +8,8 @@ data class Recipe(
     @SerializedName("status") val status: RecipeStatus,
     @SerializedName("code") val code: String,
     @SerializedName("validTill") val validTill: String,
-    @SerializedName("recipeProducts") val products: List<RecipeProducts>
+    @SerializedName("recipeProducts") val products: List<RecipeProducts>,
+    @SerializedName("image") val pdfUrl: RecipeImage
 ) {
 
     val productUrl

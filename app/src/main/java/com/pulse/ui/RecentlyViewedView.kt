@@ -17,10 +17,10 @@ class RecentlyViewedView @JvmOverloads constructor(
 
     override val containerView = inflate(R.layout.layout_recently_viewed_item, true)
 
-    private val cornerRadius by lazy { resources.getDimension(R.dimen._7sdp) }
+    private val cornerRadius by lazyGetDimension(R.dimen._7sdp)
 
     init {
-        setCardBackgroundColor(colorCompat(R.color.colorGlobalWhite))
+        setCardBackgroundColor(getColor(R.color.colorGlobalWhite))
         radius = 0F
         cardElevation = resources.getDimensionPixelSize(R.dimen._1sdp).toFloat()
         useCompatPadding = true
@@ -34,8 +34,8 @@ class RecentlyViewedView @JvmOverloads constructor(
         tvNameRecentlyViewed.setTextHtml(product.rusName)
         tvDescriptionRecentlyViewed.setTextHtml(product.releaseForm)
         val colorResId = if (product.isAggregationEmpty) R.color.greyText else R.color.darkBlue
-        tvDescriptionRecentlyViewed.textColor(colorResId)
-        tvNameRecentlyViewed.textColor(colorResId)
+        tvDescriptionRecentlyViewed.setTextColorRes(colorResId)
+        tvNameRecentlyViewed.setTextColorRes(colorResId)
         product.aggregation?.let {
             tvPriceFromRecentlyViewed.text = context.getString(R.string.price, it.minPrice.toString())
         } ?: run {

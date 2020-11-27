@@ -2,7 +2,8 @@ package com.pulse.core.extensions
 
 import android.graphics.Rect
 import android.view.View
-import androidx.recyclerview.widget.ConcatAdapter
+import androidx.annotation.DrawableRes
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.pulse.R
 import com.pulse.ui.decoration.GridSpacingItemDecoration
@@ -10,7 +11,7 @@ import com.pulse.ui.decoration.GridSpacingItemDecoration
 fun RecyclerView.onScrollStateChanged(listener: (RecyclerView, Int) -> Unit) {
     addOnScrollListener(object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, state: Int) {
-            listener.invoke(recyclerView, state)
+            listener(recyclerView, state)
         }
     })
 }
@@ -18,7 +19,7 @@ fun RecyclerView.onScrollStateChanged(listener: (RecyclerView, Int) -> Unit) {
 fun RecyclerView.onScrollStateChanged(listener: (Int) -> Unit) {
     addOnScrollListener(object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, state: Int) {
-            listener.invoke(state)
+            listener(state)
         }
     })
 }
@@ -26,7 +27,7 @@ fun RecyclerView.onScrollStateChanged(listener: (Int) -> Unit) {
 fun RecyclerView.onScrolled(listener: (RecyclerView, Int, Int) -> Unit) {
     addOnScrollListener(object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            listener.invoke(recyclerView, dx, dy)
+            listener(recyclerView, dx, dy)
         }
     })
 }
@@ -39,10 +40,15 @@ fun RecyclerView.addAutoKeyboardCloser() {
     }
 }
 
-fun RecyclerView.addItemDecorator(
-    needTopSpacing: Boolean = true,
-    space: Int
-) = addItemDecorator(needTopSpacing, space, space, space, space)
+fun RecyclerView.addDrawableItemDivider(@DrawableRes drawableRes: Int) {
+    context.getCompatDrawable(drawableRes)?.let {
+        addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL).apply {
+            setDrawable(it)
+        })
+    }
+}
+
+fun RecyclerView.addItemDecorator(needTopSpacing: Boolean = true, space: Int) = addItemDecorator(needTopSpacing, space, space, space, space)
 
 fun RecyclerView.addItemDecorator(
     needTopSpacing: Boolean = true,
@@ -53,7 +59,7 @@ fun RecyclerView.addItemDecorator(
 ) {
     addItemDecoration(object : RecyclerView.ItemDecoration() {
 
-        private val spacing = context.resources.getDimensionPixelSize(R.dimen._8sdp)
+        private val spacing = getDimensionPixelSize(R.dimen._8sdp)
 
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
             val index = parent.getChildAdapterPosition(view)
@@ -69,7 +75,4 @@ fun RecyclerView.addItemDecorator(
     })
 }
 
-fun RecyclerView.addGridItemDecorator() = addItemDecoration(GridSpacingItemDecoration(spacing = context.resources.getDimensionPixelSize(R.dimen._8sdp)))
-
-val concatWithIsolate
-    get() = ConcatAdapter.Config.Builder().setIsolateViewTypes(false).build()
+fun RecyclerView.addGridItemDecorator() = addItemDecoration(GridSpacingItemDecoration(spacing = resources.getDimensionPixelSize(R.dimen._8sdp)))

@@ -3,14 +3,14 @@ package com.pulse.productList.adapter
 import android.view.ViewGroup
 import androidx.paging.ItemSnapshotList
 import androidx.paging.PagingDataAdapter
-import com.pulse.core.extensions.onClick
+import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.product.model.ProductLite
 
 class ProductListAdapter(private val itemClick: (Int) -> Unit, private val wishClick: (Pair<Boolean, Int>) -> Unit) :
     PagingDataAdapter<ProductLite, ProductListViewHolder>(ProductListDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProductListViewHolder.newInstance(parent, wishClick).apply {
-        itemView.onClick { itemClick(getItem(bindingAdapterPosition)!!.globalProductId) }
+        itemView.setDebounceOnClickListener { itemClick(getItem(bindingAdapterPosition)!!.globalProductId) }
     }
 
     override fun onBindViewHolder(holder: ProductListViewHolder, position: Int) {

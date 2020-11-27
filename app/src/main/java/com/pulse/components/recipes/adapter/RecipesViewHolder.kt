@@ -12,11 +12,11 @@ class RecipesViewHolder(override val containerView: View, private val onClick: R
 
     override fun bind(item: Recipe) = with(item) {
 
-        mtv_qty.text = stringRes(R.string.qty, productCount)
+        mtv_qty.text = getString(R.string.qty, productCount)
         mtv_doctor_name.text = doctorName
         mtv_description.text = productRusName?.wrapHtml
         mtv_label_number.text = "№ $code"
-        mtv_label_active.text = stringRes(R.string.activeUntil, validTill.dateFormatRecipes)
+        mtv_label_active.text = getString(R.string.activeUntil, validTill.dateFormatRecipes)
 
         iv_doctor.loadGlideCircle(doctorUrl, R.drawable.ic_placeholder_drugstore)
         iv_product.loadGlideProduct(productUrl)
