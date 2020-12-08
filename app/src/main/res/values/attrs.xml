@@ -24,6 +24,7 @@
         <attr name="debounce" format="float" />
         <attr name="animationDuration" format="float" />
         <attr name="hintText" format="reference" />
+        <attr name="hintColor" format="reference" />
         <attr name="withBackButton" format="boolean" />
     </declare-styleable>
 

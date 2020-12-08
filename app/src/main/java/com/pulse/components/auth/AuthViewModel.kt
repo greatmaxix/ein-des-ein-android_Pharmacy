@@ -82,7 +82,7 @@ class AuthViewModel(private val repository: AuthRepository, private val workMana
     }
 
     fun signIn(phone: String) {
-        this.phone = phone.formatPhone()
+        this.phone = phone.substring(1)
         customerPhoneLiveData.value = Event(this.phone)
     }
 

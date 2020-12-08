@@ -196,4 +196,4 @@ fun <T> Fragment.notifySavedStateHandle(key: String, value: T) {
 fun Fragment.lazyGetFont(@FontRes resId: Int) = lazyNotSynchronized { resources.getFont(resId) }
 fun Fragment.lazyGetString(@StringRes resId: Int) = lazyNotSynchronized { resources.getString(resId) }
 fun Fragment.lazyGetString(@StringRes resId: Int, vararg args: Any?) = lazyNotSynchronized { resources.getString(resId, *args) }
-fun Fragment.lazyGetDimensionPixelSize(@DimenRes resId: Int) = resources.lazyGetDimensionPixelSize(resId)
+fun Fragment.lazyGetDimensionPixelSize(@DimenRes resId: Int) = lazyNotSynchronized { getDimensionPixelSize(resId) }

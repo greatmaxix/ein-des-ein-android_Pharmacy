@@ -39,6 +39,7 @@
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_6sdp"
             android:layout_weight="1"
+            app:hintText="@string/search"
             app:cardCornerRadius="@dimen/_16sdp" />
 
         <com.google.android.material.card.MaterialCardView
