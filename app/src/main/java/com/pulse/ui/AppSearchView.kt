@@ -28,6 +28,7 @@ class AppSearchView @JvmOverloads constructor(
 ) : CardView(context, attrs, defStyleAttr), LayoutContainer {
 
     private var hint = -1
+    private var hintColor = -1
     private var debounce = 500f
     private var notifyJob: Job? = null
     private var animationDuration = 400L
@@ -52,6 +53,7 @@ class AppSearchView @JvmOverloads constructor(
             context.theme.obtainStyledAttributes(it, R.styleable.AppSearchView, defStyleAttr, -1)
                 .use {
                     hint = getResourceId(R.styleable.AppSearchView_hintText, -1)
+                    hintColor = getResourceId(R.styleable.AppSearchView_hintColor, R.color.colorGlobalBlack)
                     debounce = getFloat(R.styleable.AppSearchView_debounce, 200f)
                     animationDuration = getFloat(R.styleable.AppSearchView_debounce, 400f).toLong()
                     withBackButton = getBoolean(R.styleable.AppSearchView_withBackButton, false)
@@ -65,6 +67,7 @@ class AppSearchView @JvmOverloads constructor(
         super.onFinishInflate()
 
         if (hint != -1) tvHint.setText(hint)
+        if (hintColor != -1) tvHint.setTextColorRes(hintColor)
 
         etSearch.textChanges()
             .skipInitialValue()

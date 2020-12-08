@@ -51,5 +51,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/layout_my_order_item" />
+        tools:listitem="@layout/layout_my_order_item"
+        tools:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/llOrdersNotFoundContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGlobalWhite"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.pulse.ui.EmptyContainerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGlobalWhite"
+            app:isButtonVisible="false"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:src="@drawable/ic_placeholder_search"
+            app:subtitleEmpty="@string/noOrdersFoundSubtitle"
+            app:titleEmpty="@string/noOrdersFoundTitle" />x
+
+    </FrameLayout>
 </LinearLayout>

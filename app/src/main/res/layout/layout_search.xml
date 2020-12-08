@@ -9,10 +9,10 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvHint"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_38sdp"
         android:gravity="center|start"
-        android:textColor="@color/colorSearchHint"
         android:textAppearance="?attr/textAppearanceBody1"
         app:layout_constraintBottom_toBottomOf="@+id/ivBack"
         app:layout_constraintEnd_toEndOf="parent"

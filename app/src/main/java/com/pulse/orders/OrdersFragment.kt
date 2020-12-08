@@ -2,11 +2,14 @@ package com.pulse.orders
 
 import android.os.Bundle
 import android.view.View
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import com.pulse.MainGraphDirections.Companion.fromOrderToOrderDetails
 import com.pulse.R
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.addItemDecorator
-import com.pulse.core.extensions.addStateListener
+import com.pulse.core.extensions.isEmpty
+import com.pulse.core.extensions.visibleOrGone
 import com.pulse.orders.StateQuery.*
 import com.pulse.orders.adapter.OrdersAdapter
 import kotlinx.android.synthetic.main.fragment_orders.*
@@ -30,21 +33,36 @@ class OrdersFragment(private val viewModel: OrdersViewModel) : BaseMVVMFragment(
             }
             viewModel.setStateQuery(state)
         }
-        ordersAdapter.addStateListener { progressCallback?.setInProgress(it) }
+        ordersAdapter.addLoadStateListener(::showProgress)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.setStateQuery(ALL)
+    }
+
+    override fun onBindLiveData() = with(viewModel) {
+        observe(errorLiveData) { messageCallback?.showError(it) }
+        observe(progressLiveData) { progressCallback?.setInProgress(it) }
+
+        observe(directionLiveData, navController::navigate)
+        observe(ordersLiveData) { ordersAdapter.submitData(lifecycle, it) }
+        observe(orderLiveData) { doNav(fromOrderToOrderDetails(it)) }
+    }
+
+    private fun showProgress(it: CombinedLoadStates) {
+        val isLoadingFinished = it.prepend is LoadState.NotLoading && it.prepend.endOfPaginationReached
+        if (isLoadingFinished) {
+            llOrdersNotFoundContainer.visibleOrGone(ordersAdapter.isEmpty())
+            rvOrdersList.visibleOrGone(ordersAdapter.isEmpty().not())
+        }
+        val isNeedSHowProgress = it.refresh is LoadState.Loading || it.append is LoadState.Loading
+        progressCallback?.setInProgress(isNeedSHowProgress)
     }
 
     private fun initRecyclerView() = rvOrdersList.apply {
         addItemDecorator()
         adapter = ordersAdapter
-    }
-
-    override fun onBindLiveData() {
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
-
-        observe(viewModel.directionLiveData, navController::navigate)
-        observe(viewModel.ordersLiveData) { ordersAdapter.submitData(lifecycle, it) }
-        observe(viewModel.orderLiveData) { doNav(fromOrderToOrderDetails(it)) }
     }
 
 }

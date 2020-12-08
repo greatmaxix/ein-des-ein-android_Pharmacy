@@ -31,7 +31,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         uploadRecipes.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_home) }
         cardSearchHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_home) }
         btnSeeAllCategoriesHome.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_catalog, null, R.id.nav_home) }
-        //mcvMapHome.setDebounceOnClickListener { navController.navigate(fromHomeToCheckout(true)) }
+        mcvMapHome.setDebounceOnClickListener { mockToast() }
 
         // Developers screen for convenient features access
         debug {
