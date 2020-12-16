@@ -149,9 +149,8 @@
     <string name="authorizeAction">Авторизироваться</string>
 
     <string name="startSearching">Начните поиск</string>
-    <string name="searchHintHome">Ношпа</string>
     <string name="orderSubtitleHome">Вы можете использовать их при заказе доставки или самовывоз</string>
-    <string name="askTitleHome">Спроси специалиста</string>
+    <string name="askTitleHome">Спроси\nспециалиста</string>
     <string name="analyzeTitleHome">Анализы и диагностика</string>
     <string name="mapTitleHome">Аптеки на\nкарте</string>
     <string name="categoriesTitleHome">Категории</string>
@@ -237,6 +236,8 @@
     <string name="firstItemInOrderContentDescription">Иконка первого товара в корзине</string>
     <string name="secondItemInOrderContentDescription">Иконка второго товара в корзине</string>
     <string name="thirdItemInOrderContentDescription">Иконка третьего товара в корзине</string>
+    <string name="noOrdersFoundTitle">У вас еще нет заказов с выбранным фильтром</string>
+    <string name="noOrdersFoundSubtitle">Повторите поиск или попробуйте\nнайти другой препарат</string>
 
     <!-- Chat -->
     <string name="menu_info">Info</string>

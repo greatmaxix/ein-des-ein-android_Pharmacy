@@ -67,8 +67,8 @@ sealed class CartViewHolder<T>(itemView: View) : BaseViewHolder<T>(itemView) {
                 notifyCounter(newValue)
             }
 
-            mbPlus.setDebounceOnClickListener { setNewCounterValue(mbCounter.count + 1) }
-            mbMinus.setDebounceOnClickListener {
+            mbPlus.setOnClickListener { setNewCounterValue(mbCounter.count + 1) }
+            mbMinus.setOnClickListener {
                 val count = mbCounter.count
                 if (count == 1) removeClick(product.productId) else setNewCounterValue(count - 1)
             }

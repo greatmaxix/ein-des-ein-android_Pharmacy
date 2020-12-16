@@ -7,13 +7,7 @@ import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.util.DisplayMetrics
 import android.util.TypedValue
-import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
-import androidx.annotation.FontRes
-
-fun Resources.lazyGetFont(@FontRes resId: Int) = lazyNotSynchronized { getFont(resId) }
-fun Resources.lazyGetDimension(@DimenRes resId: Int) = lazyNotSynchronized { getDimension(resId) }
-fun Resources.lazyGetDimensionPixelSize(@DimenRes resId: Int) = lazyNotSynchronized { getDimensionPixelSize(resId) }
 
 fun Resources.getBitmapDrawableFromVectorDrawable(context: Context, @DrawableRes drawableRes: Int) = context.getCompatDrawable(drawableRes)?.let {
     BitmapDrawable(this, Bitmap.createBitmap(it.intrinsicWidth, it.intrinsicHeight, Bitmap.Config.ARGB_8888).apply {

@@ -47,10 +47,10 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:gravity="center_vertical"
                 android:layout_marginBottom="@dimen/_6sdp"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center_vertical"
                 android:text="@string/search"
                 android:textAppearance="?attr/textAppearanceBody1"
                 android:textColor="@color/colorGlobalWhite" />
@@ -118,7 +118,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_margin="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
                     android:text="@string/askTitleHome"
                     android:textAppearance="?attr/textAppearanceCaption"
                     android:textColor="@color/colorGlobalWhite" />

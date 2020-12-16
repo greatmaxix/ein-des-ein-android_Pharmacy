@@ -30,7 +30,7 @@ class OrdersViewModel(private val repository: OrdersRepository) : BaseViewModel(
     private val _orderLiveData by lazy { SingleLiveEvent<Order>() }
     val orderLiveData: LiveData<Order> by lazy { _orderLiveData }
 
-    private val stateQueryLiveData by lazy { MutableLiveData(StateQuery.ALL) }
+    private val stateQueryLiveData by lazy { MutableLiveData<StateQuery>() }
 
     val ordersLiveData by lazy {
         stateQueryLiveData.distinctUntilChanged().switchMap {

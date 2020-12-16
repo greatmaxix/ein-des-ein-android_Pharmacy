@@ -312,6 +312,6 @@ fun View.getDimensionPixelSize(@DimenRes resId: Int) = resources.getDimensionPix
 fun View.getColor(@ColorRes resId: Int) = context.getColor(resId)
 fun View.getColorStateList(@ColorRes resId: Int) = context.getColorStateList(resId)
 
-fun View.lazyGetFont(@FontRes resId: Int) = resources.lazyGetFont(resId)
-fun View.lazyGetDimension(@DimenRes resId: Int) = resources.lazyGetDimension(resId)
-fun View.lazyGetDimensionPixelSize(@DimenRes resId: Int) = resources.lazyGetDimensionPixelSize(resId)
+fun View.lazyGetFont(@FontRes resId: Int) = lazyNotSynchronized { getFont(resId) }
+fun View.lazyGetDimension(@DimenRes resId: Int) = lazyNotSynchronized { getDimension(resId) }
+fun View.lazyGetDimensionPixelSize(@DimenRes resId: Int) = lazyNotSynchronized { getDimensionPixelSize(resId) }
