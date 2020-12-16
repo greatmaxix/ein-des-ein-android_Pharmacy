@@ -19,7 +19,7 @@ class CategoriesFragment : BaseMVVMFragment(R.layout.fragment_categories) {
     private val viewModel: CategoriesViewModel by viewModel { parametersOf(args.category) }
     private val clickAction by lazy { return@lazy viewModel::selectCategory }
     private val categoryAdapter by lazy { CategoryAdapter(clickAction) }
-    private val spacing by lazyGetDimensionPixelSize(R.dimen._2sdp)
+    private val spacing by lazy { resources.getDimensionPixelSize(R.dimen._2sdp) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,6 +31,11 @@ class CategoriesFragment : BaseMVVMFragment(R.layout.fragment_categories) {
         searchViewCategories.setSearchListener { value ->
             viewLifecycleOwner.lifecycleScope.launch { categoryAdapter.filter { it.name?.contains(value, true).falseIfNull() } }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        searchViewCategories.setText("") // TODO review this case
     }
 
     private fun initCategoryList() = with(rvCategories) {

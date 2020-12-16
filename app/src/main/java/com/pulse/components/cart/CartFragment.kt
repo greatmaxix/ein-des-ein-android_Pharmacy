@@ -41,7 +41,10 @@ class CartFragment(private val vm: CartViewModel) : BaseMVVMFragment(R.layout.fr
     override fun onResume() {
         super.onResume()
         observeResult(vm.cartItemLiveData) {
-            onEmmit = { buildCart(this) }
+            onEmmit = {
+                concatAdapter.clearAdapter()
+                buildCart(this)
+            }
             onError = { errorOrAuth(it.resId) }
         }
     }
