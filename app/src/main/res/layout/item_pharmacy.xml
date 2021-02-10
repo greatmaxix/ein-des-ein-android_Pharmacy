@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/_8sdp">
 
-        <ImageView
-            android:id="@+id/ivPharmacy"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_pharmacy"
             android:layout_width="@dimen/_48sdp"
             android:layout_height="@dimen/_48sdp"
             android:layout_marginStart="@dimen/_8sdp"
@@ -26,33 +26,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvPharmacyName"
+            android:id="@+id/mtv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:textAppearance="?attr/textAppearanceButton"
             android:textColor="@color/darkBlue"
-            app:layout_constraintEnd_toStartOf="@+id/ivPharmacyLocation"
-            app:layout_constraintStart_toEndOf="@id/ivPharmacy"
-            app:layout_constraintTop_toTopOf="@+id/ivPharmacy"
+            app:layout_constraintEnd_toStartOf="@+id/fab_location"
+            app:layout_constraintStart_toEndOf="@id/iv_pharmacy"
+            app:layout_constraintTop_toTopOf="@+id/iv_pharmacy"
             tools:text="Название аптеки" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvPharmacyAddress"
+            android:id="@+id/mtv_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/darkBlue"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tvPharmacyName"
-            app:layout_constraintTop_toBottomOf="@id/tvPharmacyName"
+            app:layout_constraintStart_toStartOf="@+id/mtv_name"
+            app:layout_constraintTop_toBottomOf="@id/mtv_name"
             app:layout_constraintVertical_bias="1.0"
             tools:text="ул Горная 23а, Харьков" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/ivPharmacyLocation"
+            android:id="@+id/fab_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_drugstore_location"
@@ -66,30 +66,30 @@
             app:rippleColor="@color/colorRippleWhiteSemiTransparent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvPharmacyPhone"
+            android:id="@+id/mtv_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/darkBlue"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/ivPharmacy"
-            app:layout_constraintTop_toBottomOf="@id/tvPharmacyAddress"
+            app:layout_constraintStart_toStartOf="@+id/iv_pharmacy"
+            app:layout_constraintTop_toBottomOf="@id/mtv_address"
             tools:text="@string/pharmacyPhoneWith" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvProductPrice"
+            android:id="@+id/mtv_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/primaryBlue"
-            app:layout_constraintBottom_toBottomOf="@id/mbProductAddToCart"
-            app:layout_constraintStart_toStartOf="@+id/ivPharmacy"
-            app:layout_constraintTop_toTopOf="@id/mbProductAddToCart"
+            app:layout_constraintBottom_toBottomOf="@id/mb_add_to_cart"
+            app:layout_constraintStart_toStartOf="@+id/iv_pharmacy"
+            app:layout_constraintTop_toTopOf="@id/mb_add_to_cart"
             tools:text="568 ₸" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbProductAddToCart"
+            android:id="@+id/mb_add_to_cart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
@@ -103,8 +103,8 @@
             app:cornerRadius="@dimen/_45sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tvProductPrice"
-            app:layout_constraintTop_toBottomOf="@id/tvPharmacyPhone" />
+            app:layout_constraintStart_toEndOf="@id/mtv_product_price"
+            app:layout_constraintTop_toBottomOf="@id/mtv_phone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

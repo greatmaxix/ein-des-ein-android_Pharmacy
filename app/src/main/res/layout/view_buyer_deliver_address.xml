@@ -8,14 +8,14 @@
     tools:parentTag="android.widget.LinearLayout">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCityAddress"
+        android:id="@+id/til_city_address"
         style="@style/TextInputStyle"
         android:imeOptions="actionNext"
         app:endIconMode="clear_text"
         app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etCityAddress"
+            android:id="@+id/et_city_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/cityHint"
@@ -29,7 +29,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilStreetAddress"
+        android:id="@+id/til_street_address"
         style="@style/TextInputStyle"
         android:layout_marginTop="@dimen/_16sdp"
         android:imeOptions="actionNext"
@@ -38,7 +38,7 @@
         app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etStreetAddress"
+            android:id="@+id/et_street_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/streetHint"
@@ -58,7 +58,7 @@
         android:baselineAligned="false">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilHouseAddress"
+            android:id="@+id/til_house_address"
             style="@style/TextInputStyle"
             android:layout_width="0dp"
             android:layout_marginTop="@dimen/_16sdp"
@@ -68,7 +68,7 @@
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etHouseAddress"
+                android:id="@+id/et_house_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -84,7 +84,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilApartmentAddress"
+            android:id="@+id/til_apartment_address"
             style="@style/TextInputStyle"
             android:layout_width="0dp"
             android:layout_marginStart="@dimen/_8sdp"
@@ -94,7 +94,7 @@
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etApartmentAddress"
+                android:id="@+id/et_apartment_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"

@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvBuyerDetailsTitleOrder"
+        android:id="@+id/mtv_buyer_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/buyerDetails"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardBuyerDetailsFilledOrder"
+        android:id="@+id/mcv_buyer_details_filled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
@@ -27,7 +27,7 @@
         app:contentPadding="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBuyerDetailsTitleOrder">
+        app:layout_constraintTop_toBottomOf="@+id/mtv_buyer_details">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvBuyerFullNameOrder"
+                android:id="@+id/mtv_buyer_full_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_2sdp"
@@ -44,7 +44,7 @@
                 tools:text="Some User Name" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvBuyerPhoneOrder"
+                android:id="@+id/mtv_buyer_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
@@ -53,7 +53,7 @@
                 tools:text="+78 012 345 678 90" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvBuyerEmailOrder"
+                android:id="@+id/mtv_buyer_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"

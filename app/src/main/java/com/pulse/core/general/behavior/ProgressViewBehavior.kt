@@ -13,7 +13,7 @@ import com.pulse.core.extensions.animateVisible
 class ProgressViewBehavior(private var progressRoot: View?) : IProgressBehavior {
 
     private val anim: AnimatedVectorDrawable?
-        get() = progressRoot?.findViewById<ImageView>(R.id.ivLoader)?.drawable?.run { this as AnimatedVectorDrawable }
+        get() = progressRoot?.findViewById<ImageView>(R.id.iv_loader)?.drawable?.run { this as AnimatedVectorDrawable }
 
     override fun showProgress() {
         progressRoot?.apply {

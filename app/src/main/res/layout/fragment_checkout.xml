@@ -24,7 +24,7 @@
             android:paddingBottom="@dimen/_24sdp">
 
             <com.pulse.ui.BuyerDetailsCheckout
-                android:id="@+id/viewBuyerDetailsCheckout"
+                android:id="@+id/view_buyer_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp" />
@@ -53,7 +53,7 @@
                 android:paddingBottom="@dimen/_3sdp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardMethodDeliveryCheckout"
+                    android:id="@+id/mcv_method_delivery"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_88sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
@@ -66,7 +66,7 @@
                     app:strokeWidth="@dimen/_2sdp">
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tvMethodDeliveryCheckout"
+                        android:id="@+id/mtv_method_delivery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -80,7 +80,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardMethodPickupCheckout"
+                    android:id="@+id/mcv_method_pickup"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_88sdp"
                     android:layout_marginStart="@dimen/_8sdp"
@@ -93,7 +93,7 @@
                     app:strokeWidth="@dimen/_2sdp">
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tvMethodPickupCheckout"
+                        android:id="@+id/mtv_method_pickup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -108,7 +108,7 @@
             </LinearLayout>
 
             <com.pulse.ui.PharmacyAddressOrder
-                android:id="@+id/pharmacyAddressCheckout"
+                android:id="@+id/view_pharmacy_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
@@ -116,7 +116,7 @@
                 android:layout_marginEnd="@dimen/_16sdp" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvBuyerDeliveryAddressTitleCheckout"
+                android:id="@+id/mtv_buyer_delivery_address_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
@@ -126,7 +126,7 @@
                 android:textAppearance="?attr/textAppearanceButton" />
 
             <com.pulse.ui.BuyerDeliveryAddress
-                android:id="@+id/viewBuyerDeliveryAddressCheckout"
+                android:id="@+id/view_buyer_delivery_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_24sdp" />
@@ -156,7 +156,7 @@
                 app:contentPadding="@dimen/_8sdp">
 
                 <RadioGroup
-                    android:id="@+id/rgPaymentMethodsCheckout"
+                    android:id="@+id/rg_payment_methods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:divider="@color/grey"
@@ -176,7 +176,7 @@
                 android:textAppearance="?attr/textAppearanceButton" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvProductsListCheckout"
+                android:id="@+id/rv_products"
                 style="@style/ScrollStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -198,7 +198,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilOrderNote"
+                android:id="@+id/til_order_note"
                 style="@style/TextInputStyle"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_16sdp"
@@ -207,7 +207,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etOrderNote"
+                    android:id="@+id/et_order_note"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start|top"
@@ -219,9 +219,8 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPromoCodeCheckout"
+                android:id="@+id/mb_promo_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
@@ -256,7 +255,7 @@
                     android:textColor="@color/darkBlue" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvTotalAmountCheckout"
+                    android:id="@+id/mtv_total_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceButton"
@@ -283,7 +282,7 @@
                     android:textColor="@color/darkBlue" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvDiscountCheckout"
+                    android:id="@+id/mtv_discount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceCaption"
@@ -293,7 +292,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/llDeliveryOrderDetails"
+                android:id="@+id/ll_delivery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
@@ -310,7 +309,7 @@
                     android:textColor="@color/darkBlue" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvDeliveryAmountCheckout"
+                    android:id="@+id/mtv_delivery_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceButton"
@@ -337,7 +336,7 @@
                     android:textColor="@color/darkBlue" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvTotalPayableCheckout"
+                    android:id="@+id/mtv_total_payable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceHeadline5"
@@ -347,7 +346,7 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCheckoutOrderCheckout"
+                android:id="@+id/mb_checkout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_48sdp"
                 android:layout_marginStart="@dimen/_15sdp"

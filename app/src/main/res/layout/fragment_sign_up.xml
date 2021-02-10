@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/btnBack"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
@@ -26,17 +26,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivLogoSignUp"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_logo"
             style="@style/Logo"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_24sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnBack" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_back" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTitleSignUp"
+            android:id="@+id/mtv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_12sdp"
@@ -44,10 +44,10 @@
             android:text="@string/accountCreationAuth"
             android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/darkBlue"
-            app:layout_constraintTop_toBottomOf="@+id/ivLogoSignUp" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvSubTitleSignUp"
+            android:id="@+id/mtv_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_6sdp"
@@ -55,10 +55,10 @@
             android:text="@string/pleaseAuth"
             android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="@color/darkBlue"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleSignUp" />
+            app:layout_constraintTop_toBottomOf="@+id/mtv_title" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilName"
+            android:id="@+id/til_name"
             style="@style/TextInputStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -70,10 +70,10 @@
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSubTitleSignUp">
+            app:layout_constraintTop_toBottomOf="@+id/mtv_subtitle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etName"
+                android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/yourName"
@@ -87,7 +87,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPhone"
+            android:id="@+id/til_phone"
             style="@style/TextInputStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -98,12 +98,12 @@
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilName"
+            app:layout_constraintTop_toBottomOf="@+id/til_name"
             app:prefixText="+7"
             app:prefixTextAppearance="?attr/textAppearanceBody2">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPhoneSignUp"
+                android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:digits="0123456789+"
@@ -118,7 +118,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmail"
+            android:id="@+id/til_email"
             style="@style/TextInputStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -127,10 +127,10 @@
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilPhone">
+            app:layout_constraintTop_toBottomOf="@+id/til_phone">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmail"
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -145,17 +145,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.pulse.ui.auth.AuthNextView
-            android:id="@+id/btnRegister"
+            android:id="@+id/mb_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
             android:padding="@dimen/_8sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilEmail"
+            app:layout_constraintTop_toBottomOf="@+id/til_email"
             app:text="@string/signUp" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvToss"
+            android:id="@+id/mtv_toss"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
@@ -163,22 +163,21 @@
             android:textAppearance="?attr/textAppearanceCaption"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+            app:layout_constraintTop_toBottomOf="@+id/mb_register"
             tools:text="Регистрируясь я принимаю Условия обслуживания и Политику конфиденциальности" />
 
         <com.pulse.ui.auth.AuthFooter
-            android:id="@+id/vFooter"
+            android:id="@+id/view_footer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mtvToss"
+            app:layout_constraintTop_toBottomOf="@+id/mtv_toss"
             app:layout_constraintVertical_bias="1.0"
             app:textAction="@string/backToSignIn"
             app:textDescription="@string/alreadyHaveAnAccount" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.core.widget.NestedScrollView>

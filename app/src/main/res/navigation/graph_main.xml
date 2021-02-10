@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/nav_splash"
-        android:name="com.pulse.splash.SplashFragment"
+        android:name="com.pulse.components.splash.SplashFragment"
         android:label="@null"
         tools:layout="@layout/fragment_splash">
 
@@ -76,7 +76,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.pulse.home.HomeFragment"
+        android:name="com.pulse.components.home.HomeFragment"
         android:label="@null"
         tools:layout="@layout/fragment_home">
 
@@ -99,20 +99,6 @@
         app:popExitAnim="@anim/nav_exit_pop_anim"
         app:popUpTo="@id/main_graph"
         app:popUpToInclusive="true" />
-
-    <action
-        android:id="@+id/globalToDevTools"
-        app:destination="@id/nav_dev_tools"
-        app:enterAnim="@anim/nav_enter_anim"
-        app:exitAnim="@anim/nav_exit_anim"
-        app:popEnterAnim="@anim/nav_enter_pop_anim"
-        app:popExitAnim="@anim/nav_exit_pop_anim" />
-
-    <fragment
-        android:id="@+id/nav_dev_tools"
-        android:name="com.pulse.devTools.DevToolsFragment"
-        android:label="@string/devToolsLabel"
-        tools:layout="@layout/fragment_dev_tools" />
 
     <fragment
         android:id="@+id/nav_cart"
@@ -165,14 +151,14 @@
 
     <fragment
         android:id="@+id/nav_chat"
-        android:name="com.pulse.chat.ChatFragment"
+        android:name="com.pulse.components.chat.ChatFragment"
         android:label="@string/chatLabel"
         tools:layout="@layout/fragment_chat">
 
         <argument
             android:name="chat"
             android:defaultValue="@null"
-            app:argType="com.pulse.chat.model.chat.ChatItem"
+            app:argType="com.pulse.components.chat.model.chat.ChatItem"
             app:nullable="true" />
 
         <action
@@ -221,7 +207,7 @@
 
     <fragment
         android:id="@+id/nav_chat_type"
-        android:name="com.pulse.chatType.ChatTypeFragment"
+        android:name="com.pulse.components.chatType.ChatTypeFragment"
         android:label="@string/chatTypeLabel"
         tools:layout="@layout/fragment_chat_type">
 
@@ -239,13 +225,13 @@
 
     <dialog
         android:id="@+id/nav_chat_review"
-        android:name="com.pulse.chat.dialog.ChatReviewBottomSheetDialogFragment"
+        android:name="com.pulse.components.chat.dialog.ChatReviewBottomSheetDialogFragment"
         android:label="ChatReviewBottomSheet"
         tools:layout="@layout/dialog_chat_review" />
 
     <dialog
         android:id="@+id/nav_send_image"
-        android:name="com.pulse.chat.dialog.SendBottomSheetDialogFragment"
+        android:name="com.pulse.components.chat.dialog.SendBottomSheetDialogFragment"
         android:label="SendBottomSheet"
         tools:layout="@layout/dialog_send_photo_bottom_sheet" />
 
@@ -267,13 +253,13 @@
 
     <fragment
         android:id="@+id/nav_analyzes"
-        android:name="com.pulse.analyzes.AnalyzesFragment"
+        android:name="com.pulse.components.analyzes.AnalyzesFragment"
         android:label="@string/analyzesLabel"
         tools:layout="@layout/fragment_analyzes" />
 
     <fragment
         android:id="@+id/nav_scanner"
-        android:name="com.pulse.scanner.ScannerFragment"
+        android:name="com.pulse.components.scanner.ScannerFragment"
         android:label="@string/qrCodeLabel"
         tools:layout="@layout/fragment_qr_code_scanner">
 
@@ -288,18 +274,18 @@
 
     <fragment
         android:id="@+id/nav_scanner_list"
-        android:name="com.pulse.scanner.ScannerListFragment"
+        android:name="com.pulse.components.scanner.ScannerListFragment"
         android:label="@string/qrCodeLabel"
         tools:layout="@layout/fragment_scanner_result">
 
         <argument
             android:name="products"
-            app:argType="com.pulse.product.model.ProductLite[]" />
+            app:argType="com.pulse.components.product.model.ProductLite[]" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_checkout"
-        android:name="com.pulse.checkout.CheckoutFragment"
+        android:name="com.pulse.components.checkout.CheckoutFragment"
         android:label="@string/checkoutLabel"
         tools:layout="@layout/fragment_checkout">
 
@@ -329,12 +315,12 @@
 
     <dialog
         android:id="@+id/nav_checkout_dialog_promo_code"
-        android:name="com.pulse.checkout.dialog.PromoCodeDialogFragment"
+        android:name="com.pulse.components.checkout.dialog.PromoCodeDialogFragment"
         tools:layout="@layout/dialog_promo_code" />
 
     <fragment
         android:id="@+id/nav_order"
-        android:name="com.pulse.orders.details.OrderDetailsFragment"
+        android:name="com.pulse.components.orders.details.OrderDetailsFragment"
         android:label="@null"
         tools:layout="@layout/fragment_order_details">
 
@@ -346,7 +332,7 @@
 
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.pulse.search.SearchFragment"
+        android:name="com.pulse.components.search.SearchFragment"
         android:label="@null"
         tools:layout="@layout/fragment_search">
 
@@ -385,13 +371,13 @@
 
     <fragment
         android:id="@+id/nav_product"
-        android:name="com.pulse.product.ProductFragment"
+        android:name="com.pulse.components.product.ProductFragment"
         android:label="@null"
         tools:layout="@layout/fragment_product">
 
         <argument
             android:name="product"
-            app:argType="com.pulse.product.model.Product" />
+            app:argType="com.pulse.components.product.model.Product" />
 
         <action
             android:id="@+id/fromProductToAuth"
@@ -429,13 +415,13 @@
 
     <fragment
         android:id="@+id/nav_region"
-        android:name="com.pulse.region.RegionFragment"
+        android:name="com.pulse.components.region.RegionFragment"
         android:label="@string/regionLabel"
         tools:layout="@layout/fragment_region" />
 
     <fragment
         android:id="@+id/nav_catalog"
-        android:name="com.pulse.categories.CategoriesFragment"
+        android:name="com.pulse.components.categories.CategoriesFragment"
         android:label="@string/categoriesTitleHome"
         tools:layout="@layout/fragment_categories">
 
@@ -458,7 +444,7 @@
 
     <fragment
         android:id="@+id/nav_categories_search"
-        android:name="com.pulse.categories.search.CategoriesSearchFragment"
+        android:name="com.pulse.components.categories.search.CategoriesSearchFragment"
         android:label="@string/categoriesTitleHome"
         tools:layout="@layout/fragment_categories_search">
 
@@ -508,20 +494,22 @@
         android:id="@+id/nav_pharmacy_product_info"
         android:name="com.pulse.components.pharmacy.tabs.map.PharmacyMapBottomSheet"
         tools:layout="@layout/dialog_promo_code">
+
         <argument
             android:name="pharmacy"
             app:argType="com.pulse.components.pharmacy.model.Pharmacy" />
+
     </dialog>
 
     <fragment
         android:id="@+id/nav_about"
-        android:name="com.pulse.about.AboutFragment"
+        android:name="com.pulse.components.about.AboutFragment"
         android:label="@string/aboutAppTitle"
         tools:layout="@layout/fragment_about" />
 
     <fragment
         android:id="@+id/nav_address"
-        android:name="com.pulse.user.address.AddressFragment"
+        android:name="com.pulse.components.user.address.AddressFragment"
         android:label="@string/addressTitle"
         tools:layout="@layout/fragment_address" />
 

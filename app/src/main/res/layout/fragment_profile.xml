@@ -26,8 +26,8 @@
             android:layout_height="wrap_content"
             android:background="@color/colorGreyLight">
 
-            <ImageView
-                android:id="@+id/ivProfile"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_profile"
                 android:layout_width="@dimen/_56sdp"
                 android:layout_height="@dimen/_56sdp"
                 android:layout_marginStart="@dimen/_16sdp"
@@ -39,32 +39,32 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mtvNameProfile"
+                android:id="@+id/mtv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:textAppearance="?attr/textAppearanceSubtitle1"
                 android:textColor="@color/darkBlue"
-                app:layout_constraintBottom_toTopOf="@id/mtvPhoneProfile"
-                app:layout_constraintStart_toEndOf="@id/ivProfile"
-                app:layout_constraintTop_toTopOf="@id/ivProfile"
+                app:layout_constraintBottom_toTopOf="@id/mtv_phone"
+                app:layout_constraintStart_toEndOf="@id/iv_profile"
+                app:layout_constraintTop_toTopOf="@id/iv_profile"
                 tools:text="Евгения Леонидовна" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mtvPhoneProfile"
+                android:id="@+id/mtv_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/darkBlue"
-                app:layout_constraintBottom_toBottomOf="@id/ivProfile"
-                app:layout_constraintStart_toEndOf="@id/ivProfile"
-                app:layout_constraintTop_toBottomOf="@id/mtvNameProfile"
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile"
+                app:layout_constraintStart_toEndOf="@id/iv_profile"
+                app:layout_constraintTop_toBottomOf="@id/mtv_name"
                 tools:text="+3809994824231" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabEditProfile"
+                android:id="@+id/fab_edit_profile"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,12 +74,12 @@
                 android:src="@drawable/ic_edit"
                 app:backgroundTint="@color/colorGlobalWhite"
                 app:fabCustomSize="@dimen/_32sdp"
-                app:layout_constraintBottom_toBottomOf="@id/ivProfile"
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/ivProfile" />
+                app:layout_constraintTop_toTopOf="@id/iv_profile" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/tcvMenuProfile"
+                android:id="@+id/mcv_menu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_16sdp"
@@ -88,7 +88,7 @@
                 app:cardElevation="@dimen/_4sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivProfile">
+                app:layout_constraintTop_toBottomOf="@id/iv_profile">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -96,7 +96,7 @@
                     android:baselineAligned="false">
 
                     <LinearLayout
-                        android:id="@+id/wishContainerProfile"
+                        android:id="@+id/ll_wish_container"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".9"
@@ -112,12 +112,13 @@
                             app:cardBackgroundColor="#E4E1FD"
                             app:cardCornerRadius="@dimen/_6sdp">
 
-                            <ImageView
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="@dimen/_32sdp"
                                 android:layout_height="@dimen/_32sdp"
                                 android:contentDescription="@string/wishImageDescriptionProfile"
                                 android:padding="@dimen/_4sdp"
                                 android:src="@drawable/ic_heart_stroke" />
+
                         </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.textview.MaterialTextView
@@ -128,10 +129,11 @@
                             android:text="@string/wishProfile"
                             android:textAppearance="?attr/textAppearanceCaption"
                             android:textColor="@color/darkBlue" />
+
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/orderContainerProfile"
+                        android:id="@+id/ll_order_container"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".8"
@@ -147,12 +149,13 @@
                             app:cardBackgroundColor="#CCFCE7"
                             app:cardCornerRadius="@dimen/_6sdp">
 
-                            <ImageView
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="@dimen/_32sdp"
                                 android:layout_height="@dimen/_32sdp"
                                 android:contentDescription="@string/orderImageProfile"
                                 android:padding="@dimen/_4sdp"
                                 android:src="@drawable/ic_box" />
+
                         </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.textview.MaterialTextView
@@ -163,10 +166,11 @@
                             android:text="@string/orderProfile"
                             android:textAppearance="?attr/textAppearanceCaption"
                             android:textColor="@color/darkBlue" />
+
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/analyzesContainerProfile"
+                        android:id="@+id/ll_analyzes_container"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".8"
@@ -182,12 +186,13 @@
                             app:cardBackgroundColor="#D5DBFF"
                             app:cardCornerRadius="@dimen/_6sdp">
 
-                            <ImageView
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="@dimen/_32sdp"
                                 android:layout_height="@dimen/_32sdp"
                                 android:contentDescription="@string/analysesImageProfile"
                                 android:padding="@dimen/_4sdp"
                                 android:src="@drawable/ic_vector" />
+
                         </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.textview.MaterialTextView
@@ -198,10 +203,11 @@
                             android:text="@string/analysesProfile"
                             android:textAppearance="?attr/textAppearanceCaption"
                             android:textColor="@color/darkBlue" />
+
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/recipesContainerProfile"
+                        android:id="@+id/ll_recipes_container"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".9"
@@ -217,12 +223,13 @@
                             app:cardBackgroundColor="#FFEBCA"
                             app:cardCornerRadius="@dimen/_6sdp">
 
-                            <ImageView
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="@dimen/_32sdp"
                                 android:layout_height="@dimen/_32sdp"
                                 android:contentDescription="@string/recipesImageProfile"
                                 android:padding="@dimen/_4sdp"
                                 android:src="@drawable/ic_recipes" />
+
                         </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.textview.MaterialTextView
@@ -233,6 +240,7 @@
                             android:text="@string/recipesProfile"
                             android:textAppearance="?attr/textAppearanceCaption"
                             android:textColor="@color/darkBlue" />
+
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -244,11 +252,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tcvMenuProfile"
+                app:layout_constraintTop_toBottomOf="@id/mcv_menu"
                 app:layout_constraintVertical_bias="0">
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemRegionProfile"
+                    android:id="@+id/item_region"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
@@ -257,7 +265,7 @@
                     app:titleProfile="@string/myRegionTitle" />
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemPaymentProfile"
+                    android:id="@+id/item_payment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
@@ -265,7 +273,7 @@
                     app:titleProfile="@string/paymentsTitle" />
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemAddressProfile"
+                    android:id="@+id/item_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
@@ -273,7 +281,7 @@
                     app:titleProfile="@string/deliveryAddressTitle" />
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemNotificationProfile"
+                    android:id="@+id/item_notification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
@@ -281,7 +289,7 @@
                     app:titleProfile="@string/notificationsTitle" />
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemAboutProfile"
+                    android:id="@+id/item_about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_12sdp"
@@ -291,7 +299,7 @@
                     app:titleProfile="@string/aboutAppTitle" />
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemHelpProfile"
+                    android:id="@+id/item_help"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
@@ -299,7 +307,7 @@
                     app:titleProfile="@string/needHelpTitle" />
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemLogoutProfile"
+                    android:id="@+id/item_logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
@@ -312,6 +320,5 @@
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
 </LinearLayout>

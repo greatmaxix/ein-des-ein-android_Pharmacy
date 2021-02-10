@@ -8,19 +8,19 @@
     android:background="@color/colorSearchBackground">
 
     <com.pulse.ui.EmptyContainerView
-        android:id="@+id/ecvPharmacy"
+        android:id="@+id/view_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorGlobalWhite"
         android:visibility="gone"
         app:isButtonVisible="false"
-        app:layout_constraintTop_toBottomOf="@+id/llToolbar"
+        app:layout_constraintTop_toBottomOf="@+id/ll_toolbar"
         app:src="@drawable/ic_placeholder_search"
         app:subtitleEmpty="@string/noGoodsFoundSubtitle"
         app:titleEmpty="@string/noGoodsFoundTitle" />
 
     <LinearLayout
-        android:id="@+id/llToolbar"
+        android:id="@+id/ll_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/bg_toolbar"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.pulse.ui.AppSearchView
-            android:id="@+id/searchView"
+            android:id="@+id/view_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -43,7 +43,7 @@
             app:cardCornerRadius="@dimen/_16sdp" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvScanSearch"
+            android:id="@+id/mcv_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/scanDrugsContentDescription"
@@ -64,11 +64,10 @@
                 android:src="@drawable/ic_barcode" />
 
         </com.google.android.material.card.MaterialCardView>
-
     </LinearLayout>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvSearchResult"
+        android:id="@+id/mtv_search_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16sdp"
@@ -77,18 +76,18 @@
         android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/darkBlue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llToolbar"
+        app:layout_constraintTop_toBottomOf="@+id/ll_toolbar"
         tools:text="@string/countProducts" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProducts"
+        android:id="@+id/rv_products"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/_8sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSearchResult"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_search_result"
         tools:listitem="@layout/item_product" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

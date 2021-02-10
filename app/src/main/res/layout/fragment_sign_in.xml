@@ -2,7 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nsvContainer"
+    android:id="@+id/nsv_container"
     style="@style/ScrollStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,24 +12,24 @@
     android:paddingEnd="@dimen/_16sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mlContainer"
+        android:id="@+id/cl_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBackground">
 
-        <ImageView
-            android:id="@+id/ivLogoSignIn"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_logo"
             style="@style/Logo"
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginBottom="@dimen/_24sdp"
-            app:layout_constraintBottom_toTopOf="@+id/tvTitleSignIn"
+            app:layout_constraintBottom_toTopOf="@+id/mtv_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTitleSignIn"
+            android:id="@+id/mtv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_12sdp"
@@ -37,10 +37,10 @@
             android:text="@string/welcomeBackAuth"
             android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/darkBlue"
-            app:layout_constraintBottom_toTopOf="@+id/tvSubTitleSignIn" />
+            app:layout_constraintBottom_toTopOf="@+id/mtv_subtitle" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvSubTitleSignIn"
+            android:id="@+id/mtv_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
@@ -50,10 +50,10 @@
             android:text="@string/signInSubTitle"
             android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="@color/darkBlue"
-            app:layout_constraintBottom_toTopOf="@+id/tilPhoneSignIn" />
+            app:layout_constraintBottom_toTopOf="@+id/til_phone" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPhoneSignIn"
+            android:id="@+id/til_phone"
             style="@style/TextInputStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             app:prefixTextAppearance="?attr/textAppearanceBody2">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPhoneSignIn"
+                android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:digits="0123456789"
@@ -87,23 +87,23 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.pulse.ui.auth.AuthNextView
-            android:id="@+id/nvNext"
+            android:id="@+id/view_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/_8sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilPhoneSignIn"
+            app:layout_constraintTop_toBottomOf="@+id/til_phone"
             app:text="@string/signIn" />
 
         <com.pulse.ui.auth.AuthFooter
-            android:id="@+id/vFooter"
+            android:id="@+id/view_footer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nvNext"
+            app:layout_constraintTop_toBottomOf="@+id/view_next"
             app:layout_constraintVertical_bias="1.0"
             app:textAction="@string/registrationAuth"
             app:textDescription="@string/dontHaveAnAccountAuth" />

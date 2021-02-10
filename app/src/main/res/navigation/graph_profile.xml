@@ -6,7 +6,7 @@
     app:startDestination="@id/nav_profile">
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.pulse.user.profile.ProfileFragment"
+        android:name="com.pulse.components.user.profile.ProfileFragment"
         android:label="@string/profileTitle"
         tools:layout="@layout/fragment_profile">
 
@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/nav_profile_edit"
-        android:name="com.pulse.user.profile.edit.EditProfileFragment"
+        android:name="com.pulse.components.user.profile.edit.EditProfileFragment"
         android:label="@string/editProfileTitle"
         tools:layout="@layout/fragment_profile_edit">
 
@@ -70,7 +70,7 @@
 
     <dialog
         android:id="@+id/nav_profile_dialog_change_photo"
-        android:name="com.pulse.user.profile.edit.ChangePhotoBottomSheetDialogFragment"
+        android:name="com.pulse.components.user.profile.edit.ChangePhotoBottomSheetDialogFragment"
         tools:layout="@layout/view_change_photo_bottom_sheet">
 
         <argument
@@ -82,13 +82,13 @@
 
     <fragment
         android:id="@+id/nav_orders"
-        android:name="com.pulse.orders.OrdersFragment"
+        android:name="com.pulse.components.orders.OrdersFragment"
         android:label="@string/ordersLabel"
         tools:layout="@layout/fragment_orders" />
 
     <fragment
         android:id="@+id/nav_wish"
-        android:name="com.pulse.user.wishlist.WishFragment"
+        android:name="com.pulse.components.user.wishlist.WishFragment"
         android:label="@string/wishLabel"
         tools:layout="@layout/fragment_wish" />
 

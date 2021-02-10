@@ -12,14 +12,14 @@
     tools:parentTag="android.widget.LinearLayout">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvBuyerDeliveryAddressTitleOrder"
+        android:id="@+id/mtv_buyer_delivery_address_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/deliveryAddress"
         android:textAppearance="?attr/textAppearanceButton" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardBuyerDeliveryAddressFilledOrder"
+        android:id="@+id/mcv_buyer_delivery_address_filled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
@@ -36,14 +36,14 @@
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvPharmacyAddressOrder"
+                android:id="@+id/mtv_pharmacy_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?attr/textAppearanceBody2"
                 tools:text="\uD83C\uDFE0 ул. Горная 23а" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvBuyerAddressDetailOrder"
+                android:id="@+id/mtv_buyer_address_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
@@ -51,7 +51,7 @@
                 tools:text="подьезд 4г • кв 56" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvCommonInfoLineOrder"
+                android:id="@+id/mtv_common_info_line"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"

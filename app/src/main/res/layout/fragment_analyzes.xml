@@ -11,7 +11,7 @@
         layout="@layout/toolbar" />
 
     <com.pulse.ui.EmptyContainerView
-        android:id="@+id/emptyContentAnalyzes"
+        android:id="@+id/view_empty_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:buttonTextEmpty="@string/analyzesEmptyContainerAction"

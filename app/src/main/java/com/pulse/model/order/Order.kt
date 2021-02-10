@@ -7,7 +7,7 @@ import com.pulse.components.cart.model.CartProduct
 import com.pulse.components.pharmacy.model.Pharmacy
 import com.pulse.data.remote.model.order.CustomerOrderData
 import com.pulse.data.remote.model.order.DeliveryInfoOrderData
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Order(

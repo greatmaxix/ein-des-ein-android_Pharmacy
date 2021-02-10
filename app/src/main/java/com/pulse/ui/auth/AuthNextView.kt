@@ -4,14 +4,13 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import com.pulse.R
-import com.pulse.core.extensions.inflate
+import com.pulse.core.extensions.inflater
 import com.pulse.core.extensions.use
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.view_auth_next.view.*
+import com.pulse.databinding.ViewAuthNextBinding
 
-class AuthNextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr), LayoutContainer {
+class AuthNextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
 
-    override val containerView = inflate(R.layout.view_auth_next, true)
+    private val binding = ViewAuthNextBinding.inflate(inflater, this)
 
     private var text = ""
 
@@ -28,6 +27,6 @@ class AuthNextView @JvmOverloads constructor(context: Context, attrs: AttributeS
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        tvText.text = text
+        binding.mtvText.text = text
     }
 }

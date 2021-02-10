@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/etPromoCode"
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_promo_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/promoCodeHint"
         android:importantForAutofill="no"
-        android:maxLength="8"
-        android:inputType="textCapCharacters" />
+        android:inputType="textCapCharacters"
+        android:maxLength="8" />
 
 </FrameLayout>

@@ -7,18 +7,18 @@
     android:background="@color/colorGreyLight">
 
     <com.pulse.ui.EmptyContainerView
-        android:id="@+id/llRegionNotFoundContainer"
+        android:id="@+id/ll_region_not_found_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorGlobalWhite"
         android:visibility="gone"
         app:isButtonVisible="false"
-        app:layout_constraintTop_toBottomOf="@+id/llToolbarRegion"
+        app:layout_constraintTop_toBottomOf="@+id/ll_toolbar"
         app:subtitleEmpty="@string/noRegionFoundSubtitle"
         app:titleEmpty="@string/noRegionFoundTitle" />
 
     <LinearLayout
-        android:id="@+id/llToolbarRegion"
+        android:id="@+id/ll_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/bg_toolbar"
@@ -27,8 +27,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/ivBackRegion"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
             android:src="@drawable/ic_arrow_back" />
 
         <com.pulse.ui.AppSearchView
-            android:id="@+id/searchViewRegion"
+            android:id="@+id/view_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -52,14 +52,14 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRegions"
+        android:id="@+id/rv_regions"
         style="@style/ScrollStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_6sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llToolbarRegion"
+        app:layout_constraintTop_toBottomOf="@id/ll_toolbar"
         tools:listitem="@layout/item_region" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

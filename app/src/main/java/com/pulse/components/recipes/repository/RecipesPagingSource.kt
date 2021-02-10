@@ -1,6 +1,7 @@
 package com.pulse.components.recipes.repository
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.pulse.components.recipes.RecipesUseCase
 import com.pulse.components.recipes.model.Recipe
 import com.pulse.core.general.Event
@@ -20,4 +21,6 @@ class RecipesPagingSource(private val useCase: RecipesUseCase, private val count
         }
         LoadResult.Error(Exception(e.message))
     }
+
+    override fun getRefreshKey(state: PagingState<Int, Recipe>) = state.anchorPosition
 }

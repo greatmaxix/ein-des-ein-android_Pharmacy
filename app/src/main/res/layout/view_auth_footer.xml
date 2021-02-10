@@ -7,21 +7,21 @@
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvDescription"
+        android:id="@+id/mtv_description"
         style="@style/TextAuthFooter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dontHaveAnAccountAuth"
         android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/darkBlue"
-        app:layout_constraintBottom_toBottomOf="@+id/tvAction"
-        app:layout_constraintEnd_toStartOf="@+id/tvAction"
+        app:layout_constraintBottom_toBottomOf="@+id/mtv_action"
+        app:layout_constraintEnd_toStartOf="@+id/mtv_action"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvAction" />
+        app:layout_constraintTop_toTopOf="@+id/mtv_action" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvAction"
+        android:id="@+id/mtv_action"
         style="@style/TextAuthFooter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,12 +29,12 @@
         android:text="@string/registrationAuth"
         android:textAppearance="?attr/textAppearanceSubtitle2"
         android:textColor="@color/primaryBlue"
-        app:layout_constraintBottom_toTopOf="@+id/mtvSkip"
+        app:layout_constraintBottom_toTopOf="@+id/mtv_skip"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvDescription" />
+        app:layout_constraintStart_toEndOf="@+id/mtv_description" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/mtvSkip"
+        android:id="@+id/mtv_skip"
         style="@style/BaseTextSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

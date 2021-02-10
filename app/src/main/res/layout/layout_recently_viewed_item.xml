@@ -10,14 +10,14 @@
         android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivRecentlyViewed"
+            android:id="@+id/iv_recently_viewed"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_72sdp"
             android:adjustViewBounds="true"
             android:scaleType="centerInside" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvNameRecentlyViewed"
+            android:id="@+id/mtv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_8sdp"
@@ -28,7 +28,7 @@
             tools:text="Название товара" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDescriptionRecentlyViewed"
+            android:id="@+id/mtv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
@@ -48,7 +48,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvPriceFromPrefixRecentlyViewed"
+                android:id="@+id/mtv_price_from_prefix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/from"
@@ -56,7 +56,7 @@
                 android:textColor="@color/primaryBlue" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvPriceFromRecentlyViewed"
+                android:id="@+id/mtv_price_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4sdp"
@@ -65,7 +65,7 @@
                 tools:text="580 ₸" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvPriceUnavailableRecentlyViewed"
+                android:id="@+id/mtv_price_unavailable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/temporaryUnavailable"
@@ -75,7 +75,5 @@
                 tools:visibility="visible" />
 
         </LinearLayout>
-
     </LinearLayout>
-
 </merge>

@@ -2,29 +2,30 @@ package com.pulse.components.recipes.adapter
 
 import android.view.View
 import android.view.ViewGroup
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.recipes.model.Recipe
 import com.pulse.core.base.adapter.BaseViewHolder
 import com.pulse.core.extensions.*
-import kotlinx.android.synthetic.main.item_recipe.*
+import com.pulse.databinding.ItemRecipeBinding
 
-class RecipesViewHolder(override val containerView: View, private val onClick: Recipe.() -> Unit) : BaseViewHolder<Recipe>(containerView) {
+class RecipesViewHolder(val itemView: View, private val onClick: Recipe.() -> Unit) : BaseViewHolder<Recipe>(itemView) {
 
-    override fun bind(item: Recipe) = with(item) {
+    private val binding by viewBinding(ItemRecipeBinding::bind)
 
-        mtv_qty.text = getString(R.string.qty, productCount)
-        mtv_doctor_name.text = doctorName
-        mtv_description.text = productRusName?.wrapHtml
-        mtv_label_number.text = "№ $code"
-        mtv_label_active.text = getString(R.string.activeUntil, validTill.dateFormatRecipes)
-
-        iv_doctor.loadGlideCircle(doctorUrl, R.drawable.ic_placeholder_drugstore)
-        iv_product.loadGlideProduct(productUrl)
-
-        gl_container.disabled = !status.isActive
-
-        iv_recipe_download.visibleOrGone(status.isActive)
-        iv_recipe_download.setDebounceOnClickListener { onClick(item) }
+    override fun bind(item: Recipe) = with(binding) {
+        with(item) {
+            mtvQty.text = getString(R.string.qty, productCount)
+            mtvDoctorName.text = doctorName
+            mtvDescription.text = productRusName?.wrapHtml
+            mtvLabelNumber.text = "№ $code"
+            mtvLabelActive.text = getString(R.string.activeUntil, validTill.dateFormatRecipes)
+            ivDoctor.loadGlideCircle(doctorUrl, R.drawable.ic_placeholder_drugstore)
+            ivProduct.loadGlideProduct(productUrl)
+            glContainer.disabled = !status.isActive
+            ivRecipeDownload.visibleOrGone(status.isActive)
+            ivRecipeDownload.setDebounceOnClickListener { onClick(item) }
+        }
     }
 
     companion object {

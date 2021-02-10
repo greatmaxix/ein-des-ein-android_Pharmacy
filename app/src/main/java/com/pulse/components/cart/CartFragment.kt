@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.ConcatAdapter
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.auth.sign.SignInFragmentArgs
 import com.pulse.components.cart.CartFragmentDirections.Companion.fromCartToCheckout
@@ -13,17 +14,18 @@ import com.pulse.components.cart.adapter.animator.ItemExpandAnimator
 import com.pulse.components.cart.model.CartItem
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
-import kotlinx.android.synthetic.main.fragment_cart.*
+import com.pulse.databinding.FragmentCartBinding
 
-class CartFragment(private val vm: CartViewModel) : BaseMVVMFragment(R.layout.fragment_cart) {
+class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.layout.fragment_cart) {
 
+    private val binding by viewBinding(FragmentCartBinding::bind)
     private var concatAdapter = ConcatAdapter(concatWithIsolate)
         set(value) {
             field = value
-            rvCart.adapter = field
+            binding.rvCart.adapter = field
         }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
         showBackButton()
 
@@ -33,14 +35,12 @@ class CartFragment(private val vm: CartViewModel) : BaseMVVMFragment(R.layout.fr
             itemAnimator = ItemExpandAnimator()
         }
 
-        ecvPharmacy.setButtonAction {
-            navController.navigate(fromCartToSearch())
-        }
+        viewEmpty.setButtonAction { navController.navigate(fromCartToSearch()) }
     }
 
     override fun onResume() {
         super.onResume()
-        observeResult(vm.cartItemLiveData) {
+        observeResult(viewModel.cartItemLiveData) {
             onEmmit = {
                 concatAdapter.clearAdapter()
                 buildCart(this)
@@ -50,7 +50,7 @@ class CartFragment(private val vm: CartViewModel) : BaseMVVMFragment(R.layout.fr
     }
 
     override fun onBindLiveData() {
-        observeResult(vm.removeItemLiveData) {
+        observeResult(viewModel.removeItemLiveData) {
             onEmmit = { removeProduct(this) }
         }
     }
@@ -63,7 +63,7 @@ class CartFragment(private val vm: CartViewModel) : BaseMVVMFragment(R.layout.fr
             listWithDivider.forEach { concatAdapter.addAdapter(CartAdapter(it, ::askConfirmation, ::startDeliveryProcess)) }
         }
 
-        ecvPharmacy.visibleOrGone(isListEmpty)
+        binding.viewEmpty.visibleOrGone(isListEmpty)
     }
 
     private fun removeProduct(productId: Int) = with(concatAdapter) {
@@ -72,7 +72,7 @@ class CartFragment(private val vm: CartViewModel) : BaseMVVMFragment(R.layout.fr
                 adapter.notifyRemoveIfContains(productId) { nestedAdapter ->
                     removeAdapter(nestedAdapter)
                     if (adapters.isEmpty()) {
-                        ecvPharmacy.visible()
+                        binding.viewEmpty.visible()
                     }
                 }
             }
@@ -95,7 +95,7 @@ class CartFragment(private val vm: CartViewModel) : BaseMVVMFragment(R.layout.fr
 
     private fun askConfirmation(productId: Int) = showAlertRes(getString(R.string.areYouSure)) {
         positive = R.string.delete
-        positiveAction = { vm.removeProductFromCart(productId) }
+        positiveAction = { viewModel.removeProductFromCart(productId) }
         negative = R.string.cancel
     }
 

@@ -12,7 +12,7 @@
         android:background="@drawable/background_message_pharmacy"
         android:orientation="horizontal">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -21,7 +21,7 @@
             android:src="@drawable/ic_pdf" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvRecipeNameChat"
+            android:id="@+id/mtv_recipe_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"

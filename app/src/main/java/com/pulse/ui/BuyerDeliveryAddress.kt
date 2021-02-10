@@ -3,34 +3,31 @@ package com.pulse.ui
 import android.content.Context
 import android.text.Editable
 import android.util.AttributeSet
-import android.view.View
 import android.widget.LinearLayout
 import androidx.core.widget.doAfterTextChanged
 import com.pulse.R
-import com.pulse.core.extensions.inflate
+import com.pulse.core.extensions.inflater
 import com.pulse.data.remote.model.order.AddressOrderData
+import com.pulse.databinding.ViewBuyerDeliverAddressBinding
 import com.pulse.ui.text.isAddressLengthValid
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.view_buyer_deliver_address.view.*
 
 class BuyerDeliveryAddress @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr), LayoutContainer {
+) : LinearLayout(context, attrs, defStyleAttr) {
 
-    override val containerView: View? = inflate(R.layout.view_buyer_deliver_address, true)
-
+    private val binding = ViewBuyerDeliverAddressBinding.inflate(inflater, this)
     private val sidePadding by lazy { resources.getDimension(R.dimen._16sdp).toInt() }
     private val bottomPadding by lazy { resources.getDimension(R.dimen._4sdp).toInt() }
 
     private val address = AddressOrderData()
 
     init {
-        tilCityAddress.editText?.doAfterTextChanged(assignWithClearError { address.city = toString() })
-        tilStreetAddress.editText?.doAfterTextChanged(assignWithClearError { address.street = toString() })
-        tilHouseAddress.editText?.doAfterTextChanged(assignWithClearError { address.house = toString() })
-        tilApartmentAddress.editText?.doAfterTextChanged { address.apartment = it.toString() }
+        binding.tilCityAddress.editText?.doAfterTextChanged(assignWithClearError { address.city = toString() })
+        binding.tilStreetAddress.editText?.doAfterTextChanged(assignWithClearError { address.street = toString() })
+        binding.tilHouseAddress.editText?.doAfterTextChanged(assignWithClearError { address.house = toString() })
+        binding.tilApartmentAddress.editText?.doAfterTextChanged { address.apartment = it.toString() }
         orientation = VERTICAL
         setPadding(sidePadding, 0, sidePadding, bottomPadding)
     }
@@ -40,14 +37,14 @@ class BuyerDeliveryAddress @JvmOverloads constructor(
         action(text)
     }
 
-    private fun clearError() {
+    private fun clearError() = with(binding) {
         tilCityAddress.isErrorEnabled = false
         tilHouseAddress.isErrorEnabled = false
         tilStreetAddress.isErrorEnabled = false
     }
 
     fun validateFields(): Boolean {
-        val isValid = tilCityAddress.isAddressLengthValid() && tilStreetAddress.isAddressLengthValid() && tilHouseAddress.isAddressLengthValid()
+        val isValid = binding.tilCityAddress.isAddressLengthValid() && binding.tilStreetAddress.isAddressLengthValid() && binding.tilHouseAddress.isAddressLengthValid()
         if (!isValid) requestFocus()
         return isValid
     }
@@ -55,13 +52,15 @@ class BuyerDeliveryAddress @JvmOverloads constructor(
     fun obtainAddress() = address
 
     fun setAddress(data: AddressOrderData) = with(data) {
-        etCityAddress.setText(city)
-        etStreetAddress.setText(street)
-        etHouseAddress.setText(house)
-        etApartmentAddress.setText(apartment)
-        tilCityAddress.isEndIconVisible = false
-        tilStreetAddress.isEndIconVisible = false
-        tilHouseAddress.isEndIconVisible = false
-        tilApartmentAddress.isEndIconVisible = false
+        with(binding) {
+            etCityAddress.setText(city)
+            etStreetAddress.setText(street)
+            etHouseAddress.setText(house)
+            etApartmentAddress.setText(apartment)
+            tilCityAddress.isEndIconVisible = false
+            tilStreetAddress.isEndIconVisible = false
+            tilHouseAddress.isEndIconVisible = false
+            tilApartmentAddress.isEndIconVisible = false
+        }
     }
 }

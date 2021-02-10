@@ -13,3 +13,6 @@ fun ViewGroup.getDimensionPixelSize(@DimenRes dimenResId: Int) = resources.getDi
 
 val ViewGroup.lastChild: View
     get() = getChildAt(childCount - 1)
+
+val ViewGroup.inflater
+    get() = context.inflater

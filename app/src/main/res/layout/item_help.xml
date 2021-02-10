@@ -6,12 +6,12 @@
     android:orientation="vertical">
 
     <com.pulse.ui.ProfileItemView
-        android:id="@+id/itemHeaderNeedHelp"
+        android:id="@+id/item_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvTextNeedHelp"
+        android:id="@+id/mtv_text"
         android:layout_width="match_parent"
         android:visibility="gone"
         android:layout_height="wrap_content"

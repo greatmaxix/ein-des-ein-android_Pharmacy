@@ -1,8 +1,8 @@
 package com.pulse.main
 
+import com.pulse.components.user.model.customer.CustomerDAO
 import com.pulse.data.local.SPManager
 import com.pulse.data.remote.api.RestApi
-import com.pulse.user.model.customer.CustomerDAO
 
 class MainRepository(private val sp: SPManager, private val restApi: RestApi, private val dao: CustomerDAO) {
 

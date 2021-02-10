@@ -8,7 +8,7 @@
     android:paddingVertical="@dimen/_4sdp">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvMessageChat"
+        android:id="@+id/mtv_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -21,7 +21,7 @@
         tools:text="Да, от лимона у меня краснеют щеки и от мяты глаза чешуться и слезяться иногда" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvReadTimeChat"
+        android:id="@+id/mtv_read_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"

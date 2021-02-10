@@ -6,7 +6,7 @@
     android:background="@color/colorBackground">
 
     <com.budiyev.android.codescanner.CodeScannerView
-        android:id="@+id/codeScannerView"
+        android:id="@+id/view_code_scanner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:autoFocusButtonVisible="false"
@@ -37,12 +37,12 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_7sdp"
         android:background="@drawable/shadow_qr_code_scanner"
-        app:layout_constraintBottom_toTopOf="@+id/scannerTooltip"
+        app:layout_constraintBottom_toTopOf="@+id/fl_scanner_tooltip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
-        android:id="@+id/scannerTooltip"
+        android:id="@+id/fl_scanner_tooltip"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/qrCodeDescriptionBackground"
@@ -65,7 +65,7 @@
     </FrameLayout>
 
     <View
-        android:id="@+id/qrCodeScannerInstructionBg"
+        android:id="@+id/view_instruction_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/darkBlue" />
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/qrCodeDescriptionTitle"
+        android:id="@+id/mtv_description_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
@@ -89,31 +89,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <ImageView
-        android:id="@+id/qrCodeDescriptionTopIcon"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_description_top_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_24sdp"
         android:contentDescription="@string/cameraIconContentDescription"
         android:src="@drawable/ic_camera"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/qrCodeDescriptionTop" />
+        app:layout_constraintTop_toTopOf="@+id/mtv_description_top" />
 
-    <ImageView
-        android:id="@+id/curvedTopIcon"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_curved_top_icon"
         android:layout_width="@dimen/_54sdp"
         android:layout_height="@dimen/_54sdp"
         android:layout_marginTop="@dimen/_6sdp"
         android:rotation="270"
         android:scaleY="-1"
         android:src="@drawable/ic_curved_arrow"
-        app:layout_constraintEnd_toEndOf="@id/qrCodeDescriptionTopIcon"
+        app:layout_constraintEnd_toEndOf="@id/iv_description_top_icon"
         app:layout_constraintHorizontal_bias=".1"
-        app:layout_constraintStart_toStartOf="@id/qrCodeDescriptionTopIcon"
-        app:layout_constraintTop_toBottomOf="@id/qrCodeDescriptionTopIcon" />
+        app:layout_constraintStart_toStartOf="@id/iv_description_top_icon"
+        app:layout_constraintTop_toBottomOf="@id/iv_description_top_icon" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/qrCodeDescriptionTop"
+        android:id="@+id/mtv_description_top"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -124,32 +124,32 @@
         android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/colorGlobalWhite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/qrCodeDescriptionTopIcon"
-        app:layout_constraintTop_toBottomOf="@+id/qrCodeDescriptionTitle" />
+        app:layout_constraintStart_toEndOf="@+id/iv_description_top_icon"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_description_title" />
 
-    <ImageView
-        android:id="@+id/qrCodeDescriptionBottomIcon"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_description_bottom_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_24sdp"
         android:contentDescription="@string/cameraIconContentDescription"
         android:src="@drawable/ic_barcode"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/qrCodeDescriptionBottom" />
+        app:layout_constraintTop_toTopOf="@+id/mtv_description_bottom" />
 
-    <ImageView
-        android:id="@+id/curvedBottomIcon"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_curved_bottom_icon"
         android:layout_width="@dimen/_54sdp"
         android:layout_height="@dimen/_54sdp"
         android:layout_marginTop="@dimen/_6sdp"
         android:src="@drawable/ic_curved_arrow"
-        app:layout_constraintEnd_toEndOf="@id/qrCodeDescriptionBottomIcon"
+        app:layout_constraintEnd_toEndOf="@id/iv_description_bottom_icon"
         app:layout_constraintHorizontal_bias=".1"
-        app:layout_constraintStart_toStartOf="@id/qrCodeDescriptionBottomIcon"
-        app:layout_constraintTop_toBottomOf="@id/qrCodeDescriptionBottomIcon" />
+        app:layout_constraintStart_toStartOf="@id/iv_description_bottom_icon"
+        app:layout_constraintTop_toBottomOf="@id/iv_description_bottom_icon" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/qrCodeDescriptionBottom"
+        android:id="@+id/mtv_description_bottom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -160,11 +160,11 @@
         android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/colorGlobalWhite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/qrCodeDescriptionBottomIcon"
-        app:layout_constraintTop_toBottomOf="@+id/qrCodeDescriptionTop" />
+        app:layout_constraintStart_toEndOf="@+id/iv_description_bottom_icon"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_description_top" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/goToScanBtn"
+        android:id="@+id/mb_go_to_scan"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48sdp"
@@ -182,10 +182,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/qrCodeScannerInstructionGroup"
+        android:id="@+id/group_instruction"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        app:constraint_referenced_ids="qrCodeScannerInstructionBg,goToScanBtn,qrCodeDescriptionTitle,qrCodeDescriptionTopIcon,qrCodeDescriptionTop,qrCodeDescriptionBottomIcon,qrCodeDescriptionBottom, curvedBottomIcon, curvedTopIcon" />
+        app:constraint_referenced_ids="view_instruction_background,mb_go_to_scan,mtv_description_title,iv_description_top_icon,mtv_description_top,iv_description_bottom_icon,mtv_description_bottom, iv_curved_bottom_icon, iv_curved_top_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,9 @@
 package com.pulse.components.auth.repository
 
 import com.pulse.components.auth.model.Auth
+import com.pulse.components.user.model.customer.Customer
+import com.pulse.components.user.model.customer.CustomerDAO
 import com.pulse.data.local.SPManager
-import com.pulse.user.model.customer.Customer
-import com.pulse.user.model.customer.CustomerDAO
 
 class AuthRepository(private val spManager: SPManager, private val dao: CustomerDAO, private val rds: AuthRemoteDataSource) {
 

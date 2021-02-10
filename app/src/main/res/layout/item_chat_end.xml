@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/_24sdp">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnResumeChat"
+        android:id="@+id/mb_resume_chat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_8sdp"
@@ -23,7 +23,7 @@
         app:elevation="@dimen/_4sdp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnEndChat"
+        android:id="@+id/mb_end_chat"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

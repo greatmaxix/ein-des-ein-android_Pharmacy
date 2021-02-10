@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mcvCategory"
+    android:id="@+id/mcv_category"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_48sdp"
     android:backgroundTint="@color/colorGlobalWhite"
@@ -18,15 +18,15 @@
         android:layout_gravity="center_vertical"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/ivCategoryIconTile"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_icon"
             android:layout_width="@dimen/_37sdp"
             android:layout_height="@dimen/_37sdp"
             android:padding="@dimen/_4sdp"
             tools:src="@drawable/ic_catalog_1" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvCategoryNameTile"
+            android:id="@+id/mtv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_8sdp"

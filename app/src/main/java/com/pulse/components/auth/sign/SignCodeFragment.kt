@@ -5,10 +5,11 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.auth.model.AuthResult
 import com.pulse.core.extensions.*
-import kotlinx.android.synthetic.main.fragment_code.*
+import com.pulse.databinding.FragmentCodeBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
@@ -18,46 +19,48 @@ import reactivecircus.flowbinding.android.widget.textChanges
 
 class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
 
+    private val binding by viewBinding(FragmentCodeBinding::bind)
+
     @ExperimentalCoroutinesApi
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
 
-        etCode.textChanges()
-            .filter { etCode.isCodeLength }
+        viewCode.textChanges()
+            .filter { viewCode.isCodeLength }
             .onEach { checkSmsCode() }
             .launchIn(viewLifecycleOwner.lifecycleScope)
 
-        etCode.editorActionEvents()
-            .filter { etCode.isCodeLength && it.actionId == EditorInfo.IME_ACTION_DONE }
+        viewCode.editorActionEvents()
+            .filter { viewCode.isCodeLength && it.actionId == EditorInfo.IME_ACTION_DONE }
             .onEach { checkSmsCode() }
             .launchIn(viewLifecycleOwner.lifecycleScope)
 
-        btnBackCode.setDebounceOnClickListener { navigationBack() }
+        mibBack.setDebounceOnClickListener { navigationBack() }
 
         doWithDelay(1000) {
-            debug { etCode.setText("11111") }
+            debug { viewCode.setText("11111") }
         }
 
-        btnSendCodeAgain.underlineSpan()
-        btnSendCodeAgain.setDebounceOnClickListener { vm.signInAgain() }
+        mbSendCodeAgain.underlineSpan()
+        mbSendCodeAgain.setDebounceOnClickListener { viewModel.signInAgain() }
     }
 
     override fun onBindLiveData() {
-        observe(vm.customerPhoneLiveData) { mtvPhoneCode.text = it.peekContent }
+        observe(viewModel.customerPhoneLiveData) { binding.mtvPhone.text = it.peekContent }
 
-        observeResult(vm.codeLiveData) {
+        observeResult(viewModel.codeLiveData) {
             onEmmit = { this?.let(::navigate) }
         }
 
-        observeResult(vm.signInLiveData) {
+        observeResult(viewModel.signInLiveData) {
             onEmmit = { this?.let { messageCallback?.showError(R.string.smsResendAgain) } }
         }
     }
 
     private fun checkSmsCode() {
         hideKeyboard()
-        if (etCode.isCodeLength) {
-            vm.checkCode(etCode.text.toString())
+        if (binding.viewCode.isCodeLength) {
+            viewModel.checkCode(binding.viewCode.text.toString())
         } else {
             messageCallback?.showError(R.string.enterTheCode)
         }
@@ -73,5 +76,4 @@ class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
 
     private val EditText.isCodeLength
         get() = length() == 5
-
 }

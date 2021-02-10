@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardChatProduct"
+        android:id="@+id/mcv_chat_product"
         android:layout_width="@dimen/_170sdp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
@@ -20,16 +20,16 @@
             android:clipToPadding="false"
             android:padding="@dimen/_8sdp">
 
-            <ImageView
-                android:id="@+id/ivChatProduct"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_chat_product"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/ivWish"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_wish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_default_ripple_selector_circle"
@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvChatProductTitle"
+                android:id="@+id/mtv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
@@ -50,11 +50,11 @@
                 android:textColor="@color/darkBlue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivChatProduct"
+                app:layout_constraintTop_toBottomOf="@+id/iv_chat_product"
                 tools:text="Название товара" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvChatProductDescription"
+                android:id="@+id/mtv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
@@ -64,50 +64,31 @@
                 android:textColor="@color/darkBlue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvChatProductTitle"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_title"
                 tools:text="Название товара" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvPricePrefix"
+                android:id="@+id/mtv_price_prefix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/from"
                 android:textAppearance="?attr/textAppearanceCaption"
                 android:textColor="@color/primaryBlue"
-                app:layout_constraintBottom_toBottomOf="@+id/tvChatProductPrice"
+                app:layout_constraintBottom_toBottomOf="@+id/mtv_price"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvChatProductPrice"
+                android:id="@+id/mtv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/primaryBlue"
-                app:layout_constraintStart_toEndOf="@+id/tvPricePrefix"
-                app:layout_constraintTop_toBottomOf="@+id/tvChatProductDescription"
+                app:layout_constraintStart_toEndOf="@+id/mtv_price_prefix"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_description"
                 tools:text="568 ₽" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--todo не вижу этот элемент в дизайне поэтому не могу применить стиль-->
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvChatProductRecipe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_recipe_badge_right_corner"
-            android:maxLines="1"
-            android:paddingStart="@dimen/_8sdp"
-            android:paddingTop="@dimen/_3sdp"
-            android:paddingEnd="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_3sdp"
-            android:textColor="@color/colorGlobalWhite"
-            android:textSize="@dimen/_11ssp"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Recipe 10203094 LDG" />
-
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

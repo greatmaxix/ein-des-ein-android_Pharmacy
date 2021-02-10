@@ -20,7 +20,7 @@
         android:clipChildren="true">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMessagesChat"
+            android:id="@+id/rv_messages"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
@@ -31,7 +31,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/llMessageFieldChat"
+        android:id="@+id/ll_message_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGlobalWhite"
@@ -43,8 +43,8 @@
         android:visibility="gone"
         tools:visibility="visible">
 
-        <ImageView
-            android:id="@+id/ivAttachment"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_attachment"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
             android:layout_gravity="center_vertical"
@@ -57,7 +57,7 @@
             android:layout_height="@dimen/_34sdp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilMessageChat"
+                android:id="@+id/til_message"
                 style="@style/TextInputStyle"
                 android:layout_height="@dimen/_34sdp"
                 android:layout_marginStart="@dimen/_7sdp"
@@ -78,8 +78,8 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/ivButtonSendChat"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_send"
                 android:layout_width="@dimen/_32sdp"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_gravity="center_vertical|end"

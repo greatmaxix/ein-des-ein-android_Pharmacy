@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/llToolbarContainerNeedHelp"
+        android:id="@+id/ll_toolbar_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_toolbar"
@@ -19,7 +19,7 @@
             layout="@layout/toolbar" />
 
         <LinearLayout
-            android:id="@+id/llHeaderContainer"
+            android:id="@+id/ll_header_container"
             android:layout_marginBottom="@dimen/_13sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,8 +34,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline4"
                 android:textColor="@color/colorGlobalWhite" />
 
-            <ImageView
-                android:id="@+id/ivSearch"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_search"
                 android:layout_width="wrap_content"
                 android:padding="@dimen/_8sdp"
                 android:background="@drawable/background_default_ripple_selector_circle"
@@ -47,7 +47,7 @@
         </LinearLayout>
 
         <com.pulse.ui.AppSearchView
-            android:id="@+id/searchViewNeedHelp"
+            android:id="@+id/view_search"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -62,7 +62,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvItemsNeedHelp"
+        android:id="@+id/rv_items"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
@@ -71,6 +71,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llToolbarContainerNeedHelp" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_toolbar_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

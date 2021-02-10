@@ -10,7 +10,7 @@
         layout="@layout/toolbar" />
 
     <com.pulse.ui.EmptyContainerView
-        android:id="@+id/emptyContentWish"
+        android:id="@+id/view_empty_content"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
@@ -24,7 +24,7 @@
         app:titleEmpty="@string/wishEmptyContainerTitle" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProducts"
+        android:id="@+id/rv_products"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"

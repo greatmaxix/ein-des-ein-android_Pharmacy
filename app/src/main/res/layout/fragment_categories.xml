@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/llToolbarCategories"
+        android:id="@+id/ll_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/bg_toolbar"
@@ -16,8 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/ivBackCategories"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -28,7 +28,7 @@
             android:src="@drawable/ic_arrow_back" />
 
         <com.pulse.ui.AppSearchView
-            android:id="@+id/searchViewCategories"
+            android:id="@+id/view_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -43,7 +43,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCategories"
+        android:id="@+id/rv_categories"
         style="@style/ScrollStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

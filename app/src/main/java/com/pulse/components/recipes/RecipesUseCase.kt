@@ -1,8 +1,8 @@
 package com.pulse.components.recipes
 
 import com.pulse.components.recipes.repository.RecipesRepository
+import com.pulse.components.user.repository.CustomerRepository
 import com.pulse.data.GeneralException
-import com.pulse.user.repository.CustomerRepository
 
 class RecipesUseCase(private val recipeRepository: RecipesRepository, private val repositoryCustomer: CustomerRepository) {
 

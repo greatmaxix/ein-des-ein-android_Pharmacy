@@ -7,9 +7,9 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 abstract class BaseTabFragment(@LayoutRes private val layoutResourceId: Int) : BaseMVVMFragment(layoutResourceId) {
 
-    protected val vm: PharmacyViewModel by lazy { requireParentFragment().getViewModel() }
+    protected val viewModel: PharmacyViewModel by lazy { requireParentFragment().getViewModel() }
 
-    protected fun addProduct(globalProductId: Int) = vm.addToCart(globalProductId)
+    protected fun addProduct(globalProductId: Int) = viewModel.addToCart(globalProductId)
 
     companion object {
         const val PHARMACY_KEY = "pharmacyKey"

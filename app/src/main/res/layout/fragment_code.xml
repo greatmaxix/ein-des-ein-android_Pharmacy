@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:background="@color/colorBackground">
 
-        <ImageButton
-            android:id="@+id/btnBackCode"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/mib_back"
             android:layout_width="@dimen/_36sdp"
             android:layout_height="@dimen/_36sdp"
             android:layout_margin="@dimen/_8sdp"
@@ -23,32 +23,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="@dimen/_64sdp"
             android:layout_height="@dimen/_64sdp"
             android:layout_marginBottom="@dimen/_12sdp"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_sms"
-            app:layout_constraintBottom_toTopOf="@id/mtvTitleCode"
+            app:layout_constraintBottom_toTopOf="@id/mtv_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnBackCode"
+            app:layout_constraintTop_toBottomOf="@+id/mib_back"
             app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvTitleCode"
+            android:id="@+id/mtv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_12sdp"
             android:text="@string/codeConfirmation"
             android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/darkBlue"
-            app:layout_constraintBottom_toTopOf="@id/mtvSubtitleCode"
+            app:layout_constraintBottom_toTopOf="@id/mtv_subtitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvSubtitleCode"
+            android:id="@+id/mtv_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_16sdp"
@@ -56,24 +56,24 @@
             android:text="@string/enterCode"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/darkBlue"
-            app:layout_constraintBottom_toTopOf="@id/mtvPhoneCode"
+            app:layout_constraintBottom_toTopOf="@id/mtv_phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvPhoneCode"
+            android:id="@+id/mtv_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_24sdp"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             android:textColor="@color/primaryBlue"
-            app:layout_constraintBottom_toTopOf="@id/etCode"
+            app:layout_constraintBottom_toTopOf="@id/view_code"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="+7 (000) 000–00–00" />
 
         <com.pulse.ui.SmsView
-            android:id="@+id/etCode"
+            android:id="@+id/view_code"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_36sdp"
@@ -85,20 +85,20 @@
             app:layout_constraintVertical_bias=".55" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/codeNotReceived"
+            android:id="@+id/mtv_code_not_received"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/codeIsNotReceived"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/darkBlue"
-            app:layout_constraintBottom_toBottomOf="@id/btnSendCodeAgain"
-            app:layout_constraintEnd_toStartOf="@id/btnSendCodeAgain"
+            app:layout_constraintBottom_toBottomOf="@id/mb_send_code_again"
+            app:layout_constraintEnd_toStartOf="@id/mb_send_code_again"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btnSendCodeAgain" />
+            app:layout_constraintTop_toTopOf="@id/mb_send_code_again" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSendCodeAgain"
+            android:id="@+id/mb_send_code_again"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,9 +109,8 @@
             android:textAppearance="?attr/textAppearanceButton"
             android:textColor="@color/darkBlue"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/codeNotReceived"
-            app:layout_constraintTop_toBottomOf="@id/etCode" />
+            app:layout_constraintStart_toEndOf="@id/mtv_code_not_received"
+            app:layout_constraintTop_toBottomOf="@id/view_code" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.core.widget.NestedScrollView>

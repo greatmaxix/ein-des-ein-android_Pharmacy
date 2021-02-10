@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPharmacy"
+        android:id="@+id/rv_pharmacy"
         style="@style/ScrollStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

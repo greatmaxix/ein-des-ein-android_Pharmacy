@@ -16,10 +16,11 @@ abstract class SignBaseFragment(@LayoutRes layoutResourceId: Int) : BaseMVVMFrag
 
     protected val phoneHint by lazyGetString(debugIfElse({ R.string.authPhoneDebugHint }, { R.string.authPhoneHint }))
 
-    protected val vm: AuthViewModel by sharedGraphViewModel(R.id.auth_graph)
+    protected val viewModel: AuthViewModel by sharedGraphViewModel(R.id.auth_graph)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
 }

@@ -5,17 +5,14 @@ import org.gradle.api.JavaVersion.VERSION_1_8
 
 plugins {
     id("com.android.application")
-    //id("kotlin-parcelize")  // TODO uncomment in future
     kotlin("android")
-    kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-parcelize")
     id("com.google.gms.google-services")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.appdistribution")
 }
-
-apply(from = "${project.rootDir}/script/experimentalExtensions.gradle")
 
 tasks {
     named("preBuild").dependsOn(register("generateNavArgsProguardRules", GenerateNavArgsProguardRulesTask::class))
@@ -52,6 +49,10 @@ android {
                 arg("room.expandProjection", true)
             }
         }
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     val release = "release"
@@ -130,24 +131,25 @@ dependencies {
     implementation("com.github.fondesa:kpermissions:3.1.3")
     implementation("com.budiyev.android:code-scanner:2.1.0")
     // Google
-    implementation("com.google.android.material:material:1.2.1")
-    implementation("com.google.firebase:firebase-analytics:18.0.0")
-    implementation("com.google.firebase:firebase-crashlytics:17.3.0")
+    implementation(platform("com.google.firebase:firebase-bom:26.4.0"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.android.gms:play-services-maps:17.0.0")
+    implementation("com.google.android.material:material:1.2.1")
     // Flow
-    implementation("io.github.reactivecircus.flowbinding:flowbinding-android:1.0.0-beta02")
+    implementation("io.github.reactivecircus.flowbinding:flowbinding-android:1.0.0")
     // AndroidX
-    implementation("androidx.core:core-ktx:1.5.0-alpha05")
+    implementation("androidx.core:core-ktx:1.5.0-beta01")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
-    implementation("androidx.work:work-runtime-ktx:2.4.0")
+    implementation("androidx.work:work-runtime-ktx:2.5.0")
     implementation("androidx.collection:collection-ktx:1.1.0")
-    implementation("androidx.activity:activity-ktx:1.2.0-beta01")
-    implementation("androidx.fragment:fragment-ktx:1.3.0-beta01")
+    implementation("androidx.activity:activity-ktx:1.2.0-rc01")
+    implementation("androidx.fragment:fragment-ktx:1.3.0-rc02")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-    implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha09")
-    implementation("androidx.recyclerview:recyclerview:1.2.0-alpha06")
+    implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha13")
+    implementation("androidx.recyclerview:recyclerview:1.2.0-beta01")
     // Koin
     implementation("org.koin:koin-androidx-scope:${Versions.koin}")
     implementation("org.koin:koin-androidx-fragment:${Versions.koin}")
@@ -161,7 +163,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
     implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
     implementation("com.squareup.okhttp3:okhttp:${Versions.okhttp}")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}")
     implementation("com.github.ihsanbal:LoggingInterceptor:3.1.0") //TODO check is need
     // Navigation
     implementation("androidx.navigation:navigation-ui-ktx:${Versions.navigation}")
@@ -187,6 +189,7 @@ dependencies {
     implementation("com.github.heremaps:oksse:${Versions.oksse}")
     implementation("com.kirich1409.android-notification-dsl:core:${Versions.notificationsDsl}")
     implementation("com.kirich1409.android-notification-dsl:extensions:${Versions.notificationsDsl}")
+    implementation("com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:1.4.1")
 }
 
 val String.execute

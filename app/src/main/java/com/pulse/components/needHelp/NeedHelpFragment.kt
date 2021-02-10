@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.needHelp.adapter.HelpAdapter
 import com.pulse.core.base.mvvm.BaseMVVMFragment
@@ -12,57 +13,56 @@ import com.pulse.core.extensions.falseIfNull
 import com.pulse.core.extensions.gone
 import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.data.remote.DummyData
-import kotlinx.android.synthetic.main.fragment_need_help.*
+import com.pulse.databinding.FragmentNeedHelpBinding
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class NeedHelpFragment(private val vm: NeedHelpViewModel) : BaseMVVMFragment(R.layout.fragment_need_help) {
+class NeedHelpFragment(private val viewModel: NeedHelpViewModel) : BaseMVVMFragment(R.layout.fragment_need_help) {
 
     // TODO change items
 
     private val helpAdapter by lazy { HelpAdapter() }
+    private val binding by viewBinding(FragmentNeedHelpBinding::bind)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
 
         showBackButton { clickBack() }
+        attachBackPressCallback { clickBack() }
 
         ivSearch.setDebounceOnClickListener {
             llHeaderContainer.gone()
-            searchViewNeedHelp.animateVisibleIfNot()
-            searchViewNeedHelp.requestFocus()
-            toolbar?.title = getString(R.string.have_questions)
+            viewSearch.animateVisibleIfNot()
+            viewSearch.requestFocus()
+            toolbar.toolbar.title = getString(R.string.have_questions)
         }
-
-        attachBackPressCallback { clickBack() }
-
-        searchViewNeedHelp.setSearchListener { text ->
+        viewSearch.setSearchListener { text ->
             viewLifecycleOwner.lifecycleScope.launch {
                 helpAdapter.filter { it.title.contains(text, true).falseIfNull() || it.text.contains(text, true).falseIfNull() }
             }
         }
-        searchViewNeedHelp.onBackClick = {
+        viewSearch.onBackClick = {
             requireActivity().onBackPressed()
         }
 
         initHelpList()
     }
 
-    private fun clickBack() {
-        if (searchViewNeedHelp.isVisible) {
-            searchViewNeedHelp.gone()
+    private fun clickBack() = with(binding) {
+        if (viewSearch.isVisible) {
+            viewSearch.gone()
             llHeaderContainer.animateVisibleIfNot()
-            toolbar?.title = null
+            toolbar.toolbar.title = null
         } else {
             navController.popBackStack()
         }
     }
 
-    private fun initHelpList() {
-        rvItemsNeedHelp.adapter = helpAdapter
-        rvItemsNeedHelp.setHasFixedSize(true)
+    private fun initHelpList() = with(binding.rvItems) {
+        adapter = helpAdapter
+        setHasFixedSize(true)
 
-        helpAdapter.notifyDataSet(DummyData.help.apply { forEach { it.isExpanded = false } }) // TODO set proper list
+        helpAdapter.notifyDataSet(DummyData.help.onEach { it.isExpanded = false }) // TODO set proper list
     }
 }

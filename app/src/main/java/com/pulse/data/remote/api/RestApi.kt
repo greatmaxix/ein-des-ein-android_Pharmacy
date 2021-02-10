@@ -1,11 +1,15 @@
 package com.pulse.data.remote.api
 
 import androidx.annotation.WorkerThread
-import com.pulse.chat.model.chat.ChatItem
-import com.pulse.chat.model.message.MessageItem
 import com.pulse.components.cart.model.CartItem
+import com.pulse.components.chat.model.chat.ChatItem
+import com.pulse.components.chat.model.message.MessageItem
 import com.pulse.components.pharmacy.model.Pharmacy
+import com.pulse.components.product.model.Product
+import com.pulse.components.product.model.ProductLite
 import com.pulse.components.recipes.model.Recipe
+import com.pulse.components.user.model.avatar.Avatar
+import com.pulse.components.user.model.customer.CustomerItem
 import com.pulse.data.remote.model.chat.CreateChatRequest
 import com.pulse.data.remote.model.chat.SendMessageBody
 import com.pulse.data.remote.model.chat.SendReviewRequest
@@ -15,10 +19,6 @@ import com.pulse.model.auth.StartInfo
 import com.pulse.model.category.Category
 import com.pulse.model.order.Order
 import com.pulse.model.region.Region
-import com.pulse.product.model.Product
-import com.pulse.product.model.ProductLite
-import com.pulse.user.model.avatar.Avatar
-import com.pulse.user.model.customer.CustomerItem
 import com.pulse.util.Constants.CHAT_LIST_PAGE
 import com.pulse.util.Constants.CHAT_LIST_PAGE_SIZE
 import okhttp3.MultipartBody
