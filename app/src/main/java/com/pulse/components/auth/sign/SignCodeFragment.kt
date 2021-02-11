@@ -60,7 +60,7 @@ class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
     private fun checkSmsCode() {
         hideKeyboard()
         if (binding.viewCode.isCodeLength) {
-            viewModel.checkCode(binding.viewCode.text.toString())
+            viewModel.checkCode(binding.viewCode.text())
         } else {
             messageCallback?.showError(R.string.enterTheCode)
         }
