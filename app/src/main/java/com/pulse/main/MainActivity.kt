@@ -6,8 +6,11 @@ import android.view.WindowManager
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavDestination
 import androidx.navigation.ui.setupWithNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.MainGraphDirections.Companion.globalToChat
 import com.pulse.R
+import com.pulse.components.mercureService.MercureEventListenerService.Companion.EXTRA_CHAT_ID
+import com.pulse.components.user.model.customer.Customer
 import com.pulse.core.base.mvvm.BaseMVVMActivity
 import com.pulse.core.dsl.ObserveGeneral
 import com.pulse.core.extensions.*
@@ -17,15 +20,14 @@ import com.pulse.core.general.interfaces.MessagesCallback
 import com.pulse.core.general.interfaces.ProgressCallback
 import com.pulse.core.network.Resource
 import com.pulse.core.network.Resource.*
-import com.pulse.mercureService.MercureEventListenerService.Companion.EXTRA_CHAT_ID
+import com.pulse.databinding.ActivityMainBinding
 import com.pulse.ui.SelectableBottomNavView
-import com.pulse.user.model.customer.Customer
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_progress.*
 
 class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, MainViewModel::class), ProgressCallback, MessagesCallback {
 
-    private val progressBehavior by lazy { attachBehavior(ProgressViewBehavior(progressRoot)) }
+    private val binding by viewBinding(ActivityMainBinding::bind, R.id.container)
+
+    private val progressBehavior by lazy { attachBehavior(ProgressViewBehavior(binding.layoutProgress.root)) }
     private val messagesBehavior by lazy { attachBehavior(DialogMessagesBehavior(this)) }
 
     private val topLevelDestinations = intArrayOf(R.id.nav_home, R.id.nav_catalog, R.id.nav_search, R.id.nav_cart, R.id.nav_profile, R.id.nav_guest_profile)
@@ -63,7 +65,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
 
     private fun setBottomNavItems(customer: Customer?) {
         val avatarUrl = customer?.avatarInfo?.url.orEmpty()
-        bottomNavigation.navItems = listOf(
+        binding.bottomNavigation.navItems = listOf(
             SelectableBottomNavView.NavItem(R.id.nav_home, R.id.nav_home, R.drawable.ic_home, null),
             SelectableBottomNavView.NavItem(R.id.nav_catalog, R.id.nav_catalog, R.drawable.ic_catalog, null),
             SelectableBottomNavView.NavItem(R.id.nav_search, R.id.nav_search, R.drawable.ic_search, null, isFab = true),
@@ -121,7 +123,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
         } ?: super.onBackPressed()
     }
 
-    private fun setupNavigation() = with(bottomNavigation) {
+    private fun setupNavigation() = with(binding.bottomNavigation) {
         setTopRoundCornerBackground()
         itemIconTintList = null
         setupWithNavController(navController)

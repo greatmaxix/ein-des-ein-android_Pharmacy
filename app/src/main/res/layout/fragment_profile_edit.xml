@@ -12,8 +12,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/ivProfileEdit"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_profile"
         android:layout_width="@dimen/_72sdp"
         android:layout_height="@dimen/_72sdp"
         android:layout_marginStart="@dimen/_16sdp"
@@ -24,31 +24,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:adjustViewBounds="true"
         android:focusable="false"
         android:src="@drawable/ic_camera"
-        app:layout_constraintBottom_toBottomOf="@id/ivProfileEdit"
-        app:layout_constraintEnd_toEndOf="@id/ivProfileEdit"
-        app:layout_constraintStart_toStartOf="@id/ivProfileEdit"
-        app:layout_constraintTop_toTopOf="@id/ivProfileEdit"
+        app:layout_constraintBottom_toBottomOf="@id/iv_profile"
+        app:layout_constraintEnd_toEndOf="@id/iv_profile"
+        app:layout_constraintStart_toStartOf="@id/iv_profile"
+        app:layout_constraintTop_toTopOf="@id/iv_profile"
         app:tint="@color/colorGlobalWhite" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilNameEditProfile"
+        android:id="@+id/til_name"
         style="@style/TextInputAuthStyle"
         android:layout_marginTop="@dimen/_24sdp"
         android:layout_marginBottom="@dimen/_16sdp"
         app:hintEnabled="false"
-        app:layout_constraintBottom_toTopOf="@id/tilPhoneEditProfile"
+        app:layout_constraintBottom_toTopOf="@id/til_phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivProfileEdit">
+        app:layout_constraintTop_toBottomOf="@id/iv_profile">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNameEditProfile"
+            android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/yourName"
@@ -62,18 +62,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPhoneEditProfile"
+        android:id="@+id/til_phone"
         style="@style/TextInputAuthStyle"
         android:layout_marginTop="@dimen/_16sdp"
         app:hintAnimationEnabled="false"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilNameEditProfile"
+        app:layout_constraintTop_toBottomOf="@id/til_name"
         app:layout_constraintVertical_bias=".53">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPhoneEditProfile"
+            android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="false"
@@ -90,17 +90,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilEmailEditProfile"
+        android:id="@+id/til_email"
         style="@style/TextInputAuthStyle"
         android:layout_marginTop="@dimen/_16sdp"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilPhoneEditProfile"
+        app:layout_constraintTop_toBottomOf="@id/til_phone"
         app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmailEditProfile"
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -115,7 +115,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/saveEditProfile"
+        android:id="@+id/mb_save"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -7,18 +7,16 @@ import androidx.core.widget.doAfterTextChanged
 import com.pulse.R
 import com.pulse.core.extensions.*
 import com.pulse.data.remote.model.order.CustomerOrderData
+import com.pulse.databinding.ViewBuyerDetailsCheckoutBinding
 import com.pulse.ui.text.*
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.view_buyer_details_checkout.view.*
 
 class BuyerDetailsCheckout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr), LayoutContainer {
+) : LinearLayout(context, attrs, defStyleAttr) {
 
-    override val containerView = inflate(R.layout.view_buyer_details_checkout, true)
-
+    private val binding = ViewBuyerDetailsCheckoutBinding.inflate(inflater, this)
     private val sidePadding by lazyGetDimensionPixelSize(R.dimen._16sdp)
     private val bottomPadding by lazyGetDimensionPixelSize(R.dimen._4sdp)
 
@@ -27,31 +25,32 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
     private var email: String? = null
 
     init {
-        tilPhoneCheckout.fixPrefixGravity()
-        debug { tilPhoneCheckout.prefixText = "+3" }
-        val hint = debugIfElse({ R.string.authPhoneDebugHint }, { R.string.authPhoneHint })
-        etPhoneCheckout.setAsteriskHint(context.getString(hint), 18, 19)
-
-        tilFirstLastNameCheckout.editText?.doAfterTextChanged {
-            hideError()
-            fullName = it.toString()
-        }
-        tilPhoneCheckout.editText?.doAfterTextChanged {
-            hideError()
-            phone = tilPhoneCheckout.phoneCodePrefix + it.toString()
-        }
-        tilEmailCheckout.editText?.doAfterTextChanged {
-            hideError()
-            email = it.toString()
+        with(binding) {
+            tilPhone.fixPrefixGravity()
+            debug { tilPhone.prefixText = "+3" }
+            val hint = debugIfElse({ R.string.authPhoneDebugHint }, { R.string.authPhoneHint })
+            etPhone.setAsteriskHint(context.getString(hint), 18, 19)
+            tilFirstLastName.editText?.doAfterTextChanged {
+                hideError()
+                fullName = it.toString()
+            }
+            tilPhone.editText?.doAfterTextChanged {
+                hideError()
+                phone = tilPhone.phoneCodePrefix + it.toString()
+            }
+            tilEmail.editText?.doAfterTextChanged {
+                hideError()
+                email = it.toString()
+            }
         }
         orientation = VERTICAL
         setPadding(sidePadding, 0, sidePadding, bottomPadding)
     }
 
-    private fun hideError() {
-        tilFirstLastNameCheckout.isErrorEnabled = false
-        tilPhoneCheckout.isErrorEnabled = false
-        tilEmailCheckout.isErrorEnabled = false
+    private fun hideError() = with(binding) {
+        tilFirstLastName.isErrorEnabled = false
+        tilPhone.isErrorEnabled = false
+        tilEmail.isErrorEnabled = false
     }
 
     fun setData(fullName: String?, phone: String?, email: String?) {
@@ -61,16 +60,16 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
         updateContent()
     }
 
-    private fun updateContent() {
-        tilFirstLastNameCheckout.editText?.setText(fullName)
-        tilPhoneCheckout.editText?.setText(phone)
-        tilEmailCheckout.editText?.setText(email)
+    private fun updateContent() = with(binding) {
+        tilFirstLastName.editText?.setText(fullName)
+        tilPhone.editText?.setText(phone)
+        tilEmail.editText?.setText(email)
     }
 
-    fun isFieldsValid(): Boolean {
-        val isNameValid = tilFirstLastNameCheckout.checkLength(context.getString(R.string.nameErrorAuth))
-        val isPhoneValid = tilPhoneCheckout.isPhoneNumberValid(context.getString(R.string.phoneErrorAuth))
-        val isEmailValid = if (tilEmailCheckout.text().isNotEmpty()) tilEmailCheckout.checkEmail(context.getString(R.string.emailErrorAuth)) else true
+    fun isFieldsValid(): Boolean = with(binding) {
+        val isNameValid = tilFirstLastName.checkLength(context.getString(R.string.nameErrorAuth))
+        val isPhoneValid = tilPhone.isPhoneNumberValid(context.getString(R.string.phoneErrorAuth))
+        val isEmailValid = if (tilEmail.text().isNotEmpty()) tilEmail.checkEmail(context.getString(R.string.emailErrorAuth)) else true
         val isValid = isNameValid && isPhoneValid && isEmailValid
         if (!isValid) requestFocus()
         return isValid

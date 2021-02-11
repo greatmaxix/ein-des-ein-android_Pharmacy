@@ -11,7 +11,7 @@
         android:layoutDirection="locale" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCardNumber"
+        android:id="@+id/til_card_number"
         style="@style/TextInputStyle"
         android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_16sdp"
@@ -37,7 +37,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCardExpDate"
+        android:id="@+id/til_exp_date"
         style="@style/TextInputStyle"
         android:layout_width="0dp"
         android:layout_marginStart="@dimen/_14sdp"
@@ -47,9 +47,9 @@
         app:endIconMode="custom"
         app:endIconTint="@color/grey"
         app:hintEnabled="false"
-        app:layout_constraintEnd_toStartOf="@+id/tilCardCVV"
+        app:layout_constraintEnd_toStartOf="@+id/til_cvv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCardNumber">
+        app:layout_constraintTop_toBottomOf="@+id/til_card_number">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -68,7 +68,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCardCVV"
+        android:id="@+id/til_cvv"
         style="@style/TextInputStyle"
         android:layout_width="0dp"
         android:layout_marginStart="@dimen/_12sdp"
@@ -79,8 +79,8 @@
         app:endIconTint="@color/grey"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tilCardExpDate"
-        app:layout_constraintTop_toBottomOf="@+id/tilCardNumber">
+        app:layout_constraintStart_toEndOf="@+id/til_exp_date"
+        app:layout_constraintTop_toBottomOf="@+id/til_card_number">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -99,7 +99,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCardHolderName"
+        android:id="@+id/til_card_holder_name"
         style="@style/TextInputStyle"
         android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_16sdp"
@@ -108,7 +108,7 @@
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCardCVV">
+        app:layout_constraintTop_toBottomOf="@+id/til_cvv">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -124,7 +124,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAddCard"
+        android:id="@+id/mb_add_card"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48sdp"
         android:layout_marginStart="@dimen/_14sdp"
@@ -139,6 +139,6 @@
         app:cornerRadius="@dimen/_90sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCardHolderName" />
+        app:layout_constraintTop_toBottomOf="@+id/til_card_holder_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

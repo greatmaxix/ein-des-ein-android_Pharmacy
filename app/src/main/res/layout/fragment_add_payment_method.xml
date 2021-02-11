@@ -20,7 +20,7 @@
         android:paddingVertical="@dimen/_24sdp">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardCardAddPayment"
+            android:id="@+id/mcv_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:foreground="@drawable/background_default_ripple_selector_rect"
@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16sdp"
@@ -43,7 +43,7 @@
                     android:src="@drawable/ic_credit_card" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mtvTitleCardAddPayment"
+                    android:id="@+id/mtv_title_card"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -54,7 +54,7 @@
                     android:textAppearance="?attr/textAppearanceSubtitle2"
                     android:textColor="@color/darkBlue" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/_16sdp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_8sdp"
@@ -64,7 +64,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardOtherAddPayment"
+            android:id="@+id/mcv_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
@@ -78,8 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/ivIconOtherAddPayment"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16sdp"
@@ -89,7 +89,7 @@
                     android:src="@drawable/ic_dollar_sign" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mtvTitleOtherAddPayment"
+                    android:id="@+id/mtv_title_other"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -100,7 +100,7 @@
                     android:textAppearance="?attr/textAppearanceSubtitle2"
                     android:textColor="@color/darkBlue" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/_16sdp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_8sdp"

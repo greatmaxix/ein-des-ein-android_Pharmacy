@@ -1,8 +1,8 @@
 package com.pulse.components.cart
 
 import com.pulse.components.cart.repository.CartRepository
+import com.pulse.components.user.repository.CustomerRepository
 import com.pulse.data.GeneralException
-import com.pulse.user.repository.CustomerRepository
 
 class CartUseCase(private val cartRepository: CartRepository, private val repositoryCustomer: CustomerRepository) {
 

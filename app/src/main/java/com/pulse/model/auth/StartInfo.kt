@@ -1,7 +1,7 @@
 package com.pulse.model.auth
 
 import com.google.gson.annotations.SerializedName
-import com.pulse.user.model.customer.Customer
+import com.pulse.components.user.model.customer.Customer
 
 data class StartInfo(
     @SerializedName("item") val customer: Customer,

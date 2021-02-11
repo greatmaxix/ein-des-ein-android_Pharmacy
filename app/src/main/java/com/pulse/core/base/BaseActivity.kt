@@ -11,7 +11,7 @@ abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivit
 
     private val behaviors = mutableListOf<IBehavior>()
 
-    protected val navController by lazyNavController(R.id.navHost)
+    protected val navController by lazyNavController(R.id.nav_host)
 
     protected fun <T : IBehavior> attachBehavior(behavior: T) = behavior.also(behaviors::add)
 

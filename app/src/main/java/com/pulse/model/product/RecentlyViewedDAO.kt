@@ -2,8 +2,8 @@ package com.pulse.model.product
 
 import androidx.room.Dao
 import androidx.room.Query
+import com.pulse.components.product.model.Product
 import com.pulse.core.db.BaseDao
-import com.pulse.product.model.Product
 
 @Dao
 interface RecentlyViewedDAO: BaseDao<Product> {

@@ -4,6 +4,7 @@ import android.graphics.*
 import android.os.Bundle
 import android.view.View
 import androidx.core.graphics.drawable.toBitmap
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -17,12 +18,12 @@ import com.pulse.components.pharmacy.tabs.BaseTabFragment
 import com.pulse.core.extensions.asyncWithContext
 import com.pulse.core.extensions.getDimensionPixelSize
 import com.pulse.core.extensions.getDrawable
-import kotlinx.android.synthetic.main.fragment_pharmacy_map.*
+import com.pulse.databinding.FragmentPharmacyMapBinding
 
 class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnMapReadyCallback {
 
+    private val binding by viewBinding(FragmentPharmacyMapBinding::bind)
     private var googleMap: GoogleMap? = null
-
     private val paint by lazy {
         Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = Color.WHITE
@@ -31,10 +32,11 @@ class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnM
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
-        mvPharmacy.onCreate(savedInstanceState)
-        mvPharmacy.getMapAsync(this)
+
+        mapPharmacy.onCreate(savedInstanceState)
+        mapPharmacy.getMapAsync(this@PharmacyMapFragment)
     }
 
     override fun onBindLiveData() {
@@ -43,47 +45,47 @@ class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnM
 
     override fun onResume() {
         super.onResume()
-        mvPharmacy.onResume()
+        binding.mapPharmacy.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mvPharmacy.onPause()
+        binding.mapPharmacy.onPause()
     }
 
     override fun onStart() {
         super.onStart()
-        mvPharmacy.onStart()
+        binding.mapPharmacy.onStart()
     }
 
     override fun onStop() {
         super.onStop()
-        mvPharmacy.onStop()
+        binding.mapPharmacy.onStop()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mvPharmacy?.onDestroy()
+        binding.mapPharmacy.onDestroy()
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mvPharmacy.onLowMemory()
+        binding.mapPharmacy.onLowMemory()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        mvPharmacy?.onSaveInstanceState(outState)
+        binding.mapPharmacy.onSaveInstanceState(outState)
     }
 
     override fun onMapReady(map: GoogleMap?) {
         googleMap = map
-        observeResult(vm.pharmacyListLiveData) {
+        observeResult(viewModel.pharmacyListLiveData) {
             onEmmit = { showMarkers(this) }
         }
 
         googleMap?.setOnMarkerClickListener { marker ->
-            vm.getPharmacy(marker.tag as Int)
+            viewModel.getPharmacy(marker.tag as Int)
             true
         }
     }

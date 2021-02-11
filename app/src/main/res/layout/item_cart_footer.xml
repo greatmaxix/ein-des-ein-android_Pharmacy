@@ -17,7 +17,7 @@
         android:paddingBottom="@dimen/_18sdp">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbCheckout"
+            android:id="@+id/mb_checkout"
             android:layout_width="0dp"
             android:layout_height="@dimen/_48sdp"
             android:layout_marginStart="@dimen/_2sdp"
@@ -26,43 +26,42 @@
             android:textAppearance="?attr/textAppearanceButton"
             app:cornerRadius="@dimen/_90sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvDelivery"
+            app:layout_constraintStart_toEndOf="@+id/mtv_delivery"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTotalPrice"
+            android:id="@+id/mtv_total_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="?attr/textAppearanceButton"
-            app:layout_constraintEnd_toEndOf="@+id/tvDelivery"
+            app:layout_constraintEnd_toEndOf="@+id/mtv_delivery"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="5000 ₸" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvNumberProducts"
+            android:id="@+id/mtv_number_products"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:textAppearance="?attr/textAppearanceCaption"
             android:textColor="@color/darkBlue"
-            app:layout_constraintEnd_toEndOf="@+id/tvDelivery"
-            app:layout_constraintStart_toStartOf="@+id/tvTotalPrice"
-            app:layout_constraintTop_toBottomOf="@+id/tvTotalPrice"
+            app:layout_constraintEnd_toEndOf="@+id/mtv_delivery"
+            app:layout_constraintStart_toStartOf="@+id/mtv_total_price"
+            app:layout_constraintTop_toBottomOf="@+id/mtv_total_price"
             tools:text="2 товара (ов)" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDelivery"
+            android:id="@+id/mtv_delivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/deliveryPrice"
             android:textAppearance="?attr/textAppearanceOverline"
             android:textColor="@color/purple"
-            app:layout_constraintStart_toStartOf="@+id/tvTotalPrice"
-            app:layout_constraintTop_toBottomOf="@+id/tvNumberProducts" />
+            app:layout_constraintStart_toStartOf="@+id/mtv_total_price"
+            app:layout_constraintTop_toBottomOf="@+id/mtv_number_products" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </com.google.android.material.card.MaterialCardView>

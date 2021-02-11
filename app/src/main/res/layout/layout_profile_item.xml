@@ -7,13 +7,13 @@
     tools:parentTag="com.google.android.material.card.MaterialCardView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profileItemContainer"
+        android:id="@+id/cl_profile_item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/ivIconProfileItem"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_icon"
             android:layout_width="@dimen/_28sdp"
             android:layout_height="@dimen/_28sdp"
             android:layout_marginStart="@dimen/_8sdp"
@@ -25,14 +25,14 @@
             android:backgroundTint="@color/profileIconBackground"
             android:padding="@dimen/_6sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/mtvTitleProfileItem"
+            app:layout_constraintEnd_toStartOf="@id/mtv_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/darkBlue"
             tools:src="@drawable/ic_logout" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvTitleProfileItem"
+            android:id="@+id/mtv_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_8sdp"
@@ -41,12 +41,12 @@
             android:textAppearance="?attr/textAppearanceSubtitle2"
             android:textColor="@color/darkBlue"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivIconProfileItem"
+            app:layout_constraintStart_toEndOf="@id/iv_icon"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Выйти из аккаунта" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvDetailProfileItem"
+            android:id="@+id/mtv_detail"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_16sdp"
@@ -59,13 +59,13 @@
             android:textColor="@color/primaryBlue"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ivArrowProfileItem"
+            app:layout_constraintEnd_toStartOf="@id/iv_arrow"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Нур-Султан (Астана)"
             tools:visibility="visible" />
 
-        <ImageView
-            android:id="@+id/ivArrowProfileItem"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_arrow"
             android:layout_width="@dimen/_16sdp"
             android:layout_height="@dimen/_16sdp"
             android:layout_gravity="end|center"

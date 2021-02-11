@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Активен до 23.07.2020" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_product"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
@@ -79,7 +79,7 @@
             tools:text="QTY: 4" />
 
         <View
-            android:id="@+id/v_divider"
+            android:id="@+id/view_divider"
             android:layout_width="0dp"
             android:layout_height="0.5dp"
             android:layout_marginStart="@dimen/_12sdp"
@@ -90,7 +90,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mtv_qty" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_doctor"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
@@ -99,7 +99,7 @@
             android:src="@drawable/ic_placeholder_drugstore"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/mtv_qty"
-            app:layout_constraintTop_toBottomOf="@+id/v_divider" />
+            app:layout_constraintTop_toBottomOf="@+id/view_divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/mtv_doctor_label"
@@ -120,7 +120,7 @@
             app:layout_constraintStart_toStartOf="@+id/mtv_doctor_label"
             tools:text="Иванчук О. А" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_recipe_download"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
@@ -131,5 +131,4 @@
             app:layout_constraintEnd_toEndOf="@+id/mtv_description" />
 
     </com.pulse.ui.layout.GrayscaleLayout>
-
 </com.google.android.material.card.MaterialCardView>

@@ -24,8 +24,8 @@
             android:layout_height="wrap_content"
             android:background="@color/colorGreyLight">
 
-            <ImageView
-                android:id="@+id/ivProfileGuest"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_profile"
                 android:layout_width="@dimen/_56sdp"
                 android:layout_height="@dimen/_56sdp"
                 android:layout_marginStart="@dimen/_16sdp"
@@ -37,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mtvNameProfile"
+                android:id="@+id/mtv_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -46,13 +46,13 @@
                 android:textColor="@color/darkBlue"
                 android:textSize="@dimen/_9ssp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/ivProfileGuest"
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivProfileGuest"
-                app:layout_constraintTop_toTopOf="@id/ivProfileGuest" />
+                app:layout_constraintStart_toEndOf="@id/iv_profile"
+                app:layout_constraintTop_toTopOf="@id/iv_profile" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAuthorizeProfileGuest"
+                android:id="@+id/mb_authorize"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
@@ -65,7 +65,7 @@
                 app:cornerRadius="@dimen/_24sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mtvNameProfile"
+                app:layout_constraintTop_toBottomOf="@id/mtv_name"
                 app:rippleColor="@color/colorRippleWhiteSemiTransparent" />
 
             <LinearLayout
@@ -76,11 +76,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnAuthorizeProfileGuest"
+                app:layout_constraintTop_toBottomOf="@id/mb_authorize"
                 app:layout_constraintVertical_bias="0">
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemRegionProfile"
+                    android:id="@+id/item_region"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_12sdp"
@@ -90,7 +90,7 @@
                     app:titleProfile="@string/myRegionTitle" />
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemNotificationProfile"
+                    android:id="@+id/item_notification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_12sdp"
@@ -99,7 +99,7 @@
                     app:titleProfile="@string/notificationsTitle" />
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemAboutProfile"
+                    android:id="@+id/item_about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_12sdp"
@@ -109,7 +109,7 @@
                     app:titleProfile="@string/aboutAppTitle" />
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/itemHelpProfile"
+                    android:id="@+id/item_help"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_12sdp"

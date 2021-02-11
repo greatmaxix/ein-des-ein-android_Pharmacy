@@ -18,7 +18,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.pulse.R
-import com.pulse.chat.model.message.MessageProduct
+import com.pulse.components.chat.model.message.MessageProduct
 import com.pulse.model.Picture
 import com.pulse.util.ColorFilterUtil
 

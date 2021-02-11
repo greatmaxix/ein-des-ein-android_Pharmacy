@@ -5,17 +5,15 @@ import android.util.AttributeSet
 import com.google.android.material.card.MaterialCardView
 import com.pulse.R
 import com.pulse.core.extensions.*
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.view_pharmacy_address_order.view.*
+import com.pulse.databinding.ViewPharmacyAddressOrderBinding
 
 class PharmacyAddressOrder @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : MaterialCardView(context, attrs, defStyleAttr), LayoutContainer {
+) : MaterialCardView(context, attrs, defStyleAttr) {
 
-    override val containerView = inflate(R.layout.view_pharmacy_address_order, true)
-
+    private val binding = ViewPharmacyAddressOrderBinding.inflate(inflater, this, true)
     private val contentPadding by lazy { resources.getDimension(R.dimen._16sdp).toInt() }
 
     var pharmacy: PharmacyInfo? = null
@@ -34,14 +32,13 @@ class PharmacyAddressOrder @JvmOverloads constructor(
     }
 
     private fun updatePharmacy(info: PharmacyInfo) = with(info) {
-        ivPharmacyLogoCheckout.loadGlideDrugstore(logo)
-        tvPharmacyNameCheckout.text = name
-        tvPharmacyAddressOrder.text = context.getString(R.string.cityStreetHolder, info.address)
-        tvPharmacyPhoneOrder.text = context.getString(R.string.phoneHolder, info.phone)
+        binding.ivPharmacyLogo.loadGlideDrugstore(logo)
+        binding.mtvPharmacyName.text = name
+        binding.mtvPharmacyAddress.text = context.getString(R.string.cityStreetHolder, info.address)
+        binding.mtvPharmacyPhone.text = context.getString(R.string.phoneHolder, info.phone)
     }
 
-    fun makeDial(makeDial :(String) -> Unit) = tvPharmacyPhoneOrder.setDebounceOnClickListener { makeDial(tvPharmacyPhoneOrder.text().substring(3)) }
+    fun makeDial(makeDial: (String) -> Unit) = binding.mtvPharmacyPhone.setDebounceOnClickListener { makeDial(binding.mtvPharmacyPhone.text().substring(3)) }
 
     data class PharmacyInfo(val logo: String, val name: String, val address: String, val phone: String)
-
 }

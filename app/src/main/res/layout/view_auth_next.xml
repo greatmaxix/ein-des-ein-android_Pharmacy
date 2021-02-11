@@ -7,7 +7,7 @@
     tools:parentTag="android.widget.LinearLayout">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvText"
+        android:id="@+id/mtv_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -16,7 +16,7 @@
         android:textColor="@color/darkBlue"
         tools:text="@string/signIn" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="@dimen/_42sdp"
         android:layout_height="@dimen/_42sdp"
         android:background="@drawable/oval"

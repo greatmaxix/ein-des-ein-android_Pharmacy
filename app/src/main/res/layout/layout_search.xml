@@ -7,20 +7,20 @@
     android:background="@android:color/white">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvHint"
+        android:id="@+id/mtv_hint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_38sdp"
         android:gravity="center|start"
         android:textAppearance="?attr/textAppearanceBody1"
-        app:layout_constraintBottom_toBottomOf="@+id/ivBack"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivBack"
-        app:layout_constraintTop_toTopOf="@+id/ivBack" />
+        app:layout_constraintStart_toEndOf="@id/iv_back"
+        app:layout_constraintTop_toTopOf="@+id/iv_back" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etSearch"
+        android:id="@+id/et_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@null"
@@ -36,11 +36,11 @@
         android:theme="@style/AuthSearchView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivBack"
+        app:layout_constraintStart_toEndOf="@id/iv_back"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivBack"
+        android:id="@+id/iv_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivClose"
+        android:id="@+id/iv_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_6sdp"

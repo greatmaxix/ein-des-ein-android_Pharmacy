@@ -8,52 +8,52 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.card.MaterialCardView
 import com.pulse.R
 import com.pulse.core.extensions.*
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.layout_profile_item.view.*
+import com.pulse.databinding.LayoutProfileItemBinding
 
 class ProfileItemView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : MaterialCardView(context, attrs, defStyleAttr), LayoutContainer {
+) : MaterialCardView(context, attrs, defStyleAttr) {
+
+    private val binding = LayoutProfileItemBinding.inflate(inflater, this)
 
     var icon: Int = -1
         set(value) {
             field = value
-            if (value != -1) ivIconProfileItem.setImageResource(icon)
-            else ivIconProfileItem.setImageDrawable(null)
+            if (value != -1) binding.ivIcon.setImageResource(icon)
+            else binding.ivIcon.setImageDrawable(null)
         }
     var title: String = ""
         set(value) {
             field = value
-            mtvTitleProfileItem.text = value
+            binding.mtvTitle.text = value
         }
     var arrowVisibility: Boolean = true
         set(value) {
             field = value
-            ivArrowProfileItem.visibleOrGone(value)
+            binding.ivArrow.visibleOrGone(value)
         }
     var mainColor: Int = -1
         set(value) {
             field = value
-            ivIconProfileItem.setColorFilter(ContextCompat.getColor(context, value), PorterDuff.Mode.SRC_IN)
-            mtvTitleProfileItem.setTextColorRes(value)
+            binding.ivIcon.setColorFilter(ContextCompat.getColor(context, value), PorterDuff.Mode.SRC_IN)
+            binding.mtvTitle.setTextColorRes(value)
         }
     var secondaryColor: Int = -1
         set(value) {
             field = value
-            ivIconProfileItem.backgroundTintList = ContextCompat.getColorStateList(context, value)
+            binding.ivIcon.backgroundTintList = ContextCompat.getColorStateList(context, value)
         }
     val selectColor: Int = R.color.primaryBlue
     var detailText: String = ""
         set(value) {
             field = value
             if (value.isNotEmpty()) {
-                mtvDetailProfileItem.text = value
-                mtvDetailProfileItem.visible()
-            } else mtvDetailProfileItem.gone()
+                binding.mtvDetail.text = value
+                binding.mtvDetail.visible()
+            } else binding.mtvDetail.gone()
         }
-    override val containerView = inflate(R.layout.layout_profile_item, true)
 
     init {
         setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorGlobalWhite))
@@ -74,14 +74,16 @@ class ProfileItemView @JvmOverloads constructor(
         }
     }
 
-    fun setOnClick(f: View.() -> Unit) = profileItemContainer.setDebounceOnClickListener(listener = f)
+    fun setOnClick(f: View.() -> Unit) = binding.clProfileItemContainer.setDebounceOnClickListener(listener = f)
 
     override fun setSelected(selected: Boolean) {
         super.setSelected(selected)
 
-        ivArrowProfileItem.rotation = if (selected) -90f else 0f
-        ivArrowProfileItem.setColorFilter(getColor(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
-        ivIconProfileItem.setColorFilter(getColor(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
-        mtvTitleProfileItem.setTextColorRes(if (selected) selectColor else mainColor)
+        with(binding) {
+            binding.ivArrow.rotation = if (selected) -90f else 0f
+            binding.ivArrow.setColorFilter(getColor(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
+            binding.ivIcon.setColorFilter(getColor(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
+            binding.mtvTitle.setTextColorRes(if (selected) selectColor else mainColor)
+        }
     }
 }

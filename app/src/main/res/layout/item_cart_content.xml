@@ -10,8 +10,8 @@
     android:paddingEnd="@dimen/_8sdp"
     android:paddingBottom="@dimen/_4sdp">
 
-    <ImageView
-        android:id="@+id/ivProduct"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_product"
         android:layout_width="@dimen/_110sdp"
         android:layout_height="@dimen/_110sdp"
         android:layout_marginBottom="@dimen/_8sdp"
@@ -20,8 +20,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/ivRemove"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_remove"
         android:layout_width="@dimen/_28sdp"
         android:layout_height="@dimen/_28sdp"
         android:adjustViewBounds="true"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/mtv_title"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_8sdp"
@@ -44,14 +44,14 @@
         android:maxLines="1"
         android:textAppearance="?attr/textAppearanceButton"
         android:textColor="@color/darkBlue"
-        app:layout_constraintBottom_toBottomOf="@+id/ivRemove"
-        app:layout_constraintEnd_toStartOf="@+id/ivRemove"
-        app:layout_constraintStart_toEndOf="@+id/ivProduct"
-        app:layout_constraintTop_toTopOf="@+id/ivRemove"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_remove"
+        app:layout_constraintEnd_toStartOf="@+id/iv_remove"
+        app:layout_constraintStart_toEndOf="@+id/iv_product"
+        app:layout_constraintTop_toTopOf="@+id/iv_remove"
         tools:text="Название товара..." />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvSubTitle"
+        android:id="@+id/mtv_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_12sdp"
@@ -60,12 +60,12 @@
         android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/darkBlue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintStart_toStartOf="@+id/mtv_title"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_title"
         tools:text="Таблетки шипучие, 20 мг" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvManufacture"
+        android:id="@+id/mtv_manufacture"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
@@ -73,15 +73,15 @@
         android:maxLines="2"
         android:textAppearance="?attr/textAppearanceCaption"
         android:textColor="@color/darkBlue"
-        app:layout_constraintBottom_toTopOf="@+id/tvProductPrice"
-        app:layout_constraintEnd_toEndOf="@+id/ivRemove"
-        app:layout_constraintStart_toStartOf="@+id/tvTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvSubTitle"
+        app:layout_constraintBottom_toTopOf="@+id/mtv_product_price"
+        app:layout_constraintEnd_toEndOf="@+id/iv_remove"
+        app:layout_constraintStart_toStartOf="@+id/mtv_title"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_subtitle"
         app:layout_constraintVertical_bias="0.0"
         tools:text="Производитель, Россия" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvPriceUnavailable"
+        android:id="@+id/mtv_price_unavailable"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_4sdp"
@@ -89,11 +89,11 @@
         android:textAppearance="?attr/textAppearanceCaption"
         android:textColor="@color/greyText"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/ivProduct"
-        app:layout_constraintStart_toStartOf="@+id/tvTitle" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_product"
+        app:layout_constraintStart_toStartOf="@+id/mtv_title" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvProductPrice"
+        android:id="@+id/mtv_product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
@@ -101,27 +101,27 @@
         android:maxLines="1"
         android:textAppearance="?attr/textAppearanceSubtitle1"
         android:textColor="@color/primaryBlue"
-        app:layout_constraintBottom_toBottomOf="@+id/ivProduct"
-        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_product"
+        app:layout_constraintStart_toEndOf="@+id/iv_product"
         tools:text="500000 Р" />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/mbtgContainer"
+        android:id="@+id/mb_toggle_container"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_30sdp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvProductPrice"
+        app:layout_constraintBottom_toBottomOf="@+id/mtv_product_price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvProductPrice">
+        app:layout_constraintTop_toTopOf="@+id/mtv_product_price">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbMinus"
+            android:id="@+id/mb_minus"
             style="@style/ToggleButtonCart"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="match_parent"
             app:icon="@drawable/ic_cart_minus" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbCounter"
+            android:id="@+id/mb_counter"
             style="@style/ToggleButtonCart"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="match_parent"
@@ -132,7 +132,7 @@
             tools:text="1" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbPlus"
+            android:id="@+id/mb_plus"
             style="@style/ToggleButtonCart"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="match_parent"
@@ -141,7 +141,7 @@
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <View
-        android:id="@+id/cartDivider"
+        android:id="@+id/view_divider"
         android:layout_width="0dp"
         android:layout_height="0.5dp"
         android:layout_marginTop="@dimen/_16sdp"
@@ -149,7 +149,7 @@
         android:background="@color/lightGrey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivProduct"
-        app:layout_constraintTop_toBottomOf="@+id/mbtgContainer" />
+        app:layout_constraintStart_toEndOf="@+id/iv_product"
+        app:layout_constraintTop_toBottomOf="@+id/mb_toggle_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

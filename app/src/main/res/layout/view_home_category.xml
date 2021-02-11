@@ -20,8 +20,8 @@
             app:cardUseCompatPadding="true"
             app:rippleColor="@color/colorRippleBlue">
 
-            <ImageView
-                android:id="@+id/ivCategoryHome"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_category"
                 android:layout_width="@dimen/_74sdp"
                 android:layout_height="@dimen/_74sdp"
                 android:layout_gravity="center"
@@ -35,7 +35,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvCategoryHome"
+            android:id="@+id/mtv_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"

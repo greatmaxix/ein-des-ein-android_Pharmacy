@@ -22,7 +22,7 @@
             android:background="@drawable/shape_common_bottom_sheet" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvChatReviewTitle"
+            android:id="@+id/mtv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
@@ -31,7 +31,7 @@
             android:textAppearance="?attr/textAppearanceButton" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvChatReviewDescription"
+            android:id="@+id/mtv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
@@ -41,7 +41,7 @@
             android:textColor="@color/darkBlue" />
 
         <com.pulse.ui.RatingBarSvg
-            android:id="@+id/ratingChatReview"
+            android:id="@+id/view_rating"
             style="@style/CustomRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:stepSize="1" />
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroupReviewReason"
+            android:id="@+id/cg_tags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
@@ -58,7 +58,7 @@
             tools:visibility="visible" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilChatReview"
+            android:id="@+id/til_review"
             style="@style/TextInputStyle"
             android:layout_marginTop="@dimen/_40sdp"
             android:visibility="gone"
@@ -81,7 +81,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnContinueReview"
+            android:id="@+id/mb_continue"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_48sdp"
             android:layout_marginTop="@dimen/_27sdp"
@@ -94,7 +94,7 @@
             app:cornerRadius="@dimen/_90sdp" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvSkipChatReview"
+            android:id="@+id/mtv_skip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_24sdp"

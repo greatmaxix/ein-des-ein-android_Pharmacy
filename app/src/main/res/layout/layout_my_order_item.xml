@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvOrderState"
+            android:id="@+id/mtv_order_state"
             android:layout_width="@dimen/_96sdp"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/_28sdp"
@@ -32,7 +32,7 @@
             tools:text="В обработке" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/deliveryTypeContainer"
+            android:id="@+id/mcv_delivery_type_container"
             style="@style/OrdersDeliveryCardView"
             android:layout_width="@dimen/_112sdp"
             android:layout_height="@dimen/_32sdp"
@@ -50,7 +50,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/deliveryTypeOrders"
+                    android:id="@+id/mtv_delivery_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_6sdp"
@@ -58,8 +58,8 @@
                     android:textColor="@color/darkBlue"
                     tools:text="Самовывоз" />
 
-                <ImageView
-                    android:id="@+id/ivDeliveryTypeOrders"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_delivery_type"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
@@ -71,18 +71,18 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/idOrders"
+            android:id="@+id/mtv_order_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             android:textColor="@color/darkBlue"
-            app:layout_constraintStart_toStartOf="@id/tvOrderState"
-            app:layout_constraintTop_toBottomOf="@id/tvOrderState"
+            app:layout_constraintStart_toStartOf="@id/mtv_order_state"
+            app:layout_constraintTop_toBottomOf="@id/mtv_order_state"
             tools:text="№ 12583" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/addressOrders"
+            android:id="@+id/mtv_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
@@ -93,22 +93,22 @@
             android:textColor="@color/darkBlue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="@id/idOrders"
-            app:layout_constraintTop_toBottomOf="@id/idOrders"
+            app:layout_constraintStart_toStartOf="@id/mtv_order_number"
+            app:layout_constraintTop_toBottomOf="@id/mtv_order_number"
             tools:text="🏠 ул. Горная 23а, Харьков 🚪дом 4г • кв. 56" />
 
         <View
-            android:id="@+id/ordersSeparator"
+            android:id="@+id/view_divider"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="@dimen/_8sdp"
             android:background="@color/grey20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addressOrders" />
+            app:layout_constraintTop_toBottomOf="@id/mtv_address" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvProductCount"
+            android:id="@+id/mtv_product_count"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_48sdp"
             android:layout_marginStart="@dimen/_16sdp"
@@ -116,14 +116,14 @@
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="@color/darkBlue"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/priceOrders"
+            app:layout_constraintEnd_toStartOf="@id/mtv_price"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ordersSeparator"
+            app:layout_constraintTop_toBottomOf="@id/view_divider"
             tools:text="5 товаров" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/priceOrders"
+            android:id="@+id/mtv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_16sdp"
@@ -131,7 +131,7 @@
             android:textColor="@color/primaryBlue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ordersSeparator"
+            app:layout_constraintTop_toBottomOf="@id/view_divider"
             tools:text="6568 ₸" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

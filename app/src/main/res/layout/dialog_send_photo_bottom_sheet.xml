@@ -9,7 +9,7 @@
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/send_photo_bottom_sheet_gallery"
+        android:id="@+id/mtv_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_28sdp"
@@ -19,7 +19,7 @@
         android:textAppearance="?attr/textAppearanceCaption" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/send_photo_bottom_sheet_camera"
+        android:id="@+id/mtv_camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_28sdp"

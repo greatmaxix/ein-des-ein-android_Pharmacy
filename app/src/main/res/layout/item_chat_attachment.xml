@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:paddingVertical="@dimen/_4sdp">
 
-    <ImageView
-        android:id="@+id/ivAttachment"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_attachment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_24sdp"

@@ -8,8 +8,8 @@
     android:orientation="vertical"
     tools:parentTag="android.widget.LinearLayout">
 
-    <ImageView
-        android:id="@+id/ivPicture"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -17,7 +17,7 @@
         tools:src="@drawable/ic_placeholder_recipes" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/titleEmptyContainer"
+        android:id="@+id/mtv_empty_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -30,7 +30,7 @@
         tools:text="@string/noGoodsFoundTitle" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/subtitleEmptyContainer"
+        android:id="@+id/mtv_empty_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -43,9 +43,9 @@
         tools:text="@string/noGoodsFoundSubtitle" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/actionEmptyContainer"
+        android:id="@+id/mb_select"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_42sdp"
         android:layout_margin="@dimen/_12sdp"
         android:backgroundTint="@color/primaryBlue"
         android:gravity="center"

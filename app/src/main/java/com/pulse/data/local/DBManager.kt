@@ -2,13 +2,17 @@ package com.pulse.data.local
 
 import android.content.Context
 import androidx.room.*
-import com.pulse.categories.model.CategoryDAO
-import com.pulse.chat.model.chat.ChatItem
-import com.pulse.chat.model.chat.ChatItemDAO
-import com.pulse.chat.model.message.MessageDAO
-import com.pulse.chat.model.message.MessageItem
-import com.pulse.chat.model.remoteKeys.RemoteKeys
-import com.pulse.chat.model.remoteKeys.RemoteKeysDAO
+import com.pulse.components.categories.model.CategoryDAO
+import com.pulse.components.chat.model.chat.ChatItem
+import com.pulse.components.chat.model.chat.ChatItemDAO
+import com.pulse.components.chat.model.message.MessageDAO
+import com.pulse.components.chat.model.message.MessageItem
+import com.pulse.components.chat.model.remoteKeys.RemoteKeys
+import com.pulse.components.chat.model.remoteKeys.RemoteKeysDAO
+import com.pulse.components.product.model.Product
+import com.pulse.components.user.model.addressAndNote.AddressDAO
+import com.pulse.components.user.model.customer.Customer
+import com.pulse.components.user.model.customer.CustomerDAO
 import com.pulse.core.general.interfaces.ManagerInterface
 import com.pulse.data.remote.model.order.DeliveryInfoOrderData
 import com.pulse.model.Picture
@@ -16,10 +20,6 @@ import com.pulse.model.category.Category
 import com.pulse.model.product.RecentlyViewedDAO
 import com.pulse.model.region.LocalRegion
 import com.pulse.model.region.RegionDAO
-import com.pulse.product.model.Product
-import com.pulse.user.model.addressAndNote.AddressDAO
-import com.pulse.user.model.customer.Customer
-import com.pulse.user.model.customer.CustomerDAO
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneOffset

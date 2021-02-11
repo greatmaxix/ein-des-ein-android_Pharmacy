@@ -5,41 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/ivPharmacyLogoCheckout"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_pharmacy_logo"
         android:layout_width="@dimen/_48sdp"
         android:layout_height="@dimen/_48sdp"
         android:adjustViewBounds="true"
         android:padding="@dimen/_4sdp"
-        app:layout_constraintBottom_toTopOf="@id/tvPharmacyPhoneOrder"
+        app:layout_constraintBottom_toTopOf="@id/mtv_pharmacy_phone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_placeholder_drugstore" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvPharmacyNameCheckout"
+        android:id="@+id/mtv_pharmacy_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?attr/textAppearanceButton"
         android:textColor="@color/darkBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/ivPharmacyLogoCheckout"
+        app:layout_constraintStart_toEndOf="@+id/iv_pharmacy_logo"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Some User Name" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvPharmacyAddressOrder"
+        android:id="@+id/mtv_pharmacy_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="?attr/textAppearanceBody2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivPharmacyLogoCheckout"
-        app:layout_constraintTop_toBottomOf="@+id/tvPharmacyNameCheckout"
+        app:layout_constraintStart_toEndOf="@+id/iv_pharmacy_logo"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_pharmacy_name"
         tools:text="Some User Name" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvPharmacyPhoneOrder"
+        android:id="@+id/mtv_pharmacy_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPharmacyAddressOrder"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_pharmacy_address"
         tools:text="Some User Name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

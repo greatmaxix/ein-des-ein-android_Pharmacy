@@ -5,6 +5,7 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pulse.R
 import com.pulse.components.auth.sign.SignInFragmentArgs
@@ -12,7 +13,7 @@ import com.pulse.core.base.fragment.dialog.AlertDialogFragment
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.onNavDestinationSelected
 import com.pulse.core.extensions.showAlert
-import kotlinx.android.synthetic.main.fragment_pharmacy.*
+import com.pulse.databinding.FragmentPharmacyBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.parameter.parametersOf
@@ -21,32 +22,32 @@ import org.koin.core.parameter.parametersOf
 class PharmacyFragment : BaseMVVMFragment(R.layout.fragment_pharmacy) {
 
     private val args: PharmacyFragmentArgs by navArgs()
-
-    private val vm: PharmacyViewModel by viewModel { parametersOf(args.productId) }
-
+    private val binding by viewBinding(FragmentPharmacyBinding::bind)
+    private val viewModel: PharmacyViewModel by viewModel { parametersOf(args.productId) }
     private val tabTitles = intArrayOf(R.string.pharmacyListTitle, R.string.pharmacyMapTitle)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         showBackButton()
         initPager()
     }
 
-    private fun initPager() {
+    private fun initPager() = with(binding) {
         vpPharmacy.isUserInputEnabled = false
-        TabLayoutMediator(tlPharmacy, vpPharmacy.apply {
+        TabLayoutMediator(tabsPharmacy, vpPharmacy.apply {
             adapter = PharmacyPagerAdapter(this@PharmacyFragment)
             offscreenPageLimit = tabTitles.size
         }) { tab, position -> tab.text = getString(tabTitles[position]) }.attach()
     }
 
     override fun onBindLiveData() {
-        observeResult(vm.addProductLiveData) {
+        observeResult(viewModel.addProductLiveData) {
             onEmmit = { notifyCardAdded() }
             onError = { errorOrAuth(it.resId) }
         }
 
-        observe(vm.pharmacyLiveData) { pharmacy ->
+        observe(viewModel.pharmacyLiveData) { pharmacy ->
             pharmacy?.let { navController.navigate(PharmacyFragmentDirections.fromPharmacyToProductInfo(it)) }
         }
     }

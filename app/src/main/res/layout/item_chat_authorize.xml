@@ -7,7 +7,7 @@
     android:paddingVertical="@dimen/_72sdp">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAuthorize"
+        android:id="@+id/mb_authorize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

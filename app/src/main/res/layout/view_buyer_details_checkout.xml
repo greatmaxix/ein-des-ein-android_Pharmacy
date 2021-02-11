@@ -8,14 +8,14 @@
     tools:parentTag="android.widget.LinearLayout">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvBuyerDetailsTitleCheckout"
+        android:id="@+id/mtv_buyer_details_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/buyerDetails"
         android:textAppearance="?attr/textAppearanceButton" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilFirstLastNameCheckout"
+        android:id="@+id/til_first_last_name"
         style="@style/TextInputStyle"
         android:layout_marginTop="@dimen/_16sdp"
         android:imeOptions="actionNext"
@@ -36,7 +36,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPhoneCheckout"
+        android:id="@+id/til_phone"
         style="@style/TextInputStyle"
         android:layout_marginTop="@dimen/_16sdp"
         android:imeOptions="actionNext"
@@ -47,7 +47,7 @@
         app:prefixTextAppearance="?attr/textAppearanceBody2">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPhoneCheckout"
+            android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:digits="0123456789+"
@@ -62,7 +62,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilEmailCheckout"
+        android:id="@+id/til_email"
         style="@style/TextInputStyle"
         android:layout_marginTop="@dimen/_16sdp"
         android:imeOptions="actionNext"
@@ -82,5 +82,4 @@
             android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 </merge>

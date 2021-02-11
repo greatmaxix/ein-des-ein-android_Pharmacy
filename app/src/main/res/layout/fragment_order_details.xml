@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/toolbarContainerOrderDetails"
+        android:id="@+id/ll_toolbar_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_toolbar"
@@ -22,12 +22,12 @@
             android:layoutDirection="locale" />
 
         <com.pulse.ui.OrderSteps
-            android:id="@+id/orderDetailsSteps"
+            android:id="@+id/view_order_steps"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_95sdp" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/statusTitleOrderDetails"
+            android:id="@+id/mtv_status_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_23sdp"
@@ -39,7 +39,7 @@
             tools:visibility="visible" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/statusDescriptionOrderDetails"
+            android:id="@+id/mtv_status_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
@@ -66,12 +66,12 @@
             android:paddingBottom="@dimen/_24sdp">
 
             <com.pulse.ui.BuyerDetailsOrder
-                android:id="@+id/viewBuyerInfoOrderDetails"
+                android:id="@+id/view_buyer_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvBuyerDetailsTitleOrder"
+                android:id="@+id/mtv_buyer_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
@@ -83,7 +83,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.pulse.ui.PharmacyAddressOrder
-                android:id="@+id/pharmacyAddressOrder"
+                android:id="@+id/view_pharmacy_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
@@ -91,7 +91,7 @@
                 android:layout_marginEnd="@dimen/_16sdp" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvNoteOrderDetails"
+                android:id="@+id/mcv_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
@@ -102,11 +102,11 @@
                 app:cardBackgroundColor="@color/primaryBlueLight20"
                 app:cardCornerRadius="@dimen/_8sdp"
                 app:contentPadding="@dimen/_16sdp"
-                app:layout_constraintTop_toBottomOf="@+id/mcvInstruction"
+                app:layout_constraintTop_toBottomOf="@+id/mcv_instruction"
                 app:strokeWidth="@dimen/_1sdp">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvNoteOrderDetails"
+                    android:id="@+id/mtv_note"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceCaption"
@@ -116,7 +116,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.pulse.ui.BuyerDeliveryAddressOrder
-                android:id="@+id/viewBuyerDeliveryAddressOrderDetails"
+                android:id="@+id/view_buyer_delivery_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_24sdp"
@@ -144,7 +144,7 @@
                 app:contentPadding="@dimen/_8sdp">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvPaymentTypeOrderDetails"
+                    android:id="@+id/mtv_payment_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_8sdp"
@@ -165,7 +165,7 @@
                 android:textAppearance="?attr/textAppearanceButton" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvProductsOrderDetails"
+                android:id="@+id/rv_products"
                 style="@style/ScrollStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
                     android:textColor="@color/darkBlue" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvTotalPayableOrderDetails"
+                    android:id="@+id/mtv_total_payable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceHeadline5"
@@ -201,7 +201,7 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCancelOrder"
+                android:id="@+id/mb_cancel"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_48sdp"

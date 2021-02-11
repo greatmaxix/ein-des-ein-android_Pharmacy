@@ -9,10 +9,10 @@ import com.pulse.components.auth.model.AuthResult
 import com.pulse.components.auth.repository.AuthRepository
 import com.pulse.components.auth.sign.SignInFragmentDirections.Companion.actionFromSignInToCode
 import com.pulse.components.auth.sign.SignUpFragmentDirections.Companion.actionFromSignUpToCode
+import com.pulse.components.splash.SplashFragmentDirections.Companion.globalToHome
 import com.pulse.core.base.mvvm.BaseViewModel
 import com.pulse.core.extensions.formatPhone
 import com.pulse.core.general.Event
-import com.pulse.splash.SplashFragmentDirections.Companion.globalToHome
 
 class AuthViewModel(private val repository: AuthRepository, private val workManager: WorkManager) : BaseViewModel() {
 

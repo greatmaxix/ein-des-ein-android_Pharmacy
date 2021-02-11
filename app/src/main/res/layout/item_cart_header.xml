@@ -15,8 +15,8 @@
     android:paddingEnd="@dimen/_8sdp"
     android:paddingBottom="@dimen/_8sdp">
 
-    <ImageView
-        android:id="@+id/ivLogo"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_logo"
         android:layout_width="@dimen/_48sdp"
         android:layout_height="@dimen/_48sdp"
         android:adjustViewBounds="true"
@@ -25,8 +25,8 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_placeholder_drugstore" />
 
-    <ImageView
-        android:id="@+id/ivArrow"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_arrow"
         android:layout_width="@dimen/_28sdp"
         android:layout_height="@dimen/_28sdp"
         android:adjustViewBounds="true"
@@ -34,13 +34,13 @@
         android:rotation="90"
         android:scaleType="centerInside"
         android:src="@drawable/ic_arrow_right"
-        app:layout_constraintBottom_toBottomOf="@+id/ivLogo"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivLogo"
+        app:layout_constraintTop_toTopOf="@+id/iv_logo"
         app:tint="@color/grey" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/mtv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
@@ -51,16 +51,16 @@
         android:maxLines="1"
         android:textAppearance="?attr/textAppearanceButton"
         android:textColor="@color/darkBlue"
-        app:layout_constraintBottom_toTopOf="@id/tvSubTitle"
-        app:layout_constraintEnd_toStartOf="@+id/ivArrow"
-        app:layout_constraintStart_toEndOf="@+id/ivLogo"
-        app:layout_constraintTop_toTopOf="@+id/ivLogo"
+        app:layout_constraintBottom_toTopOf="@id/mtv_subtitle"
+        app:layout_constraintEnd_toStartOf="@+id/iv_arrow"
+        app:layout_constraintStart_toEndOf="@+id/iv_logo"
+        app:layout_constraintTop_toTopOf="@+id/iv_logo"
         app:layout_constraintVertical_bias=".2"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Название товара..." />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvSubTitle"
+        android:id="@+id/mtv_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_4sdp"
@@ -69,9 +69,9 @@
         android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/darkBlue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
-        app:layout_constraintStart_toStartOf="@+id/tvTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintEnd_toEndOf="@+id/mtv_title"
+        app:layout_constraintStart_toStartOf="@+id/mtv_title"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_title"
         tools:text="Таблетки шипучие, 20 мг Таблетки" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,7 @@
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/change_photo_bottom_sheet_gallery"
+        android:id="@+id/mtv_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_28sdp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/change_photo_bottom_sheet_camera"
+        android:id="@+id/mtv_camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_28sdp"
@@ -29,10 +29,10 @@
         android:padding="@dimen/_12sdp"
         android:text="@string/changePhotoCamera"
         android:textAppearance="?attr/textAppearanceCaption"
-        app:layout_constraintTop_toBottomOf="@id/change_photo_bottom_sheet_gallery" />
+        app:layout_constraintTop_toBottomOf="@id/mtv_gallery" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/change_photo_bottom_sheet_delete"
+        android:id="@+id/mtv_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_28sdp"
@@ -40,6 +40,6 @@
         android:padding="@dimen/_12sdp"
         android:text="@string/changePhotoDelete"
         android:textAppearance="?attr/textAppearanceCaption"
-        app:layout_constraintTop_toBottomOf="@id/change_photo_bottom_sheet_camera" />
+        app:layout_constraintTop_toBottomOf="@id/mtv_camera" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

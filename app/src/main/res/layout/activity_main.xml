@@ -2,13 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainContent"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/navHost"
+        android:id="@+id/nav_host"
         android:name="com.pulse.main.MainNavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +17,7 @@
         app:navGraph="@navigation/graph_main" />
 
     <com.pulse.ui.SelectableBottomNavView
-        android:id="@+id/bottomNavigation"
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_gravity="bottom"
@@ -31,6 +31,7 @@
         tools:translationY="0dp" />
 
     <include
+        android:id="@+id/layout_progress"
         layout="@layout/layout_progress"
         tools:visibility="gone" />
 

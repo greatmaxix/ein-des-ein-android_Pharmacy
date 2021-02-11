@@ -48,7 +48,7 @@
         </provider>
 
         <service
-            android:name=".mercureService.MercureEventListenerService"
+            android:name="com.pulse.components.mercureService.MercureEventListenerService"
             android:stopWithTask="true" />
 
     </application>

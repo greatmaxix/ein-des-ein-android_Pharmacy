@@ -9,7 +9,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+        app:layout_constraintBottom_toTopOf="@+id/ll_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -19,15 +19,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/layout_product_card_image_pager" />
+            <include
+                android:id="@+id/layout_product_card_image_pager"
+                layout="@layout/layout_product_card_image_pager" />
 
             <include layout="@layout/view_product_card_divider" />
 
-            <include layout="@layout/layout_product_card_main_info" />
+            <include
+                android:id="@+id/layout_product_card_main_info"
+                layout="@layout/layout_product_card_main_info" />
 
             <include layout="@layout/view_product_card_divider" />
 
-            <include layout="@layout/layout_product_card_additional_info" />
+            <include
+                android:id="@+id/layout_product_card_additional_info"
+                layout="@layout/layout_product_card_additional_info" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -37,7 +43,7 @@
         layout="@layout/toolbar" />
 
     <LinearLayout
-        android:id="@+id/bottomLayout"
+        android:id="@+id/ll_bottom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -47,7 +53,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fbWish"
+            android:id="@+id/fab_wish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
@@ -58,7 +64,7 @@
             app:elevation="@dimen/_2sdp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbToPharmacy"
+            android:id="@+id/mb_to_pharmacy"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_52sdp"
             android:layout_marginStart="@dimen/_12sdp"

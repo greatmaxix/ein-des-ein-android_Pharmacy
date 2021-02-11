@@ -13,40 +13,40 @@
         android:layoutDirection="locale" />
 
     <com.google.android.material.chip.ChipGroup
-        android:id="@+id/cgState"
+        android:id="@+id/cg_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_4sdp"
-        app:checkedChip="@id/chipMyAll"
+        app:checkedChip="@id/chip_all"
         app:chipSpacingHorizontal="@dimen/_6sdp"
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chipMyAll"
+            android:id="@+id/chip_all"
             style="@style/ChipOrders"
             android:text="@string/allChipOrders" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chipMyInProcess"
+            android:id="@+id/chip_in_process"
             style="@style/ChipOrders"
             android:text="@string/newChipOrders" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chipMyDone"
+            android:id="@+id/chip_done"
             style="@style/ChipOrders"
             android:text="@string/doneChipOrders" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chipMyCanceled"
+            android:id="@+id/chip_canceled"
             style="@style/ChipOrders"
             android:text="@string/canceledChipOrders" />
 
     </com.google.android.material.chip.ChipGroup>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvOrdersList"
+        android:id="@+id/rv_orders"
         style="@style/ScrollStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,7 +55,7 @@
         tools:visibility="gone" />
 
     <FrameLayout
-        android:id="@+id/llOrdersNotFoundContainer"
+        android:id="@+id/ll_orders_not_found_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorGlobalWhite"
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:src="@drawable/ic_placeholder_search"
             app:subtitleEmpty="@string/noOrdersFoundSubtitle"
-            app:titleEmpty="@string/noOrdersFoundTitle" />x
+            app:titleEmpty="@string/noOrdersFoundTitle" />
 
     </FrameLayout>
 </LinearLayout>

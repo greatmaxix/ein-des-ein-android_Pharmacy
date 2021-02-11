@@ -12,7 +12,7 @@
         android:layoutDirection="locale" />
 
     <com.pulse.ui.EmptyContainerView
-        android:id="@+id/llDrugsNotFoundContainer"
+        android:id="@+id/ll_drugs_not_found"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorGlobalWhite"
@@ -23,7 +23,7 @@
         app:titleEmpty="@string/noGoodsFoundTitle" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvSearchResult"
+        android:id="@+id/mtv_search_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16sdp"
@@ -35,14 +35,14 @@
         tools:text="@string/countProducts" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProducts"
+        android:id="@+id/rv_products"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/_8sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSearchResult"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_search_result"
         tools:listitem="@layout/item_product" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

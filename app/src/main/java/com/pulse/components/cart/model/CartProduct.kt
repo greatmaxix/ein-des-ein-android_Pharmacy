@@ -3,10 +3,10 @@ package com.pulse.components.cart.model
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.pulse.App
+import com.pulse.components.product.model.Manufacture
 import com.pulse.data.remote.model.order.ProductOrderData
 import com.pulse.model.Picture
-import com.pulse.product.model.Manufacture
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
 @Parcelize

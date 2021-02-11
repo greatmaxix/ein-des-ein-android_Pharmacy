@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clToolbarContainerHome"
+        android:id="@+id/cl_toolbar_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_toolbar"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
@@ -28,17 +28,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardSearchHome"
+            android:id="@+id/mcv_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:backgroundTint="@color/searchBackgroundBlue"
             app:cardCornerRadius="@dimen/_16sdp"
             app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/cardScanHome"
-            app:layout_constraintEnd_toStartOf="@id/cardScanHome"
+            app:layout_constraintBottom_toBottomOf="@+id/mcv_scan"
+            app:layout_constraintEnd_toStartOf="@id/mcv_scan"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/cardScanHome"
+            app:layout_constraintTop_toTopOf="@+id/mcv_scan"
             app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
             <com.google.android.material.textview.MaterialTextView
@@ -58,7 +58,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardScanHome"
+            android:id="@+id/mcv_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_12sdp"
@@ -70,11 +70,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/cardSearchHome"
-                android:layout_alignBottom="@id/cardSearchHome"
+                android:layout_alignTop="@id/mcv_search"
+                android:layout_alignBottom="@id/mcv_search"
                 android:padding="@dimen/_6sdp"
                 android:src="@drawable/ic_barcode" />
 
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvAskHome"
+                android:id="@+id/mcv_ask"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -101,13 +101,13 @@
                 app:cardElevation="@dimen/_6sdp"
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@id/mcvAnalyzeHome"
+                app:layout_constraintEnd_toStartOf="@id/mcv_analyze"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -128,21 +128,21 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvAnalyzeHome"
+                android:id="@+id/mcv_analyze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:backgroundTint="@color/colorGlobalWhite"
                 app:cardCornerRadius="@dimen/_6sdp"
                 app:cardElevation="@dimen/_6sdp"
                 app:cardUseCompatPadding="true"
-                app:layout_constraintBottom_toBottomOf="@id/mcvAskHome"
+                app:layout_constraintBottom_toBottomOf="@id/mcv_ask"
                 app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@id/mcvMapHome"
-                app:layout_constraintStart_toEndOf="@id/mcvAskHome"
-                app:layout_constraintTop_toTopOf="@id/mcvAskHome"
+                app:layout_constraintEnd_toStartOf="@id/mcv_map"
+                app:layout_constraintStart_toEndOf="@id/mcv_ask"
+                app:layout_constraintTop_toTopOf="@id/mcv_ask"
                 app:rippleColor="@color/colorRippleBlue">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -160,7 +160,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvMapHome"
+                android:id="@+id/mcv_map"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="@dimen/_12sdp"
@@ -168,14 +168,14 @@
                 app:cardCornerRadius="@dimen/_6sdp"
                 app:cardElevation="@dimen/_6sdp"
                 app:cardUseCompatPadding="true"
-                app:layout_constraintBottom_toBottomOf="@id/mcvAskHome"
+                app:layout_constraintBottom_toBottomOf="@id/mcv_ask"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/mcvAnalyzeHome"
-                app:layout_constraintTop_toTopOf="@id/mcvAskHome"
+                app:layout_constraintStart_toEndOf="@id/mcv_analyze"
+                app:layout_constraintTop_toTopOf="@id/mcv_ask"
                 app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -194,7 +194,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mtvCategoryTitleHome"
+                android:id="@+id/mtv_category_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
@@ -203,10 +203,10 @@
                 android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/darkBlue"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mcvAskHome" />
+                app:layout_constraintTop_toBottomOf="@+id/mcv_ask" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSeeAllCategoriesHome"
+                android:id="@+id/mb_see_all_categories"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_24sdp"
@@ -219,22 +219,22 @@
                 android:textAllCaps="false"
                 android:textAppearance="?attr/textAppearanceCaption"
                 android:textColor="@color/primaryBlue"
-                app:layout_constraintBottom_toBottomOf="@+id/mtvCategoryTitleHome"
+                app:layout_constraintBottom_toBottomOf="@+id/mtv_category_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/mtvCategoryTitleHome" />
+                app:layout_constraintTop_toTopOf="@+id/mtv_category_title" />
 
             <FrameLayout
-                android:id="@+id/flCategoriesContainer"
+                android:id="@+id/fl_categories_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
-                app:layout_constraintBottom_toTopOf="@id/uploadRecipes"
+                app:layout_constraintBottom_toTopOf="@id/mb_upload_recipes"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mtvCategoryTitleHome">
+                app:layout_constraintTop_toBottomOf="@id/mtv_category_title">
 
                 <LinearLayout
-                    android:id="@+id/llCategoriesContainer"
+                    android:id="@+id/ll_categories_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -261,7 +261,7 @@
                 </LinearLayout>
 
                 <ProgressBar
-                    android:id="@+id/progressBarCategories"
+                    android:id="@+id/pb_categories"
                     style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -270,7 +270,7 @@
             </FrameLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/uploadRecipes"
+                android:id="@+id/mb_upload_recipes"
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -288,10 +288,10 @@
                 app:iconTint="@color/colorGlobalWhite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/flCategoriesContainer" />
+                app:layout_constraintTop_toBottomOf="@id/fl_categories_container" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvRecentlyViewedTitle"
+                android:id="@+id/mtv_recently_viewed_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
@@ -301,11 +301,11 @@
                 android:textColor="@color/darkBlue"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/uploadRecipes"
+                app:layout_constraintTop_toBottomOf="@id/mb_upload_recipes"
                 tools:visibility="visible" />
 
             <LinearLayout
-                android:id="@+id/llRecentlyViewedContainer"
+                android:id="@+id/ll_recently_viewed_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_8sdp"
@@ -314,11 +314,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvRecentlyViewedTitle"
+                app:layout_constraintTop_toBottomOf="@id/mtv_recently_viewed_title"
                 tools:visibility="visible">
 
                 <com.pulse.ui.RecentlyViewedView
-                    android:id="@+id/firstRecentlyViewedView"
+                    android:id="@+id/view_first_recently_viewed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_4sdp"
@@ -326,7 +326,7 @@
                     tools:visibility="visible" />
 
                 <com.pulse.ui.RecentlyViewedView
-                    android:id="@+id/secondRecentlyViewedView"
+                    android:id="@+id/view_second_recently_viewed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

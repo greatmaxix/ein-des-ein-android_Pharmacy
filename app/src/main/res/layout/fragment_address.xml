@@ -11,20 +11,20 @@
         android:layoutDirection="locale" />
 
     <com.pulse.ui.BuyerDeliveryAddress
-        android:id="@+id/customerAddress"
+        android:id="@+id/view_customer_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilNoteAddress"
+        android:id="@+id/til_note"
         style="@style/TextInputStyle"
         android:layout_marginTop="@dimen/_16sdp"
         app:endIconMode="clear_text"
         app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNoteAddress"
+            android:id="@+id/et_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
@@ -39,7 +39,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSaveAddress"
+        android:id="@+id/mb_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16sdp"

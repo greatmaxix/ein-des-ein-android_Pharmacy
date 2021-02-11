@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/_40sdp">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/mtvDescriptionTitle"
+        android:id="@+id/mtv_description_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/mtvDescriptionText"
+        android:id="@+id/mtv_description_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
@@ -29,11 +29,11 @@
         android:textColor="@color/darkBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mtvDescriptionTitle"
+        app:layout_constraintTop_toBottomOf="@id/mtv_description_title"
         tools:text="Таблетки покрытые пленочной оболочкой от светло-серого до темно-серого цвета, капсуловидной формы, сгравировкой PRENATAL с одной стороны и FORTE с другой стороны, со специфическим запахом" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvInstruction"
+        android:id="@+id/mcv_instruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
@@ -43,8 +43,7 @@
         app:cardCornerRadius="@dimen/_8sdp"
         app:cardElevation="@dimen/_6sdp"
         app:contentPadding="@dimen/_12sdp"
-
-        app:layout_constraintTop_toBottomOf="@+id/mtvDescriptionText"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_description_text"
         app:rippleColor="@color/colorRippleBlue">
 
         <com.google.android.material.textview.MaterialTextView
@@ -59,12 +58,12 @@
             android:textColor="@color/darkBlue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/mtv_subtitle" />
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/instructionWarningContainer"
+        android:id="@+id/mcv_instruction_warning_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
@@ -74,11 +73,11 @@
         app:cardBackgroundColor="@color/mediumGrey"
         app:cardCornerRadius="@dimen/_8sdp"
         app:contentPadding="@dimen/_8sdp"
-        app:layout_constraintTop_toBottomOf="@+id/mcvInstruction"
+        app:layout_constraintTop_toBottomOf="@+id/mcv_instruction"
         app:rippleColor="@color/colorRippleBlue">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/instructionWarningText"
+            android:id="@+id/mtv_instruction_warning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_about"
@@ -88,23 +87,22 @@
             android:textColor="@color/darkBlue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/mtv_subtitle" />
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvQuestions"
+        android:id="@+id/mcv_questions"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_70sdp"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_24sdp"
-
         android:layout_marginEnd="@dimen/_12sdp"
         app:cardBackgroundColor="@color/darkBlue"
         app:cardCornerRadius="@dimen/_8sdp"
         app:cardElevation="0dp"
         app:contentPadding="@dimen/_12sdp"
-        app:layout_constraintTop_toBottomOf="@+id/instructionWarningContainer"
+        app:layout_constraintTop_toBottomOf="@+id/mcv_instruction_warning_container"
         app:rippleColor="@color/colorRippleBlue">
 
         <LinearLayout
@@ -120,7 +118,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/questionsHaveQuestions"
+                    android:id="@+id/mtv_have_questions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/remainQuestions"
@@ -128,10 +126,10 @@
                     android:textColor="@color/colorGlobalWhite"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />
+                    app:layout_constraintTop_toBottomOf="@+id/mtv_subtitle" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/questionsAskPharmacist"
+                    android:id="@+id/mtv_ask_pharmacist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/askPharmacist"
@@ -139,16 +137,15 @@
                     android:textColor="@color/colorGlobalWhite"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />
+                    app:layout_constraintTop_toBottomOf="@+id/mtv_subtitle" />
 
             </LinearLayout>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_question_white" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

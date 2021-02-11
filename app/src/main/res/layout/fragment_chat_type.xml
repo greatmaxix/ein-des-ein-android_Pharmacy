@@ -10,7 +10,7 @@
         layout="@layout/toolbar" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvTitleChatType"
+        android:id="@+id/mtv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_32sdp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardPharmacistChatType"
+        android:id="@+id/mcv_pharmacist"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_40sdp"
@@ -34,12 +34,12 @@
         app:cardCornerRadius="@dimen/_200sdp"
         app:cardElevation="@dimen/_6sdp"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/cardDoctorChatType"
+        app:layout_constraintEnd_toStartOf="@+id/mcv_doctor"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitleChatType">
+        app:layout_constraintTop_toBottomOf="@+id/mtv_title">
 
-        <ImageView
-            android:id="@+id/ivPharmacistChatType"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_pharmacist"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background_ripple_selector_chat_type"
@@ -49,7 +49,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardDoctorChatType"
+        android:id="@+id/mcv_doctor"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_10sdp"
@@ -60,11 +60,11 @@
         app:cardElevation="@dimen/_6sdp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardPharmacistChatType"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitleChatType">
+        app:layout_constraintStart_toEndOf="@+id/mcv_pharmacist"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_title">
 
-        <ImageView
-            android:id="@+id/ivDoctorChatType"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_doctor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background_ripple_selector_chat_type"
@@ -74,7 +74,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvPharmacistChatType"
+        android:id="@+id/mtv_pharmacist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_15sdp"
@@ -83,12 +83,12 @@
         android:text="@string/pharmacistType"
         android:textAppearance="?attr/textAppearanceButton"
         android:textColor="@color/darkBlue"
-        app:layout_constraintEnd_toEndOf="@+id/cardPharmacistChatType"
-        app:layout_constraintStart_toStartOf="@+id/cardPharmacistChatType"
-        app:layout_constraintTop_toBottomOf="@+id/cardPharmacistChatType" />
+        app:layout_constraintEnd_toEndOf="@+id/mcv_pharmacist"
+        app:layout_constraintStart_toStartOf="@+id/mcv_pharmacist"
+        app:layout_constraintTop_toBottomOf="@+id/mcv_pharmacist" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvDoctorChatType"
+        android:id="@+id/mtv_doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_15sdp"
@@ -97,12 +97,12 @@
         android:text="@string/doctorType"
         android:textAppearance="?attr/textAppearanceButton"
         android:textColor="@color/darkBlue"
-        app:layout_constraintEnd_toEndOf="@+id/cardDoctorChatType"
-        app:layout_constraintStart_toStartOf="@+id/cardDoctorChatType"
-        app:layout_constraintTop_toBottomOf="@+id/cardDoctorChatType" />
+        app:layout_constraintEnd_toEndOf="@+id/mcv_doctor"
+        app:layout_constraintStart_toStartOf="@+id/mcv_doctor"
+        app:layout_constraintTop_toBottomOf="@+id/mcv_doctor" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnNextChatType"
+        android:id="@+id/mb_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_15sdp"
@@ -116,6 +116,6 @@
         app:cornerRadius="@dimen/_90sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDoctorChatType" />
+        app:layout_constraintTop_toBottomOf="@+id/mtv_doctor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

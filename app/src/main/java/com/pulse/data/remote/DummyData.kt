@@ -1,7 +1,7 @@
 package com.pulse.data.remote
 
 import com.pulse.R
-import com.pulse.checkout.model.TempPaymentMethod
+import com.pulse.components.checkout.model.TempPaymentMethod
 import com.pulse.components.needHelp.model.HelpItem
 
 @Deprecated("Mock data object")

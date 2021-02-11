@@ -2,26 +2,24 @@ package com.pulse.components.onboarding
 
 import android.os.Bundle
 import android.view.View
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.onboarding.OnboardingFragmentDirections.Companion.actionFromOnboardingToAuth
 import com.pulse.components.onboarding.OnboardingFragmentDirections.Companion.actionFromOnboardingToHome
 import com.pulse.components.onboarding.OnboardingFragmentDirections.Companion.actionFromOnboardingToRegion
 import com.pulse.components.onboarding.adapter.OnboardingPagerAdapter
 import com.pulse.components.onboarding.model.Onboarding
+import com.pulse.components.region.RegionFragment.Companion.REGION_KEY
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.doWithDelay
 import com.pulse.data.local.SPManager
-import com.pulse.region.RegionFragment.Companion.REGION_KEY
-import kotlinx.android.synthetic.main.fragment_onboarding.*
+import com.pulse.databinding.FragmentOnboardingBinding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
 class OnboardingFragment(sp: SPManager) : BaseMVVMFragment(R.layout.fragment_onboarding) {
 
-    init {
-        sp.isNeedRegionSelection = true
-    }
-
+    private val binding by viewBinding(FragmentOnboardingBinding::bind)
     private val items = listOf(
         Onboarding(
             R.drawable.ic_onboarding_region,
@@ -41,7 +39,11 @@ class OnboardingFragment(sp: SPManager) : BaseMVVMFragment(R.layout.fragment_onb
         )
     )
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    init {
+        sp.isNeedRegionSelection = true
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
         with(vpOnboarding) {
             isUserInputEnabled = false
@@ -49,9 +51,7 @@ class OnboardingFragment(sp: SPManager) : BaseMVVMFragment(R.layout.fragment_onb
             offscreenPageLimit = 2
             attachBackPressCallback { if (currentItem == AUTH) currentItem = REGION else navigationBack() }
             observeSavedStateHandler<Boolean>(REGION_KEY) {
-                doWithDelay(500) {
-                    currentItem = 1
-                }
+                doWithDelay(500) { currentItem = 1 }
             }
         }
     }
@@ -67,10 +67,11 @@ class OnboardingFragment(sp: SPManager) : BaseMVVMFragment(R.layout.fragment_onb
     }
 
     private fun moveToAuth() {
-        vpOnboarding.currentItem = AUTH
+        binding.vpOnboarding.currentItem = AUTH
     }
 
     companion object {
+
         private const val REGION = 0
         private const val AUTH = 1
     }

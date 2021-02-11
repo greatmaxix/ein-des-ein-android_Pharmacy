@@ -13,6 +13,7 @@ import androidx.core.net.toUri
 import androidx.paging.PagingData
 import androidx.work.*
 import androidx.work.WorkInfo.State.*
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.fondesa.kpermissions.allGranted
 import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.pulse.R
@@ -24,24 +25,27 @@ import com.pulse.components.recipes.model.Recipe
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
 import com.pulse.data.GeneralException
-import kotlinx.android.synthetic.main.fragment_recipes.*
+import com.pulse.databinding.FragmentRecipesBinding
+import timber.log.Timber
 
-class RecipesFragment(private val vm: RecipesViewModel, private val workManager: WorkManager) : BaseMVVMFragment(R.layout.fragment_recipes) {
+class RecipesFragment(private val viewModel: RecipesViewModel, private val workManager: WorkManager) : BaseMVVMFragment(R.layout.fragment_recipes) {
 
+    private val binding by viewBinding(FragmentRecipesBinding::bind)
     private val recipesAdapter = RecipesAdapter(::downloadAndShow)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
-        showBackButton()
-        rvRecipes.adapter = recipesAdapter
 
+        showBackButton()
+
+        rvRecipes.adapter = recipesAdapter
         recipesAdapter.addStateListener { progressCallback?.setInProgress(it) }
     }
 
     override fun onBindLiveData() {
-        observe(vm.recipesLiveData, ::showRecipes)
-        observe(vm.recipesErrorLiveData) { it.contentOrNull?.let(::showAlertOrNot) }
-        observe(vm.recipesCountLiveData) { emptyContentRecipes.visibleOrGone(it <= 0) }
+        observe(viewModel.recipesLiveData, ::showRecipes)
+        observe(viewModel.recipesErrorLiveData) { it.contentOrNull?.let(::showAlertOrNot) }
+        observe(viewModel.recipesCountLiveData) { binding.viewEmptyContent.visibleOrGone(it <= 0) }
     }
 
     private fun showRecipes(pagingData: PagingData<Recipe>) = recipesAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
@@ -52,7 +56,6 @@ class RecipesFragment(private val vm: RecipesViewModel, private val workManager:
                 cancelable = false
                 positive = R.string.signIn
                 negative = R.string.cancel
-
                 positiveAction = { navController.navigate(R.id.fromRecipesToAuth, SignInFragmentArgs(R.id.nav_recipes).toBundle()) }
                 negativeAction = { navController.onNavDestinationSelected(R.id.nav_home, inclusive = true) }
             }
@@ -67,17 +70,13 @@ class RecipesFragment(private val vm: RecipesViewModel, private val workManager:
                 .build()
                 .apply {
                     addListener { result ->
-                        if (result.allGranted()) {
-                            startWorker(recipe)
-                        }
+                        if (result.allGranted()) startWorker(recipe)
                     }
-                }
-                .send()
+                }.send()
         }
     }
 
     private fun startWorker(recipe: Recipe) {
-
         val work = OneTimeWorkRequestBuilder<RecipesWorker>()
             .setInputData(Data.Builder().putString(KEY_VALUE, recipe.pdfUrl.path).build())
             .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
@@ -112,7 +111,7 @@ class RecipesFragment(private val vm: RecipesViewModel, private val workManager:
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             })
         } catch (e: ActivityNotFoundException) {
-            debug { e.printStackTrace() }
+            debug { Timber.e(e) }
         }
     }
 }

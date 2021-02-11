@@ -30,7 +30,7 @@
                 app:cardCornerRadius="@dimen/_8sdp"
                 app:cardElevation="0dp">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
@@ -88,7 +88,7 @@
 
                     </LinearLayout>
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -115,7 +115,7 @@
                     android:paddingBottom="@dimen/_12sdp">
 
                     <LinearLayout
-                        android:id="@+id/llPaymentMethodsPayments"
+                        android:id="@+id/ll_payment_methods"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:divider="@color/grey"
@@ -125,7 +125,7 @@
                         android:showDividers="middle|end" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tvAddMethodsPayments"
+                        android:id="@+id/mtv_add_methods"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_6sdp"
@@ -156,7 +156,7 @@
                     android:paddingHorizontal="@dimen/_16sdp"
                     android:paddingVertical="@dimen/_12sdp">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_gravity="center_vertical"
