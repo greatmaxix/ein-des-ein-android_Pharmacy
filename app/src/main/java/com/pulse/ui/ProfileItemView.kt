@@ -80,10 +80,10 @@ class ProfileItemView @JvmOverloads constructor(
         super.setSelected(selected)
 
         with(binding) {
-            binding.ivArrow.rotation = if (selected) -90f else 0f
-            binding.ivArrow.setColorFilter(getColor(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
-            binding.ivIcon.setColorFilter(getColor(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
-            binding.mtvTitle.setTextColorRes(if (selected) selectColor else mainColor)
+            ivArrow.rotation = if (selected) -90f else 0f
+            ivArrow.setColorFilter(getColor(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
+            ivIcon.setColorFilter(getColor(if (selected) selectColor else mainColor), PorterDuff.Mode.SRC_IN)
+            mtvTitle.setTextColorRes(if (selected) selectColor else mainColor)
         }
     }
 }

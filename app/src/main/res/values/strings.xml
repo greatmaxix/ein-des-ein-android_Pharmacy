@@ -299,6 +299,9 @@
     <string name="analyzesEmptyContainerSubtitle">Это просто исправить! Запишитесь на анализы через наше приложение</string>
     <string name="analyzesEmptyContainerTitle">У Вас пока нет результатов анализов</string>
 
+    <!-- Analyzes Categories-->
+    <string name="what_analyzes_search">Какие исследования вы ищите?</string>
+
     <!-- Wish -->
     <string name="wishLabel">Избранное</string>
     <string name="wishEmptyContainerAction">Начать поиск</string>

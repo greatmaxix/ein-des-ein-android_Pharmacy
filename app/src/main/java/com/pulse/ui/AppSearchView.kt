@@ -11,7 +11,6 @@ import com.pulse.core.extensions.*
 import com.pulse.databinding.LayoutSearchBinding
 import com.pulse.ui.text.setTextWithCursorToEnd
 import com.pulse.ui.text.setTextWithCursorToEndAndOpen
-import kotlinx.android.extensions.LayoutContainer
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
@@ -25,10 +24,9 @@ class AppSearchView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : CardView(context, attrs, defStyleAttr), LayoutContainer {
+) : CardView(context, attrs, defStyleAttr) {
 
     private val binding = LayoutSearchBinding.inflate(inflater, this, true)
-
     private var hint = -1
     private var hintColor = -1
     private var debounce = 500f
@@ -42,12 +40,8 @@ class AppSearchView @JvmOverloads constructor(
 
     private var notify: ((CharSequence) -> Unit)? = null
     private var editor: ((String) -> Boolean)? = null
-
     private val viewJob = SupervisorJob()
     private val viewScope = CoroutineScope(Main.immediate + viewJob)
-
-    override val containerView = inflate(R.layout.layout_search, true)
-
     var onBackClick: (() -> Unit)? = null
 
     init {
@@ -153,6 +147,7 @@ class AppSearchView @JvmOverloads constructor(
 
     override fun clearFocus() {
         super.clearFocus()
+
         binding.etSearch.clearFocus()
     }
 }

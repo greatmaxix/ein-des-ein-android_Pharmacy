@@ -255,7 +255,25 @@
         android:id="@+id/nav_analyzes"
         android:name="com.pulse.components.analyzes.AnalyzesFragment"
         android:label="@string/analyzesLabel"
-        tools:layout="@layout/fragment_analyzes" />
+        tools:layout="@layout/fragment_analyzes">
+
+        <action
+            android:id="@+id/fromAnalyzesToAnalyzeCategories"
+            app:destination="@id/nav_analyze_category"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_analyze_category"
+        android:name="com.pulse.components.analyzes.category.AnalyzeCategoriesFragment"
+        android:label="@string/analyzesLabel"
+        tools:layout="@layout/fragment_analyzes">
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_scanner"

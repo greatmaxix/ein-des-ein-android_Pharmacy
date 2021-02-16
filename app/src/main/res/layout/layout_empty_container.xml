@@ -45,7 +45,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_select"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_42sdp"
+        android:layout_height="@dimen/_50sdp"
         android:layout_margin="@dimen/_12sdp"
         android:backgroundTint="@color/primaryBlue"
         android:gravity="center"

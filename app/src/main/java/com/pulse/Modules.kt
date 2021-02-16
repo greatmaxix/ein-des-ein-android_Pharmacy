@@ -1,6 +1,7 @@
 package com.pulse
 
 import androidx.work.WorkManager
+import com.pulse.components.analyzes.category.analyzeCategoriesModule
 import com.pulse.components.auth.authModule
 import com.pulse.components.cart.cartModule
 import com.pulse.components.categories.categoriesModule
@@ -73,6 +74,7 @@ object Modules {
         addressModule,
         RESTModule,
         mercureModule,
-        needHelpModule
+        needHelpModule,
+        analyzeCategoriesModule
     )
 }

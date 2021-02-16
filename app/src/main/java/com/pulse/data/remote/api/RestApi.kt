@@ -1,6 +1,7 @@
 package com.pulse.data.remote.api
 
 import androidx.annotation.WorkerThread
+import com.pulse.components.analyzes.category.model.AnalyzeCategory
 import com.pulse.components.cart.model.CartItem
 import com.pulse.components.chat.model.chat.ChatItem
 import com.pulse.components.chat.model.message.MessageItem
@@ -199,4 +200,8 @@ interface RestApi {
     @GET("/api/v1/recipe/file/{code}")
     @Streaming
     suspend fun downloadFile(@Path("code") code: String): ResponseBody
+
+    @WorkerThread
+    @GET("/api/v1/analyze/analyzeCategory") // TODO set proper route
+    fun getAnalyzeCategories(): BaseDataResponse<PaginationModel<AnalyzeCategory>>
 }
