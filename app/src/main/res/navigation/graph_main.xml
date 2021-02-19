@@ -88,6 +88,14 @@
             app:popEnterAnim="@anim/nav_enter_pop_anim"
             app:popExitAnim="@anim/nav_exit_pop_anim" />
 
+        <action
+            android:id="@+id/fromHomeToAnalyzeCategories"
+            app:destination="@id/nav_analyze_category"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
     </fragment>
 
     <action
@@ -251,15 +259,28 @@
 
     </fragment>
 
+    <action
+        android:id="@+id/globalToAnalyzeCategories"
+        app:destination="@id/nav_analyze_category"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim" />
+
     <fragment
         android:id="@+id/nav_analyzes"
-        android:name="com.pulse.components.analyzes.AnalyzesFragment"
+        android:name="com.pulse.components.analyzes.list.AnalyzesFragment"
         android:label="@string/analyzesLabel"
+        tools:layout="@layout/fragment_analyzes"/>
+
+    <fragment
+        android:id="@+id/nav_analyze_category"
+        android:name="com.pulse.components.analyzes.category.AnalyzeCategoriesFragment"
         tools:layout="@layout/fragment_analyzes">
 
         <action
-            android:id="@+id/fromAnalyzesToAnalyzeCategories"
-            app:destination="@id/nav_analyze_category"
+            android:id="@+id/fromAnalyzeCategoriesToAnalyzeDetails"
+            app:destination="@id/nav_analyze_details"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
@@ -268,10 +289,55 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_analyze_category"
-        android:name="com.pulse.components.analyzes.category.AnalyzeCategoriesFragment"
-        android:label="@string/analyzesLabel"
-        tools:layout="@layout/fragment_analyzes">
+        android:id="@+id/nav_analyze_details"
+        android:name="com.pulse.components.analyzes.details.AnalyzeDetailsFragment"
+        tools:layout="@layout/fragment_analyze_details">
+
+        <argument
+            android:name="category"
+            app:argType="com.pulse.components.analyzes.category.model.AnalyzeCategory" />
+
+        <action
+            android:id="@+id/fromAnalyzeDetailsToAnalyzeCheckout"
+            app:destination="@id/nav_analyze_checkout"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+        <action
+            android:id="@+id/fromAnalyzeDetailsToClinicCard"
+            app:destination="@id/nav_clinic_card"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_analyze_checkout"
+        android:name="com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragment"
+        tools:layout="@layout/fragment_analyze_checkout">
+
+        <argument
+            android:name="category"
+            app:argType="com.pulse.components.analyzes.category.model.AnalyzeCategory" />
+
+        <argument
+            android:name="clinic"
+            app:argType="com.pulse.components.analyzes.details.model.Clinic" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_clinic_card"
+        android:name="com.pulse.components.analyzes.clinic.ClinicCardFragment"
+        tools:layout="@layout/fragment_clinic_card">
+
+        <argument
+            android:name="clinic"
+            app:argType="com.pulse.components.analyzes.details.model.Clinic" />
 
     </fragment>
 
@@ -312,14 +378,6 @@
             app:argType="com.pulse.components.cart.model.CartItem" />
 
         <action
-            android:id="@+id/actionCheckoutToPromoCodeDialog"
-            app:destination="@id/nav_checkout_dialog_promo_code"
-            app:enterAnim="@anim/nav_enter_anim"
-            app:exitAnim="@anim/nav_exit_anim"
-            app:popEnterAnim="@anim/nav_enter_pop_anim"
-            app:popExitAnim="@anim/nav_exit_pop_anim" />
-
-        <action
             android:id="@+id/fromCheckoutToOrder"
             app:destination="@id/nav_order"
             app:enterAnim="@anim/nav_enter_anim"
@@ -330,6 +388,14 @@
             app:popUpToInclusive="true" />
 
     </fragment>
+
+    <action
+        android:id="@+id/globalToPromoCodeDialog"
+        app:destination="@id/nav_checkout_dialog_promo_code"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim" />
 
     <dialog
         android:id="@+id/nav_checkout_dialog_promo_code"

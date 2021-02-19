@@ -407,4 +407,20 @@
     <string name="recipeCreatedBy">Рецепт выписан :</string>
     <string name="toSeeYourRecipes">Для того что бы увидеть Ваши рецепты необходимо залогиниться</string>
 
+    <string name="analyze_detailed_info">Более детальную информацию о цене Вы узнаете в конкретной лабаратории</string>
+    <string name="clinics">Клиники</string>
+    <string name="order_service">Заказать услугу</string>
+    <string name="clinics_holder">Клиники (%d)</string>
+    <string name="branch_holder">Филиалы (%d)</string>
+    <string name="services_list">Перечень услуг</string>
+    <string name="clinic_name_holder">%s %f ⭐</string>
+    <string name="contact_data">Контактные данные:</string>
+    <string name="service_label">Услуга</string>
+    <string name="clinic_label">Клиника:</string>
+    <string name="change">Изменить</string>
+    <string name="date_and_time">Дата и Время</string>
+    <string name="analyze_checkout_note">Комментарий:</string>
+    <string name="add_cart">Добавить карту</string>
+    <string name="total_sum">Стоимость</string>
+
 </resources>

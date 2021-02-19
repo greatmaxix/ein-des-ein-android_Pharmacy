@@ -28,7 +28,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
 
         mcvScan.setDebounceOnClickListener { doNav(fromHomeToScanner()) }
         mcvAsk.setDebounceOnClickListener { viewModel.performAskPharmacist() }
-        mcvAnalyze.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_home) }
+        mcvAnalyze.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_analyze_category, null, R.id.nav_home) }
         mbUploadRecipes.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_home) }
         mcvSearch.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_home) }
         mbSeeAllCategories.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_catalog, null, R.id.nav_home) }

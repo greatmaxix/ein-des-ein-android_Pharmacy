@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:backgroundTint="@color/colorGlobalWhite"
     app:cardCornerRadius="@dimen/_6sdp"
-    app:cardElevation="@dimen/_2sdp"
+    app:cardElevation="0dp"
     app:cardUseCompatPadding="true"
     app:rippleColor="@color/colorRippleBlue">
 

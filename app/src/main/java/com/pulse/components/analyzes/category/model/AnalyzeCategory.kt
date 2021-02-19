@@ -12,6 +12,7 @@ data class AnalyzeCategory(
     @SerializedName("id") var id: Long,
     @SerializedName("name") var name: String? = null,
     @SerializedName("code") var code: String? = null,
+    @SerializedName("description") var description: String? = null,
     @SerializedName("nodes") var nodes: List<AnalyzeCategory>? = null,
     @Ignore
     @SerializedName("topLevel") var topLevel: Boolean = false

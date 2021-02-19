@@ -26,6 +26,13 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
 
     init {
         with(binding) {
+            attrs?.let {
+                context.theme.obtainStyledAttributes(it, R.styleable.BuyerDetailsView, defStyleAttr, -1)
+                    .use {
+                        mtvBuyerDetailsTitle.setText(getResourceId(R.styleable.BuyerDetailsView_labelText, R.string.buyerDetails))
+                    }
+            }
+
             tilPhone.fixPrefixGravity()
             debug { tilPhone.prefixText = "+3" }
             val hint = debugIfElse({ R.string.authPhoneDebugHint }, { R.string.authPhoneHint })

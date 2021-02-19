@@ -3,6 +3,7 @@ package com.pulse.components.analyzes.category
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
+import com.pulse.components.analyzes.category.AnalyzeCategoriesFragmentDirections.Companion.fromAnalyzeCategoriesToAnalyzeDetails
 import com.pulse.components.analyzes.category.model.AnalyzeCategory
 import com.pulse.components.analyzes.category.repository.AnalyzeCategoriesRepository
 import com.pulse.core.base.mvvm.BaseViewModel
@@ -72,7 +73,7 @@ class AnalyzeCategoriesViewModel(private val repository: AnalyzeCategoriesReposi
             selectedCategory = category
             _nestedCategoriesLiveData.postValue(category.nodes)
         } else {
-            // TODO open checkout
+            _directionLiveData.postValue(fromAnalyzeCategoriesToAnalyzeDetails(category))
         }
     }
 

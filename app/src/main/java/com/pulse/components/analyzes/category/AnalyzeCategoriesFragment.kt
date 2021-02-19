@@ -7,15 +7,17 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.analyzes.category.adapter.AnalyzeCategoryAdapter
 import com.pulse.core.base.mvvm.BaseMVVMFragment
-import com.pulse.core.extensions.*
+import com.pulse.core.extensions.addItemDecorator
+import com.pulse.core.extensions.falseIfNull
+import com.pulse.core.extensions.gone
+import com.pulse.core.extensions.visible
 import com.pulse.databinding.FragmentAnalyzeCategoriesBinding
 import kotlinx.coroutines.launch
 
 class AnalyzeCategoriesFragment(private val viewModel: AnalyzeCategoriesViewModel) : BaseMVVMFragment(R.layout.fragment_analyze_categories) {
 
     private val binding by viewBinding(FragmentAnalyzeCategoriesBinding::bind)
-    private val clickAction by lazy { return@lazy viewModel::selectCategory }
-    private val analyzeCategoryAdapter by lazy { AnalyzeCategoryAdapter(clickAction) }
+    private val analyzeCategoryAdapter by lazy { AnalyzeCategoryAdapter(viewModel::selectCategory) }
     private val spacing by lazy { resources.getDimensionPixelSize(R.dimen._2sdp) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
@@ -23,7 +25,6 @@ class AnalyzeCategoriesFragment(private val viewModel: AnalyzeCategoriesViewMode
 
         showBackButton { viewModel.handleBackPress() }
         attachBackPressCallback { viewModel.handleBackPress() }
-        ivBack.setDebounceOnClickListener { viewModel.handleBackPress() }
 
         initCategoryList()
         viewSearch.setSearchListener { value ->
@@ -52,11 +53,9 @@ class AnalyzeCategoriesFragment(private val viewModel: AnalyzeCategoriesViewMode
         observeNullable(viewModel.selectedCategoryLiveData) { category ->
             category?.name?.let {
                 toolbar?.title = it
-                binding.llToolbar.gone()
-                toolbar?.visible()
+                binding.viewSearch.gone()
             } ?: run {
-                toolbar?.gone()
-                binding.llToolbar.visible()
+                binding.viewSearch.visible()
             }
         }
     }

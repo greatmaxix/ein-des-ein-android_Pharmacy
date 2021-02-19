@@ -3,44 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorGreyLight"
     android:layout_height="match_parent"
+    android:background="@color/colorGreyLight"
     android:orientation="vertical">
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/ll_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
         android:background="@drawable/bg_toolbar"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/_4sdp"
-            android:adjustViewBounds="true"
-            android:foreground="@drawable/background_light_ripple_selector_circle"
-            android:padding="@dimen/_6sdp"
-            android:src="@drawable/ic_arrow_back" />
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
 
         <com.pulse.ui.AppSearchView
             android:id="@+id/view_search"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_6sdp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_marginVertical="@dimen/_6sdp"
             android:layout_weight="1"
             app:cardCornerRadius="@dimen/_16sdp"
             app:hintColor="@color/colorGlobalBlack"

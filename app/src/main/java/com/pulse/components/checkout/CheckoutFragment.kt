@@ -8,7 +8,7 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pulse.R
-import com.pulse.components.checkout.CheckoutFragmentDirections.Companion.actionCheckoutToPromoCodeDialog
+import com.pulse.components.checkout.CheckoutFragmentDirections.Companion.globalToPromoCodeDialog
 import com.pulse.components.checkout.adapter.CheckoutProductsAdapter
 import com.pulse.components.checkout.dialog.PromoCodeDialogFragment
 import com.pulse.components.checkout.dialog.PromoCodeDialogFragment.Companion.PROMO_CODE_REQUEST_KEY
@@ -53,7 +53,7 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
                 val code = bundle[PromoCodeDialogFragment.PROMO_CODE_EXTRA_KEY]
                 viewModel.handlePromoCodeResult(code as String)
             }
-            doNav(actionCheckoutToPromoCodeDialog())
+            doNav(globalToPromoCodeDialog())
         }
         mbCheckout.setDebounceOnClickListener { validateFieldsAndSendOrder() }
 

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/colorGlobalWhite"
+    app:cardCornerRadius="@dimen/_6sdp"
+    app:cardElevation="0dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="@dimen/_16sdp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_clinic"
+            android:layout_width="@dimen/_48sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_placeholder_drugstore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:textAppearance="?attr/textAppearanceButton"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintEnd_toStartOf="@+id/fab_location"
+            app:layout_constraintStart_toEndOf="@id/iv_clinic"
+            app:layout_constraintTop_toTopOf="@+id/iv_clinic"
+            tools:text="Название клиники" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/mtv_name"
+            app:layout_constraintTop_toBottomOf="@id/mtv_name"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="ул Горная 23а, Харьков" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_map"
+            android:tint="@color/primaryBlue"
+            app:backgroundTint="@color/mediumGrey50"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:fabSize="mini"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:maxImageSize="@dimen/_12sdp"
+            app:rippleColor="@color/colorRippleWhiteSemiTransparent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/iv_clinic"
+            app:layout_constraintTop_toBottomOf="@id/mtv_address"
+            tools:text="📞️ +7 (098) 000 02 00  • +7 (098) 000 02 00 " />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textColor="@color/primaryBlue"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/mb_order_service"
+            app:layout_constraintStart_toStartOf="@+id/iv_clinic"
+            app:layout_constraintTop_toTopOf="@id/mb_order_service"
+            tools:text="568 ₸" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mb_order_service"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:backgroundTint="@color/primaryBlue"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/order_service"
+            android:textAppearance="?attr/textAppearanceButton"
+            android:textColor="@color/colorGlobalWhite"
+            android:visibility="gone"
+            app:cornerRadius="@dimen/_45sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/mtv_product_price"
+            app:layout_constraintTop_toBottomOf="@id/mtv_phone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

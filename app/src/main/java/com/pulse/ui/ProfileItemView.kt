@@ -21,8 +21,14 @@ class ProfileItemView @JvmOverloads constructor(
     var icon: Int = -1
         set(value) {
             field = value
-            if (value != -1) binding.ivIcon.setImageResource(icon)
-            else binding.ivIcon.setImageDrawable(null)
+            if (value != -1) {
+                binding.ivIcon.setImageResource(icon)
+                binding.ivIcon.visible()
+            }
+            else {
+                binding.ivIcon.setImageDrawable(null)
+                binding.ivIcon.gone()
+            }
         }
     var title: String = ""
         set(value) {
