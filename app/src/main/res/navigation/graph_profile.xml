@@ -98,4 +98,31 @@
         android:label="@null"
         tools:layout="@layout/fragment_need_help" />
 
+    <fragment
+        android:id="@+id/nav_privileges"
+        android:name="com.pulse.components.privileges.PrivilegeFragment"
+        android:label="@string/privileges"
+        tools:layout="@layout/fragment_privilege" />
+
+    <fragment
+        android:id="@+id/nav_language"
+        android:name="com.pulse.components.language.LanguageFragment"
+        android:label="@string/language"
+        tools:layout="@layout/fragment_language" />
+
+    <fragment
+        android:id="@+id/nav_privileges_type"
+        android:name="com.pulse.components.privileges.PrivilegeTypeFragment"
+        android:label="@string/privileges"
+        tools:layout="@layout/fragment_need_help">
+
+        <action
+            android:id="@+id/fromPrivilegeTypeToPrivilege"
+            app:destination="@id/nav_privileges"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    </fragment>
 </navigation>

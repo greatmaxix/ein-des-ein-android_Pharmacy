@@ -1,54 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:parentTag="android.widget.LinearLayout">
+    android:background="@drawable/background_default_ripple_selector_rect"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_category"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:padding="@dimen/_4sdp"
+        tools:src="@drawable/ic_catalog_1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_category"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="@dimen/_4sdp"
+        android:gravity="center|top"
+        android:maxLines="2"
+        android:minLines="2"
+        android:paddingHorizontal="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:textAppearance="?attr/textAppearanceOverline"
+        android:textColor="@color/darkBlue"
+        android:visibility="invisible"
+        tools:text="Пищеварительный тракт и обмен вещест"
+        tools:visibility="visible" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/colorGlobalWhite"
-            app:cardCornerRadius="@dimen/_6sdp"
-            app:cardElevation="@dimen/_2sdp"
-            app:cardUseCompatPadding="true"
-            app:rippleColor="@color/colorRippleBlue">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_category"
-                android:layout_width="@dimen/_74sdp"
-                android:layout_height="@dimen/_74sdp"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:padding="@dimen/_4sdp"
-                android:visibility="invisible"
-                tools:src="@drawable/ic_category_1"
-                tools:visibility="visible" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:gravity="center|top"
-            android:maxLines="2"
-            android:minLines="2"
-            android:paddingHorizontal="@dimen/_4sdp"
-            android:paddingBottom="@dimen/_4sdp"
-            android:textAppearance="?attr/textAppearanceOverline"
-            android:textColor="@color/darkBlue"
-            android:visibility="invisible"
-            tools:text="Пищеварительный тракт и обмен вещест"
-            tools:visibility="visible" />
-
-    </LinearLayout>
-</merge>
+</LinearLayout>

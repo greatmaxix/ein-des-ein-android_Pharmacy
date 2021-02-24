@@ -265,12 +265,12 @@
                     app:titleProfile="@string/myRegionTitle" />
 
                 <com.pulse.ui.ProfileItemView
-                    android:id="@+id/item_payment"
+                    android:id="@+id/item_language"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    app:iconProfile="@drawable/ic_credit_card"
-                    app:titleProfile="@string/paymentsTitle" />
+                    app:iconProfile="@drawable/ic_language"
+                    app:titleProfile="@string/language" />
 
                 <com.pulse.ui.ProfileItemView
                     android:id="@+id/item_address"
@@ -287,6 +287,22 @@
                     android:layout_marginHorizontal="@dimen/_12sdp"
                     app:iconProfile="@drawable/ic_notification"
                     app:titleProfile="@string/notificationsTitle" />
+
+                <com.pulse.ui.ProfileItemView
+                    android:id="@+id/item_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    app:iconProfile="@drawable/ic_credit_card"
+                    app:titleProfile="@string/paymentsTitle" />
+
+                <com.pulse.ui.ProfileItemView
+                    android:id="@+id/item_privileges"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    app:iconProfile="@drawable/ic_percent"
+                    app:titleProfile="@string/privileges" />
 
                 <com.pulse.ui.ProfileItemView
                     android:id="@+id/item_about"

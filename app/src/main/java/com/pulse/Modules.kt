@@ -15,6 +15,7 @@ import com.pulse.components.chat.chatModule
 import com.pulse.components.chatType.chatTypeModule
 import com.pulse.components.checkout.checkoutModule
 import com.pulse.components.home.homeModule
+import com.pulse.components.language.languageModule
 import com.pulse.components.mercureService.mercureModule
 import com.pulse.components.needHelp.needHelpModule
 import com.pulse.components.onboarding.onboardingModule
@@ -22,6 +23,7 @@ import com.pulse.components.orders.details.orderModule
 import com.pulse.components.orders.ordersModule
 import com.pulse.components.payments.paymentsModule
 import com.pulse.components.pharmacy.pharmacyModule
+import com.pulse.components.privileges.privilegeModule
 import com.pulse.components.product.productCardModule
 import com.pulse.components.recipes.recipesModule
 import com.pulse.components.region.regionModule
@@ -33,6 +35,8 @@ import com.pulse.components.user.profile.guest.guestProfileModule
 import com.pulse.components.user.profile.profileModule
 import com.pulse.components.user.userModule
 import com.pulse.components.user.wishlist.wishModule
+import com.pulse.core.locale.ILocaleManager
+import com.pulse.core.locale.LocaleManager
 import com.pulse.data.local.DBManager
 import com.pulse.data.local.SPManager
 import com.pulse.data.remote.RESTModule
@@ -50,6 +54,7 @@ object Modules {
         single { RestManager(get(), get()) }
         single { WorkManager.getInstance(androidApplication()) }
         single { DBManager(androidApplication()) }
+        single<ILocaleManager> { LocaleManager.getInstance(get()) }
     }
 
     val listOfModules = mutableListOf(
@@ -87,6 +92,8 @@ object Modules {
         analyzeCheckoutModule,
         clinicCardModule,
         clinicTabsModule,
-        analyzeOrderModule
+        analyzeOrderModule,
+        privilegeModule,
+        languageModule
     )
 }

@@ -150,12 +150,12 @@
 
     <string name="startSearching">Начните поиск</string>
     <string name="orderSubtitleHome">Вы можете использовать их при заказе доставки или самовывоз</string>
-    <string name="askTitleHome">Спроси\nспециалиста</string>
+    <string name="askTitleHome">Онлайн\nКонсультации</string>
     <string name="analyzeTitleHome">Анализы и диагностика</string>
-    <string name="mapTitleHome">Аптеки на\nкарте</string>
+    <string name="mapTitleHome">IATA\nTravel Pass</string>
     <string name="categoriesTitleHome">Категории</string>
     <string name="seeAllCategoriesHome">Смотреть все</string>
-    <string name="uploadRecipesHome">Загрузить рецепт</string>
+    <string name="uploadRecipesHome">Мои рецепты</string>
     <string name="orderLogoContentDescriptionHome">Лого заказа</string>
     <string name="orderSmallIconContentDescriptionHome">Иконка заказа</string>
     <string name="askTileContentDescriptionHome">Спроси фармацевта</string>
@@ -427,5 +427,15 @@
     <string name="analyzes_checkout_label">Оформление</string>
     <string name="add_card">Добавить карту</string>
     <string name="cancelOrderService">Отменить запись</string>
+    <string name="what_to_find">Что необходимо найти?</string>
+    <string name="language">Язык</string>
+    <string name="privileges">Льготы</string>
+    <string name="select_privilege_type">Выберите тип льготы :</string>
+    <string name="no_identity">Вы пока не добавили удостоверение</string>
+    <string name="coming_soon_updates">Уже в следующих версиях! Следите за обновленями!</string>
+    <string name="language_en">English</string>
+    <string name="language_ru">Русский</string>
+    <string name="language_ua">Українська</string>
+    <string name="language_kz">Қазақ</string>
 
 </resources>

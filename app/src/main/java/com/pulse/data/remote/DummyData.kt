@@ -81,6 +81,15 @@ object DummyData {
         TempPaymentMethod("Kaspi bank", R.drawable.ic_kaspi_bank),
         TempPaymentMethod("Наличными", R.drawable.ic_cash, true)
     )
+
+    val privilegeType = arrayListOf(
+        "Пенсионер",
+        "Инвалид",
+        "Один кормилец в семье",
+        "Страховой полис",
+        "Многодетная семья",
+        "Ветиран ВОВ"
+    )
     val help = arrayListOf(
         HelpItem(
             R.drawable.ic_shield,
