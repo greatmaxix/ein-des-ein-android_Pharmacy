@@ -19,3 +19,6 @@ val String.dateFormatRecipes
 
 val LocalDateTime.analyzeDate: String
     get() = DateTimeFormatter.ofPattern("dd MMM, HH:mm ").format(this)
+
+val LocalDateTime.analyzeCheckoutDate: String
+    get() = DateTimeFormatter.ofPattern("dd MMM HH:mm ").format(this)

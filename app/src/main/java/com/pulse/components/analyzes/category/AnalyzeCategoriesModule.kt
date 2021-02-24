@@ -11,8 +11,8 @@ import org.koin.dsl.module
 @OptIn(KoinApiExtension::class)
 val analyzeCategoriesModule = module {
 
-    fragment { AnalyzeCategoriesFragment(get()) }
-    viewModel { AnalyzeCategoriesViewModel(get()) }
+    viewModel { (args: AnalyzeCategoriesFragmentArgs) -> AnalyzeCategoriesViewModel(args, get()) }
+    fragment { AnalyzeCategoriesFragment() }
 
     single { AnalyzeCategoriesRepository(get(), get()) }
     single { AnalyzeCategoriesRemoteDataSource(get()) }

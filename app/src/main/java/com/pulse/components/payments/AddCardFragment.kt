@@ -10,6 +10,7 @@ import androidx.core.widget.doAfterTextChanged
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.textfield.TextInputLayout
 import com.pulse.R
+import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.isLetterAndSpace
 import com.pulse.core.extensions.mockToast
 import com.pulse.core.extensions.toast
@@ -17,7 +18,7 @@ import com.pulse.databinding.FragmentAddCardBinding
 import com.pulse.util.CreditCardExpiryInputFilter
 import com.pulse.util.CreditCardInputFilter
 
-class AddCardFragment : PaymentsBaseFragment(R.layout.fragment_add_card) {
+class AddCardFragment : BaseMVVMFragment(R.layout.fragment_add_card) {
 
     private val binding by viewBinding(FragmentAddCardBinding::bind)
     private val stateListDefault by lazy { ContextCompat.getColorStateList(requireContext(), R.color.selector_text_input_default) }
@@ -28,6 +29,7 @@ class AddCardFragment : PaymentsBaseFragment(R.layout.fragment_add_card) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
 
+        showBackButton()
         with(tilCardNumber) {
             editText?.filters = arrayOf(LengthFilter(CREDIT_CARD_NUMBER_LENGTH), CreditCardInputFilter())
             updateStateAfterTextChanged {

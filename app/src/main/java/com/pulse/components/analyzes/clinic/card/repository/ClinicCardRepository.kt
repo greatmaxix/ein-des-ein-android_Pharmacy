@@ -1,4 +1,4 @@
-package com.pulse.components.analyzes.clinic.repository
+package com.pulse.components.analyzes.clinic.card.repository
 
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent

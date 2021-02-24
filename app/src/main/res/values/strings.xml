@@ -420,7 +420,12 @@
     <string name="change">Изменить</string>
     <string name="date_and_time">Дата и Время</string>
     <string name="analyze_checkout_note">Комментарий:</string>
+    <string name="analyze_order_note">Комментарий к заказу:</string>
     <string name="add_cart">Добавить карту</string>
     <string name="total_sum">Стоимость</string>
+    <string name="selectClinic">Выбор клиники</string>
+    <string name="analyzes_checkout_label">Оформление</string>
+    <string name="add_card">Добавить карту</string>
+    <string name="cancelOrderService">Отменить запись</string>
 
 </resources>

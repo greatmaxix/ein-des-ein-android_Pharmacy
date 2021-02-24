@@ -3,6 +3,7 @@ package com.pulse.components.analyzes.category
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.analyzes.category.adapter.AnalyzeCategoryAdapter
@@ -13,9 +14,13 @@ import com.pulse.core.extensions.gone
 import com.pulse.core.extensions.visible
 import com.pulse.databinding.FragmentAnalyzeCategoriesBinding
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
-class AnalyzeCategoriesFragment(private val viewModel: AnalyzeCategoriesViewModel) : BaseMVVMFragment(R.layout.fragment_analyze_categories) {
+class AnalyzeCategoriesFragment : BaseMVVMFragment(R.layout.fragment_analyze_categories) {
 
+    private val args by navArgs<AnalyzeCategoriesFragmentArgs>()
+    private val viewModel: AnalyzeCategoriesViewModel by viewModel(parameters = { parametersOf(args) })
     private val binding by viewBinding(FragmentAnalyzeCategoriesBinding::bind)
     private val analyzeCategoryAdapter by lazy { AnalyzeCategoryAdapter(viewModel::selectCategory) }
     private val spacing by lazy { resources.getDimensionPixelSize(R.dimen._2sdp) }

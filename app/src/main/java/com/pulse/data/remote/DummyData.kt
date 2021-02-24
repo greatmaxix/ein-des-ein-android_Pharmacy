@@ -6,6 +6,7 @@ import com.pulse.components.analyzes.details.model.Clinic
 import com.pulse.components.analyzes.list.model.Analyze
 import com.pulse.components.checkout.model.TempPaymentMethod
 import com.pulse.components.needHelp.model.HelpItem
+import com.pulse.data.remote.model.order.CustomerOrderData
 import com.pulse.model.Location
 import com.pulse.model.Picture
 import java.time.LocalDate
@@ -110,20 +111,26 @@ object DummyData {
             analyzeCategoryNames.random(),
             randomLorem(),
             Random.nextDouble(10.0),
-            Location(0.0, 0.0, "Some clinic address"),
+            Location(Random.nextDouble(), Random.nextDouble(), "Some clinic address"),
             Picture("https://web.synevo.ua/online.new/img/Logo_New.png"),
             Random.nextInt(1000)
         )
     }
 
+    private fun randomUserData() = CustomerOrderData(analyzeCategoryNames.random(), clinicsList.random().phone, null)
+
     val analyzesList = getRandomIntList(5).mapIndexed { index, _ ->
         Analyze(
             index,
+            randomUserData(),
             Random.nextInt().toString(),
             analyzeCategoryInner2.random(),
             clinicsList.random(),
             getRandomDate(),
-            Random.nextInt(1000)
+            if (Random.nextBoolean()) Random.nextInt(1000) else null,
+            Random.nextInt(1000),
+            paymentMethod[2],
+            randomLorem()
         )
     }
 }

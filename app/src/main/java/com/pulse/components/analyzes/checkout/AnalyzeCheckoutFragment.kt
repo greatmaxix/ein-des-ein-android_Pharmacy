@@ -1,6 +1,9 @@
 package com.pulse.components.analyzes.checkout
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
@@ -8,9 +11,12 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pulse.R
+import com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragmentDirections.Companion.fromAnalyzeCheckoutToAddCard
+import com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragmentDirections.Companion.globalToClinicTabs
 import com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragmentDirections.Companion.globalToHome
 import com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragmentDirections.Companion.globalToPromoCodeDialog
 import com.pulse.components.checkout.dialog.PromoCodeDialogFragment
+import com.pulse.components.checkout.dialog.PromoCodeDialogFragment.Companion.PROMO_CODE_EXTRA_KEY
 import com.pulse.components.checkout.model.TempPaymentMethod
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
@@ -18,13 +24,14 @@ import com.pulse.data.remote.DummyData
 import com.pulse.databinding.FragmentAnalyzeCheckoutBinding
 import com.pulse.util.ColorFilterUtil
 import org.koin.core.component.KoinApiExtension
+import java.time.LocalDateTime
 
 @KoinApiExtension
 class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_analyze_checkout) {
 
     private val args by navArgs<AnalyzeCheckoutFragmentArgs>()
     private val binding by viewBinding(FragmentAnalyzeCheckoutBinding::bind)
-    private val radioButtonPadding by lazy { resources.getDimension(R.dimen._8sdp).toInt() }
+    private val radioButtonPadding by lazy { getDimensionPixelSize(R.dimen._8sdp) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,21 +53,16 @@ class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) :
             mtvPhone.setDebounceOnClickListener { showDial(clinic.phone) }
             fabLocation.gone()
         }
-        mbChangeClinic.mockToast()
-        viewDateTime.mockToast() // TODO date dialog
-//        viewDateTime.setOnClick {
-//
-//        }
-        viewDateTime.detailText = "27 февраля, 11:00"
+        mbChangeClinic.onClickDebounce { navController.navigate(globalToClinicTabs(args.category)) }
+        viewDateTime.onClickDebounce { viewModel.pickDateTime() }
         mbPromoCode.setDebounceOnClickListener {
             setFragmentResultListener(PromoCodeDialogFragment.PROMO_CODE_REQUEST_KEY) { _, bundle ->
-                val code = bundle[PromoCodeDialogFragment.PROMO_CODE_EXTRA_KEY]
-                viewModel.handlePromoCodeResult(code as String)
+                viewModel.handlePromoCodeResult(bundle.getString(PROMO_CODE_EXTRA_KEY) ?: "")
             }
-            doNav(globalToPromoCodeDialog())
+            navController.navigate(globalToPromoCodeDialog())
         }
         initPaymentMethods()
-        mtvAddMethods.mockToast()
+        mtvAddMethods.onClickDebounce { navController.navigate(fromAnalyzeCheckoutToAddCard()) }
         val totalAmount = "${clinic.servicePrice} ₸"
         mtvTotalAmount.text = totalAmount
         val totalCost = "${clinic.servicePrice} ₸"
@@ -101,6 +103,17 @@ class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) :
             customer?.let {
                 binding.viewUserDetails.setData(it.name, it.phone, it.email)
             }
+        }
+        observe(viewModel.pickDateTimeLiveData) {
+            DatePickerDialog(requireContext(), { _, year, month, day ->
+                TimePickerDialog(requireContext(), { _, hour, minute ->
+                    val pickedDateTime = LocalDateTime.of(year, month + 1, day, hour, minute)
+                    viewModel.setDateTime(pickedDateTime)
+                }, it.hour, it.minute, DateFormat.is24HourFormat(requireContext())).show()
+            }, it.year, it.monthValue - 1, it.dayOfMonth).show()
+        }
+        observe(viewModel.selectedDateTimeLiveData) {
+            binding.viewDateTime.detailText = it.analyzeCheckoutDate
         }
     }
 }

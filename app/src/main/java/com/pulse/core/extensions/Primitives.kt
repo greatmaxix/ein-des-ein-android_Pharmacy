@@ -1,7 +1,7 @@
 package com.pulse.core.extensions
 
-import android.graphics.Color
-import android.graphics.Typeface
+import android.content.Context
+import android.graphics.*
 import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
@@ -11,6 +11,7 @@ import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import androidx.annotation.ColorInt
+import androidx.core.graphics.drawable.toBitmap
 import com.pulse.R
 import java.util.*
 import java.util.regex.Matcher
@@ -102,4 +103,16 @@ fun Int.mixColorWith(@ColorInt color: Int, ratio: Float): Int {
 fun Int.length() = when (this) {
     0 -> 1
     else -> log10(abs(toDouble())).toInt() + 1
+}
+
+@Deprecated("use library")
+fun String.asBitmap(context: Context, paint: Paint): Bitmap? {
+    var bitmap = context.getDrawable(R.drawable.ic_marker_icon)?.toBitmap() ?: return null
+    bitmap = bitmap.copy(bitmap.config ?: Bitmap.Config.ARGB_8888, true)
+    val bounds = Rect()
+    paint.getTextBounds(this, 0, length, bounds)
+    val centerX = (bitmap.width - bounds.width()) / 2f
+    val centerY = (bitmap.height + bounds.height()) / 2.8f
+    Canvas(bitmap).drawText(this, centerX, centerY, paint)
+    return bitmap
 }

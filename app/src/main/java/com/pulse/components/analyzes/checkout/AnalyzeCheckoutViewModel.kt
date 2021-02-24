@@ -5,6 +5,7 @@ import com.pulse.components.analyzes.checkout.repository.AnalyzeCheckoutReposito
 import com.pulse.core.base.mvvm.BaseViewModel
 import com.pulse.core.general.SingleLiveEvent
 import org.koin.core.component.KoinApiExtension
+import java.time.LocalDateTime
 
 @KoinApiExtension
 class AnalyzeCheckoutViewModel(private val repository: AnalyzeCheckoutRepository) : BaseViewModel() {
@@ -17,7 +18,23 @@ class AnalyzeCheckoutViewModel(private val repository: AnalyzeCheckoutRepository
 
     val customerInfoLiveData = repository.getCustomerInfo()
 
+    private var selectedDateTime = LocalDateTime.now()
+    private val _selectedDateTimeLiveData by lazy { SingleLiveEvent<LocalDateTime>() }
+    val selectedDateTimeLiveData: LiveData<LocalDateTime> by lazy { _selectedDateTimeLiveData }
+
+    private val _pickDateTimeLiveData by lazy { SingleLiveEvent<LocalDateTime>() }
+    val pickDateTimeLiveData: LiveData<LocalDateTime> by lazy { _pickDateTimeLiveData }
+
     fun handlePromoCodeResult(code: String) {
         // TODO
+    }
+
+    fun pickDateTime() {
+        _pickDateTimeLiveData.postValue(selectedDateTime)
+    }
+
+    fun setDateTime(localDateTime: LocalDateTime) {
+        selectedDateTime = localDateTime
+        _selectedDateTimeLiveData.postValue(localDateTime)
     }
 }

@@ -1,9 +1,8 @@
-package com.pulse.components.analyzes.clinic
+package com.pulse.components.analyzes.clinic.card
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.switchMap
-import com.pulse.components.analyzes.category.model.AnalyzeCategory
-import com.pulse.components.analyzes.clinic.repository.ClinicCardRepository
+import com.pulse.components.analyzes.clinic.card.repository.ClinicCardRepository
 import com.pulse.core.base.mvvm.BaseViewModel
 import com.pulse.core.general.SingleLiveEvent
 import org.koin.core.component.KoinApiExtension
@@ -40,10 +39,5 @@ class ClinicCardViewModel(private val repository: ClinicCardRepository) : BaseVi
 
     fun fetchBranches(id: Int) {
         _branchesListLiveData.postValue(id)
-    }
-
-
-    fun selectCategory(category: AnalyzeCategory) {
-
     }
 }

@@ -1,4 +1,4 @@
-package com.pulse.components.analyzes.clinic.repository
+package com.pulse.components.analyzes.clinic.card.repository
 
 import com.pulse.data.remote.DummyData
 import com.pulse.data.remote.api.RestApi

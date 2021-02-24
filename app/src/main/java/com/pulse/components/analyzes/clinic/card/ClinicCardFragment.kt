@@ -1,4 +1,4 @@
-package com.pulse.components.analyzes.clinic
+package com.pulse.components.analyzes.clinic.card
 
 import android.os.Bundle
 import android.view.View
@@ -6,10 +6,13 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.analyzes.category.adapter.AnalyzeCategoryAdapter
-import com.pulse.components.analyzes.details.AnalyzeDetailsFragmentDirections
+import com.pulse.components.analyzes.clinic.card.ClinicCardFragmentDirections.Companion.globalToAnalyzeCategories
+import com.pulse.components.analyzes.clinic.card.ClinicCardFragmentDirections.Companion.globalToClinicCard
+import com.pulse.components.analyzes.clinic.card.ClinicCardFragmentDirections.Companion.globalToClinicTabs
 import com.pulse.components.analyzes.details.adapter.ClinicsAdapter
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.loadGlideDrawableByURL
+import com.pulse.core.extensions.onClickDebounce
 import com.pulse.core.extensions.showDial
 import com.pulse.core.extensions.showDirection
 import com.pulse.databinding.FragmentClinicCardBinding
@@ -20,9 +23,9 @@ class ClinicCardFragment(private val viewModel: ClinicCardViewModel) : BaseMVVMF
 
     private val args by navArgs<ClinicCardFragmentArgs>()
     private val binding by viewBinding(FragmentClinicCardBinding::bind)
-    private val categoryAdapter by lazy { AnalyzeCategoryAdapter(viewModel::selectCategory) }
+    private val categoryAdapter by lazy { AnalyzeCategoryAdapter { navController.navigate(globalToAnalyzeCategories(args.clinic, it)) } }
     private val clinicsAdapter = ClinicsAdapter(
-        { navController.navigate(AnalyzeDetailsFragmentDirections.fromAnalyzeDetailsToClinicCard(it)) },
+        { navController.navigate(globalToClinicCard(it)) },
         null,
         ::showDial,
         { showDirection(it.location.lat, it.location.lng) }
@@ -41,6 +44,7 @@ class ClinicCardFragment(private val viewModel: ClinicCardViewModel) : BaseMVVMF
             mtvDescription.text = description
             viewModel.fetchCategories(id)
             viewModel.fetchBranches(id)
+            mbSeeAllBranch.onClickDebounce { navController.navigate(globalToClinicTabs()) }
         }
     }
 

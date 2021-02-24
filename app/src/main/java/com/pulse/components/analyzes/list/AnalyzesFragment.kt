@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
+import com.pulse.components.analyzes.list.AnalyzesFragmentDirections.Companion.fromAnalyzesToAnalyzeOrder
 import com.pulse.components.analyzes.list.AnalyzesFragmentDirections.Companion.globalToAnalyzeCategories
 import com.pulse.components.analyzes.list.adapter.AnalyzesAdapter
 import com.pulse.core.base.mvvm.BaseMVVMFragment
@@ -18,7 +19,7 @@ class AnalyzesFragment(val viewModel: AnalyzesViewModel) : BaseMVVMFragment(R.la
 
     private val binding by viewBinding(FragmentAnalyzesBinding::bind)
     private val analyzesAdapter = AnalyzesAdapter(
-        { /* TODO show analyze details */ },
+        { navController.navigate(fromAnalyzesToAnalyzeOrder(it)) },
         ::showDial
     )
 

@@ -1,4 +1,4 @@
-package com.pulse.components.pharmacy.tabs.map
+package com.pulse.components.analyzes.clinic.tabs.map
 
 import android.graphics.*
 import android.os.Bundle
@@ -10,15 +10,17 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.MarkerOptions
 import com.pulse.R
-import com.pulse.components.pharmacy.model.Pharmacy
-import com.pulse.components.pharmacy.tabs.BaseTabFragment
+import com.pulse.components.analyzes.clinic.tabs.BaseClinicTabFragment
+import com.pulse.components.analyzes.details.model.Clinic
 import com.pulse.core.extensions.asBitmap
 import com.pulse.core.extensions.asyncWithContext
 import com.pulse.core.extensions.getDimensionPixelSize
 import com.pulse.core.utils.BoundsUtils.boundsFromLatLngList
 import com.pulse.databinding.FragmentPharmacyMapBinding
+import org.koin.core.component.KoinApiExtension
 
-class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnMapReadyCallback {
+@KoinApiExtension
+class ClinicMapFragment : BaseClinicTabFragment(R.layout.fragment_clinic_map), OnMapReadyCallback {
 
     private val binding by viewBinding(FragmentPharmacyMapBinding::bind)
     private var googleMap: GoogleMap? = null
@@ -34,11 +36,7 @@ class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnM
         super.onViewCreated(view, savedInstanceState)
 
         mapPharmacy.onCreate(savedInstanceState)
-        mapPharmacy.getMapAsync(this@PharmacyMapFragment)
-    }
-
-    override fun onBindLiveData() {
-        observeSavedStateHandler(PHARMACY_KEY, ::addProduct)
+        mapPharmacy.getMapAsync(this@ClinicMapFragment)
     }
 
     override fun onResume() {
@@ -47,8 +45,8 @@ class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnM
     }
 
     override fun onPause() {
-        super.onPause()
         binding.mapPharmacy.onPause()
+        super.onPause()
     }
 
     override fun onStart() {
@@ -57,42 +55,42 @@ class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnM
     }
 
     override fun onStop() {
-        super.onStop()
         binding.mapPharmacy.onStop()
+        super.onStop()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
         binding.mapPharmacy.onDestroy()
+        super.onDestroyView()
     }
 
     override fun onLowMemory() {
-        super.onLowMemory()
         binding.mapPharmacy.onLowMemory()
+        super.onLowMemory()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
         binding.mapPharmacy.onSaveInstanceState(outState)
+        super.onSaveInstanceState(outState)
     }
 
     override fun onMapReady(map: GoogleMap?) {
         googleMap = map
-        observeResult(viewModel.pharmacyListLiveData) {
+        observeResult(viewModel.clinicsListLiveData) {
             onEmmit = { showMarkers(this) }
         }
 
         googleMap?.setOnMarkerClickListener { marker ->
-            viewModel.getPharmacy(marker.tag as Int)
+            viewModel.getClinic(marker.tag as Int)
             true
         }
     }
 
-    private fun showMarkers(list: List<Pharmacy>) {
+    private fun showMarkers(list: List<Clinic>) {
         list.forEach { asyncWithContext({ createMarker(it) }, { googleMap?.addMarker(this)?.apply { tag = it.id } }) }
         googleMap?.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsFromLatLngList(list.map { it.location.mapCoordinates }), getDimensionPixelSize(R.dimen._36sdp)))
     }
 
-    private fun createMarker(pharmacy: Pharmacy) =
-        MarkerOptions().position(pharmacy.location.mapCoordinates).icon(BitmapDescriptorFactory.fromBitmap(pharmacy.firstProductPrice.asBitmap(requireContext(), paint)))
+    private fun createMarker(clinic: Clinic) =
+        MarkerOptions().position(clinic.location.mapCoordinates).icon(BitmapDescriptorFactory.fromBitmap(clinic.servicePrice.toString().asBitmap(requireContext(), paint)))
 }

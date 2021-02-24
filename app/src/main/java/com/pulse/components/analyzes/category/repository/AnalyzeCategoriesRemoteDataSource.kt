@@ -5,5 +5,5 @@ import com.pulse.data.remote.api.RestApi
 
 class AnalyzeCategoriesRemoteDataSource(private val rm: RestApi) {
 
-    suspend fun getCategories() = DummyData.analyzeCategories // TODO rm.getAnalyzeCategories()
+    suspend fun getCategories(id: Int?) = DummyData.analyzeCategories // TODO rm.getAnalyzeCategories()
 }

@@ -10,7 +10,7 @@ import com.pulse.core.base.mvvm.BaseViewModel
 import com.pulse.core.extensions.falseIfNull
 import com.pulse.core.general.SingleLiveEvent
 
-class AnalyzeCategoriesViewModel(private val repository: AnalyzeCategoriesRepository) : BaseViewModel() {
+class AnalyzeCategoriesViewModel(private val args: AnalyzeCategoriesFragmentArgs, private val repository: AnalyzeCategoriesRepository) : BaseViewModel() {
 
     private val _errorLiveData by lazy { SingleLiveEvent<String>() }
     val errorLiveData: LiveData<String> by lazy { _errorLiveData }
@@ -33,8 +33,8 @@ class AnalyzeCategoriesViewModel(private val repository: AnalyzeCategoriesReposi
     private val _selectedCategoryLiveData by lazy { MutableLiveData<AnalyzeCategory?>() }
     val selectedCategoryLiveData: LiveData<AnalyzeCategory?> by lazy { _selectedCategoryLiveData }
 
-    private var originalList: List<AnalyzeCategory>? = null
-    private var parentList: List<AnalyzeCategory>? = null
+    private var originalList: List<AnalyzeCategory> = listOf()
+    private var parentList: List<AnalyzeCategory> = listOf()
     private var selectedCategory: AnalyzeCategory? = null
         set(value) {
             field = value
@@ -43,8 +43,9 @@ class AnalyzeCategoriesViewModel(private val repository: AnalyzeCategoriesReposi
 
     init {
         launchIO {
-            originalList = repository.getAnalyzeCategories()
+            originalList = repository.getAnalyzeCategories(args.clinic?.id)
             parentList = originalList
+            if (args.category != null) selectedCategory = args.category
             selectedCategory?.let {
                 selectCategory(it)
             } ?: run {
@@ -73,7 +74,7 @@ class AnalyzeCategoriesViewModel(private val repository: AnalyzeCategoriesReposi
             selectedCategory = category
             _nestedCategoriesLiveData.postValue(category.nodes)
         } else {
-            _directionLiveData.postValue(fromAnalyzeCategoriesToAnalyzeDetails(category))
+            _directionLiveData.postValue(fromAnalyzeCategoriesToAnalyzeDetails(category, args.clinic))
         }
     }
 
