@@ -427,5 +427,11 @@
     <string name="analyzes_checkout_label">Оформление</string>
     <string name="add_card">Добавить карту</string>
     <string name="cancelOrderService">Отменить запись</string>
+    <string name="confirm_analyze_title">Для подтверждения записи дождитесь звонка оператора</string>
+    <string name="your_request_accepted">Ваша заявка принята!</string>
+    <string name="ok">Ок</string>
+    <string name="order_num_holder">№ %s</string>
+    <string name="request_cancelled">Запись отменена</string>
+    <string name="thanks_for_using_pulse">Спасибо за использование Pulse</string>
 
 </resources>

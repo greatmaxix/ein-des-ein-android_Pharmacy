@@ -27,6 +27,13 @@ class AnalyzesFragment(val viewModel: AnalyzesViewModel) : BaseMVVMFragment(R.la
         super.onViewCreated(view, savedInstanceState)
 
         showBackButton()
+        initMenu(R.menu.add) {
+            if (it.itemId == R.id.add) {
+                navController.navigate(globalToAnalyzeCategories())
+            }
+            true
+        }
+
         rvAnalyzes.adapter = analyzesAdapter
         viewEmptyContent.setButtonAction {
             navController.navigate(globalToAnalyzeCategories())

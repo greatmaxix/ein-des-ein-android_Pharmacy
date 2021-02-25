@@ -11,10 +11,9 @@ import org.koin.core.component.get
 @KoinApiExtension
 class ClinicTabsPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment), KoinComponent {
 
-    override fun getItemCount() = 2
+    private val items = listOf(get<ClinicListFragment>(), get<ClinicMapFragment>())
 
-    override fun createFragment(position: Int): Fragment = when (position) {
-        0 -> get<ClinicListFragment>()
-        else -> get<ClinicMapFragment>()
-    }
+    override fun getItemCount() = items.size
+
+    override fun createFragment(position: Int): Fragment = items[position]
 }

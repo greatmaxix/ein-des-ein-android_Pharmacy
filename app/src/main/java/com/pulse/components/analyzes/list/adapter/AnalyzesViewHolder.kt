@@ -17,7 +17,7 @@ class AnalyzesViewHolder(
     private val binding by viewBinding(ItemAnalyzeBinding::bind)
 
     override fun bind(item: Analyze) = with(binding) {
-        mtvOrderNo.text = "№ ${item.orderNo}" // TODO holder
+        mtvOrderNo.text = context.getString(R.string.order_num_holder, item.orderNo)
         mtvCategory.text = item.category.name
         mtvDateTime.text = item.dateTime.analyzeDate
         ivClinic.loadGlideCircle(item.clinic.logo.url, R.drawable.ic_placeholder_search) // TODO set placeholder

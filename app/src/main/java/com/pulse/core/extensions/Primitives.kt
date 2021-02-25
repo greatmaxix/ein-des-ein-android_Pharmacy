@@ -90,6 +90,14 @@ fun Float.formatPrice(digits: Int = 2): String = toDouble().formatPrice(digits)
 
 fun Double.formatPrice(digits: Int = 2): String = String.format(Locale.US, "%.${digits}f", this)
 
+fun String.toPrice() = "$this ₸"
+
+fun Int.toPrice() = "$this ₸"
+
+fun Double.toPriceFormat() = "${this.formatPrice()} ₸"
+
+fun Float.toPriceFormat() = "${this.formatPrice()} ₸"
+
 fun Int.mixColorWith(@ColorInt color: Int, ratio: Float): Int {
     val inverseRatio = 1f - ratio
 
