@@ -88,11 +88,6 @@ class MercureEventListenerService : Service(), CoroutineScope, LifecycleObserver
                             val header = MessageItem.getStubItem(null, this, ChatMessageAdapter.TYPE_DATE_HEADER, chatId)
                             if (!repository.isHeaderExist(chatId, header.createdAt)) repository.insertMessageWithKey(header)
                         }
-
-                        // TODO get items from DB with product
-                        // get product from with
-                        // update items
-
                         repository.insertMessageWithKey(this)
                         if (!repository.isChatForeground || !isAppForeground) postMessageNotification()
                     }

@@ -63,15 +63,14 @@ class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) :
         }
         initPaymentMethods()
         mtvAddMethods.onClickDebounce { navController.navigate(fromAnalyzeCheckoutToAddCard()) }
-        val totalAmount = "${clinic.servicePrice} ₸"
+        val totalAmount = clinic.servicePrice.toPrice()
         mtvTotalAmount.text = totalAmount
-        val totalCost = "${clinic.servicePrice} ₸"
+        val totalCost = clinic.servicePrice.toPrice()
         mtvTotalPayable.text = totalCost
         mbCheckout.onClickDebounce {
-            // TODO set proper action and dialog
-            showAlert("Для подтверждения записи дождитесь звонка оператора") {
-                title = "Ваша заявка принята!"
-                positive = "Ok"
+            showAlertRes(R.string.your_request_accepted) {
+                title = R.string.confirm_analyze_title
+                positive = R.string.common_okButton
                 positiveAction = {
                     navController.navigate(globalToHome())
                 }

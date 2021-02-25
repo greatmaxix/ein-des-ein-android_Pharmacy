@@ -57,11 +57,11 @@ class CheckoutFragment(private val viewModel: CheckoutViewModel) : BaseMVVMFragm
         }
         mbCheckout.setDebounceOnClickListener { validateFieldsAndSendOrder() }
 
-        val totalAmount = "${args.cartItem.totalPrice.formatPrice()} ₸"
+        val totalAmount = args.cartItem.totalPrice.toPriceFormat()
         mtvTotalAmount.text = totalAmount
         val deliveryCost = 150 // todo change in future
         mtvDeliveryAmount.text = getString(R.string.deliveryCost, deliveryCost)
-        val totalCost = "${(args.cartItem.totalPrice + deliveryCost).formatPrice()} ₸"
+        val totalCost = (args.cartItem.totalPrice + deliveryCost).toPriceFormat()
         mtvTotalPayable.text = totalCost
 
         setPharmacyInfo()

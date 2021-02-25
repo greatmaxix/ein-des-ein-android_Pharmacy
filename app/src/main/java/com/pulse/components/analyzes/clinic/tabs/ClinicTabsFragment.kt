@@ -18,7 +18,6 @@ import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.databinding.FragmentClinicTabsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
-import timber.log.Timber
 
 @KoinApiExtension
 class ClinicTabsFragment : BaseMVVMFragment(R.layout.fragment_clinic_tabs) {
@@ -26,7 +25,7 @@ class ClinicTabsFragment : BaseMVVMFragment(R.layout.fragment_clinic_tabs) {
     private val args by navArgs<ClinicTabsFragmentArgs>()
     private val binding by viewBinding(FragmentClinicTabsBinding::bind)
     private val viewModel: ClinicTabsViewModel by viewModel()
-    private val tabTitles = intArrayOf(R.string.pharmacyListTitle, R.string.pharmacyMapTitle)
+    private val tabTitles by lazy { listOf(getString(R.string.pharmacyListTitle), getString(R.string.pharmacyMapTitle)) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,7 +44,7 @@ class ClinicTabsFragment : BaseMVVMFragment(R.layout.fragment_clinic_tabs) {
         TabLayoutMediator(tabsClinics, vpClinics.apply {
             adapter = ClinicTabsPagerAdapter(this@ClinicTabsFragment)
             offscreenPageLimit = tabTitles.size
-        }) { tab, position -> tab.text = getString(tabTitles[position]) }.attach()
+        }) { tab, position -> tab.text = tabTitles[position] }.attach()
     }
 
     override fun onBindLiveData() {
@@ -53,7 +52,6 @@ class ClinicTabsFragment : BaseMVVMFragment(R.layout.fragment_clinic_tabs) {
             clinic?.let { navController.navigate(fromClinicMapToClinicBottomSheet(it)) }
         }
         observe(viewModel.selectedClinicLiveData) { clinic ->
-            Timber.e("observe")
             navController.navigate(
                 if (args.category == null) {
                     globalToAnalyzeCategories(clinic)

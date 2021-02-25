@@ -44,15 +44,14 @@ class AnalyzeOrderFragment(private val viewModel: AnalyzeOrderViewModel) : BaseM
                 mtvPaymentType.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, it.icon, 0)
             }
             mtvOrderNote.text = note
-            val totalAmount = "${clinic.servicePrice} ₸"
+            val totalAmount = clinic.servicePrice.toPrice()
             mtvTotalAmount.text = totalAmount
-            val totalCost = "${clinic.servicePrice} ₸"
+            val totalCost = clinic.servicePrice.toPrice()
             mtvTotalPayable.text = totalCost
             mbCancel.onClickDebounce {
-                // TODO set proper action and dialog
-                showAlert("Запись отменена") {
-                    title = "Спасибо за использование Pulse"
-                    positive = "Ok"
+                showAlertRes(R.string.thanks_for_using_pulse) {
+                    title = R.string.request_cancelled
+                    positive = R.string.common_okButton
                     positiveAction = {
                         navController.navigate(globalToHome())
                     }
