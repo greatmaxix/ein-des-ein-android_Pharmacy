@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGreyLight"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_analyze_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingTop="@dimen/_24sdp"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Клинический анализ крови" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_category_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/greyText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_analyze_category"
+                tools:text="51ДНЕ" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/darkBlue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_category_code"
+                tools:text="Таблетки покрытые пленочной оболочкой от светло-серого до темно-серого цвета, капсуловидной формы, сгравировкой PRENATAL с одной стороны и FORTE с другой стороны, со специфическим запахом" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_warning_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:elevation="0dp"
+                app:cardBackgroundColor="@color/mediumGrey"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:contentPadding="@dimen/_8sdp"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_description"
+                app:rippleColor="@color/colorRippleBlue">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mtv_instruction_warning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_about"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:text="@string/analyze_detailed_info"
+                    android:textAppearance="?attr/textAppearanceOverline"
+                    android:textColor="@color/darkBlue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mtv_subtitle" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_clinics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:text="@string/clinics"
+                android:textAppearance="?attr/textAppearanceButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcv_warning_container" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mb_see_all"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:gravity="bottom"
+                android:insetBottom="0dp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:text="@string/seeAllCategoriesHome"
+                android:textAllCaps="false"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/primaryBlue"
+                app:layout_constraintBottom_toBottomOf="@+id/mtv_clinics"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mtv_clinics" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_clinics"
+                style="@style/ScrollStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_clinics"
+                tools:listitem="@layout/item_clinic" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_clinics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="mtv_clinics, mb_see_all, rv_clinics" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mb_order_service"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_48sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:backgroundTint="@color/primaryBlue"
+                android:gravity="center"
+                android:text="@string/order_service"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/colorGlobalWhite"
+                android:visibility="gone"
+                app:cornerRadius="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcv_warning_container" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

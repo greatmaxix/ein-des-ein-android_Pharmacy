@@ -6,7 +6,7 @@
 -renamesourcefileattribute SourceFile
 
 -keepnames class com.pulse.components.chat.model.chat.ChatItem
--keepnames class com.pulse.components.product.model.ProductLite {}
+-keepnames class com.pulse.components.product.model.ProductLite{}
 -keepnames class com.pulse.components.cart.model.CartItem
 -keepnames class com.pulse.model.order.Order
 -keepnames class com.pulse.components.product.model.Product

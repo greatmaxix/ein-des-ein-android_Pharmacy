@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGreyLight"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layoutDirection="locale" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs_clinics"
+        style="@style/TabLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_toolbar"
+        android:backgroundTint="@color/colorGlobalWhite"
+        android:elevation="@dimen/_4sdp" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_clinics"
+        style="@style/ScrollStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

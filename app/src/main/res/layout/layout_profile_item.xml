@@ -9,7 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_profile_item_container"
         android:layout_width="match_parent"
+        android:background="@drawable/background_default_ripple_selector_rect"
         android:layout_height="wrap_content"
+        android:minHeight="@dimen/_36sdp"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView

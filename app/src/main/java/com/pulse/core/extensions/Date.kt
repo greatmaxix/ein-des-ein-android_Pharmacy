@@ -3,6 +3,8 @@ package com.pulse.core.extensions
 import timber.log.Timber
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 val String.dateFormatRecipes
@@ -14,3 +16,9 @@ val String.dateFormatRecipes
         Timber.e(e)
         ""
     }
+
+val LocalDateTime.analyzeDate: String
+    get() = DateTimeFormatter.ofPattern("dd MMM, HH:mm ").format(this)
+
+val LocalDateTime.analyzeCheckoutDate: String
+    get() = DateTimeFormatter.ofPattern("dd MMM HH:mm ").format(this)

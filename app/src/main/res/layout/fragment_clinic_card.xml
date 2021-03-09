@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGreyLight"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_220sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_image"
+                tools:text="Инвитро 4.9 ⭐" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@color/grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/darkBlue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_name"
+                tools:text="Таблетки покрытые пленочной оболочкой от светло-серого до темно-серого цвета, капсуловидной формы, сгравировкой PRENATAL с одной стороны и FORTE с другой стороны, со специфическим запахом" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_services"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:text="@string/services_list"
+                android:textAppearance="?attr/textAppearanceButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_description" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mb_see_all_services"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:gravity="bottom"
+                android:insetBottom="0dp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:text="@string/seeAllCategoriesHome"
+                android:textAllCaps="false"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/primaryBlue"
+                app:layout_constraintBottom_toBottomOf="@+id/mtv_services"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mtv_services" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_services"
+                style="@style/ScrollStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:paddingHorizontal="@dimen/_13sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_services"
+                tools:listitem="@layout/item_analyze_category" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_branch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:text="@string/clinics"
+                android:textAppearance="?attr/textAppearanceButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_services" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mb_see_all_branch"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:gravity="bottom"
+                android:insetBottom="0dp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:text="@string/seeAllCategoriesHome"
+                android:textAllCaps="false"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/primaryBlue"
+                app:layout_constraintBottom_toBottomOf="@+id/mtv_branch"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mtv_branch" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_clinics"
+                style="@style/ScrollStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/_13sdp"
+                android:paddingBottom="@dimen/_24sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mb_see_all_branch"
+                tools:listitem="@layout/item_clinic" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/colorGlobalWhite"
+    app:cardCornerRadius="@dimen/_6sdp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_16sdp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_order_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_clinic"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="№ 234567" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mtv_order_no"
+            tools:text="Клинический анализ крови" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_date_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textAppearance="?attr/textAppearanceButton"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mtv_category"
+            tools:text="27 февраля, 17:00" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mtv_date_time" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_clinic"
+            android:layout_width="@dimen/_48sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_placeholder_drugstore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mtv_date_time" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:textAppearance="?attr/textAppearanceButton"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_clinic"
+            app:layout_constraintTop_toTopOf="@+id/iv_clinic"
+            tools:text="Название клиники" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/mtv_name"
+            app:layout_constraintTop_toBottomOf="@id/mtv_name"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="ул Горная 23а, Харьков" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/iv_clinic"
+            app:layout_constraintTop_toBottomOf="@id/mtv_address"
+            tools:text="📞️ +7 (098) 000 02 00  • +7 (098) 000 02 00 " />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mtv_phone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_total_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:text="@string/total_sum"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mtv_phone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textColor="@color/primaryBlue"
+            app:layout_constraintBottom_toBottomOf="@+id/mtv_total_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/mtv_total_label"
+            tools:text="568 ₸" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

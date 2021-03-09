@@ -3,21 +3,19 @@ package com.pulse.components.pharmacy.tabs.map
 import android.graphics.*
 import android.os.Bundle
 import android.view.View
-import androidx.core.graphics.drawable.toBitmap
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.pulse.R
 import com.pulse.components.pharmacy.model.Pharmacy
 import com.pulse.components.pharmacy.tabs.BaseTabFragment
+import com.pulse.core.extensions.asBitmap
 import com.pulse.core.extensions.asyncWithContext
 import com.pulse.core.extensions.getDimensionPixelSize
-import com.pulse.core.extensions.getDrawable
+import com.pulse.core.utils.BoundsUtils.boundsFromLatLngList
 import com.pulse.databinding.FragmentPharmacyMapBinding
 
 class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnMapReadyCallback {
@@ -96,31 +94,5 @@ class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnM
     }
 
     private fun createMarker(pharmacy: Pharmacy) =
-        MarkerOptions().position(pharmacy.location.mapCoordinates).icon(BitmapDescriptorFactory.fromBitmap(pharmacy.firstProductPrice.asBitmap()))
-
-    @Deprecated("use library")
-    private fun String.asBitmap(): Bitmap? {
-        var bitmap = getDrawable(R.drawable.ic_marker_icon)?.toBitmap() ?: return null
-        bitmap = bitmap.copy(bitmap.config ?: Bitmap.Config.ARGB_8888, true)
-        val bounds = Rect()
-        paint.getTextBounds(this, 0, length, bounds)
-        val centerX = (bitmap.width - bounds.width()) / 2f
-        val centerY = (bitmap.height + bounds.height()) / 2.8f
-        Canvas(bitmap).drawText(this, centerX, centerY, paint)
-        return bitmap
-    }
-
-    private fun boundsFromLatLngList(list: List<LatLng>): LatLngBounds {
-        var bottomRightLatitude = list.first().latitude
-        var topLeftLatitude = bottomRightLatitude
-        var bottomRightLongitude = list.first().longitude
-        var topLeftLongitude = bottomRightLongitude
-        for (latLng in list) {
-            if (latLng.latitude > topLeftLatitude) topLeftLatitude = latLng.latitude
-            if (latLng.latitude < bottomRightLatitude) bottomRightLatitude = latLng.latitude
-            if (latLng.longitude > topLeftLongitude) topLeftLongitude = latLng.longitude
-            if (latLng.longitude < bottomRightLongitude) bottomRightLongitude = latLng.longitude
-        }
-        return LatLngBounds(LatLng(bottomRightLatitude, bottomRightLongitude), LatLng(topLeftLatitude, topLeftLongitude))
-    }
+        MarkerOptions().position(pharmacy.location.mapCoordinates).icon(BitmapDescriptorFactory.fromBitmap(pharmacy.firstProductPrice.asBitmap(requireContext(), paint)))
 }

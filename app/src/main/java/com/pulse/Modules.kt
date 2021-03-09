@@ -1,6 +1,13 @@
 package com.pulse
 
 import androidx.work.WorkManager
+import com.pulse.components.analyzes.category.analyzeCategoriesModule
+import com.pulse.components.analyzes.checkout.analyzeCheckoutModule
+import com.pulse.components.analyzes.clinic.card.clinicCardModule
+import com.pulse.components.analyzes.clinic.tabs.clinicTabsModule
+import com.pulse.components.analyzes.details.analyzeDetailsModule
+import com.pulse.components.analyzes.list.analyzesModule
+import com.pulse.components.analyzes.order.analyzeOrderModule
 import com.pulse.components.auth.authModule
 import com.pulse.components.cart.cartModule
 import com.pulse.components.categories.categoriesModule
@@ -73,6 +80,13 @@ object Modules {
         addressModule,
         RESTModule,
         mercureModule,
-        needHelpModule
+        needHelpModule,
+        analyzesModule,
+        analyzeCategoriesModule,
+        analyzeDetailsModule,
+        analyzeCheckoutModule,
+        clinicCardModule,
+        clinicTabsModule,
+        analyzeOrderModule
     )
 }

@@ -299,6 +299,9 @@
     <string name="analyzesEmptyContainerSubtitle">Это просто исправить! Запишитесь на анализы через наше приложение</string>
     <string name="analyzesEmptyContainerTitle">У Вас пока нет результатов анализов</string>
 
+    <!-- Analyzes Categories-->
+    <string name="what_analyzes_search">Какие исследования вы ищите?</string>
+
     <!-- Wish -->
     <string name="wishLabel">Избранное</string>
     <string name="wishEmptyContainerAction">Начать поиск</string>
@@ -403,5 +406,32 @@
     <string name="qty">QTY: %1$d</string>
     <string name="recipeCreatedBy">Рецепт выписан :</string>
     <string name="toSeeYourRecipes">Для того что бы увидеть Ваши рецепты необходимо залогиниться</string>
+
+    <string name="analyze_detailed_info">Более детальную информацию о цене Вы узнаете в конкретной лабаратории</string>
+    <string name="clinics">Клиники</string>
+    <string name="order_service">Заказать услугу</string>
+    <string name="clinics_holder">Клиники (%d)</string>
+    <string name="branch_holder">Филиалы (%d)</string>
+    <string name="services_list">Перечень услуг</string>
+    <string name="clinic_name_holder">%s %f ⭐</string>
+    <string name="contact_data">Контактные данные:</string>
+    <string name="service_label">Услуга</string>
+    <string name="clinic_label">Клиника:</string>
+    <string name="change">Изменить</string>
+    <string name="date_and_time">Дата и Время</string>
+    <string name="analyze_checkout_note">Комментарий:</string>
+    <string name="analyze_order_note">Комментарий к заказу:</string>
+    <string name="add_cart">Добавить карту</string>
+    <string name="total_sum">Стоимость</string>
+    <string name="selectClinic">Выбор клиники</string>
+    <string name="analyzes_checkout_label">Оформление</string>
+    <string name="add_card">Добавить карту</string>
+    <string name="cancelOrderService">Отменить запись</string>
+    <string name="confirm_analyze_title">Для подтверждения записи дождитесь звонка оператора</string>
+    <string name="your_request_accepted">Ваша заявка принята!</string>
+    <string name="ok">Ок</string>
+    <string name="order_num_holder">№ %s</string>
+    <string name="request_cancelled">Запись отменена</string>
+    <string name="thanks_for_using_pulse">Спасибо за использование Pulse</string>
 
 </resources>

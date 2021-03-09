@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGreyLight"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.pulse.ui.BuyerDetailsOrder
+                android:id="@+id/view_buyer_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:text="@string/service_label"
+                android:textAppearance="?attr/textAppearanceButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_buyer_info" />
+
+            <include
+                android:id="@+id/view_analyze_category"
+                layout="@layout/item_analyze_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_service" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_clinic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:text="@string/clinic_label"
+                android:textAppearance="?attr/textAppearanceButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_analyze_category" />
+
+            <include
+                android:id="@+id/view_clinic"
+                layout="@layout/item_clinic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_clinic" />
+
+            <com.pulse.ui.ProfileItemView
+                android:id="@+id/view_date_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                app:arrowVisibilityProfile="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_clinic"
+                app:titleProfile="@string/date_and_time" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_payment_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:gravity="start"
+                android:text="@string/paymentType"
+                android:textAppearance="?attr/textAppearanceButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_date_time" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_payment_types"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                app:cardBackgroundColor="@color/colorGlobalWhite"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="0dp"
+                app:contentPadding="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_payment_title">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mtv_payment_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    tools:drawableEnd="@drawable/ic_google_pay"
+                    tools:text="Google Pay" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_note_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:text="@string/analyze_order_note"
+                android:textAppearance="?attr/textAppearanceButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcv_payment_types" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_order_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                app:cardBackgroundColor="@color/primaryBlueLight20"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="0dp"
+                app:contentPadding="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_note_title">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mtv_order_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:textColor="@color/darkBlue"
+                    tools:text="Some comment Some comment Some comment Some comment Some comment Some comment Some comment" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_total_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:text="@string/totalAmount"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/darkBlue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcv_order_note" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_total_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/darkBlue"
+                app:layout_constraintBottom_toBottomOf="@+id/mtv_total_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mtv_total_label"
+                tools:text="382 ₸" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_discount_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_weight="1"
+                android:text="@string/promoCode"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_total_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:text="@string/comingSoon"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/grey"
+                app:layout_constraintBottom_toBottomOf="@+id/mtv_discount_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mtv_discount_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_total_payable_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:text="@string/totalPayable"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/darkBlue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_discount_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_total_payable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/primaryBlue"
+                app:layout_constraintBottom_toBottomOf="@+id/mtv_total_payable_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mtv_total_payable_label"
+                tools:text="382 ₸" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mb_cancel"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_48sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginBottom="@dimen/_57sdp"
+                android:gravity="center"
+                android:text="@string/cancelOrderService"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/primaryBlue"
+                app:backgroundTint="@color/colorGlobalWhite"
+                app:cornerRadius="@dimen/_20sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_total_payable"
+                app:strokeColor="@color/primaryBlue" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

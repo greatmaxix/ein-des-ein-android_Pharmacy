@@ -48,4 +48,8 @@
     <declare-styleable name="Grayscale">
         <attr name="isDisabled" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="BuyerDetailsView">
+        <attr name="labelText" format="reference" />
+    </declare-styleable>
 </resources>
