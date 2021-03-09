@@ -9,7 +9,7 @@ class HelpDiff(private val oldList: List<HelpItem>, private val newList: List<He
 
     override fun getNewListSize() = newList.size
 
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) = oldList[oldItemPosition].title == newList[newItemPosition].title
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) = oldList[oldItemPosition].help == newList[newItemPosition].help
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) = true
 }

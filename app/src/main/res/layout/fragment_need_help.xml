@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorGreyLight">
 
     <LinearLayout
         android:id="@+id/ll_toolbar_container"
@@ -20,16 +22,16 @@
 
         <LinearLayout
             android:id="@+id/ll_header_container"
-            android:layout_marginBottom="@dimen/_13sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_13sdp"
             android:orientation="horizontal">
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginStart="@dimen/_15sdp"
+                android:layout_weight="1"
                 android:text="@string/have_questions"
                 android:textAppearance="?attr/textAppearanceHeadline4"
                 android:textColor="@color/colorGlobalWhite" />
@@ -37,11 +39,12 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_search"
                 android:layout_width="wrap_content"
-                android:padding="@dimen/_8sdp"
-                android:background="@drawable/background_default_ripple_selector_circle"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:background="@drawable/background_default_ripple_selector_circle"
+                android:padding="@dimen/_8sdp"
+                android:tint="@color/colorGlobalWhite"
                 android:src="@drawable/ic_search" />
 
         </LinearLayout>
@@ -61,16 +64,89 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_items"
-        android:layout_width="match_parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:paddingTop="@dimen/_12sdp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_toolbar_container" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_toolbar_container">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/_12sdp"
+                style="@style/ScrollStyle"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_toolbar_container"
+                tools:listitem="@layout/item_help" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_questions"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_56sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:cardBackgroundColor="@color/darkBlue"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="0dp"
+                app:contentPadding="@dimen/_12sdp"
+                app:layout_constraintTop_toBottomOf="@+id/mcv_instruction_warning_container"
+                app:rippleColor="@color/colorRippleBlue">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mtv_have_questions"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/remainQuestions"
+                            android:textAppearance="?attr/textAppearanceBody2"
+                            android:textColor="@color/colorGlobalWhite"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mtv_subtitle" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/mtv_call_us"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/callUs"
+                            android:textAppearance="?attr/textAppearanceButton"
+                            android:textColor="@color/colorGlobalWhite"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mtv_subtitle" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_phone" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

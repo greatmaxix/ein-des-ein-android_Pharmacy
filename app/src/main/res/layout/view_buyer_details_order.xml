@@ -11,10 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/buyerDetails"
-        android:textAppearance="?attr/textAppearanceButton"
-        app:layout_constraintEnd_toStartOf="@+id/tvBuyerDetailsEditOrder"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textAppearance="?attr/textAppearanceButton" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcv_buyer_details_filled"
@@ -24,10 +21,7 @@
         app:cardBackgroundColor="@color/colorGlobalWhite"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="0dp"
-        app:contentPadding="@dimen/_14sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mtv_buyer_details">
+        app:contentPadding="@dimen/_14sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,5 +56,35 @@
                 tools:text="some@user.email" />
 
         </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_delegate_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textAppearance="?attr/textAppearanceButton"
+        tools:text="@string/buyerDetails" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcv_delegate_details_filled"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:cardBackgroundColor="@color/colorGlobalWhite"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="0dp"
+        app:contentPadding="@dimen/_14sdp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_delegate_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/darkBlue"
+            tools:text="Some User Name" />
+
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

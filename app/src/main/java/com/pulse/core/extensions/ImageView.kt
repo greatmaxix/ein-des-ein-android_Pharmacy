@@ -50,8 +50,8 @@ fun ImageView.loadGlideDrawableByName(drawableName: String, onResourceReady: ((I
         .into(this)
 }
 
-fun ImageView.loadGlideCircle(url: String?, @DrawableRes placeholder: Int) = loadGlideDrawableByURL(url) {
-    placeholder(placeholder)
+fun ImageView.loadGlideCircle(url: String?, @DrawableRes placeholder: Int? = null) = loadGlideDrawableByURL(url) {
+    placeholder?.let(::placeholder)
     apply(RequestOptions.circleCropTransform())
     transition(DrawableTransitionOptions.withCrossFade())
 }

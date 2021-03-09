@@ -1,11 +1,10 @@
 package com.pulse.data.remote
 
-import com.pulse.R
 import com.pulse.components.analyzes.category.model.AnalyzeCategory
 import com.pulse.components.analyzes.details.model.Clinic
 import com.pulse.components.analyzes.list.model.Analyze
-import com.pulse.components.checkout.model.TempPaymentMethod
-import com.pulse.components.needHelp.model.HelpItem
+import com.pulse.components.checkout.model.PaymentMethodModel
+import com.pulse.components.payments.model.PaymentMethod
 import com.pulse.data.remote.model.order.CustomerOrderData
 import com.pulse.model.Location
 import com.pulse.model.Picture
@@ -76,43 +75,14 @@ object DummyData {
     private val analyzeCategoryInner1
         get() = getRandomIntList(10).mapIndexed { index, _ -> AnalyzeCategory(index.toLong(), "Category level 1 > $index", nodes = analyzeCategoryInner2) }
     val analyzeCategories = analyzeCategoryNames.mapIndexed { index, name -> AnalyzeCategory(index.toLong(), name, null, null, analyzeCategoryInner1, true) }
-    val paymentMethod = arrayListOf(
-        TempPaymentMethod("Банковская карта"/* • 9876"*/, R.drawable.ic_mastercard),
-        TempPaymentMethod("Kaspi bank", R.drawable.ic_kaspi_bank),
-        TempPaymentMethod("Наличными", R.drawable.ic_cash, true)
-    )
-
     val privilegeType = arrayListOf(
         "Пенсионер",
         "Инвалид",
         "Один кормилец в семье",
         "Страховой полис",
         "Многодетная семья",
-        "Ветиран ВОВ"
+        "Ветеран ВОВ"
     )
-    val help = arrayListOf(
-        HelpItem(
-            R.drawable.ic_shield,
-            "Кассовая дисциплина",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor"
-        ),
-        HelpItem(
-            R.drawable.ic_locked,
-            "Возврат",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor"
-        ),
-        HelpItem(
-            R.drawable.ic_locked,
-            "Возврат",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor"
-        ),
-        HelpItem(
-            R.drawable.ic_dollar_sign,
-            "Рецептурные товары",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor"
-        )
-    )
-
     val clinicsList = getRandomIntList(20).mapIndexed { index, _ ->
         Clinic(
             index,
@@ -126,7 +96,7 @@ object DummyData {
         )
     }
 
-    private fun randomUserData() = CustomerOrderData(analyzeCategoryNames.random(), clinicsList.random().phone, null)
+    private fun randomUserData() = CustomerOrderData(analyzeCategoryNames.random(), clinicsList.random().phone, null, null)
 
     val analyzesList = getRandomIntList(5).mapIndexed { index, _ ->
         Analyze(
@@ -138,7 +108,7 @@ object DummyData {
             getRandomDate(),
             if (Random.nextBoolean()) Random.nextInt(1000) else null,
             Random.nextInt(1000),
-            paymentMethod[2],
+            PaymentMethodModel(PaymentMethod.CASH, true),
             randomLorem()
         )
     }

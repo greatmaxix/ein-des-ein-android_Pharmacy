@@ -144,26 +144,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.card.MaterialCardView
+            <com.pulse.ui.PaymentMethodView
+                android:id="@+id/view_payment_types"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                app:cardBackgroundColor="@color/colorGlobalWhite"
-                app:cardCornerRadius="@dimen/_10sdp"
-                app:cardElevation="@dimen/_1sdp"
-                app:contentPadding="@dimen/_8sdp">
-
-                <RadioGroup
-                    android:id="@+id/rg_payment_methods"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:divider="@color/grey"
-                    android:dividerPadding="@dimen/_8sdp"
-                    android:showDividers="middle" />
-
-            </com.google.android.material.card.MaterialCardView>
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_8sdp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"

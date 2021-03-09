@@ -115,59 +115,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_date_time" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcv_payment_types"
+            <com.pulse.ui.PaymentMethodView
+                android:id="@+id/view_payment_types"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                app:cardBackgroundColor="@color/colorGlobalWhite"
-                app:cardCornerRadius="@dimen/_10sdp"
-                app:cardElevation="0dp"
-                app:contentPadding="@dimen/_8sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mtv_payment_title">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RadioGroup
-                        android:id="@+id/rg_payment_methods"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:divider="@color/grey"
-                        android:dividerPadding="@dimen/_8sdp"
-                        android:showDividers="middle" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:clipToPadding="false"
-                        android:paddingBottom="@dimen/_12sdp">
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/mtv_add_methods"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_3sdp"
-                            android:background="@drawable/background_default_ripple_selector_rect"
-                            android:drawableStart="@drawable/ic_plus_blue"
-                            android:drawablePadding="@dimen/_8sdp"
-                            android:drawableTint="@color/primaryBlue"
-                            android:gravity="center_vertical"
-                            android:text="@string/add_cart"
-                            android:textColor="@color/primaryBlue"
-                            android:textSize="@dimen/_14ssp" />
-
-                    </LinearLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                app:layout_constraintTop_toBottomOf="@+id/mtv_payment_title" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtv_note_title"
@@ -180,7 +136,7 @@
                 android:textAppearance="?attr/textAppearanceButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mcv_payment_types" />
+                app:layout_constraintTop_toBottomOf="@+id/view_payment_types" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_note"

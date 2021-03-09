@@ -45,6 +45,7 @@
     <style name="TextAppearance.MaterialComponents.Body1.Body">
         <item name="android:fontFamily">@font/open_sans_regular</item>
         <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
     </style>
 
     <style name="TextAppearance.MaterialComponents.Body2.SmallBody">
@@ -52,7 +53,7 @@
         <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:letterSpacing">0</item>
         <item name="android:textColor">@color/darkBlue</item>
-        <item name="android:textSize">@dimen/_13ssp</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
     </style>
 
     <style name="TextAppearance.MaterialComponents.Caption.Caption">

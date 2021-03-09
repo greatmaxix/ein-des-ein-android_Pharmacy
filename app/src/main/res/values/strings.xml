@@ -174,6 +174,7 @@
     <!-- Checkout -->
     <string name="checkoutLabel">Офорление</string>
     <string name="buyerDetails">Данные покупателя :</string>
+    <string name="delegateDetails">Данные получателя :</string>
     <string name="firstLastNameHint">Имя и фамилия</string>
     <string name="phoneHintCheckout">@string/phoneHint</string>
     <string name="emailHint">Email</string>
@@ -379,6 +380,8 @@
 
     <!--Chat type-->
     <string name="chooseConsultationType">Пожалуйста, выберите, с кем вы хотите начать консультацию</string>
+    <string name="chooseConsultationTypeSubtitle">Человеческая служба поддержки!</string>
+    <string name="chooseConsultationTypeDescription">Никаких автоответчиков и роботов. Общение только с живыми людьми, которые расшибутся ради вас в лепешку!</string>
     <string name="pharmacistType">Фармацевт</string>
     <string name="doctorType">Доктор</string>
     <string name="next">Далее</string>
@@ -443,5 +446,30 @@
     <string name="order_num_holder">№ %s</string>
     <string name="request_cancelled">Запись отменена</string>
     <string name="thanks_for_using_pulse">Спасибо за использование Pulse</string>
+    <string name="callUs">Позвоните нам!</string>
+    <string name="google_pay_payment">Google Pay</string>
+    <string name="kaspi_bank">Kaspi Bank</string>
+    <string name="insurance">Страховой полис</string>
+    <string name="cash">Наличными</string>
+    <string name="request_to_another">Заказать другому</string>
+    <string name="analyzesDelegateDetails">Данные пациента :</string>
+    <string name="how_to_buy_title">Как купить</string>
+    <string name="how_to_buy_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="refund_title">Возврат</string>
+    <string name="refund_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="recipes_title">Рецепты</string>
+    <string name="recipes_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="pay_and_bonus_title">Оплата и бонусы</string>
+    <string name="pay_and_bonus_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="delivery_title">Доставка</string>
+    <string name="delivery_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="contact_us_title">Напишите нам!</string>
+    <string name="contact_us_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="contact_us_label">Связаться с нами</string>
+    <string name="contact_us_description">Напишите нам Ваши пожелания или опишите с чем у Вас возникли проблемы.\n\nМы постараемся решить любой ваш вопрос!</string>
+    <string name="contact_us_timing">Все запросы обрабатываються в течении 3 рабочих дней с момента подачи заявки</string>
+    <string name="wishes_or_problems">Ваши пожелания или проблема:</string>
+    <string name="send">Отправить</string>
+    <string name="note_cant_be_empty">Комментарий не может быть пустым</string>
 
 </resources>

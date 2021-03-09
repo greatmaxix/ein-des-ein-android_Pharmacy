@@ -96,7 +96,23 @@
         android:id="@+id/nav_need_help"
         android:name="com.pulse.components.needHelp.NeedHelpFragment"
         android:label="@null"
-        tools:layout="@layout/fragment_need_help" />
+        tools:layout="@layout/fragment_need_help">
+
+        <action
+            android:id="@+id/fromNeedHelpToContactUs"
+            app:destination="@id/nav_contact_us"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_contact_us"
+        android:name="com.pulse.components.needHelp.contactUs.ContactUsFragment"
+        android:label="@string/contact_us_label"
+        tools:layout="@layout/fragment_contact_us" />
 
     <fragment
         android:id="@+id/nav_privileges"

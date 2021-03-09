@@ -6,13 +6,12 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
+import com.pulse.components.needHelp.NeedHelpFragmentDirections.Companion.fromNeedHelpToContactUs
 import com.pulse.components.needHelp.adapter.HelpAdapter
+import com.pulse.components.needHelp.model.Help
+import com.pulse.components.needHelp.model.HelpItem
 import com.pulse.core.base.mvvm.BaseMVVMFragment
-import com.pulse.core.extensions.animateVisibleIfNot
-import com.pulse.core.extensions.falseIfNull
-import com.pulse.core.extensions.gone
-import com.pulse.core.extensions.setDebounceOnClickListener
-import com.pulse.data.remote.DummyData
+import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentNeedHelpBinding
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinApiExtension
@@ -20,9 +19,11 @@ import org.koin.core.component.KoinApiExtension
 @KoinApiExtension
 class NeedHelpFragment(private val viewModel: NeedHelpViewModel) : BaseMVVMFragment(R.layout.fragment_need_help) {
 
-    // TODO change items
-
-    private val helpAdapter by lazy { HelpAdapter() }
+    private val helpAdapter by lazy {
+        HelpAdapter {
+            navController.navigate(fromNeedHelpToContactUs())
+        }
+    }
     private val binding by viewBinding(FragmentNeedHelpBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
@@ -39,12 +40,16 @@ class NeedHelpFragment(private val viewModel: NeedHelpViewModel) : BaseMVVMFragm
         }
         viewSearch.setSearchListener { text ->
             viewLifecycleOwner.lifecycleScope.launch {
-                helpAdapter.filter { it.title.contains(text, true).falseIfNull() || it.text.contains(text, true).falseIfNull() }
+                helpAdapter.filter { getString(it.help.title).contains(text, true).falseIfNull() || getString(it.help.content).contains(text, true).falseIfNull() }
             }
         }
         viewSearch.onBackClick = {
             requireActivity().onBackPressed()
         }
+        binding.mcvQuestions.mockToast()
+//        binding.mcvQuestions.onClickDebounce {
+//            // TODO set phone number to showDial("")
+//        }
 
         initHelpList()
     }
@@ -62,7 +67,6 @@ class NeedHelpFragment(private val viewModel: NeedHelpViewModel) : BaseMVVMFragm
     private fun initHelpList() = with(binding.rvItems) {
         adapter = helpAdapter
         setHasFixedSize(true)
-
-        helpAdapter.notifyDataSet(DummyData.help.onEach { it.isExpanded = false }) // TODO set proper list
+        helpAdapter.notifyDataSet(Help.values().map { HelpItem(it, false) })
     }
 }

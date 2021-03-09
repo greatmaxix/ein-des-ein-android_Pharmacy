@@ -8,5 +8,6 @@ import kotlinx.parcelize.Parcelize
 data class CustomerOrderData(
     @SerializedName("name") val name: String?,
     @SerializedName("phone") val phone: String?,
-    @SerializedName("email") val email: String?
+    @SerializedName("email") val email: String?,
+    @SerializedName("delegateFullName") val delegateFullName: String?
 ) : Parcelable

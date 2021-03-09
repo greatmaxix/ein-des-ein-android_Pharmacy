@@ -5,24 +5,18 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pulse.R
-import com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragmentDirections.Companion.fromAnalyzeCheckoutToAddCard
 import com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragmentDirections.Companion.globalToClinicTabs
 import com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragmentDirections.Companion.globalToHome
 import com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragmentDirections.Companion.globalToPromoCodeDialog
 import com.pulse.components.checkout.dialog.PromoCodeDialogFragment
 import com.pulse.components.checkout.dialog.PromoCodeDialogFragment.Companion.PROMO_CODE_EXTRA_KEY
-import com.pulse.components.checkout.model.TempPaymentMethod
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
-import com.pulse.data.remote.DummyData
 import com.pulse.databinding.FragmentAnalyzeCheckoutBinding
-import com.pulse.util.ColorFilterUtil
 import org.koin.core.component.KoinApiExtension
 import java.time.LocalDateTime
 
@@ -31,7 +25,6 @@ class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) :
 
     private val args by navArgs<AnalyzeCheckoutFragmentArgs>()
     private val binding by viewBinding(FragmentAnalyzeCheckoutBinding::bind)
-    private val radioButtonPadding by lazy { getDimensionPixelSize(R.dimen._8sdp) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,8 +54,6 @@ class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) :
             }
             navController.navigate(globalToPromoCodeDialog())
         }
-        initPaymentMethods()
-        mtvAddMethods.onClickDebounce { navController.navigate(fromAnalyzeCheckoutToAddCard()) }
         val totalAmount = clinic.servicePrice.toPrice()
         mtvTotalAmount.text = totalAmount
         val totalCost = clinic.servicePrice.toPrice()
@@ -76,25 +67,7 @@ class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) :
                 }
             }
         }
-    }
 
-    private fun initPaymentMethods() {
-        val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        DummyData.paymentMethod.forEach {
-            binding.rgPaymentMethods.addView(createPaymentRadioButton(layoutParams, it))
-        }
-    }
-
-    private fun createPaymentRadioButton(layoutParams: ViewGroup.LayoutParams, it: TempPaymentMethod) = MaterialRadioButton(requireContext()).apply {
-        this.layoutParams = layoutParams
-        setPadding(radioButtonPadding, (radioButtonPadding * 1.5).toInt(), radioButtonPadding, (radioButtonPadding * 1.5).toInt())
-        text = it.name
-        val drawable = getDrawable(it.icon)?.apply { if (!it.isChecked) colorFilter = ColorFilterUtil.blackWhiteFilter }
-        setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
-        setTextColor(getColorStateList(R.color.selector_text_payment))
-        buttonTintList = getColorStateList(R.color.selector_tint_button_payment)
-        isEnabled = it.isChecked
-        isChecked = it.isChecked
     }
 
     override fun onBindLiveData() {
