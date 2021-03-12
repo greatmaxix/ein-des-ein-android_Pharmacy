@@ -61,6 +61,7 @@ class AnalyzeCategoriesFragment : BaseMVVMFragment(R.layout.fragment_analyze_cat
                 binding.viewSearch.gone()
             } ?: run {
                 binding.viewSearch.visible()
+                toolbar?.title = getString(R.string.analyzesLabel)
             }
         }
     }

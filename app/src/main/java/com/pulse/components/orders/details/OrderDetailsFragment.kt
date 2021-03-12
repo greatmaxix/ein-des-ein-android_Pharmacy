@@ -12,9 +12,10 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.pulse.R
 import com.pulse.components.checkout.adapter.CheckoutProductsAdapter
+import com.pulse.components.checkout.model.PaymentMethodAdapterModel
+import com.pulse.components.payments.model.PaymentMethod
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
-import com.pulse.data.remote.DummyData.paymentMethod
 import com.pulse.databinding.FragmentOrderDetailsBinding
 import com.pulse.model.order.Order
 import com.pulse.model.order.OrderStatus
@@ -50,6 +51,7 @@ class OrderDetailsFragment(private val viewModel: OrderDetailsViewModel) : BaseM
 
         viewOrderSteps.visibleOrGone(!isCancelled)
         if (isCancelled) {
+            nsvContainer.smoothScrollTo(0, 0, 500)
             mtvStatusTitle.text = getString(R.string.orderWithIdCanceled, order.id)
             mtvStatusDescription.text = getString(R.string.orderCanceled)
             llToolbarContainer.background.setColorFilter(R.color.grey.toColor, PorterDuff.Mode.SRC_ATOP)
@@ -77,11 +79,10 @@ class OrderDetailsFragment(private val viewModel: OrderDetailsViewModel) : BaseM
 
         mtvTotalPayable.text = getString(R.string.orderCost, order.pharmacyProductsTotalPrice.formatPrice())
 
-        paymentMethod[2].let { // todo refactor on demand
-            mtvPaymentType.text = it.name
-            mtvPaymentType.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, it.icon, 0)
+        PaymentMethodAdapterModel(PaymentMethod.CASH, true).let { // TODO change to proper value
+            mtvPaymentType.text = getString(it.method.title)
+            mtvPaymentType.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, it.method.icon, 0)
         }
-
         initOrderProducts()
 
         mbCancel.visibleOrGone(order.orderStatus.isNew)

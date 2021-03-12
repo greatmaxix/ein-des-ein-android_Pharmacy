@@ -164,6 +164,11 @@
         <item name="android:splitMotionEvents">false</item>
     </style>
 
+    <style name="NestedScrollStyle" parent="ScrollStyle">
+        <item name="android:fillViewport">true</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
     <style name="CustomRating" parent="@android:style/Widget.RatingBar">
         <item name="android:minHeight">@dimen/_33sdp</item>
         <item name="android:minWidth">@dimen/_33sdp</item>

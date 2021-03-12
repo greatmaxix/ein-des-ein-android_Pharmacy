@@ -107,7 +107,7 @@
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+                app:rippleColor="@color/colorRippleBlue">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
@@ -175,7 +175,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mcv_analyze"
                 app:layout_constraintTop_toTopOf="@id/mcv_ask"
-                app:rippleColor="@color/colorRippleWhiteSemiTransparent">
+                app:rippleColor="@color/colorRippleBlue">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"

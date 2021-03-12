@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.textview.MaterialTextView
 import com.pulse.R
-import com.pulse.components.checkout.model.TempPaymentMethod
+import com.pulse.components.checkout.model.PaymentMethodAdapterModel
 import com.pulse.components.payments.PaymentsFragmentDirections.Companion.actionPaymentsToAddPaymentMethodFragment
 import com.pulse.core.extensions.setDebounceOnClickListener
-import com.pulse.data.remote.DummyData
+import com.pulse.data.mapper.PaymentMethodMapper
 import com.pulse.databinding.FragmentPaymentsBinding
 
 class PaymentsFragment : PaymentsBaseFragment(R.layout.fragment_payments) {
@@ -29,21 +29,20 @@ class PaymentsFragment : PaymentsBaseFragment(R.layout.fragment_payments) {
 
     private fun initPaymentMethods() {
         val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        DummyData.paymentMethod.forEach {
-            binding.llPaymentMethods.addView(createPaymentMethodItem(layoutParams, it))
-        }
+        PaymentMethodMapper.map()
+            .forEach { binding.llPaymentMethods.addView(createPaymentMethodItem(layoutParams, it)) }
     }
 
     private fun createPaymentMethodItem(
         params: ViewGroup.LayoutParams,
-        it: TempPaymentMethod
+        it: PaymentMethodAdapterModel
     ): MaterialTextView {
         return MaterialTextView(requireContext()).apply {
             layoutParams = params
             setTextColor(paymentItemTextColor)
             setPadding(paymentItemPadding, paymentItemPadding, paymentItemPadding, paymentItemPadding)
-            text = it.name
-            setCompoundDrawablesWithIntrinsicBounds(0, 0, it.icon, 0)
+            text = getString(it.method.title)
+            setCompoundDrawablesWithIntrinsicBounds(0, 0, it.method.icon, 0)
         }
     }
 }

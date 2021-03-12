@@ -23,6 +23,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:text="@string/chooseConsultationTypeSubtitle"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_title" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:text="@string/chooseConsultationTypeDescription"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_subtitle" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcv_pharmacist"
         android:layout_width="0dp"
@@ -36,7 +64,7 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/mcv_doctor"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mtv_title">
+        app:layout_constraintTop_toBottomOf="@+id/mtv_description">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_pharmacist"
@@ -61,7 +89,7 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mcv_pharmacist"
-        app:layout_constraintTop_toBottomOf="@+id/mtv_title">
+        app:layout_constraintTop_toBottomOf="@+id/mtv_description">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_doctor"

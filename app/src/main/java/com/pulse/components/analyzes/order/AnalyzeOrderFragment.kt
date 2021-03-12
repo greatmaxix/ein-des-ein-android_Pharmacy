@@ -6,9 +6,10 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.analyzes.order.AnalyzeOrderFragmentDirections.Companion.globalToHome
+import com.pulse.components.checkout.model.PaymentMethodAdapterModel
+import com.pulse.components.payments.model.PaymentMethod
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
-import com.pulse.data.remote.DummyData
 import com.pulse.databinding.FragmentAnalyzeOrderBinding
 import org.koin.core.component.KoinApiExtension
 
@@ -38,10 +39,9 @@ class AnalyzeOrderFragment(private val viewModel: AnalyzeOrderViewModel) : BaseM
                 fabLocation.gone()
             }
             viewDateTime.detailText = dateTime.analyzeCheckoutDate
-
-            DummyData.paymentMethod[2].let { // TODO change to proper value
-                mtvPaymentType.text = it.name
-                mtvPaymentType.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, it.icon, 0)
+            PaymentMethodAdapterModel(PaymentMethod.CASH, true).let { // TODO change to proper value
+                mtvPaymentType.text = getString(it.method.title)
+                mtvPaymentType.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, it.method.icon, 0)
             }
             mtvOrderNote.text = note
             val totalAmount = clinic.servicePrice.toPrice()

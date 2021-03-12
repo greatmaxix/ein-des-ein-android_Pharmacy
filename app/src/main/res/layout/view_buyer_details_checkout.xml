@@ -82,4 +82,44 @@
             android:textAppearance="?attr/textAppearanceBody2" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_delegate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:background="@drawable/background_default_ripple_selector_rect"
+        android:drawableStart="@drawable/ic_plus_blue"
+        android:drawablePadding="@dimen/_8sdp"
+        android:gravity="center_vertical"
+        android:text="@string/request_to_another"
+        android:textColor="@color/primaryBlue"
+        android:padding="@dimen/_4sdp"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_user_details" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_first_last_name_delegate"
+        style="@style/TextInputStyle"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:imeOptions="actionNext"
+        android:visibility="gone"
+        app:endIconMode="clear_text"
+        app:hintEnabled="false"
+        tools:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/firstLastNameHint"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBody2" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 </merge>

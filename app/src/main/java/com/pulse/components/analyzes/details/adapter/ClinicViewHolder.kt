@@ -19,7 +19,7 @@ class ClinicViewHolder(
     private val binding by viewBinding(ItemClinicBinding::bind)
 
     override fun bind(item: Clinic) = with(binding) {
-        ivClinic.loadGlideCircle(item.logo.url, R.drawable.ic_placeholder_search) // TODO set placeholder
+        ivClinic.loadGlideCircle(item.logo.url) // TODO set placeholder
         mtvName.text = item.name
         mtvAddress.text = item.location.address
         mtvPhone.text = getString(R.string.pharmacyPhoneWith, item.phone)

@@ -17,6 +17,7 @@ import com.pulse.components.checkout.checkoutModule
 import com.pulse.components.home.homeModule
 import com.pulse.components.language.languageModule
 import com.pulse.components.mercureService.mercureModule
+import com.pulse.components.needHelp.contactUs.contactUsModule
 import com.pulse.components.needHelp.needHelpModule
 import com.pulse.components.onboarding.onboardingModule
 import com.pulse.components.orders.details.orderModule
@@ -94,6 +95,7 @@ object Modules {
         clinicTabsModule,
         analyzeOrderModule,
         privilegeModule,
-        languageModule
+        languageModule,
+        contactUsModule
     )
 }

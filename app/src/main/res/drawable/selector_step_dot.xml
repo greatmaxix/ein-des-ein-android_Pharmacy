@@ -7,13 +7,14 @@
     </item>
     <item android:state_selected="true">
         <shape android:shape="oval">
-            <solid android:color="@color/green" />
+            <solid android:color="@color/orange" />
             <stroke android:width="@dimen/_4sdp" android:color="@color/colorGlobalWhite" />
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/colorGlobalWhite" />
+            <solid android:color="@color/green" />
+            <stroke android:width="@dimen/_4sdp" android:color="@color/colorGlobalWhite" />
         </shape>
     </item>
 </selector>

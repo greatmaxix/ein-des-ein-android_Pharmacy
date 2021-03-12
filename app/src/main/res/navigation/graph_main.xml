@@ -285,6 +285,7 @@
 
     <fragment
         android:id="@+id/nav_analyze_category"
+        android:label="@string/analyzesLabel"
         android:name="com.pulse.components.analyzes.category.AnalyzeCategoriesFragment"
         tools:layout="@layout/fragment_analyzes">
 

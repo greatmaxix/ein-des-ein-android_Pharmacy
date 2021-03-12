@@ -52,4 +52,8 @@
     <declare-styleable name="BuyerDetailsView">
         <attr name="labelText" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="BuyerDetailsOrderView">
+        <attr name="delegateLabelText" format="reference" />
+    </declare-styleable>
 </resources>
