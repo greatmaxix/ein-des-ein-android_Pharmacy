@@ -13,7 +13,6 @@ class ContactUsViewModel(private val repository: ContactUsRepository) : BaseView
     val resultLiveData: LiveData<Unit> by lazy { _resultLiveData }
 
     fun sendRequest(text: String) /*= requestLiveData */ { // TODO implement request sending
-        repository.sendRequest(text)
-        _resultLiveData.postValue(Unit)
+        _resultLiveData.postValue(repository.sendRequest(text))
     }
 }

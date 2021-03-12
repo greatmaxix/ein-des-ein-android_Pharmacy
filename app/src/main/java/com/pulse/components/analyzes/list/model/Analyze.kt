@@ -4,7 +4,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.pulse.components.analyzes.category.model.AnalyzeCategory
 import com.pulse.components.analyzes.details.model.Clinic
-import com.pulse.components.checkout.model.PaymentMethodModel
+import com.pulse.components.checkout.model.PaymentMethodAdapterModel
 import com.pulse.data.remote.model.order.CustomerOrderData
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
@@ -19,6 +19,6 @@ data class Analyze(
     @SerializedName("dateTime") val dateTime: LocalDateTime,
     @SerializedName("discount") val discount: Int?,
     @SerializedName("totalPrice") val totalPrice: Int,
-    @SerializedName("paymentType") val paymentType: PaymentMethodModel,
+    @SerializedName("paymentType") val paymentType: PaymentMethodAdapterModel,
     @SerializedName("note") val note: String?
 ) : Parcelable

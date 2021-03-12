@@ -3,7 +3,7 @@ package com.pulse.data.remote
 import com.pulse.components.analyzes.category.model.AnalyzeCategory
 import com.pulse.components.analyzes.details.model.Clinic
 import com.pulse.components.analyzes.list.model.Analyze
-import com.pulse.components.checkout.model.PaymentMethodModel
+import com.pulse.components.checkout.model.PaymentMethodAdapterModel
 import com.pulse.components.payments.model.PaymentMethod
 import com.pulse.data.remote.model.order.CustomerOrderData
 import com.pulse.model.Location
@@ -108,7 +108,7 @@ object DummyData {
             getRandomDate(),
             if (Random.nextBoolean()) Random.nextInt(1000) else null,
             Random.nextInt(1000),
-            PaymentMethodModel(PaymentMethod.CASH, true),
+            PaymentMethodAdapterModel(PaymentMethod.CASH, true),
             randomLorem()
         )
     }

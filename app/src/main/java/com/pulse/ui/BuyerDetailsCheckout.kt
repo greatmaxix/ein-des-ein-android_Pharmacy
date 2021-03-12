@@ -3,6 +3,7 @@ package com.pulse.ui
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
+import androidx.core.content.res.use
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import com.pulse.R
@@ -30,10 +31,10 @@ class BuyerDetailsCheckout @JvmOverloads constructor(
 
     init {
         with(binding) {
-            attrs?.let {
-                context.theme.obtainStyledAttributes(it, R.styleable.BuyerDetailsView, defStyleAttr, -1)
+            attrs?.let { attrSet ->
+                context.theme.obtainStyledAttributes(attrSet, R.styleable.BuyerDetailsView, defStyleAttr, -1)
                     .use {
-                        mtvBuyerDetailsTitle.setText(getResourceId(R.styleable.BuyerDetailsView_labelText, R.string.buyerDetails))
+                        mtvBuyerDetailsTitle.setText(it.getResourceId(R.styleable.BuyerDetailsView_labelText, R.string.buyerDetails))
                     }
             }
 

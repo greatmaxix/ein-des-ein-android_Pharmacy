@@ -4,10 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity.CENTER
 import android.widget.LinearLayout
+import androidx.core.content.res.use
 import com.pulse.R
 import com.pulse.core.extensions.inflater
 import com.pulse.core.extensions.setDebounceOnClickListener
-import com.pulse.core.extensions.use
 import com.pulse.core.extensions.visibleOrGone
 import com.pulse.databinding.LayoutEmptyContainerBinding
 
@@ -21,14 +21,14 @@ class EmptyContainerView @JvmOverloads constructor(context: Context, attrs: Attr
     private var src = -1
 
     init {
-        attrs?.let {
-            context.theme.obtainStyledAttributes(it, R.styleable.EmptyContainerView, defStyleAttr, -1)
+        attrs?.let { attrsSet ->
+            context.theme.obtainStyledAttributes(attrsSet, R.styleable.EmptyContainerView, defStyleAttr, -1)
                 .use {
-                    title = getString(R.styleable.EmptyContainerView_titleEmpty) ?: ""
-                    subtitle = getString(R.styleable.EmptyContainerView_subtitleEmpty) ?: ""
-                    buttonText = getString(R.styleable.EmptyContainerView_buttonTextEmpty) ?: ""
-                    isButtonVisible = getBoolean(R.styleable.EmptyContainerView_isButtonVisible, true)
-                    src = getResourceId(R.styleable.EmptyContainerView_src, -1)
+                    title = it.getString(R.styleable.EmptyContainerView_titleEmpty) ?: ""
+                    subtitle = it.getString(R.styleable.EmptyContainerView_subtitleEmpty) ?: ""
+                    buttonText = it.getString(R.styleable.EmptyContainerView_buttonTextEmpty) ?: ""
+                    isButtonVisible = it.getBoolean(R.styleable.EmptyContainerView_isButtonVisible, true)
+                    src = it.getResourceId(R.styleable.EmptyContainerView_src, -1)
                 }
         }
         gravity = CENTER

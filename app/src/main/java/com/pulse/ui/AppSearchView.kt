@@ -5,6 +5,7 @@ import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View.OnClickListener
 import androidx.cardview.widget.CardView
+import androidx.core.content.res.use
 import androidx.core.view.isGone
 import com.pulse.R
 import com.pulse.core.extensions.*
@@ -45,14 +46,14 @@ class AppSearchView @JvmOverloads constructor(
     var onBackClick: (() -> Unit)? = null
 
     init {
-        attrs?.let {
-            context.theme.obtainStyledAttributes(it, R.styleable.AppSearchView, defStyleAttr, -1)
+        attrs?.let { attrSet ->
+            context.theme.obtainStyledAttributes(attrSet, R.styleable.AppSearchView, defStyleAttr, -1)
                 .use {
-                    hint = getResourceId(R.styleable.AppSearchView_hintText, -1)
-                    hintColor = getResourceId(R.styleable.AppSearchView_hintColor, R.color.colorGlobalBlack)
-                    debounce = getFloat(R.styleable.AppSearchView_debounce, 200f)
-                    animationDuration = getFloat(R.styleable.AppSearchView_debounce, 400f).toLong()
-                    withBackButton = getBoolean(R.styleable.AppSearchView_withBackButton, false)
+                    hint = it.getResourceId(R.styleable.AppSearchView_hintText, -1)
+                    hintColor = it.getResourceId(R.styleable.AppSearchView_hintColor, R.color.colorGlobalBlack)
+                    debounce = it.getFloat(R.styleable.AppSearchView_debounce, 200f)
+                    animationDuration = it.getFloat(R.styleable.AppSearchView_debounce, 400f).toLong()
+                    withBackButton = it.getBoolean(R.styleable.AppSearchView_withBackButton, false)
                 }
         }
     }

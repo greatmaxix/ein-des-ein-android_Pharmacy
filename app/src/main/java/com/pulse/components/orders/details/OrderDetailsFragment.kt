@@ -12,7 +12,7 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.pulse.R
 import com.pulse.components.checkout.adapter.CheckoutProductsAdapter
-import com.pulse.components.checkout.model.PaymentMethodModel
+import com.pulse.components.checkout.model.PaymentMethodAdapterModel
 import com.pulse.components.payments.model.PaymentMethod
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
@@ -79,7 +79,7 @@ class OrderDetailsFragment(private val viewModel: OrderDetailsViewModel) : BaseM
 
         mtvTotalPayable.text = getString(R.string.orderCost, order.pharmacyProductsTotalPrice.formatPrice())
 
-        PaymentMethodModel(PaymentMethod.values()[3], true).let { // TODO change to proper value
+        PaymentMethodAdapterModel(PaymentMethod.CASH, true).let { // TODO change to proper value
             mtvPaymentType.text = getString(it.method.title)
             mtvPaymentType.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, it.method.icon, 0)
         }
