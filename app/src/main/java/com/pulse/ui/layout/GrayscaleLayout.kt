@@ -7,8 +7,8 @@ import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.use
 import com.pulse.R
-import com.pulse.core.extensions.use
 
 class GrayscaleLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
 
@@ -19,15 +19,6 @@ class GrayscaleLayout @JvmOverloads constructor(context: Context, attrs: Attribu
                 requestLayout()
             }
         }
-
-    init {
-        attrs?.let {
-            context.theme.obtainStyledAttributes(it, R.styleable.Grayscale, defStyleAttr, -1)
-                .use {
-                    disabled = getBoolean(R.styleable.Grayscale_isDisabled, false)
-                }
-        }
-    }
 
     private val paint = Paint().apply {
         colorFilter = ColorMatrixColorFilter(
@@ -40,6 +31,15 @@ class GrayscaleLayout @JvmOverloads constructor(context: Context, attrs: Attribu
                 )
             )
         )
+    }
+
+    init {
+        attrs?.let { attrsSet ->
+            context.theme.obtainStyledAttributes(attrsSet, R.styleable.Grayscale, defStyleAttr, -1)
+                .use {
+                    disabled = it.getBoolean(R.styleable.Grayscale_isDisabled, false)
+                }
+        }
     }
 
     override fun dispatchDraw(canvas: Canvas?) {
@@ -55,14 +55,10 @@ class GrayscaleLayout @JvmOverloads constructor(context: Context, attrs: Attribu
     }
 
     private fun saveLayer(canvas: Canvas?) {
-        if (disabled) {
-            canvas?.saveLayer(null, paint)
-        }
+        if (disabled) canvas?.saveLayer(null, paint)
     }
 
     private fun restore(canvas: Canvas?) {
-        if (disabled) {
-            canvas?.restore()
-        }
+        if (disabled) canvas?.restore()
     }
 }

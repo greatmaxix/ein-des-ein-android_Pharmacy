@@ -5,6 +5,7 @@ import android.graphics.PorterDuff
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.use
 import com.google.android.material.card.MaterialCardView
 import com.pulse.R
 import com.pulse.core.extensions.*
@@ -67,15 +68,15 @@ class ProfileItemView @JvmOverloads constructor(
         cardElevation = 0F
         useCompatPadding = true
         setRippleColorResource(R.color.colorRippleBlue)
-        attrs?.let {
-            context.theme.obtainStyledAttributes(it, R.styleable.ProfileItemView, defStyleAttr, -1)
+        attrs?.let { attrsSet ->
+            context.theme.obtainStyledAttributes(attrsSet, R.styleable.ProfileItemView, defStyleAttr, -1)
                 .use {
-                    icon = getResourceId(R.styleable.ProfileItemView_iconProfile, -1)
-                    title = getString(R.styleable.ProfileItemView_titleProfile) ?: ""
-                    detailText = getString(R.styleable.ProfileItemView_detailTextProfile) ?: ""
-                    arrowVisibility = getBoolean(R.styleable.ProfileItemView_arrowVisibilityProfile, true)
-                    mainColor = getResourceId(R.styleable.ProfileItemView_mainColorProfile, R.color.darkBlue)
-                    secondaryColor = getResourceId(R.styleable.ProfileItemView_secondaryColorProfile, R.color.profileIconBackground)
+                    icon = it.getResourceId(R.styleable.ProfileItemView_iconProfile, -1)
+                    title = it.getString(R.styleable.ProfileItemView_titleProfile) ?: ""
+                    detailText = it.getString(R.styleable.ProfileItemView_detailTextProfile) ?: ""
+                    arrowVisibility = it.getBoolean(R.styleable.ProfileItemView_arrowVisibilityProfile, true)
+                    mainColor = it.getResourceId(R.styleable.ProfileItemView_mainColorProfile, R.color.darkBlue)
+                    secondaryColor = it.getResourceId(R.styleable.ProfileItemView_secondaryColorProfile, R.color.profileIconBackground)
                 }
         }
     }

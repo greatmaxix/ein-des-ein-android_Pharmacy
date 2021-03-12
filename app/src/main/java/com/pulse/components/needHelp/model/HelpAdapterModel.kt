@@ -1,6 +1,6 @@
 package com.pulse.components.needHelp.model
 
-data class HelpItem(
+data class HelpAdapterModel(
     val help: Help,
     var isExpanded: Boolean = false
 )

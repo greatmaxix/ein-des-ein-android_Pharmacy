@@ -6,7 +6,7 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.analyzes.order.AnalyzeOrderFragmentDirections.Companion.globalToHome
-import com.pulse.components.checkout.model.PaymentMethodModel
+import com.pulse.components.checkout.model.PaymentMethodAdapterModel
 import com.pulse.components.payments.model.PaymentMethod
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
@@ -39,7 +39,7 @@ class AnalyzeOrderFragment(private val viewModel: AnalyzeOrderViewModel) : BaseM
                 fabLocation.gone()
             }
             viewDateTime.detailText = dateTime.analyzeCheckoutDate
-            PaymentMethodModel(PaymentMethod.values()[3], true).let { // TODO change to proper value
+            PaymentMethodAdapterModel(PaymentMethod.CASH, true).let { // TODO change to proper value
                 mtvPaymentType.text = getString(it.method.title)
                 mtvPaymentType.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, it.method.icon, 0)
             }

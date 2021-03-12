@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.textview.MaterialTextView
 import com.pulse.R
-import com.pulse.components.checkout.model.PaymentMethodModel
+import com.pulse.components.checkout.model.PaymentMethodAdapterModel
 import com.pulse.components.payments.PaymentsFragmentDirections.Companion.actionPaymentsToAddPaymentMethodFragment
-import com.pulse.components.payments.model.PaymentMethod
 import com.pulse.core.extensions.setDebounceOnClickListener
+import com.pulse.data.mapper.PaymentMethodMapper
 import com.pulse.databinding.FragmentPaymentsBinding
 
 class PaymentsFragment : PaymentsBaseFragment(R.layout.fragment_payments) {
@@ -29,14 +29,13 @@ class PaymentsFragment : PaymentsBaseFragment(R.layout.fragment_payments) {
 
     private fun initPaymentMethods() {
         val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        PaymentMethod.values()
-            .map { PaymentMethodModel(it, it == PaymentMethod.CASH) }
+        PaymentMethodMapper.map()
             .forEach { binding.llPaymentMethods.addView(createPaymentMethodItem(layoutParams, it)) }
     }
 
     private fun createPaymentMethodItem(
         params: ViewGroup.LayoutParams,
-        it: PaymentMethodModel
+        it: PaymentMethodAdapterModel
     ): MaterialTextView {
         return MaterialTextView(requireContext()).apply {
             layoutParams = params

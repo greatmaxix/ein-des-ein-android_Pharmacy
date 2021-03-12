@@ -9,10 +9,16 @@ import android.widget.RadioGroup
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pulse.R
-import com.pulse.components.checkout.model.PaymentMethodModel
-import com.pulse.components.payments.model.PaymentMethod
-import com.pulse.core.extensions.*
+import com.pulse.components.checkout.model.PaymentMethodAdapterModel
+import com.pulse.core.extensions.getColor
+import com.pulse.core.extensions.getColorStateList
+import com.pulse.core.extensions.getDimension
+import com.pulse.core.extensions.getDimensionPixelSize
+import com.pulse.data.mapper.PaymentMethodMapper
 import com.pulse.util.ColorFilterUtil
+import kotlin.collections.forEach
+import kotlin.collections.hashMapOf
+import kotlin.collections.set
 
 class PaymentMethodView @JvmOverloads constructor(
     context: Context,
@@ -20,10 +26,10 @@ class PaymentMethodView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
 
-    private val padding by lazyGetDimensionPixelSize(R.dimen._8sdp)
-    private val cornerRadius by lazyGetDimension(R.dimen._10sdp)
-    private val backgroundColor by lazy { getColor(R.color.colorGlobalWhite) }
-    private val radioButtonPadding by lazy { getDimensionPixelSize(R.dimen._8sdp) }
+    private val padding = getDimensionPixelSize(R.dimen._8sdp)
+    private val cornerRadius = getDimension(R.dimen._10sdp)
+    private val backgroundColor = getColor(R.color.colorGlobalWhite)
+    private val radioButtonPadding = getDimensionPixelSize(R.dimen._8sdp)
     private val radioButtonLayoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     private val radioGroup by lazy {
         RadioGroup(context).apply {
@@ -36,7 +42,7 @@ class PaymentMethodView @JvmOverloads constructor(
             showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE
         }
     }
-    private val radioIdMap = hashMapOf<Int, PaymentMethodModel>()
+    private val radioIdMap = hashMapOf<Int, PaymentMethodAdapterModel>()
 
     init {
         radius = cornerRadius
@@ -44,8 +50,7 @@ class PaymentMethodView @JvmOverloads constructor(
         cardElevation = 0f
         maxCardElevation = 0f
         setCardBackgroundColor(backgroundColor)
-        PaymentMethod.values()
-            .map { PaymentMethodModel(it, it == PaymentMethod.CASH) }
+        PaymentMethodMapper.map()
             .forEach {
                 val button = createPaymentRadioButton(it)
                 radioIdMap[button.id] = it
@@ -54,9 +59,9 @@ class PaymentMethodView @JvmOverloads constructor(
         addView(radioGroup)
     }
 
-    private fun createPaymentRadioButton(it: PaymentMethodModel) = MaterialRadioButton(context).apply {
+    private fun createPaymentRadioButton(it: PaymentMethodAdapterModel) = MaterialRadioButton(context).apply {
         id = generateViewId()
-        this.layoutParams = radioButtonLayoutParams
+        layoutParams = radioButtonLayoutParams
         setPadding(radioButtonPadding, (radioButtonPadding * 1.5).toInt(), radioButtonPadding, (radioButtonPadding * 1.5).toInt())
         text = context.getString(it.method.title)
         val drawable = context.getDrawable(it.method.icon)

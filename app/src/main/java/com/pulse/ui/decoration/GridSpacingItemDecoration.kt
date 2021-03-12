@@ -25,5 +25,4 @@ class GridSpacingItemDecoration(private val spanCount: Int = 2, private val spac
             }
         }
     }
-
 }

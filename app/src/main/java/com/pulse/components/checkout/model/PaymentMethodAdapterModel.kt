@@ -5,7 +5,7 @@ import com.pulse.components.payments.model.PaymentMethod
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PaymentMethodModel(
+data class PaymentMethodAdapterModel(
     val method: PaymentMethod,
     val isChecked: Boolean = false
 ) : Parcelable
