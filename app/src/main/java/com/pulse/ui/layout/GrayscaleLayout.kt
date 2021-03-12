@@ -37,7 +37,7 @@ class GrayscaleLayout @JvmOverloads constructor(context: Context, attrs: Attribu
         attrs?.let { attrsSet ->
             context.theme.obtainStyledAttributes(attrsSet, R.styleable.Grayscale, defStyleAttr, -1)
                 .use {
-                    disabled = getBoolean(R.styleable.Grayscale_isDisabled, false)
+                    disabled = it.getBoolean(R.styleable.Grayscale_isDisabled, false)
                 }
         }
     }
