@@ -1,6 +1,9 @@
 package com.pulse.data.remote.authenticator
 
 import com.pulse.data.remote.repository.RestRepository
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import okhttp3.Authenticator
 import okhttp3.Response
 import okhttp3.Route
@@ -20,9 +23,13 @@ class RestAuthenticator : Authenticator, KoinComponent {
                 //TODO need force logout
                 null
             } else {
+                GlobalScope.launch {
+                    runBlocking { repository.refreshToken() }
+                }
+
                 request
                     .newBuilder()
-                    .header("Authorization", "Bearer: ${repository.refreshToken()}")
+                    .header("Authorization", "Bearer: ${repository.accessToken}")
                     .header("RetryCount", "$retryCount")
                     .build()
             }

@@ -1,5 +1,7 @@
 package com.pulse.components.mercureService.repository
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.room.Transaction
 import com.pulse.components.chat.model.chat.ChatItem
 import com.pulse.components.chat.model.chat.ChatItemDAO
@@ -8,11 +10,12 @@ import com.pulse.components.chat.model.message.MessageItem
 import com.pulse.components.chat.model.remoteKeys.RemoteKeys.Companion.createRemoteKey
 import com.pulse.components.chat.model.remoteKeys.RemoteKeysDAO
 import com.pulse.components.user.model.customer.CustomerDAO
-import com.pulse.data.local.SPManager
+import com.pulse.core.extensions.getOnes
+import com.pulse.data.local.Preferences.Chat.FIELD_IS_CHAT_FOREGROUND
 import java.time.LocalDateTime
 
 class MercureLocalDataSource(
-    private val sp: SPManager,
+    private val dataStore: DataStore<Preferences>,
     private val customerDao: CustomerDAO,
     private val remoteKeysDAO: RemoteKeysDAO,
     private val messageDAO: MessageDAO,
@@ -20,7 +23,7 @@ class MercureLocalDataSource(
 ) {
 
     val isChatForeground: Boolean
-        get() = sp.isChatForeground ?: false
+        get() = dataStore.getOnes(FIELD_IS_CHAT_FOREGROUND, false)
 
     suspend fun getUserUuid() = customerDao.getCustomer()?.uuid
 

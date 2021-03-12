@@ -96,6 +96,7 @@
                 android:layout_height="@dimen/_70sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_56sdp"
+                android:layout_marginBottom="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 app:cardBackgroundColor="@color/darkBlue"
                 app:cardCornerRadius="@dimen/_8sdp"

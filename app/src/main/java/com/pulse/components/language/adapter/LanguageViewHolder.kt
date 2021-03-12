@@ -6,24 +6,28 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.language.model.LanguageAdapterModel
 import com.pulse.core.base.adapter.BaseViewHolder
+import com.pulse.core.extensions.animateVisible
 import com.pulse.core.extensions.inflate
-import com.pulse.core.extensions.resources
-import com.pulse.databinding.ItemLanguageBinding
+import com.pulse.core.extensions.setDebounceOnClickListener
+import com.pulse.core.extensions.visibleOrGone
+import com.pulse.core.locale.LocaleEnum
+import com.pulse.databinding.ItemCheckableBinding
 
-class LanguageViewHolder(itemView: View) : BaseViewHolder<LanguageAdapterModel>(itemView) {
+class LanguageViewHolder(itemView: View, private val itemClick: (LocaleEnum) -> Unit) : BaseViewHolder<LanguageAdapterModel>(itemView) {
 
-    private val binding by viewBinding(ItemLanguageBinding::bind)
+    private val binding by viewBinding(ItemCheckableBinding::bind)
 
-    private val fontNormal = resources.getFont(R.font.open_sans_regular)
-    private val fontSemibold = resources.getFont(R.font.open_sans_semi_bold)
-
-    override fun bind(item: LanguageAdapterModel) {
-        binding.root.setText(item.language.titleResId)
-        binding.root.typeface = if (item.isSelected) fontSemibold else fontNormal
+    override fun bind(item: LanguageAdapterModel) = with(binding) {
+        mtvName.setText(item.language.titleResId)
+        ivCheck.visibleOrGone(item.isSelected)
+        root.setDebounceOnClickListener {
+            ivCheck.animateVisible()
+            itemClick(item.language)
+        }
     }
 
     companion object {
 
-        fun newInstance(parent: ViewGroup) = LanguageViewHolder(parent.inflate(R.layout.item_language))
+        fun newInstance(parent: ViewGroup, itemClick: (LocaleEnum) -> Unit) = LanguageViewHolder(parent.inflate(R.layout.item_checkable), itemClick)
     }
 }

@@ -1,11 +1,13 @@
 package com.pulse.components.home.repository
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.pulse.components.categories.model.CategoryDAO
-import com.pulse.data.local.SPManager
+import com.pulse.core.extensions.clear
+import com.pulse.data.local.Preferences.Chat.FIELD_OPENED_CHAT_ID
 import com.pulse.model.category.Category
 
-
-class HomeLocalDataSource(private val sp: SPManager, private val dao: CategoryDAO) {
+class HomeLocalDataSource(private val dataStore: DataStore<Preferences>, private val dao: CategoryDAO) {
 
     suspend fun getCategories() = dao.categories()
 
@@ -13,12 +15,5 @@ class HomeLocalDataSource(private val sp: SPManager, private val dao: CategoryDA
 
     suspend fun isCategoriesPresent() = dao.categoriesSize() > 0
 
-    fun clearSavedChatId() = sp.clearChatId()
-
-    var openedChatId: Int? = null
-        get() = sp.openedChatId
-        set(value) {
-            field = value
-            sp.openedChatId = value
-        }
+    suspend fun clearSavedChatId() = dataStore.clear(FIELD_OPENED_CHAT_ID)
 }

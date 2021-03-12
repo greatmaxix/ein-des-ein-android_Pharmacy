@@ -12,7 +12,7 @@ import org.koin.dsl.module
 val needHelpModule = module {
 
     single { NeedHelpRepository(get(), get()) }
-    single { NeedHelpLocalDataSource(get()) }
+    single { NeedHelpLocalDataSource() }
     single { NeedHelpRemoteDataSource(get()) }
 
     viewModel { NeedHelpViewModel(get()) }

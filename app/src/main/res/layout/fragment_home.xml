@@ -112,7 +112,6 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/askTileContentDescriptionHome"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_ask_pharmacy" />
 
@@ -180,7 +179,6 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/mapIconContentDescriptionHome"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_iata_pass" />
 

@@ -7,8 +7,10 @@ import org.koin.core.component.KoinComponent
 @KoinApiExtension
 class LanguageRepository(private val rds: LanguageRemoteDataSource, private val lds: LanguageLocalDataSource) : KoinComponent {
 
-    val selectedLocale
-        get() = lds.selectedLocale
+    fun setLocale(locale: LocaleEnum) {
+        lds.setLocale(locale)
+    }
 
-    fun setLocale(locale: LocaleEnum) = lds.setLocale(locale)
+    val appLocale
+        get() = lds.appLocale
 }

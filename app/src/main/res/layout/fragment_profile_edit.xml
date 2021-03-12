@@ -18,7 +18,6 @@
         android:layout_height="@dimen/_72sdp"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_24sdp"
-        android:contentDescription="@string/profileImage"
         android:src="@drawable/ic_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

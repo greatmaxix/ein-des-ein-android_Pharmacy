@@ -1,11 +1,13 @@
 package com.pulse.core.locale
 
 import android.content.Context
-import java.util.*
+import kotlinx.coroutines.flow.Flow
 
 interface ILocaleManager {
 
     fun createLocalisedContext(context: Context): Context
 
-    val applicationLocale: Locale
+    val appLocaleFlow: Flow<LocaleEnum>
+
+    var appLocale: LocaleEnum
 }

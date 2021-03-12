@@ -1,11 +1,15 @@
 package com.pulse.components.auth.repository
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.pulse.components.auth.model.Auth
 import com.pulse.components.user.model.customer.Customer
 import com.pulse.components.user.model.customer.CustomerDAO
-import com.pulse.data.local.SPManager
+import com.pulse.core.extensions.put
+import com.pulse.data.local.Preferences.Token.FIELD_ACCESS_TOKEN
+import com.pulse.data.local.Preferences.Token.FIELD_REFRESH_TOKEN
 
-class AuthRepository(private val spManager: SPManager, private val dao: CustomerDAO, private val rds: AuthRemoteDataSource) {
+class AuthRepository(private val dataStore: DataStore<Preferences>, private val dao: CustomerDAO, private val rds: AuthRemoteDataSource) {
 
     suspend fun signUp(auth: Auth) = rds.signUp(auth).dataOrThrow()
 
@@ -16,9 +20,9 @@ class AuthRepository(private val spManager: SPManager, private val dao: Customer
         saveCustomer(customer)
     }
 
-    private fun saveToken(token: String, refreshToken: String) {
-        spManager.token = token
-        spManager.refreshToken = refreshToken
+    private suspend fun saveToken(token: String, refreshToken: String) {
+        dataStore.put(FIELD_ACCESS_TOKEN, token)
+        dataStore.put(FIELD_REFRESH_TOKEN, refreshToken)
     }
 
     private suspend fun saveCustomer(customer: Customer): String? {

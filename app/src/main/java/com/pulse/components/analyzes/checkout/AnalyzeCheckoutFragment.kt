@@ -59,8 +59,8 @@ class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) :
         val totalCost = clinic.servicePrice.toPrice()
         mtvTotalPayable.text = totalCost
         mbCheckout.onClickDebounce {
-            showAlertRes(R.string.your_request_accepted) {
-                title = R.string.confirm_analyze_title
+            showAlertRes(R.string.confirm_analyze_title) {
+                title = R.string.your_request_accepted
                 positive = R.string.common_okButton
                 positiveAction = {
                     navController.navigate(globalToHome())

@@ -10,20 +10,20 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.pulse.components.splash.SplashFragmentDirections.Companion.fromSplashToHome
 import com.pulse.components.splash.SplashFragmentDirections.Companion.fromSplashToOnBoarding
+import com.pulse.components.splash.repository.SplashRepository
 import com.pulse.core.base.mvvm.BaseViewModel
 import com.pulse.core.general.Event
-import com.pulse.data.local.SPManager
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class SplashViewModel(private val sp: SPManager, private val workManager: WorkManager) : BaseViewModel() {
+class SplashViewModel(private val repository: SplashRepository, private val workManager: WorkManager) : BaseViewModel() {
 
     private val _directionLiveData by lazy { MutableLiveData<Event<NavDirections>>() }
     val directionLiveData: LiveData<Event<NavDirections>> by lazy { _directionLiveData }
 
     val onboardingLiveData by lazy {
         liveData {
-            emit(sp.isNeedOnboarding)
+            emit(repository.isNeedOnboarding)
         }
     }
 
@@ -36,11 +36,11 @@ class SplashViewModel(private val sp: SPManager, private val workManager: WorkMa
     }
 
     fun regionsOrMain() {
-        _directionLiveData.value = Event(sp.isNeedRegionSelection.toNavDirection)
+        _directionLiveData.value = Event(repository.isNeedRegionSelection.toNavDirection)
     }
 
     fun notifyOnboarding() {
-        sp.isNeedOnboarding = false
+        launchIO { repository.setIsNeedOnboarding(false) }
         regionsOrMain()
     }
 

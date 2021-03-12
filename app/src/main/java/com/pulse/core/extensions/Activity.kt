@@ -43,7 +43,7 @@ fun FragmentActivity.showAlert(message: String, block: AlertDialogData.() -> Uni
 fun FragmentActivity.showAlertRes(message: String, block: AlertDialogDataRes.() -> Unit, fm: FragmentManager = supportFragmentManager) =
     AlertDialogFragment.newInstance(this, message, block).show(fm)
 
-fun FragmentActivity.lazyNavController(@IdRes resId: Int) = lazyNotSynchronized {
+fun FragmentActivity.lazyNavController(@IdRes resId: Int = R.id.nav_host) = lazyNotSynchronized {
     try {
         (supportFragmentManager.findFragmentById(resId) as NavHostFragment).navController
     } catch (e: IllegalArgumentException) {

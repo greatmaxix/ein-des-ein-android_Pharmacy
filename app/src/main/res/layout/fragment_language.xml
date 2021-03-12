@@ -12,7 +12,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_language"
-        android:paddingHorizontal="@dimen/_8sdp"
         android:paddingVertical="@dimen/_12sdp"
         android:layout_width="match_parent"
         android:layout_height="0dp"

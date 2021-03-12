@@ -28,10 +28,10 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_check"
-        android:layout_width="@dimen/_28sdp"
-        android:layout_height="@dimen/_28sdp"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
         android:layout_gravity="end|center"
         android:layout_marginEnd="@dimen/_8sdp"
-        app:srcCompat="@drawable/animated_check" />
+        app:srcCompat="@drawable/ic_check" />
 
 </com.google.android.material.card.MaterialCardView>

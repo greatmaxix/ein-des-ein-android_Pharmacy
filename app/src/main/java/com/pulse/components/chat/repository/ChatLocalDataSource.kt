@@ -1,16 +1,21 @@
 package com.pulse.components.chat.repository
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.pulse.components.chat.model.chat.ChatItemDAO
 import com.pulse.components.chat.model.message.MessageDAO
 import com.pulse.components.chat.model.message.MessageItem
 import com.pulse.components.chat.model.remoteKeys.RemoteKeys.Companion.createRemoteKey
 import com.pulse.components.chat.model.remoteKeys.RemoteKeysDAO
 import com.pulse.components.user.model.customer.CustomerDAO
-import com.pulse.data.local.SPManager
+import com.pulse.core.extensions.getOnes
+import com.pulse.core.extensions.put
+import com.pulse.data.local.Preferences.Chat.FIELD_OPENED_CHAT_ID
+import com.pulse.data.local.Preferences.Token.FIELD_ACCESS_TOKEN
 import java.time.LocalDateTime
 
 class ChatLocalDataSource(
-    private val sp: SPManager,
+    private val dataStore: DataStore<Preferences>,
     private val customerDao: CustomerDAO,
     private val remoteKeysDAO: RemoteKeysDAO,
     private val messageDAO: MessageDAO,
@@ -18,10 +23,9 @@ class ChatLocalDataSource(
 ) {
 
     val isUserLoggedIn
-        get() = !sp.token.isNullOrBlank()
+        get() = dataStore.getOnes(FIELD_ACCESS_TOKEN).isNullOrBlank().not()
 
     suspend fun getCustomerUuid() = customerDao.getCustomer()?.uuid
-
 
     fun getMessagePagingSource(chatId: Int) = messageDAO.getMessagePagingSource(chatId)
 
@@ -51,7 +55,7 @@ class ChatLocalDataSource(
             messageDAO.delete(it)
         }
 
-    fun clearChat() = sp.clearChatId()
+    suspend fun clearChat() = dataStore.put(FIELD_OPENED_CHAT_ID, -1)
 
     fun getChatLiveData(chatId: Int) = chatItemDAO.getChatLiveData(chatId)
 }
