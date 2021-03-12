@@ -46,10 +46,9 @@ class NeedHelpFragment(private val viewModel: NeedHelpViewModel) : BaseMVVMFragm
         viewSearch.onBackClick = {
             requireActivity().onBackPressed()
         }
-        binding.mcvQuestions.mockToast()
-//        binding.mcvQuestions.onClickDebounce {
-//            // TODO set phone number to showDial("")
-//        }
+        binding.mcvQuestions.onClickDebounce {
+            showDial("+777777777777") // TODO change phone number
+        }
 
         initHelpList()
     }

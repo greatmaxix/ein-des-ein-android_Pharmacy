@@ -1,7 +1,7 @@
 object Versions {
 
     const val kotlin = "1.4.30"
-    const val coroutines = "1.4.1"
+    const val coroutines = "1.4.3"
 
     const val sdp = "1.0.6"
     const val koin = "2.2.1"
@@ -10,7 +10,7 @@ object Versions {
 
     const val lifecycle = "2.3.0"
     const val navigation = "2.3.3"
-    const val room = "2.3.0-beta01"
+    const val room = "2.3.0-beta02"
 
     const val oksse = "0.9.0"
     const val notificationsDsl = "0.1.0"

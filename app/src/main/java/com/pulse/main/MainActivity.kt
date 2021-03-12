@@ -1,44 +1,53 @@
 package com.pulse.main
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
+import androidx.annotation.IdRes
+import androidx.annotation.NavigationRes
 import androidx.lifecycle.LiveData
-import androidx.navigation.NavDestination
-import androidx.navigation.ui.setupWithNavController
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDeepLinkBuilder
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.MainGraphDirections.Companion.globalToChat
 import com.pulse.R
 import com.pulse.components.mercureService.MercureEventListenerService.Companion.EXTRA_CHAT_ID
-import com.pulse.components.user.model.customer.Customer
 import com.pulse.core.base.mvvm.BaseMVVMActivity
 import com.pulse.core.dsl.ObserveGeneral
-import com.pulse.core.extensions.*
+import com.pulse.core.extensions.observe
+import com.pulse.core.extensions.onNavDestinationSelected
+import com.pulse.core.extensions.setTopRoundCornerBackground
 import com.pulse.core.general.behavior.DialogMessagesBehavior
 import com.pulse.core.general.behavior.ProgressViewBehavior
 import com.pulse.core.general.interfaces.MessagesCallback
 import com.pulse.core.general.interfaces.ProgressCallback
+import com.pulse.core.locale.ILocaleManager
 import com.pulse.core.network.Resource
 import com.pulse.core.network.Resource.*
 import com.pulse.databinding.ActivityMainBinding
-import com.pulse.ui.SelectableBottomNavView
+import com.pulse.main.helper.INavigationHelper
+import com.pulse.main.helper.NavigationHelper
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.map
+import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, MainViewModel::class), ProgressCallback, MessagesCallback {
 
     private val binding by viewBinding(ActivityMainBinding::bind, R.id.container)
-
+    private val localeManager by inject<ILocaleManager>()
+    private val navigationHelper: INavigationHelper by lazy { NavigationHelper(this) }
     private val progressBehavior by lazy { attachBehavior(ProgressViewBehavior(binding.layoutProgress.root)) }
     private val messagesBehavior by lazy { attachBehavior(DialogMessagesBehavior(this)) }
 
-    private val topLevelDestinations = intArrayOf(R.id.nav_home, R.id.nav_catalog, R.id.nav_search, R.id.nav_cart, R.id.nav_profile, R.id.nav_guest_profile)
-    private val authDestinations = intArrayOf(R.id.nav_sign_in, R.id.nav_sign_up, R.id.nav_code)
-    private val onboardingDestinations = intArrayOf(R.id.nav_on_boarding)
-    private val splashDestinations = intArrayOf(R.id.nav_splash)
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
         super.onCreate(savedInstanceState)
-        setupNavigation()
 
+        Timber.e("${intent?.extras?.get("android-support-nav:controller:deepLinkIds")} ||| ${intent?.extras?.get("android-support-nav:controller:deepLinkIntent")}")
+        binding.bottomNavigation.setTopRoundCornerBackground()
+        navigationHelper.setBottomNavItems(viewModel.customerInfoLiveData.value)
         checkIntentChatId(intent)
     }
 
@@ -58,20 +67,43 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
         checkIntentChatId(intent)
     }
 
-    override fun onBindLiveData() {
-        observe(viewModel.directionLiveData) { navController.onNavDestinationSelected(this) }
-        observeNullable(viewModel.customerInfoLiveData, ::setBottomNavItems)
+    override fun attachBaseContext(newBase: Context) = super.attachBaseContext(localeManager.createLocalisedContext(newBase))
+
+    override fun finish() {
+        overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
+        super.finish()
     }
 
-    private fun setBottomNavItems(customer: Customer?) {
-        val avatarUrl = customer?.avatarInfo?.url.orEmpty()
-        binding.bottomNavigation.navItems = listOf(
-            SelectableBottomNavView.NavItem(R.id.nav_home, R.id.nav_home, R.drawable.ic_home, null),
-            SelectableBottomNavView.NavItem(R.id.nav_catalog, R.id.nav_catalog, R.drawable.ic_catalog, null),
-            SelectableBottomNavView.NavItem(R.id.nav_search, R.id.nav_search, R.drawable.ic_search, null, isFab = true),
-            SelectableBottomNavView.NavItem(R.id.nav_cart, R.id.nav_cart, R.drawable.ic_shopping_cart, null),
-            SelectableBottomNavView.NavItem(R.id.profile_graph, R.id.nav_profile, null, avatarUrl, isProfileItem = true)
-        )
+    override fun startActivity(intent: Intent?) {
+        overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
+        super.startActivity(intent)
+    }
+
+    override fun onBindLiveData() {
+        observe(viewModel.directionLiveData) { navController.onNavDestinationSelected(this) }
+        observeNullable(viewModel.customerInfoLiveData) { navigationHelper.setBottomNavItems(this) }
+    }
+
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(navigationHelper.onDestinationChangedFlow) {
+            it?.let { viewModel.setChatForeground(it.id == R.id.nav_chat) }
+        }
+        observe(navigationHelper.onMenuItemChangedFlow) {
+            it?.let { viewModel.navSelected(it) }
+        }
+        observe(localeManager.appLocaleFlow
+            .distinctUntilChanged()
+            .drop(1)
+            .map { navigationHelper.deepLinkGraphDestination }
+        ) { notifyContextChanged(it.first, it.second) }
+    }
+
+    private fun notifyContextChanged(@NavigationRes navGraphId: Int, @IdRes destId: Int) {
+        NavDeepLinkBuilder(this)
+            .setGraph(navGraphId)
+            .setDestination(destId)
+            .createTaskStackBuilder()
+            .startActivities()
     }
 
     override fun setInProgress(progress: Boolean) = progressBehavior.setInProgress(progress)
@@ -81,6 +113,7 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     override fun showError(strResId: Int, action: (() -> Unit)?) = messagesBehavior.showError(strResId, action)
 
     // TODO maybe need to move to BaseMVVMActivity but need to move behaviors...
+    @Deprecated("Move to Flow")
     protected fun <T> observeResult(liveData: LiveData<Resource<T>>, block: (ObserveGeneral<T>.() -> Unit)? = null) {
         block?.let {
             ObserveGeneral<T>().apply(block).apply {
@@ -113,63 +146,12 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     }
 
     override fun onBackPressed() {
-        navController.currentDestination?.apply {
-            when {
-                isCategories -> super.onBackPressed()
-                isTopDestinationAndHome -> finish()
-                isTopLevelDestination -> navController.navigate(R.id.nav_home)
-                else -> super.onBackPressed()
-            }
-        } ?: super.onBackPressed()
+        navigationHelper.onBackPress { super.onBackPressed() }
     }
 
-    private fun setupNavigation() = with(binding.bottomNavigation) {
-        setTopRoundCornerBackground()
-        itemIconTintList = null
-        setupWithNavController(navController)
-        setBottomNavItems(viewModel.customerInfoLiveData.value)
-        setOnNavigationItemSelectedListener {
-            viewModel.navSelected(it.itemId)
-            true
-        }
-        setOnNavigationItemReselectedListener {}
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            val isLightStatusBar = destination.isAuthDestination || destination.isOnboardingDestination
-            val statusBarColor = when {
-                destination.isAuthDestination -> R.color.colorGlobalWhite
-                destination.isOnboardingDestination -> R.color.colorGreyLight
-                destination.isSplashDestination -> R.color.darkBlue
-                else -> R.color.primaryBlue
-            }
-            setStatusBarColor(statusBarColor)
-            setLightStatusBar(isLightStatusBar)
+    companion object {
 
-            if (destination.isTopLevelDestination) showNav() else hideNav()
-            val isChatForeground = destination.id == R.id.nav_chat
-            viewModel.setChatForeground(isChatForeground)
-            window.setSoftInputMode(
-                if (isChatForeground) WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
-                else WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-            )
-            changeSelection(destination.id)
-        }
+        private const val ANIM_EXIT = R.anim.nav_exit_anim
+        private const val ANIM_ENTER = R.anim.nav_enter_anim
     }
-
-    private val NavDestination.isAuthDestination
-        get() = authDestinations.contains(id)
-
-    private val NavDestination.isOnboardingDestination
-        get() = onboardingDestinations.contains(id)
-
-    private val NavDestination.isSplashDestination
-        get() = splashDestinations.contains(id)
-
-    private val NavDestination.isTopLevelDestination
-        get() = topLevelDestinations.contains(id)
-
-    private val NavDestination.isTopDestinationAndHome
-        get() = isTopLevelDestination && id == R.id.nav_home
-
-    private val NavDestination.isCategories
-        get() = id == R.id.nav_catalog
 }

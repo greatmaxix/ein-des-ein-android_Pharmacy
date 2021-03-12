@@ -1,13 +1,11 @@
 package com.pulse.components.chatType.repository
 
-import com.pulse.data.local.SPManager
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import com.pulse.core.extensions.put
+import com.pulse.data.local.Preferences.Chat.FIELD_OPENED_CHAT_ID
 
-class ChatTypeLocalDataSource(private val sp: SPManager) {
+class ChatTypeLocalDataSource(private val dataStore: DataStore<Preferences>) {
 
-    var openedChatId: Int? = null
-        get() = sp.openedChatId
-        set(value) {
-            field = value
-            sp.openedChatId = value
-        }
+    suspend fun setOpenedChatId(id: Int) = dataStore.put(FIELD_OPENED_CHAT_ID, id)
 }

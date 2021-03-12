@@ -6,5 +6,5 @@ class ChatTypeRepository(
 ) {
 
     suspend fun createChat(type: String) = rds.createChat(type)
-        .apply { lds.openedChatId = id }
+        .apply { lds.setOpenedChatId(id) }
 }

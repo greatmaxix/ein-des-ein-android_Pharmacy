@@ -33,7 +33,6 @@
                 android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/profileImage"
                 android:src="@drawable/ic_avatar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -70,7 +69,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_16sdp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/profileImageDescription"
                 android:src="@drawable/ic_edit"
                 app:backgroundTint="@color/colorGlobalWhite"
                 app:fabCustomSize="@dimen/_32sdp"
@@ -115,7 +113,6 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="@dimen/_32sdp"
                                 android:layout_height="@dimen/_32sdp"
-                                android:contentDescription="@string/wishImageDescriptionProfile"
                                 android:padding="@dimen/_4sdp"
                                 android:src="@drawable/ic_heart_stroke" />
 
@@ -152,7 +149,6 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="@dimen/_32sdp"
                                 android:layout_height="@dimen/_32sdp"
-                                android:contentDescription="@string/orderImageProfile"
                                 android:padding="@dimen/_4sdp"
                                 android:src="@drawable/ic_box" />
 
@@ -189,7 +185,6 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="@dimen/_32sdp"
                                 android:layout_height="@dimen/_32sdp"
-                                android:contentDescription="@string/analysesImageProfile"
                                 android:padding="@dimen/_4sdp"
                                 android:src="@drawable/ic_vector" />
 
@@ -226,7 +221,6 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="@dimen/_32sdp"
                                 android:layout_height="@dimen/_32sdp"
-                                android:contentDescription="@string/recipesImageProfile"
                                 android:padding="@dimen/_4sdp"
                                 android:src="@drawable/ic_recipes" />
 

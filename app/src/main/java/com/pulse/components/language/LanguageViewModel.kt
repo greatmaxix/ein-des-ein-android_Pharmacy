@@ -22,9 +22,13 @@ class LanguageViewModel(private val repository: LanguageRepository) : BaseViewMo
     val languageLiveData: LiveData<List<LanguageAdapterModel>> by lazy { _languageLiveData }
 
     init {
-        val selectedLocale = repository.selectedLocale
+        val selectedLocale = repository.appLocale
         _languageLiveData.value = LocaleEnum.values().map {
             LanguageAdapterModel(it, selectedLocale == it)
         }
+    }
+
+    fun setLanguage(locale: LocaleEnum) {
+        repository.setLocale(locale)
     }
 }

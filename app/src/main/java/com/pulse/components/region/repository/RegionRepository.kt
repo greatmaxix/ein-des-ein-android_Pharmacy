@@ -1,7 +1,10 @@
 package com.pulse.components.region.repository
 
 import com.pulse.components.user.model.customer.Customer
+import com.pulse.components.user.model.customer.CustomerItem
 import com.pulse.components.user.repository.CustomerLocalDataSource
+import com.pulse.core.network.ResponseWrapper
+import com.pulse.model.BaseDataResponse
 import com.pulse.model.region.LocalRegion
 import com.pulse.model.region.Region
 import kotlinx.coroutines.flow.Flow
@@ -16,10 +19,13 @@ class RegionRepository(private val rrds: RegionRemoteDataSource, private val rld
     suspend fun saveRegionLocally(region: Region) {
         rlds.clear()
         rlds.setRegion(LocalRegion(region.id, region.name))
-        rrds.setLocalRegion(region.id)
+        rlds.setLocalRegion(region.id)
     }
 
-    suspend fun updateCustomerRegion(id: Int) = rrds.updateCustomerRegion(id)
+    suspend fun updateCustomerRegion(id: Int): ResponseWrapper<BaseDataResponse<CustomerItem>> {
+        rlds.setLocalRegion(id)
+        return rrds.updateCustomerRegion(id)
+    }
 
     suspend fun getCustomer() = lds.getCustomer()
 

@@ -13,8 +13,8 @@ import org.koin.dsl.module
 val regionModule = module {
 
     single { RegionRepository(get(), get(), get()) }
-    single { RegionRemoteDataSource(get(), get()) }
-    single { RegionLocalDataSource(get<DBManager>().regionDAO) }
+    single { RegionRemoteDataSource(get()) }
+    single { RegionLocalDataSource(get<DBManager>().regionDAO, get()) }
 
     viewModel { RegionViewModel(get()) }
 

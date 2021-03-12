@@ -28,7 +28,10 @@
 
         <activity
             android:name="com.pulse.main.MainActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
+            android:taskAffinity=""
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
 
             <intent-filter>

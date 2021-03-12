@@ -127,10 +127,10 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     implementation("com.jakewharton.timber:timber:4.7.1")
-    implementation("com.github.fondesa:kpermissions:3.1.3")
+    implementation("com.github.fondesa:kpermissions:3.2.0")
     implementation("com.budiyev.android:code-scanner:2.1.0")
     // Google
-    implementation(platform("com.google.firebase:firebase-bom:26.4.0"))
+    implementation(platform("com.google.firebase:firebase-bom:26.6.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.android.gms:play-services-maps:17.0.0")
@@ -138,7 +138,7 @@ dependencies {
     // Flow
     implementation("io.github.reactivecircus.flowbinding:flowbinding-android:1.0.0")
     // AndroidX
-    implementation("androidx.core:core-ktx:1.5.0-beta01")
+    implementation("androidx.core:core-ktx:1.5.0-beta02")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("androidx.work:work-runtime-ktx:2.5.0")
@@ -147,7 +147,9 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.3.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.paging:paging-runtime-ktx:3.0.0-beta01")
-    implementation("androidx.recyclerview:recyclerview:1.2.0-beta01")
+    implementation("androidx.recyclerview:recyclerview:1.2.0-beta02")
+    implementation("androidx.datastore:datastore-preferences:1.0.0-alpha07")
+
     // Koin
     implementation("org.koin:koin-androidx-scope:${Versions.koin}")
     implementation("org.koin:koin-androidx-fragment:${Versions.koin}")
@@ -188,7 +190,7 @@ dependencies {
     implementation("com.github.heremaps:oksse:${Versions.oksse}")
     implementation("com.kirich1409.android-notification-dsl:core:${Versions.notificationsDsl}")
     implementation("com.kirich1409.android-notification-dsl:extensions:${Versions.notificationsDsl}")
-    implementation("com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:1.4.1")
+    implementation("com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:1.4.2")
 }
 
 val String.execute

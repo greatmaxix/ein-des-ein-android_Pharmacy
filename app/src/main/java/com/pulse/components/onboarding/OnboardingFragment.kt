@@ -12,12 +12,11 @@ import com.pulse.components.onboarding.model.Onboarding
 import com.pulse.components.region.RegionFragment.Companion.REGION_KEY
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.doWithDelay
-import com.pulse.data.local.SPManager
 import com.pulse.databinding.FragmentOnboardingBinding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class OnboardingFragment(sp: SPManager) : BaseMVVMFragment(R.layout.fragment_onboarding) {
+class OnboardingFragment(private val viewModel: OnboardingViewModel) : BaseMVVMFragment(R.layout.fragment_onboarding) {
 
     private val binding by viewBinding(FragmentOnboardingBinding::bind)
     private val items = listOf(
@@ -40,7 +39,7 @@ class OnboardingFragment(sp: SPManager) : BaseMVVMFragment(R.layout.fragment_onb
     )
 
     init {
-        sp.isNeedRegionSelection = true
+        viewModel.setRegionSelectionFlag()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {

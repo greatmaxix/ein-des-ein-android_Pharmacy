@@ -71,7 +71,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background_ripple_selector_chat_type"
-            android:contentDescription="@string/pharmacistTypeContentDescription"
             android:src="@drawable/ic_type_pharmacist" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -96,7 +95,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background_ripple_selector_chat_type"
-            android:contentDescription="@string/doctorTypeContentDescription"
             android:src="@drawable/ic_type_doctor" />
 
     </com.google.android.material.card.MaterialCardView>

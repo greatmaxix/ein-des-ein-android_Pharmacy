@@ -96,7 +96,8 @@ object DummyData {
         )
     }
 
-    private fun randomUserData() = CustomerOrderData(analyzeCategoryNames.random(), clinicsList.random().phone, null, null)
+    private fun randomUserData() =
+        CustomerOrderData(analyzeCategoryNames.random(), clinicsList.random().phone, null, if (Random.nextBoolean()) analyzeCategoryNames.random() else null)
 
     val analyzesList = getRandomIntList(5).mapIndexed { index, _ ->
         Analyze(

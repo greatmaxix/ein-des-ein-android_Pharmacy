@@ -23,7 +23,7 @@ class ScannerViewModel(private val repository: ScannerRepository) : BaseProductV
 
     fun descriptionViewed() {
         _descriptionVisibility.value = false
-        repository.setDescriptionShown()
+        launchIO { repository.setDescriptionShown() }
     }
 
     fun searchQrCode(code: String) {

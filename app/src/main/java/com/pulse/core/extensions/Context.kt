@@ -17,6 +17,12 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import com.pulse.BuildConfig
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "${BuildConfig.APPLICATION_ID}_prefs")
 
 val Context.inflater: LayoutInflater
     get() = LayoutInflater.from(this)

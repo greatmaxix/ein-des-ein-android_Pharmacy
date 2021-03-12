@@ -1,7 +1,10 @@
 package com.pulse.data.remote
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import com.pulse.core.extensions.getOnes
 import com.pulse.core.network.safeApiCall
-import com.pulse.data.local.SPManager
+import com.pulse.data.local.Preferences.Region.FIELD_REGION_ID
 import com.pulse.data.remote.RestConstants.AVATAR_UUID
 import com.pulse.data.remote.RestConstants.CODE
 import com.pulse.data.remote.RestConstants.EMAIL
@@ -14,7 +17,7 @@ import com.pulse.data.remote.model.order.CreateOrderRequest
 import okhttp3.MultipartBody
 
 @Deprecated("")
-class RestManager(private val sp: SPManager, private val RestApi: RestApi) {
+class RestManager(private val dataStore: DataStore<Preferences>, private val RestApi: RestApi) {
     suspend fun signUp(name: String, phone: String, email: String) =
         RestApi.signUp(mapOf(NAME to name, EMAIL to email, PHONE to phone))
 
@@ -33,7 +36,7 @@ class RestManager(private val sp: SPManager, private val RestApi: RestApi) {
     suspend fun fetchCustomer() = safeApiCall { RestApi.fetchCustomer() }
 
     suspend fun productSearch(page: Int? = null, pageSize: Int? = null, barCode: String? = null, categoryCode: String? = null, name: String? = null) =
-        safeApiCall { RestApi.productSearch(page, pageSize, sp.regionId, barCode, categoryCode, name) }
+        safeApiCall { RestApi.productSearch(page, pageSize, dataStore.getOnes(FIELD_REGION_ID), barCode, categoryCode, name) }
 
     suspend fun getProductById(globalProductId: Int) = safeApiCall { RestApi.getProductById(globalProductId) }
 
@@ -50,7 +53,7 @@ class RestManager(private val sp: SPManager, private val RestApi: RestApi) {
     suspend fun getCategories() = safeApiCall { RestApi.categories() }
 
     suspend fun getPharmacyList(globalProductId: Int, page: Int? = null, pageSize: Int? = null) =
-        safeApiCall { RestApi.pharmacyList(globalProductId, sp.regionId, page, pageSize) }
+        safeApiCall { RestApi.pharmacyList(globalProductId, dataStore.getOnes(FIELD_REGION_ID), page, pageSize) }
 
     suspend fun getCartProducts() = safeApiCall { RestApi.cartProducts() }
 

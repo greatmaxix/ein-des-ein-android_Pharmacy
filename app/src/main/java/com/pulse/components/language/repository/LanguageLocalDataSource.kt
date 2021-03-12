@@ -1,14 +1,14 @@
 package com.pulse.components.language.repository
 
+import com.pulse.core.locale.ILocaleManager
 import com.pulse.core.locale.LocaleEnum
-import com.pulse.data.local.SPManager
 
-class LanguageLocalDataSource(val sp: SPManager) {
-
-    val selectedLocale
-        get() = sp.locale
+class LanguageLocalDataSource(private val localeManager: ILocaleManager) {
 
     fun setLocale(locale: LocaleEnum) {
-        sp.locale = locale
+        localeManager.appLocale = locale
     }
+
+    val appLocale
+        get() = localeManager.appLocale
 }

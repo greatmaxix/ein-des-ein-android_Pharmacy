@@ -7,6 +7,7 @@ import com.pulse.R
 import com.pulse.components.language.adapter.LanguagesAdapter
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.addItemDecorator
+import com.pulse.core.locale.LocaleEnum
 import com.pulse.databinding.FragmentLanguageBinding
 import org.koin.core.component.KoinApiExtension
 
@@ -15,9 +16,7 @@ class LanguageFragment(private val viewModel: LanguageViewModel) : BaseMVVMFragm
 
     private val binding by viewBinding(FragmentLanguageBinding::bind)
     private val spacing by lazy { resources.getDimensionPixelSize(R.dimen._8sdp) }
-    private val languageAdapter = LanguagesAdapter {
-        // TODO change language
-    }
+    private val languageAdapter = LanguagesAdapter(::changeLanguage)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,4 +29,6 @@ class LanguageFragment(private val viewModel: LanguageViewModel) : BaseMVVMFragm
     override fun onBindLiveData() {
         observe(viewModel.languageLiveData, languageAdapter::notifyItems)
     }
+
+    private fun changeLanguage(locale: LocaleEnum) = viewModel.setLanguage(locale)
 }

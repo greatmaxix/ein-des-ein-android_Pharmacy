@@ -36,22 +36,23 @@ import com.pulse.components.user.profile.guest.guestProfileModule
 import com.pulse.components.user.profile.profileModule
 import com.pulse.components.user.userModule
 import com.pulse.components.user.wishlist.wishModule
+import com.pulse.core.extensions.dataStore
 import com.pulse.core.locale.ILocaleManager
 import com.pulse.core.locale.LocaleManager
 import com.pulse.data.local.DBManager
-import com.pulse.data.local.SPManager
 import com.pulse.data.remote.RESTModule
 import com.pulse.data.remote.RestManager
 import com.pulse.main.mainModule
 import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 @FlowPreview
 object Modules {
 
     private val managerModule = module(true) {
-        single { SPManager(androidApplication()) }
+        single { androidContext().dataStore }
         single { RestManager(get(), get()) }
         single { WorkManager.getInstance(androidApplication()) }
         single { DBManager(androidApplication()) }
