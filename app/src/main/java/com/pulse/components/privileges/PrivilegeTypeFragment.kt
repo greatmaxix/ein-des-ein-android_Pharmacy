@@ -8,7 +8,6 @@ import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pulse.R
 import com.pulse.components.privileges.PrivilegeTypeFragmentDirections.Companion.fromPrivilegeTypeToPrivilege
 import com.pulse.core.base.mvvm.BaseMVVMFragment
-import com.pulse.core.extensions.getColorStateList
 import com.pulse.core.extensions.getDimensionPixelSize
 import com.pulse.core.extensions.onClickDebounce
 import com.pulse.data.remote.DummyData
@@ -20,6 +19,8 @@ class PrivilegeTypeFragment : BaseMVVMFragment(R.layout.fragment_privilege_type)
 
     private val binding by viewBinding(FragmentPrivilegeTypeBinding::bind)
     private val radioButtonPadding by lazy { getDimensionPixelSize(R.dimen._8sdp) }
+    private val radioButtonTextColor by lazy { requireContext().getColorStateList(R.color.selector_text_payment) }
+    private val radioButtonTintColor by lazy { requireContext().getColorStateList(R.color.selector_tint_button_payment) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,7 +44,7 @@ class PrivilegeTypeFragment : BaseMVVMFragment(R.layout.fragment_privilege_type)
         this.layoutParams = layoutParams
         setPadding(radioButtonPadding, (radioButtonPadding * 1.5).toInt(), radioButtonPadding, (radioButtonPadding * 1.5).toInt())
         text = name
-        setTextColor(getColorStateList(R.color.selector_text_payment))
-        buttonTintList = getColorStateList(R.color.selector_tint_button_payment)
+        setTextColor(radioButtonTextColor)
+        buttonTintList = radioButtonTintColor
     }
 }
