@@ -48,10 +48,11 @@
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:layout_marginBottom="@dimen/_6sdp"
+                android:drawableTint="@color/colorGlobalWhite"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/_8sdp"
                 android:gravity="center_vertical"
-                android:text="@string/search"
+                android:text="@string/what_to_find"
                 android:textAppearance="?attr/textAppearanceBody1"
                 android:textColor="@color/colorGlobalWhite" />
 
@@ -81,7 +82,7 @@
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         style="@style/ScrollStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -89,17 +90,18 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/_16sdp">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/mcv_ask"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/_12sdp"
-                android:backgroundTint="@color/askCardViewBackgroundHome"
+                android:backgroundTint="@color/colorGlobalWhite"
                 app:cardCornerRadius="@dimen/_6sdp"
                 app:cardElevation="@dimen/_6sdp"
-                app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@id/mcv_analyze"
                 app:layout_constraintHorizontal_chainStyle="packed"
@@ -108,22 +110,22 @@
                 app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:contentDescription="@string/askTileContentDescriptionHome"
-                    android:src="@drawable/ic_chat_big" />
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_ask_pharmacy" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginEnd="@dimen/_4sdp"
                     android:layout_marginBottom="@dimen/_8sdp"
+                    android:background="@color/colorGlobalWhite50"
+                    android:paddingHorizontal="@dimen/_8sdp"
                     android:text="@string/askTitleHome"
-                    android:textAppearance="?attr/textAppearanceCaption"
-                    android:textColor="@color/colorGlobalWhite" />
+                    android:textAppearance="?attr/textAppearanceCaption2"
+                    android:textColor="@color/darkBlue" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -131,10 +133,10 @@
                 android:id="@+id/mcv_analyze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
                 android:backgroundTint="@color/colorGlobalWhite"
                 app:cardCornerRadius="@dimen/_6sdp"
                 app:cardElevation="@dimen/_6sdp"
-                app:cardUseCompatPadding="true"
                 app:layout_constraintBottom_toBottomOf="@id/mcv_ask"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@id/mcv_map"
@@ -143,19 +145,20 @@
                 app:rippleColor="@color/colorRippleBlue">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:src="@drawable/ic_vector_big" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_analyzes" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_margin="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_8sdp"
                     android:text="@string/analyzeTitleHome"
-                    android:textAppearance="?attr/textAppearanceCaption"
-                    android:textColor="@color/primaryBlue" />
+                    android:textAppearance="?attr/textAppearanceCaption2"
+                    android:textColor="@color/darkBlue" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -164,10 +167,9 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="@dimen/_12sdp"
-                android:backgroundTint="@color/purple"
+                android:backgroundTint="@color/colorGlobalWhite"
                 app:cardCornerRadius="@dimen/_6sdp"
                 app:cardElevation="@dimen/_6sdp"
-                app:cardUseCompatPadding="true"
                 app:layout_constraintBottom_toBottomOf="@id/mcv_ask"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -176,20 +178,22 @@
                 app:rippleColor="@color/colorRippleWhiteSemiTransparent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:contentDescription="@string/mapIconContentDescriptionHome"
-                    android:src="@drawable/ic_map_big" />
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_iata_pass" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_margin="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:background="@color/colorGlobalWhite50"
+                    android:paddingHorizontal="@dimen/_8sdp"
                     android:text="@string/mapTitleHome"
-                    android:textAppearance="?attr/textAppearanceCaption"
-                    android:textColor="@color/colorGlobalWhite" />
+                    android:textAppearance="?attr/textAppearanceCaption2"
+                    android:textColor="@color/darkBlue" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -198,7 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_18sdp"
                 android:text="@string/categoriesTitleHome"
                 android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/darkBlue"
@@ -210,7 +214,7 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_24sdp"
-                android:layout_marginEnd="@dimen/_14sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:gravity="bottom"
                 android:insetBottom="0dp"
                 android:paddingStart="@dimen/_8sdp"
@@ -258,6 +262,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
+                    <com.pulse.ui.CategoryHomeView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
                 </LinearLayout>
 
                 <ProgressBar
@@ -274,9 +283,8 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginHorizontal="@dimen/_24sdp"
                 android:backgroundTint="@color/green"
                 android:padding="@dimen/_8sdp"
                 android:text="@string/uploadRecipesHome"
@@ -335,5 +343,5 @@
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

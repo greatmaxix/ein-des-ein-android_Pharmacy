@@ -8,7 +8,9 @@ import com.pulse.core.extensions.SharedPreferenceContext
 import com.pulse.core.extensions.get
 import com.pulse.core.extensions.put
 import com.pulse.core.general.interfaces.ManagerInterface
+import com.pulse.core.locale.LocaleEnum
 import com.pulse.model.auth.token.TokenModel
+import java.util.*
 
 class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterface {
 
@@ -65,6 +67,20 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
         get() = get(Keys.IS_CHAT_FOREGROUND)
         set(value) = put(Keys.IS_CHAT_FOREGROUND, value)
 
+    private var _locale: LocaleEnum? = LocaleEnum.RU
+    var locale: LocaleEnum
+        get() {
+            val value = _locale ?: LocaleEnum.getAppLocale(get(Keys.LOCALE, LocaleEnum.getAppLocale(Locale.getDefault().language).language))
+            if (_locale == null) {
+                _locale = value
+            }
+            return value
+        }
+        set(value) {
+            _locale = value
+            put(Keys.LOCALE, value.language)
+        }
+
     override fun clear() = sp.edit {
         sp.all.forEach {
             remove(it.key)
@@ -72,6 +88,6 @@ class SPManager(val context: Context) : SharedPreferenceContext, ManagerInterfac
     }
 
     private enum class Keys {
-        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, IS_REGION_SELECTED, REGION_ID, OPENED_CHAT_ID, IS_CHAT_FOREGROUND
+        TOKEN, REFRESH_TOKEN, QR_CODE_DESCRIPTION_SHOWN, IS_ONBOARDING_SHOWN, IS_REGION_SELECTED, REGION_ID, OPENED_CHAT_ID, IS_CHAT_FOREGROUND, LOCALE
     }
 }

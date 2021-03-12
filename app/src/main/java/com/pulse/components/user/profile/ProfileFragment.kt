@@ -24,17 +24,21 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
 
         fabEditProfile.setDebounceOnClickListener { doNav(actionFromProfileToEdit()) }
-        itemRegion.setDebounceOnClickListener { doNav(globalToRegion()) }
-        itemLogout.setDebounceOnClickListener { showLogoutDialog() }
-        llWishContainer.setDebounceOnClickListener { doNav(actionFromProfileToWish()) }
-        llAnalyzesContainer.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_profile) }
-        llRecipesContainer.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
-        llOrderContainer.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_orders, null, R.id.nav_profile) }
-        itemAbout.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
-        itemAddress.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_address, null, R.id.nav_profile) }
-        itemHelp.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_need_help, null, R.id.nav_profile) }
-        itemPayment.mockToast()
+
+        llWishContainer.onClickDebounce { doNav(actionFromProfileToWish()) }
+        llAnalyzesContainer.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_profile) }
+        llRecipesContainer.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
+        llOrderContainer.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_orders, null, R.id.nav_profile) }
+
+        itemRegion.onClickDebounce { doNav(globalToRegion()) }
+        itemLanguage.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_language, null, R.id.nav_profile) }
+        itemAddress.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_address, null, R.id.nav_profile) }
         itemNotification.mockToast()
+        itemPayment.mockToast()
+        itemPrivileges.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_privileges_type, null, R.id.nav_profile) }
+        itemAbout.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
+        itemHelp.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_need_help, null, R.id.nav_profile) }
+        itemLogout.onClickDebounce { showLogoutDialog() }
     }
 
     override fun onBindLiveData() = with(binding) {
