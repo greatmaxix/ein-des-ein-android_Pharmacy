@@ -222,7 +222,7 @@
     <string name="addPaymentMethod">Добавить способ оплаты</string>
     <string name="your_bonus">Ваши Бонусы</string>
     <string name="youCanUseYourBonuses">Вы можете использовать их при заказе доставки или самовывоза</string>
-    <string name="creditOrDebitCard">Кредитная или дебетовая карта</string>
+    <string name="creditOrDebitCard">Добавить карту</string>
     <string name="otherPayment">Другое</string>
     <string name="cvvHint">CVV</string>
     <string name="addCreditCard">Добавить карту</string>

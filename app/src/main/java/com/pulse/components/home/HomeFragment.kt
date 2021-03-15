@@ -7,6 +7,8 @@ import androidx.core.os.bundleOf
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.home.HomeFragmentDirections.Companion.fromHomeToScanner
+import com.pulse.components.home.HomeFragmentDirections.Companion.fromHomeToSearch
+import com.pulse.components.home.HomeFragmentDirections.Companion.globalToStub
 import com.pulse.components.product.BaseProductFragment
 import com.pulse.components.product.model.Product
 import com.pulse.core.extensions.*
@@ -30,9 +32,9 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         mcvAsk.setDebounceOnClickListener { viewModel.performAskPharmacist() }
         mcvAnalyze.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_analyze_category, null, R.id.nav_home) }
         mbUploadRecipes.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_home) }
-        mcvSearch.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_home) }
+        mcvSearch.setDebounceOnClickListener { navController.navigate(fromHomeToSearch()) }
         mbSeeAllCategories.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_catalog, null, R.id.nav_home) }
-        mcvMap.setDebounceOnClickListener { mockToast() }
+        mcvMap.setDebounceOnClickListener { navController.navigate(globalToStub()) }
 
         viewModel.loadInitialData()
         pbCategories.visibleOrGone(!isCategoryLoaded)

@@ -57,7 +57,7 @@
             android:id="@+id/fab_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_map"
+            android:src="@drawable/ic_drugstore_location"
             android:tint="@color/primaryBlue"
             app:backgroundTint="@color/mediumGrey50"
             app:borderWidth="0dp"
@@ -65,7 +65,7 @@
             app:fabSize="mini"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:maxImageSize="@dimen/_12sdp"
+            app:maxImageSize="@dimen/_28sdp"
             app:rippleColor="@color/colorRippleWhiteSemiTransparent" />
 
         <com.google.android.material.textview.MaterialTextView

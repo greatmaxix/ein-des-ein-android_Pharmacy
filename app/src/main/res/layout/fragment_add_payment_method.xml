@@ -64,6 +64,52 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_insurance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:foreground="@drawable/background_default_ripple_selector_rect"
+            app:cardBackgroundColor="@color/colorGlobalWhite"
+            app:cardCornerRadius="@dimen/_7sdp"
+            app:cardElevation="@dimen/_1sdp"
+            app:rippleColor="@color/colorRippleBlue">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_insurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:src="@drawable/ic_shield" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mtv_title_insurance"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="@string/insurancePolicy"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:textColor="@color/darkBlue" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:src="@drawable/ic_next" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/mcv_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

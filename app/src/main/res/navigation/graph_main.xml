@@ -8,7 +8,6 @@
     <include app:graph="@navigation/graph_auth" />
     <include app:graph="@navigation/graph_profile" />
     <include app:graph="@navigation/graph_profile_guest" />
-    <include app:graph="@navigation/graph_payments" />
 
     <fragment
         android:id="@+id/nav_splash"
@@ -91,6 +90,14 @@
         <action
             android:id="@+id/fromHomeToAnalyzeCategories"
             app:destination="@id/nav_analyze_category"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim" />
+
+        <action
+            android:id="@+id/fromHomeToSearch"
+            app:destination="@id/nav_search"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"
@@ -699,5 +706,19 @@
         app:popExitAnim="@anim/nav_exit_pop_anim"
         app:popUpTo="@+id/nav_orders"
         app:popUpToInclusive="true" />
+
+    <fragment
+        android:id="@+id/nav_stub"
+        android:name="com.pulse.components.stub.StubFragment"
+        android:label="@string/under_development"
+        tools:layout="@layout/fragment_stub" />
+
+    <action
+        android:id="@+id/globalToStub"
+        app:destination="@id/nav_stub"
+        app:enterAnim="@anim/nav_enter_anim"
+        app:exitAnim="@anim/nav_exit_anim"
+        app:popEnterAnim="@anim/nav_enter_pop_anim"
+        app:popExitAnim="@anim/nav_exit_pop_anim" />
 
 </navigation>

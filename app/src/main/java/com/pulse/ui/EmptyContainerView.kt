@@ -2,8 +2,7 @@ package com.pulse.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.Gravity.CENTER
-import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import com.pulse.R
 import com.pulse.core.extensions.inflater
@@ -11,7 +10,7 @@ import com.pulse.core.extensions.setDebounceOnClickListener
 import com.pulse.core.extensions.visibleOrGone
 import com.pulse.databinding.LayoutEmptyContainerBinding
 
-class EmptyContainerView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
+class EmptyContainerView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val binding = LayoutEmptyContainerBinding.inflate(inflater, this)
     private var title = ""
@@ -31,8 +30,6 @@ class EmptyContainerView @JvmOverloads constructor(context: Context, attrs: Attr
                     src = it.getResourceId(R.styleable.EmptyContainerView_src, -1)
                 }
         }
-        gravity = CENTER
-        orientation = VERTICAL
     }
 
     override fun onFinishInflate() = with(binding) {

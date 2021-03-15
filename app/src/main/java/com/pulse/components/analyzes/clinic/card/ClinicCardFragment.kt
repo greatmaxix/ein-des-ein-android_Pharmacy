@@ -44,6 +44,7 @@ class ClinicCardFragment(private val viewModel: ClinicCardViewModel) : BaseMVVMF
             mtvDescription.text = description
             viewModel.fetchCategories(id)
             viewModel.fetchBranches(id)
+            mbSeeAllServices.onClickDebounce { navController.navigate(globalToAnalyzeCategories()) }
             mbSeeAllBranch.onClickDebounce { navController.navigate(globalToClinicTabs()) }
         }
     }

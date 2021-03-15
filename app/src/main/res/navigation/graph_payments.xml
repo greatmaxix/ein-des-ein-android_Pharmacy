@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/paymentsFragment"
         android:name="com.pulse.components.payments.PaymentsFragment"
-        android:label="PaymentsFragment"
+        android:label="@string/payment_label"
         tools:layout="@layout/fragment_payments">
 
         <action
@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/addPaymentMethodFragment"
         android:name="com.pulse.components.payments.AddPaymentMethodFragment"
-        android:label="AddPaymentMethodFragment"
+        android:label="@string/new_method_label"
         tools:layout="@layout/fragment_add_payment_method">
 
         <action
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/addCardFragment"
         android:name="com.pulse.components.payments.AddCardFragment"
-        android:label="AddCardFragment"
+        android:label="@string/add_card_button"
         tools:layout="@layout/fragment_add_card" />
 
 </navigation>

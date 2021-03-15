@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profile_graph"
     app:startDestination="@id/nav_profile">
+
+    <include app:graph="@navigation/graph_payments" />
+
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.pulse.components.user.profile.ProfileFragment"
@@ -44,6 +47,15 @@
         <action
             android:id="@+id/actionFromProfileToOrders"
             app:destination="@id/nav_orders"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_profile" />
+
+        <action
+            android:id="@+id/fromProfileToPayments"
+            app:destination="@id/graph_payments"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_enter_pop_anim"

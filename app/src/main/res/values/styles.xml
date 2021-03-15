@@ -198,4 +198,8 @@
         <item name="tabTextColor">?android:textColorSecondary</item>
         <item name="tabTextAppearance">?attr/textAppearanceSubtitle2</item>
     </style>
+
+    <style name="PickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/primaryBlue</item>
+    </style>
 </resources>

@@ -47,10 +47,10 @@ class BuyerDetailsOrder @JvmOverloads constructor(
         if (!customer.delegateFullName.isNullOrBlank()) {
             mtvDelegateDetails.visible()
             mtvDelegateFullName.text = customer.delegateFullName
-            mtvDelegateFullName.visible()
+            mcvDelegateDetailsFilled.visible()
         } else {
             mtvDelegateDetails.gone()
-            mtvDelegateFullName.gone()
+            mcvDelegateDetailsFilled.gone()
         }
     }
 }

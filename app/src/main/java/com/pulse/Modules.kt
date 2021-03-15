@@ -31,6 +31,7 @@ import com.pulse.components.region.regionModule
 import com.pulse.components.scanner.qrCodeScannerModule
 import com.pulse.components.search.searchModule
 import com.pulse.components.splash.splashModule
+import com.pulse.components.stub.stubModule
 import com.pulse.components.user.address.addressModule
 import com.pulse.components.user.profile.guest.guestProfileModule
 import com.pulse.components.user.profile.profileModule
@@ -97,6 +98,7 @@ object Modules {
         analyzeOrderModule,
         privilegeModule,
         languageModule,
-        contactUsModule
+        contactUsModule,
+        stubModule
     )
 }

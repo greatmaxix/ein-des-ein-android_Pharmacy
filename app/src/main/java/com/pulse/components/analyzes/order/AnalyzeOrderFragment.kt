@@ -5,7 +5,6 @@ import android.view.View
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
-import com.pulse.components.analyzes.order.AnalyzeOrderFragmentDirections.Companion.globalToHome
 import com.pulse.components.checkout.model.PaymentMethodAdapterModel
 import com.pulse.components.payments.model.PaymentMethod
 import com.pulse.core.base.mvvm.BaseMVVMFragment
@@ -24,6 +23,7 @@ class AnalyzeOrderFragment(private val viewModel: AnalyzeOrderViewModel) : BaseM
 
         showBackButton()
         with(args.order) {
+            toolbar.toolbar.title = getString(R.string.order_num_holder, orderNo)
             viewBuyerInfo.customer = customer
             with(viewAnalyzeCategory) {
                 mtvTitle.text = category.name
@@ -53,7 +53,7 @@ class AnalyzeOrderFragment(private val viewModel: AnalyzeOrderViewModel) : BaseM
                     title = R.string.request_cancelled
                     positive = R.string.common_okButton
                     positiveAction = {
-                        navController.navigate(globalToHome())
+                        navController.popBackStack()
                     }
                 }
             }

@@ -58,29 +58,32 @@ class SelectableBottomNavView @JvmOverloads constructor(
     private fun updateProfileIconState(selected: Boolean = false) {
         val item = navItems.firstOrNull { it.isProfileItem }
         if (item != null) {
-            Glide.with(context)
-                .asBitmap()
-                .load(item.iconUrl ?: R.drawable.ic_avatar)
-                .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .placeholder(R.drawable.ic_avatar)
-                .apply(RequestOptions.circleCropTransform())
-                .into(object : CustomTarget<Bitmap>(AVATAR_SIZE, AVATAR_SIZE) {
-                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        menu.findItem(item.menuItemId)?.icon = resource.run {
-                            RoundedBitmapDrawableFactory.create(
-                                resources,
-                                if (selected) createBitmapWithBorder(selectedBorder, selectedColor) else this
-                            ).apply {
-                                isCircular = true
+            if (item.iconUrl.isNullOrBlank()) {
+                menu.findItem(item.menuItemId)?.icon = resources.getDrawable(if (selected) R.drawable.ic_avatar else R.drawable.ic_avatar_placeholder)
+            } else {
+                Glide.with(context)
+                    .asBitmap()
+                    .load(item.iconUrl ?: R.drawable.ic_avatar)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(object : CustomTarget<Bitmap>(AVATAR_SIZE, AVATAR_SIZE) {
+                        override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                            menu.findItem(item.menuItemId)?.icon = resource.run {
+                                RoundedBitmapDrawableFactory.create(
+                                    resources,
+                                    if (selected) createBitmapWithBorder(selectedBorder, selectedColor) else this
+                                ).apply {
+                                    isCircular = true
+                                }
                             }
                         }
-                    }
 
-                    override fun onLoadCleared(placeholder: Drawable?) {
-                        // no op
-                    }
-                })
+                        override fun onLoadCleared(placeholder: Drawable?) {
+                            // no op
+                        }
+                    })
+            }
         }
     }
 
