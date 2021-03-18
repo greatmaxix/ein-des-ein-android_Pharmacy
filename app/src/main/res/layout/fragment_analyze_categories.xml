@@ -31,7 +31,6 @@
             android:layout_marginVertical="@dimen/_6sdp"
             android:layout_weight="1"
             app:cardCornerRadius="@dimen/_16sdp"
-            app:hintColor="@color/colorGlobalBlack"
             app:hintText="@string/what_analyzes_search" />
 
     </LinearLayout>
@@ -44,9 +43,24 @@
         android:clipToPadding="false"
         android:paddingHorizontal="@dimen/_10sdp"
         android:paddingVertical="@dimen/_18sdp"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_toolbar"
         tools:listitem="@layout/item_analyze_category" />
+
+    <com.pulse.ui.EmptyContainerView
+        android:id="@+id/view_empty_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:isButtonVisible="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_toolbar"
+        app:src="@drawable/ic_analyze_empty"
+        app:subtitleEmpty="@string/analyze_empty_description"
+        app:titleEmpty="@string/analyze_empty_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

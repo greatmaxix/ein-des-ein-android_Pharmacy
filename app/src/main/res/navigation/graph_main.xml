@@ -292,8 +292,8 @@
 
     <fragment
         android:id="@+id/nav_analyze_category"
-        android:label="@string/analyzesLabel"
         android:name="com.pulse.components.analyzes.category.AnalyzeCategoriesFragment"
+        android:label="@string/analyzesLabel"
         tools:layout="@layout/fragment_analyzes">
 
         <argument
@@ -711,7 +711,13 @@
         android:id="@+id/nav_stub"
         android:name="com.pulse.components.stub.StubFragment"
         android:label="@string/under_development"
-        tools:layout="@layout/fragment_stub" />
+        tools:layout="@layout/fragment_stub">
+
+        <argument
+            android:name="stubType"
+            app:argType="com.pulse.components.stub.model.StubType" />
+
+    </fragment>
 
     <action
         android:id="@+id/globalToStub"

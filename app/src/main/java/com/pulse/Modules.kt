@@ -19,6 +19,7 @@ import com.pulse.components.language.languageModule
 import com.pulse.components.mercureService.mercureModule
 import com.pulse.components.needHelp.contactUs.contactUsModule
 import com.pulse.components.needHelp.needHelpModule
+import com.pulse.components.notifications.notificationsModule
 import com.pulse.components.onboarding.onboardingModule
 import com.pulse.components.orders.details.orderModule
 import com.pulse.components.orders.ordersModule
@@ -99,6 +100,7 @@ object Modules {
         privilegeModule,
         languageModule,
         contactUsModule,
-        stubModule
+        stubModule,
+        notificationsModule
     )
 }

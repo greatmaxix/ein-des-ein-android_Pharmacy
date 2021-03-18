@@ -45,11 +45,13 @@ abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
     fun getProductInfo(globalProductId: Int) {
         _progressLiveData.value = true
         launchIO {
-            when (val response = repositoryProduct.productById(globalProductId)) {
+            // Will be changed and fixed on Flow migration
+            val response = repositoryProduct.productById(globalProductId)
+            _progressLiveData.postValue(false)
+            when (response) {
                 is Success -> saveToRecentlyViewedAndProceed(response.value.data.item)
                 is Error -> _errorLiveData.postValue(response.errorResId)
             }
-            _progressLiveData.postValue(false)
         }
     }
 

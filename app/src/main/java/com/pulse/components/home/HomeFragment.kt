@@ -11,6 +11,7 @@ import com.pulse.components.home.HomeFragmentDirections.Companion.fromHomeToSear
 import com.pulse.components.home.HomeFragmentDirections.Companion.globalToStub
 import com.pulse.components.product.BaseProductFragment
 import com.pulse.components.product.model.Product
+import com.pulse.components.stub.model.StubType
 import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentHomeBinding
 import com.pulse.model.category.Category
@@ -34,7 +35,7 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         mbUploadRecipes.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_home) }
         mcvSearch.setDebounceOnClickListener { navController.navigate(fromHomeToSearch()) }
         mbSeeAllCategories.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_catalog, null, R.id.nav_home) }
-        mcvMap.setDebounceOnClickListener { navController.navigate(globalToStub()) }
+        mcvIataTravel.setDebounceOnClickListener { navController.navigate(globalToStub(StubType.IATA_TRAVEL_PASS)) }
 
         viewModel.loadInitialData()
         pbCategories.visibleOrGone(!isCategoryLoaded)

@@ -378,11 +378,22 @@
     <string name="phoneHintCheckout">@string/phoneHint</string>
     <string name="insurancePolicy">Добавить страховой полис</string>
     <string name="under_development">В разработке</string>
-    <string name="under_development_description">Новые функции уже совсем скоро!\nСледите за обновленяими!</string>
+    <string name="under_development_title">Экран на стадии разработки</string>
+    <string name="under_development_description">Уже в следующих версиях!\nСледите за обновленяими!</string>
     <string name="my_insurance">Мой страховой полис</string>
     <string name="charityTitle">Благотворительность</string>
     <string name="payment_label">Оплата</string>
     <string name="new_method_label">Новый метод</string>
     <string name="add_card_button">Добавить карту</string>
-
+    <string name="iata_travel">IATA Travel</string>
+    <string name="iata_travel_title">Путешествуем безопасно и без границ!</string>
+    <string name="analyze_empty_title">Ой, кажется такой процедуры нет в базе</string>
+    <string name="analyze_empty_description">Повторите поиск или попробуйте записаться на другое исслежование</string>
+    <string name="insurance_title_empty">Ой, вы еще не добавили страховой полис</string>
+    <string name="charity_title_empty">Медецинская благотворительность</string>
+    <string name="pushNotifications">Push уведомления</string>
+    <string name="emailDistribution">Email рассылка</string>
+    <string name="product_arrival_notifications">О поступлении товара</string>
+    <string name="price_reduction_notification">О снижении цены</string>
+    <string name="naotherr_payment_type_title_empty">Увы, этот тип оплаты еще не подключен</string>
 </resources>

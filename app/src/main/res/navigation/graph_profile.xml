@@ -62,6 +62,15 @@
             app:popExitAnim="@anim/nav_exit_pop_anim"
             app:popUpTo="@id/nav_profile" />
 
+        <action
+            android:id="@+id/fromProfileToNotifications"
+            app:destination="@id/nav_notifications"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_enter_pop_anim"
+            app:popExitAnim="@anim/nav_exit_pop_anim"
+            app:popUpTo="@id/nav_profile" />
+
     </fragment>
 
     <fragment
@@ -153,4 +162,11 @@
             app:popExitAnim="@anim/nav_exit_pop_anim" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_notifications"
+        android:name="com.pulse.components.notifications.NotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notifications" />
+
 </navigation>

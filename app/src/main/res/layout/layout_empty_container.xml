@@ -23,10 +23,10 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/mtv_empty_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginHorizontal="@dimen/_24sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:gravity="center"
         android:textAppearance="?attr/textAppearanceHeadline5"
@@ -39,7 +39,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/mtv_empty_subtitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_4sdp"
@@ -47,19 +47,21 @@
         android:layout_marginHorizontal="@dimen/_16sdp"
         android:textAppearance="?attr/textAppearanceBody1"
         android:textColor="@color/darkBlue"
-        app:layout_constraintBottom_toTopOf="@+id/mtv_empty_title"
+        app:layout_constraintBottom_toTopOf="@+id/mb_select"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mb_select"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_empty_title"
         tools:text="@string/noGoodsFoundSubtitle" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_select"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
-        android:layout_margin="@dimen/_12sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_32sdp"
         android:backgroundTint="@color/primaryBlue"
         android:gravity="center"
+        android:layout_marginTop="@dimen/_24sdp"
         android:paddingVertical="@dimen/_10sdp"
         android:textAppearance="?attr/textAppearanceButton"
         android:textColor="@color/colorGlobalWhite"

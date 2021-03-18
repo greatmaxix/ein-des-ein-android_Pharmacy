@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGreyLight"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_push_notifications"
+        style="@style/NotificationSwitch"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:text="@string/pushNotifications" />
+
+    <include layout="@layout/divider_notifications" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_email_notifications"
+        style="@style/NotificationSwitch"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:text="@string/emailDistribution" />
+
+    <include layout="@layout/divider_notifications" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_product_arrival_notifications"
+        style="@style/NotificationSwitch"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:text="@string/product_arrival_notifications" />
+
+    <include layout="@layout/divider_notifications" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_price_reduction_notifications"
+        style="@style/NotificationSwitch"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:text="@string/price_reduction_notification" />
+
+    <include layout="@layout/divider_notifications" />
+
+</LinearLayout>

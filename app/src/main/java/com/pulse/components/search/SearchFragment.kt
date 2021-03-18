@@ -31,7 +31,7 @@ class SearchFragment(private val viewModel: SearchViewModel) : BaseProductListFr
         super.onBindLiveData()
         observe(viewModel.productCountLiveData) {
             binding.mtvSearchResult.text = getString(R.string.countProducts, it).spanSearchCount(it)
-            binding.viewEmpty.visibleOrGone(it == 0)
+            binding.viewEmpty.visibleOrGone(productAdapter.itemCount == 0)
         }
     }
 
