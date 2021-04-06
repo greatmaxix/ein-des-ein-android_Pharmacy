@@ -4,9 +4,9 @@ import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View.OnClickListener
-import androidx.cardview.widget.CardView
 import androidx.core.content.res.use
 import androidx.core.view.isGone
+import com.google.android.material.card.MaterialCardView
 import com.pulse.R
 import com.pulse.core.extensions.*
 import com.pulse.databinding.LayoutSearchBinding
@@ -25,7 +25,7 @@ class AppSearchView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : CardView(context, attrs, defStyleAttr) {
+) : MaterialCardView(context, attrs, defStyleAttr) {
 
     private val binding = LayoutSearchBinding.inflate(inflater, this, true)
     private var hint = -1
@@ -38,11 +38,32 @@ class AppSearchView @JvmOverloads constructor(
             field = value
             binding.ivBack.visibleOrGone(value)
         }
-
     private var notify: ((CharSequence) -> Unit)? = null
     private var editor: ((String) -> Boolean)? = null
     private val viewJob = SupervisorJob()
     private val viewScope = CoroutineScope(Main.immediate + viewJob)
+    private val whiteColor = getColor(R.color.colorGlobalWhite)
+    private val semiWhiteColor = getColor(R.color.searchBackgroundBlue)
+    private val darkBluerColor = getColor(R.color.darkBlue)
+    private var hasFocus: Boolean = false
+        set(value) {
+            field = value
+            with(binding) {
+                post {
+                    if (value) {
+                        mtvHint.setTextColor(darkBluerColor)
+                        setCardBackgroundColor(whiteColor)
+                        cardElevation = 1f
+                        mtvHint.compoundDrawables.getOrNull(0)?.setTint(darkBluerColor)
+                    } else {
+                        mtvHint.setTextColor(whiteColor)
+                        setCardBackgroundColor(semiWhiteColor)
+                        cardElevation = 0f
+                        mtvHint.compoundDrawables.getOrNull(0)?.setTint(whiteColor)
+                    }
+                }
+            }
+        }
     var onBackClick: (() -> Unit)? = null
 
     init {
@@ -50,7 +71,7 @@ class AppSearchView @JvmOverloads constructor(
             context.theme.obtainStyledAttributes(attrSet, R.styleable.AppSearchView, defStyleAttr, -1)
                 .use {
                     hint = it.getResourceId(R.styleable.AppSearchView_hintText, -1)
-                    hintColor = it.getResourceId(R.styleable.AppSearchView_hintColor, R.color.colorGlobalBlack)
+                    hintColor = it.getResourceId(R.styleable.AppSearchView_hintColor, R.color.colorGlobalWhite)
                     debounce = it.getFloat(R.styleable.AppSearchView_debounce, 200f)
                     animationDuration = it.getFloat(R.styleable.AppSearchView_debounce, 400f).toLong()
                     withBackButton = it.getBoolean(R.styleable.AppSearchView_withBackButton, false)
@@ -82,6 +103,7 @@ class AppSearchView @JvmOverloads constructor(
         etSearch.focusChanges()
             .skipInitialValue()
             .onEach {
+                hasFocus = it
                 if (it) {
                     ivClose.setOnClickListener(closeClick)
                 }
@@ -95,6 +117,7 @@ class AppSearchView @JvmOverloads constructor(
         ivBack.setDebounceOnClickListener {
             onBackClick?.invoke()
         }
+        clearFocus()
     }
 
     private val closeClick = OnClickListener {
@@ -145,10 +168,11 @@ class AppSearchView @JvmOverloads constructor(
     }
 
     override fun requestFocus(direction: Int, previouslyFocusedRect: Rect?) = binding.etSearch.requestFocus(direction, previouslyFocusedRect)
+        .also { hasFocus = true }
 
     override fun clearFocus() {
         super.clearFocus()
-
         binding.etSearch.clearFocus()
+        hasFocus = false
     }
 }

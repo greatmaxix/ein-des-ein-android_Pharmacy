@@ -53,13 +53,13 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcv_pharmacist"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="136dp"
+        android:layout_height="136dp"
         android:layout_marginStart="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_40sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         app:cardBackgroundColor="@color/colorGlobalWhite"
-        app:cardCornerRadius="@dimen/_200sdp"
+        app:cardCornerRadius="68dp"
         app:cardElevation="@dimen/_6sdp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/mcv_doctor"
@@ -77,13 +77,13 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcv_doctor"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="136dp"
+        android:layout_height="136dp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_40sdp"
         android:layout_marginEnd="@dimen/_40sdp"
         app:cardBackgroundColor="@color/colorGlobalWhite"
-        app:cardCornerRadius="@dimen/_200sdp"
+        app:cardCornerRadius="68dp"
         app:cardElevation="@dimen/_6sdp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"

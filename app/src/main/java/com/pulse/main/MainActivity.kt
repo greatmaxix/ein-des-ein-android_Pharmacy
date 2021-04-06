@@ -31,7 +31,6 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.map
 import org.koin.android.ext.android.inject
-import timber.log.Timber
 
 class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, MainViewModel::class), ProgressCallback, MessagesCallback {
 
@@ -45,7 +44,6 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
         overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
         super.onCreate(savedInstanceState)
 
-        Timber.e("${intent?.extras?.get("android-support-nav:controller:deepLinkIds")} ||| ${intent?.extras?.get("android-support-nav:controller:deepLinkIntent")}")
         binding.bottomNavigation.setTopRoundCornerBackground()
         navigationHelper.setBottomNavItems(viewModel.customerInfoLiveData.value)
         checkIntentChatId(intent)

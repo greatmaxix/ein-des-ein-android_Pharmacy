@@ -9,6 +9,7 @@ import androidx.core.view.isGone
 import com.pulse.R
 import com.pulse.core.extensions.animateGone
 import com.pulse.core.extensions.animateVisible
+import timber.log.Timber
 
 class ProgressViewBehavior(private var progressRoot: View?) : IProgressBehavior {
 
@@ -16,6 +17,7 @@ class ProgressViewBehavior(private var progressRoot: View?) : IProgressBehavior 
         get() = progressRoot?.findViewById<ImageView>(R.id.iv_loader)?.drawable?.run { this as AnimatedVectorDrawable }
 
     override fun showProgress() {
+        Timber.d("Show progress")
         progressRoot?.apply {
             if (isGone) {
                 animateVisible(50)
@@ -25,6 +27,7 @@ class ProgressViewBehavior(private var progressRoot: View?) : IProgressBehavior 
     }
 
     override fun hideProgress() {
+        Timber.d("Hide progress")
         progressRoot?.animateGone(50)
         anim?.clearAnimationCallbacks()
     }

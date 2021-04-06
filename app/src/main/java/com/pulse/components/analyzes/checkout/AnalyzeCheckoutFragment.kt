@@ -77,8 +77,8 @@ class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) :
             }
         }
         observe(viewModel.pickDateTimeLiveData) {
-            DatePickerDialog(requireContext(), { _, year, month, day ->
-                TimePickerDialog(requireContext(), { _, hour, minute ->
+            DatePickerDialog(requireContext(), R.style.PickerStyle, { _, year, month, day ->
+                TimePickerDialog(requireContext(), R.style.PickerStyle, { _, hour, minute ->
                     val pickedDateTime = LocalDateTime.of(year, month + 1, day, hour, minute)
                     viewModel.setDateTime(pickedDateTime)
                 }, it.hour, it.minute, DateFormat.is24HourFormat(requireContext())).show()

@@ -62,20 +62,23 @@
         android:id="@+id/mtv_delegate_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:layout_marginTop="@dimen/_24sdp"
         android:textAppearance="?attr/textAppearanceButton"
-        tools:text="@string/buyerDetails" />
+        android:visibility="gone"
+        tools:text="@string/buyerDetails"
+        tools:visibility="visible" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcv_delegate_details_filled"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/colorGlobalWhite"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="0dp"
-        app:contentPadding="@dimen/_14sdp">
+        app:contentPadding="@dimen/_14sdp"
+        tools:visibility="visible">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/mtv_delegate_full_name"

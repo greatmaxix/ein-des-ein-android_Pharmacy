@@ -11,7 +11,6 @@ import com.pulse.data.local.Preferences.Locale.FIELD_LOCALE
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
-import timber.log.Timber
 import java.util.*
 
 class LocaleManager private constructor(private val dataStore: DataStore<Preferences>) : ILocaleManager {
@@ -20,7 +19,6 @@ class LocaleManager private constructor(private val dataStore: DataStore<Prefere
 
     override var appLocale: LocaleEnum
         get() {
-            Timber.e(Locale.getDefault().language)
             val value = _locale ?: LocaleEnum.getLocale(dataStore.getOnes(FIELD_LOCALE, LocaleEnum.getLocale(Locale.getDefault().language).language))
             if (_locale == null) {
                 _locale = value

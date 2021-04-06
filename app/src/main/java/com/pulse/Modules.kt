@@ -19,6 +19,7 @@ import com.pulse.components.language.languageModule
 import com.pulse.components.mercureService.mercureModule
 import com.pulse.components.needHelp.contactUs.contactUsModule
 import com.pulse.components.needHelp.needHelpModule
+import com.pulse.components.notifications.notificationsModule
 import com.pulse.components.onboarding.onboardingModule
 import com.pulse.components.orders.details.orderModule
 import com.pulse.components.orders.ordersModule
@@ -31,6 +32,7 @@ import com.pulse.components.region.regionModule
 import com.pulse.components.scanner.qrCodeScannerModule
 import com.pulse.components.search.searchModule
 import com.pulse.components.splash.splashModule
+import com.pulse.components.stub.stubModule
 import com.pulse.components.user.address.addressModule
 import com.pulse.components.user.profile.guest.guestProfileModule
 import com.pulse.components.user.profile.profileModule
@@ -97,6 +99,8 @@ object Modules {
         analyzeOrderModule,
         privilegeModule,
         languageModule,
-        contactUsModule
+        contactUsModule,
+        stubModule,
+        notificationsModule
     )
 }

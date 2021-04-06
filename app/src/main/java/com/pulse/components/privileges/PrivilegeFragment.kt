@@ -16,6 +16,8 @@ class PrivilegeFragment(private val viewModel: PrivilegeViewModel) : BaseMVVMFra
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBackButton()
+        showBackButton() {
+            navController.popBackStack(R.id.nav_profile, false)
+        }
     }
 }

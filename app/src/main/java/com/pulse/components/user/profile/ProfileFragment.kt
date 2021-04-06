@@ -7,10 +7,14 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.pulse.MainGraphDirections.Companion.globalToRegion
+import com.pulse.MainGraphDirections.Companion.globalToStub
 import com.pulse.R
 import com.pulse.components.mercureService.MercureEventListenerService
+import com.pulse.components.stub.model.StubType
 import com.pulse.components.user.profile.ProfileFragmentDirections.Companion.actionFromProfileToEdit
 import com.pulse.components.user.profile.ProfileFragmentDirections.Companion.actionFromProfileToWish
+import com.pulse.components.user.profile.ProfileFragmentDirections.Companion.fromProfileToNotifications
+import com.pulse.components.user.profile.ProfileFragmentDirections.Companion.fromProfileToPayments
 import com.pulse.core.base.mvvm.BaseMVVMFragment
 import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentProfileBinding
@@ -33,9 +37,13 @@ class ProfileFragment : BaseMVVMFragment(R.layout.fragment_profile) {
         itemRegion.onClickDebounce { doNav(globalToRegion()) }
         itemLanguage.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_language, null, R.id.nav_profile) }
         itemAddress.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_address, null, R.id.nav_profile) }
-        itemNotification.mockToast()
-        itemPayment.mockToast()
+        itemNotification.onClickDebounce { navController.navigate(fromProfileToNotifications()) }
+        itemMyInsurance.onClickDebounce { navController.navigate(globalToStub(StubType.INSURANCE_POLICY)) }
+        itemPayment.onClickDebounce { navController.navigate(fromProfileToPayments()) }
         itemPrivileges.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_privileges_type, null, R.id.nav_profile) }
+
+        itemCharity.onClickDebounce { navController.navigate(globalToStub(StubType.CHARITY)) }
+
         itemAbout.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_about, null, R.id.nav_profile) }
         itemHelp.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_need_help, null, R.id.nav_profile) }
         itemLogout.onClickDebounce { showLogoutDialog() }

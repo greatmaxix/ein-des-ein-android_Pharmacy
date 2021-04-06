@@ -18,6 +18,7 @@
         <attr name="arrowVisibilityProfile" format="boolean" />
         <attr name="mainColorProfile" format="reference" />
         <attr name="secondaryColorProfile" format="reference" />
+        <attr name="additionalIconTint" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="AppSearchView">

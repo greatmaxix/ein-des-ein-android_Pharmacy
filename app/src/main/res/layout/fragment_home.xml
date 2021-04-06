@@ -138,7 +138,7 @@
                 app:cardElevation="@dimen/_6sdp"
                 app:layout_constraintBottom_toBottomOf="@id/mcv_ask"
                 app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@id/mcv_map"
+                app:layout_constraintEnd_toStartOf="@id/mcv_iata_travel"
                 app:layout_constraintStart_toEndOf="@id/mcv_ask"
                 app:layout_constraintTop_toTopOf="@id/mcv_ask"
                 app:rippleColor="@color/colorRippleBlue">
@@ -162,7 +162,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcv_map"
+                android:id="@+id/mcv_iata_travel"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="@dimen/_12sdp"

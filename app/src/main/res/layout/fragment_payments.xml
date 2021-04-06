@@ -73,18 +73,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/comingSoon"
-                            android:textColor="@color/darkBlue"
-                            android:textSize="@dimen/_12ssp"
-                            android:textStyle="bold" />
+                            android:textAppearance="?attr/textAppearanceSubtitle2"
+                            android:textColor="@color/darkBlue" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_4sdp"
+                            android:textAppearance="?attr/textAppearanceCaption2"
                             android:text="@string/comingSoonDescription"
-                            android:textColor="@color/darkBlue"
-                            android:textSize="@dimen/_10ssp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/darkBlue" />
 
                     </LinearLayout>
 
@@ -138,53 +136,6 @@
                         android:textColor="@color/primaryBlue"
                         android:textSize="@dimen/_14ssp" />
 
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_24sdp"
-                app:cardBackgroundColor="@color/primaryBlue"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:cardElevation="@dimen/_1sdp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_16sdp"
-                    android:paddingVertical="@dimen/_12sdp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_logo" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/your_bonus"
-                            android:textColor="@color/colorGlobalWhite"
-                            android:textSize="@dimen/_12ssp"
-                            android:textStyle="bold" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/youCanUseYourBonuses"
-                            android:textColor="@color/colorGlobalWhite"
-                            android:textSize="@dimen/_10ssp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>

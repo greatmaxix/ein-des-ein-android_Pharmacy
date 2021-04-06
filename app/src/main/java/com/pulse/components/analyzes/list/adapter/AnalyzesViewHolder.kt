@@ -20,7 +20,7 @@ class AnalyzesViewHolder(
         mtvOrderNo.text = context.getString(R.string.order_num_holder, item.orderNo)
         mtvCategory.text = item.category.name
         mtvDateTime.text = item.dateTime.analyzeDate
-        ivClinic.loadGlideCircle(item.clinic.logo.url, R.drawable.ic_placeholder_search) // TODO set placeholder
+        ivClinic.loadGlideCircle(item.clinic.logo.url) // TODO set placeholder
         mtvName.text = item.clinic.name
         mtvAddress.text = item.clinic.location.address
         mtvPhone.text = getString(R.string.pharmacyPhoneWith, item.clinic.phone)

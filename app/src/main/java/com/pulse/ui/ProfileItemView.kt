@@ -25,8 +25,7 @@ class ProfileItemView @JvmOverloads constructor(
             if (value != -1) {
                 binding.ivIcon.setImageResource(icon)
                 binding.ivIcon.visible()
-            }
-            else {
+            } else {
                 binding.ivIcon.setImageDrawable(null)
                 binding.ivIcon.gone()
             }
@@ -61,6 +60,11 @@ class ProfileItemView @JvmOverloads constructor(
                 binding.mtvDetail.visible()
             } else binding.mtvDetail.gone()
         }
+    private var additionalIconTint: Int = -1
+        set(value) {
+            field = value
+            if (value != -1) binding.ivIcon.setColorFilter(ContextCompat.getColor(context, value), PorterDuff.Mode.SRC_IN)
+        }
 
     init {
         setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorGlobalWhite))
@@ -77,6 +81,7 @@ class ProfileItemView @JvmOverloads constructor(
                     arrowVisibility = it.getBoolean(R.styleable.ProfileItemView_arrowVisibilityProfile, true)
                     mainColor = it.getResourceId(R.styleable.ProfileItemView_mainColorProfile, R.color.darkBlue)
                     secondaryColor = it.getResourceId(R.styleable.ProfileItemView_secondaryColorProfile, R.color.profileIconBackground)
+                    additionalIconTint = it.getResourceId(R.styleable.ProfileItemView_additionalIconTint, -1)
                 }
         }
     }

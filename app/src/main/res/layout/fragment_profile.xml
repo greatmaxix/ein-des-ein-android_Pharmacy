@@ -283,6 +283,14 @@
                     app:titleProfile="@string/notificationsTitle" />
 
                 <com.pulse.ui.ProfileItemView
+                    android:id="@+id/item_my_insurance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    app:iconProfile="@drawable/ic_shield"
+                    app:titleProfile="@string/my_insurance" />
+
+                <com.pulse.ui.ProfileItemView
                     android:id="@+id/item_payment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -299,11 +307,22 @@
                     app:titleProfile="@string/privileges" />
 
                 <com.pulse.ui.ProfileItemView
+                    android:id="@+id/item_charity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    app:iconProfile="@drawable/ic_logo_red_cross"
+                    app:secondaryColorProfile="@color/colorGlobalWhite"
+                    app:additionalIconTint="@color/red"
+                    app:titleProfile="@string/charityTitle" />
+
+                <com.pulse.ui.ProfileItemView
                     android:id="@+id/item_about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_24sdp"
                     android:layout_marginEnd="@dimen/_12sdp"
                     app:iconProfile="@drawable/ic_about"
                     app:titleProfile="@string/aboutAppTitle" />

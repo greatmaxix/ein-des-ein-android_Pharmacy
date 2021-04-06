@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.analyzes.category.adapter.AnalyzeCategoryAdapter
 import com.pulse.core.base.mvvm.BaseMVVMFragment
-import com.pulse.core.extensions.addItemDecorator
-import com.pulse.core.extensions.falseIfNull
-import com.pulse.core.extensions.gone
-import com.pulse.core.extensions.visible
+import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentAnalyzeCategoriesBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -43,6 +41,11 @@ class AnalyzeCategoriesFragment : BaseMVVMFragment(R.layout.fragment_analyze_cat
     }
 
     private fun initCategoryList() = with(binding.rvAnalyzeCategories) {
+        analyzeCategoryAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onChanged() = updateListEmpty()
+            override fun onItemRangeRemoved(position: Int, count: Int) = updateListEmpty()
+            override fun onItemRangeInserted(position: Int, count: Int) = updateListEmpty()
+        })
         adapter = analyzeCategoryAdapter
         addItemDecorator(true, spacing)
         setHasFixedSize(true)
@@ -64,5 +67,11 @@ class AnalyzeCategoriesFragment : BaseMVVMFragment(R.layout.fragment_analyze_cat
                 toolbar?.title = getString(R.string.analyzesLabel)
             }
         }
+    }
+
+    private fun updateListEmpty() = with(binding) {
+        val isEmpty = analyzeCategoryAdapter.itemCount == 0
+        viewEmptyContent.visibleOrGone(isEmpty)
+        rvAnalyzeCategories.visibleOrGone(!isEmpty)
     }
 }
