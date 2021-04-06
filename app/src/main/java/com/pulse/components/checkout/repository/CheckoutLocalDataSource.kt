@@ -6,13 +6,13 @@ import com.pulse.data.remote.model.order.DeliveryInfoOrderData
 
 class CheckoutLocalDataSource(private val dao: CustomerDAO, private val addressDAO: AddressDAO) {
 
-    val addressLiveData
-        get() = addressDAO.addressLiveData()
+    val addressFlow
+        get() = addressDAO.addressFlow()
 
     val address
         get() = addressDAO.get()
 
-    fun getCustomerInfo() = dao.customerLiveData()
+    fun getCustomerInfo() = dao.customerFlow()
 
     suspend fun saveAddress(deliveryInfo: DeliveryInfoOrderData) = addressDAO.insert(deliveryInfo)
 }

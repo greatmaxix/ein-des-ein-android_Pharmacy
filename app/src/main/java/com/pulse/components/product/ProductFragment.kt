@@ -1,7 +1,5 @@
 package com.pulse.components.product
 
-import android.os.Bundle
-import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
@@ -14,10 +12,12 @@ import com.pulse.components.product.adapter.ProductsImageAdapter
 import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentProductBinding
 import com.pulse.util.ColorFilterUtil.blackWhiteFilter
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.core.component.KoinApiExtension
 
+@ExperimentalCoroutinesApi
 @KoinApiExtension
-class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFragment<ProductViewModel>(R.layout.fragment_product, viewModel) {
+class ProductFragment : BaseProductFragment<ProductViewModel>(R.layout.fragment_product, ProductViewModel::class) {
 
     private val args: ProductFragmentArgs by navArgs()
     private val binding by viewBinding(FragmentProductBinding::bind)
@@ -32,11 +32,9 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
              clearFragmentResult(PRODUCT_WISH_FIELD)
         }*/
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
-        showBackButton { backPress() }
-        setToolbarTitle(args.product.rusName)
+    override fun initUI() = with(binding) {
+        showBackButton()
+        setTitle(args.product.rusName)
 
         with(layoutProductCardImagePager) {
             vpProductImages.adapter = ProductsImageAdapter(args.product.pictures)
@@ -64,6 +62,10 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
 
         llBottom.setTopRoundCornerBackground()
         addBackPressListener { backPress() }
+    }
+
+    override fun onClickNavigation() {
+        backPress()
     }
 
     //TODO remove it after correct work of @clearFragmentResult@
@@ -103,10 +105,4 @@ class ProductFragment(private val viewModel: ProductViewModel) : BaseProductFrag
     }
 
     override fun needToLogin() = navController.navigate(R.id.fromProductToAuth, SignInFragmentArgs(R.id.nav_product).toBundle())
-
-    override fun onBindLiveData() {
-        super.onBindLiveData()
-
-        observe(viewModel.directionLiveData, ::doNav)
-    }
 }

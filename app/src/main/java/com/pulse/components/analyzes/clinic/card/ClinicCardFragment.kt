@@ -1,7 +1,6 @@
 package com.pulse.components.analyzes.clinic.card
 
-import android.os.Bundle
-import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
@@ -10,16 +9,13 @@ import com.pulse.components.analyzes.clinic.card.ClinicCardFragmentDirections.Co
 import com.pulse.components.analyzes.clinic.card.ClinicCardFragmentDirections.Companion.globalToClinicCard
 import com.pulse.components.analyzes.clinic.card.ClinicCardFragmentDirections.Companion.globalToClinicTabs
 import com.pulse.components.analyzes.details.adapter.ClinicsAdapter
-import com.pulse.core.base.mvvm.BaseMVVMFragment
-import com.pulse.core.extensions.loadGlideDrawableByURL
-import com.pulse.core.extensions.onClickDebounce
-import com.pulse.core.extensions.showDial
-import com.pulse.core.extensions.showDirection
+import com.pulse.core.base.fragment.BaseToolbarFragment
+import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentClinicCardBinding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class ClinicCardFragment(private val viewModel: ClinicCardViewModel) : BaseMVVMFragment(R.layout.fragment_clinic_card) {
+class ClinicCardFragment : BaseToolbarFragment<ClinicCardViewModel>(R.layout.fragment_clinic_card, ClinicCardViewModel::class) {
 
     private val args by navArgs<ClinicCardFragmentArgs>()
     private val binding by viewBinding(FragmentClinicCardBinding::bind)
@@ -31,9 +27,7 @@ class ClinicCardFragment(private val viewModel: ClinicCardViewModel) : BaseMVVMF
         { showDirection(it.location.lat, it.location.lng) }
     )
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding) {
         showBackButton()
         with(args.clinic) {
             toolbar.toolbar.title = name
@@ -49,17 +43,11 @@ class ClinicCardFragment(private val viewModel: ClinicCardViewModel) : BaseMVVMF
         }
     }
 
-    override fun onBindLiveData() {
-        observeResult(viewModel.branchesListLiveData) {
-            onEmmit = {
-                binding.mtvBranch.text = getString(R.string.branch_holder, this.size)
-                clinicsAdapter.notifyItems(this)
-            }
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.branchesListState) {
+            binding.mtvBranch.text = getString(R.string.branch_holder, it.size)
+            clinicsAdapter.notifyItems(it)
         }
-        observeResult(viewModel.categoriesLiveData) {
-            onEmmit = {
-                categoryAdapter.notifyDataSet(this)
-            }
-        }
+        observe(viewModel.categoriesListState, categoryAdapter::notifyDataSet)
     }
 }

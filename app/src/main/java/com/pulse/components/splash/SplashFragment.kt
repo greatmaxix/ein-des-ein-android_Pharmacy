@@ -1,20 +1,18 @@
 package com.pulse.components.splash
 
-import android.os.Bundle
-import android.view.View
-import androidx.navigation.NavDirections
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.splash.adapter.SplashPagerAdapter
 import com.pulse.components.splash.model.Splash
 import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.extensions.observe
 import com.pulse.core.extensions.visible
-import com.pulse.core.general.Event
 import com.pulse.databinding.FragmentSplashBinding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class SplashFragment(private val viewModel: SplashViewModel) : BaseMVVMFragment(R.layout.fragment_splash) {
+class SplashFragment : BaseMVVMFragment<SplashViewModel>(R.layout.fragment_splash, SplashViewModel::class) {
 
     private val binding by viewBinding(FragmentSplashBinding::bind)
     private val items = listOf(
@@ -23,19 +21,12 @@ class SplashFragment(private val viewModel: SplashViewModel) : BaseMVVMFragment(
         Splash("onboarding_3", R.string.onboarding_title_3, R.string.onboarding_subtitle_3)
     )
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() {
         viewModel.updateCustomer()
     }
 
-    override fun onBindLiveData() {
-        observe(viewModel.directionLiveData, ::moveByDirection)
-        observe(viewModel.onboardingLiveData, ::onboardingOrRegionsOrMain)
-    }
-
-    private fun moveByDirection(event: Event<NavDirections>) {
-        event.contentOrNull?.let(navController::navigate)
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.onboardingState, ::onboardingOrRegionsOrMain)
     }
 
     private fun onboardingOrRegionsOrMain(isOnboarding: Boolean) {

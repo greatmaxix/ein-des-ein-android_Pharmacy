@@ -1,6 +1,7 @@
 package com.pulse
 
 import androidx.work.WorkManager
+import com.pulse.components.about.aboutAppModule
 import com.pulse.components.analyzes.category.analyzeCategoriesModule
 import com.pulse.components.analyzes.checkout.analyzeCheckoutModule
 import com.pulse.components.analyzes.clinic.card.clinicCardModule
@@ -21,7 +22,7 @@ import com.pulse.components.needHelp.contactUs.contactUsModule
 import com.pulse.components.needHelp.needHelpModule
 import com.pulse.components.notifications.notificationsModule
 import com.pulse.components.onboarding.onboardingModule
-import com.pulse.components.orders.details.orderModule
+import com.pulse.components.orders.details.orderDetailsModule
 import com.pulse.components.orders.ordersModule
 import com.pulse.components.payments.paymentsModule
 import com.pulse.components.pharmacy.pharmacyModule
@@ -39,26 +40,23 @@ import com.pulse.components.user.profile.profileModule
 import com.pulse.components.user.userModule
 import com.pulse.components.user.wishlist.wishModule
 import com.pulse.core.extensions.dataStore
-import com.pulse.core.locale.ILocaleManager
 import com.pulse.core.locale.LocaleManager
 import com.pulse.data.local.DBManager
 import com.pulse.data.remote.RESTModule
-import com.pulse.data.remote.RestManager
 import com.pulse.main.mainModule
-import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
-@FlowPreview
+@ExperimentalCoroutinesApi
 object Modules {
 
     private val managerModule = module(true) {
         single { androidContext().dataStore }
-        single { RestManager(get(), get()) }
         single { WorkManager.getInstance(androidApplication()) }
         single { DBManager(androidApplication()) }
-        single<ILocaleManager> { LocaleManager.getInstance(get()) }
+        single { LocaleManager.getInstance(get()) }
     }
 
     val listOfModules = mutableListOf(
@@ -73,7 +71,7 @@ object Modules {
         qrCodeScannerModule,
         productCardModule,
         checkoutModule,
-        orderModule,
+        orderDetailsModule,
         searchModule,
         cartModule,
         chatModule,
@@ -101,6 +99,7 @@ object Modules {
         languageModule,
         contactUsModule,
         stubModule,
-        notificationsModule
+        notificationsModule,
+        aboutAppModule
     )
 }

@@ -13,5 +13,4 @@ class ProductLocalDataSource(private val dao: RecentlyViewedDAO) {
         dao.clear()
         dao.insert(products)
     }
-
 }

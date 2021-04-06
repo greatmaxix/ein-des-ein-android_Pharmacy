@@ -53,7 +53,9 @@
     <string name="permissionDialogCancel">Cancellation</string>
     <string name="cameraPermissionDenied">Camera access denied</string>
     <string name="cameraPermissionNoCameraOnDevice">No camera on device</string>
-    <string name="toss">By registering, I agree to the Terms of Service and Privacy Policy</string>
+    <string name="by_registering_i_agree_holder">By registering, I agree to the %s and %s</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="privacy_policy">Privacy Policy</string>
     <string name="expectSoonMock">Expect soon</string>
     <string name="recentlyViewedImageDescription">Recently viewed product icon</string>
     <string name="mustNotBeEmpty">The text must not be empty</string>

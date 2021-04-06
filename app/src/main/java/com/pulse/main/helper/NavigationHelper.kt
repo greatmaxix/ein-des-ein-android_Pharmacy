@@ -9,6 +9,7 @@ import com.pulse.components.user.model.customer.Customer
 import com.pulse.core.extensions.*
 import com.pulse.core.utils.flow.StateEventFlow
 import com.pulse.ui.SelectableBottomNavView
+import timber.log.Timber
 
 class NavigationHelper(private val activity: FragmentActivity) : INavigationHelper {
 
@@ -45,6 +46,28 @@ class NavigationHelper(private val activity: FragmentActivity) : INavigationHelp
                 true
             }
             setOnNavigationItemReselectedListener {}
+
+            navController.addOnDestinationChangedListener { _, destination, _ ->
+                Timber.d("Destination ID > ${resources.getResourceEntryName(destination.id)}")
+                val isLightStatusBar = destination.isAuthDestination || destination.isOnboardingDestination
+                val statusBarColor = when {
+                    destination.isAuthDestination -> R.color.colorGlobalWhite
+                    destination.isOnboardingDestination -> R.color.colorGreyLight
+                    destination.isSplashDestination -> R.color.darkBlue
+                    else -> R.color.primaryBlue
+                }
+                activity.setStatusBarColor(statusBarColor)
+                activity.setLightStatusBar(isLightStatusBar)
+
+                if (destination.isTopLevelDestination) showNav() else hideNav()
+                val isChatForeground = destination.id == R.id.nav_chat
+                onDestinationChangedFlow.postState(destination)
+                activity.window.setSoftInputMode(
+                    if (isChatForeground) WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                    else WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+                )
+                if (bottomNavigationView.navItems.isNotEmpty()) changeSelection(destination.id)
+            }
         }
     }
 
@@ -57,27 +80,6 @@ class NavigationHelper(private val activity: FragmentActivity) : INavigationHelp
             SelectableBottomNavView.NavItem(R.id.nav_cart, R.id.nav_cart, R.drawable.ic_shopping_cart, null),
             SelectableBottomNavView.NavItem(R.id.profile_graph, R.id.nav_profile, null, avatarUrl, isProfileItem = true)
         )
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            val isLightStatusBar = destination.isAuthDestination || destination.isOnboardingDestination
-            val statusBarColor = when {
-                destination.isAuthDestination -> R.color.colorGlobalWhite
-                destination.isOnboardingDestination -> R.color.colorGreyLight
-                destination.isSplashDestination -> R.color.darkBlue
-                else -> R.color.primaryBlue
-            }
-            activity.setStatusBarColor(statusBarColor)
-            activity.setLightStatusBar(isLightStatusBar)
-
-            if (destination.isTopLevelDestination) showNav() else hideNav()
-            val isChatForeground = destination.id == R.id.nav_chat
-            onDestinationChangedFlow.postState(destination)
-            activity.window.setSoftInputMode(
-                if (isChatForeground) WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
-                else WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-            )
-            changeSelection(destination.id)
-        }
 
         clearIntentExtrasIfHas()
     }

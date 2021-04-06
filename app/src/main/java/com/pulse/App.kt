@@ -3,7 +3,7 @@ package com.pulse
 import android.app.Application
 import com.pulse.core.extensions.debug
 import com.pulse.util.HyperlinkedDebugTree
-import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.koin.fragmentFactory
 import org.koin.core.KoinExperimentalAPI
@@ -13,7 +13,7 @@ import timber.log.Timber
 import java.util.*
 
 @KoinExperimentalAPI
-@FlowPreview
+@ExperimentalCoroutinesApi
 class App : Application() {
 
     override fun onCreate() {

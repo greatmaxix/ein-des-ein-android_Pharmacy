@@ -1,7 +1,5 @@
 package com.pulse.components.scanner
 
-import android.os.Bundle
-import android.view.View
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
@@ -14,7 +12,7 @@ import com.pulse.databinding.FragmentScannerResultBinding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class ScannerListFragment(private val viewModel: ProductViewModel) : BaseProductFragment<ProductViewModel>(R.layout.fragment_scanner_result, viewModel) {
+class ScannerListFragment : BaseProductFragment<ProductViewModel>(R.layout.fragment_scanner_result, ProductViewModel::class) {
 
     private val args by navArgs<ScannerListFragmentArgs>()
     private val binding by viewBinding(FragmentScannerResultBinding::bind)
@@ -26,9 +24,7 @@ class ScannerListFragment(private val viewModel: ProductViewModel) : BaseProduct
         )
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI()  = with(binding) {
         showBackButton()
 
         if (args.products.isEmpty()) {

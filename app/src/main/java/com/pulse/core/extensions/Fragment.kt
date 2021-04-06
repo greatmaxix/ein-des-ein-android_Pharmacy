@@ -7,6 +7,7 @@ import android.content.Intent.ACTION_VIEW
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
@@ -30,6 +31,8 @@ import org.koin.androidx.viewmodel.ViewModelParameter
 import org.koin.androidx.viewmodel.koin.getViewModel
 import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.qualifier.Qualifier
+
+fun <T : View> Fragment.findViewById(@IdRes id: Int) = view?.findViewById<T>(id)
 
 fun Fragment.hideKeyboard() {
     view?.hideKeyboard()

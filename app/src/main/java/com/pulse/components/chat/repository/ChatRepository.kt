@@ -33,7 +33,7 @@ class ChatRepository(
 
     suspend fun sendReview(chatId: Int, sendReviewRequest: SendReviewRequest) = rds.sendReview(chatId, sendReviewRequest)
 
-    fun getLastMessageLiveData(chatId: Int) = lds.getLastMessageLiveData(chatId)
+    fun getLastMessageFlow(chatId: Int) = lds.getLastMessageFlow(chatId)
 
     suspend fun clearMessages(chatId: Int) = lds.clearMessages(chatId)
 
@@ -51,5 +51,5 @@ class ChatRepository(
 
     suspend fun isHeaderExist(chatId: Int, createdAt: LocalDateTime) = lds.isHeaderExist(chatId, createdAt)
 
-    fun getChatLiveData(chatId: Int) = lds.getChatLiveData(chatId)
+    fun getChatFlow(chatId: Int) = lds.getChatFlow(chatId)
 }

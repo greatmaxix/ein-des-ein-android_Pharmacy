@@ -14,5 +14,4 @@ class SplashWorker(context: Context, params: WorkerParameters) : BaseAvatarWorke
     private val repository by inject<CustomerUseCase>()
 
     override suspend fun avatarUrl() = repository.setCustomerRetrieveAvatarUrl()
-
 }

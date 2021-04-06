@@ -1,34 +1,32 @@
 package com.pulse.components.pharmacy
 
-import android.os.Bundle
-import android.view.View
 import androidx.annotation.StringRes
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pulse.R
 import com.pulse.components.auth.sign.SignInFragmentArgs
+import com.pulse.components.pharmacy.adapter.PharmacyPagerAdapter
+import com.pulse.core.base.fragment.BaseToolbarFragment
 import com.pulse.core.base.fragment.dialog.AlertDialogFragment
-import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.extensions.observe
 import com.pulse.core.extensions.onNavDestinationSelected
-import com.pulse.core.extensions.showAlert
 import com.pulse.databinding.FragmentPharmacyBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.parameter.parametersOf
 
 @KoinApiExtension
-class PharmacyFragment : BaseMVVMFragment(R.layout.fragment_pharmacy) {
+class PharmacyFragment : BaseToolbarFragment<PharmacyViewModel>(R.layout.fragment_pharmacy, PharmacyViewModel::class) {
 
     private val args: PharmacyFragmentArgs by navArgs()
     private val binding by viewBinding(FragmentPharmacyBinding::bind)
-    private val viewModel: PharmacyViewModel by viewModel { parametersOf(args.productId) }
+    override val viewModel: PharmacyViewModel by viewModel { parametersOf(args.productId) }
     private val tabTitles = intArrayOf(R.string.pharmacyListTitle, R.string.pharmacyMapTitle)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() {
         showBackButton()
         initPager()
     }
@@ -41,15 +39,12 @@ class PharmacyFragment : BaseMVVMFragment(R.layout.fragment_pharmacy) {
         }) { tab, position -> tab.text = getString(tabTitles[position]) }.attach()
     }
 
-    override fun onBindLiveData() {
-        observeResult(viewModel.addProductLiveData) {
-            onEmmit = { notifyCardAdded() }
-            onError = { errorOrAuth(it.resId) }
-        }
-
-        observe(viewModel.pharmacyLiveData) { pharmacy ->
+    override fun onBindEvents() = with(lifecycleScope) {
+        observe(viewModel.pharmacyEvent.events) { pharmacy ->
             pharmacy?.let { navController.navigate(PharmacyFragmentDirections.fromPharmacyToProductInfo(it)) }
         }
+        observe(viewModel.errorEvent.events) { errorOrAuth(it.resId) }
+        observe(viewModel.addProductResultEvent.events) { notifyCardAdded() }
     }
 
     private fun notifyCardAdded() {
@@ -65,14 +60,14 @@ class PharmacyFragment : BaseMVVMFragment(R.layout.fragment_pharmacy) {
 
     private fun errorOrAuth(@StringRes strResId: Int) {
         if (strResId == R.string.forAddingToCart) {
-            showAlert(strResId) {
+            uiHelper.showDialog(getString(strResId)) {
                 cancelable = false
                 positive = getString(R.string.signIn)
                 negative = getString(R.string.cancel)
                 positiveAction = { navController.navigate(R.id.fromPharmacyToAuth, SignInFragmentArgs(R.id.nav_pharmacy).toBundle()) }
             }
         } else {
-            messageCallback?.showError(strResId)
+            uiHelper.showMessage(getString(strResId))
         }
     }
 }

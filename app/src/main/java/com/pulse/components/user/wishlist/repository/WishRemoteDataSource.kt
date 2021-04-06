@@ -1,12 +1,12 @@
 package com.pulse.components.user.wishlist.repository
 
-import com.pulse.data.remote.RestManager
+import com.pulse.data.remote.api.RestApi
 
-class WishRemoteDataSource(private val rm: RestManager) {
+class WishRemoteDataSource(private val ra: RestApi) {
 
-    suspend fun setToWishList(globalProductId: Int) = rm.setToWishList(globalProductId)
+    suspend fun setToWishList(globalProductId: Int) = ra.setToWishList(globalProductId)
 
-    suspend fun removeFromWishList(globalProductId: Int) = rm.removeFromWishList(globalProductId)
+    suspend fun removeFromWishList(globalProductId: Int) = ra.removeFromWishList(globalProductId)
 
-    suspend fun getWishList(page: Int? = null, pageSize: Int? = null) = rm.getWishList(page, pageSize)
+    suspend fun getWishList(page: Int? = null, pageSize: Int? = null) = ra.getWishList(page, pageSize)
 }

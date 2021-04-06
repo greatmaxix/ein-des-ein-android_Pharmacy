@@ -2,10 +2,9 @@ package com.pulse.components.analyzes.checkout
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.os.Bundle
 import android.text.format.DateFormat
-import android.view.View
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
@@ -14,21 +13,20 @@ import com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragmentDirections.
 import com.pulse.components.analyzes.checkout.AnalyzeCheckoutFragmentDirections.Companion.globalToPromoCodeDialog
 import com.pulse.components.checkout.dialog.PromoCodeDialogFragment
 import com.pulse.components.checkout.dialog.PromoCodeDialogFragment.Companion.PROMO_CODE_EXTRA_KEY
-import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.base.fragment.BaseToolbarFragment
 import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentAnalyzeCheckoutBinding
 import org.koin.core.component.KoinApiExtension
 import java.time.LocalDateTime
 
 @KoinApiExtension
-class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) : BaseMVVMFragment(R.layout.fragment_analyze_checkout) {
+class AnalyzeCheckoutFragment :
+    BaseToolbarFragment<AnalyzeCheckoutViewModel>(R.layout.fragment_analyze_checkout, AnalyzeCheckoutViewModel::class) {
 
     private val args by navArgs<AnalyzeCheckoutFragmentArgs>()
     private val binding by viewBinding(FragmentAnalyzeCheckoutBinding::bind)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding) {
         showBackButton()
         val category = args.category
         val clinic = args.clinic
@@ -67,25 +65,26 @@ class AnalyzeCheckoutFragment(private val viewModel: AnalyzeCheckoutViewModel) :
                 }
             }
         }
-
     }
 
-    override fun onBindLiveData() {
-        observe(viewModel.customerInfoLiveData) { customer ->
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.customerInfoState) { customer ->
             customer?.let {
                 binding.viewUserDetails.setData(it.name, it.phone, it.email)
             }
         }
-        observe(viewModel.pickDateTimeLiveData) {
-            DatePickerDialog(requireContext(), R.style.PickerStyle, { _, year, month, day ->
-                TimePickerDialog(requireContext(), R.style.PickerStyle, { _, hour, minute ->
-                    val pickedDateTime = LocalDateTime.of(year, month + 1, day, hour, minute)
-                    viewModel.setDateTime(pickedDateTime)
-                }, it.hour, it.minute, DateFormat.is24HourFormat(requireContext())).show()
-            }, it.year, it.monthValue - 1, it.dayOfMonth).show()
+        observe(viewModel.pickDateTimeState) {
+            it?.let {
+                DatePickerDialog(requireContext(), R.style.PickerStyle, { _, year, month, day ->
+                    TimePickerDialog(requireContext(), R.style.PickerStyle, { _, hour, minute ->
+                        val pickedDateTime = LocalDateTime.of(year, month + 1, day, hour, minute)
+                        viewModel.setDateTime(pickedDateTime)
+                    }, it.hour, it.minute, DateFormat.is24HourFormat(requireContext())).show()
+                }, it.year, it.monthValue - 1, it.dayOfMonth).show()
+            }
         }
-        observe(viewModel.selectedDateTimeLiveData) {
-            binding.viewDateTime.detailText = it.analyzeCheckoutDate
+        observe(viewModel.selectedDateTimeState) {
+            it?.let { binding.viewDateTime.detailText = it.analyzeCheckoutDate }
         }
     }
 }

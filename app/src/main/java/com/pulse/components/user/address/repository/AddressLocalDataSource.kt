@@ -8,6 +8,5 @@ class AddressLocalDataSource(private val dao: AddressDAO) {
     suspend fun saveAddress(address: DeliveryInfoOrderData) = dao.insert(address)
 
     val address
-        get() = dao.addressLiveData()
-
+        get() = dao.addressFlow()
 }

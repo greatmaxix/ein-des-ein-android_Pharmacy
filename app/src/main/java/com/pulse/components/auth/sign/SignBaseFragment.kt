@@ -12,11 +12,11 @@ import com.pulse.core.extensions.lazyGetString
 import com.pulse.core.extensions.setSoftInputMode
 import com.pulse.core.extensions.sharedGraphViewModel
 
-abstract class SignBaseFragment(@LayoutRes layoutResourceId: Int) : BaseMVVMFragment(layoutResourceId) {
+abstract class SignBaseFragment(@LayoutRes layoutResourceId: Int) : BaseMVVMFragment<AuthViewModel>(layoutResourceId, AuthViewModel::class) {
 
     protected val phoneHint by lazyGetString(debugIfElse({ R.string.authPhoneDebugHint }, { R.string.authPhoneHint }))
 
-    protected val viewModel: AuthViewModel by sharedGraphViewModel(R.id.auth_graph)
+    override val viewModel: AuthViewModel by sharedGraphViewModel(R.id.auth_graph)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

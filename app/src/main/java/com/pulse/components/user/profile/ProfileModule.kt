@@ -1,7 +1,7 @@
 package com.pulse.components.user.profile
 
 import com.pulse.components.user.profile.edit.ChangePhotoBottomSheetDialogFragment
-import com.pulse.components.user.profile.edit.EditProfileFragment
+import com.pulse.components.user.profile.repository.ProfileRepository
 import com.pulse.data.local.DBManager
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.fragment.dsl.fragment
@@ -14,7 +14,5 @@ val profileModule = module {
 
     viewModel { ProfileViewModel(androidApplication(), get()) }
 
-    fragment { ProfileFragment() }
-    fragment { EditProfileFragment() }
     fragment { ChangePhotoBottomSheetDialogFragment() }
 }

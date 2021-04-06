@@ -1,15 +1,15 @@
 package com.pulse.components.user.model.customer
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import com.pulse.core.db.BaseDao
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CustomerDAO : BaseDao<Customer> {
 
     @Query("select * from customer limit 1")
-    fun customerLiveData(): LiveData<Customer?>
+    fun customerFlow(): Flow<Customer?>
 
     @Query("select * from customer limit 1")
     suspend fun getCustomer(): Customer?

@@ -1,6 +1,5 @@
 package com.pulse.components.user.profile.guest
 
-import org.koin.androidx.fragment.dsl.fragment
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
@@ -9,7 +8,4 @@ import org.koin.dsl.module
 val guestProfileModule = module {
 
     viewModel { GuestProfileViewModel(get()) }
-
-    fragment { GuestProfileFragment(get()) }
-
 }

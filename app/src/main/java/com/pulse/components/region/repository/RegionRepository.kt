@@ -3,7 +3,6 @@ package com.pulse.components.region.repository
 import com.pulse.components.user.model.customer.Customer
 import com.pulse.components.user.model.customer.CustomerItem
 import com.pulse.components.user.repository.CustomerLocalDataSource
-import com.pulse.core.network.ResponseWrapper
 import com.pulse.model.BaseDataResponse
 import com.pulse.model.region.LocalRegion
 import com.pulse.model.region.Region
@@ -22,7 +21,7 @@ class RegionRepository(private val rrds: RegionRemoteDataSource, private val rld
         rlds.setLocalRegion(region.id)
     }
 
-    suspend fun updateCustomerRegion(id: Int): ResponseWrapper<BaseDataResponse<CustomerItem>> {
+    suspend fun updateCustomerRegion(id: Int): BaseDataResponse<CustomerItem> {
         rlds.setLocalRegion(id)
         return rrds.updateCustomerRegion(id)
     }

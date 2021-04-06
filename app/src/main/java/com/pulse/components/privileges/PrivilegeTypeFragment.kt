@@ -1,13 +1,11 @@
 package com.pulse.components.privileges
 
-import android.os.Bundle
-import android.view.View
 import android.view.ViewGroup
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.pulse.R
 import com.pulse.components.privileges.PrivilegeTypeFragmentDirections.Companion.fromPrivilegeTypeToPrivilege
-import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.base.fragment.BaseToolbarFragment
 import com.pulse.core.extensions.getDimensionPixelSize
 import com.pulse.core.extensions.onClickDebounce
 import com.pulse.data.remote.DummyData
@@ -15,16 +13,14 @@ import com.pulse.databinding.FragmentPrivilegeTypeBinding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class PrivilegeTypeFragment : BaseMVVMFragment(R.layout.fragment_privilege_type) {
+class PrivilegeTypeFragment : BaseToolbarFragment<PrivilegeViewModel>(R.layout.fragment_privilege_type, PrivilegeViewModel::class) { // TODO set proper viewModel
 
     private val binding by viewBinding(FragmentPrivilegeTypeBinding::bind)
     private val radioButtonPadding by lazy { getDimensionPixelSize(R.dimen._8sdp) }
     private val radioButtonTextColor by lazy { requireContext().getColorStateList(R.color.selector_text_payment) }
     private val radioButtonTintColor by lazy { requireContext().getColorStateList(R.color.selector_tint_button_payment) }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding) {
         showBackButton()
         initPrivilegeType()
 

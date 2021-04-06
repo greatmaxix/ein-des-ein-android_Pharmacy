@@ -1,12 +1,15 @@
 package com.pulse.components.auth.sign
 
-import android.os.Bundle
+import android.graphics.Color
 import android.text.SpannableString
 import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.auth.model.Auth
@@ -20,14 +23,12 @@ import reactivecircus.flowbinding.android.view.focusChanges
 
 class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
 
-    private val nameHint by lazy { R.string.yourName.toString }
+    private val nameHint by lazy { getString(R.string.yourName) }
     private val binding by viewBinding(FragmentSignUpBinding::bind)
     private val fields by lazy { listOf(binding.tilName, binding.tilPhone, binding.tilEmail) }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun initUI() {
         with(binding) {
-            super.onViewCreated(view, savedInstanceState)
-
             ivBack.setDebounceOnClickListener { navigationBack() }
             etEmail.onDoneImeAction { registerOrError() }
             tilPhone.setPhoneRule()
@@ -42,21 +43,38 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
                     tilEmail.error = null
                 }
             }
-
-            mtvToss.text = SpannableString(getString(R.string.toss)).apply {
-                setSpan(ForegroundColorSpan(R.color.darkBlue.toColor), 0, 76, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                setSpan(ForegroundColorSpan(R.color.primaryBlue.toColor), 26, 46, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                setSpan(ForegroundColorSpan(R.color.primaryBlue.toColor), 49, 76, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-            }
-
+            mtvToss.movementMethod = LinkMovementMethod.getInstance()
+            mtvToss.highlightColor = Color.TRANSPARENT
+            mtvToss.text = createTossSpan()
             tilPhone.editText
                 ?.focusChanges()
                 ?.onEach(::notifyHint)
                 ?.launchIn(viewLifecycleOwner.lifecycleScope)
-
             viewFooter
                 .setOnActionClickListener { navigationBack() }
                 .setOnSkipClickListener { askConfirm() }
+        }
+    }
+
+    private fun createTossSpan(): SpannableString {
+        val termsOfService = getString(R.string.terms_of_service)
+        val privacyPolicy = getString(R.string.privacy_policy)
+        val baseString = getString(R.string.by_registering_i_agree_holder, termsOfService, privacyPolicy)
+        val termsStart = baseString.indexOf(termsOfService)
+        return SpannableString(baseString).apply {
+            setSpan(ForegroundColorSpan(getColor(R.color.darkBlue)), 0, baseString.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            // TODO add clickable span
+//            setSpan(getNavClickSpan(fromRegisterToTermsAndPrivacy(KEY_TERMS)), termsStart, termsOfService.length + termsStart, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            setSpan(ForegroundColorSpan(getColor(R.color.primaryBlue)), termsStart, termsOfService.length + termsStart, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+//            setSpan(getNavClickSpan(fromRegisterToTermsAndPrivacy(KEY_PRIVACY)), baseString.length - privacyPolicy.length, baseString.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            setSpan(ForegroundColorSpan(getColor(R.color.primaryBlue)), baseString.length - privacyPolicy.length, baseString.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+        }
+    }
+
+    private fun getNavClickSpan(destination: NavDirections) = object : ClickableSpan() {
+        override fun onClick(widget: View) {
+            hideKeyboard()
+            navController.navigate(destination)
         }
     }
 
@@ -90,9 +108,7 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
         if (focused) binding.etPhone.hint = null else binding.etPhone.setHintSpan(phoneHint, phoneHint.length - 1, phoneHint.length)
     }
 
-    override fun onBindLiveData() {
-        observeResult(viewModel.signUpLiveData) {
-            onEmmit = { this?.let(navController::navigate) }
-        }
+    override fun onBindEvents() = with(lifecycleScope) {
+        observe(viewModel.signUpState.events, navController::navigate)
     }
 }

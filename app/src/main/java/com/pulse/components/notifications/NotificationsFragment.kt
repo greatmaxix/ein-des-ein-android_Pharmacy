@@ -1,21 +1,19 @@
 package com.pulse.components.notifications
 
-import android.os.Bundle
-import android.view.View
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
-import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.base.fragment.BaseToolbarFragment
+import com.pulse.core.extensions.observe
 import com.pulse.databinding.FragmentNotificationsBinding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class NotificationsFragment(private val viewModel: NotificationsViewModel) : BaseMVVMFragment(R.layout.fragment_notifications) {
+class NotificationsFragment : BaseToolbarFragment<NotificationsViewModel>(R.layout.fragment_notifications, NotificationsViewModel::class) {
 
     private val binding by viewBinding(FragmentNotificationsBinding::bind)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding) {
         showBackButton()
         viewModel.getNotificationState()
 
@@ -25,12 +23,14 @@ class NotificationsFragment(private val viewModel: NotificationsViewModel) : Bas
         switchPriceReductionNotifications.setOnCheckedChangeListener { _, isChecked -> viewModel.changeRatingUpdateState(isChecked) }
     }
 
-    override fun onBindLiveData() = with(binding) {
-        observe(viewModel.notificationStateLiveData) {
-            switchPushNotifications.isChecked = it.isPushEnabled
-            switchEmailNotifications.isChecked = it.isEmailEnabled
-            switchProductArrivalNotifications.isChecked = it.isPriceArrivalEnabled
-            switchPriceReductionNotifications.isChecked = it.isPriceReductionEnabled
+    override fun onBindStates() = with(lifecycleScope) {
+        with(binding) {
+            observe(viewModel.notificationStateFlow) {
+                switchPushNotifications.isChecked = it.isPushEnabled
+                switchEmailNotifications.isChecked = it.isEmailEnabled
+                switchProductArrivalNotifications.isChecked = it.isPriceArrivalEnabled
+                switchPriceReductionNotifications.isChecked = it.isPriceReductionEnabled
+            }
         }
     }
 }

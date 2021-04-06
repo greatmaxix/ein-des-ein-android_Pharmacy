@@ -4,9 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Bundle
 import android.provider.Settings
-import android.view.View
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.budiyev.android.codescanner.*
@@ -19,10 +17,7 @@ import com.pulse.R
 import com.pulse.components.product.BaseProductFragment
 import com.pulse.components.scanner.ScannerFragmentDirections.Companion.fromScannerToListResult
 import com.pulse.core.base.fragment.dialog.AlertDialogFragment
-import com.pulse.core.extensions.animateVisibleOrGone
-import com.pulse.core.extensions.doWithDelay
-import com.pulse.core.extensions.setDebounceOnClickListener
-import com.pulse.core.extensions.toast
+import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentQrCodeScannerBinding
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
@@ -30,14 +25,12 @@ import org.koin.core.component.KoinApiExtension
 import timber.log.Timber
 
 @KoinApiExtension
-class ScannerFragment(private val viewModel: ScannerViewModel) : BaseProductFragment<ScannerViewModel>(R.layout.fragment_qr_code_scanner, viewModel) {
+class ScannerFragment : BaseProductFragment<ScannerViewModel>(R.layout.fragment_qr_code_scanner, ScannerViewModel::class) {
 
     private val binding by viewBinding(FragmentQrCodeScannerBinding::bind)
     private var codeScanner: CodeScanner? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding) {
         showBackButton()
         mbGoToScan.setDebounceOnClickListener { viewModel.descriptionViewed() }
         checkCameraPermission { initQRCamera() }
@@ -84,10 +77,9 @@ class ScannerFragment(private val viewModel: ScannerViewModel) : BaseProductFrag
         }.show(childFragmentManager)
     }
 
-    override fun onBindLiveData() {
-        super.onBindLiveData()
-        observe(viewModel.descriptionVisibility) { binding.groupInstruction.animateVisibleOrGone(it) }
-        observe(viewModel.resultLiveData) { doNav(fromScannerToListResult(it.toTypedArray())) }
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.descriptionVisibilityState) { binding.groupInstruction.animateVisibleOrGone(it) }
+        observe(viewModel.resultState) { navController.navigate(fromScannerToListResult(it.toTypedArray())) }
     }
 
     private fun initQRCamera() {
@@ -111,8 +103,8 @@ class ScannerFragment(private val viewModel: ScannerViewModel) : BaseProductFrag
                 errorCallback = ErrorCallback {
                     viewLifecycleOwner.lifecycleScope.launch(Main.immediate) {
                         Timber.e(it, "Error scanning qr code")
-                        messageCallback?.showError(getString(R.string.qrCodeScannerError)) {
-                            navController.popBackStack()
+                        uiHelper.showDialog(getString(R.string.qrCodeScannerError)) {
+                            positiveAction = { navController.popBackStack() }
                         }
                     }
                 }

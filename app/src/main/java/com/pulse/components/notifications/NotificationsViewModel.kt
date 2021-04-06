@@ -1,10 +1,9 @@
 package com.pulse.components.notifications
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.pulse.components.notifications.model.NotificationState
 import com.pulse.components.notifications.repository.NotificationsRepository
 import com.pulse.core.base.mvvm.BaseViewModel
+import com.pulse.core.utils.flow.StateEventFlow
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
@@ -12,8 +11,7 @@ class NotificationsViewModel(private val repository: NotificationsRepository) : 
 
     private var notificationState: NotificationState =
         NotificationState(isPushEnabled = true, isEmailEnabled = true, isPriceArrivalEnabled = true, isPriceReductionEnabled = false) // TODO get from repo
-    private val _notificationStateLiveData by lazy { MutableLiveData<NotificationState>() }
-    val notificationStateLiveData: LiveData<NotificationState> by lazy { _notificationStateLiveData }
+    val notificationStateFlow = StateEventFlow(notificationState)
 
     fun changePushState(checked: Boolean) {
         notificationState = notificationState.copy(isPushEnabled = checked)
@@ -32,6 +30,6 @@ class NotificationsViewModel(private val repository: NotificationsRepository) : 
     }
 
     fun getNotificationState() {
-        _notificationStateLiveData.value = notificationState
+        notificationStateFlow.postState(notificationState)
     }
 }

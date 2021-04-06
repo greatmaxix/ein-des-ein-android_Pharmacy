@@ -1,27 +1,20 @@
 package com.pulse.components.analyzes.list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.pulse.components.analyzes.details.repository.AnalyzeDetailsRepository
+import androidx.lifecycle.viewModelScope
 import com.pulse.components.analyzes.list.model.Analyze
+import com.pulse.components.analyzes.list.repository.AnalyzesRepository
 import com.pulse.core.base.mvvm.BaseViewModel
-import com.pulse.core.general.SingleLiveEvent
-import com.pulse.data.remote.DummyData
+import com.pulse.core.utils.flow.StateEventFlow
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class AnalyzesViewModel(private val repository: AnalyzeDetailsRepository) : BaseViewModel() {
+class AnalyzesViewModel(private val repository: AnalyzesRepository) : BaseViewModel() {
 
-    private val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
-    val progressLiveData: LiveData<Boolean> by lazy { _progressLiveData }
-
-    private val _errorLiveData by lazy { SingleLiveEvent<String>() }
-    val errorLiveData: LiveData<String> by lazy { _errorLiveData }
-
-    private val _analyzesListLiveData by lazy { MutableLiveData<List<Analyze>>() }
-    val analyzesListLiveData: LiveData<List<Analyze>> by lazy { _analyzesListLiveData }
+    val analyzesListState = StateEventFlow<List<Analyze>>(listOf())
 
     init {
-        _analyzesListLiveData.postValue(DummyData.analyzesList)
+        viewModelScope.execute {
+            analyzesListState.postState(repository.analyzesList().items)
+        }
     }
 }

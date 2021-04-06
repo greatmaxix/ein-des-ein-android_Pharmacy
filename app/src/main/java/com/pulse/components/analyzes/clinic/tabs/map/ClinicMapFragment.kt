@@ -34,8 +34,10 @@ class ClinicMapFragment : BaseClinicTabFragment(R.layout.fragment_clinic_map), O
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
-
         mapPharmacy.onCreate(savedInstanceState)
+    }
+
+    override fun initUI() = with(binding) {
         mapPharmacy.getMapAsync(this@ClinicMapFragment)
     }
 
@@ -76,9 +78,8 @@ class ClinicMapFragment : BaseClinicTabFragment(R.layout.fragment_clinic_map), O
 
     override fun onMapReady(map: GoogleMap?) {
         googleMap = map
-        observeResult(viewModel.clinicsListLiveData) {
-            onEmmit = { showMarkers(this) }
-        }
+        val items = viewModel.clinicsListState.value
+        if(items.isNotEmpty()) showMarkers(items)
 
         googleMap?.setOnMarkerClickListener { marker ->
             viewModel.getClinic(marker.tag as Int)

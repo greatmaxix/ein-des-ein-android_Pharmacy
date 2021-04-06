@@ -11,7 +11,7 @@ class MainRepository(private val dataStore: DataStore<Preferences>, private val 
 
     suspend fun isCustomerExist() = dao.isCustomerExist()
 
-    fun customerLiveData() = dao.customerLiveData()
+    fun customerFlow() = dao.customerFlow()
 
     suspend fun setChatForeground(isForeground: Boolean) {
         dataStore.put(FIELD_IS_CHAT_FOREGROUND, isForeground)

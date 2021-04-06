@@ -10,9 +10,7 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
-        android:layoutDirection="locale"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layoutDirection="locale" />
 
     <ScrollView
         style="@style/ScrollStyle"

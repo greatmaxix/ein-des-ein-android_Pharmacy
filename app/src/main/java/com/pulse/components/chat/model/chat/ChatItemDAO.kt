@@ -1,9 +1,9 @@
 package com.pulse.components.chat.model.chat
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import com.pulse.core.db.BaseDao
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ChatItemDAO : BaseDao<ChatItem> {
@@ -15,5 +15,5 @@ interface ChatItemDAO : BaseDao<ChatItem> {
     suspend fun getChat(chatId: Int): ChatItem?
 
     @Query("SELECT * FROM ChatItem WHERE id = :chatId  LIMIT 1")
-    fun getChatLiveData(chatId: Int): LiveData<ChatItem?>
+    fun getChatFlow(chatId: Int): Flow<ChatItem?>
 }

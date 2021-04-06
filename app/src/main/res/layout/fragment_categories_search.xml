@@ -8,17 +8,18 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layoutDirection="locale" />
+        layout="@layout/toolbar" />
 
     <com.pulse.ui.EmptyContainerView
         android:id="@+id/ll_drugs_not_found"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:background="@color/colorGlobalWhite"
         android:visibility="gone"
         app:isButtonVisible="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:src="@drawable/ic_placeholder_search"
         app:subtitleEmpty="@string/noGoodsFoundSubtitle"
         app:titleEmpty="@string/noGoodsFoundTitle" />
 

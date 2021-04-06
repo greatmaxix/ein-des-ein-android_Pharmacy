@@ -1,87 +1,65 @@
 package com.pulse.components.analyzes.category
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavDirections
+import androidx.lifecycle.viewModelScope
 import com.pulse.components.analyzes.category.AnalyzeCategoriesFragmentDirections.Companion.fromAnalyzeCategoriesToAnalyzeDetails
 import com.pulse.components.analyzes.category.model.AnalyzeCategory
 import com.pulse.components.analyzes.category.repository.AnalyzeCategoriesRepository
 import com.pulse.core.base.mvvm.BaseViewModel
 import com.pulse.core.extensions.falseIfNull
-import com.pulse.core.general.SingleLiveEvent
+import com.pulse.core.utils.flow.SingleShotEvent
+import com.pulse.core.utils.flow.StateEventFlow
 
 class AnalyzeCategoriesViewModel(private val args: AnalyzeCategoriesFragmentArgs, private val repository: AnalyzeCategoriesRepository) : BaseViewModel() {
 
-    private val _errorLiveData by lazy { SingleLiveEvent<String>() }
-    val errorLiveData: LiveData<String> by lazy { _errorLiveData }
-
-    private val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
-    val progressLiveData: LiveData<Boolean> by lazy { _progressLiveData }
-
-    private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
-    val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
-
-    private val _parentCategoriesLiveData by lazy { SingleLiveEvent<List<AnalyzeCategory>>() }
-    val parentCategoriesLiveData: LiveData<List<AnalyzeCategory>> by lazy { _parentCategoriesLiveData }
-
-    private val _nestedCategoriesLiveData by lazy { MutableLiveData<List<AnalyzeCategory>>() }
-    val nestedCategoriesLiveData: LiveData<List<AnalyzeCategory>> by lazy { _nestedCategoriesLiveData }
-
-    private val _navigateBackLiveData by lazy { MutableLiveData<Unit>() }
-    val navigateBackLiveData: LiveData<Unit> by lazy { _navigateBackLiveData }
-
-    private val _selectedCategoryLiveData by lazy { MutableLiveData<AnalyzeCategory?>() }
-    val selectedCategoryLiveData: LiveData<AnalyzeCategory?> by lazy { _selectedCategoryLiveData }
+    val parentCategoriesState = StateEventFlow<List<AnalyzeCategory>>(listOf())
+    val nestedCategoriesState = StateEventFlow<List<AnalyzeCategory>?>(null)
+    val selectedCategoryState = StateEventFlow<AnalyzeCategory?>(null)
+    val navigateBackEvent = SingleShotEvent<Unit>()
 
     private var originalList: List<AnalyzeCategory> = listOf()
     private var parentList: List<AnalyzeCategory> = listOf()
-    private var selectedCategory: AnalyzeCategory? = null
-        set(value) {
-            field = value
-            _selectedCategoryLiveData.postValue(value)
-        }
 
     init {
-        launchIO {
+        viewModelScope.execute {
             originalList = repository.getAnalyzeCategories(args.clinic?.id)
             parentList = originalList
-            if (args.category != null) selectedCategory = args.category
-            selectedCategory?.let {
+            if (args.category != null) selectedCategoryState.postState(args.category)
+            selectedCategoryState.value?.let {
                 selectCategory(it)
             } ?: run {
-                _parentCategoriesLiveData.postValue(parentList)
+                parentCategoriesState.postState(parentList)
             }
         }
     }
 
     fun handleBackPress() {
-        val category = selectedCategory ?: run {
-            _navigateBackLiveData.postValue(Unit)
+        val category = selectedCategoryState.value ?: run {
+            navigateBackEvent.offerEvent(Unit)
             return
         }
         if (category.topLevel) {
-            _parentCategoriesLiveData.postValue(parentList)
-            selectedCategory = null
+            parentCategoriesState.postState(parentList)
+            selectedCategoryState.postState(null)
         } else {
             val parent = findParentList1(originalList)
-            selectedCategory = parent
-            _nestedCategoriesLiveData.postValue(parent?.nodes)
+            selectedCategoryState.postState(parent)
+            nestedCategoriesState.postState(parent?.nodes)
         }
     }
 
     fun selectCategory(category: AnalyzeCategory) {
         if (category.nodes?.isNotEmpty().falseIfNull()) {
-            selectedCategory = category
-            _nestedCategoriesLiveData.postValue(category.nodes)
+            selectedCategoryState.postState(category)
+            nestedCategoriesState.postState(category.nodes)
         } else {
-            _directionLiveData.postValue(fromAnalyzeCategoriesToAnalyzeDetails(category, args.clinic))
+            navEvent.postEvent(fromAnalyzeCategoriesToAnalyzeDetails(category, args.clinic))
         }
     }
 
     private fun findParentList1(list: List<AnalyzeCategory>?): AnalyzeCategory? {
         var parentCategory: AnalyzeCategory? = null
         list?.forEach { category ->
-            if (category.nodes?.contains(selectedCategory).falseIfNull()) {
+            if (category.nodes?.contains(selectedCategoryState.value).falseIfNull()) {
                 parentCategory = category
                 return@forEach
             } else {

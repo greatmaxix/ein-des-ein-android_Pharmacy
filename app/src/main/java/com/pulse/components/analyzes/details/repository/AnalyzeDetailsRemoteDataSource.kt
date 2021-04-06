@@ -6,5 +6,5 @@ import com.pulse.model.PaginationModel
 
 class AnalyzeDetailsRemoteDataSource(private val ra: RestApi) {
 
-    fun clinicsList(code: String) = PaginationModel(1, DummyData.clinicsList, 20, 20) // ra.getClinicsList(code)
+    fun clinicsList(code: String) = PaginationModel(1, DummyData.clinicsList, 20, 20) // ra.getClinicsList(code) TODO implement
 }

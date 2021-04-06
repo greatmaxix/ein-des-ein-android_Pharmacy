@@ -1,7 +1,5 @@
 package com.pulse.components.onboarding
 
-import android.os.Bundle
-import android.view.View
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.onboarding.OnboardingFragmentDirections.Companion.actionFromOnboardingToAuth
@@ -16,7 +14,7 @@ import com.pulse.databinding.FragmentOnboardingBinding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class OnboardingFragment(private val viewModel: OnboardingViewModel) : BaseMVVMFragment(R.layout.fragment_onboarding) {
+class OnboardingFragment : BaseMVVMFragment<OnboardingViewModel>(R.layout.fragment_onboarding, OnboardingViewModel::class) {
 
     private val binding by viewBinding(FragmentOnboardingBinding::bind)
     private val items = listOf(
@@ -38,12 +36,9 @@ class OnboardingFragment(private val viewModel: OnboardingViewModel) : BaseMVVMF
         )
     )
 
-    init {
+    override fun initUI() = with(binding) {
         viewModel.setRegionSelectionFlag()
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
         with(vpOnboarding) {
             isUserInputEnabled = false
             adapter = OnboardingPagerAdapter(items, ::onSkip, ::onNext)

@@ -1,7 +1,5 @@
 package com.pulse.components.auth.sign
 
-import android.os.Bundle
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
@@ -10,7 +8,6 @@ import com.pulse.R
 import com.pulse.components.auth.model.AuthResult
 import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentCodeBinding
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -21,10 +18,7 @@ class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
 
     private val binding by viewBinding(FragmentCodeBinding::bind)
 
-    @ExperimentalCoroutinesApi
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding) {
         viewCode.textChanges()
             .filter { viewCode.isCodeLength }
             .onEach { checkSmsCode() }
@@ -45,16 +39,13 @@ class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
         mbSendCodeAgain.setDebounceOnClickListener { viewModel.signInAgain() }
     }
 
-    override fun onBindLiveData() {
-        observe(viewModel.customerPhoneLiveData) { binding.mtvPhone.text = it.peekContent }
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.customerPhoneState) { binding.mtvPhone.text = it }
+    }
 
-        observeResult(viewModel.codeLiveData) {
-            onEmmit = { this?.let(::navigate) }
-        }
-
-        observeResult(viewModel.signInLiveData) {
-            onEmmit = { this?.let { messageCallback?.showError(R.string.smsResendAgain) } }
-        }
+    override fun onBindEvents() = with(lifecycleScope) {
+        observe(viewModel.signInEvent.events) { uiHelper.showDialog(getString(R.string.smsResendAgain)) }
+        observe(viewModel.codeEvent.events, ::navigate)
     }
 
     private fun checkSmsCode() {
@@ -62,7 +53,7 @@ class SignCodeFragment : SignBaseFragment(R.layout.fragment_code) {
         if (binding.viewCode.isCodeLength) {
             viewModel.checkCode(binding.viewCode.text())
         } else {
-            messageCallback?.showError(R.string.enterTheCode)
+            uiHelper.showDialog(getString(R.string.enterTheCode))
         }
     }
 

@@ -9,7 +9,7 @@ sealed class Result<T> {
             if (isSuccessful) {
                 ResultSuccess(body())
             } else {
-                ResultError(GeneralException(errorBody()?.string() ?: message()))
+                ResultError(GeneralException(errorBody()?.string() ?: message(), cause = null))
             }
         }
     }

@@ -1,12 +1,12 @@
 package com.pulse.components.needHelp.contactUs
 
-import android.os.Bundle
-import android.view.View
 import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
-import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.base.fragment.BaseToolbarFragment
 import com.pulse.core.extensions.falseIfNull
+import com.pulse.core.extensions.observe
 import com.pulse.core.extensions.onClickDebounce
 import com.pulse.core.extensions.toast
 import com.pulse.databinding.FragmentContactUsBinding
@@ -15,13 +15,11 @@ import com.pulse.ui.text.showError
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class ContactUsFragment(private val viewModel: ContactUsViewModel) : BaseMVVMFragment(R.layout.fragment_contact_us) {
+class ContactUsFragment : BaseToolbarFragment<ContactUsViewModel>(R.layout.fragment_contact_us, ContactUsViewModel::class) {
 
     private val binding by viewBinding(FragmentContactUsBinding::bind)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding) {
         showBackButton()
 
         tilNote.editText?.doAfterTextChanged {
@@ -39,8 +37,8 @@ class ContactUsFragment(private val viewModel: ContactUsViewModel) : BaseMVVMFra
         }
     }
 
-    override fun onBindLiveData() {
-        observe(viewModel.resultLiveData) {
+    override fun onBindEvents() = with(lifecycleScope) {
+        observe(viewModel.resultEvent.events) {
             requireContext().toast(R.string.your_request_accepted)
             navController.popBackStack()
         }

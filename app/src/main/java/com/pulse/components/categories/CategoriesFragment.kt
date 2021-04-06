@@ -1,7 +1,5 @@
 package com.pulse.components.categories
 
-import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -14,20 +12,21 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class CategoriesFragment : BaseMVVMFragment(R.layout.fragment_categories) {
+class CategoriesFragment : BaseMVVMFragment<CategoriesViewModel>(R.layout.fragment_categories, CategoriesViewModel::class) {
 
     private val args by navArgs<CategoriesFragmentArgs>()
     private val binding by viewBinding(FragmentCategoriesBinding::bind)
-    private val viewModel: CategoriesViewModel by viewModel { parametersOf(args.category) }
+    override val viewModel: CategoriesViewModel by viewModel { parametersOf(args.category) }
     private val clickAction by lazy { return@lazy viewModel::selectCategory }
     private val categoryAdapter by lazy { CategoryAdapter(clickAction) }
     private val spacing by lazy { resources.getDimensionPixelSize(R.dimen._2sdp) }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding) {
         attachBackPressCallback { viewModel.handleBackPress() }
-        ivBack.setDebounceOnClickListener { viewModel.handleBackPress() }
+        ivBack.setDebounceOnClickListener {
+            hideKeyboard()
+            viewModel.handleBackPress()
+        }
 
         initCategoryList()
         viewSearch.setSearchListener { value ->
@@ -46,12 +45,12 @@ class CategoriesFragment : BaseMVVMFragment(R.layout.fragment_categories) {
         setHasFixedSize(true)
     }
 
-    override fun onBindLiveData() {
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
-        observe(viewModel.directionLiveData, navController::navigate)
-        observe(viewModel.navigateBackLiveData) { navigationBack() }
-        observe(viewModel.parentCategoriesLiveData) { categoryAdapter.notifyDataSet(it.toMutableList()) }
-        observe(viewModel.nestedCategoriesLiveData) { categoryAdapter.notifyDataSet(it.toMutableList()) }
+    override fun onBindEvents() = with(lifecycleScope) {
+        observe(viewModel.navigateBackEvent.events) { navigationBack() }
+    }
+
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.parentCategoriesState) { it?.let(categoryAdapter::notifyDataSet) }
+        observe(viewModel.nestedCategoriesState) { it?.let(categoryAdapter::notifyDataSet) }
     }
 }

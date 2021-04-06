@@ -9,11 +9,12 @@ object Versions {
     const val retrofit = "2.9.0"
 
     const val lifecycle = "2.3.0"
-    const val navigation = "2.3.3"
+    const val navigation = "2.3.4"
     const val room = "2.3.0-beta02"
 
     const val oksse = "0.9.0"
     const val notificationsDsl = "0.1.0"
+    const val flowBinding = "1.0.0"
 }
 
 object DefaultConfig {

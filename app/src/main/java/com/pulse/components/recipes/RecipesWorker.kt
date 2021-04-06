@@ -10,12 +10,14 @@ import com.pulse.core.extensions.downloadFile
 import com.pulse.core.extensions.downloadPDF
 import com.pulse.data.remote.api.RestApi
 import okhttp3.ResponseBody
+import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
 
+@KoinApiExtension
 class RecipesWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params), KoinComponent {
 
     override suspend fun doWork() = runDownloading()

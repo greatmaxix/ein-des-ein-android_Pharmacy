@@ -79,7 +79,6 @@ class AppSearchView @JvmOverloads constructor(
         }
     }
 
-    @FlowPreview
     @ExperimentalCoroutinesApi
     override fun onFinishInflate() = with(binding) {
         super.onFinishInflate()

@@ -6,10 +6,9 @@ import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
-import android.view.View
 import android.webkit.MimeTypeMap
 import androidx.core.net.toUri
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
 import androidx.work.*
 import androidx.work.WorkInfo.State.*
@@ -22,30 +21,31 @@ import com.pulse.components.recipes.RecipesWorker.Companion.KEY_RESULT
 import com.pulse.components.recipes.RecipesWorker.Companion.KEY_VALUE
 import com.pulse.components.recipes.adapter.RecipesAdapter
 import com.pulse.components.recipes.model.Recipe
-import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.base.fragment.BaseToolbarFragment
 import com.pulse.core.extensions.*
 import com.pulse.data.GeneralException
 import com.pulse.databinding.FragmentRecipesBinding
 import timber.log.Timber
 
-class RecipesFragment(private val viewModel: RecipesViewModel, private val workManager: WorkManager) : BaseMVVMFragment(R.layout.fragment_recipes) {
+class RecipesFragment(private val workManager: WorkManager) : BaseToolbarFragment<RecipesViewModel>(R.layout.fragment_recipes, RecipesViewModel::class) {
 
     private val binding by viewBinding(FragmentRecipesBinding::bind)
     private val recipesAdapter = RecipesAdapter(::downloadAndShow)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding) {
         showBackButton()
 
         rvRecipes.adapter = recipesAdapter
-        recipesAdapter.addStateListener { progressCallback?.setInProgress(it) }
+        recipesAdapter.addStateListener { uiHelper.showLoading(it) }
     }
 
-    override fun onBindLiveData() {
-        observe(viewModel.recipesLiveData, ::showRecipes)
-        observe(viewModel.recipesErrorLiveData) { it.contentOrNull?.let(::showAlertOrNot) }
-        observe(viewModel.recipesCountLiveData) { binding.viewEmptyContent.visibleOrGone(it <= 0) }
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.recipesFlow, ::showRecipes)
+        observe(viewModel.recipesCountState) { binding.viewEmptyContent.visibleOrGone(it <= 0) }
+    }
+
+    override fun onBindEvents() = with(lifecycleScope) {
+        observe(viewModel.recipesErrorEvent.events, ::showAlertOrNot)
     }
 
     private fun showRecipes(pagingData: PagingData<Recipe>) = recipesAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
@@ -84,21 +84,21 @@ class RecipesFragment(private val viewModel: RecipesViewModel, private val workM
 
         workManager.enqueue(work)
 
-        observeNullable(workManager.getWorkInfoByIdLiveData(work.id)) { workInfo ->
+        workManager.getWorkInfoByIdLiveData(work.id).observe(viewLifecycleOwner) { workInfo ->
             workInfo?.let { info ->
                 when (info.state) {
                     ENQUEUED -> {
                     } // we don't need any action in preparing state
-                    RUNNING -> progressCallback?.setInProgress(true)
+                    RUNNING -> uiHelper.showLoading(true)
                     SUCCEEDED -> workInfo.outputData.getString(KEY_RESULT)?.let { showSucceeded(it.toUri()) }
-                    FAILED, BLOCKED, CANCELLED -> progressCallback?.setInProgress(false)
+                    FAILED, BLOCKED, CANCELLED -> uiHelper.showLoading(true)
                 }
             }
         }
     }
 
     private fun showSucceeded(uri: Uri) {
-        progressCallback?.setInProgress(false)
+        uiHelper.showLoading(false)
 
         val target = Intent(ACTION_VIEW).apply {
             addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)

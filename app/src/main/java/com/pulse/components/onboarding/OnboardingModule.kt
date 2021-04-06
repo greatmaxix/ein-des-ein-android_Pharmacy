@@ -11,7 +11,6 @@ val onboardingModule = module {
 
     single { OnboardingRepository(get()) }
 
-    fragment { OnboardingFragment(get()) }
-
+    fragment { OnboardingFragment() }
     viewModel { OnboardingViewModel(get()) }
 }

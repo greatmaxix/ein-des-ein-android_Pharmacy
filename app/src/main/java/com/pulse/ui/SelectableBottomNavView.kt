@@ -15,6 +15,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.ShapeAppearanceModel
 import com.pulse.R
 import com.pulse.core.extensions.getColor
 import com.pulse.core.extensions.inflate
@@ -25,6 +27,7 @@ class SelectableBottomNavView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : BottomNavigationView(context, attrs, defStyleAttr) {
 
+    private var materialShapeDrawable: MaterialShapeDrawable
     private val selectedBorder = resources.getDimensionPixelSize(R.dimen._3sdp).toFloat()
     private val selectedColor = getColor(R.color.primaryBlue)
     private val defaultColor = getColor(R.color.grey)
@@ -46,6 +49,19 @@ class SelectableBottomNavView @JvmOverloads constructor(
             val firstItem = value.first()
             changeSelection(firstItem.navigationItemResId)
         }
+
+    init {
+
+        val shapeAppearanceModel = ShapeAppearanceModel.Builder()
+            .build()
+
+        materialShapeDrawable = MaterialShapeDrawable(shapeAppearanceModel).apply {
+            setTint(context.getColor(R.color.colorGlobalWhite))
+            paintStyle = Paint.Style.FILL_AND_STROKE
+        }
+
+        background = materialShapeDrawable
+    }
 
     private fun setItemColor(it: NavItem, @ColorInt color: Int) {
         if (it.iconResId != null) {
