@@ -45,9 +45,9 @@ class AnalyzeOrderFragment : BaseToolbarFragment<AnalyzeOrderViewModel>(R.layout
             val totalCost = clinic.servicePrice.toPrice()
             mtvTotalPayable.text = totalCost
             mbCancel.onClickDebounce {
-                showAlertRes(R.string.thanks_for_using_pulse) {
-                    title = R.string.request_cancelled
-                    positive = R.string.common_okButton
+                uiHelper.showDialog(getString(R.string.thanks_for_using_pulse)) {
+                    title = getString(R.string.request_cancelled)
+                    positive = getString(R.string.common_okButton)
                     positiveAction = {
                         navController.popBackStack()
                     }

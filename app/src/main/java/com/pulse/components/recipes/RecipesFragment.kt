@@ -52,10 +52,10 @@ class RecipesFragment(private val workManager: WorkManager) : BaseToolbarFragmen
 
     private fun showAlertOrNot(generalException: GeneralException) {
         if (generalException.resId == R.string.toSeeYourRecipes) {
-            showAlertRes(getString(R.string.toSeeYourRecipes)) {
+            uiHelper.showDialog(getString(R.string.toSeeYourRecipes)) {
                 cancelable = false
-                positive = R.string.signIn
-                negative = R.string.cancel
+                positive = getString(R.string.signIn)
+                negative = getString(R.string.cancel)
                 positiveAction = { navController.navigate(R.id.fromRecipesToAuth, SignInFragmentArgs(R.id.nav_recipes).toBundle()) }
                 negativeAction = { navController.onNavDestinationSelected(R.id.nav_home, inclusive = true) }
             }

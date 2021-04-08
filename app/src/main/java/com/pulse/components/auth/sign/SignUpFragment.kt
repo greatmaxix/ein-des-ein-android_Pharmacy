@@ -94,12 +94,12 @@ class SignUpFragment : SignBaseFragment(R.layout.fragment_sign_up) {
     }
 
     private fun askConfirm() {
-        showAlertRes(getString(R.string.messageEndAuthDialog)) {
+        uiHelper.showDialog(getString(R.string.messageEndAuthDialog)) {
             cancelable = false
-            title = R.string.titleEndAuthDialog
-            positive = R.string.buttonEndAuth
+            title = getString(R.string.titleEndAuthDialog)
+            positive = getString(R.string.buttonEndAuth)
             positiveAction = { navController.navigate(globalToHome()) }
-            negative = R.string.cancel
+            negative = getString(R.string.cancel)
         }
     }
 

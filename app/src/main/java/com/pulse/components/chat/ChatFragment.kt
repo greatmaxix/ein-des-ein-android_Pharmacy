@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.MediaStore
-import android.provider.Settings
 import android.view.inputmethod.EditorInfo
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -168,20 +167,6 @@ class ChatFragment : BaseToolbarFragment<ChatViewModel>(R.layout.fragment_chat, 
             ) { takePhotoLauncher.launch(uri) }
         } else {
             uiHelper.showMessage(getString(R.string.cameraPermissionNoCameraOnDevice))
-        }
-    }
-
-    private fun openSettings() {
-        showAlertRes(getString(R.string.cameraPermissionPermanentlyDenied)) {
-            cancelable = false
-            positive = R.string.common_permissionDialog_settingsButton
-            positiveAction = {
-                val intent = Intent()
-                intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                intent.data = Uri.fromParts("package", requireActivity().packageName, null)
-                requireContext().startActivity(intent)
-            }
-            negative = R.string.common_permissionDialog_cancel
         }
     }
 

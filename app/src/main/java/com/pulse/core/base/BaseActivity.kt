@@ -2,7 +2,6 @@ package com.pulse.core.base
 
 import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.pulse.R
@@ -14,8 +13,8 @@ abstract class BaseActivity(@LayoutRes layoutResourceId: Int) : AppCompatActivit
 
     protected val navController by lazyNavController(R.id.nav_host)
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         initUI()
     }
 

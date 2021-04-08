@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import com.pulse.core.extensions.getFragmentTag
 
 abstract class BaseDialogFragment : DialogFragment() {
+
     @CallSuper
     open fun show(manager: FragmentManager) {
         val tag = getFragmentTag()

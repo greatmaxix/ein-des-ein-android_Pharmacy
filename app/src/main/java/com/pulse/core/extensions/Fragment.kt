@@ -19,8 +19,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.pulse.R
-import com.pulse.core.base.fragment.dialog.AlertDialogData
-import com.pulse.core.base.fragment.dialog.AlertDialogDataRes
 import com.pulse.core.keyboard.KeyboardObserver
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.delay
@@ -73,14 +71,6 @@ inline fun <FRAGMENT : Fragment> FRAGMENT.putArgs(argsBuilder: Bundle.() -> Unit
 fun <FRAGMENT : Fragment> FRAGMENT.getIntArg(key: String, defValue: Int) = arguments?.getInt(key, defValue) ?: defValue
 
 fun <FRAGMENT : Fragment> FRAGMENT.getStringArg(key: String, defValue: String?) = arguments?.getString(key, defValue) ?: defValue
-
-fun Fragment.showAlert(message: String, block: AlertDialogData.() -> Unit) = requireActivity().showAlert(message, block, childFragmentManager)
-
-fun Fragment.showAlert(@StringRes resId: Int, block: AlertDialogData.() -> Unit) = requireActivity().showAlert(getString(resId), block, childFragmentManager)
-
-fun Fragment.showAlertRes(@StringRes resId: Int, block: AlertDialogDataRes.() -> Unit) = requireActivity().showAlertRes(getString(resId), block)
-
-fun Fragment.showAlertRes(message: String, block: AlertDialogDataRes.() -> Unit) = requireActivity().showAlertRes(message, block, childFragmentManager)
 
 fun Fragment.showDial(number: String) = startActivity(Intent(ACTION_DIAL, String.format("tel:%s", Uri.encode(number)).toUri()))
 

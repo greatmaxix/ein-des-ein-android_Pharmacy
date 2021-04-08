@@ -95,10 +95,10 @@ class CartFragment : BaseToolbarFragment<CartViewModel>(R.layout.fragment_cart, 
         }
     }
 
-    private fun askConfirmation(productId: Int) = showAlertRes(getString(R.string.areYouSure)) {
-        positive = R.string.delete
+    private fun askConfirmation(productId: Int) = uiHelper.showDialog(getString(R.string.areYouSure)) {
+        positive = getString(R.string.delete)
         positiveAction = { viewModel.removeProductFromCart(productId) }
-        negative = R.string.cancel
+        negative = getString(R.string.cancel)
     }
 
     private fun startDeliveryProcess(cartItem: CartItem) = navController.navigate(fromCartToCheckout(cartItem))

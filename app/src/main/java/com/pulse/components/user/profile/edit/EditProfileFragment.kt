@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
@@ -64,11 +63,11 @@ class EditProfileFragment : BaseToolbarFragment<ProfileViewModel>(R.layout.fragm
 
     private fun backPressedHandler() {
         if (userDataChanged) {
-            showAlertRes(getString(R.string.exitWithoutSaving)) {
+            uiHelper.showDialog(getString(R.string.exitWithoutSaving)) {
                 cancelable = false
-                positive = R.string.common_okButton
+                positive = getString(R.string.common_okButton)
                 positiveAction = { navController.popBackStack() }
-                negative = R.string.cancel
+                negative = getString(R.string.cancel)
             }
         } else {
             navController.popBackStack()
@@ -123,20 +122,6 @@ class EditProfileFragment : BaseToolbarFragment<ProfileViewModel>(R.layout.fragm
             ) { takePhotoLauncher.launch(uri) }
         } else {
             uiHelper.showMessage(getString(R.string.cameraPermissionNoCameraOnDevice))
-        }
-    }
-
-    private fun openSettings() {
-        showAlertRes(getString(R.string.cameraPermissionPermanentlyDenied)) {
-            cancelable = false
-            positive = R.string.common_permissionDialog_settingsButton
-            positiveAction = {
-                val intent = Intent()
-                intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                intent.data = Uri.fromParts("package", requireActivity().packageName, null)
-                startActivity(intent)
-            }
-            negative = R.string.common_permissionDialog_cancel
         }
     }
 }
