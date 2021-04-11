@@ -49,7 +49,9 @@
     <string name="permissionDialogCancel">Відміна</string>
     <string name="cameraPermissionDenied">Доступ до камери заборонений</string>
     <string name="cameraPermissionNoCameraOnDevice">На пристрої немає камера</string>
-    <string name="toss">Реєструючись, я приймаю Умови обслуговування та Політику конфіденційності</string>
+    <string name="by_registering_i_agree_holder">Реєструючись, я приймаю %s та %s</string>
+    <string name="terms_of_service">Умови обслуговування</string>
+    <string name="privacy_policy">Політику конфіденційності</string>
     <string name="expectSoonMock">Чекайте найближчим часом</string>
     <string name="recentlyViewedImageDescription">Іконка товару недавно переглянутих</string>
     <string name="mustNotBeEmpty">Текст не повинен бути порожнім</string>

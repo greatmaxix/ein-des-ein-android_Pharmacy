@@ -9,9 +9,6 @@ import androidx.annotation.IdRes
 import androidx.fragment.app.*
 import androidx.navigation.fragment.NavHostFragment
 import com.pulse.R
-import com.pulse.core.base.fragment.dialog.AlertDialogData
-import com.pulse.core.base.fragment.dialog.AlertDialogDataRes
-import com.pulse.core.base.fragment.dialog.AlertDialogFragment
 import kotlin.math.roundToInt
 
 val Activity.rootView: ViewGroup
@@ -36,12 +33,6 @@ fun Activity.refreshActivity() {
     finish()
     startActivity(intent.newTask().clearTask())
 }
-
-fun FragmentActivity.showAlert(message: String, block: AlertDialogData.() -> Unit, fm: FragmentManager = supportFragmentManager) =
-    AlertDialogFragment.newInstance(message, block).show(fm)
-
-fun FragmentActivity.showAlertRes(message: String, block: AlertDialogDataRes.() -> Unit, fm: FragmentManager = supportFragmentManager) =
-    AlertDialogFragment.newInstance(this, message, block).show(fm)
 
 fun FragmentActivity.lazyNavController(@IdRes resId: Int = R.id.nav_host) = lazyNotSynchronized {
     try {

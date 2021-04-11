@@ -1,7 +1,5 @@
 package com.pulse.components.user.wishlist
 
-import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
@@ -9,17 +7,18 @@ import com.pulse.components.productList.BaseProductListFragment
 import com.pulse.core.extensions.animateVisibleOrGone
 import com.pulse.core.extensions.onNavDestinationSelected
 import com.pulse.databinding.FragmentWishBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.core.component.KoinApiExtension
 
+@ExperimentalCoroutinesApi
 @KoinApiExtension
-class WishFragment(private val viewModel: WishViewModel) : BaseProductListFragment<WishViewModel>(R.layout.fragment_wish, viewModel) {
+class WishFragment : BaseProductListFragment<WishViewModel>(R.layout.fragment_wish, WishViewModel::class) {
 
     private val binding by viewBinding(FragmentWishBinding::bind)
-    override val productLiveData
-        get() = viewModel.wishLiveData
+    override val pagedSearchState
+        get() = viewModel.wishFlow
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initUI() = with(binding) {
         showBackButton()
 
         viewEmptyContent.setButtonAction { navController.onNavDestinationSelected(R.id.nav_search, null, R.id.nav_wish) }

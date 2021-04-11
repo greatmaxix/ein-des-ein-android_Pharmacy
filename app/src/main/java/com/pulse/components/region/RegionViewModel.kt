@@ -1,12 +1,10 @@
 package com.pulse.components.region
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.pulse.components.region.repository.RegionRepository
 import com.pulse.core.base.mvvm.BaseViewModel
-import com.pulse.core.general.SingleLiveEvent
-import com.pulse.core.network.ResponseWrapper.Error
-import com.pulse.core.network.ResponseWrapper.Success
+import com.pulse.core.utils.flow.SingleShotEvent
+import com.pulse.core.utils.flow.StateEventFlow
 import com.pulse.model.region.Region
 import com.pulse.model.region.RegionWithHeader
 import kotlinx.coroutines.delay
@@ -15,36 +13,17 @@ import org.koin.core.component.KoinApiExtension
 @KoinApiExtension
 class RegionViewModel(private val repository: RegionRepository) : BaseViewModel() {
 
-    private val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
-    val progressLiveData: LiveData<Boolean> by lazy { _progressLiveData }
-
-    private val _errorLiveData by lazy { SingleLiveEvent<String>() }
-    val errorLiveData: LiveData<String> by lazy { _errorLiveData }
-
-    private val _regionsLiveData by lazy { SingleLiveEvent<MutableList<RegionWithHeader>>() }
-    val regionsLiveData: LiveData<MutableList<RegionWithHeader>> by lazy { _regionsLiveData }
-
-    private val _regionSavedLiveData by lazy { MutableLiveData<Boolean>() }
-    val regionSavedLiveData: LiveData<Boolean> by lazy { _regionSavedLiveData }
+    val regionsState = StateEventFlow<MutableList<RegionWithHeader>>(mutableListOf())
+    val regionSavedEvent = SingleShotEvent<Boolean>()
 
     private var originalList = emptyList<Region>()
     private var itemClicked = false
 
     init {
-        _progressLiveData.value = true
-        launchIO {
-            when (val response = repository.getRegions()) {
-                is Success -> {
-                    val items = response.value.data.items
-                    originalList = items
-                    _regionsLiveData.postValue(addHeaders(items.toMutableList()))
-                    _progressLiveData.postValue(false)
-                }
-                is Error -> {
-                    _errorLiveData.postValue(response.errorMessage)
-                    _progressLiveData.postValue(false)
-                }
-            }
+        viewModelScope.execute {
+            val items = repository.getRegions().data.items
+            originalList = items
+            regionsState.postState(addHeaders(items.toMutableList()))
         }
     }
 
@@ -68,33 +47,28 @@ class RegionViewModel(private val repository: RegionRepository) : BaseViewModel(
         if (children.isNullOrEmpty()) {
             setRegion(region)
         } else {
-            _regionsLiveData.postValue(addHeaders(children.toMutableList()))
+            regionsState.postState(addHeaders(children.toMutableList()))
             itemClicked = true
         }
     }
 
-    private fun setRegion(region: Region) {
-        launchIO {
-            if (repository.getCustomer() == null) {
-                repository.saveRegionLocally(region)
-            } else {
-                when (val response = repository.updateCustomerRegion(region.id)) {
-                    is Success -> repository.saveCustomerInfoLocally(response.value.data.item)
-                    is Error -> _errorLiveData.postValue(response.errorMessage)
-                }
-            }
-            delay(1000) // wait for animation end
-            _regionSavedLiveData.postValue(true)
+    private fun setRegion(region: Region) = viewModelScope.execute {
+        if (repository.getCustomer() == null) {
+            repository.saveRegionLocally(region)
+        } else {
+            val response = repository.updateCustomerRegion(region.id)
+                repository.saveCustomerInfoLocally(response.data.item)
         }
+        delay(1000) // wait for animation end
+        regionSavedEvent.offerEvent(true)
     }
 
     fun handleBackPress() {
         if (itemClicked) {
             itemClicked = false
-            _regionsLiveData.postValue(addHeaders(originalList.toMutableList()))
+            regionsState.postState(addHeaders(originalList.toMutableList()))
             return
         }
-        _regionSavedLiveData.postValue(false)
+        regionSavedEvent.offerEvent(false)
     }
-
 }

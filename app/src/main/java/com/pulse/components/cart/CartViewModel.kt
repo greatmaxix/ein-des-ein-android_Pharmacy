@@ -1,28 +1,32 @@
 package com.pulse.components.cart
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
+import com.pulse.components.cart.model.CartItem
 import com.pulse.core.base.mvvm.BaseViewModel
+import com.pulse.core.utils.flow.SingleShotEvent
+import com.pulse.core.utils.flow.StateEventFlow
+import com.pulse.data.GeneralException
 
 class CartViewModel(private val useCase: CartUseCase) : BaseViewModel() {
 
-    val cartItemLiveData
-        get() = requestLiveData {
-            useCase.getProducts()
-        }
+    val cartItemState = StateEventFlow<List<CartItem>>(listOf())
+    val errorEvent = SingleShotEvent<GeneralException>()
+    val removeItemEvent = SingleShotEvent<Int>()
 
-    private val _removeItemLiveData by lazy { MutableLiveData<Int>() }
-
-    val removeItemLiveData by lazy {
-        _removeItemLiveData.switchMap { productId ->
-            requestLiveData {
-                useCase.removeProduct(productId)
-                productId
-            }
+    fun removeProductFromCart(productId: Int) {
+        viewModelScope.execute {
+            useCase.removeProduct(productId)
+            removeItemEvent.offerEvent(productId)
         }
     }
 
-    fun removeProductFromCart(productId: Int) {
-        _removeItemLiveData.value = productId
+    fun updateProducts() {
+        viewModelScope.execute {
+            try {
+                cartItemState.postState(useCase.getProducts())
+            } catch (e: GeneralException) {
+                errorEvent.offerEvent(e)
+            }
+        }
     }
 }

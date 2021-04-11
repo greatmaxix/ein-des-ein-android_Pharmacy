@@ -6,7 +6,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-abstract class BaseClinicTabFragment(@LayoutRes private val layoutResourceId: Int) : BaseMVVMFragment(layoutResourceId) {
+abstract class BaseClinicTabFragment(@LayoutRes private val layoutResourceId: Int) : BaseMVVMFragment<ClinicTabsViewModel>(layoutResourceId, ClinicTabsViewModel::class) {
 
-    protected val viewModel: ClinicTabsViewModel by lazy { requireParentFragment().getViewModel() }
+    override val viewModel: ClinicTabsViewModel by lazy { requireParentFragment().getViewModel() }
 }

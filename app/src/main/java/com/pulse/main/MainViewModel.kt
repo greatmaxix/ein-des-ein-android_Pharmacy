@@ -1,31 +1,33 @@
 package com.pulse.main
 
 import androidx.annotation.IdRes
-import androidx.lifecycle.*
+import androidx.lifecycle.viewModelScope
+import com.pulse.MainGraphDirections.Companion.globalToChat
 import com.pulse.R
+import com.pulse.components.user.model.customer.Customer
 import com.pulse.core.base.mvvm.BaseViewModel
-import kotlinx.coroutines.Dispatchers.IO
+import com.pulse.core.utils.flow.StateEventFlow
+import kotlinx.coroutines.flow.onEach
 
 class MainViewModel(private val repository: MainRepository) : BaseViewModel() {
 
-    private val destIdLiveData by lazy { MutableLiveData<Int>() }
-    val directionLiveData: LiveData<Int> by lazy {
-        destIdLiveData.switchMap { id ->
-            liveData(viewModelScope.coroutineContext + IO) {
-                val isCustomerExist = repository.isCustomerExist()
-                emit(if (id == R.id.profile_graph && !isCustomerExist) R.id.profile_graph_guest else id)
-            }
-        }
+    val directionState = StateEventFlow(0)
+    private var customer: Customer? = null
+    val customerInfoFlow = repository.customerFlow().onEach {
+        customer = it
     }
 
-    val customerInfoLiveData
-        get() = repository.customerLiveData()
-
-    fun navSelected(@IdRes id: Int) = destIdLiveData.postValue(id)
-
-    fun setChatForeground(isForeground: Boolean) = launchIO { repository.setChatForeground(isForeground) }
-
-    fun goToChat(chatId: Int) = requestLiveData {
-        repository.getChat(chatId)
+    fun navSelected(@IdRes id: Int) = viewModelScope.execute {
+        val isCustomerExist = repository.isCustomerExist()
+        directionState.postState(if (id == R.id.profile_graph && !isCustomerExist) R.id.profile_graph_guest else id)
     }
+
+    fun setChatForeground(isForeground: Boolean) = viewModelScope.execute { repository.setChatForeground(isForeground) }
+
+    fun goToChat(chatId: Int) = viewModelScope.execute {
+        val response = repository.getChat(chatId)
+        navEvent.postEvent(globalToChat(response))
+    }
+
+    fun getCurrentCustomer() = customer
 }

@@ -1,13 +1,13 @@
 package com.pulse.components.analyzes.clinic.tabs.list
 
-import android.os.Bundle
-import android.view.View
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.analyzes.clinic.tabs.BaseClinicTabFragment
 import com.pulse.components.analyzes.clinic.tabs.ClinicTabsFragmentDirections.Companion.globalToClinicCard
 import com.pulse.components.analyzes.details.adapter.ClinicsAdapter
 import com.pulse.core.extensions.addItemDecorator
+import com.pulse.core.extensions.observe
 import com.pulse.core.extensions.showDial
 import com.pulse.core.extensions.showDirection
 import com.pulse.databinding.FragmentClinicsListBinding
@@ -26,16 +26,12 @@ class ClinicListFragment : BaseClinicTabFragment(R.layout.fragment_clinics_list)
         )
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding.rvClinics) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding.rvClinics) {
         adapter = clinicsAdapter
         addItemDecorator()
     }
 
-    override fun onBindLiveData() {
-        observeResult(viewModel.clinicsListLiveData) {
-            onEmmit = { clinicsAdapter.notifyItems(this) }
-        }
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.clinicsListState, clinicsAdapter::notifyItems)
     }
 }

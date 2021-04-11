@@ -1,9 +1,8 @@
 package com.pulse.components.categories.repository
 
-import com.pulse.data.remote.RestManager
+import com.pulse.data.remote.api.RestApi
 
-class CategoriesRemoteDataSource(private val rm: RestManager) {
+class CategoriesRemoteDataSource(private val ra: RestApi) {
 
-    suspend fun getCategories() = rm.getCategories()
-
+    suspend fun getCategories() = ra.categories()
 }

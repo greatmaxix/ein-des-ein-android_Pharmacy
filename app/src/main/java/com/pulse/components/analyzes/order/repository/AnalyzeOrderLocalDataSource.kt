@@ -4,5 +4,5 @@ import com.pulse.components.user.model.customer.CustomerDAO
 
 class AnalyzeOrderLocalDataSource(private val dao: CustomerDAO) {
 
-    fun getCustomerInfo() = dao.customerLiveData()
+    fun getCustomerInfo() = dao.customerFlow()
 }

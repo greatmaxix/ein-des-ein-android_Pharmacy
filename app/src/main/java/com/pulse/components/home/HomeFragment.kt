@@ -1,9 +1,8 @@
 package com.pulse.components.home
 
-import android.os.Bundle
-import android.view.View
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
 import androidx.core.os.bundleOf
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.home.HomeFragmentDirections.Companion.fromHomeToScanner
@@ -17,19 +16,20 @@ import com.pulse.databinding.FragmentHomeBinding
 import com.pulse.model.category.Category
 import com.pulse.ui.CategoryHomeView
 import com.pulse.ui.RecentlyViewedView
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<HomeViewModel>(R.layout.fragment_home, viewModel) {
+@ExperimentalCoroutinesApi
+class HomeFragment : BaseProductFragment<HomeViewModel>(R.layout.fragment_home, HomeViewModel::class) {
 
     private var isCategoryLoaded = false
     private val binding by viewBinding(FragmentHomeBinding::bind)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initUI() = with(binding) {
         setSoftInputMode(SOFT_INPUT_ADJUST_PAN)
 
-        mcvScan.setDebounceOnClickListener { doNav(fromHomeToScanner()) }
+        mcvScan.setDebounceOnClickListener { navController.navigate(fromHomeToScanner()) }
         mcvAsk.setDebounceOnClickListener { viewModel.performAskPharmacist() }
         mcvAnalyze.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_analyze_category, null, R.id.nav_home) }
         mbUploadRecipes.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_home) }
@@ -41,13 +41,9 @@ class HomeFragment(private val viewModel: HomeViewModel) : BaseProductFragment<H
         pbCategories.visibleOrGone(!isCategoryLoaded)
     }
 
-    override fun onBindLiveData() {
-        super.onBindLiveData()
-        observe(viewModel.errorLiveData) { messageCallback?.showError(it) }
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
-        observe(viewModel.recentlyViewedLiveData, ::populateRecentViewed)
-        observe(viewModel.categoriesLiveData, ::setCategories)
-        observe(viewModel.directionLiveData, ::doNav)
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.recentlyViewedState, ::populateRecentViewed)
+        observe(viewModel.categoriesState, ::setCategories)
     }
 
     private fun setCategories(categories: List<Category>) = with(binding) {

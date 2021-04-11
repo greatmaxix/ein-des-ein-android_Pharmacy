@@ -3,7 +3,6 @@ package com.pulse.core.base.mvvm
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.pulse.core.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -18,7 +17,6 @@ abstract class BaseMVVMActivity<out VM : ViewModel>(@LayoutRes layoutResourceId:
         super.onCreate(savedInstanceState)
         onBindEvents()
         onBindStates()
-        onBindLiveData()
     }
 
     /**
@@ -35,28 +33,5 @@ abstract class BaseMVVMActivity<out VM : ViewModel>(@LayoutRes layoutResourceId:
      */
     override fun onBindStates() {
         //Optional
-    }
-
-    @Deprecated("Use observe for Flow on lifecycleScope")
-    protected fun <T, LD : LiveData<T>> observeNullable(liveData: LD, onChanged: T?.() -> Unit) {
-        liveData.observe(this, { value ->
-            onChanged(value)
-        })
-    }
-
-    /**
-     * Here we may bind our observers to LiveData if some.
-     * This method will be executed after parent [onCreate] method
-     */
-    @Deprecated("Move to Flow and use 'onBindEvents' or 'onBindStates'")
-    protected open fun onBindLiveData() {
-        //Optional
-    }
-
-    @Deprecated("Use observe for Flow on lifecycleScope")
-    protected fun <T, LD : LiveData<T>> observe(liveData: LD, onChanged: T.() -> Unit) {
-        liveData.observe(this, { value ->
-            value?.let(onChanged)
-        })
     }
 }

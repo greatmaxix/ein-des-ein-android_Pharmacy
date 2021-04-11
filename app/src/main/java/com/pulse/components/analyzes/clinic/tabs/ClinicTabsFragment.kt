@@ -1,8 +1,7 @@
 package com.pulse.components.analyzes.clinic.tabs
 
-import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -14,22 +13,19 @@ import com.pulse.components.analyzes.clinic.tabs.adapter.ClinicTabsPagerAdapter
 import com.pulse.components.analyzes.clinic.tabs.map.ClinicMapBottomSheet.Companion.KEY_CLINIC_MAP_BOTTOM_SHEET
 import com.pulse.components.analyzes.clinic.tabs.map.ClinicMapBottomSheet.Companion.KEY_ORDER_SERVICE
 import com.pulse.components.analyzes.details.model.Clinic
-import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.base.fragment.BaseToolbarFragment
+import com.pulse.core.extensions.observe
 import com.pulse.databinding.FragmentClinicTabsBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class ClinicTabsFragment : BaseMVVMFragment(R.layout.fragment_clinic_tabs) {
+class ClinicTabsFragment : BaseToolbarFragment<ClinicTabsViewModel>(R.layout.fragment_clinic_tabs, ClinicTabsViewModel::class) {
 
     private val args by navArgs<ClinicTabsFragmentArgs>()
     private val binding by viewBinding(FragmentClinicTabsBinding::bind)
-    private val viewModel: ClinicTabsViewModel by viewModel()
     private val tabTitles by lazy { listOf(getString(R.string.pharmacyListTitle), getString(R.string.pharmacyMapTitle)) }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() {
         showBackButton()
         initPager()
 
@@ -47,18 +43,20 @@ class ClinicTabsFragment : BaseMVVMFragment(R.layout.fragment_clinic_tabs) {
         }) { tab, position -> tab.text = tabTitles[position] }.attach()
     }
 
-    override fun onBindLiveData() {
-        observe(viewModel.clinicLiveData) { clinic ->
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.clinicEvent.events) { clinic ->
             clinic?.let { navController.navigate(fromClinicMapToClinicBottomSheet(it)) }
         }
-        observe(viewModel.selectedClinicLiveData) { clinic ->
-            navController.navigate(
-                if (args.category == null) {
-                    globalToAnalyzeCategories(clinic)
-                } else {
-                    globalToAnalyzeCheckout(args.category!!, clinic)
-                }
-            )
+        observe(viewModel.selectedClinicState.events) { clinic ->
+            clinic?.let {
+                navController.navigate(
+                    if (args.category == null) {
+                        globalToAnalyzeCategories(it)
+                    } else {
+                        globalToAnalyzeCheckout(args.category!!, it)
+                    }
+                )
+            }
         }
     }
 }

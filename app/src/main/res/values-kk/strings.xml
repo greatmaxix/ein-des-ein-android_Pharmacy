@@ -49,7 +49,9 @@
     <string name="permissionDialogCancel">Болдырмау</string>
     <string name="cameraPermissionDenied">Камераға кіруге тыйым салынады</string>
     <string name="cameraPermissionNoCameraOnDevice">Құрылғыда камера жоқ</string>
-    <string name="toss">Тіркелу арқылы мен Қызмет көрсету шарттары мен Құпиялылық саясатын қабылдаймын</string>
+    <string name="by_registering_i_agree_holder">Тіркелу арқылы мен %s мен %s</string>
+    <string name="terms_of_service">Қызмет көрсету шарттары</string>
+    <string name="privacy_policy">Құпиялылық саясатын қабылдаймын</string>
     <string name="expectSoonMock">Жақын арада күтіңіз</string>
     <string name="recentlyViewedImageDescription">Жақында қаралған өнім белгішесі</string>
     <string name="mustNotBeEmpty">Мәтін бос болмауы керек</string>

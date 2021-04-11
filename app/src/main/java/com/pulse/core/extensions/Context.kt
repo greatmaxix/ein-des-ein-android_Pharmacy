@@ -5,6 +5,8 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Point
+import android.net.Uri
+import android.provider.Settings
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +25,13 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.pulse.BuildConfig
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "${BuildConfig.APPLICATION_ID}_prefs")
+
+fun Context.openSettings() {
+    startActivity(Intent().apply {
+        action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+        data = Uri.fromParts("package", applicationContext.packageName, null)
+    })
+}
 
 val Context.inflater: LayoutInflater
     get() = LayoutInflater.from(this)

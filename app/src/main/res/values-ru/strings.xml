@@ -49,7 +49,9 @@
     <string name="permissionDialogCancel">Отмена</string>
     <string name="cameraPermissionDenied">Доступ к камере запрещен</string>
     <string name="cameraPermissionNoCameraOnDevice">На устройстве отсутствует камера</string>
-    <string name="toss">Регистрируясь, я принимаю Условия обслуживания и Политику конфиденциальности</string>
+    <string name="by_registering_i_agree_holder">Регистрируясь, я принимаю %s и %s</string>
+    <string name="terms_of_service">Условия обслуживания</string>
+    <string name="privacy_policy">Политику конфиденциальности</string>
     <string name="expectSoonMock">Ожидайте в ближайшее время</string>
     <string name="recentlyViewedImageDescription">Иконка товара недавно просмотренных</string>
     <string name="mustNotBeEmpty">Текст не должен быть пустым</string>

@@ -1,32 +1,16 @@
 package com.pulse.components.orders.details
 
-import androidx.lifecycle.LiveData
-import androidx.navigation.NavDirections
+import androidx.lifecycle.viewModelScope
+import com.pulse.components.orders.details.repository.OrderDetailsRepository
 import com.pulse.core.base.mvvm.BaseViewModel
-import com.pulse.core.general.SingleLiveEvent
-import com.pulse.core.network.ResponseWrapper.Success
+import com.pulse.core.utils.flow.SingleShotEvent
 
 class OrderDetailsViewModel(private val repository: OrderDetailsRepository) : BaseViewModel() {
 
-    private val _errorLiveData by lazy { SingleLiveEvent<String>() }
-    val errorLiveData: LiveData<String> by lazy { _errorLiveData }
+    val isCancelSuccessEvent = SingleShotEvent<Boolean>()
 
-    private val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
-    val progressLiveData: LiveData<Boolean> by lazy { _progressLiveData }
-
-    private val _directionLiveData by lazy { SingleLiveEvent<NavDirections>() }
-    val directionLiveData: LiveData<NavDirections> by lazy { _directionLiveData }
-
-    private val _isCancelSuccessLiveData by lazy { SingleLiveEvent<Boolean>() }
-    val isCancelSuccessLiveData: LiveData<Boolean> by lazy { _isCancelSuccessLiveData }
-
-    fun cancelOrder(id: Int) {
-        _progressLiveData.value = true
-        launchIO {
-            val response = repository.cancelOrder(id)
-            _progressLiveData.postValue(false)
-            _isCancelSuccessLiveData.postValue(response is Success)
-        }
+    fun cancelOrder(id: Int) = viewModelScope.execute {
+        repository.cancelOrder(id)
+        isCancelSuccessEvent.offerEvent(true)
     }
-
 }

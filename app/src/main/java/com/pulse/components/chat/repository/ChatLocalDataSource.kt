@@ -29,7 +29,7 @@ class ChatLocalDataSource(
 
     fun getMessagePagingSource(chatId: Int) = messageDAO.getMessagePagingSource(chatId)
 
-    fun getLastMessageLiveData(chatId: Int) = messageDAO.getLastMessageLiveData(chatId)
+    fun getLastMessageFlow(chatId: Int) = messageDAO.getLastMessageFlow(chatId)
 
     suspend fun getRemoteKeys(messageId: Int) = remoteKeysDAO.getRemoteKeys(messageId)
 
@@ -57,5 +57,5 @@ class ChatLocalDataSource(
 
     suspend fun clearChat() = dataStore.put(FIELD_OPENED_CHAT_ID, -1)
 
-    fun getChatLiveData(chatId: Int) = chatItemDAO.getChatLiveData(chatId)
+    fun getChatFlow(chatId: Int) = chatItemDAO.getChatFlow(chatId)
 }

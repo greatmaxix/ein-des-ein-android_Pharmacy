@@ -1,10 +1,10 @@
 package com.pulse.components.scanner.repository
 
-import com.pulse.data.remote.RestManager
+import com.pulse.data.remote.api.RestApi
 
-class ScannerRemoteDataSource(private val rm: RestManager) {
+class ScannerRemoteDataSource(private val ra: RestApi) {
 
-    suspend fun searchBarcode(barCode: String) = rm.productSearch(PAGE, PAGE_SIZE, barCode)
+    suspend fun searchBarcode(barCode: String, regionId: Int?) = ra.productSearch(PAGE, PAGE_SIZE, barCode = barCode, regionId = regionId)
 
     companion object {
         private const val PAGE = 1

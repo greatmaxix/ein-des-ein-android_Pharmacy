@@ -30,9 +30,4 @@
         tools:backgroundTint="@color/colorGlobalWhite"
         tools:translationY="0dp" />
 
-    <include
-        android:id="@+id/layout_progress"
-        layout="@layout/layout_progress"
-        tools:visibility="gone" />
-
 </FrameLayout>

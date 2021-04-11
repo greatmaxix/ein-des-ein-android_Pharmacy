@@ -1,8 +1,7 @@
 package com.pulse.components.cart
 
-import android.os.Bundle
-import android.view.View
 import androidx.annotation.StringRes
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
@@ -12,11 +11,11 @@ import com.pulse.components.cart.CartFragmentDirections.Companion.fromCartToSear
 import com.pulse.components.cart.adapter.CartAdapter
 import com.pulse.components.cart.adapter.animator.ItemExpandAnimator
 import com.pulse.components.cart.model.CartItem
-import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.base.fragment.BaseToolbarFragment
 import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentCartBinding
 
-class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.layout.fragment_cart) {
+class CartFragment : BaseToolbarFragment<CartViewModel>(R.layout.fragment_cart, CartViewModel::class) {
 
     private val binding by viewBinding(FragmentCartBinding::bind)
     private var concatAdapter = ConcatAdapter(concatWithIsolate)
@@ -25,8 +24,7 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
             binding.rvCart.adapter = field
         }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initUI() = with(binding) {
         showBackButton()
 
         concatAdapter.clearAdapter()
@@ -40,18 +38,22 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
 
     override fun onResume() {
         super.onResume()
-        observeResult(viewModel.cartItemLiveData) {
-            onEmmit = {
-                concatAdapter.clearAdapter()
-                buildCart(this)
-            }
-            onError = { errorOrAuth(it.resId) }
+        viewModel.updateProducts()
+    }
+
+    override fun onBindEvents() = with(lifecycleScope) {
+        observe(viewModel.errorEvent.events) {
+            errorOrAuth(it.resId)
+        }
+        observe(viewModel.removeItemEvent.events) {
+            removeProduct(it)
         }
     }
 
-    override fun onBindLiveData() {
-        observeResult(viewModel.removeItemLiveData) {
-            onEmmit = { removeProduct(this) }
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.cartItemState) {
+            concatAdapter.clearAdapter()
+            buildCart(it)
         }
     }
 
@@ -81,7 +83,7 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
 
     private fun errorOrAuth(@StringRes strResId: Int) {
         if (strResId == R.string.forCheckCart) {
-            showAlert(strResId) {
+            uiHelper.showDialog(getString(strResId)) {
                 cancelable = false
                 positive = getString(R.string.signIn)
                 negative = getString(R.string.cancel)
@@ -89,14 +91,14 @@ class CartFragment(private val viewModel: CartViewModel) : BaseMVVMFragment(R.la
                 negativeAction = { navController.onNavDestinationSelected(R.id.nav_home, inclusive = true) }
             }
         } else {
-            messageCallback?.showError(strResId)
+            uiHelper.showDialog(getString(strResId))
         }
     }
 
-    private fun askConfirmation(productId: Int) = showAlertRes(getString(R.string.areYouSure)) {
-        positive = R.string.delete
+    private fun askConfirmation(productId: Int) = uiHelper.showDialog(getString(R.string.areYouSure)) {
+        positive = getString(R.string.delete)
         positiveAction = { viewModel.removeProductFromCart(productId) }
-        negative = R.string.cancel
+        negative = getString(R.string.cancel)
     }
 
     private fun startDeliveryProcess(cartItem: CartItem) = navController.navigate(fromCartToCheckout(cartItem))

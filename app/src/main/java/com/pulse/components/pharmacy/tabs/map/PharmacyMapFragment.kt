@@ -34,10 +34,13 @@ class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnM
         super.onViewCreated(view, savedInstanceState)
 
         mapPharmacy.onCreate(savedInstanceState)
+    }
+
+    override fun initUI() = with(binding) {
         mapPharmacy.getMapAsync(this@PharmacyMapFragment)
     }
 
-    override fun onBindLiveData() {
+    override fun onBindStates() {
         observeSavedStateHandler(PHARMACY_KEY, ::addProduct)
     }
 
@@ -78,10 +81,8 @@ class PharmacyMapFragment : BaseTabFragment(R.layout.fragment_pharmacy_map), OnM
 
     override fun onMapReady(map: GoogleMap?) {
         googleMap = map
-        observeResult(viewModel.pharmacyListLiveData) {
-            onEmmit = { showMarkers(this) }
-        }
-
+        val items = viewModel.pharmacyListState.value
+        if (items.isNotEmpty()) showMarkers(items)
         googleMap?.setOnMarkerClickListener { marker ->
             viewModel.getPharmacy(marker.tag as Int)
             true

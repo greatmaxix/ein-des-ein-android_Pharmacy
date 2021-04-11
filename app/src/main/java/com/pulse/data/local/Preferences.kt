@@ -44,5 +44,4 @@ object Preferences {
         private const val IS_CHAT_FOREGROUND = "is_chat_foreground"
         val FIELD_IS_CHAT_FOREGROUND = booleanPreferencesKey(IS_CHAT_FOREGROUND)
     }
-
 }

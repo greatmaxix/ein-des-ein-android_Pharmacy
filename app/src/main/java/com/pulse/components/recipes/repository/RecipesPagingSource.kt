@@ -2,12 +2,10 @@ package com.pulse.components.recipes.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.pulse.components.recipes.RecipesUseCase
 import com.pulse.components.recipes.model.Recipe
-import com.pulse.core.general.Event
 import com.pulse.data.GeneralException
 
-class RecipesPagingSource(private val useCase: RecipesUseCase, private val count: (Int) -> Unit, private val error: (Event<GeneralException>) -> Unit) :
+class RecipesPagingSource(private val useCase: RecipesUseCase, private val count: (Int) -> Unit, private val error: (GeneralException) -> Unit) :
     PagingSource<Int, Recipe>() {
 
     override suspend fun load(params: LoadParams<Int>) = try {
@@ -17,7 +15,7 @@ class RecipesPagingSource(private val useCase: RecipesUseCase, private val count
         }
     } catch (e: Throwable) {
         if (e is GeneralException) {
-            error(Event(e))
+            error(e)
         }
         LoadResult.Error(Exception(e.message))
     }

@@ -1,7 +1,6 @@
 package com.pulse.components.analyzes.details
 
-import android.os.Bundle
-import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
@@ -9,13 +8,14 @@ import com.pulse.components.analyzes.details.AnalyzeDetailsFragmentDirections.Co
 import com.pulse.components.analyzes.details.AnalyzeDetailsFragmentDirections.Companion.globalToClinicCard
 import com.pulse.components.analyzes.details.AnalyzeDetailsFragmentDirections.Companion.globalToClinicTabs
 import com.pulse.components.analyzes.details.adapter.ClinicsAdapter
-import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.base.fragment.BaseToolbarFragment
 import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentAnalyzeDetailsBinding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class AnalyzeDetailsFragment(private val viewModel: AnalyzeDetailsViewModel) : BaseMVVMFragment(R.layout.fragment_analyze_details) {
+class AnalyzeDetailsFragment :
+    BaseToolbarFragment<AnalyzeDetailsViewModel>(R.layout.fragment_analyze_details, AnalyzeDetailsViewModel::class) {
 
     private val args by navArgs<AnalyzeDetailsFragmentArgs>()
     private val binding by viewBinding(FragmentAnalyzeDetailsBinding::bind)
@@ -26,9 +26,7 @@ class AnalyzeDetailsFragment(private val viewModel: AnalyzeDetailsViewModel) : B
         { showDirection(it.location.lat, it.location.lng) }
     )
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI() = with(binding) {
         showBackButton()
         val category = args.category
         val clinic = args.clinic
@@ -48,15 +46,12 @@ class AnalyzeDetailsFragment(private val viewModel: AnalyzeDetailsViewModel) : B
             mbSeeAll.onClickDebounce { navController.navigate(globalToClinicTabs()) }
             groupClinics.visible()
         }
-
     }
 
-    override fun onBindLiveData() {
-        observeResult(viewModel.clinicsListLiveData) {
-            onEmmit = {
-                binding.mtvClinics.text = getString(R.string.clinics_holder, this.size)
-                clinicsAdapter.notifyItems(this)
-            }
+    override fun onBindStates() = with(lifecycleScope) {
+        observe(viewModel.clinicsListState) {
+            binding.mtvClinics.text = getString(R.string.clinics_holder, it.size)
+            clinicsAdapter.notifyItems(it)
         }
     }
 }

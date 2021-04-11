@@ -1,26 +1,22 @@
 package com.pulse.components.analyzes.order
 
-import android.os.Bundle
-import android.view.View
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
 import com.pulse.components.checkout.model.PaymentMethodAdapterModel
 import com.pulse.components.payments.model.PaymentMethod
-import com.pulse.core.base.mvvm.BaseMVVMFragment
+import com.pulse.core.base.fragment.BaseToolbarFragment
 import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentAnalyzeOrderBinding
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class AnalyzeOrderFragment(private val viewModel: AnalyzeOrderViewModel) : BaseMVVMFragment(R.layout.fragment_analyze_order) {
+class AnalyzeOrderFragment : BaseToolbarFragment<AnalyzeOrderViewModel>(R.layout.fragment_analyze_order, AnalyzeOrderViewModel::class) {
 
     private val args by navArgs<AnalyzeOrderFragmentArgs>()
     private val binding by viewBinding(FragmentAnalyzeOrderBinding::bind)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUI()  = with(binding) {
         showBackButton()
         with(args.order) {
             toolbar.toolbar.title = getString(R.string.order_num_holder, orderNo)
@@ -49,9 +45,9 @@ class AnalyzeOrderFragment(private val viewModel: AnalyzeOrderViewModel) : BaseM
             val totalCost = clinic.servicePrice.toPrice()
             mtvTotalPayable.text = totalCost
             mbCancel.onClickDebounce {
-                showAlertRes(R.string.thanks_for_using_pulse) {
-                    title = R.string.request_cancelled
-                    positive = R.string.common_okButton
+                uiHelper.showDialog(getString(R.string.thanks_for_using_pulse)) {
+                    title = getString(R.string.request_cancelled)
+                    positive = getString(R.string.common_okButton)
                     positiveAction = {
                         navController.popBackStack()
                     }

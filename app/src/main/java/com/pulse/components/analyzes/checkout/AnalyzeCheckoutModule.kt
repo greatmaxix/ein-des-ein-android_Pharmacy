@@ -4,7 +4,6 @@ import com.pulse.components.analyzes.checkout.repository.AnalyzeCheckoutLocalDat
 import com.pulse.components.analyzes.checkout.repository.AnalyzeCheckoutRemoteDataSource
 import com.pulse.components.analyzes.checkout.repository.AnalyzeCheckoutRepository
 import com.pulse.data.local.DBManager
-import org.koin.androidx.fragment.dsl.fragment
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
@@ -17,6 +16,4 @@ val analyzeCheckoutModule = module {
     single { AnalyzeCheckoutLocalDataSource(get<DBManager>().customerDAO) }
 
     viewModel { AnalyzeCheckoutViewModel(get()) }
-
-    fragment { AnalyzeCheckoutFragment(get()) }
 }

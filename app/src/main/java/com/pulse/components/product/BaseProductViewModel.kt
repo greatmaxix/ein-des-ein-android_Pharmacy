@@ -1,15 +1,15 @@
 package com.pulse.components.product
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.pulse.R
 import com.pulse.components.product.model.Product
 import com.pulse.components.product.repository.ProductRepository
 import com.pulse.components.user.repository.CustomerRepository
 import com.pulse.components.user.wishlist.repository.WishRepository
 import com.pulse.core.base.mvvm.BaseViewModel
-import com.pulse.core.general.SingleLiveEvent
-import com.pulse.core.network.ResponseWrapper.Error
-import com.pulse.core.network.ResponseWrapper.Success
+import com.pulse.core.utils.flow.SingleShotEvent
+import com.pulse.core.utils.flow.StateEventFlow
+import com.pulse.data.GeneralException
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -21,20 +21,9 @@ abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
     protected val repositoryUser by inject<CustomerRepository>()
     private val repositoryProduct by inject<ProductRepository>()
 
-    protected val _progressLiveData by lazy { SingleLiveEvent<Boolean>() }
-    val progressLiveData: LiveData<Boolean> by lazy { _progressLiveData }
-
-    protected val _errorLiveData by lazy { SingleLiveEvent<Int>() }
-    val errorLiveData: LiveData<Int> by lazy { _errorLiveData }
-
-    private val _productLiveData by lazy { SingleLiveEvent<Product>() }
-    val productLiteLiveData: LiveData<Product> by lazy { _productLiveData }
-
-    private val _wishLiveData by lazy { SingleLiveEvent<Int>() }
-    val wishLiteLiveData: LiveData<Int> by lazy { _wishLiveData }
-
-    private val _recentlyViewedLiveData by lazy { SingleLiveEvent<List<Product>>() }
-    val recentlyViewedLiveData: LiveData<List<Product>> by lazy { _recentlyViewedLiveData }
+    val productLiteEvent = SingleShotEvent<Product>()
+    val recentlyViewedState = StateEventFlow<List<Product>>(listOf())
+    val wishEvent = SingleShotEvent<Int>()
 
     private var wishToSave: Pair<Boolean, Int>? = null
 
@@ -42,45 +31,28 @@ abstract class BaseProductViewModel : BaseViewModel(), KoinComponent {
         wishToSave?.let(::setOrRemoveWish)
     }
 
-    fun getProductInfo(globalProductId: Int) {
-        _progressLiveData.value = true
-        launchIO {
-            // Will be changed and fixed on Flow migration
-            val response = repositoryProduct.productById(globalProductId)
-            _progressLiveData.postValue(false)
-            when (response) {
-                is Success -> saveToRecentlyViewedAndProceed(response.value.data.item)
-                is Error -> _errorLiveData.postValue(response.errorResId)
-            }
-        }
+    fun getProductInfo(globalProductId: Int) = viewModelScope.execute {
+        saveToRecentlyViewedAndProceed(repositoryProduct.productById(globalProductId).data.item)
     }
 
     private suspend fun saveToRecentlyViewedAndProceed(product: Product) {
         repositoryProduct.saveRecentlyViewed(product)
-        _productLiveData.postValue(product)
+        productLiteEvent.offerEvent(product)
     }
 
-    fun setOrRemoveWish(setOrRemove: Pair<Boolean, Int>) {
-        launchIO {
-            if (repositoryUser.isCustomerExist()) {
-                _progressLiveData.postValue(true)
-                when (val response = repositoryWish.setOrRemoveWish(setOrRemove.first to setOrRemove.second)) {
-                    is Success -> {
-                        _wishLiveData.postValue(setOrRemove.second)
-                        wishToSave = null
-                    }
-                    is Error -> _errorLiveData.postValue(response.errorResId)
-                }
-                _progressLiveData.postValue(false)
-            } else {
-                wishToSave = setOrRemove
-                _errorLiveData.postValue(R.string.forAddingProduct)
-            }
+    fun setOrRemoveWish(setOrRemove: Pair<Boolean, Int>) = viewModelScope.execute {
+        if (repositoryUser.isCustomerExist()) {
+            repositoryWish.setOrRemoveWish(setOrRemove.first to setOrRemove.second)
+            wishEvent.offerEvent(setOrRemove.second)
+            wishToSave = null
+        } else {
+            wishToSave = setOrRemove
+            throw GeneralException("Error adding product to wish", resId = R.string.forAddingProduct, null, null)
         }
     }
 
-    fun getRecentlyViewed() {
-        launchIO { _recentlyViewedLiveData.postValue(repositoryProduct.getRecentlyViewed()) }
+    suspend fun getRecentlyViewed() {
+        recentlyViewedState.postState(repositoryProduct.getRecentlyViewed())
     }
 
     companion object {

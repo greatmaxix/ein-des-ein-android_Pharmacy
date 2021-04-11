@@ -1,13 +1,11 @@
 package com.pulse.components.region.repository
 
-import com.pulse.components.user.model.customer.CustomerItem
-import com.pulse.core.network.ResponseWrapper
-import com.pulse.data.remote.RestManager
-import com.pulse.model.BaseDataResponse
+import com.pulse.data.remote.RestConstants
+import com.pulse.data.remote.api.RestApi
 
-class RegionRemoteDataSource(private val rm: RestManager) {
+class RegionRemoteDataSource(private val ra: RestApi) {
 
-    suspend fun getRegions() = rm.regions()
+    suspend fun getRegions() = ra.regions()
 
-    suspend fun updateCustomerRegion(id: Int): ResponseWrapper<BaseDataResponse<CustomerItem>> = rm.updateRegion(id)
+    suspend fun updateCustomerRegion(id: Int) = ra.updateRegion(mapOf(RestConstants.REGION_ID to id))
 }

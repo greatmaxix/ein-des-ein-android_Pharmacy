@@ -13,7 +13,7 @@ import com.pulse.components.product.model.Product
 import com.pulse.components.user.model.addressAndNote.AddressDAO
 import com.pulse.components.user.model.customer.Customer
 import com.pulse.components.user.model.customer.CustomerDAO
-import com.pulse.core.general.interfaces.ManagerInterface
+import com.pulse.core.interfaces.ManagerInterface
 import com.pulse.data.remote.model.order.DeliveryInfoOrderData
 import com.pulse.model.Picture
 import com.pulse.model.category.Category

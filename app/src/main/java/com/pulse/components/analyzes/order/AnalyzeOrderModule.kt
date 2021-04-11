@@ -4,7 +4,6 @@ import com.pulse.components.analyzes.order.repository.AnalyzeOrderLocalDataSourc
 import com.pulse.components.analyzes.order.repository.AnalyzeOrderRemoteDataSource
 import com.pulse.components.analyzes.order.repository.AnalyzeOrderRepository
 import com.pulse.data.local.DBManager
-import org.koin.androidx.fragment.dsl.fragment
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
@@ -17,6 +16,4 @@ val analyzeOrderModule = module {
     single { AnalyzeOrderLocalDataSource(get<DBManager>().customerDAO) }
 
     viewModel { AnalyzeOrderViewModel(get()) }
-
-    fragment { AnalyzeOrderFragment(get()) }
 }

@@ -1,7 +1,5 @@
 package com.pulse.components.auth.sign
 
-import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -23,13 +21,10 @@ class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
     private val args by navArgs<SignInFragmentArgs>()
     private val binding by viewBinding(FragmentSignInBinding::bind)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun initUI() {
         with(binding) {
-            super.onViewCreated(view, savedInstanceState)
-
             viewModel.popBackId = args.popBackId
             viewModel.nextDestinationId = args.nextDestinationId
-
             tilPhone.setPhoneRule()
             tilPhone.fixPrefixGravity()
             etPhone.onDoneImeAction { loginOrError() }
@@ -58,9 +53,7 @@ class SignInFragment : SignBaseFragment(R.layout.fragment_sign_in) {
         if (focused) binding.etPhone.hint = null else binding.etPhone.setHintSpan(phoneHint, phoneHint.length - 1, phoneHint.length)
     }
 
-    override fun onBindLiveData() {
-        observeResult(viewModel.signInLiveData) {
-            onEmmit = { this?.let(navController::navigate) }
-        }
+    override fun onBindEvents() = with(lifecycleScope) {
+        observe(viewModel.signInEvent.events, navController::navigate)
     }
 }

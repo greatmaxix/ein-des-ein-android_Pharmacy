@@ -49,7 +49,9 @@
     <string name="permissionDialogCancel">Bekor qilish</string>
     <string name="cameraPermissionDenied">Kameradan foydalanish taqiqlangan</string>
     <string name="cameraPermissionNoCameraOnDevice">Qurilmada kamera yo‘q</string>
-    <string name="toss">Ro\'yxatdan o\'tish orqali men Xizmat ko\'rsatish shartlari va Maxfiylik siyosatiga rozilik bildiraman</string>
+    <string name="by_registering_i_agree_holder">Ro\'yxatdan o\'tish orqali men %s va %s</string>
+    <string name="terms_of_service">Xizmat ko\'rsatish shartlari</string>
+    <string name="privacy_policy">Maxfiylik siyosatiga rozilik bildiraman</string>
     <string name="expectSoonMock">Tez orada kuting</string>
     <string name="recentlyViewedImageDescription">Yaqinda ko\'rilgan mahsulot belgisi</string>
     <string name="mustNotBeEmpty">Matn bo\'sh bo\'lmasligi kerak</string>

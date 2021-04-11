@@ -13,7 +13,6 @@ import org.koin.dsl.module
 @OptIn(KoinApiExtension::class)
 val clinicTabsModule = module {
 
-    fragment { ClinicTabsFragment() }
     fragment { ClinicMapFragment() }
     fragment { ClinicListFragment() }
 

@@ -2,6 +2,7 @@ package com.pulse.components.product
 
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
+import androidx.lifecycle.lifecycleScope
 import com.pulse.MainGraphDirections.Companion.globalToProductCard
 import com.pulse.R
 import com.pulse.components.categories.search.CategoriesSearchFragment
@@ -12,26 +13,28 @@ import com.pulse.components.scanner.ScannerListFragment
 import com.pulse.components.search.SearchFragment
 import com.pulse.components.search.SearchFragmentDirections.Companion.fromSearchToProduct
 import com.pulse.components.user.wishlist.WishFragment
-import com.pulse.core.base.mvvm.BaseMVVMFragment
-import com.pulse.core.extensions.showAlert
+import com.pulse.core.base.fragment.BaseToolbarFragment
+import com.pulse.core.extensions.observe
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.core.component.KoinApiExtension
+import kotlin.reflect.KClass
 
 @KoinApiExtension
-abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private val layoutResourceId: Int, private val viewModel: VM) : BaseMVVMFragment(layoutResourceId) {
+@ExperimentalCoroutinesApi
+abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private val layoutResourceId: Int, viewModelClass: KClass<VM>) :
+    BaseToolbarFragment<VM>(layoutResourceId, viewModelClass) {
 
-    override fun onBindLiveData() {
-        observe(viewModel.errorLiveData, ::errorOrAuth)
-        observe(viewModel.wishLiteLiveData, ::notifyWish)
-        observe(viewModel.progressLiveData) { progressCallback?.setInProgress(it) }
-        observe(viewModel.productLiteLiveData) { navController.navigate(getNavDirection(it)) }
+    abstract fun notifyWish(globalProductId: Int)
+
+    override fun onBindEvents() = with(lifecycleScope) {
+        observe(viewModel.wishEvent.events, ::notifyWish)
+        observe(viewModel.productLiteEvent.events) { navController.navigate(getNavDirection(it)) }
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.checkIsWishSaved()
     }
-
-    abstract fun notifyWish(globalProductId: Int)
 
     /*
      * Here we may write some custom logic for authorization process.
@@ -43,13 +46,13 @@ abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private
 
     private fun errorOrAuth(@StringRes strResId: Int) {
         if (strResId == R.string.forAddingProduct) {
-            showAlert(strResId) {
+            uiHelper.showDialog(getString(strResId)) {
                 positive = getString(R.string.signIn)
                 negative = getString(R.string.cancel)
                 positiveAction = { needToLogin() }
             }
         } else {
-            messageCallback?.showError(strResId)
+            uiHelper.showMessage(getString(strResId))
         }
     }
 
@@ -64,6 +67,7 @@ abstract class BaseProductFragment<VM : BaseProductViewModel>(@LayoutRes private
     }
 
     companion object {
+
         const val PRODUCT_WISH_KEY = "productWishKey"
         const val PRODUCT_WISH_FIELD = "productWishField"
     }
