@@ -9,7 +9,6 @@ import android.provider.MediaStore
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -39,7 +38,6 @@ class EditProfileFragment : BaseToolbarFragment<ProfileViewModel>(R.layout.fragm
     private val uri by lazy { FileProvider.getUriForFile(requireContext(), "${BuildConfig.APPLICATION_ID}.fileprovider", viewModel.avatarFile) }
     private lateinit var choosePhotoLauncher: ActivityResultLauncher<Intent>
     private lateinit var takePhotoLauncher: ActivityResultLauncher<Uri>
-    private var userDataChanged = false
 
     override fun initUI() = with(binding) {
         showBackButton()
@@ -48,10 +46,7 @@ class EditProfileFragment : BaseToolbarFragment<ProfileViewModel>(R.layout.fragm
             val isNameValid = tilName.checkLength(getString(R.string.nameErrorAuth))
             val isPhoneValid = tilPhone.isPhoneNumberValid(getString(R.string.phoneErrorAuth))
             val isEmailValid = if (tilEmail.text().isNotEmpty()) tilEmail.checkEmail(getString(R.string.emailErrorAuth)) else true
-            if (isNameValid && isPhoneValid && isEmailValid) {
-                viewModel.updateCustomerData(tilName.text(), tilEmail.text())
-                userDataChanged = false
-            }
+            if (isNameValid && isPhoneValid && isEmailValid) viewModel.updateCustomerData(tilName.text(), tilEmail.text())
         }
         ivProfile.setDebounceOnClickListener { showPhotoSourceChooserDialog() }
         setFragmentResultListener(CHANGE_PHOTO_KEY) { _, bundle -> handleChangePhotoAction(bundle) }
@@ -61,17 +56,8 @@ class EditProfileFragment : BaseToolbarFragment<ProfileViewModel>(R.layout.fragm
         takePhotoLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { viewModel.onActivityResult(uri) }
     }
 
-    private fun backPressedHandler() {
-        if (userDataChanged) {
-            uiHelper.showDialog(getString(R.string.exitWithoutSaving)) {
-                cancelable = false
-                positive = getString(R.string.common_okButton)
-                positiveAction = { navController.popBackStack() }
-                negative = getString(R.string.cancel)
-            }
-        } else {
-            navController.popBackStack()
-        }
+    private fun backPressedHandler() = with(binding) {
+        viewModel.checkIsProfileSaved(tilName.text(), tilEmail.text())
     }
 
     override fun onBindStates() = with(lifecycleScope) {
@@ -80,14 +66,27 @@ class EditProfileFragment : BaseToolbarFragment<ProfileViewModel>(R.layout.fragm
                 etEmail.setText(it?.email)
                 etPhone.setText(it?.phone?.addPlusSignIfNeeded())
                 etName.setText(it?.name)
-                etName.addTextChangedListener { userDataChanged = true }
-                etEmail.addTextChangedListener { userDataChanged = true }
             }
             observe(viewModel.avatarState) {
                 ivProfile.loadGlideDrawableByURL(it) {
                     placeholder(R.drawable.ic_avatar)
                     skipMemoryCache(true)
                     apply(RequestOptions().transform(MultiTransformation(BlurTransformation(requireContext()), CircleCrop())))
+                }
+            }
+        }
+    }
+
+    override fun onBindEvents() = with(lifecycleScope) {
+        observe(viewModel.profileEditedEvent.events) {
+            if (it) {
+                navController.popBackStack()
+            } else {
+                uiHelper.showDialog(getString(R.string.exitWithoutSaving)) {
+                    cancelable = false
+                    positive = getString(R.string.common_okButton)
+                    positiveAction = { navController.popBackStack() }
+                    negative = getString(R.string.cancel)
                 }
             }
         }

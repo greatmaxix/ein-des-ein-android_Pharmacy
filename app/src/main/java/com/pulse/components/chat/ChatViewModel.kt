@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import com.pulse.components.chat.adapter.ChatMessageAdapter
 import com.pulse.components.chat.model.chat.ChatItem
 import com.pulse.components.chat.model.message.MessageItem
 import com.pulse.components.chat.repository.ChatMessagesRemoteMediator
@@ -15,12 +16,14 @@ import com.pulse.components.product.model.Product
 import com.pulse.components.product.repository.ProductRepository
 import com.pulse.components.user.wishlist.repository.WishRepository
 import com.pulse.core.base.mvvm.BaseViewModel
+import com.pulse.core.extensions.falseIfNull
 import com.pulse.core.extensions.getMultipartBody
 import com.pulse.core.utils.flow.SingleShotEvent
 import com.pulse.core.utils.flow.StateEventFlow
 import com.pulse.data.remote.model.chat.SendReviewRequest
 import com.pulse.util.Constants
 import com.pulse.util.ImageFileUtil
+import kotlinx.coroutines.flow.onEach
 import org.koin.core.component.KoinApiExtension
 import java.io.File
 
@@ -34,8 +37,11 @@ class ChatViewModel(
 ) : BaseViewModel() {
 
     private val chatId = chat?.id ?: -1
-    val isUserLoggedInState = StateEventFlow<Boolean?>(null)
-    val lastMessageState = repository.getLastMessageFlow(chatId)
+    private val isUserLoggedIn = repository.isUserLoggedIn.falseIfNull()
+    val inputFieldState = StateEventFlow(isUserLoggedIn)
+    val lastMessageState = repository.getLastMessageFlow(chatId).onEach {
+        checkUserLoggedIn(it?.messageType == ChatMessageAdapter.TYPE_END_CHAT)
+    }
     val chatFlow = repository.getChatFlow(chatId)
     val wishEvent = SingleShotEvent<Int>()
     val closeChatResultEvent = SingleShotEvent<Unit>()
@@ -62,8 +68,8 @@ class ChatViewModel(
 
     val tempPhotoFile = File(context.externalCacheDir, Constants.TEMP_PHOTO_FILE_NAME)
 
-    fun checkUserLoggedIn() {
-        isUserLoggedInState.postState(repository.isUserLoggedIn)
+    private fun checkUserLoggedIn(isEndMessage: Boolean = false) {
+        inputFieldState.postState(isUserLoggedIn && !isEndMessage)
     }
 
     fun sendMessage(message: String) = viewModelScope.execute {

@@ -1,9 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Pulse</string>
     <string name="default_notification_channel_id" translatable="false">pulse_channel</string>
     <string name="common_okButton" translatable="false">OK</string>
     <string name="onboarding_title_2" translatable="false">@string/delivery</string>
-
     <string name="error_networkErrorMessage">Connection error</string>
     <string name="error_errorGettingData">Data error</string>
     <string name="error_serverNotResponding">Server is not responding</string>
@@ -317,8 +317,6 @@
     <string name="your_request_accepted">Your application is accepted!</string>
     <string name="request_cancelled">Recording canceled</string>
     <string name="thanks_for_using_pulse">Thanks for using Pulse</string>
-
-    <!-- TODO translate strings and move to required lang -->
     <string name="mapTitleHome">IATA\nTravel Pass</string>
     <string name="delegateDetails">Данные получателя :</string>
     <string name="emailHint">Email</string>
@@ -372,7 +370,6 @@
     <string name="send">Отправить</string>
     <string name="note_cant_be_empty">Комментарий не может быть пустым</string>
     <string name="language_uz">Узбекский</string>
-
     <string name="phoneHint">+7(•••) •••-••-••</string>
     <string name="authPhoneHint">+7 (•••) •••–••–••*</string>
     <string name="authPhoneDebugHint">+3 (•••) •••–••–••*</string>
@@ -397,5 +394,5 @@
     <string name="emailDistribution">Email рассылка</string>
     <string name="product_arrival_notifications">О поступлении товара</string>
     <string name="price_reduction_notification">О снижении цены</string>
-    <string name="naotherr_payment_type_title_empty">Увы, этот тип оплаты еще не подключен</string>
+    <string name="another_payment_type_title_empty">Увы, этот тип оплаты еще не подключен</string>
 </resources>

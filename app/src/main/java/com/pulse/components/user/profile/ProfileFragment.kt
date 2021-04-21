@@ -11,7 +11,6 @@ import com.pulse.R
 import com.pulse.components.mercureService.MercureEventListenerService
 import com.pulse.components.stub.model.StubType
 import com.pulse.components.user.profile.ProfileFragmentDirections.Companion.actionFromProfileToEdit
-import com.pulse.components.user.profile.ProfileFragmentDirections.Companion.actionFromProfileToWish
 import com.pulse.components.user.profile.ProfileFragmentDirections.Companion.fromProfileToNotifications
 import com.pulse.components.user.profile.ProfileFragmentDirections.Companion.fromProfileToPayments
 import com.pulse.core.base.fragment.BaseToolbarFragment
@@ -26,7 +25,7 @@ class ProfileFragment : BaseToolbarFragment<ProfileViewModel>(R.layout.fragment_
     override fun initUI() = with(binding) {
         fabEditProfile.setDebounceOnClickListener { navController.navigate(actionFromProfileToEdit()) }
 
-        llWishContainer.onClickDebounce { navController.navigate(actionFromProfileToWish()) }
+        llWishContainer.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_wish, null, R.id.nav_profile) }
         llAnalyzesContainer.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_analyzes, null, R.id.nav_profile) }
         llRecipesContainer.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_recipes, null, R.id.nav_profile) }
         llOrderContainer.onClickDebounce { navController.onNavDestinationSelected(R.id.nav_orders, null, R.id.nav_profile) }
