@@ -43,7 +43,6 @@ import com.pulse.core.base.fragment.BaseToolbarFragment
 import com.pulse.core.extensions.*
 import com.pulse.databinding.FragmentChatBinding
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
@@ -114,7 +113,6 @@ class ChatFragment : BaseToolbarFragment<ChatViewModel>(R.layout.fragment_chat, 
                 SendBottomSheetDialogFragment.Button.CAMERA.name -> requestTakePhoto()
             }
         }
-        viewModel.checkUserLoggedIn()
     }
 
     override fun onClickNavigation() = navController.navigate(actionChatToHome())
@@ -132,6 +130,7 @@ class ChatFragment : BaseToolbarFragment<ChatViewModel>(R.layout.fragment_chat, 
     }
 
     private fun showChatEndDialog(isAutoClosed: Boolean = false) {
+        hideKeyboard()
         uiHelper.showDialog(getString(if (isAutoClosed) R.string.chat_ended_automatically_message else R.string.chatEndedMessage)) {
             cancelable = false
             title = getString(R.string.chatEndedTitle)
@@ -196,7 +195,10 @@ class ChatFragment : BaseToolbarFragment<ChatViewModel>(R.layout.fragment_chat, 
 
     @ExperimentalPagingApi
     override fun onBindStates() = with(lifecycleScope) {
-        observe(viewModel.isUserLoggedInState) { if (it.falseIfNull()) binding.llMessageField.visible() }
+        observe(viewModel.inputFieldState) {
+            binding.llMessageField.visibleOrGone(it)
+            if (!it) hideKeyboard()
+        }
         observe(viewModel.chatMessagesState) { chatAdapter.submitData(lifecycle, it) }
         observe(viewModel.lastMessageState) { scrollToLastMessage() }
         observe(viewModel.chatFlow) { if (it?.isAutomaticClosed.falseIfNull()) showChatEndDialog(true) }
@@ -217,7 +219,6 @@ class ChatFragment : BaseToolbarFragment<ChatViewModel>(R.layout.fragment_chat, 
         scrollerJob?.cancel()
         if (chatAdapter.itemCount != 0) {
             scrollerJob = viewLifecycleOwner.lifecycleScope.launch {
-                delay(500)
                 binding.rvMessages.smoothScrollToPosition(0)
             }
         }

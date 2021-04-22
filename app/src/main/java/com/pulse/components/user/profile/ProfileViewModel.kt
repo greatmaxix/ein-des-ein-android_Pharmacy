@@ -12,6 +12,7 @@ import com.pulse.components.user.profile.ProfileFragmentDirections.Companion.act
 import com.pulse.components.user.profile.repository.ProfileRepository
 import com.pulse.core.base.mvvm.BaseViewModel
 import com.pulse.core.extensions.getMultipartBody
+import com.pulse.core.utils.flow.SingleShotEvent
 import com.pulse.core.utils.flow.StateEventFlow
 import com.pulse.util.Constants.AVATAR_FILE_NAME
 import com.pulse.util.ImageFileUtil
@@ -26,6 +27,7 @@ class ProfileViewModel(private val context: Context, private val repository: Pro
     }
     var avatarFile = File(context.externalCacheDir, AVATAR_FILE_NAME)
     val avatarState = StateEventFlow<String?>(avatarFile.absolutePath)
+    val profileEditedEvent = SingleShotEvent<Boolean>()
 
     fun updateCustomerData(
         name: String = customer?.name.orEmpty(),
@@ -69,5 +71,9 @@ class ProfileViewModel(private val context: Context, private val repository: Pro
 
     private fun deleteLocalAvatar() {
         if (avatarFile.exists()) avatarFile.delete()
+    }
+
+    fun checkIsProfileSaved(fullName: String, email: String) {
+        profileEditedEvent.offerEvent(customer?.name == fullName && customer?.email == email)
     }
 }

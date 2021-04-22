@@ -2,7 +2,6 @@ package com.pulse.main
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.annotation.NavigationRes
 import androidx.lifecycle.lifecycleScope
@@ -29,11 +28,6 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     private val localeManager by inject<ILocaleManager>()
     private val navigationHelper: INavigationHelper by lazy { NavigationHelper(this) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
-        super.onCreate(savedInstanceState)
-    }
-
     override fun initUI() {
         binding.bottomNavigation.setTopRoundCornerBackground()
         navigationHelper.setBottomNavItems(viewModel.getCurrentCustomer())
@@ -53,16 +47,6 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
     }
 
     override fun attachBaseContext(newBase: Context) = super.attachBaseContext(localeManager.createLocalisedContext(newBase))
-
-    override fun finish() {
-        overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
-        super.finish()
-    }
-
-    override fun startActivity(intent: Intent?) {
-        overridePendingTransition(ANIM_ENTER, ANIM_EXIT)
-        super.startActivity(intent)
-    }
 
     override fun onBindStates() = with(lifecycleScope) {
         observe(navigationHelper.onDestinationChangedFlow) {
@@ -90,11 +74,5 @@ class MainActivity : BaseMVVMActivity<MainViewModel>(R.layout.activity_main, Mai
 
     override fun onBackPressed() {
         navigationHelper.onBackPress { super.onBackPressed() }
-    }
-
-    companion object {
-
-        private const val ANIM_EXIT = R.anim.nav_exit_anim
-        private const val ANIM_ENTER = R.anim.nav_enter_anim
     }
 }
