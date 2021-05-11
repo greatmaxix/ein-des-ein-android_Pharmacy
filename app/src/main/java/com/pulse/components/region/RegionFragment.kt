@@ -20,7 +20,7 @@ class RegionFragment : BaseMVVMFragment<RegionViewModel>(R.layout.fragment_regio
                 binding.viewSearch.clearFocus()
                 viewModel.regionSelected(it)
             },
-            { value -> viewLifecycleOwner.lifecycleScope.launch { binding.llRegionNotFoundContainer.animateVisibleOrGoneIfNot(value) } }
+            { value -> viewLifecycleOwner.lifecycleScope.launch { binding.llRegionNotFoundContainer.visibleOrGone(value) } }
         )
     }
 

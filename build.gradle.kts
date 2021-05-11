@@ -11,13 +11,13 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:4.1.3")
+        classpath("com.android.tools.build:gradle:4.2.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}")
         classpath("com.google.gms:google-services:4.3.5")
         classpath("org.koin:koin-gradle-plugin:${Versions.koin}")
         classpath("com.google.firebase:firebase-crashlytics-gradle:2.5.2")
-        classpath("com.google.firebase:firebase-appdistribution-gradle:2.1.0")
+        classpath("com.google.firebase:firebase-appdistribution-gradle:2.1.1")
     }
 }
 

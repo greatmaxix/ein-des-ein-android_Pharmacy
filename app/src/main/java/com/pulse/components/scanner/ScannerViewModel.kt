@@ -4,13 +4,14 @@ import androidx.lifecycle.viewModelScope
 import com.pulse.components.product.BaseProductViewModel
 import com.pulse.components.product.model.ProductLite
 import com.pulse.components.scanner.repository.ScannerRepository
+import com.pulse.core.utils.flow.SingleShotEvent
 import com.pulse.core.utils.flow.StateEventFlow
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
 class ScannerViewModel(private val repository: ScannerRepository) : BaseProductViewModel() {
 
-    val resultState = StateEventFlow<List<ProductLite>>(listOf())
+    val resultEvent = SingleShotEvent<List<ProductLite>>()
     val descriptionVisibilityState = StateEventFlow(!repository.isQrCodeDescriptionShown())
 
     fun descriptionViewed() {
@@ -23,7 +24,7 @@ class ScannerViewModel(private val repository: ScannerRepository) : BaseProductV
         if (items.size == 1) {
             getProductInfo(items.first().globalProductId)
         } else {
-            resultState.postState(items)
+            resultEvent.sendEvent(items)
         }
     }
 }
