@@ -15,7 +15,7 @@ class PharmacyListFragment : BaseTabFragment(R.layout.fragment_pharmacy_list) {
 
     private val binding by viewBinding(FragmentPharmacyListBinding::bind)
     private val pharmacyAdapter = PharmacyListAdapter(
-        { it.pharmacyProducts?.first()?.pharmacyProductId?.let(::addProduct) },
+        { it.pharmacyProducts?.first()?.pharmacyProductId?.let { addProduct(it) } },
         ::showDial,
         { showDirection(it.location.lat, it.location.lng) }
     )

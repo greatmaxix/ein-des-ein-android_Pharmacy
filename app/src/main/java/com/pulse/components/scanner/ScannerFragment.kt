@@ -48,7 +48,7 @@ class ScannerFragment : BaseProductFragment<ScannerViewModel>(R.layout.fragment_
 
     override fun onBindStates() = with(lifecycleScope) {
         observe(viewModel.descriptionVisibilityState) { binding.groupInstruction.animateVisibleOrGone(it) }
-        observe(viewModel.resultState) { navController.navigate(fromScannerToListResult(it.toTypedArray())) }
+        observe(viewModel.resultEvent.events) { navController.navigate(fromScannerToListResult(it.toTypedArray())) }
     }
 
     private fun initQRCamera() {
