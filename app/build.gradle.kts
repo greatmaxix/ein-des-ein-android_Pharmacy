@@ -27,7 +27,9 @@ android {
         consumerProguardFile(File(buildDir, NAVARGS_PROGUARD_RULES_PATH))
 
         with(DefaultConfig) {
-            val buildCode = "git rev-list --count remotes/origin/master remotes/origin/develop".execute.toInt()
+            //write new logic for determine buildcode!!
+//          val buildCode = "git rev-list --count remote/origin/master remote/origin/develop".execute().toInt()
+            val buildCode = 2022081700
             minSdkVersion(minSdk)
             targetSdkVersion(targetSdk)
             versionCode(buildCode)
@@ -84,7 +86,7 @@ android {
             buildConfigField("Boolean", "IHSANBAL", "false")
             versionNameSuffix = "-qa"
             firebaseAppDistribution {
-                releaseNotes = "git log --pretty=format:${"%s"} -20 --merges".execute
+                releaseNotes = "git log --pretty=format:${"%s"} -20 --merges".execute()
                     .split("\n")
                     .filter { it.contains("fix/") || it.contains("feature/") || it.contains("hotfix/") }
                     .joinToString("\n") {
@@ -194,11 +196,12 @@ dependencies {
     implementation("com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:1.4.2")
 }
 
-val String.execute
-    get() = ByteArrayOutputStream().run {
-        project.exec {
-            commandLine = split(" ")
-            standardOutput = this@run
-        }
-        String(toByteArray()).trim()
+fun String.execute(currentWorkingDir: File = file("./")): String {
+    val byteOut = ByteArrayOutputStream()
+    project.exec {
+        workingDir = currentWorkingDir
+        commandLine = this@execute.split("\\s".toRegex())
+        standardOutput = byteOut
     }
+    return String(byteOut.toByteArray()).trim()
+}
