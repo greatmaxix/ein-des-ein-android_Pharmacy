@@ -317,7 +317,7 @@
     <string name="your_request_accepted">Your application is accepted!</string>
     <string name="request_cancelled">Recording canceled</string>
     <string name="thanks_for_using_pulse">Thanks for using Pulse</string>
-    <string name="mapTitleHome">IATA\nTravel Pass</string>
+    <string name="mapTitleHome">Medical institutions</string>
     <string name="delegateDetails">Данные получателя :</string>
     <string name="emailHint">Email</string>
     <string name="deliveryCost">🚛 %1$d ₸</string>

@@ -313,4 +313,5 @@
     <string name="your_request_accepted">Сіздің өтініміңіз қабылданды!</string>
     <string name="request_cancelled">Жазба жойылды</string>
     <string name="thanks_for_using_pulse">Қолданғаныңыз үшін рахмет</string>
+    <string name="mapTitleHome">Медициналық мекемелер</string>
 </resources>

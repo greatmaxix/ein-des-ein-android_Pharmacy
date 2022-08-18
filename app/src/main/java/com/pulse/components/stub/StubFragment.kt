@@ -3,6 +3,7 @@ package com.pulse.components.stub
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pulse.R
+import androidx.core.view.isVisible
 import com.pulse.core.base.fragment.BaseToolbarFragment
 import com.pulse.databinding.FragmentStubBinding
 
@@ -15,7 +16,11 @@ class StubFragment : BaseToolbarFragment<StubViewModel>(R.layout.fragment_stub, 
         showBackButton()
         ivPicture.setImageResource(args.stubType.imageRes)
         setTitle(getString(args.stubType.toolbarTitle))
-        mtvEmptyTitle.setText(args.stubType.title)
+        if(args.stubType.title == 0){
+            mtvEmptyTitle.isVisible = false
+        }else{
+            mtvEmptyTitle.setText(args.stubType.title)
+        }
         mtvEmptySubtitle.setText(args.stubType.description)
     }
 }

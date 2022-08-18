@@ -313,4 +313,5 @@
     <string name="your_request_accepted">Ваша заявка принята!</string>
     <string name="request_cancelled">Запись отменена</string>
     <string name="thanks_for_using_pulse">Спасибо за использование Pulse</string>
+    <string name="mapTitleHome">Медицинские учреждения</string>
 </resources>

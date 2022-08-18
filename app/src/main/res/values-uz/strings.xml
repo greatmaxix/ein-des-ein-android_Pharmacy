@@ -313,4 +313,5 @@
     <string name="your_request_accepted">Arizangiz qabul qilindi!</string>
     <string name="request_cancelled">Yozuv bekor qilindi</string>
     <string name="thanks_for_using_pulse">Pulse-dan foydalanganingiz uchun tashakkur</string>
+    <string name="mapTitleHome">Tibbiy muassasalar</string>
 </resources>
