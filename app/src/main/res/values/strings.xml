@@ -395,4 +395,5 @@
     <string name="product_arrival_notifications">О поступлении товара</string>
     <string name="price_reduction_notification">О снижении цены</string>
     <string name="another_payment_type_title_empty">Увы, этот тип оплаты еще не подключен</string>
+    <string name="pharmacies">Pharmacies</string>
 </resources>

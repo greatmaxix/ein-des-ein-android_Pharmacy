@@ -314,4 +314,5 @@
     <string name="request_cancelled">Запись отменена</string>
     <string name="thanks_for_using_pulse">Спасибо за использование Pulse</string>
     <string name="mapTitleHome">Медицинские учреждения</string>
+    <string name="pharmacies">Аптеки</string>
 </resources>

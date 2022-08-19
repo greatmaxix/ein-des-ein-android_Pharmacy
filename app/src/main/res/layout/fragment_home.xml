@@ -48,9 +48,9 @@
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:layout_marginBottom="@dimen/_6sdp"
-                android:drawableTint="@color/colorGlobalWhite"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/_8sdp"
+                android:drawableTint="@color/colorGlobalWhite"
                 android:gravity="center_vertical"
                 android:text="@string/what_to_find"
                 android:textAppearance="?attr/textAppearanceBody1"
@@ -104,7 +104,6 @@
                 app:cardElevation="@dimen/_6sdp"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@id/mcv_analyze"
-                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:rippleColor="@color/colorRippleBlue">
@@ -138,7 +137,7 @@
                 app:cardElevation="@dimen/_6sdp"
                 app:layout_constraintBottom_toBottomOf="@id/mcv_ask"
                 app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@id/mcv_iata_travel"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mcv_ask"
                 app:layout_constraintTop_toTopOf="@id/mcv_ask"
                 app:rippleColor="@color/colorRippleBlue">
@@ -165,15 +164,14 @@
                 android:id="@+id/mcv_iata_travel"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginEnd="@dimen/_12sdp"
                 android:backgroundTint="@color/colorGlobalWhite"
+                android:layout_marginTop="@dimen/_12sdp"
                 app:cardCornerRadius="@dimen/_6sdp"
                 app:cardElevation="@dimen/_6sdp"
-                app:layout_constraintBottom_toBottomOf="@id/mcv_ask"
                 app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/mcv_analyze"
-                app:layout_constraintTop_toTopOf="@id/mcv_ask"
+                app:layout_constraintEnd_toStartOf="@id/mcv_pharmacies"
+                app:layout_constraintTop_toBottomOf="@id/mcv_ask"
+                app:layout_constraintStart_toStartOf="@id/mcv_ask"
                 app:rippleColor="@color/colorRippleBlue">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -195,6 +193,40 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcv_pharmacies"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:backgroundTint="@color/colorGlobalWhite"
+                app:cardCornerRadius="@dimen/_6sdp"
+                app:cardElevation="@dimen/_6sdp"
+                app:layout_constraintBottom_toBottomOf="@id/mcv_iata_travel"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mcv_iata_travel"
+                app:layout_constraintTop_toTopOf="@id/mcv_iata_travel"
+                app:rippleColor="@color/colorRippleBlue">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_pharmacies" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:background="@color/colorGlobalWhite50"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/pharmacies"
+                    android:textAppearance="?attr/textAppearanceCaption2"
+                    android:textColor="@color/darkBlue" />
+
+            </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtv_category_title"
                 android:layout_width="wrap_content"
@@ -205,7 +237,7 @@
                 android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/darkBlue"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mcv_ask" />
+                app:layout_constraintTop_toBottomOf="@id/mcv_iata_travel" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/mb_see_all_categories"
@@ -281,8 +313,8 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginHorizontal="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:backgroundTint="@color/green"
                 android:padding="@dimen/_8sdp"
                 android:text="@string/uploadRecipesHome"

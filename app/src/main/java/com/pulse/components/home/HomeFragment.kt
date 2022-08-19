@@ -36,6 +36,7 @@ class HomeFragment : BaseProductFragment<HomeViewModel>(R.layout.fragment_home, 
         mcvSearch.setDebounceOnClickListener { navController.navigate(fromHomeToSearch()) }
         mbSeeAllCategories.setDebounceOnClickListener { navController.onNavDestinationSelected(R.id.nav_catalog, null, R.id.nav_home) }
         mcvIataTravel.setDebounceOnClickListener { navController.navigate(globalToStub(StubType.IATA_TRAVEL_PASS)) }
+        mcvPharmacies.setDebounceOnClickListener { navController.navigate(globalToStub(StubType.PHARMACIES)) }
 
         viewModel.loadInitialData()
         pbCategories.visibleOrGone(!isCategoryLoaded)

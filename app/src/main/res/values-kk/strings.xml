@@ -314,4 +314,5 @@
     <string name="request_cancelled">Жазба жойылды</string>
     <string name="thanks_for_using_pulse">Қолданғаныңыз үшін рахмет</string>
     <string name="mapTitleHome">Медициналық мекемелер</string>
+    <string name="pharmacies">Дәріханалар</string>
 </resources>
